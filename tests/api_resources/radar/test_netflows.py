@@ -12,8 +12,12 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.types.radar import (
     NetflowSummaryResponse,
+    NetflowSummaryV2Response,
     NetflowTimeseriesResponse,
+    NetflowTimeseriesGroupsResponse,
 )
+
+# pyright: reportDeprecated=false
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,26 +27,32 @@ class TestNetflows:
 
     @parametrize
     def test_method_summary(self, client: Cloudflare) -> None:
-        netflow = client.radar.netflows.summary()
+        with pytest.warns(DeprecationWarning):
+            netflow = client.radar.netflows.summary()
+
         assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
 
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
-        netflow = client.radar.netflows.summary(
-            asn=["string"],
-            continent=["string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            location=["string"],
-            name=["main_series"],
-        )
+        with pytest.warns(DeprecationWarning):
+            netflow = client.radar.netflows.summary(
+                asn=["string"],
+                continent=["string"],
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                geo_id=["string"],
+                location=["string"],
+                name=["main_series"],
+            )
+
         assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
 
     @parametrize
     def test_raw_response_summary(self, client: Cloudflare) -> None:
-        response = client.radar.netflows.with_raw_response.summary()
+        with pytest.warns(DeprecationWarning):
+            response = client.radar.netflows.with_raw_response.summary()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -51,12 +61,62 @@ class TestNetflows:
 
     @parametrize
     def test_streaming_response_summary(self, client: Cloudflare) -> None:
-        with client.radar.netflows.with_streaming_response.summary() as response:
+        with pytest.warns(DeprecationWarning):
+            with client.radar.netflows.with_streaming_response.summary() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                netflow = response.parse()
+                assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_summary_v2(self, client: Cloudflare) -> None:
+        netflow = client.radar.netflows.summary_v2(
+            dimension="ADM1",
+        )
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    def test_method_summary_v2_with_all_params(self, client: Cloudflare) -> None:
+        netflow = client.radar.netflows.summary_v2(
+            dimension="ADM1",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            geo_id=["string"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            product=["HTTP"],
+        )
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    def test_raw_response_summary_v2(self, client: Cloudflare) -> None:
+        response = client.radar.netflows.with_raw_response.summary_v2(
+            dimension="ADM1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        netflow = response.parse()
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    def test_streaming_response_summary_v2(self, client: Cloudflare) -> None:
+        with client.radar.netflows.with_streaming_response.summary_v2(
+            dimension="ADM1",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             netflow = response.parse()
-            assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
+            assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,6 +135,7 @@ class TestNetflows:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            geo_id=["string"],
             location=["string"],
             name=["main_series"],
             normalization="MIN0_MAX",
@@ -102,32 +163,91 @@ class TestNetflows:
 
         assert cast(Any, response.is_closed) is True
 
-
-class TestAsyncNetflows:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    @parametrize
+    def test_method_timeseries_groups(self, client: Cloudflare) -> None:
+        netflow = client.radar.netflows.timeseries_groups(
+            dimension="ADM1",
+        )
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
 
     @parametrize
-    async def test_method_summary(self, async_client: AsyncCloudflare) -> None:
-        netflow = await async_client.radar.netflows.summary()
-        assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
-
-    @parametrize
-    async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        netflow = await async_client.radar.netflows.summary(
+    def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
+        netflow = client.radar.netflows.timeseries_groups(
+            dimension="ADM1",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            geo_id=["string"],
+            limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            normalization="PERCENTAGE",
+            product=["HTTP"],
         )
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+    @parametrize
+    def test_raw_response_timeseries_groups(self, client: Cloudflare) -> None:
+        response = client.radar.netflows.with_raw_response.timeseries_groups(
+            dimension="ADM1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        netflow = response.parse()
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+    @parametrize
+    def test_streaming_response_timeseries_groups(self, client: Cloudflare) -> None:
+        with client.radar.netflows.with_streaming_response.timeseries_groups(
+            dimension="ADM1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            netflow = response.parse()
+            assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+
+class TestAsyncNetflows:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @parametrize
+    async def test_method_summary(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            netflow = await async_client.radar.netflows.summary()
+
+        assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
+
+    @parametrize
+    async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            netflow = await async_client.radar.netflows.summary(
+                asn=["string"],
+                continent=["string"],
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                geo_id=["string"],
+                location=["string"],
+                name=["main_series"],
+            )
+
         assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
 
     @parametrize
     async def test_raw_response_summary(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.netflows.with_raw_response.summary()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.radar.netflows.with_raw_response.summary()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,12 +256,62 @@ class TestAsyncNetflows:
 
     @parametrize
     async def test_streaming_response_summary(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.netflows.with_streaming_response.summary() as response:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.radar.netflows.with_streaming_response.summary() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                netflow = await response.parse()
+                assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_summary_v2(self, async_client: AsyncCloudflare) -> None:
+        netflow = await async_client.radar.netflows.summary_v2(
+            dimension="ADM1",
+        )
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    async def test_method_summary_v2_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        netflow = await async_client.radar.netflows.summary_v2(
+            dimension="ADM1",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            geo_id=["string"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            product=["HTTP"],
+        )
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    async def test_raw_response_summary_v2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.netflows.with_raw_response.summary_v2(
+            dimension="ADM1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        netflow = await response.parse()
+        assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_summary_v2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.netflows.with_streaming_response.summary_v2(
+            dimension="ADM1",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             netflow = await response.parse()
-            assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
+            assert_matches_type(NetflowSummaryV2Response, netflow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -160,6 +330,7 @@ class TestAsyncNetflows:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            geo_id=["string"],
             location=["string"],
             name=["main_series"],
             normalization="MIN0_MAX",
@@ -184,5 +355,56 @@ class TestAsyncNetflows:
 
             netflow = await response.parse()
             assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
+        netflow = await async_client.radar.netflows.timeseries_groups(
+            dimension="ADM1",
+        )
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+    @parametrize
+    async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        netflow = await async_client.radar.netflows.timeseries_groups(
+            dimension="ADM1",
+            agg_interval="1h",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            geo_id=["string"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            normalization="PERCENTAGE",
+            product=["HTTP"],
+        )
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+    @parametrize
+    async def test_raw_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.netflows.with_raw_response.timeseries_groups(
+            dimension="ADM1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        netflow = await response.parse()
+        assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.netflows.with_streaming_response.timeseries_groups(
+            dimension="ADM1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            netflow = await response.parse()
+            assert_matches_type(NetflowTimeseriesGroupsResponse, netflow, path=["response"])
 
         assert cast(Any, response.is_closed) is True

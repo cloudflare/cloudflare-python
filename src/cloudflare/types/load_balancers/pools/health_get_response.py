@@ -26,6 +26,8 @@ class POPHealthOrigin(BaseModel):
 
 
 class POPHealth(BaseModel):
+    """List of regions and associated health status."""
+
     healthy: Optional[bool] = None
     """Whether health check in region is healthy."""
 
@@ -33,8 +35,13 @@ class POPHealth(BaseModel):
 
 
 class HealthGetResponse(BaseModel):
+    """A list of regions from which to run health checks.
+
+    Null means every Cloudflare data center.
+    """
+
     pool_id: Optional[str] = None
-    """Pool ID"""
+    """Pool ID."""
 
     pop_health: Optional[POPHealth] = None
     """List of regions and associated health status."""

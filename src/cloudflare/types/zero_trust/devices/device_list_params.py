@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["DeviceListParams", "LastSeenUser"]
 
@@ -11,7 +12,7 @@ __all__ = ["DeviceListParams", "LastSeenUser"]
 class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    id: List[str]
+    id: SequenceNotStr[str]
     """Filter by a one or more device IDs."""
 
     active_registrations: Literal["include", "only", "exclude"]
@@ -28,6 +29,10 @@ class DeviceListParams(TypedDict, total=False):
     """
 
     include: str
+    """
+    Comma-separated list of additional information that should be included in the
+    device response. Supported values are: "last_seen_registration.policy".
+    """
 
     last_seen_user: LastSeenUser
 
@@ -39,7 +44,7 @@ class DeviceListParams(TypedDict, total=False):
 
     seen_after: str
     """
-    Filters by the last_seen timestamp - returns only devices last seen after this
+    Filter by the last_seen timestamp - returns only devices last seen after this
     timestamp.
     """
 

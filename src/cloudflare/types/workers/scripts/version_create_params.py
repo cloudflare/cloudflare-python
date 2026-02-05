@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ...._types import FileTypes, SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = [
@@ -17,11 +18,14 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
     "MetadataBindingWorkersBindingKindD1",
+    "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
+    "MetadataBindingWorkersBindingKindInherit",
+    "MetadataBindingWorkersBindingKindImages",
     "MetadataBindingWorkersBindingKindJson",
     "MetadataBindingWorkersBindingKindKVNamespace",
     "MetadataBindingWorkersBindingKindMTLSCertificate",
@@ -30,13 +34,15 @@ __all__ = [
     "MetadataBindingWorkersBindingKindQueue",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
+    "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
-    "MetadataBindingWorkersBindingKindTailConsumer",
+    "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
     "MetadataBindingWorkersBindingKindSecretsStoreSecret",
     "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataBindingWorkersBindingKindWorkflow",
+    "MetadataBindingWorkersBindingKindWasmModule",
 ]
 
 
@@ -45,10 +51,24 @@ class VersionCreateParams(TypedDict, total=False):
     """Identifier."""
 
     metadata: Required[Metadata]
-    """JSON encoded metadata about the uploaded parts and Worker configuration."""
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
+    files: SequenceNotStr[FileTypes]
+    """An array of modules (often JavaScript files) comprising a Worker script.
+
+    At least one module must be present and referenced in the metadata as
+    `main_module` or `body_part` by filename.<br/>Possible Content-Type(s) are:
+    `application/javascript+module`, `text/javascript+module`,
+    `application/javascript`, `text/javascript`, `text/x-python`,
+    `text/x-python-requirement`, `application/wasm`, `text/plain`,
+    `application/octet-stream`, `application/source-map`.
+    """
 
 
 class MetadataAnnotations(TypedDict, total=False):
+    workers_alias: Annotated[str, PropertyInfo(alias="workers/alias")]
+    """Associated alias for a version."""
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version. Truncated to 100 bytes."""
 
@@ -102,7 +122,23 @@ class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["data_blob"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -111,7 +147,9 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    """Outbound worker."""
+
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -126,7 +164,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
@@ -166,6 +204,36 @@ class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindInherit(TypedDict, total=False):
+    name: Required[str]
+    """The name of the inherited binding."""
+
+    type: Required[Literal["inherit"]]
+    """The kind of resource that the binding provides."""
+
+    old_name: str
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: str
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -245,6 +313,13 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
+    jurisdiction: Literal["eu", "fedramp"]
+    """
+    The
+    [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
+    of the R2 bucket.
+    """
+
 
 class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     name: Required[str]
@@ -257,10 +332,24 @@ class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
-    environment: Required[str]
-    """Optional environment if the Worker utilizes one."""
+class MetadataBindingWorkersBindingKindSendEmail(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
 
+    type: Required[Literal["send_email"]]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: SequenceNotStr[str]
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: SequenceNotStr[str]
+    """List of allowed sender addresses."""
+
+    destination_address: str
+    """Destination address for the email."""
+
+
+class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -270,15 +359,21 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
 
+    environment: str
+    """Optional environment if the Worker utilizes one."""
 
-class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
+
+class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
+    part: Required[str]
+    """The name of the file containing the text content.
 
-    type: Required[Literal["tail_consumer"]]
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -376,15 +471,32 @@ class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
+class MetadataBindingWorkersBindingKindWasmModule(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["wasm_module"]]
+    """The kind of resource that the binding provides."""
+
+
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
     MetadataBindingWorkersBindingKindD1,
+    MetadataBindingWorkersBindingKindDataBlob,
     MetadataBindingWorkersBindingKindDispatchNamespace,
     MetadataBindingWorkersBindingKindDurableObjectNamespace,
     MetadataBindingWorkersBindingKindHyperdrive,
+    MetadataBindingWorkersBindingKindInherit,
+    MetadataBindingWorkersBindingKindImages,
     MetadataBindingWorkersBindingKindJson,
     MetadataBindingWorkersBindingKindKVNamespace,
     MetadataBindingWorkersBindingKindMTLSCertificate,
@@ -393,19 +505,23 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindQueue,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
+    MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
-    MetadataBindingWorkersBindingKindTailConsumer,
+    MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
     MetadataBindingWorkersBindingKindSecretsStoreSecret,
     MetadataBindingWorkersBindingKindSecretKey,
     MetadataBindingWorkersBindingKindWorkflow,
+    MetadataBindingWorkersBindingKindWasmModule,
 ]
 
 
 class Metadata(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     main_module: Required[str]
-    """Name of the part in the multipart request that contains the main module (e.g.
+    """Name of the uploaded file that contains the main module (e.g.
 
     the file exporting a `fetch` handler). Indicates a `module syntax` Worker, which
     is required for Version Upload.
@@ -427,15 +543,15 @@ class Metadata(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
     included in a `compatibility_date`.
     """
 
-    keep_bindings: List[str]
+    keep_bindings: SequenceNotStr[str]
     """List of binding types to keep from previous_upload."""
 
-    usage_model: Literal["standard"]
+    usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

@@ -2,10 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["AIGatewayUpdateParams"]
+from ..._types import SequenceNotStr
+
+__all__ = [
+    "AIGatewayUpdateParams",
+    "DLP",
+    "DLPUnionMember0",
+    "DLPUnionMember1",
+    "DLPUnionMember1Policy",
+    "Otel",
+    "Stripe",
+    "StripeUsageEvent",
+]
 
 
 class AIGatewayUpdateParams(TypedDict, total=False):
@@ -25,6 +36,10 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     authentication: bool
 
+    dlp: DLP
+
+    is_default: bool
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -32,3 +47,58 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    otel: Optional[Iterable[Otel]]
+
+    store_id: Optional[str]
+
+    stripe: Optional[Stripe]
+
+    zdr: bool
+
+
+class DLPUnionMember0(TypedDict, total=False):
+    action: Required[Literal["BLOCK", "FLAG"]]
+
+    enabled: Required[bool]
+
+    profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1Policy(TypedDict, total=False):
+    id: Required[str]
+
+    action: Required[Literal["FLAG", "BLOCK"]]
+
+    check: Required[List[Literal["REQUEST", "RESPONSE"]]]
+
+    enabled: Required[bool]
+
+    profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1(TypedDict, total=False):
+    enabled: Required[bool]
+
+    policies: Required[Iterable[DLPUnionMember1Policy]]
+
+
+DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class Otel(TypedDict, total=False):
+    authorization: Required[str]
+
+    headers: Required[Dict[str, str]]
+
+    url: Required[str]
+
+
+class StripeUsageEvent(TypedDict, total=False):
+    payload: Required[str]
+
+
+class Stripe(TypedDict, total=False):
+    authorization: Required[str]
+
+    usage_events: Required[Iterable[StripeUsageEvent]]

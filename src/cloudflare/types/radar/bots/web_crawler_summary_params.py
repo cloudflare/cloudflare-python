@@ -1,0 +1,55 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import List, Union
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
+
+from ...._types import SequenceNotStr
+from ...._utils import PropertyInfo
+
+__all__ = ["WebCrawlerSummaryParams"]
+
+
+class WebCrawlerSummaryParams(TypedDict, total=False):
+    bot_operator: Annotated[SequenceNotStr[str], PropertyInfo(alias="botOperator")]
+    """Filters results by bot operator."""
+
+    client_type: Annotated[
+        List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]], PropertyInfo(alias="clientType")
+    ]
+    """Filters results by agent type."""
+
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    """End of the date range (inclusive)."""
+
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
+    """Filters results by date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
+    week. Use this parameter or set specific start and end dates (`dateStart` and
+    `dateEnd` parameters).
+    """
+
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    """Start of the date range."""
+
+    format: Literal["JSON", "CSV"]
+    """Format in which results will be returned."""
+
+    industry: SequenceNotStr[str]
+    """Filters results by industry."""
+
+    limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
+    """
+    Limits the number of objects per group to the top items within the specified
+    time range. When item count exceeds the limit, extra items appear grouped under
+    an "other" category.
+    """
+
+    name: SequenceNotStr[str]
+    """Array of names used to label the series in the response."""
+
+    vertical: SequenceNotStr[str]
+    """Filters results by vertical."""

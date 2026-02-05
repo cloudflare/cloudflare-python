@@ -15,7 +15,7 @@ __all__ = ["PoolCreateParams"]
 
 class PoolCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """A short name (tag) for the pool.
@@ -47,7 +47,7 @@ class PoolCreateParams(TypedDict, total=False):
     decimal degrees. If this is set, longitude must also be set.
     """
 
-    load_shedding: LoadSheddingParam
+    load_shedding: Optional[LoadSheddingParam]
     """Configures load shedding policies and percentages for the pool."""
 
     longitude: float
@@ -69,6 +69,12 @@ class PoolCreateParams(TypedDict, total=False):
     pool.
     """
 
+    monitor_group: str
+    """
+    The ID of the Monitor Group to use for checking the health of origins within
+    this pool.
+    """
+
     notification_email: str
     """This field is now deprecated.
 
@@ -84,7 +90,7 @@ class PoolCreateParams(TypedDict, total=False):
     Use null to reset.
     """
 
-    origin_steering: OriginSteeringParam
+    origin_steering: Optional[OriginSteeringParam]
     """Configures origin steering for the pool.
 
     Controls how origins are selected for new sessions and traffic without session

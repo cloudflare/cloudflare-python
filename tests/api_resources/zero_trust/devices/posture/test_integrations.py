@@ -27,7 +27,7 @@ class TestIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -43,7 +43,7 @@ class TestIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -59,7 +59,7 @@ class TestIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -79,7 +79,7 @@ class TestIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -102,7 +102,7 @@ class TestIntegrations:
                 account_id="",
                 config={
                     "api_url": "https://as123.awmdm.com/API",
-                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                    "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                     "client_id": "example client id",
                     "client_secret": "example client secret",
                 },
@@ -212,7 +212,7 @@ class TestIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -312,7 +312,9 @@ class TestIntegrations:
 
 
 class TestAsyncIntegrations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -320,7 +322,7 @@ class TestAsyncIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -336,7 +338,7 @@ class TestAsyncIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -352,7 +354,7 @@ class TestAsyncIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -372,7 +374,7 @@ class TestAsyncIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },
@@ -395,7 +397,7 @@ class TestAsyncIntegrations:
                 account_id="",
                 config={
                     "api_url": "https://as123.awmdm.com/API",
-                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                    "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                     "client_id": "example client id",
                     "client_secret": "example client secret",
                 },
@@ -505,7 +507,7 @@ class TestAsyncIntegrations:
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
                 "client_id": "example client id",
                 "client_secret": "example client secret",
             },

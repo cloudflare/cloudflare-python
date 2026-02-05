@@ -10,6 +10,8 @@ __all__ = ["HTTP3"]
 
 
 class HTTP3(BaseModel):
+    """HTTP3 enabled for this zone."""
+
     id: Literal["http3"]
     """ID of the zone setting."""
 

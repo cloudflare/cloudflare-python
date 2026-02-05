@@ -10,6 +10,8 @@ __all__ = ["ACL"]
 
 
 class ACL(BaseModel):
+    """Bidirectional ACL policy for network traffic within a site."""
+
     id: Optional[str] = None
     """Identifier"""
 

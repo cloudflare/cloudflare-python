@@ -2,19 +2,36 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .gateway_ips import GatewayIPs
+__all__ = [
+    "ProxyEndpointCreateParams",
+    "ZeroTrustGatewayProxyEndpointIPCreate",
+    "ZeroTrustGatewayProxyEndpointIdentityCreate",
+]
 
-__all__ = ["ProxyEndpointCreateParams"]
 
-
-class ProxyEndpointCreateParams(TypedDict, total=False):
+class ZeroTrustGatewayProxyEndpointIPCreate(TypedDict, total=False):
     account_id: Required[str]
 
-    ips: Required[List[GatewayIPs]]
-    """A list of CIDRs to restrict ingress connections."""
+    name: Required[str]
+    """Specify the name of the proxy endpoint."""
+
+    kind: Literal["ip"]
+    """The proxy endpoint kind"""
+
+
+class ZeroTrustGatewayProxyEndpointIdentityCreate(TypedDict, total=False):
+    account_id: Required[str]
+
+    kind: Required[Literal["identity"]]
+    """The proxy endpoint kind"""
 
     name: Required[str]
-    """The name of the proxy endpoint."""
+    """Specify the name of the proxy endpoint."""
+
+
+ProxyEndpointCreateParams: TypeAlias = Union[
+    ZeroTrustGatewayProxyEndpointIPCreate, ZeroTrustGatewayProxyEndpointIdentityCreate
+]

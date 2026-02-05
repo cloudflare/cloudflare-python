@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -66,7 +66,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryCreateResponse:
         """
         Create an entry in impersonation registry
@@ -108,19 +108,19 @@ class ImpersonationRegistryResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "email", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "email", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         provenance: Literal["A1S_INTERNAL", "SNOOPY-CASB_OFFICE_365", "SNOOPY-OFFICE_365", "SNOOPY-GOOGLE_DIRECTORY"]
-        | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ImpersonationRegistryListResponse]:
         """
         Lists, searches, and sorts entries in the impersonation registry.
@@ -183,7 +183,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryDeleteResponse:
         """
         Delete an entry from impersonation registry
@@ -218,15 +218,15 @@ class ImpersonationRegistryResource(SyncAPIResource):
         display_name_id: int,
         *,
         account_id: str,
-        email: Optional[str] | NotGiven = NOT_GIVEN,
-        is_email_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        email: Optional[str] | Omit = omit,
+        is_email_regex: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryEditResponse:
         """
         Update an entry in impersonation registry
@@ -274,7 +274,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryGetResponse:
         """
         Get an entry in impersonation registry
@@ -337,7 +337,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryCreateResponse:
         """
         Create an entry in impersonation registry
@@ -379,19 +379,19 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "email", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "email", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         provenance: Literal["A1S_INTERNAL", "SNOOPY-CASB_OFFICE_365", "SNOOPY-OFFICE_365", "SNOOPY-GOOGLE_DIRECTORY"]
-        | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[
         ImpersonationRegistryListResponse, AsyncV4PagePaginationArray[ImpersonationRegistryListResponse]
     ]:
@@ -456,7 +456,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryDeleteResponse:
         """
         Delete an entry from impersonation registry
@@ -491,15 +491,15 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         display_name_id: int,
         *,
         account_id: str,
-        email: Optional[str] | NotGiven = NOT_GIVEN,
-        is_email_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        email: Optional[str] | Omit = omit,
+        is_email_regex: Optional[bool] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryEditResponse:
         """
         Update an entry in impersonation registry
@@ -547,7 +547,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryGetResponse:
         """
         Get an entry in impersonation registry

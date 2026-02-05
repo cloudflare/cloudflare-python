@@ -8,5 +8,7 @@ __all__ = ["TLSSettingsParam"]
 
 
 class TLSSettingsParam(TypedDict, total=False):
+    """Specify whether to inspect encrypted HTTP traffic."""
+
     enabled: bool
-    """Enable inspecting encrypted HTTP traffic."""
+    """Specify whether to inspect encrypted HTTP traffic."""

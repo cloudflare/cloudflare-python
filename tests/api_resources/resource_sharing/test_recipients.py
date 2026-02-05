@@ -94,6 +94,7 @@ class TestRecipients:
         recipient = client.resource_sharing.recipients.list(
             share_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_resources=True,
             page=2,
             per_page=20,
         )
@@ -209,6 +210,16 @@ class TestRecipients:
         assert_matches_type(Optional[RecipientGetResponse], recipient, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        recipient = client.resource_sharing.recipients.get(
+            recipient_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            include_resources=True,
+        )
+        assert_matches_type(Optional[RecipientGetResponse], recipient, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.resource_sharing.recipients.with_raw_response.get(
             recipient_id="3fd85f74b32742f1bff64a85009dda07",
@@ -261,7 +272,9 @@ class TestRecipients:
 
 
 class TestAsyncRecipients:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -334,6 +347,7 @@ class TestAsyncRecipients:
         recipient = await async_client.resource_sharing.recipients.list(
             share_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_resources=True,
             page=2,
             per_page=20,
         )
@@ -445,6 +459,16 @@ class TestAsyncRecipients:
             recipient_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             share_id="3fd85f74b32742f1bff64a85009dda07",
+        )
+        assert_matches_type(Optional[RecipientGetResponse], recipient, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        recipient = await async_client.resource_sharing.recipients.get(
+            recipient_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            include_resources=True,
         )
         assert_matches_type(Optional[RecipientGetResponse], recipient, path=["response"])
 

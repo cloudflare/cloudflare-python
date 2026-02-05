@@ -9,7 +9,7 @@ __all__ = ["ListUpdateParams"]
 
 class ListUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Defines an identifier."""
+    """The Account ID for this resource."""
 
     description: str
     """An informative summary of the list."""

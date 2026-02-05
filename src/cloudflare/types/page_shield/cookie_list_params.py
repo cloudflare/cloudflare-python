@@ -18,7 +18,7 @@ class CookieListParams(TypedDict, total=False):
     """Filters the returned cookies that match the specified domain attribute"""
 
     export: Literal["csv"]
-    """Export the list of cookies as a file."""
+    """Export the list of cookies as a file, limited to 50000 entries."""
 
     hosts: str
     """

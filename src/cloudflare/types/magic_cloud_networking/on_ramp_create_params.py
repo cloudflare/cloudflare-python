@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["OnRampCreateParams"]
 
@@ -12,6 +13,12 @@ class OnRampCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     cloud_type: Required[Literal["AWS", "AZURE", "GOOGLE"]]
+
+    dynamic_routing: Required[bool]
+    """
+    if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
+    be set to false
+    """
 
     install_routes_in_cloud: Required[bool]
 
@@ -23,9 +30,15 @@ class OnRampCreateParams(TypedDict, total=False):
 
     adopted_hub_id: str
 
-    attached_hubs: List[str]
+    attached_hubs: SequenceNotStr[str]
 
-    attached_vpcs: List[str]
+    attached_vpcs: SequenceNotStr[str]
+
+    cloud_asn: int
+    """the ASN to use on the cloud side.
+
+    If unset or zero, the cloud's default will be used.
+    """
 
     description: str
 

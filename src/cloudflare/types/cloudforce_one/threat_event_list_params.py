@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["ThreatEventListParams", "Search"]
@@ -14,9 +15,11 @@ class ThreatEventListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
-    dataset_id: Annotated[List[str], PropertyInfo(alias="datasetId")]
+    dataset_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetId")]
 
     force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
+
+    format: Literal["json", "stix2"]
 
     order: Literal["asc", "desc"]
 
@@ -34,4 +37,4 @@ class Search(TypedDict, total=False):
 
     op: Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]
 
-    value: Union[str, float, List[Union[str, float]]]
+    value: Union[str, float, SequenceNotStr[Union[str, float]]]

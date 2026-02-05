@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,20 +50,21 @@ class OutagesResource(SyncAPIResource):
     def get(
         self,
         *,
-        asn: int | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        asn: int | Omit = omit,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutageGetResponse:
         """
         Retrieves the latest Internet outages and anomalies.
@@ -85,6 +86,8 @@ class OutagesResource(SyncAPIResource):
           location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          origin: Filters results by origin.
 
           extra_headers: Send extra headers
 
@@ -111,6 +114,7 @@ class OutagesResource(SyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     outage_get_params.OutageGetParams,
                 ),
@@ -122,17 +126,17 @@ class OutagesResource(SyncAPIResource):
     def locations(
         self,
         *,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutageLocationsResponse:
         """
         Retrieves the number of outages by location.
@@ -202,20 +206,21 @@ class AsyncOutagesResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        asn: int | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        asn: int | Omit = omit,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutageGetResponse:
         """
         Retrieves the latest Internet outages and anomalies.
@@ -237,6 +242,8 @@ class AsyncOutagesResource(AsyncAPIResource):
           location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          origin: Filters results by origin.
 
           extra_headers: Send extra headers
 
@@ -263,6 +270,7 @@ class AsyncOutagesResource(AsyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     outage_get_params.OutageGetParams,
                 ),
@@ -274,17 +282,17 @@ class AsyncOutagesResource(AsyncAPIResource):
     async def locations(
         self,
         *,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutageLocationsResponse:
         """
         Retrieves the number of outages by location.

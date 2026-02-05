@@ -7,11 +7,74 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InvestigateGetResponse", "Properties", "Validation"]
+__all__ = ["InvestigateGetResponse", "Properties", "Finding", "Validation"]
 
 
 class Properties(BaseModel):
-    whitelisted_pattern_type: Optional[str] = None
+    allowlisted_pattern: Optional[str] = None
+
+    allowlisted_pattern_type: Optional[
+        Literal[
+            "quarantine_release",
+            "acceptable_sender",
+            "allowed_sender",
+            "allowed_recipient",
+            "domain_similarity",
+            "domain_recency",
+            "managed_acceptable_sender",
+            "outbound_ndr",
+        ]
+    ] = None
+
+    blocklisted_message: Optional[bool] = None
+
+    blocklisted_pattern: Optional[str] = None
+
+    whitelisted_pattern_type: Optional[
+        Literal[
+            "quarantine_release",
+            "acceptable_sender",
+            "allowed_sender",
+            "allowed_recipient",
+            "domain_similarity",
+            "domain_recency",
+            "managed_acceptable_sender",
+            "outbound_ndr",
+        ]
+    ] = None
+
+
+class Finding(BaseModel):
+    attachment: Optional[str] = None
+
+    detail: Optional[str] = None
+
+    detection: Optional[
+        Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+    ] = None
+
+    field: Optional[str] = None
+
+    name: Optional[str] = None
+
+    portion: Optional[str] = None
+
+    reason: Optional[str] = None
+
+    score: Optional[float] = None
+
+    value: Optional[str] = None
 
 
 class Validation(BaseModel):
@@ -64,6 +127,10 @@ class InvestigateGetResponse(BaseModel):
 
     edf_hash: Optional[str] = None
 
+    envelope_from: Optional[str] = None
+
+    envelope_to: Optional[List[str]] = None
+
     final_disposition: Optional[
         Literal[
             "MALICIOUS",
@@ -79,11 +146,19 @@ class InvestigateGetResponse(BaseModel):
         ]
     ] = None
 
+    findings: Optional[List[Finding]] = None
+
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
     from_name: Optional[str] = None
 
+    htmltext_structure_hash: Optional[str] = None
+
     message_id: Optional[str] = None
+
+    postfix_id_outbound: Optional[str] = None
+
+    replyto: Optional[str] = None
 
     sent_date: Optional[str] = None
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["CORSUpdateParams", "Rule", "RuleAllowed"]
@@ -21,19 +22,21 @@ class CORSUpdateParams(TypedDict, total=False):
 
 
 class RuleAllowed(TypedDict, total=False):
+    """Object specifying allowed origins, methods and headers for this CORS rule."""
+
     methods: Required[List[Literal["GET", "PUT", "POST", "DELETE", "HEAD"]]]
     """
     Specifies the value for the Access-Control-Allow-Methods header R2 sets when
     requesting objects in a bucket from a browser.
     """
 
-    origins: Required[List[str]]
+    origins: Required[SequenceNotStr[str]]
     """
     Specifies the value for the Access-Control-Allow-Origin header R2 sets when
     requesting objects in a bucket from a browser.
     """
 
-    headers: List[str]
+    headers: SequenceNotStr[str]
     """
     Specifies the value for the Access-Control-Allow-Headers header R2 sets when
     requesting objects in this bucket from a browser. Cross-origin requests that
@@ -49,7 +52,7 @@ class Rule(TypedDict, total=False):
     id: str
     """Identifier for this rule."""
 
-    expose_headers: Annotated[List[str], PropertyInfo(alias="exposeHeaders")]
+    expose_headers: Annotated[SequenceNotStr[str], PropertyInfo(alias="exposeHeaders")]
     """
     Specifies the headers that can be exposed back, and accessed by, the JavaScript
     making the cross-origin request. If you need to access headers beyond the

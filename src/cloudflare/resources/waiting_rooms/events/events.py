@@ -15,7 +15,7 @@ from .details import (
     DetailsResourceWithStreamingResponse,
     AsyncDetailsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -67,25 +67,25 @@ class EventsResource(SyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
@@ -203,25 +203,25 @@ class EventsResource(SyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Updates a configured event for a waiting room.
@@ -331,14 +331,14 @@ class EventsResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Event]:
         """
         Lists events for a waiting room.
@@ -392,7 +392,7 @@ class EventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventDeleteResponse:
         """
         Deletes an event for a waiting room.
@@ -435,25 +435,25 @@ class EventsResource(SyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Patches a configured event for a waiting room.
@@ -569,7 +569,7 @@ class EventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Fetches a single configured event for a waiting room.
@@ -636,25 +636,25 @@ class AsyncEventsResource(AsyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
@@ -772,25 +772,25 @@ class AsyncEventsResource(AsyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Updates a configured event for a waiting room.
@@ -900,14 +900,14 @@ class AsyncEventsResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Event, AsyncV4PagePaginationArray[Event]]:
         """
         Lists events for a waiting room.
@@ -961,7 +961,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventDeleteResponse:
         """
         Deletes an event for a waiting room.
@@ -1004,25 +1004,25 @@ class AsyncEventsResource(AsyncAPIResource):
         event_end_time: str,
         event_start_time: str,
         name: str,
-        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        custom_page_html: Optional[str] | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: Optional[bool] | Omit = omit,
+        new_users_per_minute: Optional[int] | Omit = omit,
+        prequeue_start_time: Optional[str] | Omit = omit,
+        queueing_method: Optional[str] | Omit = omit,
+        session_duration: Optional[int] | Omit = omit,
+        shuffle_at_event_start: bool | Omit = omit,
+        suspended: bool | Omit = omit,
+        total_active_users: Optional[int] | Omit = omit,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | Omit = omit,
         turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Patches a configured event for a waiting room.
@@ -1138,7 +1138,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         Fetches a single configured event for a waiting room.

@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .delegations import (
@@ -98,15 +98,17 @@ class PrefixesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        asn: Optional[int],
+        asn: int,
         cidr: str,
-        loa_document_id: Optional[str],
+        delegate_loa_creation: bool | Omit = omit,
+        description: str | Omit = omit,
+        loa_document_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         Add a new prefix under the account.
@@ -117,6 +119,11 @@ class PrefixesResource(SyncAPIResource):
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
+
+          delegate_loa_creation: Whether Cloudflare is allowed to generate the LOA document on behalf of the
+              prefix owner.
+
+          description: Description of the prefix.
 
           loa_document_id: Identifier for the uploaded LOA document.
 
@@ -136,6 +143,8 @@ class PrefixesResource(SyncAPIResource):
                 {
                     "asn": asn,
                     "cidr": cidr,
+                    "delegate_loa_creation": delegate_loa_creation,
+                    "description": description,
                     "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
@@ -159,7 +168,7 @@ class PrefixesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Prefix]:
         """
         List all prefixes owned by the account.
@@ -196,7 +205,7 @@ class PrefixesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
@@ -237,7 +246,7 @@ class PrefixesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         Modify the description for a prefix owned by the account.
@@ -284,7 +293,7 @@ class PrefixesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         List a particular prefix owned by the account.
@@ -359,15 +368,17 @@ class AsyncPrefixesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        asn: Optional[int],
+        asn: int,
         cidr: str,
-        loa_document_id: Optional[str],
+        delegate_loa_creation: bool | Omit = omit,
+        description: str | Omit = omit,
+        loa_document_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         Add a new prefix under the account.
@@ -378,6 +389,11 @@ class AsyncPrefixesResource(AsyncAPIResource):
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
+
+          delegate_loa_creation: Whether Cloudflare is allowed to generate the LOA document on behalf of the
+              prefix owner.
+
+          description: Description of the prefix.
 
           loa_document_id: Identifier for the uploaded LOA document.
 
@@ -397,6 +413,8 @@ class AsyncPrefixesResource(AsyncAPIResource):
                 {
                     "asn": asn,
                     "cidr": cidr,
+                    "delegate_loa_creation": delegate_loa_creation,
+                    "description": description,
                     "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
@@ -420,7 +438,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Prefix, AsyncSinglePage[Prefix]]:
         """
         List all prefixes owned by the account.
@@ -457,7 +475,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
@@ -498,7 +516,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         Modify the description for a prefix owned by the account.
@@ -545,7 +563,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Prefix]:
         """
         List a particular prefix owned by the account.

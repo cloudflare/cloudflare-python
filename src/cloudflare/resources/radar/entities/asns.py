@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -19,11 +19,12 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.radar.entities import asn_ip_params, asn_get_params, asn_rel_params, asn_list_params
+from ....types.radar.entities import asn_ip_params, asn_get_params, asn_rel_params, asn_list_params, asn_as_set_params
 from ....types.radar.entities.asn_ip_response import ASNIPResponse
 from ....types.radar.entities.asn_get_response import ASNGetResponse
 from ....types.radar.entities.asn_rel_response import ASNRelResponse
 from ....types.radar.entities.asn_list_response import ASNListResponse
+from ....types.radar.entities.asn_as_set_response import ASNAsSetResponse
 
 __all__ = ["ASNsResource", "AsyncASNsResource"]
 
@@ -51,18 +52,18 @@ class ASNsResource(SyncAPIResource):
     def list(
         self,
         *,
-        asn: str | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["ASN", "POPULATION"] | NotGiven = NOT_GIVEN,
+        asn: str | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["ASN", "POPULATION"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNListResponse:
         """
         Retrieves a list of autonomous systems.
@@ -112,17 +113,58 @@ class ASNsResource(SyncAPIResource):
             cast_to=cast(Type[ASNListResponse], ResultWrapper[ASNListResponse]),
         )
 
-    def get(
+    def as_set(
         self,
         asn: int,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ASNAsSetResponse:
+        """
+        Retrieves Internet Routing Registry AS-SETs that an AS is a member of.
+
+        Args:
+          asn: Retrieves all AS-SETs that the given AS is a member of.
+
+          format: Format in which results will be returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/radar/entities/asns/{asn}/as_set",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"format": format}, asn_as_set_params.ASNAsSetParams),
+                post_parser=ResultWrapper[ASNAsSetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ASNAsSetResponse], ResultWrapper[ASNAsSetResponse]),
+        )
+
+    def get(
+        self,
+        asn: int,
+        *,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNGetResponse:
         """Retrieves the requested autonomous system information.
 
@@ -161,13 +203,13 @@ class ASNsResource(SyncAPIResource):
         self,
         *,
         ip: str,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNIPResponse:
         """
         Retrieves the requested autonomous system information based on IP address.
@@ -209,14 +251,14 @@ class ASNsResource(SyncAPIResource):
         self,
         asn: int,
         *,
-        asn2: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        asn2: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNRelResponse:
         """
         Retrieves AS-level relationship for given networks.
@@ -280,18 +322,18 @@ class AsyncASNsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        asn: str | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        order_by: Literal["ASN", "POPULATION"] | NotGiven = NOT_GIVEN,
+        asn: str | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        offset: int | Omit = omit,
+        order_by: Literal["ASN", "POPULATION"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNListResponse:
         """
         Retrieves a list of autonomous systems.
@@ -341,17 +383,58 @@ class AsyncASNsResource(AsyncAPIResource):
             cast_to=cast(Type[ASNListResponse], ResultWrapper[ASNListResponse]),
         )
 
-    async def get(
+    async def as_set(
         self,
         asn: int,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ASNAsSetResponse:
+        """
+        Retrieves Internet Routing Registry AS-SETs that an AS is a member of.
+
+        Args:
+          asn: Retrieves all AS-SETs that the given AS is a member of.
+
+          format: Format in which results will be returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/radar/entities/asns/{asn}/as_set",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"format": format}, asn_as_set_params.ASNAsSetParams),
+                post_parser=ResultWrapper[ASNAsSetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ASNAsSetResponse], ResultWrapper[ASNAsSetResponse]),
+        )
+
+    async def get(
+        self,
+        asn: int,
+        *,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNGetResponse:
         """Retrieves the requested autonomous system information.
 
@@ -390,13 +473,13 @@ class AsyncASNsResource(AsyncAPIResource):
         self,
         *,
         ip: str,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNIPResponse:
         """
         Retrieves the requested autonomous system information based on IP address.
@@ -438,14 +521,14 @@ class AsyncASNsResource(AsyncAPIResource):
         self,
         asn: int,
         *,
-        asn2: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        asn2: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ASNRelResponse:
         """
         Retrieves AS-level relationship for given networks.
@@ -493,6 +576,9 @@ class ASNsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             asns.list,
         )
+        self.as_set = to_raw_response_wrapper(
+            asns.as_set,
+        )
         self.get = to_raw_response_wrapper(
             asns.get,
         )
@@ -510,6 +596,9 @@ class AsyncASNsResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             asns.list,
+        )
+        self.as_set = async_to_raw_response_wrapper(
+            asns.as_set,
         )
         self.get = async_to_raw_response_wrapper(
             asns.get,
@@ -529,6 +618,9 @@ class ASNsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             asns.list,
         )
+        self.as_set = to_streamed_response_wrapper(
+            asns.as_set,
+        )
         self.get = to_streamed_response_wrapper(
             asns.get,
         )
@@ -546,6 +638,9 @@ class AsyncASNsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             asns.list,
+        )
+        self.as_set = async_to_streamed_response_wrapper(
+            asns.as_set,
         )
         self.get = async_to_streamed_response_wrapper(
             asns.get,

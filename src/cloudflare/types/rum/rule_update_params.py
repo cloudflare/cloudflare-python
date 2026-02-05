@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["RuleUpdateParams"]
 
@@ -23,4 +24,4 @@ class RuleUpdateParams(TypedDict, total=False):
     is_paused: bool
     """Whether the rule is paused or not."""
 
-    paths: List[str]
+    paths: SequenceNotStr[str]

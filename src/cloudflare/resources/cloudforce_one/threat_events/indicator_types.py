@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -39,6 +41,7 @@ class IndicatorTypesResource(SyncAPIResource):
         """
         return IndicatorTypesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -48,10 +51,12 @@ class IndicatorTypesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorTypeListResponse:
-        """
-        Lists all indicator types
+        """This Method is deprecated.
+
+        Please use /events/dataset/:dataset_id/indicatorTypes
+        instead.
 
         Args:
           account_id: Account ID.
@@ -95,6 +100,7 @@ class AsyncIndicatorTypesResource(AsyncAPIResource):
         """
         return AsyncIndicatorTypesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         *,
@@ -104,10 +110,12 @@ class AsyncIndicatorTypesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorTypeListResponse:
-        """
-        Lists all indicator types
+        """This Method is deprecated.
+
+        Please use /events/dataset/:dataset_id/indicatorTypes
+        instead.
 
         Args:
           account_id: Account ID.
@@ -135,8 +143,10 @@ class IndicatorTypesResourceWithRawResponse:
     def __init__(self, indicator_types: IndicatorTypesResource) -> None:
         self._indicator_types = indicator_types
 
-        self.list = to_raw_response_wrapper(
-            indicator_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                indicator_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -144,8 +154,10 @@ class AsyncIndicatorTypesResourceWithRawResponse:
     def __init__(self, indicator_types: AsyncIndicatorTypesResource) -> None:
         self._indicator_types = indicator_types
 
-        self.list = async_to_raw_response_wrapper(
-            indicator_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                indicator_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -153,8 +165,10 @@ class IndicatorTypesResourceWithStreamingResponse:
     def __init__(self, indicator_types: IndicatorTypesResource) -> None:
         self._indicator_types = indicator_types
 
-        self.list = to_streamed_response_wrapper(
-            indicator_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                indicator_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -162,6 +176,8 @@ class AsyncIndicatorTypesResourceWithStreamingResponse:
     def __init__(self, indicator_types: AsyncIndicatorTypesResource) -> None:
         self._indicator_types = indicator_types
 
-        self.list = async_to_streamed_response_wrapper(
-            indicator_types.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                indicator_types.list,  # pyright: ignore[reportDeprecated],
+            )
         )

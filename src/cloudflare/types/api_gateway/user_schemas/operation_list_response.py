@@ -64,6 +64,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureThresholds(BaseModel):
 
 
 class APIShieldOperationFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas(BaseModel):
+    """An operation schema object containing a response."""
+
     parameters: Optional[List[object]] = None
     """An array containing the learned parameter schemas."""
 
@@ -88,6 +90,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureParameterSchemas(BaseMo
 
 
 class APIShieldOperationFeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
+    """API Routing settings on endpoint."""
+
     last_updated: Optional[datetime] = None
 
     route: Optional[str] = None
@@ -102,6 +106,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
 class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -112,6 +118,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervalsConf
 class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -122,6 +130,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervalsConf
 class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -174,6 +184,8 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervals(Bas
 
 
 class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
+    """Schema active on endpoint."""
+
     id: Optional[str] = None
     """UUID."""
 

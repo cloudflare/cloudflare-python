@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import TypedDict
 
+from ...._types import SequenceNotStr
 from .allowed_headers import AllowedHeaders
 from .allowed_methods import AllowedMethods
 from .allowed_origins import AllowedOrigins
@@ -28,13 +29,13 @@ class CORSHeadersParam(TypedDict, total=False):
     client certificates) with requests.
     """
 
-    allowed_headers: List[AllowedHeaders]
+    allowed_headers: SequenceNotStr[AllowedHeaders]
     """Allowed HTTP request headers."""
 
     allowed_methods: List[AllowedMethods]
     """Allowed HTTP request methods."""
 
-    allowed_origins: List[AllowedOrigins]
+    allowed_origins: SequenceNotStr[AllowedOrigins]
     """Allowed origins."""
 
     max_age: float

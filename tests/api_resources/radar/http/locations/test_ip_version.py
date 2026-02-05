@@ -38,9 +38,10 @@ class TestIPVersion:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             device_type=["DESKTOP"],
             format="JSON",
+            geo_id=["string"],
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             os=["WINDOWS"],
@@ -74,7 +75,9 @@ class TestIPVersion:
 
 
 class TestAsyncIPVersion:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -96,9 +99,10 @@ class TestAsyncIPVersion:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             device_type=["DESKTOP"],
             format="JSON",
+            geo_id=["string"],
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             os=["WINDOWS"],

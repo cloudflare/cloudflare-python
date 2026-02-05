@@ -9,19 +9,22 @@ __all__ = ["DNSResolverSettingsV6Param"]
 
 class DNSResolverSettingsV6Param(TypedDict, total=False):
     ip: Required[str]
-    """IPv6 address of upstream resolver."""
+    """Specify the IPv6 address of the upstream resolver."""
 
     port: int
-    """A port number to use for upstream resolver. Defaults to 53 if unspecified."""
+    """Specify a port number to use for the upstream resolver.
+
+    Defaults to 53 if unspecified.
+    """
 
     route_through_private_network: bool
-    """Whether to connect to this resolver over a private network.
+    """Indicate whether to connect to this resolver over a private network.
 
-    Must be set when vnet_id is set.
+    Must set when vnet_id set.
     """
 
     vnet_id: str
-    """Optionally specify a virtual network for this resolver.
+    """Specify an optional virtual network for this resolver.
 
     Uses default virtual network id if omitted.
     """

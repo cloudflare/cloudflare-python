@@ -9,6 +9,8 @@ __all__ = ["LoadShedding"]
 
 
 class LoadShedding(BaseModel):
+    """Configures load shedding policies and percentages for the pool."""
+
     default_percent: Optional[float] = None
     """The percent of traffic to shed from the pool, according to the default policy.
 

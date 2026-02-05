@@ -20,11 +20,15 @@ __all__ = [
 
 
 class ActionParametersMatchedData(BaseModel):
+    """The configuration to use for matched data logging."""
+
     public_key: str
     """The public key to encrypt matched data logs with."""
 
 
 class ActionParametersOverridesCategory(BaseModel):
+    """A category-level override."""
+
     category: str
     """The name of the category to override."""
 
@@ -35,10 +39,15 @@ class ActionParametersOverridesCategory(BaseModel):
     """Whether to enable execution of rules in the category."""
 
     sensitivity_level: Optional[Literal["default", "medium", "low", "eoff"]] = None
-    """The sensitivity level to use for rules in the category."""
+    """The sensitivity level to use for rules in the category.
+
+    This option is only applicable for DDoS phases.
+    """
 
 
 class ActionParametersOverridesRule(BaseModel):
+    """A rule-level override."""
+
     id: str
     """The ID of the rule to override."""
 
@@ -52,10 +61,15 @@ class ActionParametersOverridesRule(BaseModel):
     """The score threshold to use for the rule."""
 
     sensitivity_level: Optional[Literal["default", "medium", "low", "eoff"]] = None
-    """The sensitivity level to use for the rule."""
+    """The sensitivity level to use for the rule.
+
+    This option is only applicable for DDoS phases.
+    """
 
 
 class ActionParametersOverrides(BaseModel):
+    """A set of overrides to apply to the target ruleset."""
+
     action: Optional[str] = None
     """An action to override all rules with.
 
@@ -86,6 +100,8 @@ class ActionParametersOverrides(BaseModel):
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     id: str
     """The ID of the ruleset to execute."""
 
@@ -97,17 +113,21 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -115,9 +135,9 @@ class Ratelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -133,7 +153,7 @@ class Ratelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -143,8 +163,8 @@ class Ratelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -174,7 +194,7 @@ class ExecuteRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -183,7 +203,7 @@ class ExecuteRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[Ratelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

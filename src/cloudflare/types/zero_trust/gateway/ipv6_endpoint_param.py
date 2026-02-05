@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import TypedDict
 
 from .ipv6_network_param import IPV6NetworkParam
@@ -12,11 +12,11 @@ __all__ = ["IPV6EndpointParam"]
 
 class IPV6EndpointParam(TypedDict, total=False):
     enabled: bool
-    """True if the endpoint is enabled for this location."""
+    """Indicate whether the IPV6 endpoint is enabled for this location."""
 
-    networks: Iterable[IPV6NetworkParam]
-    """A list of allowed source IPv6 network ranges for this endpoint.
+    networks: Optional[Iterable[IPV6NetworkParam]]
+    """Specify the list of allowed source IPv6 network ranges for this endpoint.
 
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
+    When the list is empty, the endpoint allows all source IPs. The list takes
+    effect only if the endpoint is enabled for this location.
     """

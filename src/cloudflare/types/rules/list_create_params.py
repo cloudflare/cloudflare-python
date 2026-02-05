@@ -9,7 +9,7 @@ __all__ = ["ListCreateParams"]
 
 class ListCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Defines an identifier."""
+    """The Account ID for this resource."""
 
     kind: Required[Literal["ip", "redirect", "hostname", "asn"]]
     """The type of the list.

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import datetime
 from typing import Union, Iterable
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
@@ -29,18 +29,24 @@ class LockUpdateParams(TypedDict, total=False):
 
 
 class RuleConditionR2LockRuleAgeCondition(TypedDict, total=False):
+    """Condition to apply a lock rule to an object for how long in seconds."""
+
     max_age_seconds: Required[Annotated[int, PropertyInfo(alias="maxAgeSeconds")]]
 
     type: Required[Literal["Age"]]
 
 
 class RuleConditionR2LockRuleDateCondition(TypedDict, total=False):
-    date: Required[Annotated[Union[str, datetime.date], PropertyInfo(format="iso8601")]]
+    """Condition to apply a lock rule to an object until a specific date."""
+
+    date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["Date"]]
 
 
 class RuleConditionR2LockRuleIndefiniteCondition(TypedDict, total=False):
+    """Condition to apply a lock rule indefinitely."""
+
     type: Required[Literal["Indefinite"]]
 
 

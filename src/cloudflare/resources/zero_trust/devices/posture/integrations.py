@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -69,7 +69,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Create a new device posture integration.
@@ -124,7 +124,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Integration]:
         """
         Fetches the list of device posture integrations for an account.
@@ -159,7 +159,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
@@ -201,9 +201,9 @@ class IntegrationsResource(SyncAPIResource):
         integration_id: str,
         *,
         account_id: str,
-        config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
-        interval: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        config: integration_edit_params.Config | Omit = omit,
+        interval: str | Omit = omit,
+        name: str | Omit = omit,
         type: Literal[
             "workspace_one",
             "crowdstrike_s2s",
@@ -214,13 +214,13 @@ class IntegrationsResource(SyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Updates a configured device posture integration.
@@ -280,7 +280,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Fetches details for a single device posture integration.
@@ -355,7 +355,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Create a new device posture integration.
@@ -410,7 +410,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Integration, AsyncSinglePage[Integration]]:
         """
         Fetches the list of device posture integrations for an account.
@@ -445,7 +445,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
@@ -487,9 +487,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         integration_id: str,
         *,
         account_id: str,
-        config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
-        interval: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        config: integration_edit_params.Config | Omit = omit,
+        interval: str | Omit = omit,
+        name: str | Omit = omit,
         type: Literal[
             "workspace_one",
             "crowdstrike_s2s",
@@ -500,13 +500,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Updates a configured device posture integration.
@@ -566,7 +566,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Integration]:
         """
         Fetches details for a single device posture integration.

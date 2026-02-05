@@ -6,6 +6,7 @@ from ...._models import BaseModel
 
 __all__ = [
     "SnapshotGetResponse",
+    "Bond",
     "DHCPLease",
     "Disk",
     "Interface",
@@ -17,7 +18,19 @@ __all__ = [
 ]
 
 
+class Bond(BaseModel):
+    """Snapshot Bond"""
+
+    name: str
+    """Name of the network interface"""
+
+    status: str
+    """Current status of the network interface"""
+
+
 class DHCPLease(BaseModel):
+    """Snapshot DHCP lease"""
+
     client_id: str
     """Client ID of the device the IP Address was leased to"""
 
@@ -41,6 +54,8 @@ class DHCPLease(BaseModel):
 
 
 class Disk(BaseModel):
+    """Snapshot Disk"""
+
     in_progress: float
     """I/Os currently in progress"""
 
@@ -106,6 +121,8 @@ class Disk(BaseModel):
 
 
 class InterfaceIPAddress(BaseModel):
+    """Snapshot Interface Address"""
+
     interface_name: str
     """Name of the network interface"""
 
@@ -117,6 +134,8 @@ class InterfaceIPAddress(BaseModel):
 
 
 class Interface(BaseModel):
+    """Snapshot Interface"""
+
     name: str
     """Name of the network interface"""
 
@@ -133,6 +152,8 @@ class Interface(BaseModel):
 
 
 class Mount(BaseModel):
+    """Snapshot Mount"""
+
     file_system: str
     """File system on disk (EXT4, NTFS, etc.)"""
 
@@ -162,6 +183,8 @@ class Mount(BaseModel):
 
 
 class Netdev(BaseModel):
+    """Snapshot Netdev"""
+
     name: str
     """Name of the network device"""
 
@@ -218,6 +241,8 @@ class Netdev(BaseModel):
 
 
 class Thermal(BaseModel):
+    """Snapshot Thermal"""
+
     label: str
     """Sensor identifier for the component"""
 
@@ -235,6 +260,8 @@ class Thermal(BaseModel):
 
 
 class Tunnel(BaseModel):
+    """Snapshot Tunnels"""
+
     health_state: str
     """Name of tunnel health state (unknown, healthy, degraded, down)"""
 
@@ -253,8 +280,13 @@ class Tunnel(BaseModel):
     connector_id: Optional[str] = None
     """Connector identifier"""
 
+    probed_mtu: Optional[float] = None
+    """MTU as measured between the two ends of the tunnel"""
+
 
 class SnapshotGetResponse(BaseModel):
+    """Snapshot"""
+
     count_reclaim_failures: float
     """Count of failures to reclaim space"""
 
@@ -272,6 +304,8 @@ class SnapshotGetResponse(BaseModel):
 
     v: str
     """Version"""
+
+    bonds: Optional[List[Bond]] = None
 
     cpu_count: Optional[float] = None
     """Count of processors/cores"""

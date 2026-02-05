@@ -11,6 +11,8 @@ __all__ = ["LOCRecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
+    """Components of a LOC record."""
+
     altitude: Optional[float] = None
     """Altitude of location in meters."""
 
@@ -49,6 +51,8 @@ class Data(BaseModel):
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -68,7 +72,14 @@ class Settings(BaseModel):
 
 class LOCRecord(BaseModel):
     name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
+
+    ttl: TTL
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["LOC"]
     """Record type."""
@@ -96,10 +107,3 @@ class LOCRecord(BaseModel):
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: Optional[TTL] = None
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """

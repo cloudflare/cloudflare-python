@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,20 +54,21 @@ class DomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
-        allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: List[str] | NotGiven = NOT_GIVEN,
-        order: Literal["domain", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | Omit = omit,
+        allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        domain: SequenceNotStr[str] | Omit = omit,
+        integration_id: str | Omit = omit,
+        order: Literal["domain", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DomainListResponse]:
         """
         Lists, searches, and sorts an account’s email domains.
@@ -82,6 +83,8 @@ class DomainsResource(SyncAPIResource):
           direction: The sorting direction.
 
           domain: Filters results by the provided domains, allowing for multiple occurrences.
+
+          integration_id: Filters response to domains with the provided integration ID.
 
           order: The field to sort by.
 
@@ -117,6 +120,7 @@ class DomainsResource(SyncAPIResource):
                         "allowed_delivery_mode": allowed_delivery_mode,
                         "direction": direction,
                         "domain": domain,
+                        "integration_id": integration_id,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -138,7 +142,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainDeleteResponse:
         """
         Unprotect an email domain
@@ -179,7 +183,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DomainBulkDeleteResponse]:
         """
         Unprotect multiple email domains
@@ -212,9 +216,9 @@ class DomainsResource(SyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
-        ip_restrictions: List[str],
-        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
-        domain: Optional[str] | NotGiven = NOT_GIVEN,
+        ip_restrictions: SequenceNotStr[str],
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
+        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -229,19 +233,20 @@ class DomainsResource(SyncAPIResource):
                 "NONE",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
-        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
-        lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
-        require_tls_inbound: bool | NotGiven = NOT_GIVEN,
-        require_tls_outbound: bool | NotGiven = NOT_GIVEN,
-        transport: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        folder: Literal["AllItems", "Inbox"] | Omit = omit,
+        integration_id: str | Omit = omit,
+        lookback_hops: int | Omit = omit,
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]] | Omit = omit,
+        require_tls_inbound: bool | Omit = omit,
+        require_tls_outbound: bool | Omit = omit,
+        transport: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
         Update an email domain
@@ -272,6 +277,7 @@ class DomainsResource(SyncAPIResource):
                     "folder": folder,
                     "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
+                    "regions": regions,
                     "require_tls_inbound": require_tls_inbound,
                     "require_tls_outbound": require_tls_outbound,
                     "transport": transport,
@@ -298,7 +304,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
         Get an email domain
@@ -355,20 +361,21 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
-        allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: List[str] | NotGiven = NOT_GIVEN,
-        order: Literal["domain", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | Omit = omit,
+        allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        domain: SequenceNotStr[str] | Omit = omit,
+        integration_id: str | Omit = omit,
+        order: Literal["domain", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainListResponse, AsyncV4PagePaginationArray[DomainListResponse]]:
         """
         Lists, searches, and sorts an account’s email domains.
@@ -383,6 +390,8 @@ class AsyncDomainsResource(AsyncAPIResource):
           direction: The sorting direction.
 
           domain: Filters results by the provided domains, allowing for multiple occurrences.
+
+          integration_id: Filters response to domains with the provided integration ID.
 
           order: The field to sort by.
 
@@ -418,6 +427,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                         "allowed_delivery_mode": allowed_delivery_mode,
                         "direction": direction,
                         "domain": domain,
+                        "integration_id": integration_id,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -439,7 +449,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainDeleteResponse:
         """
         Unprotect an email domain
@@ -480,7 +490,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
         """
         Unprotect multiple email domains
@@ -513,9 +523,9 @@ class AsyncDomainsResource(AsyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
-        ip_restrictions: List[str],
-        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
-        domain: Optional[str] | NotGiven = NOT_GIVEN,
+        ip_restrictions: SequenceNotStr[str],
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
+        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -530,19 +540,20 @@ class AsyncDomainsResource(AsyncAPIResource):
                 "NONE",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
-        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
-        lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
-        require_tls_inbound: bool | NotGiven = NOT_GIVEN,
-        require_tls_outbound: bool | NotGiven = NOT_GIVEN,
-        transport: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        folder: Literal["AllItems", "Inbox"] | Omit = omit,
+        integration_id: str | Omit = omit,
+        lookback_hops: int | Omit = omit,
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]] | Omit = omit,
+        require_tls_inbound: bool | Omit = omit,
+        require_tls_outbound: bool | Omit = omit,
+        transport: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
         Update an email domain
@@ -573,6 +584,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                     "folder": folder,
                     "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
+                    "regions": regions,
                     "require_tls_inbound": require_tls_inbound,
                     "require_tls_outbound": require_tls_outbound,
                     "transport": transport,
@@ -599,7 +611,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
         Get an email domain

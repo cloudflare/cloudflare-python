@@ -24,8 +24,8 @@ class OSVersionInputParam(TypedDict, total=False):
     """Version of OS Distribution (linux only)."""
 
     os_version_extra: str
-    """Additional version data.
+    """Additional operating system version details.
 
-    For Mac or iOS, the Product Version Extra. For Linux, the kernel release
-    version. (Mac, iOS, and Linux only).
+    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
+    Version Extra. For Linux, the distribution name and version.
     """

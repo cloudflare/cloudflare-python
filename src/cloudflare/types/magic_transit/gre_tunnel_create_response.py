@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,10 +8,72 @@ from ..._models import BaseModel
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["GRETunnelCreateResponse", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
+__all__ = [
+    "GRETunnelCreateResponse",
+    "BGP",
+    "BGPStatus",
+    "HealthCheck",
+    "HealthCheckTarget",
+    "HealthCheckTargetMagicHealthCheckTarget",
+]
+
+
+class BGP(BaseModel):
+    customer_asn: int
+    """ASN used on the customer end of the BGP session"""
+
+    extra_prefixes: Optional[List[str]] = None
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    md5_key: Optional[str] = None
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
+
+
+class BGPStatus(BaseModel):
+    state: Literal["BGP_DOWN", "BGP_UP", "BGP_ESTABLISHING"]
+
+    tcp_established: bool
+
+    updated_at: datetime
+
+    bgp_state: Optional[str] = None
+
+    cf_speaker_ip: Optional[str] = None
+
+    cf_speaker_port: Optional[int] = None
+
+    customer_speaker_ip: Optional[str] = None
+
+    customer_speaker_port: Optional[int] = None
 
 
 class HealthCheckTargetMagicHealthCheckTarget(BaseModel):
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the ICMP echo will be forwarded to this address. This field defaults to `customer_gre_endpoint address`. This field is ignored for bidirectional healthchecks as the interface_address (not assigned to the Cloudflare side of the tunnel) is used as the target.
+    """
+
     effective: Optional[str] = None
     """The effective health check target.
 
@@ -85,6 +147,16 @@ class GRETunnelCreateResponse(BaseModel):
     less, and cannot share a name with another GRE tunnel.
     """
 
+    automatic_return_routing: Optional[bool] = None
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
+    bgp: Optional[BGP] = None
+
+    bgp_status: Optional[BGPStatus] = None
+
     created_on: Optional[datetime] = None
     """The date and time the tunnel was created."""
 
@@ -92,6 +164,14 @@ class GRETunnelCreateResponse(BaseModel):
     """An optional description of the GRE tunnel."""
 
     health_check: Optional[HealthCheck] = None
+
+    interface_address6: Optional[str] = None
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
+    """
 
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""

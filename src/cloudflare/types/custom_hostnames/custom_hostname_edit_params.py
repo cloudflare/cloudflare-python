@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
@@ -51,7 +52,9 @@ class SSLCustomCERTBundle(TypedDict, total=False):
 
 
 class SSLSettings(TypedDict, total=False):
-    ciphers: List[str]
+    """SSL specific settings."""
+
+    ciphers: SequenceNotStr[str]
     """An allowlist of ciphers for TLS termination.
 
     These ciphers must be in the BoringSSL format.
@@ -71,6 +74,8 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
+    """SSL properties used when creating the custom hostname."""
+
     bundle_method: BundleMethod
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,

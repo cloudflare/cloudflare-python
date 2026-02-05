@@ -15,7 +15,7 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -70,7 +70,7 @@ class StoresResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[StoreCreateResponse]:
         """
         Creates a store in the account
@@ -103,16 +103,16 @@ class StoresResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[StoreListResponse]:
         """
         Lists all the stores in an account
@@ -169,7 +169,7 @@ class StoresResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreDeleteResponse]:
         """
         Deletes a single store
@@ -238,7 +238,7 @@ class AsyncStoresResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[StoreCreateResponse, AsyncSinglePage[StoreCreateResponse]]:
         """
         Creates a store in the account
@@ -271,16 +271,16 @@ class AsyncStoresResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[StoreListResponse, AsyncV4PagePaginationArray[StoreListResponse]]:
         """
         Lists all the stores in an account
@@ -337,7 +337,7 @@ class AsyncStoresResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreDeleteResponse]:
         """
         Deletes a single store

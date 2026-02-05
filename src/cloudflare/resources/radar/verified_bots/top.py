@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+import typing_extensions
+from typing import Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -47,24 +48,27 @@ class TopResource(SyncAPIResource):
         """
         return TopResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     def bots(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopBotsResponse:
         """
         Retrieves the top verified bots by HTTP requests, with owner and category.
@@ -131,24 +135,27 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     def categories(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopCategoriesResponse:
         """
         Retrieves the top verified bot categories by HTTP requests, along with their
@@ -237,24 +244,27 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return AsyncTopResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     async def bots(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopBotsResponse:
         """
         Retrieves the top verified bots by HTTP requests, with owner and category.
@@ -321,24 +331,27 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     async def categories(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopCategoriesResponse:
         """
         Retrieves the top verified bot categories by HTTP requests, along with their
@@ -411,11 +424,15 @@ class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.bots = to_raw_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.bots,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = to_raw_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.categories,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -423,11 +440,15 @@ class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.bots = async_to_raw_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.bots,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = async_to_raw_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.categories,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -435,11 +456,15 @@ class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.bots = to_streamed_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.bots,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = to_streamed_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.categories,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -447,9 +472,13 @@ class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.bots = async_to_streamed_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.bots,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = async_to_streamed_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.categories,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -28,6 +28,8 @@ class AIGatewayCreateParams(TypedDict, total=False):
 
     authentication: bool
 
+    is_default: bool
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -35,3 +37,5 @@ class AIGatewayCreateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    zdr: bool

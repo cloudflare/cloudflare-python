@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = ["TargetBulkDeleteV2Params"]
 
@@ -12,5 +13,5 @@ class TargetBulkDeleteV2Params(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier"""
 
-    target_ids: Required[List[str]]
+    target_ids: Required[SequenceNotStr[str]]
     """List of target IDs to bulk delete"""

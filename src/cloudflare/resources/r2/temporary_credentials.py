@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.r2 import temporary_credential_create_params
@@ -53,14 +53,14 @@ class TemporaryCredentialsResource(SyncAPIResource):
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
         ttl_seconds: float,
-        objects: List[str] | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        objects: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemporaryCredentialCreateResponse:
         """
         Creates temporary access credentials on a bucket that can be optionally scoped
@@ -143,14 +143,14 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
         ttl_seconds: float,
-        objects: List[str] | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        objects: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemporaryCredentialCreateResponse:
         """
         Creates temporary access credentials on a bucket that can be optionally scoped

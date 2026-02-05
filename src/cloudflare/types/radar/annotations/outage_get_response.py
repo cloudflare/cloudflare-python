@@ -13,6 +13,7 @@ __all__ = [
     "AnnotationASNsDetail",
     "AnnotationASNsDetailLocations",
     "AnnotationLocationsDetail",
+    "AnnotationOriginsDetail",
     "AnnotationOutage",
 ]
 
@@ -37,6 +38,12 @@ class AnnotationLocationsDetail(BaseModel):
     name: str
 
 
+class AnnotationOriginsDetail(BaseModel):
+    name: str
+
+    origin: str
+
+
 class AnnotationOutage(BaseModel):
     outage_cause: str = FieldInfo(alias="outageCause")
 
@@ -57,6 +64,10 @@ class Annotation(BaseModel):
     locations: List[str]
 
     locations_details: List[AnnotationLocationsDetail] = FieldInfo(alias="locationsDetails")
+
+    origins: List[str]
+
+    origins_details: List[AnnotationOriginsDetail] = FieldInfo(alias="originsDetails")
 
     outage: AnnotationOutage
 

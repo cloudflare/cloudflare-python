@@ -8,6 +8,10 @@ __all__ = ["SCIMConfigAuthenticationHTTPBasic"]
 
 
 class SCIMConfigAuthenticationHTTPBasic(BaseModel):
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM provisioning to an application.
+    """
+
     password: str
     """Password used to authenticate with the remote SCIM service."""
 

@@ -7,3 +7,7 @@ from .filter_list_params import FilterListParams as FilterListParams
 from .filter_create_params import FilterCreateParams as FilterCreateParams
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .firewall_filter_param import FirewallFilterParam as FirewallFilterParam
+from .filter_delete_response import FilterDeleteResponse as FilterDeleteResponse
+from .filter_bulk_delete_params import FilterBulkDeleteParams as FilterBulkDeleteParams
+from .filter_bulk_update_params import FilterBulkUpdateParams as FilterBulkUpdateParams
+from .filter_bulk_delete_response import FilterBulkDeleteResponse as FilterBulkDeleteResponse

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ...._types import SequenceNotStr
 from .file_input_param import FileInputParam
 from .intune_input_param import IntuneInputParam
 from .kolide_input_param import KolideInputParam
@@ -27,6 +28,7 @@ __all__ = [
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
+    "TeamsDevicesAntivirusInputRequest",
     "TeamsDevicesCustomS2sInputRequest",
 ]
 
@@ -65,7 +67,7 @@ class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
 
 
 class TeamsDevicesClientCertificateV2InputRequestLocations(TypedDict, total=False):
-    paths: List[str]
+    paths: SequenceNotStr[str]
     """List of paths to check for client certificate on linux."""
 
     trust_stores: List[Literal["system", "user"]]
@@ -101,8 +103,13 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
 
     locations: TeamsDevicesClientCertificateV2InputRequestLocations
 
-    subject_alternative_names: List[str]
+    subject_alternative_names: SequenceNotStr[str]
     """List of certificate Subject Alternative Names."""
+
+
+class TeamsDevicesAntivirusInputRequest(TypedDict, total=False):
+    update_window_days: float
+    """Number of days that the antivirus should be updated within."""
 
 
 class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):
@@ -131,6 +138,7 @@ DeviceInputParam: TypeAlias = Union[
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInputParam,
     TeamsDevicesClientCertificateV2InputRequest,
+    TeamsDevicesAntivirusInputRequest,
     WorkspaceOneInputParam,
     CrowdstrikeInputParam,
     IntuneInputParam,

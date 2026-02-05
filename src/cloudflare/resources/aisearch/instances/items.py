@@ -1,0 +1,317 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Type, cast
+from typing_extensions import Literal
+
+import httpx
+
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.aisearch.instances import item_list_params
+from ....types.aisearch.instances.item_get_response import ItemGetResponse
+from ....types.aisearch.instances.item_list_response import ItemListResponse
+
+__all__ = ["ItemsResource", "AsyncItemsResource"]
+
+
+class ItemsResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> ItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return ItemsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return ItemsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: Literal["queued", "running", "completed", "error", "skipped"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[ItemListResponse]:
+        """
+        Items List.
+
+        Args:
+          id: Use your AI Search ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/ai-search/instances/{id}/items",
+            page=SyncV4PagePaginationArray[ItemListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "search": search,
+                        "status": status,
+                    },
+                    item_list_params.ItemListParams,
+                ),
+            ),
+            model=ItemListResponse,
+        )
+
+    def get(
+        self,
+        item_id: str,
+        *,
+        account_id: str,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ItemGetResponse:
+        """
+        Get Items.
+
+        Args:
+          id: Use your AI Search ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not item_id:
+            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/ai-search/instances/{id}/items/{item_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
+        )
+
+
+class AsyncItemsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncItemsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncItemsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        status: Literal["queued", "running", "completed", "error", "skipped"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ItemListResponse, AsyncV4PagePaginationArray[ItemListResponse]]:
+        """
+        Items List.
+
+        Args:
+          id: Use your AI Search ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/ai-search/instances/{id}/items",
+            page=AsyncV4PagePaginationArray[ItemListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "search": search,
+                        "status": status,
+                    },
+                    item_list_params.ItemListParams,
+                ),
+            ),
+            model=ItemListResponse,
+        )
+
+    async def get(
+        self,
+        item_id: str,
+        *,
+        account_id: str,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ItemGetResponse:
+        """
+        Get Items.
+
+        Args:
+          id: Use your AI Search ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not item_id:
+            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/ai-search/instances/{id}/items/{item_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
+        )
+
+
+class ItemsResourceWithRawResponse:
+    def __init__(self, items: ItemsResource) -> None:
+        self._items = items
+
+        self.list = to_raw_response_wrapper(
+            items.list,
+        )
+        self.get = to_raw_response_wrapper(
+            items.get,
+        )
+
+
+class AsyncItemsResourceWithRawResponse:
+    def __init__(self, items: AsyncItemsResource) -> None:
+        self._items = items
+
+        self.list = async_to_raw_response_wrapper(
+            items.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            items.get,
+        )
+
+
+class ItemsResourceWithStreamingResponse:
+    def __init__(self, items: ItemsResource) -> None:
+        self._items = items
+
+        self.list = to_streamed_response_wrapper(
+            items.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            items.get,
+        )
+
+
+class AsyncItemsResourceWithStreamingResponse:
+    def __init__(self, items: AsyncItemsResource) -> None:
+        self._items = items
+
+        self.list = async_to_streamed_response_wrapper(
+            items.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            items.get,
+        )

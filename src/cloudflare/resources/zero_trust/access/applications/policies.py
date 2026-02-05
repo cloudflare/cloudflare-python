@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -17,9 +17,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.applications import policy_list_params, policy_create_params, policy_update_params
 from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
@@ -54,21 +54,21 @@ class PoliciesResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a policy applying exclusive to a single application that defines the
@@ -154,21 +154,21 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """Updates an Access policy specific to an application.
 
@@ -256,15 +256,17 @@ class PoliciesResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PolicyListResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[PolicyListResponse]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -276,6 +278,10 @@ class PoliciesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -301,9 +307,19 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=SyncSinglePage[PolicyListResponse],
+            page=SyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )
@@ -313,14 +329,14 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyDeleteResponse]:
         """Deletes an Access policy specific to an application.
 
@@ -377,14 +393,14 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """Fetches a single Access policy configured for an application.
 
@@ -461,21 +477,21 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a policy applying exclusive to a single application that defines the
@@ -561,21 +577,21 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """Updates an Access policy specific to an application.
 
@@ -663,15 +679,17 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[PolicyListResponse, AsyncV4PagePaginationArray[PolicyListResponse]]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -683,6 +701,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -708,9 +730,19 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=AsyncSinglePage[PolicyListResponse],
+            page=AsyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )
@@ -720,14 +752,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyDeleteResponse]:
         """Deletes an Access policy specific to an application.
 
@@ -784,14 +816,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """Fetches a single Access policy configured for an application.
 

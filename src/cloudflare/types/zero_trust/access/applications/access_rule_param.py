@@ -33,6 +33,10 @@ __all__ = [
     "AccessCommonNameRuleCommonName",
     "AccessLoginMethodRule",
     "AccessLoginMethodRuleLoginMethod",
+    "AccessOIDCClaimRule",
+    "AccessOIDCClaimRuleOIDC",
+    "AccessLinkedAppTokenRule",
+    "AccessLinkedAppTokenRuleLinkedAppToken",
 ]
 
 
@@ -48,6 +52,11 @@ class AccessAuthContextRuleAuthContext(TypedDict, total=False):
 
 
 class AccessAuthContextRule(TypedDict, total=False):
+    """
+    Matches an Azure Authentication Context.
+    Requires an Azure identity provider.
+    """
+
     auth_context: Required[AccessAuthContextRuleAuthContext]
 
 
@@ -57,6 +66,8 @@ class AccessCommonNameRuleCommonName(TypedDict, total=False):
 
 
 class AccessCommonNameRule(TypedDict, total=False):
+    """Matches a specific common name."""
+
     common_name: Required[AccessCommonNameRuleCommonName]
 
 
@@ -66,7 +77,42 @@ class AccessLoginMethodRuleLoginMethod(TypedDict, total=False):
 
 
 class AccessLoginMethodRule(TypedDict, total=False):
+    """Matches a specific identity provider id."""
+
     login_method: Required[AccessLoginMethodRuleLoginMethod]
+
+
+class AccessOIDCClaimRuleOIDC(TypedDict, total=False):
+    claim_name: Required[str]
+    """The name of the OIDC claim."""
+
+    claim_value: Required[str]
+    """The OIDC claim value to look for."""
+
+    identity_provider_id: Required[str]
+    """The ID of your OIDC identity provider."""
+
+
+class AccessOIDCClaimRule(TypedDict, total=False):
+    """
+    Matches an OIDC claim.
+    Requires an OIDC identity provider.
+    """
+
+    oidc: Required[AccessOIDCClaimRuleOIDC]
+
+
+class AccessLinkedAppTokenRuleLinkedAppToken(TypedDict, total=False):
+    app_uid: Required[str]
+    """The ID of an Access OIDC SaaS application"""
+
+
+class AccessLinkedAppTokenRule(TypedDict, total=False):
+    """
+    Matches OAuth 2.0 access tokens issued by the specified Access OIDC SaaS application. Only compatible with non_identity and bypass decisions.
+    """
+
+    linked_app_token: Required[AccessLinkedAppTokenRuleLinkedAppToken]
 
 
 AccessRuleParam: TypeAlias = Union[
@@ -91,5 +137,7 @@ AccessRuleParam: TypeAlias = Union[
     IPRuleParam,
     OktaGroupRuleParam,
     SAMLGroupRuleParam,
+    AccessOIDCClaimRule,
     ServiceTokenRuleParam,
+    AccessLinkedAppTokenRule,
 ]

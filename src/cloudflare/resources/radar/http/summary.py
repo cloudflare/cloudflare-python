@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -62,31 +63,34 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def bot_class(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryBotClassResponse:
         """
         Retrieves the distribution of bot-generated HTTP requests to genuine human
@@ -117,6 +121,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -159,6 +168,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -174,31 +184,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def device_type(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDeviceTypeResponse:
         """
         Retrieves the distribution of HTTP requests generated by mobile, desktop, and
@@ -228,6 +241,11 @@ class SummaryResource(SyncAPIResource):
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -270,6 +288,7 @@ class SummaryResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -285,31 +304,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def http_protocol(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryHTTPProtocolResponse:
         """Retrieves the distribution of HTTP requests by HTTP protocol (HTTP vs.
 
@@ -341,6 +363,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_version: Filters results by HTTP version.
 
@@ -382,6 +409,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_version": http_version,
                         "ip_version": ip_version,
                         "location": location,
@@ -396,31 +424,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def http_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryHTTPVersionResponse:
         """
         Retrieves the distribution of HTTP requests by HTTP version.
@@ -451,6 +482,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -492,6 +528,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "ip_version": ip_version,
                         "location": location,
@@ -506,31 +543,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def ip_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryIPVersionResponse:
         """
         Retrieves the distribution of HTTP requests by IP version.
@@ -561,6 +601,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -602,6 +647,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "location": location,
@@ -616,30 +662,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def os(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryOSResponse:
         """
         Retrieves the distribution of HTTP requests by operating system (Windows, macOS,
@@ -671,6 +721,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -712,6 +767,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -726,32 +782,35 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def post_quantum(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryPostQuantumResponse:
         """
         Retrieves the distribution of HTTP requests by post-quantum support.
@@ -782,6 +841,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -825,6 +889,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -840,31 +905,34 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     def tls_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTLSVersionResponse:
         """
         Retrieves the distribution of HTTP requests by TLS version.
@@ -895,6 +963,11 @@ class SummaryResource(SyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -936,6 +1009,7 @@ class SummaryResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -971,31 +1045,34 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def bot_class(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryBotClassResponse:
         """
         Retrieves the distribution of bot-generated HTTP requests to genuine human
@@ -1026,6 +1103,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1068,6 +1150,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1083,31 +1166,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def device_type(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDeviceTypeResponse:
         """
         Retrieves the distribution of HTTP requests generated by mobile, desktop, and
@@ -1137,6 +1223,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1179,6 +1270,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1194,31 +1286,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def http_protocol(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryHTTPProtocolResponse:
         """Retrieves the distribution of HTTP requests by HTTP protocol (HTTP vs.
 
@@ -1250,6 +1345,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_version: Filters results by HTTP version.
 
@@ -1291,6 +1391,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_version": http_version,
                         "ip_version": ip_version,
                         "location": location,
@@ -1305,31 +1406,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def http_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryHTTPVersionResponse:
         """
         Retrieves the distribution of HTTP requests by HTTP version.
@@ -1360,6 +1464,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1401,6 +1510,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "ip_version": ip_version,
                         "location": location,
@@ -1415,31 +1525,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryIPVersionResponse:
         """
         Retrieves the distribution of HTTP requests by IP version.
@@ -1470,6 +1583,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1511,6 +1629,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "location": location,
@@ -1525,30 +1644,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def os(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryOSResponse:
         """
         Retrieves the distribution of HTTP requests by operating system (Windows, macOS,
@@ -1580,6 +1703,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1621,6 +1749,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1635,32 +1764,35 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def post_quantum(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryPostQuantumResponse:
         """
         Retrieves the distribution of HTTP requests by post-quantum support.
@@ -1691,6 +1823,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1734,6 +1871,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1749,31 +1887,34 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
+    )
     async def tls_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTLSVersionResponse:
         """
         Retrieves the distribution of HTTP requests by TLS version.
@@ -1804,6 +1945,11 @@ class AsyncSummaryResource(AsyncAPIResource):
           device_type: Filters results by device type.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -1845,6 +1991,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1864,29 +2011,45 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = to_raw_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = to_raw_response_wrapper(
-            summary.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = to_raw_response_wrapper(
-            summary.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_raw_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = to_raw_response_wrapper(
-            summary.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = to_raw_response_wrapper(
-            summary.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_raw_response_wrapper(
-            summary.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1894,29 +2057,45 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = async_to_raw_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = async_to_raw_response_wrapper(
-            summary.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = async_to_raw_response_wrapper(
-            summary.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_raw_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = async_to_raw_response_wrapper(
-            summary.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = async_to_raw_response_wrapper(
-            summary.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_raw_response_wrapper(
-            summary.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1924,29 +2103,45 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = to_streamed_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = to_streamed_response_wrapper(
-            summary.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = to_streamed_response_wrapper(
-            summary.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_streamed_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = to_streamed_response_wrapper(
-            summary.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = to_streamed_response_wrapper(
-            summary.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_streamed_response_wrapper(
-            summary.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1954,27 +2149,43 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = async_to_streamed_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = async_to_streamed_response_wrapper(
-            summary.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = async_to_streamed_response_wrapper(
-            summary.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_streamed_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = async_to_streamed_response_wrapper(
-            summary.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = async_to_streamed_response_wrapper(
-            summary.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_streamed_response_wrapper(
-            summary.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )

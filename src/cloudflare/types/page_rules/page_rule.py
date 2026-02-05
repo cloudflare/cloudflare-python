@@ -92,6 +92,8 @@ class ActionCacheDeceptionArmor(BaseModel):
 
 
 class ActionCacheKeyFieldsValueCookie(BaseModel):
+    """Controls which cookies appear in the Cache Key."""
+
     check_presence: Optional[List[str]] = None
     """
     A list of cookies to check for the presence of, without including their actual
@@ -103,6 +105,12 @@ class ActionCacheKeyFieldsValueCookie(BaseModel):
 
 
 class ActionCacheKeyFieldsValueHeader(BaseModel):
+    """Controls which headers go into the Cache Key.
+
+    Exactly one of
+    `include` or `exclude` is expected.
+    """
+
     check_presence: Optional[List[str]] = None
     """
     A list of headers to check for the presence of, without including their actual
@@ -117,11 +125,19 @@ class ActionCacheKeyFieldsValueHeader(BaseModel):
 
 
 class ActionCacheKeyFieldsValueHost(BaseModel):
+    """Determines which host header to include in the Cache Key."""
+
     resolved: Optional[bool] = None
     """Whether to include the Host header in the HTTP request sent to the origin."""
 
 
 class ActionCacheKeyFieldsValueQueryString(BaseModel):
+    """Controls which URL query string parameters go into the Cache
+    Key.
+
+    Exactly one of `include` or `exclude` is expected.
+    """
+
     exclude: Union[Literal["*"], List[str], None] = None
     """Ignore all query string parameters."""
 
@@ -130,6 +146,11 @@ class ActionCacheKeyFieldsValueQueryString(BaseModel):
 
 
 class ActionCacheKeyFieldsValueUser(BaseModel):
+    """
+    Feature fields to add features about the end-user (client) into
+    the Cache Key.
+    """
+
     device_type: Optional[bool] = None
     """
     Classifies a request as `mobile`, `desktop`, or `tablet` based on the User

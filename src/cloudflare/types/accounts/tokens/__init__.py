@@ -3,5 +3,7 @@
 from __future__ import annotations
 
 from .value_update_params import ValueUpdateParams as ValueUpdateParams
+from .permission_group_get_params import PermissionGroupGetParams as PermissionGroupGetParams
+from .permission_group_list_params import PermissionGroupListParams as PermissionGroupListParams
 from .permission_group_get_response import PermissionGroupGetResponse as PermissionGroupGetResponse
 from .permission_group_list_response import PermissionGroupListResponse as PermissionGroupListResponse

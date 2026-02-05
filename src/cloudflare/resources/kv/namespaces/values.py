@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Mapping, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
+from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -59,16 +59,16 @@ class ValuesResource(SyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
-        metadata: str,
-        value: str,
-        expiration: float | NotGiven = NOT_GIVEN,
-        expiration_ttl: float | NotGiven = NOT_GIVEN,
+        value: Union[str, FileTypes],
+        expiration: float | Omit = omit,
+        expiration_ttl: float | Omit = omit,
+        metadata: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
@@ -82,22 +82,21 @@ class ValuesResource(SyncAPIResource):
         `expiration` is ignored.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.
 
-          metadata: Arbitrary JSON to be associated with a key/value pair.
-
           value: A byte sequence to be stored, up to 25 MiB in length.
 
-          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
-              should expire.
+          expiration: Expires the key at a certain time, measured in number of seconds since the UNIX
+              epoch.
 
-          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
-              least 60.
+          expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
+
+          metadata: Associates arbitrary JSON data with a key/value pair.
 
           extra_headers: Send extra headers
 
@@ -113,19 +112,21 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        body = deepcopy_minimal(
+            {
+                "value": value,
+                "metadata": metadata,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["value"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-            body=maybe_transform(
-                {
-                    "metadata": metadata,
-                    "value": value,
-                },
-                value_update_params.ValueUpdateParams,
-            ),
+            body=maybe_transform(body, value_update_params.ValueUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,6 +139,7 @@ class ValuesResource(SyncAPIResource):
                     },
                     value_update_params.ValueUpdateParams,
                 ),
+                multipart_syntax="json",
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
@@ -154,7 +156,7 @@ class ValuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
@@ -162,7 +164,7 @@ class ValuesResource(SyncAPIResource):
         (for example, `:`, `!`, `%`) in the key name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -206,7 +208,7 @@ class ValuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """Returns the value associated with the given key in the given namespace.
 
@@ -217,7 +219,7 @@ class ValuesResource(SyncAPIResource):
         response header.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -274,16 +276,16 @@ class AsyncValuesResource(AsyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
-        metadata: str,
-        value: str,
-        expiration: float | NotGiven = NOT_GIVEN,
-        expiration_ttl: float | NotGiven = NOT_GIVEN,
+        value: Union[str, FileTypes],
+        expiration: float | Omit = omit,
+        expiration_ttl: float | Omit = omit,
+        metadata: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
@@ -297,22 +299,21 @@ class AsyncValuesResource(AsyncAPIResource):
         `expiration` is ignored.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.
 
-          metadata: Arbitrary JSON to be associated with a key/value pair.
-
           value: A byte sequence to be stored, up to 25 MiB in length.
 
-          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
-              should expire.
+          expiration: Expires the key at a certain time, measured in number of seconds since the UNIX
+              epoch.
 
-          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
-              least 60.
+          expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
+
+          metadata: Associates arbitrary JSON data with a key/value pair.
 
           extra_headers: Send extra headers
 
@@ -328,19 +329,21 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        body = deepcopy_minimal(
+            {
+                "value": value,
+                "metadata": metadata,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["value"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-            body=await async_maybe_transform(
-                {
-                    "metadata": metadata,
-                    "value": value,
-                },
-                value_update_params.ValueUpdateParams,
-            ),
+            body=await async_maybe_transform(body, value_update_params.ValueUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -353,6 +356,7 @@ class AsyncValuesResource(AsyncAPIResource):
                     },
                     value_update_params.ValueUpdateParams,
                 ),
+                multipart_syntax="json",
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
@@ -369,7 +373,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
@@ -377,7 +381,7 @@ class AsyncValuesResource(AsyncAPIResource):
         (for example, `:`, `!`, `%`) in the key name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -421,7 +425,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """Returns the value associated with the given key in the given namespace.
 
@@ -432,7 +436,7 @@ class AsyncValuesResource(AsyncAPIResource):
         response header.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 

@@ -23,7 +23,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
@@ -122,10 +122,10 @@ class WaitingRoomsResource(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -166,26 +166,25 @@ class WaitingRoomsResource(SyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Creates a new waiting room.
@@ -525,10 +524,10 @@ class WaitingRoomsResource(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -569,26 +568,25 @@ class WaitingRoomsResource(SyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Updates a configured waiting room.
@@ -924,16 +922,16 @@ class WaitingRoomsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WaitingRoom]:
         """
         Lists waiting rooms for account or zone.
@@ -996,7 +994,7 @@ class WaitingRoomsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoomDeleteResponse:
         """
         Deletes a waiting room.
@@ -1037,10 +1035,10 @@ class WaitingRoomsResource(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -1081,26 +1079,25 @@ class WaitingRoomsResource(SyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Patches a configured waiting room.
@@ -1443,7 +1440,7 @@ class WaitingRoomsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.
@@ -1524,10 +1521,10 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -1568,26 +1565,25 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Creates a new waiting room.
@@ -1927,10 +1923,10 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -1971,26 +1967,25 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Updates a configured waiting room.
@@ -2326,16 +2321,16 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
         """
         Lists waiting rooms for account or zone.
@@ -2398,7 +2393,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoomDeleteResponse:
         """
         Deletes a waiting room.
@@ -2439,10 +2434,10 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-        cookie_suffix: str | NotGiven = NOT_GIVEN,
-        custom_page_html: str | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesParam] | Omit = omit,
+        cookie_attributes: CookieAttributesParam | Omit = omit,
+        cookie_suffix: str | Omit = omit,
+        custom_page_html: str | Omit = omit,
         default_template_language: Literal[
             "en-US",
             "es-ES",
@@ -2483,26 +2478,25 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             "uk-UA",
             "vi-VN",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-        json_response_enabled: bool | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        queue_all: bool | NotGiven = NOT_GIVEN,
-        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-        session_duration: int | NotGiven = NOT_GIVEN,
-        suspended: bool | NotGiven = NOT_GIVEN,
-        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
-        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        disable_session_renewal: bool | Omit = omit,
+        enabled_origin_commands: List[Literal["revoke"]] | Omit = omit,
+        json_response_enabled: bool | Omit = omit,
+        path: str | Omit = omit,
+        queue_all: bool | Omit = omit,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | Omit = omit,
+        queueing_status_code: Literal[200, 202, 429] | Omit = omit,
+        session_duration: int | Omit = omit,
+        suspended: bool | Omit = omit,
+        turnstile_action: Literal["log", "infinite_queue"] | Omit = omit,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Patches a configured waiting room.
@@ -2845,7 +2839,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.

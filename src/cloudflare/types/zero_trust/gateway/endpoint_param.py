@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 from .doh_endpoint_param import DOHEndpointParam
 from .dot_endpoint_param import DOTEndpointParam
@@ -13,10 +13,12 @@ __all__ = ["EndpointParam"]
 
 
 class EndpointParam(TypedDict, total=False):
-    doh: DOHEndpointParam
+    """Configure the destination endpoints for this location."""
 
-    dot: DOTEndpointParam
+    doh: Required[DOHEndpointParam]
 
-    ipv4: IPV4EndpointParam
+    dot: Required[DOTEndpointParam]
 
-    ipv6: IPV6EndpointParam
+    ipv4: Required[IPV4EndpointParam]
+
+    ipv6: Required[IPV6EndpointParam]

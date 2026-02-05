@@ -9,9 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.rules import (
+    ListsList,
     ListGetResponse,
-    ListListResponse,
     ListCreateResponse,
     ListDeleteResponse,
     ListUpdateResponse,
@@ -151,7 +152,7 @@ class TestLists:
         list_ = client.rules.lists.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ListListResponse, list_, path=["response"])
+        assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -162,7 +163,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(ListListResponse, list_, path=["response"])
+        assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -173,7 +174,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(ListListResponse, list_, path=["response"])
+            assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -286,7 +287,9 @@ class TestLists:
 
 
 class TestAsyncLists:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -416,7 +419,7 @@ class TestAsyncLists:
         list_ = await async_client.rules.lists.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ListListResponse, list_, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -427,7 +430,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(ListListResponse, list_, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -438,7 +441,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(ListListResponse, list_, path=["response"])
+            assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

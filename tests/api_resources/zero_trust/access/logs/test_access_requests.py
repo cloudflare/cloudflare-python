@@ -30,9 +30,14 @@ class TestAccessRequests:
         access_request = client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
+            email="user@example.com",
+            email_exact=True,
             limit=0,
+            page=0,
+            per_page=0,
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
+            user_id="f757c5c3-c1b2-50f7-9126-150a099b6f7e",
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 
@@ -69,7 +74,9 @@ class TestAccessRequests:
 
 
 class TestAsyncAccessRequests:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -83,9 +90,14 @@ class TestAsyncAccessRequests:
         access_request = await async_client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
+            email="user@example.com",
+            email_exact=True,
             limit=0,
+            page=0,
+            per_page=0,
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
+            user_id="f757c5c3-c1b2-50f7-9126-150a099b6f7e",
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 

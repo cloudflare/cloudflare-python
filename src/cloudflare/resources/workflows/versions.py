@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,14 +51,14 @@ class VersionsResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[VersionListResponse]:
         """
         List deployed Workflow versions
@@ -106,7 +106,7 @@ class VersionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
         Get Workflow version details
@@ -164,14 +164,14 @@ class AsyncVersionsResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePaginationArray[VersionListResponse]]:
         """
         List deployed Workflow versions
@@ -219,7 +219,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
         Get Workflow version details

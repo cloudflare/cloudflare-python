@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import Any, Union, Iterable, Optional, cast
 from typing_extensions import overload
 
 import httpx
@@ -23,7 +23,7 @@ from .authors import (
     AuthorsResourceWithStreamingResponse,
     AsyncAuthorsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import ai_run_params
@@ -35,6 +35,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .to_markdown import (
+    ToMarkdownResource,
+    AsyncToMarkdownResource,
+    ToMarkdownResourceWithRawResponse,
+    AsyncToMarkdownResourceWithRawResponse,
+    ToMarkdownResourceWithStreamingResponse,
+    AsyncToMarkdownResourceWithStreamingResponse,
+)
 from .models.models import (
     ModelsResource,
     AsyncModelsResource,
@@ -75,6 +83,10 @@ class AIResource(SyncAPIResource):
         return ModelsResource(self._client)
 
     @cached_property
+    def to_markdown(self) -> ToMarkdownResource:
+        return ToMarkdownResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -105,7 +117,7 @@ class AIResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -138,22 +150,22 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        guidance: float | NotGiven = NOT_GIVEN,
-        height: int | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
-        image_b64: str | NotGiven = NOT_GIVEN,
-        mask: Iterable[float] | NotGiven = NOT_GIVEN,
-        negative_prompt: str | NotGiven = NOT_GIVEN,
-        num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        strength: float | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
+        guidance: float | Omit = omit,
+        height: int | Omit = omit,
+        image: Iterable[float] | Omit = omit,
+        image_b64: str | Omit = omit,
+        mask: Iterable[float] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_steps: int | Omit = omit,
+        seed: int | Omit = omit,
+        strength: float | Omit = omit,
+        width: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -210,13 +222,13 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        lang: str | NotGiven = NOT_GIVEN,
+        lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -251,13 +263,13 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: Union[str, List[str]],
+        text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -290,14 +302,14 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         audio: Iterable[float],
-        source_lang: str | NotGiven = NOT_GIVEN,
-        target_lang: str | NotGiven = NOT_GIVEN,
+        source_lang: str | Omit = omit,
+        target_lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -341,7 +353,7 @@ class AIResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -374,13 +386,13 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -414,24 +426,24 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        lora: str | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        lora: str | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.PromptResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -493,25 +505,25 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         messages: Iterable[ai_run_params.MessagesMessage],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.MessagesResponseFormat | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.MessagesResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        tools: Iterable[ai_run_params.MessagesTool] | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -574,13 +586,13 @@ class AIResource(SyncAPIResource):
         account_id: str,
         target_lang: str,
         text: str,
-        source_lang: str | NotGiven = NOT_GIVEN,
+        source_lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -618,13 +630,13 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         input_text: str,
-        max_length: int | NotGiven = NOT_GIVEN,
+        max_length: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -659,22 +671,22 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         image: Iterable[float],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        prompt: str | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        prompt: str | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -735,21 +747,21 @@ class AIResource(SyncAPIResource):
         account_id: str,
         image: str,
         prompt: str,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        ignore_eos: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -809,21 +821,21 @@ class AIResource(SyncAPIResource):
         account_id: str,
         image: str,
         messages: Iterable[ai_run_params.Variant13Message],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        ignore_eos: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -875,6 +887,45 @@ class AIResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def run(
+        self,
+        model_name: str,
+        *,
+        account_id: str,
+        image: str | Omit = omit,
+        text: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AIRunResponse]:
+        """
+        This endpoint provides users with the capability to run specific AI models
+        on-demand.
+
+        By submitting the required input data, users can receive real-time predictions
+        or results generated by the chosen AI model. The endpoint supports various AI
+        model types, ensuring flexibility and adaptability for diverse use cases.
+
+        Model specific inputs available in
+        [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
+
+        Args:
+          image: Image in base64 encoded format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["account_id", "text"],
         ["account_id", "prompt"],
@@ -892,45 +943,45 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
-        prompt: str | NotGiven = NOT_GIVEN,
-        guidance: float | NotGiven = NOT_GIVEN,
-        height: int | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | str | NotGiven = NOT_GIVEN,
-        image_b64: str | NotGiven = NOT_GIVEN,
-        mask: Iterable[float] | NotGiven = NOT_GIVEN,
-        negative_prompt: str | NotGiven = NOT_GIVEN,
-        num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | float | NotGiven = NOT_GIVEN,
-        strength: float | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
-        lang: str | NotGiven = NOT_GIVEN,
-        audio: Iterable[float] | NotGiven = NOT_GIVEN,
-        source_lang: str | NotGiven = NOT_GIVEN,
-        target_lang: str | NotGiven = NOT_GIVEN,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        lora: str | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
-        input_text: str | NotGiven = NOT_GIVEN,
-        max_length: int | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
+        text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | Omit = omit,
+        prompt: str | Omit = omit,
+        guidance: float | Omit = omit,
+        height: int | Omit = omit,
+        image: Iterable[float] | str | Omit = omit,
+        image_b64: str | Omit = omit,
+        mask: Iterable[float] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_steps: int | Omit = omit,
+        seed: int | float | Omit = omit,
+        strength: float | Omit = omit,
+        width: int | Omit = omit,
+        lang: str | Omit = omit,
+        audio: Iterable[float] | Omit = omit,
+        source_lang: str | Omit = omit,
+        target_lang: str | Omit = omit,
+        frequency_penalty: float | Omit = omit,
+        lora: str | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.PromptResponseFormat | ai_run_params.MessagesResponseFormat | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | float | Omit = omit,
+        top_p: float | Omit = omit,
+        messages: Iterable[ai_run_params.MessagesMessage] | Iterable[ai_run_params.Variant13Message] | Omit = omit,
+        functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
+        tools: Iterable[ai_run_params.MessagesTool] | Omit = omit,
+        input_text: str | Omit = omit,
+        max_length: int | Omit = omit,
+        ignore_eos: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -1010,6 +1061,10 @@ class AsyncAIResource(AsyncAPIResource):
         return AsyncModelsResource(self._client)
 
     @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResource:
+        return AsyncToMarkdownResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -1040,7 +1095,7 @@ class AsyncAIResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1073,22 +1128,22 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        guidance: float | NotGiven = NOT_GIVEN,
-        height: int | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
-        image_b64: str | NotGiven = NOT_GIVEN,
-        mask: Iterable[float] | NotGiven = NOT_GIVEN,
-        negative_prompt: str | NotGiven = NOT_GIVEN,
-        num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        strength: float | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
+        guidance: float | Omit = omit,
+        height: int | Omit = omit,
+        image: Iterable[float] | Omit = omit,
+        image_b64: str | Omit = omit,
+        mask: Iterable[float] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_steps: int | Omit = omit,
+        seed: int | Omit = omit,
+        strength: float | Omit = omit,
+        width: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1145,13 +1200,13 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        lang: str | NotGiven = NOT_GIVEN,
+        lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1186,13 +1241,13 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: Union[str, List[str]],
+        text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1225,14 +1280,14 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         audio: Iterable[float],
-        source_lang: str | NotGiven = NOT_GIVEN,
-        target_lang: str | NotGiven = NOT_GIVEN,
+        source_lang: str | Omit = omit,
+        target_lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1276,7 +1331,7 @@ class AsyncAIResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1309,13 +1364,13 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1349,24 +1404,24 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         prompt: str,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        lora: str | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        lora: str | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.PromptResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1428,25 +1483,25 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         messages: Iterable[ai_run_params.MessagesMessage],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.MessagesResponseFormat | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.MessagesResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        tools: Iterable[ai_run_params.MessagesTool] | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1509,13 +1564,13 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         target_lang: str,
         text: str,
-        source_lang: str | NotGiven = NOT_GIVEN,
+        source_lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1553,13 +1608,13 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         input_text: str,
-        max_length: int | NotGiven = NOT_GIVEN,
+        max_length: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1594,22 +1649,22 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         image: Iterable[float],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        prompt: str | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        prompt: str | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1670,21 +1725,21 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         image: str,
         prompt: str,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        ignore_eos: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1744,21 +1799,21 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         image: str,
         messages: Iterable[ai_run_params.Variant13Message],
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        seed: float | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
+        frequency_penalty: float | Omit = omit,
+        ignore_eos: bool | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        seed: float | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: float | Omit = omit,
+        top_p: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
@@ -1810,6 +1865,45 @@ class AsyncAIResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def run(
+        self,
+        model_name: str,
+        *,
+        account_id: str,
+        image: str | Omit = omit,
+        text: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AIRunResponse]:
+        """
+        This endpoint provides users with the capability to run specific AI models
+        on-demand.
+
+        By submitting the required input data, users can receive real-time predictions
+        or results generated by the chosen AI model. The endpoint supports various AI
+        model types, ensuring flexibility and adaptability for diverse use cases.
+
+        Model specific inputs available in
+        [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
+
+        Args:
+          image: Image in base64 encoded format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["account_id", "text"],
         ["account_id", "prompt"],
@@ -1827,45 +1921,45 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
-        prompt: str | NotGiven = NOT_GIVEN,
-        guidance: float | NotGiven = NOT_GIVEN,
-        height: int | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | str | NotGiven = NOT_GIVEN,
-        image_b64: str | NotGiven = NOT_GIVEN,
-        mask: Iterable[float] | NotGiven = NOT_GIVEN,
-        negative_prompt: str | NotGiven = NOT_GIVEN,
-        num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | float | NotGiven = NOT_GIVEN,
-        strength: float | NotGiven = NOT_GIVEN,
-        width: int | NotGiven = NOT_GIVEN,
-        lang: str | NotGiven = NOT_GIVEN,
-        audio: Iterable[float] | NotGiven = NOT_GIVEN,
-        source_lang: str | NotGiven = NOT_GIVEN,
-        target_lang: str | NotGiven = NOT_GIVEN,
-        frequency_penalty: float | NotGiven = NOT_GIVEN,
-        lora: str | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        presence_penalty: float | NotGiven = NOT_GIVEN,
-        raw: bool | NotGiven = NOT_GIVEN,
-        repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
-        input_text: str | NotGiven = NOT_GIVEN,
-        max_length: int | NotGiven = NOT_GIVEN,
-        ignore_eos: bool | NotGiven = NOT_GIVEN,
+        text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | Omit = omit,
+        prompt: str | Omit = omit,
+        guidance: float | Omit = omit,
+        height: int | Omit = omit,
+        image: Iterable[float] | str | Omit = omit,
+        image_b64: str | Omit = omit,
+        mask: Iterable[float] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_steps: int | Omit = omit,
+        seed: int | float | Omit = omit,
+        strength: float | Omit = omit,
+        width: int | Omit = omit,
+        lang: str | Omit = omit,
+        audio: Iterable[float] | Omit = omit,
+        source_lang: str | Omit = omit,
+        target_lang: str | Omit = omit,
+        frequency_penalty: float | Omit = omit,
+        lora: str | Omit = omit,
+        max_tokens: int | Omit = omit,
+        presence_penalty: float | Omit = omit,
+        raw: bool | Omit = omit,
+        repetition_penalty: float | Omit = omit,
+        response_format: ai_run_params.PromptResponseFormat | ai_run_params.MessagesResponseFormat | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | float | Omit = omit,
+        top_p: float | Omit = omit,
+        messages: Iterable[ai_run_params.MessagesMessage] | Iterable[ai_run_params.Variant13Message] | Omit = omit,
+        functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
+        tools: Iterable[ai_run_params.MessagesTool] | Omit = omit,
+        input_text: str | Omit = omit,
+        max_length: int | Omit = omit,
+        ignore_eos: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -1951,6 +2045,10 @@ class AIResourceWithRawResponse:
     def models(self) -> ModelsResourceWithRawResponse:
         return ModelsResourceWithRawResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithRawResponse:
+        return ToMarkdownResourceWithRawResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1975,6 +2073,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithRawResponse:
         return AsyncModelsResourceWithRawResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithRawResponse:
+        return AsyncToMarkdownResourceWithRawResponse(self._ai.to_markdown)
 
 
 class AIResourceWithStreamingResponse:
@@ -2001,6 +2103,10 @@ class AIResourceWithStreamingResponse:
     def models(self) -> ModelsResourceWithStreamingResponse:
         return ModelsResourceWithStreamingResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithStreamingResponse:
+        return ToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -2025,3 +2131,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithStreamingResponse:
         return AsyncModelsResourceWithStreamingResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithStreamingResponse:
+        return AsyncToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)

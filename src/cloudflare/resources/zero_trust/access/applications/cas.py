@@ -6,7 +6,8 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -16,8 +17,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.access.applications import ca_list_params
 from .....types.zero_trust.access.applications.ca import CA
 from .....types.zero_trust.access.applications.ca_delete_response import CADeleteResponse
 
@@ -48,14 +50,14 @@ class CAsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CA]:
         """
         Generates a new short-lived certificate CA and public key.
@@ -104,15 +106,17 @@ class CAsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[CA]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[CA]:
         """
         Lists short-lived certificate CAs and their public keys.
 
@@ -120,6 +124,10 @@ class CAsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -143,9 +151,19 @@ class CAsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/ca",
-            page=SyncSinglePage[CA],
+            page=SyncV4PagePaginationArray[CA],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    ca_list_params.CAListParams,
+                ),
             ),
             model=CA,
         )
@@ -154,14 +172,14 @@ class CAsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CADeleteResponse]:
         """
         Deletes a short-lived certificate CA.
@@ -211,14 +229,14 @@ class CAsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CA]:
         """
         Fetches a short-lived certificate CA and its public key.
@@ -289,14 +307,14 @@ class AsyncCAsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CA]:
         """
         Generates a new short-lived certificate CA and public key.
@@ -345,15 +363,17 @@ class AsyncCAsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CA, AsyncSinglePage[CA]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[CA, AsyncV4PagePaginationArray[CA]]:
         """
         Lists short-lived certificate CAs and their public keys.
 
@@ -361,6 +381,10 @@ class AsyncCAsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -384,9 +408,19 @@ class AsyncCAsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/ca",
-            page=AsyncSinglePage[CA],
+            page=AsyncV4PagePaginationArray[CA],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    ca_list_params.CAListParams,
+                ),
             ),
             model=CA,
         )
@@ -395,14 +429,14 @@ class AsyncCAsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CADeleteResponse]:
         """
         Deletes a short-lived certificate CA.
@@ -452,14 +486,14 @@ class AsyncCAsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CA]:
         """
         Fetches a short-lived certificate CA and its public key.

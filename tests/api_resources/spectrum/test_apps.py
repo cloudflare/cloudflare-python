@@ -30,10 +30,7 @@ class TestApps:
         app = client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -47,16 +44,14 @@ class TestApps:
                 "name": "ssh.example.com",
                 "type": "CNAME",
             },
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
                 "connectivity": "all",
                 "type": "dynamic",
             },
+            ip_firewall=False,
             origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
@@ -64,6 +59,8 @@ class TestApps:
                 "type": "",
             },
             origin_port=22,
+            proxy_protocol="off",
+            tls="off",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -73,10 +70,7 @@ class TestApps:
         response = client.spectrum.apps.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
 
@@ -91,10 +85,7 @@ class TestApps:
         with client.spectrum.apps.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -112,10 +103,7 @@ class TestApps:
             client.spectrum.apps.with_raw_response.create(
                 zone_id="",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -190,10 +178,7 @@ class TestApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -208,16 +193,14 @@ class TestApps:
                 "name": "ssh.example.com",
                 "type": "CNAME",
             },
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
                 "connectivity": "all",
                 "type": "dynamic",
             },
+            ip_firewall=False,
             origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
@@ -225,6 +208,8 @@ class TestApps:
                 "type": "",
             },
             origin_port=22,
+            proxy_protocol="off",
+            tls="off",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -235,10 +220,7 @@ class TestApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
 
@@ -254,10 +236,7 @@ class TestApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -276,10 +255,7 @@ class TestApps:
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -288,10 +264,7 @@ class TestApps:
                 app_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -378,7 +351,7 @@ class TestApps:
         app = client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -390,7 +363,7 @@ class TestApps:
             page=1,
             per_page=1,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -402,7 +375,7 @@ class TestApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -414,7 +387,7 @@ class TestApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -524,7 +497,9 @@ class TestApps:
 
 
 class TestAsyncApps:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -532,10 +507,7 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -549,16 +521,14 @@ class TestAsyncApps:
                 "name": "ssh.example.com",
                 "type": "CNAME",
             },
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
                 "connectivity": "all",
                 "type": "dynamic",
             },
+            ip_firewall=False,
             origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
@@ -566,6 +536,8 @@ class TestAsyncApps:
                 "type": "",
             },
             origin_port=22,
+            proxy_protocol="off",
+            tls="off",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -575,10 +547,7 @@ class TestAsyncApps:
         response = await async_client.spectrum.apps.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
 
@@ -593,10 +562,7 @@ class TestAsyncApps:
         async with async_client.spectrum.apps.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -614,10 +580,7 @@ class TestAsyncApps:
             await async_client.spectrum.apps.with_raw_response.create(
                 zone_id="",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -692,10 +655,7 @@ class TestAsyncApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -710,16 +670,14 @@ class TestAsyncApps:
                 "name": "ssh.example.com",
                 "type": "CNAME",
             },
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
                 "connectivity": "all",
                 "type": "dynamic",
             },
+            ip_firewall=False,
             origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
@@ -727,6 +685,8 @@ class TestAsyncApps:
                 "type": "",
             },
             origin_port=22,
+            proxy_protocol="off",
+            tls="off",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -737,10 +697,7 @@ class TestAsyncApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         )
 
@@ -756,10 +713,7 @@ class TestAsyncApps:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
-            ip_firewall=True,
             protocol="tcp/22",
-            proxy_protocol="off",
-            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -778,10 +732,7 @@ class TestAsyncApps:
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -790,10 +741,7 @@ class TestAsyncApps:
                 app_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
-                ip_firewall=True,
                 protocol="tcp/22",
-                proxy_protocol="off",
-                tls="full",
                 traffic_type="direct",
             )
 
@@ -880,7 +828,7 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -892,7 +840,7 @@ class TestAsyncApps:
             page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -904,7 +852,7 @@ class TestAsyncApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -916,7 +864,7 @@ class TestAsyncApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

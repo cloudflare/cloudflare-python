@@ -51,6 +51,7 @@ class TestConfigurations:
                             "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 100,
                             "keep_alive_timeout": 90,
+                            "match_sn_ito_host": False,
                             "no_happy_eyeballs": False,
                             "no_tls_verify": False,
                             "origin_server_name": "originServerName",
@@ -74,6 +75,7 @@ class TestConfigurations:
                     "http_host_header": "httpHostHeader",
                     "keep_alive_connections": 100,
                     "keep_alive_timeout": 90,
+                    "match_sn_ito_host": False,
                     "no_happy_eyeballs": False,
                     "no_tls_verify": False,
                     "origin_server_name": "originServerName",
@@ -175,7 +177,9 @@ class TestConfigurations:
 
 
 class TestAsyncConfigurations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -208,6 +212,7 @@ class TestAsyncConfigurations:
                             "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 100,
                             "keep_alive_timeout": 90,
+                            "match_sn_ito_host": False,
                             "no_happy_eyeballs": False,
                             "no_tls_verify": False,
                             "origin_server_name": "originServerName",
@@ -231,6 +236,7 @@ class TestAsyncConfigurations:
                     "http_host_header": "httpHostHeader",
                     "keep_alive_connections": 100,
                     "keep_alive_timeout": 90,
+                    "match_sn_ito_host": False,
                     "no_happy_eyeballs": False,
                     "no_tls_verify": False,
                     "origin_server_name": "originServerName",

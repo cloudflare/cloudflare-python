@@ -9,6 +9,10 @@ __all__ = ["BotFightModeConfiguration", "StaleZoneConfiguration"]
 
 
 class StaleZoneConfiguration(BaseModel):
+    """
+    A read-only field that shows which unauthorized settings are currently active on the zone. These settings typically result from upgrades or downgrades.
+    """
+
     optimize_wordpress: Optional[bool] = None
     """Indicates that the zone's wordpress optimization for SBFM is turned on."""
 
@@ -35,8 +39,15 @@ class StaleZoneConfiguration(BaseModel):
 
 
 class BotFightModeConfiguration(BaseModel):
-    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
-    """Enable rule to block AI Scrapers and Crawlers."""
+    ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
+    """Enable rule to block AI Scrapers and Crawlers.
+
+    Please note the value `only_on_ad_pages` is currently not available for
+    Enterprise customers.
+    """
+
+    cf_robots_variant: Optional[Literal["off", "policy_only"]] = None
+    """Specifies the Robots Access Control License variant to use."""
 
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -49,6 +60,13 @@ class BotFightModeConfiguration(BaseModel):
 
     fight_mode: Optional[bool] = None
     """Whether to enable Bot Fight Mode."""
+
+    is_robots_txt_managed: Optional[bool] = None
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """
 
     stale_zone_configuration: Optional[StaleZoneConfiguration] = None
     """

@@ -10,6 +10,10 @@ __all__ = ["WebP"]
 
 
 class WebP(BaseModel):
+    """
+    When the client requesting the image supports the WebP image codec, and WebP offers a performance advantage over the original image format, Cloudflare will serve a WebP version of the original image.
+    """
+
     id: Literal["webp"]
     """ID of the zone setting."""
 

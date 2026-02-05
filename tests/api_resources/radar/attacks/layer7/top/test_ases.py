@@ -34,7 +34,7 @@ class TestAses:
             http_method=["GET"],
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
-            limit=5,
+            limit=1,
             location=["string"],
             mitigation_product=["DDOS"],
             name=["main_series"],
@@ -63,7 +63,9 @@ class TestAses:
 
 
 class TestAsyncAses:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_origin(self, async_client: AsyncCloudflare) -> None:
@@ -81,7 +83,7 @@ class TestAsyncAses:
             http_method=["GET"],
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
-            limit=5,
+            limit=1,
             location=["string"],
             mitigation_product=["DDOS"],
             name=["main_series"],

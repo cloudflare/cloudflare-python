@@ -10,10 +10,14 @@ __all__ = ["NEL", "Value"]
 
 
 class Value(BaseModel):
+    """Current value of the zone setting."""
+
     enabled: Optional[bool] = None
 
 
 class NEL(BaseModel):
+    """Enable Network Error Logging reporting on your zone. (Beta)"""
+
     id: Literal["nel"]
     """Zone setting identifier."""
 

@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+import typing_extensions
+from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -42,6 +43,7 @@ class RecommendationsResource(SyncAPIResource):
         """
         return RecommendationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("SSL/TLS Recommender has been decommissioned in favor of Automatic SSL/TLS")
     def get(
         self,
         *,
@@ -51,14 +53,12 @@ class RecommendationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecommendationGetResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RecommendationGetResponse:
         """
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_id: Identifier.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -76,9 +76,9 @@ class RecommendationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecommendationGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RecommendationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
+            cast_to=cast(Type[RecommendationGetResponse], ResultWrapper[RecommendationGetResponse]),
         )
 
 
@@ -102,6 +102,7 @@ class AsyncRecommendationsResource(AsyncAPIResource):
         """
         return AsyncRecommendationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("SSL/TLS Recommender has been decommissioned in favor of Automatic SSL/TLS")
     async def get(
         self,
         *,
@@ -111,14 +112,12 @@ class AsyncRecommendationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecommendationGetResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RecommendationGetResponse:
         """
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_id: Identifier.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -136,9 +135,9 @@ class AsyncRecommendationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecommendationGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RecommendationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
+            cast_to=cast(Type[RecommendationGetResponse], ResultWrapper[RecommendationGetResponse]),
         )
 
 
@@ -146,8 +145,10 @@ class RecommendationsResourceWithRawResponse:
     def __init__(self, recommendations: RecommendationsResource) -> None:
         self._recommendations = recommendations
 
-        self.get = to_raw_response_wrapper(
-            recommendations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                recommendations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -155,8 +156,10 @@ class AsyncRecommendationsResourceWithRawResponse:
     def __init__(self, recommendations: AsyncRecommendationsResource) -> None:
         self._recommendations = recommendations
 
-        self.get = async_to_raw_response_wrapper(
-            recommendations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                recommendations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -164,8 +167,10 @@ class RecommendationsResourceWithStreamingResponse:
     def __init__(self, recommendations: RecommendationsResource) -> None:
         self._recommendations = recommendations
 
-        self.get = to_streamed_response_wrapper(
-            recommendations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                recommendations.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -173,6 +178,8 @@ class AsyncRecommendationsResourceWithStreamingResponse:
     def __init__(self, recommendations: AsyncRecommendationsResource) -> None:
         self._recommendations = recommendations
 
-        self.get = async_to_streamed_response_wrapper(
-            recommendations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                recommendations.get,  # pyright: ignore[reportDeprecated],
+            )
         )

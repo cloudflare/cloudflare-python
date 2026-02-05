@@ -11,13 +11,13 @@ __all__ = ["OriginPostQuantumEncryptionUpdateResponse"]
 
 class OriginPostQuantumEncryptionUpdateResponse(BaseModel):
     id: Literal["origin_pqe"]
-    """Value of the zone setting."""
+    """The identifier of the caching setting."""
 
     editable: bool
-    """Whether the setting is editable"""
+    """Whether the setting is editable."""
 
     value: Literal["preferred", "supported", "off"]
-    """The value of the feature"""
+    """Value of the Origin Post Quantum Encryption Setting."""
 
     modified_on: Optional[datetime] = None
     """Last time this setting was modified."""

@@ -14,6 +14,8 @@ __all__ = ["Token", "Condition", "ConditionRequestIP"]
 
 
 class ConditionRequestIP(BaseModel):
+    """Client IP restrictions."""
+
     in_: Optional[List[TokenConditionCIDRList]] = FieldInfo(alias="in", default=None)
     """List of IPv4/IPv6 CIDR addresses."""
 

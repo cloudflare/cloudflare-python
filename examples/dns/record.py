@@ -14,6 +14,7 @@ record = client.dns.records.create(
     type="A",
     name="www.mydns.com",
     content="198.51.100.1",
+    ttl=1,
     proxied=True,
 )
 assert record is not None

@@ -27,7 +27,7 @@ class Override(BaseModel):
     """
 
     paused: Optional[bool] = None
-    """When true, indicates that the WAF package is currently paused."""
+    """When true, indicates that the rule is currently paused."""
 
     priority: Optional[float] = None
     """

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -49,9 +49,12 @@ class JobsResource(SyncAPIResource):
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
+                "dex_application_tests",
+                "dex_device_state_events",
                 "dlp_forensic_copies",
                 "dns_firewall_logs",
                 "dns_logs",
@@ -61,6 +64,7 @@ class JobsResource(SyncAPIResource):
                 "gateway_http",
                 "gateway_network",
                 "http_requests",
+                "ipsec_logs",
                 "magic_ids_detections",
                 "nel_reports",
                 "network_analytics_logs",
@@ -68,20 +72,22 @@ class JobsResource(SyncAPIResource):
                 "sinkhole_http_logs",
                 "spectrum_events",
                 "ssh_logs",
+                "warp_config_changes",
+                "warp_toggle_changes",
                 "workers_trace_events",
                 "zaraz_events",
                 "zero_trust_network_sessions",
             ]
         ],
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone for a dataset.
@@ -152,9 +158,12 @@ class AsyncJobsResource(AsyncAPIResource):
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
+                "dex_application_tests",
+                "dex_device_state_events",
                 "dlp_forensic_copies",
                 "dns_firewall_logs",
                 "dns_logs",
@@ -164,6 +173,7 @@ class AsyncJobsResource(AsyncAPIResource):
                 "gateway_http",
                 "gateway_network",
                 "http_requests",
+                "ipsec_logs",
                 "magic_ids_detections",
                 "nel_reports",
                 "network_analytics_logs",
@@ -171,20 +181,22 @@ class AsyncJobsResource(AsyncAPIResource):
                 "sinkhole_http_logs",
                 "spectrum_events",
                 "ssh_logs",
+                "warp_config_changes",
+                "warp_toggle_changes",
                 "workers_trace_events",
                 "zaraz_events",
                 "zero_trust_network_sessions",
             ]
         ],
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone for a dataset.

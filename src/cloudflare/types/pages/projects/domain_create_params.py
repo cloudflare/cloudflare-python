@@ -9,6 +9,7 @@ __all__ = ["DomainCreateParams"]
 
 class DomainCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
-    name: str
+    name: Required[str]
+    """The domain name."""

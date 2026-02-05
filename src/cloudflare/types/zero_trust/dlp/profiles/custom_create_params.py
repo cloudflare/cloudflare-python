@@ -2,29 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
+from ....._types import SequenceNotStr
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
-__all__ = [
-    "CustomCreateParams",
-    "Entry",
-    "EntryDLPNewCustomEntry",
-    "EntryDLPNewWordListEntry",
-    "SharedEntry",
-    "SharedEntryCustom",
-    "SharedEntryPredefined",
-    "SharedEntryIntegration",
-    "SharedEntryExactData",
-]
+__all__ = ["CustomCreateParams", "Entry", "EntryDLPNewCustomEntry", "EntryDLPNewWordListEntry", "SharedEntry"]
 
 
 class CustomCreateParams(TypedDict, total=False):
     account_id: Required[str]
-
-    entries: Required[Iterable[Entry]]
 
     name: Required[str]
 
@@ -43,6 +32,8 @@ class CustomCreateParams(TypedDict, total=False):
 
     description: Optional[str]
     """The description of the profile."""
+
+    entries: Iterable[Entry]
 
     ocr_enabled: bool
 
@@ -67,42 +58,13 @@ class EntryDLPNewWordListEntry(TypedDict, total=False):
 
     name: Required[str]
 
-    words: Required[List[str]]
+    words: Required[SequenceNotStr[str]]
 
 
 Entry: TypeAlias = Union[EntryDLPNewCustomEntry, EntryDLPNewWordListEntry]
 
 
-class SharedEntryCustom(TypedDict, total=False):
+class SharedEntry(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
-
-    entry_type: Required[Literal["custom"]]
-
-
-class SharedEntryPredefined(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["predefined"]]
-
-
-class SharedEntryIntegration(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["integration"]]
-
-
-class SharedEntryExactData(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["exact_data"]]
-
-
-SharedEntry: TypeAlias = Union[SharedEntryCustom, SharedEntryPredefined, SharedEntryIntegration, SharedEntryExactData]

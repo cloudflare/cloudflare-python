@@ -17,5 +17,11 @@ class UserListParams(TypedDict, total=False):
     name: str
     """The name of the user."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     search: str
     """Search for users by other listed query parameters."""

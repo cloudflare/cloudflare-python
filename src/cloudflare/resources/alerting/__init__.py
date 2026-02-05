@@ -24,6 +24,14 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .silences import (
+    SilencesResource,
+    AsyncSilencesResource,
+    SilencesResourceWithRawResponse,
+    AsyncSilencesResourceWithRawResponse,
+    SilencesResourceWithStreamingResponse,
+    AsyncSilencesResourceWithStreamingResponse,
+)
 from .destinations import (
     DestinationsResource,
     AsyncDestinationsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncPoliciesResourceWithRawResponse",
     "PoliciesResourceWithStreamingResponse",
     "AsyncPoliciesResourceWithStreamingResponse",
+    "SilencesResource",
+    "AsyncSilencesResource",
+    "SilencesResourceWithRawResponse",
+    "AsyncSilencesResourceWithRawResponse",
+    "SilencesResourceWithStreamingResponse",
+    "AsyncSilencesResourceWithStreamingResponse",
     "AlertingResource",
     "AsyncAlertingResource",
     "AlertingResourceWithRawResponse",

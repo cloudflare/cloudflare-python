@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .allowed_origins import AllowedOrigins
 
@@ -24,7 +25,7 @@ class CopyCreateParams(TypedDict, total=False):
     with a `content-range` header that includes the size of the file.
     """
 
-    allowed_origins: Annotated[List[AllowedOrigins], PropertyInfo(alias="allowedOrigins")]
+    allowed_origins: Annotated[SequenceNotStr[AllowedOrigins], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

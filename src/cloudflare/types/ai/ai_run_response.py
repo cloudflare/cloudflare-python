@@ -15,13 +15,14 @@ __all__ = [
     "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
-    "UnionMember7",
-    "UnionMember7ToolCall",
-    "UnionMember7Usage",
+    "UnionMember8",
+    "UnionMember8ToolCall",
+    "UnionMember8Usage",
     "Translation",
     "Summarization",
     "ImageToText",
     "ImageTextToText",
+    "MultimodalEmbeddings",
 ]
 
 
@@ -81,6 +82,8 @@ class ImageClassification(BaseModel):
 
 
 class ObjectDetectionBox(BaseModel):
+    """Coordinates defining the bounding box around the detected object"""
+
     xmax: Optional[float] = None
     """The x-coordinate of the bottom-right corner of the bounding box"""
 
@@ -105,7 +108,7 @@ class ObjectDetection(BaseModel):
     """Confidence score indicating the likelihood that the detection is correct"""
 
 
-class UnionMember7ToolCall(BaseModel):
+class UnionMember8ToolCall(BaseModel):
     arguments: Optional[object] = None
     """The arguments passed to be passed to the tool call request"""
 
@@ -113,7 +116,9 @@ class UnionMember7ToolCall(BaseModel):
     """The name of the tool to be called"""
 
 
-class UnionMember7Usage(BaseModel):
+class UnionMember8Usage(BaseModel):
+    """Usage statistics for the inference request"""
+
     completion_tokens: Optional[float] = None
     """Total number of tokens in output"""
 
@@ -124,14 +129,14 @@ class UnionMember7Usage(BaseModel):
     """Total number of input and output tokens"""
 
 
-class UnionMember7(BaseModel):
+class UnionMember8(BaseModel):
     response: str
     """The generated text response from the model"""
 
-    tool_calls: Optional[List[UnionMember7ToolCall]] = None
+    tool_calls: Optional[List[UnionMember8ToolCall]] = None
     """An array of tool calls requests made during the response generation"""
 
-    usage: Optional[UnionMember7Usage] = None
+    usage: Optional[UnionMember8Usage] = None
     """Usage statistics for the inference request"""
 
 
@@ -153,17 +158,26 @@ class ImageTextToText(BaseModel):
     description: Optional[str] = None
 
 
+class MultimodalEmbeddings(BaseModel):
+    data: Optional[List[List[float]]] = None
+
+    shape: Optional[List[float]] = None
+
+
 AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
     Audio,
+    object,
     TextEmbeddings,
     AutomaticSpeechRecognition,
     List[ImageClassification],
     List[ObjectDetection],
-    UnionMember7,
+    UnionMember8,
+    object,
     Translation,
     Summarization,
     ImageToText,
     ImageTextToText,
+    MultimodalEmbeddings,
 ]

@@ -11,4 +11,6 @@ class EmailList(BaseModel):
 
 
 class EmailListRule(BaseModel):
+    """Matches an email address from a list."""
+
     email_list: EmailList

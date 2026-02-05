@@ -8,6 +8,8 @@ __all__ = ["ApprovalGroup"]
 
 
 class ApprovalGroup(BaseModel):
+    """A group of email addresses that can approve a temporary authentication request."""
+
     approvals_needed: float
     """The number of approvals needed to obtain access."""
 

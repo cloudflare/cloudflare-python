@@ -3,8 +3,6 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 from .tls_settings import TLSSettings
 from .fips_settings import FipsSettings
@@ -17,81 +15,106 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings", "AppControlSettings", "Certificate", "HostSelector", "Sandbox"]
-
-
-class AppControlSettings(BaseModel):
-    enabled: Optional[bool] = None
-    """Enable App Control"""
+__all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Inspection", "Sandbox"]
 
 
 class Certificate(BaseModel):
-    id: str
-    """UUID of certificate to be used for interception.
+    """Specify certificate settings for Gateway TLS interception.
 
-    Certificate must be available (previously called 'active') on the edge. A nil
-    UUID will indicate the Cloudflare Root CA should be used.
+    If unset, the Cloudflare Root CA handles interception.
+    """
+
+    id: str
+    """Specify the UUID of the certificate used for interception.
+
+    Ensure the certificate is available at the edge(previously called 'active'). A
+    nil UUID directs Cloudflare to use the Root CA.
     """
 
 
 class HostSelector(BaseModel):
+    """Enable host selection in egress policies."""
+
     enabled: Optional[bool] = None
-    """Enable filtering via hosts for egress policies."""
+    """Specify whether to enable filtering via hosts for egress policies."""
+
+
+class Inspection(BaseModel):
+    """Define the proxy inspection mode."""
+
+    mode: Optional[Literal["static", "dynamic"]] = None
+    """Define the proxy inspection mode.
+
+    1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS
+       decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2.
+       dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic
+       on any port. TLS decryption must remain on to inspect HTTPS traffic.
+    """
 
 
 class Sandbox(BaseModel):
+    """Specify whether to enable the sandbox."""
+
     enabled: Optional[bool] = None
-    """Enable sandbox."""
+    """Specify whether to enable the sandbox."""
 
     fallback_action: Optional[Literal["allow", "block"]] = None
-    """Action to take when the file cannot be scanned."""
+    """Specify the action to take when the system cannot scan the file."""
 
 
 class GatewayConfigurationSettings(BaseModel):
+    """Specify account settings."""
+
     activity_log: Optional[ActivityLogSettings] = None
-    """Activity log settings."""
+    """Specify activity log settings."""
 
     antivirus: Optional[AntiVirusSettings] = None
-    """Anti-virus settings."""
-
-    app_control_settings: Optional[AppControlSettings] = FieldInfo(alias="app-control-settings", default=None)
-    """Setting to enable App Control"""
+    """Specify anti-virus settings."""
 
     block_page: Optional[BlockPageSettings] = None
-    """Block page layout settings."""
+    """Specify block page layout settings."""
 
     body_scanning: Optional[BodyScanningSettings] = None
-    """DLP body scanning settings."""
+    """Specify the DLP inspection mode."""
 
     browser_isolation: Optional[BrowserIsolationSettings] = None
-    """Browser isolation settings."""
+    """Specify Clientless Browser Isolation settings."""
 
     certificate: Optional[Certificate] = None
-    """Certificate settings for Gateway TLS interception.
+    """Specify certificate settings for Gateway TLS interception.
 
-    If not specified, the Cloudflare Root CA will be used.
+    If unset, the Cloudflare Root CA handles interception.
     """
 
     custom_certificate: Optional[CustomCertificateSettings] = None
-    """Custom certificate settings for BYO-PKI.
+    """Specify custom certificate settings for BYO-PKI.
 
-    (deprecated and replaced by `certificate`)
+    This field is deprecated; use `certificate` instead.
     """
 
     extended_email_matching: Optional[ExtendedEmailMatching] = None
-    """Extended e-mail matching settings."""
+    """Configures user email settings for firewall policies.
+
+    When you enable this, the system standardizes email addresses in the identity
+    portion of the rule to match extended email variants in firewall policies. When
+    you disable this setting, the system matches email addresses exactly as you
+    provide them. Enable this setting if your email uses `.` or `+` modifiers.
+    """
 
     fips: Optional[FipsSettings] = None
-    """FIPS settings."""
+    """Specify FIPS settings."""
 
     host_selector: Optional[HostSelector] = None
-    """Setting to enable host selector in egress policies."""
+    """Enable host selection in egress policies."""
+
+    inspection: Optional[Inspection] = None
+    """Define the proxy inspection mode."""
 
     protocol_detection: Optional[ProtocolDetection] = None
-    """Protocol Detection settings."""
+    """Specify whether to detect protocols from the initial bytes of client traffic."""
 
     sandbox: Optional[Sandbox] = None
-    """Sandbox settings."""
+    """Specify whether to enable the sandbox."""
 
     tls_decrypt: Optional[TLSSettings] = None
-    """TLS interception settings."""
+    """Specify whether to inspect encrypted HTTP traffic."""

@@ -168,6 +168,8 @@ class SSL(BaseModel):
 
 
 class OwnershipVerification(BaseModel):
+    """This is a record which can be placed to activate a hostname."""
+
     name: Optional[str] = None
     """DNS Name for record."""
 
@@ -179,6 +181,10 @@ class OwnershipVerification(BaseModel):
 
 
 class OwnershipVerificationHTTP(BaseModel):
+    """
+    This presents the token to be served by the given http url to activate a hostname.
+    """
+
     http_body: Optional[str] = None
     """Token to be served."""
 

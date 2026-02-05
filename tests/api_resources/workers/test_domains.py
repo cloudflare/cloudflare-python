@@ -22,7 +22,6 @@ class TestDomains:
     def test_method_update(self, client: Cloudflare) -> None:
         domain = client.workers.domains.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -30,10 +29,20 @@ class TestDomains:
         assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        domain = client.workers.domains.update(
+            account_id="9a7806061c88ada191ed06f989cc3dac",
+            hostname="foo.example.com",
+            service="foo",
+            zone_id="593c9c94de529bbbfaac7c53ced0447d",
+            environment="production",
+        )
+        assert_matches_type(Optional[Domain], domain, path=["response"])
+
+    @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.domains.with_raw_response.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -48,7 +57,6 @@ class TestDomains:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.domains.with_streaming_response.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -66,7 +74,6 @@ class TestDomains:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.domains.with_raw_response.update(
                 account_id="",
-                environment="production",
                 hostname="foo.example.com",
                 service="foo",
                 zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -220,13 +227,14 @@ class TestDomains:
 
 
 class TestAsyncDomains:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.workers.domains.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -234,10 +242,20 @@ class TestAsyncDomains:
         assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.workers.domains.update(
+            account_id="9a7806061c88ada191ed06f989cc3dac",
+            hostname="foo.example.com",
+            service="foo",
+            zone_id="593c9c94de529bbbfaac7c53ced0447d",
+            environment="production",
+        )
+        assert_matches_type(Optional[Domain], domain, path=["response"])
+
+    @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.domains.with_raw_response.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -252,7 +270,6 @@ class TestAsyncDomains:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.domains.with_streaming_response.update(
             account_id="9a7806061c88ada191ed06f989cc3dac",
-            environment="production",
             hostname="foo.example.com",
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
@@ -270,7 +287,6 @@ class TestAsyncDomains:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.domains.with_raw_response.update(
                 account_id="",
-                environment="production",
                 hostname="foo.example.com",
                 service="foo",
                 zone_id="593c9c94de529bbbfaac7c53ced0447d",

@@ -8,6 +8,11 @@ __all__ = ["FilterOptions"]
 
 
 class FilterOptions(BaseModel):
+    """Filter options for a particular resource type (pool or origin).
+
+    Use null to reset.
+    """
+
     disable: Optional[bool] = None
     """If set true, disable notifications for this type of resource (pool or origin)."""
 

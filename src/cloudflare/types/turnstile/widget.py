@@ -11,6 +11,8 @@ __all__ = ["Widget"]
 
 
 class Widget(BaseModel):
+    """A Turnstile widget's detailed configuration"""
+
     bot_fight_mode: bool
     """
     If bot_fight_mode is set to `true`, Cloudflare issues computationally expensive

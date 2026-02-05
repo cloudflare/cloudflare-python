@@ -36,7 +36,7 @@ class TestMalicious:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             spf=["PASS"],
             tld_category="CLASSIC",
@@ -70,7 +70,9 @@ class TestMalicious:
 
 
 class TestAsyncMalicious:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -90,7 +92,7 @@ class TestAsyncMalicious:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             spf=["PASS"],
             tld_category="CLASSIC",

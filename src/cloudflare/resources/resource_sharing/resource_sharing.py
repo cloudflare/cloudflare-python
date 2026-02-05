@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .resources import (
@@ -37,6 +37,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.resource_sharing import (
+    resource_sharing_get_params,
     resource_sharing_list_params,
     resource_sharing_create_params,
     resource_sharing_update_params,
@@ -90,7 +91,7 @@ class ResourceSharingResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
         Create a new share
@@ -141,7 +142,7 @@ class ResourceSharingResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingUpdateResponse]:
         """
         Updating is not immediate, an updated share object with a new status will be
@@ -183,19 +184,32 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
-        target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        include_recipient_counts: bool | Omit = omit,
+        include_resources: bool | Omit = omit,
+        kind: Literal["sent", "received"] | Omit = omit,
+        order: Literal["name", "created"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        resource_types: List[
+            Literal[
+                "custom-ruleset",
+                "widget",
+                "gateway-policy",
+                "gateway-destination-ip",
+                "gateway-block-page-settings",
+                "gateway-extended-email-matching",
+            ]
+        ]
+        | Omit = omit,
+        status: Literal["active", "deleting", "deleted"] | Omit = omit,
+        target_type: Literal["account", "organization"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ResourceSharingListResponse]:
         """
         Lists all account shares.
@@ -205,6 +219,10 @@ class ResourceSharingResource(SyncAPIResource):
 
           direction: Direction to sort objects.
 
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
@@ -212,6 +230,8 @@ class ResourceSharingResource(SyncAPIResource):
           page: Page number.
 
           per_page: Number of objects to return per page.
+
+          resource_types: Filter share resources by resource_types.
 
           status: Filter shares by status.
 
@@ -238,10 +258,13 @@ class ResourceSharingResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
                         "kind": kind,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_types": resource_types,
                         "status": status,
                         "target_type": target_type,
                     },
@@ -261,7 +284,7 @@ class ResourceSharingResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingDeleteResponse]:
         """
         Deletion is not immediate, an updated share object with a new status will be
@@ -301,12 +324,14 @@ class ResourceSharingResource(SyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_recipient_counts: bool | Omit = omit,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingGetResponse]:
         """
         Fetches share by ID.
@@ -315,6 +340,10 @@ class ResourceSharingResource(SyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -335,6 +364,13 @@ class ResourceSharingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
+                    },
+                    resource_sharing_get_params.ResourceSharingGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),
@@ -381,7 +417,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
         Create a new share
@@ -432,7 +468,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingUpdateResponse]:
         """
         Updating is not immediate, an updated share object with a new status will be
@@ -476,19 +512,32 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
-        target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        include_recipient_counts: bool | Omit = omit,
+        include_resources: bool | Omit = omit,
+        kind: Literal["sent", "received"] | Omit = omit,
+        order: Literal["name", "created"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        resource_types: List[
+            Literal[
+                "custom-ruleset",
+                "widget",
+                "gateway-policy",
+                "gateway-destination-ip",
+                "gateway-block-page-settings",
+                "gateway-extended-email-matching",
+            ]
+        ]
+        | Omit = omit,
+        status: Literal["active", "deleting", "deleted"] | Omit = omit,
+        target_type: Literal["account", "organization"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ResourceSharingListResponse, AsyncV4PagePaginationArray[ResourceSharingListResponse]]:
         """
         Lists all account shares.
@@ -498,6 +547,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           direction: Direction to sort objects.
 
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
@@ -505,6 +558,8 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           page: Page number.
 
           per_page: Number of objects to return per page.
+
+          resource_types: Filter share resources by resource_types.
 
           status: Filter shares by status.
 
@@ -531,10 +586,13 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
                         "kind": kind,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_types": resource_types,
                         "status": status,
                         "target_type": target_type,
                     },
@@ -554,7 +612,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingDeleteResponse]:
         """
         Deletion is not immediate, an updated share object with a new status will be
@@ -594,12 +652,14 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_recipient_counts: bool | Omit = omit,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingGetResponse]:
         """
         Fetches share by ID.
@@ -608,6 +668,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -628,6 +692,13 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
+                    },
+                    resource_sharing_get_params.ResourceSharingGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),

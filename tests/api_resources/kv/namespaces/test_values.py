@@ -32,7 +32,6 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
@@ -44,10 +43,10 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
+            metadata={},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
@@ -58,7 +57,6 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
 
@@ -74,7 +72,6 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         ) as response:
             assert not response.is_closed
@@ -93,7 +90,6 @@ class TestValues:
                 key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 
@@ -102,7 +98,6 @@ class TestValues:
                 key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 
@@ -111,7 +106,6 @@ class TestValues:
                 key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 
@@ -293,7 +287,9 @@ class TestValues:
 
 
 class TestAsyncValues:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -302,7 +298,6 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
@@ -314,10 +309,10 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
+            metadata={},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
@@ -328,7 +323,6 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
 
@@ -344,7 +338,6 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         ) as response:
             assert not response.is_closed
@@ -363,7 +356,6 @@ class TestAsyncValues:
                 key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 
@@ -372,7 +364,6 @@ class TestAsyncValues:
                 key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 
@@ -381,7 +372,6 @@ class TestAsyncValues:
                 key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                metadata='{"someMetadataKey": "someMetadataValue"}',
                 value="Some Value",
             )
 

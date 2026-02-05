@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .catch_alls import (
@@ -66,15 +66,15 @@ class RulesResource(SyncAPIResource):
         zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        name: str | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
@@ -133,15 +133,15 @@ class RulesResource(SyncAPIResource):
         zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        name: str | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Update actions and matches, or enable/disable specific routing rules.
@@ -199,15 +199,15 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EmailRoutingRule]:
         """
         Lists existing routing rules.
@@ -261,7 +261,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Delete a specific routing rule.
@@ -305,7 +305,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Get information for a specific routing rule already created.
@@ -370,15 +370,15 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        name: str | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
@@ -437,15 +437,15 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        name: str | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Update actions and matches, or enable/disable specific routing rules.
@@ -503,15 +503,15 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EmailRoutingRule, AsyncV4PagePaginationArray[EmailRoutingRule]]:
         """
         Lists existing routing rules.
@@ -565,7 +565,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Delete a specific routing rule.
@@ -609,7 +609,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
         """
         Get information for a specific routing rule already created.

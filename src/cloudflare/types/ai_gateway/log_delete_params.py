@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["LogDeleteParams", "Filter"]
 
@@ -39,6 +41,7 @@ class Filter(TypedDict, total=False):
             "created_at",
             "request_content_type",
             "response_content_type",
+            "request_type",
             "success",
             "cached",
             "provider",
@@ -51,14 +54,17 @@ class Filter(TypedDict, total=False):
             "duration",
             "feedback",
             "event_id",
-            "request_type",
             "metadata.key",
             "metadata.value",
             "prompts.prompt_id",
             "prompts.version_id",
+            "authentication",
+            "wholesale",
+            "compatibilityMode",
+            "dlp_action",
         ]
     ]
 
     operator: Required[Literal["eq", "neq", "contains", "lt", "gt"]]
 
-    value: Required[List[Union[Optional[str], float, bool]]]
+    value: Required[SequenceNotStr[Union[Optional[str], float, bool]]]

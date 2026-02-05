@@ -11,6 +11,11 @@ __all__ = ["NotificationFilterParam"]
 
 
 class NotificationFilterParam(TypedDict, total=False):
+    """Filter pool and origin health notifications by resource type or health status.
+
+    Use null to reset.
+    """
+
     origin: Optional[FilterOptionsParam]
     """Filter options for a particular resource type (pool or origin).
 

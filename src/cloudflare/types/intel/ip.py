@@ -9,6 +9,10 @@ __all__ = ["IP", "BelongsToRef", "RiskType"]
 
 
 class BelongsToRef(BaseModel):
+    """
+    Specifies a reference to the autonomous systems (AS) that the IP address belongs to.
+    """
+
     id: Optional[str] = None
 
     country: Optional[str] = None

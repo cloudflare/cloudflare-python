@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -60,7 +60,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginPostQuantumEncryptionUpdateResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
@@ -68,10 +68,10 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         send a Post-Quantum keyshare in the first message to the origin (for fastest
         connections when the origin supports and prefers PQ), supported means that PQ
         algorithms are advertised but only used when requested by the origin, and off
-        means that PQ algorithms are not advertised
+        means that PQ algorithms are not advertised.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Origin Post Quantum Encryption Setting.
 
@@ -112,7 +112,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginPostQuantumEncryptionGetResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
@@ -120,10 +120,10 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         send a Post-Quantum keyshare in the first message to the origin (for fastest
         connections when the origin supports and prefers PQ), supported means that PQ
         algorithms are advertised but only used when requested by the origin, and off
-        means that PQ algorithms are not advertised
+        means that PQ algorithms are not advertised.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -181,7 +181,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginPostQuantumEncryptionUpdateResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
@@ -189,10 +189,10 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         send a Post-Quantum keyshare in the first message to the origin (for fastest
         connections when the origin supports and prefers PQ), supported means that PQ
         algorithms are advertised but only used when requested by the origin, and off
-        means that PQ algorithms are not advertised
+        means that PQ algorithms are not advertised.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Origin Post Quantum Encryption Setting.
 
@@ -233,7 +233,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginPostQuantumEncryptionGetResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
@@ -241,10 +241,10 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         send a Post-Quantum keyshare in the first message to the origin (for fastest
         connections when the origin supports and prefers PQ), supported means that PQ
         algorithms are advertised but only used when requested by the origin, and off
-        means that PQ algorithms are not advertised
+        means that PQ algorithms are not advertised.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

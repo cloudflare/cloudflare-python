@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,7 +62,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
         Create a new Dataset
@@ -116,7 +116,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
         """
         Update a Dataset
@@ -163,17 +163,17 @@ class DatasetsResource(SyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        enable: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        enable: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DatasetListResponse]:
         """
         List Datasets
@@ -228,7 +228,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
         """
         Delete a Dataset
@@ -273,7 +273,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
         Fetch a Dataset
@@ -341,7 +341,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
         Create a new Dataset
@@ -395,7 +395,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
         """
         Update a Dataset
@@ -442,17 +442,17 @@ class AsyncDatasetsResource(AsyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        enable: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        enable: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatasetListResponse, AsyncV4PagePaginationArray[DatasetListResponse]]:
         """
         List Datasets
@@ -507,7 +507,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
         """
         Delete a Dataset
@@ -552,7 +552,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
         Fetch a Dataset

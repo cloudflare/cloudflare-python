@@ -14,6 +14,9 @@ class Image(BaseModel):
     id: Optional[str] = None
     """Image unique identifier."""
 
+    creator: Optional[str] = None
+    """Can set the creator field with an internal user ID."""
+
     filename: Optional[str] = None
     """Image file name."""
 

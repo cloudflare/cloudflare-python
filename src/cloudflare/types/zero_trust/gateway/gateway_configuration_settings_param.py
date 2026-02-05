@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from ...._utils import PropertyInfo
 from .tls_settings_param import TLSSettingsParam
 from .fips_settings_param import FipsSettingsParam
 from .protocol_detection_param import ProtocolDetectionParam
@@ -17,81 +16,106 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam
 from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
-__all__ = ["GatewayConfigurationSettingsParam", "AppControlSettings", "Certificate", "HostSelector", "Sandbox"]
-
-
-class AppControlSettings(TypedDict, total=False):
-    enabled: bool
-    """Enable App Control"""
+__all__ = ["GatewayConfigurationSettingsParam", "Certificate", "HostSelector", "Inspection", "Sandbox"]
 
 
 class Certificate(TypedDict, total=False):
-    id: Required[str]
-    """UUID of certificate to be used for interception.
+    """Specify certificate settings for Gateway TLS interception.
 
-    Certificate must be available (previously called 'active') on the edge. A nil
-    UUID will indicate the Cloudflare Root CA should be used.
+    If unset, the Cloudflare Root CA handles interception.
+    """
+
+    id: Required[str]
+    """Specify the UUID of the certificate used for interception.
+
+    Ensure the certificate is available at the edge(previously called 'active'). A
+    nil UUID directs Cloudflare to use the Root CA.
     """
 
 
 class HostSelector(TypedDict, total=False):
-    enabled: bool
-    """Enable filtering via hosts for egress policies."""
+    """Enable host selection in egress policies."""
+
+    enabled: Optional[bool]
+    """Specify whether to enable filtering via hosts for egress policies."""
+
+
+class Inspection(TypedDict, total=False):
+    """Define the proxy inspection mode."""
+
+    mode: Literal["static", "dynamic"]
+    """Define the proxy inspection mode.
+
+    1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS
+       decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2.
+       dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic
+       on any port. TLS decryption must remain on to inspect HTTPS traffic.
+    """
 
 
 class Sandbox(TypedDict, total=False):
-    enabled: bool
-    """Enable sandbox."""
+    """Specify whether to enable the sandbox."""
+
+    enabled: Optional[bool]
+    """Specify whether to enable the sandbox."""
 
     fallback_action: Literal["allow", "block"]
-    """Action to take when the file cannot be scanned."""
+    """Specify the action to take when the system cannot scan the file."""
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
+    """Specify account settings."""
+
     activity_log: Optional[ActivityLogSettingsParam]
-    """Activity log settings."""
+    """Specify activity log settings."""
 
     antivirus: Optional[AntiVirusSettingsParam]
-    """Anti-virus settings."""
-
-    app_control_settings: Annotated[Optional[AppControlSettings], PropertyInfo(alias="app-control-settings")]
-    """Setting to enable App Control"""
+    """Specify anti-virus settings."""
 
     block_page: Optional[BlockPageSettingsParam]
-    """Block page layout settings."""
+    """Specify block page layout settings."""
 
     body_scanning: Optional[BodyScanningSettingsParam]
-    """DLP body scanning settings."""
+    """Specify the DLP inspection mode."""
 
     browser_isolation: Optional[BrowserIsolationSettingsParam]
-    """Browser isolation settings."""
+    """Specify Clientless Browser Isolation settings."""
 
     certificate: Optional[Certificate]
-    """Certificate settings for Gateway TLS interception.
+    """Specify certificate settings for Gateway TLS interception.
 
-    If not specified, the Cloudflare Root CA will be used.
+    If unset, the Cloudflare Root CA handles interception.
     """
 
     custom_certificate: Optional[CustomCertificateSettingsParam]
-    """Custom certificate settings for BYO-PKI.
+    """Specify custom certificate settings for BYO-PKI.
 
-    (deprecated and replaced by `certificate`)
+    This field is deprecated; use `certificate` instead.
     """
 
     extended_email_matching: Optional[ExtendedEmailMatchingParam]
-    """Extended e-mail matching settings."""
+    """Configures user email settings for firewall policies.
+
+    When you enable this, the system standardizes email addresses in the identity
+    portion of the rule to match extended email variants in firewall policies. When
+    you disable this setting, the system matches email addresses exactly as you
+    provide them. Enable this setting if your email uses `.` or `+` modifiers.
+    """
 
     fips: Optional[FipsSettingsParam]
-    """FIPS settings."""
+    """Specify FIPS settings."""
 
     host_selector: Optional[HostSelector]
-    """Setting to enable host selector in egress policies."""
+    """Enable host selection in egress policies."""
+
+    inspection: Optional[Inspection]
+    """Define the proxy inspection mode."""
 
     protocol_detection: Optional[ProtocolDetectionParam]
-    """Protocol Detection settings."""
+    """Specify whether to detect protocols from the initial bytes of client traffic."""
 
     sandbox: Optional[Sandbox]
-    """Sandbox settings."""
+    """Specify whether to enable the sandbox."""
 
     tls_decrypt: Optional[TLSSettingsParam]
-    """TLS interception settings."""
+    """Specify whether to inspect encrypted HTTP traffic."""

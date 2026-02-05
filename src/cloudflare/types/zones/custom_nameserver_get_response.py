@@ -4,32 +4,59 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
-__all__ = ["CustomNameserverGetResponse", "ResultInfo"]
+__all__ = ["CustomNameserverGetResponse", "Error", "ErrorSource", "Message", "MessageSource", "ResultInfo"]
+
+
+class ErrorSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class Error(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[ErrorSource] = None
+
+
+class MessageSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class Message(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[MessageSource] = None
 
 
 class ResultInfo(BaseModel):
     count: Optional[float] = None
-    """Total number of results for the requested service"""
+    """Total number of results for the requested service."""
 
     page: Optional[float] = None
-    """Current page within paginated list of results"""
+    """Current page within paginated list of results."""
 
     per_page: Optional[float] = None
-    """Number of results per page of results"""
+    """Number of results per page of results."""
 
     total_count: Optional[float] = None
-    """Total results available without any search parameters"""
+    """Total results available without any search parameters."""
 
 
 class CustomNameserverGetResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[Error]
 
-    messages: List[ResponseInfo]
+    messages: List[Message]
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Whether the API call was successful."""
 
     enabled: Optional[bool] = None
     """Whether zone uses account-level custom nameservers."""

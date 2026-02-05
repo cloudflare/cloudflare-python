@@ -8,6 +8,8 @@ __all__ = ["Scope"]
 
 
 class Scope(BaseModel):
+    """Used only for ECMP routes."""
+
     colo_names: Optional[List[str]] = None
     """List of colo names for the ECMP scope."""
 

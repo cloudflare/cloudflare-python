@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,15 +55,15 @@ class AccessRulesResource(SyncAPIResource):
         *,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleCreateResponse:
         """Creates a new IP Access rule for an account or zone.
 
@@ -127,22 +127,22 @@ class AccessRulesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
-        order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        configuration: access_rule_list_params.Configuration | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | Omit = omit,
+        notes: str | Omit = omit,
+        order: Literal["configuration.target", "configuration.value", "mode"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[AccessRuleListResponse]:
         """Fetches IP Access rules of an account or zone.
 
@@ -221,14 +221,14 @@ class AccessRulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccessRuleDeleteResponse]:
         """
         Deletes an existing IP Access rule defined.
@@ -282,15 +282,15 @@ class AccessRulesResource(SyncAPIResource):
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleEditResponse:
         """
         Updates an IP Access rule defined.
@@ -356,14 +356,14 @@ class AccessRulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleGetResponse:
         """
         Fetches the details of an IP Access rule defined.
@@ -435,15 +435,15 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleCreateResponse:
         """Creates a new IP Access rule for an account or zone.
 
@@ -507,22 +507,22 @@ class AsyncAccessRulesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
-        order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        configuration: access_rule_list_params.Configuration | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | Omit = omit,
+        notes: str | Omit = omit,
+        order: Literal["configuration.target", "configuration.value", "mode"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AccessRuleListResponse, AsyncV4PagePaginationArray[AccessRuleListResponse]]:
         """Fetches IP Access rules of an account or zone.
 
@@ -601,14 +601,14 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccessRuleDeleteResponse]:
         """
         Deletes an existing IP Access rule defined.
@@ -662,15 +662,15 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleEditResponse:
         """
         Updates an IP Access rule defined.
@@ -736,14 +736,14 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessRuleGetResponse:
         """
         Fetches the details of an IP Access rule defined.

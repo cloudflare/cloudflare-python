@@ -9,6 +9,8 @@ __all__ = ["Schedule"]
 
 
 class Schedule(BaseModel):
+    """The test schedule."""
+
     frequency: Optional[Literal["DAILY", "WEEKLY"]] = None
     """The frequency of the test."""
 

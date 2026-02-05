@@ -15,6 +15,12 @@ class V2ListParams(TypedDict, total=False):
     continuation_token: Optional[str]
     """Continuation token for a next page. List images V2 returns continuation_token"""
 
+    creator: Optional[str]
+    """Internal user ID set within the creator field.
+
+    Setting to empty string "" will return images where creator field is not set
+    """
+
     per_page: float
     """Number of items per page."""
 

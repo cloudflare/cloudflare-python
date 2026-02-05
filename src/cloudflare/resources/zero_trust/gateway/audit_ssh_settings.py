@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,15 +54,15 @@ class AuditSSHSettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        Update Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
         an account.
 
         Args:
-          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
-              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
+          public_key: Provide the Base64-encoded HPKE public key that encrypts SSH session logs. See
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging.
 
           extra_headers: Send extra headers
 
@@ -98,11 +98,11 @@ class AuditSSHSettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
-        for an account.
+        Retrieve all Zero Trust Audit SSH and SSH with Access for Infrastructure
+        settings for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -136,11 +136,11 @@ class AuditSSHSettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Rotates the SSH account seed that is used for generating the host key identity
-        when connecting through the Cloudflare SSH Proxy.
+        Rotate the SSH account seed that generates the host key identity when connecting
+        through the Cloudflare SSH Proxy.
 
         Args:
           extra_headers: Send extra headers
@@ -196,15 +196,15 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        Update Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
         an account.
 
         Args:
-          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
-              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
+          public_key: Provide the Base64-encoded HPKE public key that encrypts SSH session logs. See
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging.
 
           extra_headers: Send extra headers
 
@@ -240,11 +240,11 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
-        for an account.
+        Retrieve all Zero Trust Audit SSH and SSH with Access for Infrastructure
+        settings for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -278,11 +278,11 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Rotates the SSH account seed that is used for generating the host key identity
-        when connecting through the Cloudflare SSH Proxy.
+        Rotate the SSH account seed that generates the host key identity when connecting
+        through the Cloudflare SSH Proxy.
 
         Args:
           extra_headers: Send extra headers

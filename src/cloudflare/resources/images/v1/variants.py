@@ -6,7 +6,7 @@ from typing import Any, Type, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,13 +54,13 @@ class VariantsResource(SyncAPIResource):
         account_id: str,
         id: str,
         options: variant_create_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantCreateResponse:
         """
         Specify variants that allow you to resize images for different use cases.
@@ -112,7 +112,7 @@ class VariantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Variant:
         """
         Lists existing variants.
@@ -152,7 +152,7 @@ class VariantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
@@ -195,13 +195,13 @@ class VariantsResource(SyncAPIResource):
         *,
         account_id: str,
         options: variant_edit_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantEditResponse:
         """
         Updating a variant purges the cache for all images associated with the variant.
@@ -255,7 +255,7 @@ class VariantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantGetResponse:
         """
         Fetch details for a single variant.
@@ -314,13 +314,13 @@ class AsyncVariantsResource(AsyncAPIResource):
         account_id: str,
         id: str,
         options: variant_create_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantCreateResponse:
         """
         Specify variants that allow you to resize images for different use cases.
@@ -372,7 +372,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Variant:
         """
         Lists existing variants.
@@ -412,7 +412,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
@@ -455,13 +455,13 @@ class AsyncVariantsResource(AsyncAPIResource):
         *,
         account_id: str,
         options: variant_edit_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantEditResponse:
         """
         Updating a variant purges the cache for all images associated with the variant.
@@ -515,7 +515,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantGetResponse:
         """
         Fetch details for a single variant.

@@ -62,6 +62,8 @@ class FeaturesAPIShieldOperationFeatureThresholds(BaseModel):
 
 
 class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas(BaseModel):
+    """An operation schema object containing a response."""
+
     parameters: Optional[List[object]] = None
     """An array containing the learned parameter schemas."""
 
@@ -86,6 +88,8 @@ class FeaturesAPIShieldOperationFeatureParameterSchemas(BaseModel):
 
 
 class FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
+    """API Routing settings on endpoint."""
+
     last_updated: Optional[datetime] = None
 
     route: Optional[str] = None
@@ -100,6 +104,8 @@ class FeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
 class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -110,6 +116,8 @@ class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSug
 class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -120,6 +128,8 @@ class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSug
 class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
     BaseModel
 ):
+    """Upper and lower bound for percentile estimate"""
+
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
@@ -168,6 +178,8 @@ class FeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
 
 
 class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
+    """Schema active on endpoint."""
+
     id: Optional[str] = None
     """UUID."""
 

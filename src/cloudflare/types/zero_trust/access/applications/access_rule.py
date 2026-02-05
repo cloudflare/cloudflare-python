@@ -32,6 +32,10 @@ __all__ = [
     "AccessCommonNameRuleCommonName",
     "AccessLoginMethodRule",
     "AccessLoginMethodRuleLoginMethod",
+    "AccessOIDCClaimRule",
+    "AccessOIDCClaimRuleOIDC",
+    "AccessLinkedAppTokenRule",
+    "AccessLinkedAppTokenRuleLinkedAppToken",
 ]
 
 
@@ -47,6 +51,11 @@ class AccessAuthContextRuleAuthContext(BaseModel):
 
 
 class AccessAuthContextRule(BaseModel):
+    """
+    Matches an Azure Authentication Context.
+    Requires an Azure identity provider.
+    """
+
     auth_context: AccessAuthContextRuleAuthContext
 
 
@@ -56,6 +65,8 @@ class AccessCommonNameRuleCommonName(BaseModel):
 
 
 class AccessCommonNameRule(BaseModel):
+    """Matches a specific common name."""
+
     common_name: AccessCommonNameRuleCommonName
 
 
@@ -65,7 +76,42 @@ class AccessLoginMethodRuleLoginMethod(BaseModel):
 
 
 class AccessLoginMethodRule(BaseModel):
+    """Matches a specific identity provider id."""
+
     login_method: AccessLoginMethodRuleLoginMethod
+
+
+class AccessOIDCClaimRuleOIDC(BaseModel):
+    claim_name: str
+    """The name of the OIDC claim."""
+
+    claim_value: str
+    """The OIDC claim value to look for."""
+
+    identity_provider_id: str
+    """The ID of your OIDC identity provider."""
+
+
+class AccessOIDCClaimRule(BaseModel):
+    """
+    Matches an OIDC claim.
+    Requires an OIDC identity provider.
+    """
+
+    oidc: AccessOIDCClaimRuleOIDC
+
+
+class AccessLinkedAppTokenRuleLinkedAppToken(BaseModel):
+    app_uid: str
+    """The ID of an Access OIDC SaaS application"""
+
+
+class AccessLinkedAppTokenRule(BaseModel):
+    """
+    Matches OAuth 2.0 access tokens issued by the specified Access OIDC SaaS application. Only compatible with non_identity and bypass decisions.
+    """
+
+    linked_app_token: AccessLinkedAppTokenRuleLinkedAppToken
 
 
 AccessRule: TypeAlias = Union[
@@ -90,5 +136,7 @@ AccessRule: TypeAlias = Union[
     IPRule,
     OktaGroupRule,
     SAMLGroupRule,
+    AccessOIDCClaimRule,
     ServiceTokenRule,
+    AccessLinkedAppTokenRule,
 ]

@@ -10,6 +10,8 @@ __all__ = ["PseudoIPV4"]
 
 
 class PseudoIPV4(BaseModel):
+    """The value set for the Pseudo IPv4 setting."""
+
     id: Literal["pseudo_ipv4"]
     """Value of the Pseudo IPv4 setting."""
 

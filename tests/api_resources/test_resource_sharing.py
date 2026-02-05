@@ -167,10 +167,13 @@ class TestResourceSharing:
         resource_sharing = client.resource_sharing.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            include_recipient_counts=True,
+            include_resources=True,
             kind="sent",
             order="name",
             page=2,
             per_page=20,
+            resource_types=["custom-ruleset"],
             status="active",
             target_type="account",
         )
@@ -266,6 +269,16 @@ class TestResourceSharing:
         assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        resource_sharing = client.resource_sharing.get(
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_recipient_counts=True,
+            include_resources=True,
+        )
+        assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.resource_sharing.with_raw_response.get(
             share_id="3fd85f74b32742f1bff64a85009dda07",
@@ -307,7 +320,9 @@ class TestResourceSharing:
 
 
 class TestAsyncResourceSharing:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -454,10 +469,13 @@ class TestAsyncResourceSharing:
         resource_sharing = await async_client.resource_sharing.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            include_recipient_counts=True,
+            include_resources=True,
             kind="sent",
             order="name",
             page=2,
             per_page=20,
+            resource_types=["custom-ruleset"],
             status="active",
             target_type="account",
         )
@@ -553,6 +571,16 @@ class TestAsyncResourceSharing:
         resource_sharing = await async_client.resource_sharing.get(
             share_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        resource_sharing = await async_client.resource_sharing.get(
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_recipient_counts=True,
+            include_resources=True,
         )
         assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
 

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -58,25 +59,28 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def arc(
         self,
         *,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -141,25 +145,28 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def dkim(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -224,25 +231,28 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def dmarc(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -306,25 +316,28 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def encrypted(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryEncryptedResponse:
         """
         Retrieves the distribution of emails by encryption status (encrypted vs.
@@ -389,25 +402,28 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def ip_version(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryIPVersionResponse:
         """
         Retrieves the distribution of emails by IP version.
@@ -471,25 +487,28 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def spf(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework)
@@ -575,25 +594,28 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def arc(
         self,
         *,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -658,25 +680,28 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def dkim(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -741,25 +766,28 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def dmarc(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -823,25 +851,28 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def encrypted(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryEncryptedResponse:
         """
         Retrieves the distribution of emails by encryption status (encrypted vs.
@@ -906,25 +937,28 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryIPVersionResponse:
         """
         Retrieves the distribution of emails by IP version.
@@ -988,25 +1022,28 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def spf(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework)
@@ -1076,23 +1113,35 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.arc = to_raw_response_wrapper(
-            summary.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_raw_response_wrapper(
-            summary.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_raw_response_wrapper(
-            summary.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = to_raw_response_wrapper(
-            summary.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_raw_response_wrapper(
-            summary.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1100,23 +1149,35 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.arc = async_to_raw_response_wrapper(
-            summary.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_raw_response_wrapper(
-            summary.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_raw_response_wrapper(
-            summary.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = async_to_raw_response_wrapper(
-            summary.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_raw_response_wrapper(
-            summary.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1124,23 +1185,35 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.arc = to_streamed_response_wrapper(
-            summary.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_streamed_response_wrapper(
-            summary.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_streamed_response_wrapper(
-            summary.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = to_streamed_response_wrapper(
-            summary.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_streamed_response_wrapper(
-            summary.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1148,21 +1221,33 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.arc = async_to_streamed_response_wrapper(
-            summary.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_streamed_response_wrapper(
-            summary.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_streamed_response_wrapper(
-            summary.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = async_to_streamed_response_wrapper(
-            summary.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_streamed_response_wrapper(
-            summary.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.spf,  # pyright: ignore[reportDeprecated],
+            )
         )

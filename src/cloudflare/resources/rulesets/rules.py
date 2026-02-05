@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,25 +53,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["block"] | Omit = omit,
+        action_parameters: rule_create_params.BlockRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.BlockRulePosition | Omit = omit,
+        ratelimit: rule_create_params.BlockRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -95,7 +95,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -103,9 +103,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -122,25 +122,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -164,7 +164,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -172,9 +172,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -191,25 +191,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["compress_response"] | Omit = omit,
+        action_parameters: rule_create_params.ResponseCompressionRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ResponseCompressionRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ResponseCompressionRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ResponseCompressionRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -233,7 +233,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -241,9 +241,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -260,25 +260,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["ddos_dynamic"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.DDoSDynamicRulePosition | Omit = omit,
+        ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -302,7 +302,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -310,9 +310,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -329,26 +329,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["execute"] | Omit = omit,
+        action_parameters: rule_create_params.ExecuteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ExecuteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ExecuteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -372,7 +371,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -380,9 +379,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -399,25 +398,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["force_connection_close"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ForceConnectionCloseRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -441,7 +440,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -449,9 +448,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -468,25 +467,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["js_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.JavaScriptChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.JavaScriptChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -510,7 +509,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -518,9 +517,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -537,25 +536,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.LogRulePosition | Omit = omit,
+        ratelimit: rule_create_params.LogRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -579,7 +578,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -587,9 +586,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -606,25 +605,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log_custom_field"] | Omit = omit,
+        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.LogCustomFieldRulePosition | Omit = omit,
+        ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -648,7 +647,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -656,9 +655,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -675,25 +674,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["managed_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ManagedChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -717,7 +716,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -725,9 +724,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -744,25 +743,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["redirect"] | Omit = omit,
+        action_parameters: rule_create_params.RedirectRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RedirectRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RedirectRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -786,7 +785,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -794,9 +793,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -813,25 +812,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["rewrite"] | Omit = omit,
+        action_parameters: rule_create_params.RewriteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RewriteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RewriteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -855,7 +854,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -863,9 +862,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -882,25 +881,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["route"] | Omit = omit,
+        action_parameters: rule_create_params.RouteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RouteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RouteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RouteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -924,7 +923,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -932,9 +931,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -951,25 +950,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["score"] | Omit = omit,
+        action_parameters: rule_create_params.ScoreRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ScoreRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ScoreRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -993,7 +992,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1001,9 +1000,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1020,25 +1019,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["serve_error"] | Omit = omit,
+        action_parameters: rule_create_params.ServeErrorRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ServeErrorRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ServeErrorRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -1062,7 +1061,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1070,9 +1069,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1089,25 +1088,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_cache_settings"] | Omit = omit,
+        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SetCacheSettingsRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -1131,7 +1130,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1139,9 +1138,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1158,25 +1157,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["ddos_dynamic"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_config"] | Omit = omit,
+        action_parameters: rule_create_params.SetConfigurationRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SetConfigurationRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SetConfigurationRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SetConfigurationRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -1200,7 +1199,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1208,9 +1207,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1227,26 +1226,25 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["force_connection_close"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["skip"] | Omit = omit,
+        action_parameters: rule_create_params.SkipRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SkipRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SkipRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -1270,7 +1268,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1278,9 +1276,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1296,56 +1294,110 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
         | Literal["compress_response"]
+        | Literal["ddos_dynamic"]
         | Literal["execute"]
+        | Literal["force_connection_close"]
         | Literal["js_challenge"]
         | Literal["log"]
+        | Literal["log_custom_field"]
         | Literal["managed_challenge"]
         | Literal["redirect"]
         | Literal["rewrite"]
         | Literal["route"]
         | Literal["score"]
         | Literal["serve_error"]
+        | Literal["set_cache_settings"]
         | Literal["set_config"]
         | Literal["skip"]
-        | Literal["set_cache_settings"]
-        | Literal["log_custom_field"]
-        | Literal["ddos_dynamic"]
-        | Literal["force_connection_close"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.CompressionRuleActionParameters
+        | rule_create_params.ResponseCompressionRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
+        | rule_create_params.LogCustomFieldRuleActionParameters
         | rule_create_params.RedirectRuleActionParameters
         | rule_create_params.RewriteRuleActionParameters
-        | rule_create_params.OriginRuleActionParameters
+        | rule_create_params.RouteRuleActionParameters
         | rule_create_params.ScoreRuleActionParameters
         | rule_create_params.ServeErrorRuleActionParameters
-        | rule_create_params.SetConfigRuleActionParameters
-        | rule_create_params.SkipRuleActionParameters
         | rule_create_params.SetCacheSettingsRuleActionParameters
-        | rule_create_params.LogCustomFieldRuleActionParameters
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        | rule_create_params.SetConfigurationRuleActionParameters
+        | rule_create_params.SkipRuleActionParameters
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck
+        | rule_create_params.ChallengeRuleExposedCredentialCheck
+        | rule_create_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_create_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_create_params.ExecuteRuleExposedCredentialCheck
+        | rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_create_params.LogRuleExposedCredentialCheck
+        | rule_create_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_create_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_create_params.RedirectRuleExposedCredentialCheck
+        | rule_create_params.RewriteRuleExposedCredentialCheck
+        | rule_create_params.RouteRuleExposedCredentialCheck
+        | rule_create_params.ScoreRuleExposedCredentialCheck
+        | rule_create_params.ServeErrorRuleExposedCredentialCheck
+        | rule_create_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_create_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_create_params.SkipRuleExposedCredentialCheck
+        | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.BlockRulePosition
+        | rule_create_params.ChallengeRulePosition
+        | rule_create_params.ResponseCompressionRulePosition
+        | rule_create_params.DDoSDynamicRulePosition
+        | rule_create_params.ExecuteRulePosition
+        | rule_create_params.ForceConnectionCloseRulePosition
+        | rule_create_params.JavaScriptChallengeRulePosition
+        | rule_create_params.LogRulePosition
+        | rule_create_params.LogCustomFieldRulePosition
+        | rule_create_params.ManagedChallengeRulePosition
+        | rule_create_params.RedirectRulePosition
+        | rule_create_params.RewriteRulePosition
+        | rule_create_params.RouteRulePosition
+        | rule_create_params.ScoreRulePosition
+        | rule_create_params.ServeErrorRulePosition
+        | rule_create_params.SetCacheSettingsRulePosition
+        | rule_create_params.SetConfigurationRulePosition
+        | rule_create_params.SkipRulePosition
+        | Omit = omit,
+        ratelimit: rule_create_params.BlockRuleRatelimit
+        | rule_create_params.ChallengeRuleRatelimit
+        | rule_create_params.ResponseCompressionRuleRatelimit
+        | rule_create_params.DDoSDynamicRuleRatelimit
+        | rule_create_params.ExecuteRuleRatelimit
+        | rule_create_params.ForceConnectionCloseRuleRatelimit
+        | rule_create_params.JavaScriptChallengeRuleRatelimit
+        | rule_create_params.LogRuleRatelimit
+        | rule_create_params.LogCustomFieldRuleRatelimit
+        | rule_create_params.ManagedChallengeRuleRatelimit
+        | rule_create_params.RedirectRuleRatelimit
+        | rule_create_params.RewriteRuleRatelimit
+        | rule_create_params.RouteRuleRatelimit
+        | rule_create_params.ScoreRuleRatelimit
+        | rule_create_params.ServeErrorRuleRatelimit
+        | rule_create_params.SetCacheSettingsRuleRatelimit
+        | rule_create_params.SetConfigurationRuleRatelimit
+        | rule_create_params.SkipRuleRatelimit
+        | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
@@ -1394,14 +1446,14 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleDeleteResponse:
         """
         Deletes an existing rule from an account or zone ruleset.
@@ -1457,25 +1509,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["block"] | Omit = omit,
+        action_parameters: rule_edit_params.BlockRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.BlockRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.BlockRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1499,7 +1551,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1507,9 +1559,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1527,25 +1579,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1569,7 +1621,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1577,9 +1629,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1597,25 +1649,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["compress_response"] | Omit = omit,
+        action_parameters: rule_edit_params.ResponseCompressionRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ResponseCompressionRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ResponseCompressionRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ResponseCompressionRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1639,7 +1691,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1647,9 +1699,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1667,25 +1719,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["ddos_dynamic"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.DDoSDynamicRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1709,7 +1761,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1717,9 +1769,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1737,25 +1789,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["execute"] | Omit = omit,
+        action_parameters: rule_edit_params.ExecuteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ExecuteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ExecuteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1779,7 +1831,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1787,9 +1839,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1807,25 +1859,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["force_connection_close"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ForceConnectionCloseRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1849,7 +1901,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1857,9 +1909,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1877,25 +1929,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["js_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.JavaScriptChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.JavaScriptChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1919,7 +1971,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1927,9 +1979,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -1947,25 +1999,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.LogRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.LogRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -1989,7 +2041,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -1997,9 +2049,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2017,25 +2069,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log_custom_field"] | Omit = omit,
+        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.LogCustomFieldRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2059,7 +2111,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2067,9 +2119,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2087,25 +2139,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["managed_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ManagedChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2129,7 +2181,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2137,9 +2189,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2157,25 +2209,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["redirect"] | Omit = omit,
+        action_parameters: rule_edit_params.RedirectRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RedirectRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RedirectRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2199,7 +2251,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2207,9 +2259,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2227,25 +2279,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["rewrite"] | Omit = omit,
+        action_parameters: rule_edit_params.RewriteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RewriteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RewriteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2269,7 +2321,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2277,9 +2329,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2297,25 +2349,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["route"] | Omit = omit,
+        action_parameters: rule_edit_params.RouteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RouteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RouteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RouteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2339,7 +2391,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2347,9 +2399,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2367,25 +2419,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["score"] | Omit = omit,
+        action_parameters: rule_edit_params.ScoreRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ScoreRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ScoreRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2409,7 +2461,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2417,9 +2469,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2437,25 +2489,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["serve_error"] | Omit = omit,
+        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ServeErrorRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ServeErrorRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2479,7 +2531,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2487,9 +2539,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2507,25 +2559,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_cache_settings"] | Omit = omit,
+        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SetCacheSettingsRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2549,7 +2601,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2557,9 +2609,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2577,25 +2629,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["ddos_dynamic"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_config"] | Omit = omit,
+        action_parameters: rule_edit_params.SetConfigurationRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SetConfigurationRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SetConfigurationRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SetConfigurationRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2619,7 +2671,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2627,9 +2679,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2647,26 +2699,25 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["force_connection_close"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["skip"] | Omit = omit,
+        action_parameters: rule_edit_params.SkipRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SkipRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SkipRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -2690,7 +2741,7 @@ class RulesResource(SyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2698,9 +2749,9 @@ class RulesResource(SyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2718,56 +2769,110 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
         | Literal["compress_response"]
+        | Literal["ddos_dynamic"]
         | Literal["execute"]
+        | Literal["force_connection_close"]
         | Literal["js_challenge"]
         | Literal["log"]
+        | Literal["log_custom_field"]
         | Literal["managed_challenge"]
         | Literal["redirect"]
         | Literal["rewrite"]
         | Literal["route"]
         | Literal["score"]
         | Literal["serve_error"]
+        | Literal["set_cache_settings"]
         | Literal["set_config"]
         | Literal["skip"]
-        | Literal["set_cache_settings"]
-        | Literal["log_custom_field"]
-        | Literal["ddos_dynamic"]
-        | Literal["force_connection_close"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.CompressionRuleActionParameters
+        | rule_edit_params.ResponseCompressionRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
+        | rule_edit_params.LogCustomFieldRuleActionParameters
         | rule_edit_params.RedirectRuleActionParameters
         | rule_edit_params.RewriteRuleActionParameters
-        | rule_edit_params.OriginRuleActionParameters
+        | rule_edit_params.RouteRuleActionParameters
         | rule_edit_params.ScoreRuleActionParameters
         | rule_edit_params.ServeErrorRuleActionParameters
-        | rule_edit_params.SetConfigRuleActionParameters
-        | rule_edit_params.SkipRuleActionParameters
         | rule_edit_params.SetCacheSettingsRuleActionParameters
-        | rule_edit_params.LogCustomFieldRuleActionParameters
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        | rule_edit_params.SetConfigurationRuleActionParameters
+        | rule_edit_params.SkipRuleActionParameters
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck
+        | rule_edit_params.ChallengeRuleExposedCredentialCheck
+        | rule_edit_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_edit_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_edit_params.ExecuteRuleExposedCredentialCheck
+        | rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_edit_params.LogRuleExposedCredentialCheck
+        | rule_edit_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_edit_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_edit_params.RedirectRuleExposedCredentialCheck
+        | rule_edit_params.RewriteRuleExposedCredentialCheck
+        | rule_edit_params.RouteRuleExposedCredentialCheck
+        | rule_edit_params.ScoreRuleExposedCredentialCheck
+        | rule_edit_params.ServeErrorRuleExposedCredentialCheck
+        | rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_edit_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_edit_params.SkipRuleExposedCredentialCheck
+        | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.BlockRulePosition
+        | rule_edit_params.ChallengeRulePosition
+        | rule_edit_params.ResponseCompressionRulePosition
+        | rule_edit_params.DDoSDynamicRulePosition
+        | rule_edit_params.ExecuteRulePosition
+        | rule_edit_params.ForceConnectionCloseRulePosition
+        | rule_edit_params.JavaScriptChallengeRulePosition
+        | rule_edit_params.LogRulePosition
+        | rule_edit_params.LogCustomFieldRulePosition
+        | rule_edit_params.ManagedChallengeRulePosition
+        | rule_edit_params.RedirectRulePosition
+        | rule_edit_params.RewriteRulePosition
+        | rule_edit_params.RouteRulePosition
+        | rule_edit_params.ScoreRulePosition
+        | rule_edit_params.ServeErrorRulePosition
+        | rule_edit_params.SetCacheSettingsRulePosition
+        | rule_edit_params.SetConfigurationRulePosition
+        | rule_edit_params.SkipRulePosition
+        | Omit = omit,
+        ratelimit: rule_edit_params.BlockRuleRatelimit
+        | rule_edit_params.ChallengeRuleRatelimit
+        | rule_edit_params.ResponseCompressionRuleRatelimit
+        | rule_edit_params.DDoSDynamicRuleRatelimit
+        | rule_edit_params.ExecuteRuleRatelimit
+        | rule_edit_params.ForceConnectionCloseRuleRatelimit
+        | rule_edit_params.JavaScriptChallengeRuleRatelimit
+        | rule_edit_params.LogRuleRatelimit
+        | rule_edit_params.LogCustomFieldRuleRatelimit
+        | rule_edit_params.ManagedChallengeRuleRatelimit
+        | rule_edit_params.RedirectRuleRatelimit
+        | rule_edit_params.RewriteRuleRatelimit
+        | rule_edit_params.RouteRuleRatelimit
+        | rule_edit_params.ScoreRuleRatelimit
+        | rule_edit_params.ServeErrorRuleRatelimit
+        | rule_edit_params.SetCacheSettingsRuleRatelimit
+        | rule_edit_params.SetConfigurationRuleRatelimit
+        | rule_edit_params.SkipRuleRatelimit
+        | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
@@ -2839,25 +2944,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["block"] | Omit = omit,
+        action_parameters: rule_create_params.BlockRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.BlockRulePosition | Omit = omit,
+        ratelimit: rule_create_params.BlockRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -2881,7 +2986,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2889,9 +2994,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2908,25 +3013,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -2950,7 +3055,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -2958,9 +3063,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -2977,25 +3082,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["compress_response"] | Omit = omit,
+        action_parameters: rule_create_params.ResponseCompressionRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ResponseCompressionRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ResponseCompressionRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ResponseCompressionRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3019,7 +3124,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3027,9 +3132,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3046,25 +3151,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["ddos_dynamic"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.DDoSDynamicRulePosition | Omit = omit,
+        ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3088,7 +3193,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3096,9 +3201,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3115,26 +3220,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["execute"] | Omit = omit,
+        action_parameters: rule_create_params.ExecuteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ExecuteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ExecuteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3158,7 +3262,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3166,9 +3270,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3185,25 +3289,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["force_connection_close"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ForceConnectionCloseRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3227,7 +3331,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3235,9 +3339,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3254,25 +3358,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["js_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.JavaScriptChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.JavaScriptChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3296,7 +3400,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3304,9 +3408,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3323,25 +3427,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.LogRulePosition | Omit = omit,
+        ratelimit: rule_create_params.LogRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3365,7 +3469,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3373,9 +3477,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3392,25 +3496,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log_custom_field"] | Omit = omit,
+        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.LogCustomFieldRulePosition | Omit = omit,
+        ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3434,7 +3538,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3442,9 +3546,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3461,25 +3565,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["managed_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ManagedChallengeRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3503,7 +3607,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3511,9 +3615,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3530,25 +3634,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["redirect"] | Omit = omit,
+        action_parameters: rule_create_params.RedirectRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RedirectRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RedirectRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3572,7 +3676,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3580,9 +3684,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3599,25 +3703,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["rewrite"] | Omit = omit,
+        action_parameters: rule_create_params.RewriteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RewriteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RewriteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3641,7 +3745,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3649,9 +3753,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3668,25 +3772,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["route"] | Omit = omit,
+        action_parameters: rule_create_params.RouteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.RouteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.RouteRulePosition | Omit = omit,
+        ratelimit: rule_create_params.RouteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3710,7 +3814,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3718,9 +3822,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3737,25 +3841,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["score"] | Omit = omit,
+        action_parameters: rule_create_params.ScoreRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ScoreRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ScoreRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3779,7 +3883,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3787,9 +3891,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3806,25 +3910,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["serve_error"] | Omit = omit,
+        action_parameters: rule_create_params.ServeErrorRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.ServeErrorRulePosition | Omit = omit,
+        ratelimit: rule_create_params.ServeErrorRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3848,7 +3952,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3856,9 +3960,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3875,25 +3979,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_cache_settings"] | Omit = omit,
+        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SetCacheSettingsRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3917,7 +4021,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3925,9 +4029,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -3944,25 +4048,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["ddos_dynamic"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_config"] | Omit = omit,
+        action_parameters: rule_create_params.SetConfigurationRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SetConfigurationRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SetConfigurationRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SetConfigurationRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -3986,7 +4090,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -3994,9 +4098,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4013,26 +4117,25 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["force_connection_close"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["skip"] | Omit = omit,
+        action_parameters: rule_create_params.SkipRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.SkipRulePosition | Omit = omit,
+        ratelimit: rule_create_params.SkipRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
@@ -4056,7 +4159,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4064,9 +4167,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4082,56 +4185,110 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
         | Literal["compress_response"]
+        | Literal["ddos_dynamic"]
         | Literal["execute"]
+        | Literal["force_connection_close"]
         | Literal["js_challenge"]
         | Literal["log"]
+        | Literal["log_custom_field"]
         | Literal["managed_challenge"]
         | Literal["redirect"]
         | Literal["rewrite"]
         | Literal["route"]
         | Literal["score"]
         | Literal["serve_error"]
+        | Literal["set_cache_settings"]
         | Literal["set_config"]
         | Literal["skip"]
-        | Literal["set_cache_settings"]
-        | Literal["log_custom_field"]
-        | Literal["ddos_dynamic"]
-        | Literal["force_connection_close"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.CompressionRuleActionParameters
+        | rule_create_params.ResponseCompressionRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
+        | rule_create_params.LogCustomFieldRuleActionParameters
         | rule_create_params.RedirectRuleActionParameters
         | rule_create_params.RewriteRuleActionParameters
-        | rule_create_params.OriginRuleActionParameters
+        | rule_create_params.RouteRuleActionParameters
         | rule_create_params.ScoreRuleActionParameters
         | rule_create_params.ServeErrorRuleActionParameters
-        | rule_create_params.SetConfigRuleActionParameters
-        | rule_create_params.SkipRuleActionParameters
         | rule_create_params.SetCacheSettingsRuleActionParameters
-        | rule_create_params.LogCustomFieldRuleActionParameters
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        | rule_create_params.SetConfigurationRuleActionParameters
+        | rule_create_params.SkipRuleActionParameters
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck
+        | rule_create_params.ChallengeRuleExposedCredentialCheck
+        | rule_create_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_create_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_create_params.ExecuteRuleExposedCredentialCheck
+        | rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_create_params.LogRuleExposedCredentialCheck
+        | rule_create_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_create_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_create_params.RedirectRuleExposedCredentialCheck
+        | rule_create_params.RewriteRuleExposedCredentialCheck
+        | rule_create_params.RouteRuleExposedCredentialCheck
+        | rule_create_params.ScoreRuleExposedCredentialCheck
+        | rule_create_params.ServeErrorRuleExposedCredentialCheck
+        | rule_create_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_create_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_create_params.SkipRuleExposedCredentialCheck
+        | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_create_params.BlockRulePosition
+        | rule_create_params.ChallengeRulePosition
+        | rule_create_params.ResponseCompressionRulePosition
+        | rule_create_params.DDoSDynamicRulePosition
+        | rule_create_params.ExecuteRulePosition
+        | rule_create_params.ForceConnectionCloseRulePosition
+        | rule_create_params.JavaScriptChallengeRulePosition
+        | rule_create_params.LogRulePosition
+        | rule_create_params.LogCustomFieldRulePosition
+        | rule_create_params.ManagedChallengeRulePosition
+        | rule_create_params.RedirectRulePosition
+        | rule_create_params.RewriteRulePosition
+        | rule_create_params.RouteRulePosition
+        | rule_create_params.ScoreRulePosition
+        | rule_create_params.ServeErrorRulePosition
+        | rule_create_params.SetCacheSettingsRulePosition
+        | rule_create_params.SetConfigurationRulePosition
+        | rule_create_params.SkipRulePosition
+        | Omit = omit,
+        ratelimit: rule_create_params.BlockRuleRatelimit
+        | rule_create_params.ChallengeRuleRatelimit
+        | rule_create_params.ResponseCompressionRuleRatelimit
+        | rule_create_params.DDoSDynamicRuleRatelimit
+        | rule_create_params.ExecuteRuleRatelimit
+        | rule_create_params.ForceConnectionCloseRuleRatelimit
+        | rule_create_params.JavaScriptChallengeRuleRatelimit
+        | rule_create_params.LogRuleRatelimit
+        | rule_create_params.LogCustomFieldRuleRatelimit
+        | rule_create_params.ManagedChallengeRuleRatelimit
+        | rule_create_params.RedirectRuleRatelimit
+        | rule_create_params.RewriteRuleRatelimit
+        | rule_create_params.RouteRuleRatelimit
+        | rule_create_params.ScoreRuleRatelimit
+        | rule_create_params.ServeErrorRuleRatelimit
+        | rule_create_params.SetCacheSettingsRuleRatelimit
+        | rule_create_params.SetConfigurationRuleRatelimit
+        | rule_create_params.SkipRuleRatelimit
+        | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
@@ -4180,14 +4337,14 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleDeleteResponse:
         """
         Deletes an existing rule from an account or zone ruleset.
@@ -4243,25 +4400,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["block"] | Omit = omit,
+        action_parameters: rule_edit_params.BlockRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.BlockRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.BlockRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4285,7 +4442,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4293,9 +4450,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4313,25 +4470,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4355,7 +4512,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4363,9 +4520,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4383,25 +4540,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["compress_response"] | Omit = omit,
+        action_parameters: rule_edit_params.ResponseCompressionRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ResponseCompressionRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ResponseCompressionRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ResponseCompressionRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4425,7 +4582,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4433,9 +4590,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4453,25 +4610,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["ddos_dynamic"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.DDoSDynamicRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4495,7 +4652,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4503,9 +4660,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4523,25 +4680,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["execute"] | Omit = omit,
+        action_parameters: rule_edit_params.ExecuteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ExecuteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ExecuteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4565,7 +4722,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4573,9 +4730,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4593,25 +4750,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["force_connection_close"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ForceConnectionCloseRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4635,7 +4792,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4643,9 +4800,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4663,25 +4820,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["js_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.JavaScriptChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.JavaScriptChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4705,7 +4862,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4713,9 +4870,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4733,25 +4890,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.LogRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.LogRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4775,7 +4932,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4783,9 +4940,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4803,25 +4960,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["log_custom_field"] | Omit = omit,
+        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.LogCustomFieldRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4845,7 +5002,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4853,9 +5010,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4873,25 +5030,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["managed_challenge"] | Omit = omit,
+        action_parameters: object | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ManagedChallengeRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4915,7 +5072,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4923,9 +5080,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -4943,25 +5100,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["redirect"] | Omit = omit,
+        action_parameters: rule_edit_params.RedirectRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RedirectRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RedirectRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -4985,7 +5142,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -4993,9 +5150,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5013,25 +5170,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["rewrite"] | Omit = omit,
+        action_parameters: rule_edit_params.RewriteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RewriteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RewriteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5055,7 +5212,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5063,9 +5220,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5083,25 +5240,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["route"] | Omit = omit,
+        action_parameters: rule_edit_params.RouteRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.RouteRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.RouteRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.RouteRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5125,7 +5282,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5133,9 +5290,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5153,25 +5310,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["score"] | Omit = omit,
+        action_parameters: rule_edit_params.ScoreRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ScoreRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ScoreRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5195,7 +5352,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5203,9 +5360,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5223,25 +5380,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["serve_error"] | Omit = omit,
+        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.ServeErrorRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.ServeErrorRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5265,7 +5422,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5273,9 +5430,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5293,25 +5450,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_cache_settings"] | Omit = omit,
+        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SetCacheSettingsRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5335,7 +5492,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5343,9 +5500,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5363,25 +5520,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["ddos_dynamic"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["set_config"] | Omit = omit,
+        action_parameters: rule_edit_params.SetConfigurationRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SetConfigurationRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SetConfigurationRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SetConfigurationRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5405,7 +5562,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5413,9 +5570,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5433,26 +5590,25 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        action: Literal["force_connection_close"] | NotGiven = NOT_GIVEN,
-        action_parameters: object | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
-        | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
+        action: Literal["skip"] | Omit = omit,
+        action_parameters: rule_edit_params.SkipRuleActionParameters | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.SkipRulePosition | Omit = omit,
+        ratelimit: rule_edit_params.SkipRuleRatelimit | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
@@ -5476,7 +5632,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           enabled: Whether the rule should be executed.
 
-          exposed_credential_check: Configure checks for exposed credentials.
+          exposed_credential_check: Configuration for exposed credential checking.
 
           expression: The expression defining which traffic will match the rule.
 
@@ -5484,9 +5640,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           position: An object configuring where the rule will be placed.
 
-          ratelimit: An object configuring the rule's ratelimit behavior.
+          ratelimit: An object configuring the rule's rate limit behavior.
 
-          ref: The reference of the rule (the rule ID by default).
+          ref: The reference of the rule (the rule's ID by default).
 
           extra_headers: Send extra headers
 
@@ -5504,56 +5660,110 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         ruleset_id: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
         | Literal["compress_response"]
+        | Literal["ddos_dynamic"]
         | Literal["execute"]
+        | Literal["force_connection_close"]
         | Literal["js_challenge"]
         | Literal["log"]
+        | Literal["log_custom_field"]
         | Literal["managed_challenge"]
         | Literal["redirect"]
         | Literal["rewrite"]
         | Literal["route"]
         | Literal["score"]
         | Literal["serve_error"]
+        | Literal["set_cache_settings"]
         | Literal["set_config"]
         | Literal["skip"]
-        | Literal["set_cache_settings"]
-        | Literal["log_custom_field"]
-        | Literal["ddos_dynamic"]
-        | Literal["force_connection_close"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.CompressionRuleActionParameters
+        | rule_edit_params.ResponseCompressionRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
+        | rule_edit_params.LogCustomFieldRuleActionParameters
         | rule_edit_params.RedirectRuleActionParameters
         | rule_edit_params.RewriteRuleActionParameters
-        | rule_edit_params.OriginRuleActionParameters
+        | rule_edit_params.RouteRuleActionParameters
         | rule_edit_params.ScoreRuleActionParameters
         | rule_edit_params.ServeErrorRuleActionParameters
-        | rule_edit_params.SetConfigRuleActionParameters
-        | rule_edit_params.SkipRuleActionParameters
         | rule_edit_params.SetCacheSettingsRuleActionParameters
-        | rule_edit_params.LogCustomFieldRuleActionParameters
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        | rule_edit_params.SetConfigurationRuleActionParameters
+        | rule_edit_params.SkipRuleActionParameters
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck
+        | rule_edit_params.ChallengeRuleExposedCredentialCheck
+        | rule_edit_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_edit_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_edit_params.ExecuteRuleExposedCredentialCheck
+        | rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_edit_params.LogRuleExposedCredentialCheck
+        | rule_edit_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_edit_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_edit_params.RedirectRuleExposedCredentialCheck
+        | rule_edit_params.RewriteRuleExposedCredentialCheck
+        | rule_edit_params.RouteRuleExposedCredentialCheck
+        | rule_edit_params.ScoreRuleExposedCredentialCheck
+        | rule_edit_params.ServeErrorRuleExposedCredentialCheck
+        | rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_edit_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_edit_params.SkipRuleExposedCredentialCheck
+        | Omit = omit,
+        expression: str | Omit = omit,
+        logging: LoggingParam | Omit = omit,
+        position: rule_edit_params.BlockRulePosition
+        | rule_edit_params.ChallengeRulePosition
+        | rule_edit_params.ResponseCompressionRulePosition
+        | rule_edit_params.DDoSDynamicRulePosition
+        | rule_edit_params.ExecuteRulePosition
+        | rule_edit_params.ForceConnectionCloseRulePosition
+        | rule_edit_params.JavaScriptChallengeRulePosition
+        | rule_edit_params.LogRulePosition
+        | rule_edit_params.LogCustomFieldRulePosition
+        | rule_edit_params.ManagedChallengeRulePosition
+        | rule_edit_params.RedirectRulePosition
+        | rule_edit_params.RewriteRulePosition
+        | rule_edit_params.RouteRulePosition
+        | rule_edit_params.ScoreRulePosition
+        | rule_edit_params.ServeErrorRulePosition
+        | rule_edit_params.SetCacheSettingsRulePosition
+        | rule_edit_params.SetConfigurationRulePosition
+        | rule_edit_params.SkipRulePosition
+        | Omit = omit,
+        ratelimit: rule_edit_params.BlockRuleRatelimit
+        | rule_edit_params.ChallengeRuleRatelimit
+        | rule_edit_params.ResponseCompressionRuleRatelimit
+        | rule_edit_params.DDoSDynamicRuleRatelimit
+        | rule_edit_params.ExecuteRuleRatelimit
+        | rule_edit_params.ForceConnectionCloseRuleRatelimit
+        | rule_edit_params.JavaScriptChallengeRuleRatelimit
+        | rule_edit_params.LogRuleRatelimit
+        | rule_edit_params.LogCustomFieldRuleRatelimit
+        | rule_edit_params.ManagedChallengeRuleRatelimit
+        | rule_edit_params.RedirectRuleRatelimit
+        | rule_edit_params.RewriteRuleRatelimit
+        | rule_edit_params.RouteRuleRatelimit
+        | rule_edit_params.ScoreRuleRatelimit
+        | rule_edit_params.ServeErrorRuleRatelimit
+        | rule_edit_params.SetCacheSettingsRuleRatelimit
+        | rule_edit_params.SetConfigurationRuleRatelimit
+        | rule_edit_params.SkipRuleRatelimit
+        | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RuleEditResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")

@@ -8,8 +8,15 @@ __all__ = ["SuperBotFightModeLikelyConfigurationParam"]
 
 
 class SuperBotFightModeLikelyConfigurationParam(TypedDict, total=False):
-    ai_bots_protection: Literal["block", "disabled"]
-    """Enable rule to block AI Scrapers and Crawlers."""
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
+    """Enable rule to block AI Scrapers and Crawlers.
+
+    Please note the value `only_on_ad_pages` is currently not available for
+    Enterprise customers.
+    """
+
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -18,6 +25,13 @@ class SuperBotFightModeLikelyConfigurationParam(TypedDict, total=False):
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+    """
+
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
     """
 
     optimize_wordpress: bool

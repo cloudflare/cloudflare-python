@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,15 +52,18 @@ class JobsResource(SyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dataset: Optional[
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
+                "dex_application_tests",
+                "dex_device_state_events",
                 "dlp_forensic_copies",
                 "dns_firewall_logs",
                 "dns_logs",
@@ -70,6 +73,7 @@ class JobsResource(SyncAPIResource):
                 "gateway_http",
                 "gateway_network",
                 "http_requests",
+                "ipsec_logs",
                 "magic_ids_detections",
                 "nel_reports",
                 "network_analytics_logs",
@@ -77,36 +81,38 @@ class JobsResource(SyncAPIResource):
                 "sinkhole_http_logs",
                 "spectrum_events",
                 "ssh_logs",
+                "warp_config_changes",
+                "warp_toggle_changes",
                 "workers_trace_events",
                 "zaraz_events",
                 "zero_trust_network_sessions",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -122,14 +128,13 @@ class JobsResource(SyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -140,21 +145,19 @@ class JobsResource(SyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -217,26 +220,26 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
@@ -248,8 +251,8 @@ class JobsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           enabled: Flag that indicates if the job is enabled.
@@ -258,14 +261,13 @@ class JobsResource(SyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -276,21 +278,19 @@ class JobsResource(SyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -351,14 +351,14 @@ class JobsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone.
@@ -401,14 +401,14 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
@@ -456,14 +456,14 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
@@ -532,15 +532,18 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dataset: Optional[
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
+                "dex_application_tests",
+                "dex_device_state_events",
                 "dlp_forensic_copies",
                 "dns_firewall_logs",
                 "dns_logs",
@@ -550,6 +553,7 @@ class AsyncJobsResource(AsyncAPIResource):
                 "gateway_http",
                 "gateway_network",
                 "http_requests",
+                "ipsec_logs",
                 "magic_ids_detections",
                 "nel_reports",
                 "network_analytics_logs",
@@ -557,36 +561,38 @@ class AsyncJobsResource(AsyncAPIResource):
                 "sinkhole_http_logs",
                 "spectrum_events",
                 "ssh_logs",
+                "warp_config_changes",
+                "warp_toggle_changes",
                 "workers_trace_events",
                 "zaraz_events",
                 "zero_trust_network_sessions",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -602,14 +608,13 @@ class AsyncJobsResource(AsyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -620,21 +625,19 @@ class AsyncJobsResource(AsyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -697,26 +700,26 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
@@ -728,8 +731,8 @@ class AsyncJobsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           enabled: Flag that indicates if the job is enabled.
@@ -738,14 +741,13 @@ class AsyncJobsResource(AsyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -756,21 +758,19 @@ class AsyncJobsResource(AsyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -831,14 +831,14 @@ class AsyncJobsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone.
@@ -881,14 +881,14 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
@@ -936,14 +936,14 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.

@@ -10,4 +10,6 @@ class Certificate(BaseModel):
 
 
 class CertificateRule(BaseModel):
+    """Matches any valid client certificate."""
+
     certificate: Certificate

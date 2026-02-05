@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = ["ViewCreateParams"]
 
@@ -15,5 +16,5 @@ class ViewCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the view."""
 
-    zones: Required[List[str]]
+    zones: Required[SequenceNotStr[str]]
     """The list of zones linked to this view."""

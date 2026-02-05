@@ -8,6 +8,8 @@ __all__ = ["SCIMConfigMappingParam", "Operations"]
 
 
 class Operations(TypedDict, total=False):
+    """Whether or not this mapping applies to creates, updates, or deletes."""
+
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -19,6 +21,10 @@ class Operations(TypedDict, total=False):
 
 
 class SCIMConfigMappingParam(TypedDict, total=False):
+    """
+    Transformations and filters applied to resources before they are provisioned in the remote SCIM service.
+    """
+
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 

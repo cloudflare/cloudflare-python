@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .health import (
-    HealthResource,
-    AsyncHealthResource,
-    HealthResourceWithRawResponse,
-    AsyncHealthResourceWithRawResponse,
-    HealthResourceWithStreamingResponse,
-    AsyncHealthResourceWithStreamingResponse,
-)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -18,12 +10,6 @@ from .datasets import (
 )
 
 __all__ = [
-    "HealthResource",
-    "AsyncHealthResource",
-    "HealthResourceWithRawResponse",
-    "AsyncHealthResourceWithRawResponse",
-    "HealthResourceWithStreamingResponse",
-    "AsyncHealthResourceWithStreamingResponse",
     "DatasetsResource",
     "AsyncDatasetsResource",
     "DatasetsResourceWithRawResponse",

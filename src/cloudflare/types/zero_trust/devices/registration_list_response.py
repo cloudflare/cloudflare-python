@@ -4,10 +4,12 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["RegistrationListResponse", "Device", "User"]
+__all__ = ["RegistrationListResponse", "Device", "Policy", "User"]
 
 
 class Device(BaseModel):
+    """Device details embedded inside of a registration."""
+
     id: str
     """The ID of the device."""
 
@@ -16,6 +18,28 @@ class Device(BaseModel):
 
     client_version: Optional[str] = None
     """Version of the WARP client."""
+
+
+class Policy(BaseModel):
+    """The device settings profile assigned to this registration."""
+
+    id: str
+    """The ID of the device settings profile."""
+
+    default: bool
+    """Whether the device settings profile is the default profile for the account."""
+
+    deleted: bool
+    """Whether the device settings profile was deleted."""
+
+    name: str
+    """The name of the device settings profile."""
+
+    updated_at: str
+    """
+    The RFC3339 timestamp of when the device settings profile last changed for the
+    registration.
+    """
 
 
 class User(BaseModel):
@@ -30,6 +54,11 @@ class User(BaseModel):
 
 
 class RegistrationListResponse(BaseModel):
+    """A WARP configuration tied to a single user.
+
+    Multiple registrations can be created from a single WARP device.
+    """
+
     id: str
     """The ID of the registration."""
 
@@ -56,6 +85,9 @@ class RegistrationListResponse(BaseModel):
 
     Currently 'curve25519' for WireGuard and 'secp256r1' for MASQUE.
     """
+
+    policy: Optional[Policy] = None
+    """The device settings profile assigned to this registration."""
 
     revoked_at: Optional[str] = None
     """The RFC3339 timestamp when the registration was revoked."""

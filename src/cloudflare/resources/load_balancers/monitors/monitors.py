@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, cast
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -15,7 +15,7 @@ from .previews import (
     PreviewsResourceWithStreamingResponse,
     AsyncPreviewsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
@@ -75,34 +75,34 @@ class MonitorsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Create a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -201,34 +201,34 @@ class MonitorsResource(SyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Modify a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -333,13 +333,13 @@ class MonitorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Monitor]:
         """
         List configured monitors for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -370,13 +370,13 @@ class MonitorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MonitorDeleteResponse:
         """
         Delete a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -407,34 +407,34 @@ class MonitorsResource(SyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -540,13 +540,13 @@ class MonitorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         List a single configured monitor for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -605,34 +605,34 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Create a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -731,34 +731,34 @@ class AsyncMonitorsResource(AsyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Modify a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -863,13 +863,13 @@ class AsyncMonitorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Monitor, AsyncSinglePage[Monitor]]:
         """
         List configured monitors for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -900,13 +900,13 @@ class AsyncMonitorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MonitorDeleteResponse:
         """
         Delete a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -937,34 +937,34 @@ class AsyncMonitorsResource(AsyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -1070,13 +1070,13 @@ class AsyncMonitorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
         List a single configured monitor for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

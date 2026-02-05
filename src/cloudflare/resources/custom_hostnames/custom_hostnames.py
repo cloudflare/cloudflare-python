@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -83,14 +83,14 @@ class CustomHostnamesResource(SyncAPIResource):
         *,
         zone_id: str,
         hostname: str,
-        ssl: custom_hostname_create_params.SSL,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | Omit = omit,
+        ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameCreateResponse]:
         """
         Add a new custom hostname and request that an SSL certificate be issued for it.
@@ -109,10 +109,10 @@ class CustomHostnamesResource(SyncAPIResource):
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
-          ssl: SSL properties used when creating the custom hostname.
-
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
+
+          ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
 
@@ -129,8 +129,8 @@ class CustomHostnamesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "hostname": hostname,
-                    "ssl": ssl,
                     "custom_metadata": custom_metadata,
+                    "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,
             ),
@@ -148,19 +148,19 @@ class CustomHostnamesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        order: Literal["ssl", "ssl_status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ssl: Literal[0, 1] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        hostname: str | Omit = omit,
+        order: Literal["ssl", "ssl_status"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        ssl: Literal[0, 1] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[CustomHostnameListResponse]:
         """
         List, search, sort, and filter all of your custom hostnames.
@@ -229,7 +229,7 @@ class CustomHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomHostnameDeleteResponse:
         """
         Delete Custom Hostname (and any issued SSL certificates)
@@ -264,16 +264,16 @@ class CustomHostnamesResource(SyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        custom_origin_server: str | NotGiven = NOT_GIVEN,
-        custom_origin_sni: str | NotGiven = NOT_GIVEN,
-        ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
+        custom_origin_sni: str | Omit = omit,
+        ssl: custom_hostname_edit_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameEditResponse]:
         """Modify SSL configuration for a custom hostname.
 
@@ -347,7 +347,7 @@ class CustomHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameGetResponse]:
         """
         Custom Hostname Details
@@ -415,14 +415,14 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         *,
         zone_id: str,
         hostname: str,
-        ssl: custom_hostname_create_params.SSL,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | Omit = omit,
+        ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameCreateResponse]:
         """
         Add a new custom hostname and request that an SSL certificate be issued for it.
@@ -441,10 +441,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
-          ssl: SSL properties used when creating the custom hostname.
-
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
+
+          ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
 
@@ -461,8 +461,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
-                    "ssl": ssl,
                     "custom_metadata": custom_metadata,
+                    "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,
             ),
@@ -480,19 +480,19 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        order: Literal["ssl", "ssl_status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ssl: Literal[0, 1] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        hostname: str | Omit = omit,
+        order: Literal["ssl", "ssl_status"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        ssl: Literal[0, 1] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomHostnameListResponse, AsyncV4PagePaginationArray[CustomHostnameListResponse]]:
         """
         List, search, sort, and filter all of your custom hostnames.
@@ -561,7 +561,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomHostnameDeleteResponse:
         """
         Delete Custom Hostname (and any issued SSL certificates)
@@ -596,16 +596,16 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        custom_origin_server: str | NotGiven = NOT_GIVEN,
-        custom_origin_sni: str | NotGiven = NOT_GIVEN,
-        ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
+        custom_origin_sni: str | Omit = omit,
+        ssl: custom_hostname_edit_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameEditResponse]:
         """Modify SSL configuration for a custom hostname.
 
@@ -679,7 +679,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomHostnameGetResponse]:
         """
         Custom Hostname Details

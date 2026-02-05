@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,22 +60,22 @@ class AppsResource(SyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -86,18 +86,8 @@ class AppsResource(SyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -110,6 +100,9 @@ class AppsResource(SyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -120,6 +113,13 @@ class AppsResource(SyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -138,13 +138,13 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -171,31 +171,28 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     def create(
         self,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -206,16 +203,16 @@ class AppsResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -239,22 +236,22 @@ class AppsResource(SyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -267,18 +264,8 @@ class AppsResource(SyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -291,6 +278,9 @@ class AppsResource(SyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -301,6 +291,13 @@ class AppsResource(SyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -320,13 +317,13 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -355,32 +352,29 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     def update(
         self,
         app_id: str,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -393,16 +387,16 @@ class AppsResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -423,17 +417,17 @@ class AppsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Optional[AppListResponse]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[AppListResponse]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -462,7 +456,7 @@ class AppsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=SyncV4PagePaginationArray[Optional[AppListResponse]],
+            page=SyncV4PagePaginationArray[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -491,7 +485,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
@@ -535,7 +529,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.
@@ -601,22 +595,22 @@ class AsyncAppsResource(AsyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -627,18 +621,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -651,6 +635,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -661,6 +648,13 @@ class AsyncAppsResource(AsyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -679,13 +673,13 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -712,31 +706,28 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     async def create(
         self,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -747,16 +738,16 @@ class AsyncAppsResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -780,22 +771,22 @@ class AsyncAppsResource(AsyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -808,18 +799,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -832,6 +813,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -842,6 +826,13 @@ class AsyncAppsResource(AsyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -861,13 +852,13 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -896,32 +887,29 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     async def update(
         self,
         app_id: str,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -934,16 +922,16 @@ class AsyncAppsResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -964,17 +952,17 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Optional[AppListResponse], AsyncV4PagePaginationArray[Optional[AppListResponse]]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AppListResponse, AsyncV4PagePaginationArray[AppListResponse]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -1003,7 +991,7 @@ class AsyncAppsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=AsyncV4PagePaginationArray[Optional[AppListResponse]],
+            page=AsyncV4PagePaginationArray[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1032,7 +1020,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
@@ -1076,7 +1064,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.

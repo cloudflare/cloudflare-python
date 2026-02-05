@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,15 +61,16 @@ class V2Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        continuation_token: Optional[str] | Omit = omit,
+        creator: Optional[str] | Omit = omit,
+        per_page: float | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
         """List up to 10000 images with one request.
 
@@ -81,6 +82,9 @@ class V2Resource(SyncAPIResource):
           account_id: Account identifier tag.
 
           continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           per_page: Number of items per page.
 
@@ -106,6 +110,7 @@ class V2Resource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "continuation_token": continuation_token,
+                        "creator": creator,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },
@@ -145,15 +150,16 @@ class AsyncV2Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        continuation_token: Optional[str] | Omit = omit,
+        creator: Optional[str] | Omit = omit,
+        per_page: float | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
         """List up to 10000 images with one request.
 
@@ -165,6 +171,9 @@ class AsyncV2Resource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           per_page: Number of items per page.
 
@@ -190,6 +199,7 @@ class AsyncV2Resource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "continuation_token": continuation_token,
+                        "creator": creator,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },

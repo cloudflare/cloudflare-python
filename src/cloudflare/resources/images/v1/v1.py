@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, cast
+from typing import Any, Type, Mapping, Optional, cast
 
 import httpx
 
@@ -39,8 +39,8 @@ from .variants import (
     VariantsResourceWithStreamingResponse,
     AsyncVariantsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
+from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -100,16 +100,18 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        file: object | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        file: FileTypes | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
@@ -118,6 +120,10 @@ class V1Resource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: An optional custom unique identifier for your image.
+
+          creator: Can set the creator field with an internal user ID.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -139,21 +145,25 @@ class V1Resource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(
+            {
+                "id": id,
+                "creator": creator,
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/images/v1",
-            body=maybe_transform(
-                {
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
+            body=maybe_transform(body, v1_create_params.V1CreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,14 +179,15 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[V1ListResponse]:
         """List up to 100 images with one request.
 
@@ -185,6 +196,9 @@ class V1Resource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           page: Page number of paginated results.
 
@@ -210,6 +224,7 @@ class V1Resource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "creator": creator,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -229,7 +244,7 @@ class V1Resource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
@@ -275,14 +290,15 @@ class V1Resource(SyncAPIResource):
         image_id: str,
         *,
         account_id: str,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        creator: str | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """Update image access control.
 
@@ -293,6 +309,8 @@ class V1Resource(SyncAPIResource):
           account_id: Account identifier tag.
 
           image_id: Image unique identifier.
+
+          creator: Can set the creator field with an internal user ID.
 
           metadata: User modifiable key-value store. Can be used for keeping references to another
               system of record for managing images. No change if not specified.
@@ -317,6 +335,7 @@ class V1Resource(SyncAPIResource):
             f"/accounts/{account_id}/images/v1/{image_id}",
             body=maybe_transform(
                 {
+                    "creator": creator,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },
@@ -342,7 +361,7 @@ class V1Resource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Fetch details for a single image.
@@ -417,16 +436,18 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        file: object | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        file: FileTypes | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
@@ -435,6 +456,10 @@ class AsyncV1Resource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: An optional custom unique identifier for your image.
+
+          creator: Can set the creator field with an internal user ID.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -456,21 +481,25 @@ class AsyncV1Resource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(
+            {
+                "id": id,
+                "creator": creator,
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/images/v1",
-            body=await async_maybe_transform(
-                {
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
+            body=await async_maybe_transform(body, v1_create_params.V1CreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,14 +515,15 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[V1ListResponse, AsyncV4PagePagination[V1ListResponse]]:
         """List up to 100 images with one request.
 
@@ -502,6 +532,9 @@ class AsyncV1Resource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           page: Page number of paginated results.
 
@@ -527,6 +560,7 @@ class AsyncV1Resource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "creator": creator,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -546,7 +580,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
@@ -592,14 +626,15 @@ class AsyncV1Resource(AsyncAPIResource):
         image_id: str,
         *,
         account_id: str,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        creator: str | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """Update image access control.
 
@@ -610,6 +645,8 @@ class AsyncV1Resource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           image_id: Image unique identifier.
+
+          creator: Can set the creator field with an internal user ID.
 
           metadata: User modifiable key-value store. Can be used for keeping references to another
               system of record for managing images. No change if not specified.
@@ -634,6 +671,7 @@ class AsyncV1Resource(AsyncAPIResource):
             f"/accounts/{account_id}/images/v1/{image_id}",
             body=await async_maybe_transform(
                 {
+                    "creator": creator,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },
@@ -659,7 +697,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Fetch details for a single image.
@@ -703,7 +741,7 @@ class V1ResourceWithRawResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = to_raw_response_wrapper(
@@ -742,7 +780,7 @@ class AsyncV1ResourceWithRawResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = async_to_raw_response_wrapper(
@@ -781,7 +819,7 @@ class V1ResourceWithStreamingResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = to_streamed_response_wrapper(
@@ -820,7 +858,7 @@ class AsyncV1ResourceWithStreamingResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = async_to_streamed_response_wrapper(

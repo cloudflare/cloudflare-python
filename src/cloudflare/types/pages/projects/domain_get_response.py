@@ -9,11 +9,11 @@ __all__ = ["DomainGetResponse", "ValidationData", "VerificationData"]
 
 
 class ValidationData(BaseModel):
+    method: Literal["http", "txt"]
+
+    status: Literal["initializing", "pending", "active", "deactivated", "error"]
+
     error_message: Optional[str] = None
-
-    method: Optional[Literal["http", "txt"]] = None
-
-    status: Optional[Literal["initializing", "pending", "active", "deactivated", "error"]] = None
 
     txt_name: Optional[str] = None
 
@@ -21,26 +21,27 @@ class ValidationData(BaseModel):
 
 
 class VerificationData(BaseModel):
-    error_message: Optional[str] = None
+    status: Literal["pending", "active", "deactivated", "blocked", "error"]
 
-    status: Optional[Literal["pending", "active", "deactivated", "blocked", "error"]] = None
+    error_message: Optional[str] = None
 
 
 class DomainGetResponse(BaseModel):
-    id: Optional[str] = None
+    id: str
 
-    certificate_authority: Optional[Literal["google", "lets_encrypt"]] = None
+    certificate_authority: Literal["google", "lets_encrypt"]
 
-    created_on: Optional[str] = None
+    created_on: str
 
-    domain_id: Optional[str] = None
+    domain_id: str
 
-    name: Optional[str] = None
+    name: str
+    """The domain name."""
 
-    status: Optional[Literal["initializing", "pending", "active", "deactivated", "blocked", "error"]] = None
+    status: Literal["initializing", "pending", "active", "deactivated", "blocked", "error"]
 
-    validation_data: Optional[ValidationData] = None
+    validation_data: ValidationData
 
-    verification_data: Optional[VerificationData] = None
+    verification_data: VerificationData
 
-    zone_tag: Optional[str] = None
+    zone_tag: str

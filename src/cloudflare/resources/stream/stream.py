@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -56,7 +56,7 @@ from .videos import (
     VideosResourceWithStreamingResponse,
     AsyncVideosResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .webhooks import (
     WebhooksResource,
@@ -211,15 +211,15 @@ class StreamResource(SyncAPIResource):
         body: object,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
-        direct_user: bool | NotGiven = NOT_GIVEN,
-        upload_creator: str | NotGiven = NOT_GIVEN,
-        upload_metadata: str | NotGiven = NOT_GIVEN,
+        direct_user: bool | Omit = omit,
+        upload_creator: str | Omit = omit,
+        upload_metadata: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Initiates a video upload using the TUS protocol.
 
@@ -286,21 +286,22 @@ class StreamResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        asc: bool | Omit = omit,
+        creator: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        include_counts: bool | Omit = omit,
+        search: str | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
+        | Omit = omit,
+        type: str | Omit = omit,
+        video_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Video]:
         """Lists up to 1000 videos from a single request.
 
@@ -319,14 +320,16 @@ class StreamResource(SyncAPIResource):
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
 
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
+          search: Provides a partial word match of the `name` key in the `meta` field. Slow for
+              medium to large video libraries. May be unavailable for very large libraries.
 
           start: Lists videos created after the specified date.
 
           status: Specifies the processing status for all quality levels for a video.
 
           type: Specifies whether the video is `vod` or `live`.
+
+          video_name: Provides a fast, exact string match on the `name` key in the `meta` field.
 
           extra_headers: Send extra headers
 
@@ -356,6 +359,7 @@ class StreamResource(SyncAPIResource):
                         "start": start,
                         "status": status,
                         "type": type,
+                        "video_name": video_name,
                     },
                     stream_list_params.StreamListParams,
                 ),
@@ -373,7 +377,7 @@ class StreamResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a video and its copies from Cloudflare Stream.
@@ -409,20 +413,20 @@ class StreamResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        meta: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        scheduled_deletion: Union[str, datetime] | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        upload_expiry: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Video]:
         """
         Edit details for a single video.
@@ -508,7 +512,7 @@ class StreamResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Video]:
         """
         Fetches details for a single video.
@@ -622,15 +626,15 @@ class AsyncStreamResource(AsyncAPIResource):
         body: object,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
-        direct_user: bool | NotGiven = NOT_GIVEN,
-        upload_creator: str | NotGiven = NOT_GIVEN,
-        upload_metadata: str | NotGiven = NOT_GIVEN,
+        direct_user: bool | Omit = omit,
+        upload_creator: str | Omit = omit,
+        upload_metadata: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Initiates a video upload using the TUS protocol.
 
@@ -699,21 +703,22 @@ class AsyncStreamResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
+        asc: bool | Omit = omit,
+        creator: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        include_counts: bool | Omit = omit,
+        search: str | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
+        | Omit = omit,
+        type: str | Omit = omit,
+        video_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Video, AsyncSinglePage[Video]]:
         """Lists up to 1000 videos from a single request.
 
@@ -732,14 +737,16 @@ class AsyncStreamResource(AsyncAPIResource):
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
 
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
+          search: Provides a partial word match of the `name` key in the `meta` field. Slow for
+              medium to large video libraries. May be unavailable for very large libraries.
 
           start: Lists videos created after the specified date.
 
           status: Specifies the processing status for all quality levels for a video.
 
           type: Specifies whether the video is `vod` or `live`.
+
+          video_name: Provides a fast, exact string match on the `name` key in the `meta` field.
 
           extra_headers: Send extra headers
 
@@ -769,6 +776,7 @@ class AsyncStreamResource(AsyncAPIResource):
                         "start": start,
                         "status": status,
                         "type": type,
+                        "video_name": video_name,
                     },
                     stream_list_params.StreamListParams,
                 ),
@@ -786,7 +794,7 @@ class AsyncStreamResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a video and its copies from Cloudflare Stream.
@@ -822,20 +830,20 @@ class AsyncStreamResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        meta: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        scheduled_deletion: Union[str, datetime] | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        upload_expiry: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Video]:
         """
         Edit details for a single video.
@@ -921,7 +929,7 @@ class AsyncStreamResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Video]:
         """
         Fetches details for a single video.

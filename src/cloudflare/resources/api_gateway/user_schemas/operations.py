@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, List, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -45,24 +46,27 @@ class OperationsResource(SyncAPIResource):
         """
         return OperationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
-        operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        endpoint: str | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        host: SequenceNotStr[str] | Omit = omit,
+        method: SequenceNotStr[str] | Omit = omit,
+        operation_status: Literal["new", "existing"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """Retrieves all operations from the schema.
 
@@ -148,24 +152,27 @@ class AsyncOperationsResource(AsyncAPIResource):
         """
         return AsyncOperationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
-        operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        endpoint: str | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        host: SequenceNotStr[str] | Omit = omit,
+        method: SequenceNotStr[str] | Omit = omit,
+        operation_status: Literal["new", "existing"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """Retrieves all operations from the schema.
 
@@ -235,8 +242,10 @@ class OperationsResourceWithRawResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
 
-        self.list = to_raw_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                operations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -244,8 +253,10 @@ class AsyncOperationsResourceWithRawResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
 
-        self.list = async_to_raw_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                operations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -253,8 +264,10 @@ class OperationsResourceWithStreamingResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
 
-        self.list = to_streamed_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                operations.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -262,6 +275,8 @@ class AsyncOperationsResourceWithStreamingResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
 
-        self.list = async_to_streamed_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                operations.list,  # pyright: ignore[reportDeprecated],
+            )
         )

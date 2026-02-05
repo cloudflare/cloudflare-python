@@ -8,6 +8,8 @@ __all__ = ["AttackMitigationParam"]
 
 
 class AttackMitigationParam(TypedDict, total=False):
+    """Attack mitigation settings"""
+
     enabled: bool
     """
     When enabled, automatically mitigate random-prefix attacks to protect upstream

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,9 +18,12 @@ class LogpushJob(BaseModel):
         Literal[
             "access_requests",
             "audit_logs",
+            "audit_logs_v2",
             "biso_user_actions",
             "casb_findings",
             "device_posture_results",
+            "dex_application_tests",
+            "dex_device_state_events",
             "dlp_forensic_copies",
             "dns_firewall_logs",
             "dns_logs",
@@ -30,6 +33,7 @@ class LogpushJob(BaseModel):
             "gateway_http",
             "gateway_network",
             "http_requests",
+            "ipsec_logs",
             "magic_ids_detections",
             "nel_reports",
             "network_analytics_logs",
@@ -37,6 +41,8 @@ class LogpushJob(BaseModel):
             "sinkhole_http_logs",
             "spectrum_events",
             "ssh_logs",
+            "warp_config_changes",
+            "warp_toggle_changes",
             "workers_trace_events",
             "zaraz_events",
             "zero_trust_network_sessions",
@@ -49,10 +55,10 @@ class LogpushJob(BaseModel):
     """
 
     destination_conf: Optional[str] = None
-    """Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
+    """Uniquely identifies a resource (such as an s3 bucket) where data.
 
-    Additional configuration parameters supported by the destination may be
-    included.
+    will be pushed. Additional configuration parameters supported by the destination
+    may be included.
     """
 
     enabled: Optional[bool] = None
@@ -61,25 +67,24 @@ class LogpushJob(BaseModel):
     error_message: Optional[str] = None
     """If not null, the job is currently failing.
 
-    Failures are usually repetitive (example: no permissions to write to destination
-    bucket). Only the last failure is recorded. On successful execution of a job the
-    error_message and last_error are set to null.
+    Failures are usually. repetitive (example: no permissions to write to
+    destination bucket). Only the last failure is recorded. On successful execution
+    of a job the error_message and last_error are set to null.
     """
 
     frequency: Optional[Literal["high", "low"]] = None
     """This field is deprecated.
 
-    Please use `max_upload_*` parameters instead. The frequency at which Cloudflare
-    sends batches of logs to your destination. Setting frequency to high sends your
-    logs in larger quantities of smaller files. Setting frequency to low sends logs
-    in smaller quantities of larger files.
+    Please use `max_upload_*` parameters instead. . The frequency at which
+    Cloudflare sends batches of logs to your destination. Setting frequency to high
+    sends your logs in larger quantities of smaller files. Setting frequency to low
+    sends logs in smaller quantities of larger files.
     """
 
-    kind: Optional[Literal["edge"]] = None
+    kind: Optional[Literal["", "edge"]] = None
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
-    Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-    `http_requests` dataset.
+    Log Delivery jobs (when supported by the dataset).
     """
 
     last_complete: Optional[datetime] = None
@@ -94,7 +99,7 @@ class LogpushJob(BaseModel):
     last_error: Optional[datetime] = None
     """Records the last time the job failed.
 
-    If not null, the job is currently failing. If null, the job has either never
+    If not null, the job is currently. failing. If null, the job has either never
     failed or has run successfully at least once since last failure. See also the
     error_message field.
     """
@@ -108,37 +113,34 @@ class LogpushJob(BaseModel):
     keep on making this call for you, setting start and end times appropriately.
     """
 
-    max_upload_bytes: Optional[int] = None
+    max_upload_bytes: Union[Literal[0], int, None] = None
     """The maximum uncompressed file size of a batch of logs.
 
     This setting value must be between `5 MB` and `1 GB`, or `0` to disable it. Note
     that you cannot set a minimum file size; this means that log files may be much
-    smaller than this batch size. This parameter is not available for jobs with
-    `edge` as its kind.
+    smaller than this batch size.
     """
 
-    max_upload_interval_seconds: Optional[int] = None
+    max_upload_interval_seconds: Union[Literal[0], int, None] = None
     """The maximum interval in seconds for log batches.
 
     This setting must be between 30 and 300 seconds (5 minutes), or `0` to disable
     it. Note that you cannot specify a minimum interval for log batches; this means
-    that log files may be sent in shorter intervals than this. This parameter is
-    only used for jobs with `edge` as its kind.
+    that log files may be sent in shorter intervals than this.
     """
 
-    max_upload_records: Optional[int] = None
+    max_upload_records: Union[Literal[0], int, None] = None
     """The maximum number of log lines per batch.
 
     This setting must be between 1000 and 1,000,000 lines, or `0` to disable it.
     Note that you cannot specify a minimum number of log lines per batch; this means
-    that log files may contain many fewer lines than this. This parameter is not
-    available for jobs with `edge` as its kind.
+    that log files may contain many fewer lines than this.
     """
 
     name: Optional[str] = None
     """Optional human readable job name.
 
-    Not unique. Cloudflare suggests that you set this to a meaningful string, like
+    Not unique. Cloudflare suggests. that you set this to a meaningful string, like
     the domain name, to make it easier to identify your job.
     """
 

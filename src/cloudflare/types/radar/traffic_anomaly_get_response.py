@@ -13,6 +13,7 @@ __all__ = [
     "TrafficAnomalyASNDetails",
     "TrafficAnomalyASNDetailsLocations",
     "TrafficAnomalyLocationDetails",
+    "TrafficAnomalyOriginDetails",
 ]
 
 
@@ -36,6 +37,12 @@ class TrafficAnomalyLocationDetails(BaseModel):
     name: str
 
 
+class TrafficAnomalyOriginDetails(BaseModel):
+    name: str
+
+    origin: str
+
+
 class TrafficAnomaly(BaseModel):
     start_date: str = FieldInfo(alias="startDate")
 
@@ -50,6 +57,8 @@ class TrafficAnomaly(BaseModel):
     end_date: Optional[datetime] = FieldInfo(alias="endDate", default=None)
 
     location_details: Optional[TrafficAnomalyLocationDetails] = FieldInfo(alias="locationDetails", default=None)
+
+    origin_details: Optional[TrafficAnomalyOriginDetails] = FieldInfo(alias="originDetails", default=None)
 
     visible_in_data_sources: Optional[List[str]] = FieldInfo(alias="visibleInDataSources", default=None)
 

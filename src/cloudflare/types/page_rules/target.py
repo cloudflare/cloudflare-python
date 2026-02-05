@@ -9,6 +9,8 @@ __all__ = ["Target", "Constraint"]
 
 
 class Constraint(BaseModel):
+    """String constraint."""
+
     operator: Literal["matches", "contains", "equals", "not_equal", "not_contain"]
     """
     The matches operator can use asterisks and pipes as wildcard and 'or' operators.
@@ -22,6 +24,8 @@ class Constraint(BaseModel):
 
 
 class Target(BaseModel):
+    """URL target."""
+
     constraint: Optional[Constraint] = None
     """String constraint."""
 

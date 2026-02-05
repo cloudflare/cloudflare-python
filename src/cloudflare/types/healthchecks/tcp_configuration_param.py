@@ -8,6 +8,8 @@ __all__ = ["TCPConfigurationParam"]
 
 
 class TCPConfigurationParam(TypedDict, total=False):
+    """Parameters specific to TCP health check."""
+
     method: Literal["connection_established"]
     """The TCP connection method to use for the health check."""
 

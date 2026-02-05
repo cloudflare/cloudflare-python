@@ -8,6 +8,8 @@ __all__ = ["ManagedTransformEditResponse", "ManagedRequestHeader", "ManagedRespo
 
 
 class ManagedRequestHeader(BaseModel):
+    """A Managed Transform object."""
+
     id: str
     """The human-readable identifier of the Managed Transform."""
 
@@ -25,6 +27,8 @@ class ManagedRequestHeader(BaseModel):
 
 
 class ManagedResponseHeader(BaseModel):
+    """A Managed Transform object."""
+
     id: str
     """The human-readable identifier of the Managed Transform."""
 
@@ -42,6 +46,8 @@ class ManagedResponseHeader(BaseModel):
 
 
 class ManagedTransformEditResponse(BaseModel):
+    """A result."""
+
     managed_request_headers: List[ManagedRequestHeader]
     """The list of Managed Request Transforms."""
 

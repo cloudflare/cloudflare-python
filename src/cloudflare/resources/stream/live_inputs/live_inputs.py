@@ -14,7 +14,7 @@ from .outputs import (
     OutputsResourceWithStreamingResponse,
     AsyncOutputsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,16 +61,16 @@ class LiveInputsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        default_creator: str | NotGiven = NOT_GIVEN,
-        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
+        default_creator: str | Omit = omit,
+        delete_recording_after_days: float | Omit = omit,
+        meta: object | Omit = omit,
+        recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Creates a live input, and returns credentials that you or your users can use to
@@ -130,16 +130,16 @@ class LiveInputsResource(SyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
-        default_creator: str | NotGiven = NOT_GIVEN,
-        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
+        default_creator: str | Omit = omit,
+        delete_recording_after_days: float | Omit = omit,
+        meta: object | Omit = omit,
+        recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Updates a specified live input.
@@ -203,13 +203,13 @@ class LiveInputsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        include_counts: bool | NotGiven = NOT_GIVEN,
+        include_counts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInputListResponse]:
         """Lists the live inputs created for an account.
 
@@ -255,7 +255,7 @@ class LiveInputsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Prevents a live input from being streamed to and makes the live input
@@ -299,7 +299,7 @@ class LiveInputsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Retrieves details of an existing live input.
@@ -364,16 +364,16 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        default_creator: str | NotGiven = NOT_GIVEN,
-        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
+        default_creator: str | Omit = omit,
+        delete_recording_after_days: float | Omit = omit,
+        meta: object | Omit = omit,
+        recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Creates a live input, and returns credentials that you or your users can use to
@@ -433,16 +433,16 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
-        default_creator: str | NotGiven = NOT_GIVEN,
-        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
+        default_creator: str | Omit = omit,
+        delete_recording_after_days: float | Omit = omit,
+        meta: object | Omit = omit,
+        recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Updates a specified live input.
@@ -506,13 +506,13 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        include_counts: bool | NotGiven = NOT_GIVEN,
+        include_counts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInputListResponse]:
         """Lists the live inputs created for an account.
 
@@ -560,7 +560,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Prevents a live input from being streamed to and makes the live input
@@ -604,7 +604,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LiveInput]:
         """
         Retrieves details of an existing live input.

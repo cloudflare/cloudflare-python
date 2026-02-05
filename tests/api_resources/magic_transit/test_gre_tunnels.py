@@ -45,6 +45,12 @@ class TestGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",
@@ -53,6 +59,7 @@ class TestGRETunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             ttl=0,
             x_magic_new_hc_target=True,
@@ -128,6 +135,7 @@ class TestGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",
@@ -136,6 +144,7 @@ class TestGRETunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             ttl=0,
             x_magic_new_hc_target=True,
@@ -419,7 +428,9 @@ class TestGRETunnels:
 
 
 class TestAsyncGRETunnels:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -442,6 +453,12 @@ class TestAsyncGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",
@@ -450,6 +467,7 @@ class TestAsyncGRETunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             ttl=0,
             x_magic_new_hc_target=True,
@@ -525,6 +543,7 @@ class TestAsyncGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",
@@ -533,6 +552,7 @@ class TestAsyncGRETunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             ttl=0,
             x_magic_new_hc_target=True,

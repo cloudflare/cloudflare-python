@@ -55,6 +55,7 @@ class DevicePostureRule(BaseModel):
             "domain_joined",
             "client_certificate",
             "client_certificate_v2",
+            "antivirus",
             "unique_client_id",
             "kolide",
             "tanium_s2s",

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -47,21 +48,24 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
+    )
     def bot_class(
         self,
         *,
-        compromised: List[Literal["CLEAN", "COMPROMISED"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        compromised: List[Literal["CLEAN", "COMPROMISED"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryBotClassResponse:
         """
         Retrieves the distribution of HTTP authentication requests by bot class.
@@ -112,21 +116,24 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
+    )
     def compromised(
         self,
         *,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryCompromisedResponse:
         """
         Retrieves the distribution of HTTP authentication requests by compromised
@@ -200,21 +207,24 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
+    )
     async def bot_class(
         self,
         *,
-        compromised: List[Literal["CLEAN", "COMPROMISED"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        compromised: List[Literal["CLEAN", "COMPROMISED"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryBotClassResponse:
         """
         Retrieves the distribution of HTTP authentication requests by bot class.
@@ -265,21 +275,24 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
+    )
     async def compromised(
         self,
         *,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryCompromisedResponse:
         """
         Retrieves the distribution of HTTP authentication requests by compromised
@@ -337,11 +350,15 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = to_raw_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = to_raw_response_wrapper(
-            summary.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -349,11 +366,15 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = async_to_raw_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = async_to_raw_response_wrapper(
-            summary.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -361,11 +382,15 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = to_streamed_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = to_streamed_response_wrapper(
-            summary.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -373,9 +398,13 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bot_class = async_to_streamed_response_wrapper(
-            summary.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = async_to_streamed_response_wrapper(
-            summary.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )

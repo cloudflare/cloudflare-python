@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,18 +53,20 @@ class CfInterconnectsResource(SyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        interface_address: str | NotGiven = NOT_GIVEN,
-        mtu: int | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        description: str | Omit = omit,
+        gre: cf_interconnect_update_params.GRE | Omit = omit,
+        health_check: HealthCheckParam | Omit = omit,
+        interface_address: str | Omit = omit,
+        interface_address6: str | Omit = omit,
+        mtu: int | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectUpdateResponse:
         """Updates a specific interconnect associated with an account.
 
@@ -77,6 +79,9 @@ class CfInterconnectsResource(SyncAPIResource):
 
           cf_interconnect_id: Identifier
 
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
+
           description: An optional description of the interconnect.
 
           gre: The configuration specific to GRE interconnects.
@@ -84,6 +89,11 @@ class CfInterconnectsResource(SyncAPIResource):
           interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
               of the tunnel. Select the subnet from the following private IP space:
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
@@ -105,7 +115,7 @@ class CfInterconnectsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -114,10 +124,12 @@ class CfInterconnectsResource(SyncAPIResource):
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=maybe_transform(
                 {
+                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,
                     "interface_address": interface_address,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,
@@ -136,13 +148,13 @@ class CfInterconnectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectListResponse:
         """
         Lists interconnects associated with an account.
@@ -165,7 +177,7 @@ class CfInterconnectsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -187,13 +199,13 @@ class CfInterconnectsResource(SyncAPIResource):
         *,
         account_id: str,
         body: object,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectBulkUpdateResponse:
         """Updates multiple interconnects associated with an account.
 
@@ -219,7 +231,7 @@ class CfInterconnectsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -242,13 +254,13 @@ class CfInterconnectsResource(SyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectGetResponse:
         """
         Lists details for a specific interconnect.
@@ -275,7 +287,7 @@ class CfInterconnectsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -318,18 +330,20 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        interface_address: str | NotGiven = NOT_GIVEN,
-        mtu: int | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        description: str | Omit = omit,
+        gre: cf_interconnect_update_params.GRE | Omit = omit,
+        health_check: HealthCheckParam | Omit = omit,
+        interface_address: str | Omit = omit,
+        interface_address6: str | Omit = omit,
+        mtu: int | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectUpdateResponse:
         """Updates a specific interconnect associated with an account.
 
@@ -342,6 +356,9 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
 
           cf_interconnect_id: Identifier
 
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
+
           description: An optional description of the interconnect.
 
           gre: The configuration specific to GRE interconnects.
@@ -349,6 +366,11 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
               of the tunnel. Select the subnet from the following private IP space:
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
@@ -370,7 +392,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -379,10 +401,12 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=await async_maybe_transform(
                 {
+                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,
                     "interface_address": interface_address,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,
@@ -401,13 +425,13 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectListResponse:
         """
         Lists interconnects associated with an account.
@@ -430,7 +454,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -452,13 +476,13 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         *,
         account_id: str,
         body: object,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectBulkUpdateResponse:
         """Updates multiple interconnects associated with an account.
 
@@ -484,7 +508,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -507,13 +531,13 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CfInterconnectGetResponse:
         """
         Lists details for a specific interconnect.
@@ -540,7 +564,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else not_given
                 }
             ),
             **(extra_headers or {}),

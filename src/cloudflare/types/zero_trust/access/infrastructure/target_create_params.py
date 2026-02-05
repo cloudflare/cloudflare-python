@@ -24,6 +24,8 @@ class TargetCreateParams(TypedDict, total=False):
 
 
 class IPIPV4(TypedDict, total=False):
+    """The target's IPv4 address"""
+
     ip_addr: str
     """IP address of the target"""
 
@@ -35,6 +37,8 @@ class IPIPV4(TypedDict, total=False):
 
 
 class IPIPV6(TypedDict, total=False):
+    """The target's IPv6 address"""
+
     ip_addr: str
     """IP address of the target"""
 
@@ -46,6 +50,8 @@ class IPIPV6(TypedDict, total=False):
 
 
 class IP(TypedDict, total=False):
+    """The IPv4/IPv6 address that identifies where to reach a target"""
+
     ipv4: IPIPV4
     """The target's IPv4 address"""
 

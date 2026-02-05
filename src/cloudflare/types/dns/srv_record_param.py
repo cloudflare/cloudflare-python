@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
@@ -12,6 +12,8 @@ __all__ = ["SRVRecordParam", "Data", "Settings"]
 
 
 class Data(TypedDict, total=False):
+    """Components of a SRV record."""
+
     port: float
     """The port of the service."""
 
@@ -29,6 +31,8 @@ class Data(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -48,7 +52,14 @@ class Settings(TypedDict, total=False):
 
 class SRVRecordParam(TypedDict, total=False):
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
+
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Required[Literal["SRV"]]
     """Record type."""
@@ -71,12 +82,5 @@ class SRVRecordParam(TypedDict, total=False):
     settings: Settings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """

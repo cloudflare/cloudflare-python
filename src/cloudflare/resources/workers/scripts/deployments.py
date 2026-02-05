@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -20,9 +20,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import deployment_create_params
-from ....types.workers.scripts.deployment_param import DeploymentParam
-from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
-from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
+from ....types.workers.scripts.deployment import Deployment
+from ....types.workers.scripts.deployment_list_response import DeploymentListResponse
+from ....types.workers.scripts.deployment_delete_response import DeploymentDeleteResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -54,15 +54,15 @@ class DeploymentsResource(SyncAPIResource):
         account_id: str,
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
-        force: bool | NotGiven = NOT_GIVEN,
-        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
+        annotations: deployment_create_params.Annotations | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentCreateResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Deployment:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -72,7 +72,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
@@ -105,12 +105,12 @@ class DeploymentsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    def get(
+    def list(
         self,
         script_name: str,
         *,
@@ -120,8 +120,8 @@ class DeploymentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentGetResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DeploymentListResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -130,7 +130,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           extra_headers: Send extra headers
 
@@ -151,9 +151,101 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeploymentGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+        )
+
+    def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DeploymentDeleteResponse:
+        """Delete a Worker Deployment.
+
+        The latest deployment, which is actively serving
+        traffic, cannot be deleted. All other deployments can be deleted.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DeploymentDeleteResponse,
+        )
+
+    def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Deployment:
+        """
+        Get information about a Worker Deployment.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 
@@ -184,15 +276,15 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         account_id: str,
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
-        force: bool | NotGiven = NOT_GIVEN,
-        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
+        force: bool | Omit = omit,
+        annotations: deployment_create_params.Annotations | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentCreateResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Deployment:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -202,7 +294,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
@@ -235,12 +327,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    async def get(
+    async def list(
         self,
         script_name: str,
         *,
@@ -250,8 +342,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentGetResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DeploymentListResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -260,7 +352,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           extra_headers: Send extra headers
 
@@ -281,9 +373,101 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeploymentGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+        )
+
+    async def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DeploymentDeleteResponse:
+        """Delete a Worker Deployment.
+
+        The latest deployment, which is actively serving
+        traffic, cannot be deleted. All other deployments can be deleted.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DeploymentDeleteResponse,
+        )
+
+    async def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Deployment:
+        """
+        Get information about a Worker Deployment.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 
@@ -293,6 +477,12 @@ class DeploymentsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             deployments.create,
+        )
+        self.list = to_raw_response_wrapper(
+            deployments.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            deployments.delete,
         )
         self.get = to_raw_response_wrapper(
             deployments.get,
@@ -306,6 +496,12 @@ class AsyncDeploymentsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             deployments.create,
         )
+        self.list = async_to_raw_response_wrapper(
+            deployments.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            deployments.delete,
+        )
         self.get = async_to_raw_response_wrapper(
             deployments.get,
         )
@@ -318,6 +514,12 @@ class DeploymentsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             deployments.create,
         )
+        self.list = to_streamed_response_wrapper(
+            deployments.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            deployments.delete,
+        )
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
@@ -329,6 +531,12 @@ class AsyncDeploymentsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             deployments.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            deployments.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            deployments.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             deployments.get,

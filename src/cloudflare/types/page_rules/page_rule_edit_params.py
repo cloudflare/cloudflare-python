@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .target_param import TargetParam
 from ..zones.ssl_param import SSLParam
 from ..zones.waf_param import WAFParam
@@ -117,44 +118,65 @@ class ActionCacheDeceptionArmor(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueCookie(TypedDict, total=False):
-    check_presence: List[str]
+    """Controls which cookies appear in the Cache Key."""
+
+    check_presence: SequenceNotStr[str]
     """
     A list of cookies to check for the presence of, without including their actual
     values.
     """
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of cookies to include."""
 
 
 class ActionCacheKeyFieldsValueHeader(TypedDict, total=False):
-    check_presence: List[str]
+    """Controls which headers go into the Cache Key.
+
+    Exactly one of
+    `include` or `exclude` is expected.
+    """
+
+    check_presence: SequenceNotStr[str]
     """
     A list of headers to check for the presence of, without including their actual
     values.
     """
 
-    exclude: List[str]
+    exclude: SequenceNotStr[str]
     """A list of headers to ignore."""
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of headers to include."""
 
 
 class ActionCacheKeyFieldsValueHost(TypedDict, total=False):
+    """Determines which host header to include in the Cache Key."""
+
     resolved: bool
     """Whether to include the Host header in the HTTP request sent to the origin."""
 
 
 class ActionCacheKeyFieldsValueQueryString(TypedDict, total=False):
-    exclude: Union[Literal["*"], List[str]]
+    """Controls which URL query string parameters go into the Cache
+    Key.
+
+    Exactly one of `include` or `exclude` is expected.
+    """
+
+    exclude: Union[Literal["*"], SequenceNotStr[str]]
     """Ignore all query string parameters."""
 
-    include: Union[Literal["*"], List[str]]
+    include: Union[Literal["*"], SequenceNotStr[str]]
     """Include all query string parameters."""
 
 
 class ActionCacheKeyFieldsValueUser(TypedDict, total=False):
+    """
+    Feature fields to add features about the end-user (client) into
+    the Cache Key.
+    """
+
     device_type: bool
     """
     Classifies a request as `mobile`, `desktop`, or `tablet` based on the User

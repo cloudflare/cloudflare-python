@@ -9,6 +9,8 @@ __all__ = ["OperationBulkEditResponse", "OperationBulkEditResponseItem"]
 
 
 class OperationBulkEditResponseItem(BaseModel):
+    """Mappings of discovered operations (keys) to objects describing their state"""
+
     state: Optional[Literal["review", "ignored"]] = None
     """Mark state of operation in API Discovery
 

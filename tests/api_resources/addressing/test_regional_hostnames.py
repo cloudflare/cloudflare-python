@@ -39,7 +39,7 @@ class TestRegionalHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="foo.example.com",
             region_key="ca",
-            routing="routing",
+            routing="dns",
         )
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 
@@ -269,7 +269,9 @@ class TestRegionalHostnames:
 
 
 class TestAsyncRegionalHostnames:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -286,7 +288,7 @@ class TestAsyncRegionalHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="foo.example.com",
             region_key="ca",
-            routing="routing",
+            routing="dns",
         )
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 

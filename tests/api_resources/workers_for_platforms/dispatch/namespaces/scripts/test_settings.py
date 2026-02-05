@@ -75,11 +75,13 @@ class TestSettings:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag"],
+                "tags": ["my-team", "my-public-api"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
@@ -208,7 +210,9 @@ class TestSettings:
 
 
 class TestAsyncSettings:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -265,11 +269,13 @@ class TestAsyncSettings:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag"],
+                "tags": ["my-team", "my-public-api"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",

@@ -33,7 +33,7 @@ class TestTop:
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
@@ -73,7 +73,7 @@ class TestTop:
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
@@ -103,7 +103,9 @@ class TestTop:
 
 
 class TestAsyncTop:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_ases(self, async_client: AsyncCloudflare) -> None:
@@ -117,7 +119,7 @@ class TestAsyncTop:
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
@@ -157,7 +159,7 @@ class TestAsyncTop:
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",

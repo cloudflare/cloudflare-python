@@ -6,13 +6,14 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["SummaryEdnsParams"]
 
 
 class SummaryEdnsParams(TypedDict, total=False):
-    continent: List[str]
+    continent: SequenceNotStr[str]
     """Filters results by continent.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -20,10 +21,10 @@ class SummaryEdnsParams(TypedDict, total=False):
     includes results from NA.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -31,13 +32,13 @@ class SummaryEdnsParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    location: List[str]
+    location: SequenceNotStr[str]
     """Filters results by location.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -45,103 +46,105 @@ class SummaryEdnsParams(TypedDict, total=False):
     includes results from PT.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    protocol: Literal["UDP", "TCP", "HTTPS", "TLS"]
+    protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]]
     """Filters results by DNS transport protocol."""
 
     query_type: Annotated[
-        Optional[
-            Literal[
-                "A",
-                "AAAA",
-                "A6",
-                "AFSDB",
-                "ANY",
-                "APL",
-                "ATMA",
-                "AXFR",
-                "CAA",
-                "CDNSKEY",
-                "CDS",
-                "CERT",
-                "CNAME",
-                "CSYNC",
-                "DHCID",
-                "DLV",
-                "DNAME",
-                "DNSKEY",
-                "DOA",
-                "DS",
-                "EID",
-                "EUI48",
-                "EUI64",
-                "GPOS",
-                "GID",
-                "HINFO",
-                "HIP",
-                "HTTPS",
-                "IPSECKEY",
-                "ISDN",
-                "IXFR",
-                "KEY",
-                "KX",
-                "L32",
-                "L64",
-                "LOC",
-                "LP",
-                "MAILA",
-                "MAILB",
-                "MB",
-                "MD",
-                "MF",
-                "MG",
-                "MINFO",
-                "MR",
-                "MX",
-                "NAPTR",
-                "NB",
-                "NBSTAT",
-                "NID",
-                "NIMLOC",
-                "NINFO",
-                "NS",
-                "NSAP",
-                "NSEC",
-                "NSEC3",
-                "NSEC3PARAM",
-                "NULL",
-                "NXT",
-                "OPENPGPKEY",
-                "OPT",
-                "PTR",
-                "PX",
-                "RKEY",
-                "RP",
-                "RRSIG",
-                "RT",
-                "SIG",
-                "SINK",
-                "SMIMEA",
-                "SOA",
-                "SPF",
-                "SRV",
-                "SSHFP",
-                "SVCB",
-                "TA",
-                "TALINK",
-                "TKEY",
-                "TLSA",
-                "TSIG",
-                "TXT",
-                "UINFO",
-                "UID",
-                "UNSPEC",
-                "URI",
-                "WKS",
-                "X25",
-                "ZONEMD",
+        List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
             ]
         ],
         PropertyInfo(alias="queryType"),
@@ -149,26 +152,28 @@ class SummaryEdnsParams(TypedDict, total=False):
     """Filters results by DNS query type."""
 
     response_code: Annotated[
-        Literal[
-            "NOERROR",
-            "FORMERR",
-            "SERVFAIL",
-            "NXDOMAIN",
-            "NOTIMP",
-            "REFUSED",
-            "YXDOMAIN",
-            "YXRRSET",
-            "NXRRSET",
-            "NOTAUTH",
-            "NOTZONE",
-            "BADSIG",
-            "BADKEY",
-            "BADTIME",
-            "BADMODE",
-            "BADNAME",
-            "BADALG",
-            "BADTRUNC",
-            "BADCOOKIE",
+        List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
         ],
         PropertyInfo(alias="responseCode"),
     ]

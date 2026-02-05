@@ -35,7 +35,7 @@ class Webhooks(BaseModel):
     notification.
     """
 
-    type: Optional[Literal["slack", "generic", "gchat"]] = None
+    type: Optional[Literal["datadog", "discord", "feishu", "gchat", "generic", "opsgenie", "slack", "splunk"]] = None
     """Type of webhook endpoint."""
 
     url: Optional[str] = None

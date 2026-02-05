@@ -36,10 +36,24 @@ class GRETunnelUpdateParams(TypedDict, total=False):
     less, and cannot share a name with another GRE tunnel.
     """
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     description: str
     """An optional description of the GRE tunnel."""
 
     health_check: HealthCheck
+
+    interface_address6: str
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
+    """
 
     mtu: int
     """Maximum Transmission Unit (MTU) in bytes for the GRE tunnel.
@@ -54,6 +68,11 @@ class GRETunnelUpdateParams(TypedDict, total=False):
 
 
 class HealthCheckTargetMagicHealthCheckTarget(TypedDict, total=False):
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the ICMP echo will be forwarded to this address. This field defaults to `customer_gre_endpoint address`. This field is ignored for bidirectional healthchecks as the interface_address (not assigned to the Cloudflare side of the tunnel) is used as the target.
+    """
+
     saved: str
     """The saved health check target.
 

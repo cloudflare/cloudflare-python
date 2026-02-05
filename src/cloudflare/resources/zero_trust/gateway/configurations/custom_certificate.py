@@ -7,7 +7,7 @@ from typing import Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Query, Headers, NotGiven, not_given
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -52,10 +52,10 @@ class CustomCertificateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificateSettings]:
         """
-        Fetches the current Zero Trust certificate configuration.
+        Retrieve the current Zero Trust certificate configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -107,10 +107,10 @@ class AsyncCustomCertificateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificateSettings]:
         """
-        Fetches the current Zero Trust certificate configuration.
+        Retrieve the current Zero Trust certificate configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -138,7 +138,7 @@ class CustomCertificateResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                custom_certificate.get  # pyright: ignore[reportDeprecated],
+                custom_certificate.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -149,7 +149,7 @@ class AsyncCustomCertificateResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                custom_certificate.get  # pyright: ignore[reportDeprecated],
+                custom_certificate.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -160,7 +160,7 @@ class CustomCertificateResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                custom_certificate.get  # pyright: ignore[reportDeprecated],
+                custom_certificate.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -171,6 +171,6 @@ class AsyncCustomCertificateResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                custom_certificate.get  # pyright: ignore[reportDeprecated],
+                custom_certificate.get,  # pyright: ignore[reportDeprecated],
             )
         )

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
 
@@ -16,6 +17,7 @@ __all__ = [
     "CheckSession",
     "DNSResolvers",
     "Egress",
+    "ForensicCopy",
     "L4override",
     "NotificationSettings",
     "PayloadLog",
@@ -27,17 +29,27 @@ __all__ = [
 
 
 class AuditSSH(TypedDict, total=False):
+    """Define the settings for the Audit SSH action.
+
+    Settable only for `l4` rules with `audit_ssh` action.
+    """
+
     command_logging: bool
-    """Enable to turn on SSH command logging."""
+    """Enable SSH command logging."""
 
 
 class BISOAdminControls(TypedDict, total=False):
-    copy: Literal["enabled", "disabled", "remote_only"]
-    """Configure whether copy is enabled or not.
+    """Configure browser isolation behavior.
 
-    When set with "remote_only", copying isolated content from the remote browser to
-    the user's local clipboard is disabled. When absent, copy is enabled. Only
-    applies when `version == "v2"`.
+    Settable only for `http` rules with the action set to `isolate`.
+    """
+
+    copy: Literal["enabled", "disabled", "remote_only"]
+    """Configure copy behavior.
+
+    If set to remote_only, users cannot copy isolated content from the remote
+    browser to the local clipboard. If this field is absent, copying remains
+    enabled. Applies only when version == "v2".
     """
 
     dcp: bool
@@ -50,10 +62,10 @@ class BISOAdminControls(TypedDict, total=False):
     """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
 
     download: Literal["enabled", "disabled", "remote_only"]
-    """Configure whether downloading enabled or not.
+    """Configure download behavior.
 
-    When set with "remote_only", downloads are only available for viewing. Only
-    applies when `version == "v2"`.
+    When set to remote_only, users can view downloads but cannot save them. Applies
+    only when version == "v2".
     """
 
     dp: bool
@@ -63,256 +75,376 @@ class BISOAdminControls(TypedDict, total=False):
     """Set to false to enable uploading. Only applies when `version == "v1"`."""
 
     keyboard: Literal["enabled", "disabled"]
-    """Configure whether keyboard usage is enabled or not.
+    """Configure keyboard usage behavior.
 
-    When absent, keyboard usage is enabled. Only applies when `version == "v2"`.
+    If this field is absent, keyboard usage remains enabled. Applies only when
+    version == "v2".
     """
 
     paste: Literal["enabled", "disabled", "remote_only"]
-    """Configure whether pasting is enabled or not.
+    """Configure paste behavior.
 
-    When set with "remote_only", pasting content from the user's local clipboard
-    into isolated pages is disabled. When absent, paste is enabled. Only applies
-    when `version == "v2"`.
+    If set to remote_only, users cannot paste content from the local clipboard into
+    isolated pages. If this field is absent, pasting remains enabled. Applies only
+    when version == "v2".
     """
 
     printing: Literal["enabled", "disabled"]
-    """Configure whether printing is enabled or not.
+    """Configure print behavior.
 
-    When absent, printing is enabled. Only applies when `version == "v2"`.
+    Default, Printing is enabled. Applies only when version == "v2".
     """
 
     upload: Literal["enabled", "disabled"]
-    """Configure whether uploading is enabled or not.
+    """Configure upload behavior.
 
-    When absent, uploading is enabled. Only applies when `version == "v2"`.
+    If this field is absent, uploading remains enabled. Applies only when version ==
+    "v2".
     """
 
     version: Literal["v1", "v2"]
-    """Indicates which version of the browser isolation controls should apply."""
+    """Indicate which version of the browser isolation controls should apply."""
 
 
 class BlockPage(TypedDict, total=False):
+    """Configure custom block page settings.
+
+    If missing or null, use the account settings. Settable only for `http` rules with the action set to `block`.
+    """
+
     target_uri: Required[str]
-    """URI to which the user will be redirected"""
+    """Specify the URI to which the user is redirected."""
 
     include_context: bool
-    """If true, context information will be passed as query parameters"""
+    """Specify whether to pass the context information as query parameters."""
 
 
 class CheckSession(TypedDict, total=False):
+    """Configure session check behavior.
+
+    Settable only for `l4` and `http` rules with the action set to `allow`.
+    """
+
     duration: str
-    """Configure how fresh the session needs to be to be considered valid."""
+    """Sets the required session freshness threshold.
+
+    The API returns a normalized version of this value.
+    """
 
     enforce: bool
-    """Set to true to enable session enforcement."""
+    """Enable session enforcement."""
 
 
 class DNSResolvers(TypedDict, total=False):
+    """Configure custom resolvers to route queries that match the resolver policy.
+
+    Unused with 'resolve_dns_through_cloudflare' or 'resolve_dns_internally' settings. DNS queries get routed to the address closest to their origin. Only valid when a rule's action set to 'resolve'. Settable only for `dns_resolver` rules.
+    """
+
     ipv4: Iterable[DNSResolverSettingsV4Param]
 
     ipv6: Iterable[DNSResolverSettingsV6Param]
 
 
 class Egress(TypedDict, total=False):
+    """Configure how Gateway Proxy traffic egresses.
+
+    You can enable this setting for rules with Egress actions and filters, or omit it to indicate local egress via WARP IPs. Settable only for `egress` rules.
+    """
+
     ipv4: str
-    """The IPv4 address to be used for egress."""
+    """Specify the IPv4 address to use for egress."""
 
     ipv4_fallback: str
-    """
-    The fallback IPv4 address to be used for egress in the event of an error
-    egressing with the primary IPv4. Can be '0.0.0.0' to indicate local egress via
-    WARP IPs.
+    """Specify the fallback IPv4 address to use for egress when the primary IPv4 fails.
+
+    Set '0.0.0.0' to indicate local egress via WARP IPs.
     """
 
     ipv6: str
-    """The IPv6 range to be used for egress."""
+    """Specify the IPv6 range to use for egress."""
+
+
+class ForensicCopy(TypedDict, total=False):
+    """
+    Configure whether a copy of the HTTP request will be sent to storage when the rule matches.
+    """
+
+    enabled: bool
+    """Enable sending the copy to storage."""
 
 
 class L4override(TypedDict, total=False):
+    """Send matching traffic to the supplied destination IP address and port.
+
+    Settable only for `l4` rules with the action set to `l4_override`.
+    """
+
     ip: str
-    """IPv4 or IPv6 address."""
+    """Defines the IPv4 or IPv6 address."""
 
     port: int
-    """A port number to use for TCP/UDP overrides."""
+    """Defines a port number to use for TCP/UDP overrides."""
 
 
 class NotificationSettings(TypedDict, total=False):
+    """Configure a notification to display on the user's device when this rule matched.
+
+    Settable for all types of rules with the action set to `block`.
+    """
+
     enabled: bool
-    """Set notification on"""
+    """Enable notification."""
 
     include_context: bool
-    """If true, context information will be passed as query parameters"""
+    """Indicates whether to pass the context information as query parameters."""
 
     msg: str
     """Customize the message shown in the notification."""
 
     support_url: str
-    """Optional URL to direct users to additional information.
+    """Defines an optional URL to direct users to additional information.
 
-    If not set, the notification will open a block page.
+    If unset, the notification opens a block page.
     """
 
 
 class PayloadLog(TypedDict, total=False):
+    """Configure DLP payload logging. Settable only for `http` rules."""
+
     enabled: bool
-    """Set to true to enable DLP payload logging for this rule."""
+    """Enable DLP payload logging for this rule."""
 
 
 class Quarantine(TypedDict, total=False):
+    """Configure settings that apply to quarantine rules.
+
+    Settable only for `http` rules.
+    """
+
     file_types: List[
         Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]
     ]
-    """Types of files to sandbox."""
+    """Specify the types of files to sandbox."""
 
 
 class Redirect(TypedDict, total=False):
+    """Apply settings to redirect rules.
+
+    Settable only for `http` rules with the action set to `redirect`.
+    """
+
     target_uri: Required[str]
-    """URI to which the user will be redirected"""
+    """Specify the URI to which the user is redirected."""
 
     include_context: bool
-    """If true, context information will be passed as query parameters"""
+    """Specify whether to pass the context information as query parameters."""
 
     preserve_path_and_query: bool
     """
-    If true, the path and query parameters from the original request will be
-    appended to target_uri
+    Specify whether to append the path and query parameters from the original
+    request to target_uri.
     """
 
 
 class ResolveDNSInternally(TypedDict, total=False):
+    """
+    Configure to forward the query to the internal DNS service, passing the specified 'view_id' as input. Not used when 'dns_resolvers' is specified or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action set to 'resolve'. Settable only for `dns_resolver` rules.
+    """
+
     fallback: Literal["none", "public_dns"]
     """
-    The fallback behavior to apply when the internal DNS response code is different
-    from 'NOERROR' or when the response data only contains CNAME records for 'A' or
-    'AAAA' queries.
+    Specify the fallback behavior to apply when the internal DNS response code
+    differs from 'NOERROR' or when the response data contains only CNAME records for
+    'A' or 'AAAA' queries.
     """
 
     view_id: str
-    """The internal DNS view identifier that's passed to the internal DNS service."""
+    """Specify the internal DNS view identifier to pass to the internal DNS service."""
 
 
 class UntrustedCERT(TypedDict, total=False):
-    action: Literal["pass_through", "block", "error"]
-    """The action performed when an untrusted certificate is seen.
+    """
+    Configure behavior when an upstream certificate is invalid or an SSL error occurs. Settable only for `http` rules with the action set to `allow`.
+    """
 
-    The default action is an error with HTTP code 526.
+    action: Literal["pass_through", "block", "error"]
+    """Defines the action performed when an untrusted certificate seen.
+
+    The default action an error with HTTP code 526.
     """
 
 
 class RuleSettingParam(TypedDict, total=False):
-    add_headers: Optional[Dict[str, str]]
-    """Add custom headers to allowed requests, in the form of key-value pairs.
+    """Defines settings for this rule.
 
-    Keys are header names, pointing to an array with its header value(s).
+    Settings apply only to specific rule types and must use compatible selectors. If Terraform detects drift, confirm the setting supports your rule type and check whether the API modifies the value. Use API-returned values in your configuration to prevent drift.
+    """
+
+    add_headers: Optional[Dict[str, SequenceNotStr[str]]]
+    """Add custom headers to allowed requests as key-value pairs.
+
+    Use header names as keys that map to arrays of header values. Settable only for
+    `http` rules with the action set to `allow`.
     """
 
     allow_child_bypass: Optional[bool]
-    """Set by parent MSP accounts to enable their children to bypass this rule."""
+    """Set to enable MSP children to bypass this rule.
+
+    Only parent MSP accounts can set this. this rule. Settable for all types of
+    rules.
+    """
 
     audit_ssh: Optional[AuditSSH]
-    """Settings for the Audit SSH action."""
+    """Define the settings for the Audit SSH action.
 
-    biso_admin_controls: Optional[BISOAdminControls]
-    """Configure how browser isolation behaves."""
+    Settable only for `l4` rules with `audit_ssh` action.
+    """
+
+    biso_admin_controls: BISOAdminControls
+    """Configure browser isolation behavior.
+
+    Settable only for `http` rules with the action set to `isolate`.
+    """
 
     block_page: Optional[BlockPage]
-    """Custom block page settings.
+    """Configure custom block page settings.
 
-    If missing/null, blocking will use the the account settings.
+    If missing or null, use the account settings. Settable only for `http` rules
+    with the action set to `block`.
     """
 
     block_page_enabled: bool
-    """Enable the custom block page."""
+    """Enable the custom block page.
 
-    block_reason: str
+    Settable only for `dns` rules with action `block`.
     """
-    The text describing why this block occurred, displayed on the custom block page
-    (if enabled).
+
+    block_reason: Optional[str]
+    """Explain why the rule blocks the request.
+
+    The custom block page shows this text (if enabled). Settable only for `dns`,
+    `l4`, and `http` rules when the action set to `block`.
     """
 
     bypass_parent_rule: Optional[bool]
-    """Set by children MSP accounts to bypass their parent's rules."""
+    """Set to enable MSP accounts to bypass their parent's rules.
+
+    Only MSP child accounts can set this. Settable for all types of rules.
+    """
 
     check_session: Optional[CheckSession]
-    """Configure how session check behaves."""
+    """Configure session check behavior.
+
+    Settable only for `l4` and `http` rules with the action set to `allow`.
+    """
 
     dns_resolvers: Optional[DNSResolvers]
-    """Add your own custom resolvers to route queries that match the resolver policy.
+    """Configure custom resolvers to route queries that match the resolver policy.
 
-    Cannot be used when 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
-    are set. DNS queries will route to the address closest to their origin. Only
-    valid when a rule's action is set to 'resolve'.
+    Unused with 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
+    settings. DNS queries get routed to the address closest to their origin. Only
+    valid when a rule's action set to 'resolve'. Settable only for `dns_resolver`
+    rules.
     """
 
     egress: Optional[Egress]
     """Configure how Gateway Proxy traffic egresses.
 
     You can enable this setting for rules with Egress actions and filters, or omit
-    it to indicate local egress via WARP IPs.
+    it to indicate local egress via WARP IPs. Settable only for `egress` rules.
+    """
+
+    forensic_copy: Optional[ForensicCopy]
+    """
+    Configure whether a copy of the HTTP request will be sent to storage when the
+    rule matches.
     """
 
     ignore_cname_category_matches: bool
-    """Set to true, to ignore the category matches at CNAME domains in a response.
+    """Ignore category matches at CNAME domains in a response.
 
-    If unchecked, the categories in this rule will be checked against all the CNAME
-    domain categories in a response.
+    When off, evaluate categories in this rule against all CNAME domain categories
+    in the response. Settable only for `dns` and `dns_resolver` rules.
     """
 
     insecure_disable_dnssec_validation: bool
-    """INSECURE - disable DNSSEC validation (for Allow actions)."""
+    """Specify whether to disable DNSSEC validation (for Allow actions) [INSECURE].
+
+    Settable only for `dns` rules.
+    """
 
     ip_categories: bool
-    """Set to true to enable IPs in DNS resolver category blocks.
+    """Enable IPs in DNS resolver category blocks.
 
-    By default categories only block based on domain names.
+    The system blocks only domain name categories unless you enable this setting.
+    Settable only for `dns` and `dns_resolver` rules.
     """
 
     ip_indicator_feeds: bool
-    """Set to true to include IPs in DNS resolver indicator feed blocks.
+    """Indicates whether to include IPs in DNS resolver indicator feed blocks.
 
-    By default indicator feeds only block based on domain names.
+    Default, indicator feeds block only domain names. Settable only for `dns` and
+    `dns_resolver` rules.
     """
 
     l4override: Optional[L4override]
-    """Send matching traffic to the supplied destination IP address and port."""
+    """Send matching traffic to the supplied destination IP address and port.
+
+    Settable only for `l4` rules with the action set to `l4_override`.
+    """
 
     notification_settings: Optional[NotificationSettings]
-    """
-    Configure a notification to display on the user's device when this rule is
-    matched.
+    """Configure a notification to display on the user's device when this rule matched.
+
+    Settable for all types of rules with the action set to `block`.
     """
 
     override_host: str
-    """Override matching DNS queries with a hostname."""
+    """Defines a hostname for override, for the matching DNS queries.
 
-    override_ips: Optional[List[str]]
-    """Override matching DNS queries with an IP or set of IPs."""
+    Settable only for `dns` rules with the action set to `override`.
+    """
+
+    override_ips: Optional[SequenceNotStr[str]]
+    """Defines a an IP or set of IPs for overriding matched DNS queries.
+
+    Settable only for `dns` rules with the action set to `override`.
+    """
 
     payload_log: Optional[PayloadLog]
-    """Configure DLP payload logging."""
+    """Configure DLP payload logging. Settable only for `http` rules."""
 
     quarantine: Optional[Quarantine]
-    """Settings that apply to quarantine rules"""
+    """Configure settings that apply to quarantine rules.
+
+    Settable only for `http` rules.
+    """
 
     redirect: Optional[Redirect]
-    """Settings that apply to redirect rules"""
+    """Apply settings to redirect rules.
+
+    Settable only for `http` rules with the action set to `redirect`.
+    """
 
     resolve_dns_internally: Optional[ResolveDNSInternally]
     """
     Configure to forward the query to the internal DNS service, passing the
-    specified 'view_id' as input. Cannot be set when 'dns_resolvers' are specified
-    or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is
-    set to 'resolve'.
+    specified 'view_id' as input. Not used when 'dns_resolvers' is specified or
+    'resolve_dns_through_cloudflare' is set. Only valid when a rule's action set to
+    'resolve'. Settable only for `dns_resolver` rules.
     """
 
     resolve_dns_through_cloudflare: Optional[bool]
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot be set when 'dns_resolvers' are specified or
-    'resolve_dns_internally' is set. Only valid when a rule's action is set to
-    'resolve'.
+    resolver. Cannot set when 'dns_resolvers' specified or 'resolve_dns_internally'
+    is set. Only valid when a rule's action set to 'resolve'. Settable only for
+    `dns_resolver` rules.
     """
 
     untrusted_cert: Optional[UntrustedCERT]
-    """Configure behavior when an upstream cert is invalid or an SSL error occurs."""
+    """
+    Configure behavior when an upstream certificate is invalid or an SSL error
+    occurs. Settable only for `http` rules with the action set to `allow`.
+    """

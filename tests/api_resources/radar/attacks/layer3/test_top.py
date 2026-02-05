@@ -38,9 +38,9 @@ class TestTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             ip_version=["IPv4"],
-            limit=5,
+            limit=1,
             limit_direction="ORIGIN",
-            limit_per_location=10,
+            limit_per_location=1,
             location=["string"],
             magnitude="MITIGATED_BYTES",
             name=["main_series"],
@@ -86,7 +86,7 @@ class TestTop:
                 date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
                 format="JSON",
                 ip_version=["IPv4"],
-                limit=5,
+                limit=1,
                 location=["string"],
                 name=["main_series"],
                 protocol=["UDP"],
@@ -133,7 +133,7 @@ class TestTop:
                 date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
                 format="JSON",
                 ip_version=["IPv4"],
-                limit=5,
+                limit=1,
                 location=["string"],
                 name=["main_series"],
                 protocol=["UDP"],
@@ -165,7 +165,9 @@ class TestTop:
 
 
 class TestAsyncTop:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_attacks(self, async_client: AsyncCloudflare) -> None:
@@ -181,9 +183,9 @@ class TestAsyncTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             ip_version=["IPv4"],
-            limit=5,
+            limit=1,
             limit_direction="ORIGIN",
-            limit_per_location=10,
+            limit_per_location=1,
             location=["string"],
             magnitude="MITIGATED_BYTES",
             name=["main_series"],
@@ -229,7 +231,7 @@ class TestAsyncTop:
                 date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
                 format="JSON",
                 ip_version=["IPv4"],
-                limit=5,
+                limit=1,
                 location=["string"],
                 name=["main_series"],
                 protocol=["UDP"],
@@ -276,7 +278,7 @@ class TestAsyncTop:
                 date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
                 format="JSON",
                 ip_version=["IPv4"],
-                limit=5,
+                limit=1,
                 location=["string"],
                 name=["main_series"],
                 protocol=["UDP"],

@@ -45,7 +45,6 @@ class TestConfigurations:
                         "support_url": "support_url",
                     },
                 },
-                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -55,7 +54,7 @@ class TestConfigurations:
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
-                    "mode": "customized_block_page",
+                    "mode": "",
                     "name": "Cloudflare",
                     "suppress_footer": False,
                     "target_uri": "https://example.com",
@@ -73,6 +72,7 @@ class TestConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
+                "inspection": {"mode": "static"},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -138,7 +138,6 @@ class TestConfigurations:
                         "support_url": "support_url",
                     },
                 },
-                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -148,7 +147,7 @@ class TestConfigurations:
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
-                    "mode": "customized_block_page",
+                    "mode": "",
                     "name": "Cloudflare",
                     "suppress_footer": False,
                     "target_uri": "https://example.com",
@@ -166,6 +165,7 @@ class TestConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
+                "inspection": {"mode": "static"},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -247,7 +247,9 @@ class TestConfigurations:
 
 
 class TestAsyncConfigurations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -273,7 +275,6 @@ class TestAsyncConfigurations:
                         "support_url": "support_url",
                     },
                 },
-                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -283,7 +284,7 @@ class TestAsyncConfigurations:
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
-                    "mode": "customized_block_page",
+                    "mode": "",
                     "name": "Cloudflare",
                     "suppress_footer": False,
                     "target_uri": "https://example.com",
@@ -301,6 +302,7 @@ class TestAsyncConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
+                "inspection": {"mode": "static"},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -366,7 +368,6 @@ class TestAsyncConfigurations:
                         "support_url": "support_url",
                     },
                 },
-                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -376,7 +377,7 @@ class TestAsyncConfigurations:
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
-                    "mode": "customized_block_page",
+                    "mode": "",
                     "name": "Cloudflare",
                     "suppress_footer": False,
                     "target_uri": "https://example.com",
@@ -394,6 +395,7 @@ class TestAsyncConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
+                "inspection": {"mode": "static"},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,

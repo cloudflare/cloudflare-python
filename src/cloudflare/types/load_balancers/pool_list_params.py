@@ -9,7 +9,7 @@ __all__ = ["PoolListParams"]
 
 class PoolListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     monitor: str
     """

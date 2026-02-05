@@ -39,17 +39,21 @@ __all__ = [
 
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class RuleRulesetsChallengeRuleRatelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -57,9 +61,9 @@ class RuleRulesetsChallengeRuleRatelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -75,7 +79,7 @@ class RuleRulesetsChallengeRuleRatelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -85,8 +89,8 @@ class RuleRulesetsChallengeRuleRatelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -116,7 +120,7 @@ class RuleRulesetsChallengeRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[RuleRulesetsChallengeRuleExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -125,24 +129,28 @@ class RuleRulesetsChallengeRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[RuleRulesetsChallengeRuleRatelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""
 
 
 class RuleRulesetsJSChallengeRuleExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -150,9 +158,9 @@ class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -168,7 +176,7 @@ class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -178,8 +186,8 @@ class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -209,7 +217,7 @@ class RuleRulesetsJSChallengeRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[RuleRulesetsJSChallengeRuleExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -218,10 +226,10 @@ class RuleRulesetsJSChallengeRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[RuleRulesetsJSChallengeRuleRatelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""
 
 
 Rule: TypeAlias = Annotated[
@@ -229,27 +237,29 @@ Rule: TypeAlias = Annotated[
         BlockRule,
         RuleRulesetsChallengeRule,
         CompressResponseRule,
+        DDoSDynamicRule,
         ExecuteRule,
+        ForceConnectionCloseRule,
         RuleRulesetsJSChallengeRule,
         LogRule,
+        LogCustomFieldRule,
         ManagedChallengeRule,
         RedirectRule,
         RewriteRule,
         RouteRule,
         ScoreRule,
         ServeErrorRule,
+        SetCacheSettingsRule,
         SetConfigRule,
         SkipRule,
-        SetCacheSettingsRule,
-        LogCustomFieldRule,
-        DDoSDynamicRule,
-        ForceConnectionCloseRule,
     ],
     PropertyInfo(discriminator="action"),
 ]
 
 
 class RulesetCreateResponse(BaseModel):
+    """A ruleset object."""
+
     id: str
     """The unique ID of the ruleset."""
 

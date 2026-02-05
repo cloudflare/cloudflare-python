@@ -20,9 +20,6 @@ class ASN(BaseModel):
 
     aka: Optional[str] = None
 
-    name_long: Optional[str] = FieldInfo(alias="nameLong", default=None)
-    """Deprecated field. Please use 'aka'."""
-
     org_name: Optional[str] = FieldInfo(alias="orgName", default=None)
 
     website: Optional[str] = None

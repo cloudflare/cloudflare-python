@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -72,60 +72,71 @@ class RulesResource(SyncAPIResource):
             "redirect",
         ],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        device_posture: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
-        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-        identity: str | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
-        traffic: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        device_posture: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiration: Optional[rule_create_params.Expiration] | Omit = omit,
+        filters: List[GatewayFilter] | Omit = omit,
+        identity: str | Omit = omit,
+        precedence: int | Omit = omit,
+        rule_settings: RuleSettingParam | Omit = omit,
+        schedule: Optional[ScheduleParam] | Omit = omit,
+        traffic: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Creates a new Zero Trust Gateway rule.
+        Create a new Zero Trust Gateway rule.
 
         Args:
-          action: The action to preform when the associated traffic, identity, and device posture
-              expressions are either absent or evaluate to `true`.
+          action: Specify the action to perform when the associated traffic, identity, and device
+              posture expressions either absent or evaluate to `true`.
 
-          name: The name of the rule.
+          name: Specify the rule name.
 
-          description: The description of the rule.
+          description: Specify the rule description.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: Specify the wirefilter expression used for device posture check. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          enabled: True if the rule is enabled.
+          enabled: Specify whether the rule is enabled.
 
-          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
-              over the policy's `schedule` configuration, if any.
+          expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
+              precedence over the policy's `schedule` configuration, if any. This does not
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
-              This does not apply to HTTP or network policies.
+          filters: Specify the protocol or layer to evaluate the traffic, identity, and device
+              posture expressions. Can only contain a single value.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
-              expressions.
+          identity: Specify the wirefilter expression used for identity matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          identity: The wirefilter expression used for identity matching.
-
-          precedence: Precedence sets the order of your rules. Lower values indicate higher
-              precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value. Refer to
+          precedence: Set the order of your rules. Lower values indicate higher precedence. At each
+              processing phase, evaluate applicable rules in ascending order of this value.
+              Refer to
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-              docs on how to manage precedence via Terraform.
+              to manage precedence via Terraform.
 
-          rule_settings: Additional settings that modify the rule's action.
+          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
+              must use compatible selectors. If Terraform detects drift, confirm the setting
+              supports your rule type and check whether the API modifies the value. Use
+              API-returned values in your configuration to prevent drift.
 
-          schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
-              policies.
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: Specify the wirefilter expression used for traffic matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
           extra_headers: Send extra headers
 
@@ -190,62 +201,73 @@ class RulesResource(SyncAPIResource):
             "redirect",
         ],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        device_posture: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
-        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-        identity: str | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
-        traffic: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        device_posture: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiration: Optional[rule_update_params.Expiration] | Omit = omit,
+        filters: List[GatewayFilter] | Omit = omit,
+        identity: str | Omit = omit,
+        precedence: int | Omit = omit,
+        rule_settings: RuleSettingParam | Omit = omit,
+        schedule: Optional[ScheduleParam] | Omit = omit,
+        traffic: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Updates a configured Zero Trust Gateway rule.
+        Update a configured Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
-          action: The action to preform when the associated traffic, identity, and device posture
-              expressions are either absent or evaluate to `true`.
+          action: Specify the action to perform when the associated traffic, identity, and device
+              posture expressions either absent or evaluate to `true`.
 
-          name: The name of the rule.
+          name: Specify the rule name.
 
-          description: The description of the rule.
+          description: Specify the rule description.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: Specify the wirefilter expression used for device posture check. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          enabled: True if the rule is enabled.
+          enabled: Specify whether the rule is enabled.
 
-          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
-              over the policy's `schedule` configuration, if any.
+          expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
+              precedence over the policy's `schedule` configuration, if any. This does not
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
-              This does not apply to HTTP or network policies.
+          filters: Specify the protocol or layer to evaluate the traffic, identity, and device
+              posture expressions. Can only contain a single value.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
-              expressions.
+          identity: Specify the wirefilter expression used for identity matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          identity: The wirefilter expression used for identity matching.
-
-          precedence: Precedence sets the order of your rules. Lower values indicate higher
-              precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value. Refer to
+          precedence: Set the order of your rules. Lower values indicate higher precedence. At each
+              processing phase, evaluate applicable rules in ascending order of this value.
+              Refer to
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-              docs on how to manage precedence via Terraform.
+              to manage precedence via Terraform.
 
-          rule_settings: Additional settings that modify the rule's action.
+          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
+              must use compatible selectors. If Terraform detects drift, confirm the setting
+              supports your rule type and check whether the API modifies the value. Use
+              API-returned values in your configuration to prevent drift.
 
-          schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
-              policies.
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: Specify the wirefilter expression used for traffic matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
           extra_headers: Send extra headers
 
@@ -297,10 +319,10 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[GatewayRule]:
         """
-        Fetches the Zero Trust Gateway rules for an account.
+        List Zero Trust Gateway rules for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -332,13 +354,13 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Deletes a Zero Trust Gateway rule.
+        Delete a Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -374,13 +396,13 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Fetches a single Zero Trust Gateway rule.
+        Get a single Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -406,6 +428,41 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
+    def list_tenant(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[GatewayRule]:
+        """
+        List Zero Trust Gateway rules for the parent account of an account in the MSP
+        configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/gateway/rules/tenant",
+            page=SyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=GatewayRule,
+        )
+
     def reset_expiration(
         self,
         rule_id: str,
@@ -416,17 +473,15 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Resets the expiration of a Zero Trust Gateway Rule if its duration has elapsed
-        and it has a default duration.
-
-        The Zero Trust Gateway Rule must have values for both `expiration.expires_at`
-        and `expiration.duration`.
+        Resets the expiration of a Zero Trust Gateway Rule if its duration elapsed and
+        it has a default duration. The Zero Trust Gateway Rule must have values for both
+        `expiration.expires_at` and `expiration.duration`.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -496,60 +551,71 @@ class AsyncRulesResource(AsyncAPIResource):
             "redirect",
         ],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        device_posture: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
-        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-        identity: str | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
-        traffic: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        device_posture: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiration: Optional[rule_create_params.Expiration] | Omit = omit,
+        filters: List[GatewayFilter] | Omit = omit,
+        identity: str | Omit = omit,
+        precedence: int | Omit = omit,
+        rule_settings: RuleSettingParam | Omit = omit,
+        schedule: Optional[ScheduleParam] | Omit = omit,
+        traffic: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Creates a new Zero Trust Gateway rule.
+        Create a new Zero Trust Gateway rule.
 
         Args:
-          action: The action to preform when the associated traffic, identity, and device posture
-              expressions are either absent or evaluate to `true`.
+          action: Specify the action to perform when the associated traffic, identity, and device
+              posture expressions either absent or evaluate to `true`.
 
-          name: The name of the rule.
+          name: Specify the rule name.
 
-          description: The description of the rule.
+          description: Specify the rule description.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: Specify the wirefilter expression used for device posture check. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          enabled: True if the rule is enabled.
+          enabled: Specify whether the rule is enabled.
 
-          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
-              over the policy's `schedule` configuration, if any.
+          expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
+              precedence over the policy's `schedule` configuration, if any. This does not
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
-              This does not apply to HTTP or network policies.
+          filters: Specify the protocol or layer to evaluate the traffic, identity, and device
+              posture expressions. Can only contain a single value.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
-              expressions.
+          identity: Specify the wirefilter expression used for identity matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          identity: The wirefilter expression used for identity matching.
-
-          precedence: Precedence sets the order of your rules. Lower values indicate higher
-              precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value. Refer to
+          precedence: Set the order of your rules. Lower values indicate higher precedence. At each
+              processing phase, evaluate applicable rules in ascending order of this value.
+              Refer to
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-              docs on how to manage precedence via Terraform.
+              to manage precedence via Terraform.
 
-          rule_settings: Additional settings that modify the rule's action.
+          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
+              must use compatible selectors. If Terraform detects drift, confirm the setting
+              supports your rule type and check whether the API modifies the value. Use
+              API-returned values in your configuration to prevent drift.
 
-          schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
-              policies.
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: Specify the wirefilter expression used for traffic matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
           extra_headers: Send extra headers
 
@@ -614,62 +680,73 @@ class AsyncRulesResource(AsyncAPIResource):
             "redirect",
         ],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        device_posture: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
-        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-        identity: str | NotGiven = NOT_GIVEN,
-        precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
-        traffic: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        device_posture: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        expiration: Optional[rule_update_params.Expiration] | Omit = omit,
+        filters: List[GatewayFilter] | Omit = omit,
+        identity: str | Omit = omit,
+        precedence: int | Omit = omit,
+        rule_settings: RuleSettingParam | Omit = omit,
+        schedule: Optional[ScheduleParam] | Omit = omit,
+        traffic: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Updates a configured Zero Trust Gateway rule.
+        Update a configured Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
-          action: The action to preform when the associated traffic, identity, and device posture
-              expressions are either absent or evaluate to `true`.
+          action: Specify the action to perform when the associated traffic, identity, and device
+              posture expressions either absent or evaluate to `true`.
 
-          name: The name of the rule.
+          name: Specify the rule name.
 
-          description: The description of the rule.
+          description: Specify the rule description.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: Specify the wirefilter expression used for device posture check. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          enabled: True if the rule is enabled.
+          enabled: Specify whether the rule is enabled.
 
-          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
-              over the policy's `schedule` configuration, if any.
+          expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
+              precedence over the policy's `schedule` configuration, if any. This does not
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
-              This does not apply to HTTP or network policies.
+          filters: Specify the protocol or layer to evaluate the traffic, identity, and device
+              posture expressions. Can only contain a single value.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
-              expressions.
+          identity: Specify the wirefilter expression used for identity matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
-          identity: The wirefilter expression used for identity matching.
-
-          precedence: Precedence sets the order of your rules. Lower values indicate higher
-              precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value. Refer to
+          precedence: Set the order of your rules. Lower values indicate higher precedence. At each
+              processing phase, evaluate applicable rules in ascending order of this value.
+              Refer to
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-              docs on how to manage precedence via Terraform.
+              to manage precedence via Terraform.
 
-          rule_settings: Additional settings that modify the rule's action.
+          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
+              must use compatible selectors. If Terraform detects drift, confirm the setting
+              supports your rule type and check whether the API modifies the value. Use
+              API-returned values in your configuration to prevent drift.
 
-          schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
-              policies.
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: Specify the wirefilter expression used for traffic matching. The API
+              automatically formats and sanitizes expressions before storing them. To prevent
+              Terraform state drift, use the formatted expression returned in the API
+              response.
 
           extra_headers: Send extra headers
 
@@ -721,10 +798,10 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
         """
-        Fetches the Zero Trust Gateway rules for an account.
+        List Zero Trust Gateway rules for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -756,13 +833,13 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Deletes a Zero Trust Gateway rule.
+        Delete a Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -798,13 +875,13 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Fetches a single Zero Trust Gateway rule.
+        Get a single Zero Trust Gateway rule.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -830,6 +907,41 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
+    def list_tenant(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
+        """
+        List Zero Trust Gateway rules for the parent account of an account in the MSP
+        configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/gateway/rules/tenant",
+            page=AsyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=GatewayRule,
+        )
+
     async def reset_expiration(
         self,
         rule_id: str,
@@ -840,17 +952,15 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayRule]:
         """
-        Resets the expiration of a Zero Trust Gateway Rule if its duration has elapsed
-        and it has a default duration.
-
-        The Zero Trust Gateway Rule must have values for both `expiration.expires_at`
-        and `expiration.duration`.
+        Resets the expiration of a Zero Trust Gateway Rule if its duration elapsed and
+        it has a default duration. The Zero Trust Gateway Rule must have values for both
+        `expiration.expires_at` and `expiration.duration`.
 
         Args:
-          rule_id: The API resource UUID.
+          rule_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -896,6 +1006,9 @@ class RulesResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             rules.get,
         )
+        self.list_tenant = to_raw_response_wrapper(
+            rules.list_tenant,
+        )
         self.reset_expiration = to_raw_response_wrapper(
             rules.reset_expiration,
         )
@@ -919,6 +1032,9 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             rules.get,
+        )
+        self.list_tenant = async_to_raw_response_wrapper(
+            rules.list_tenant,
         )
         self.reset_expiration = async_to_raw_response_wrapper(
             rules.reset_expiration,
@@ -944,6 +1060,9 @@ class RulesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rules.get,
         )
+        self.list_tenant = to_streamed_response_wrapper(
+            rules.list_tenant,
+        )
         self.reset_expiration = to_streamed_response_wrapper(
             rules.reset_expiration,
         )
@@ -967,6 +1086,9 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             rules.get,
+        )
+        self.list_tenant = async_to_streamed_response_wrapper(
+            rules.list_tenant,
         )
         self.reset_expiration = async_to_streamed_response_wrapper(
             rules.reset_expiration,

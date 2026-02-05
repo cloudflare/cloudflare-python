@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .override_url import OverrideURL
 from .waf_rule_param import WAFRuleParam
 from .rewrite_action_param import RewriteActionParam
@@ -34,7 +34,7 @@ class OverrideUpdateParams(TypedDict, total=False):
     override, you must provide a `groups` object or a `rules` object.
     """
 
-    urls: Required[List[OverrideURL]]
+    urls: Required[SequenceNotStr[OverrideURL]]
     """The URLs to include in the current WAF override.
 
     You can use wildcards. Each entered URL will be escaped before use, which means

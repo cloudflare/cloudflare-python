@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["ActivityLogSettingsParam"]
 
 
 class ActivityLogSettingsParam(TypedDict, total=False):
-    enabled: bool
-    """Enable activity logging."""
+    """Specify activity log settings."""
+
+    enabled: Optional[bool]
+    """Specify whether to log activity."""

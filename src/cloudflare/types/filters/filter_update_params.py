@@ -11,4 +11,18 @@ class FilterUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Defines an identifier."""
 
-    body: Required[object]
+    description: str
+    """An informative summary of the filter."""
+
+    expression: str
+    """The filter expression.
+
+    For more information, refer to
+    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+    """
+
+    paused: bool
+    """When true, indicates that the filter is currently paused."""
+
+    ref: str
+    """A short reference tag. Allows you to select related filters."""

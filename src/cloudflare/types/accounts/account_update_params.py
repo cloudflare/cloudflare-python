@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AccountUpdateParams", "Settings"]
+__all__ = ["AccountUpdateParams", "ManagedBy", "Settings"]
 
 
 class AccountUpdateParams(TypedDict, total=False):
@@ -17,11 +17,24 @@ class AccountUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Account name"""
 
+    type: Required[Literal["standard", "enterprise"]]
+
+    managed_by: ManagedBy
+    """Parent container details"""
+
     settings: Settings
     """Account settings"""
 
 
+class ManagedBy(TypedDict, total=False):
+    """Parent container details"""
+
+    pass
+
+
 class Settings(TypedDict, total=False):
+    """Account settings"""
+
     abuse_contact_email: str
     """Sets an abuse contact email to notify for abuse reports."""
 

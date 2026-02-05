@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = [
@@ -27,7 +28,11 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
 
 class ConfigIngressOriginRequestAccess(TypedDict, total=False):
-    aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
+    aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
     Audience tags can be identified in the dashboard or via the List Access policies
@@ -41,6 +46,10 @@ class ConfigIngressOriginRequestAccess(TypedDict, total=False):
 
 
 class ConfigIngressOriginRequest(TypedDict, total=False):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: ConfigIngressOriginRequestAccess
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -77,6 +86,9 @@ class ConfigIngressOriginRequest(TypedDict, total=False):
 
     keep_alive_timeout: Annotated[int, PropertyInfo(alias="keepAliveTimeout")]
     """Timeout after which an idle keepalive connection can be discarded."""
+
+    match_sn_ito_host: Annotated[bool, PropertyInfo(alias="matchSNItoHost")]
+    """Auto configure the Hostname on the origin server certificate."""
 
     no_happy_eyeballs: Annotated[bool, PropertyInfo(alias="noHappyEyeballs")]
     """
@@ -115,6 +127,8 @@ class ConfigIngressOriginRequest(TypedDict, total=False):
 
 
 class ConfigIngress(TypedDict, total=False):
+    """Public hostname"""
+
     hostname: Required[str]
     """Public hostname for this service."""
 
@@ -137,7 +151,11 @@ class ConfigIngress(TypedDict, total=False):
 
 
 class ConfigOriginRequestAccess(TypedDict, total=False):
-    aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
+    aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
     Audience tags can be identified in the dashboard or via the List Access policies
@@ -151,6 +169,10 @@ class ConfigOriginRequestAccess(TypedDict, total=False):
 
 
 class ConfigOriginRequest(TypedDict, total=False):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: ConfigOriginRequestAccess
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -187,6 +209,9 @@ class ConfigOriginRequest(TypedDict, total=False):
 
     keep_alive_timeout: Annotated[int, PropertyInfo(alias="keepAliveTimeout")]
     """Timeout after which an idle keepalive connection can be discarded."""
+
+    match_sn_ito_host: Annotated[bool, PropertyInfo(alias="matchSNItoHost")]
+    """Auto configure the Hostname on the origin server certificate."""
 
     no_happy_eyeballs: Annotated[bool, PropertyInfo(alias="noHappyEyeballs")]
     """
@@ -225,6 +250,8 @@ class ConfigOriginRequest(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
+    """The tunnel configuration and ingress rules."""
+
     ingress: Iterable[ConfigIngress]
     """List of public hostname definitions.
 

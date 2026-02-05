@@ -11,6 +11,8 @@ __all__ = ["Membership", "Permissions"]
 
 
 class Permissions(BaseModel):
+    """All access permissions for the user at the account."""
+
     analytics: Optional[PermissionGrant] = None
 
     billing: Optional[PermissionGrant] = None

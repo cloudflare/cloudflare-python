@@ -16,4 +16,6 @@ class AuthMethod(TypedDict, total=False):
 
 
 class AuthenticationMethodRuleParam(TypedDict, total=False):
+    """Enforce different MFA options"""
+
     auth_method: Required[AuthMethod]

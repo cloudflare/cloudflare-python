@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import TypeAlias
+
+from ...._types import SequenceNotStr
 
 __all__ = ["SettingValueParam"]
 
-SettingValueParam: TypeAlias = Union[float, str, List[str]]
+SettingValueParam: TypeAlias = Union[float, str, SequenceNotStr[str]]

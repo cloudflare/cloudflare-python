@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,23 +49,23 @@ class AuditLogsResource(SyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        export: bool | NotGiven = NOT_GIVEN,
-        hide_user_logs: bool | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        action: audit_log_list_params.Action | Omit = omit,
+        actor: audit_log_list_params.Actor | Omit = omit,
+        before: Union[Union[str, date], Union[str, datetime]] | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        export: bool | Omit = omit,
+        hide_user_logs: bool | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        since: Union[Union[str, date], Union[str, datetime]] | Omit = omit,
+        zone: audit_log_list_params.Zone | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[AuditLog]:
         """Gets a list of audit logs for a user account.
 
@@ -151,23 +151,23 @@ class AsyncAuditLogsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        export: bool | NotGiven = NOT_GIVEN,
-        hide_user_logs: bool | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        action: audit_log_list_params.Action | Omit = omit,
+        actor: audit_log_list_params.Actor | Omit = omit,
+        before: Union[Union[str, date], Union[str, datetime]] | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        export: bool | Omit = omit,
+        hide_user_logs: bool | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        since: Union[Union[str, date], Union[str, datetime]] | Omit = omit,
+        zone: audit_log_list_params.Zone | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AuditLog, AsyncV4PagePaginationArray[AuditLog]]:
         """Gets a list of audit logs for a user account.
 

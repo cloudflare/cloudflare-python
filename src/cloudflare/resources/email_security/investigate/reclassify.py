@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,13 +50,14 @@ class ReclassifyResource(SyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
-        eml_content: Optional[str] | NotGiven = NOT_GIVEN,
+        eml_content: str | Omit = omit,
+        escalated_submission_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Change email classfication
@@ -86,6 +87,7 @@ class ReclassifyResource(SyncAPIResource):
                 {
                     "expected_disposition": expected_disposition,
                     "eml_content": eml_content,
+                    "escalated_submission_id": escalated_submission_id,
                 },
                 reclassify_create_params.ReclassifyCreateParams,
             ),
@@ -126,13 +128,14 @@ class AsyncReclassifyResource(AsyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
-        eml_content: Optional[str] | NotGiven = NOT_GIVEN,
+        eml_content: str | Omit = omit,
+        escalated_submission_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Change email classfication
@@ -162,6 +165,7 @@ class AsyncReclassifyResource(AsyncAPIResource):
                 {
                     "expected_disposition": expected_disposition,
                     "eml_content": eml_content,
+                    "escalated_submission_id": escalated_submission_id,
                 },
                 reclassify_create_params.ReclassifyCreateParams,
             ),

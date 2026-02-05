@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from .new_version import NewVersion as NewVersion
 from .upload_edit_params import UploadEditParams as UploadEditParams
+from .upload_edit_response import UploadEditResponse as UploadEditResponse
 from .version_create_params import VersionCreateParams as VersionCreateParams
+from .upload_create_response import UploadCreateResponse as UploadCreateResponse
 from .version_create_response import VersionCreateResponse as VersionCreateResponse

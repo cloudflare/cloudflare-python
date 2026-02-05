@@ -18,18 +18,20 @@ class TestScreenshot:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -76,7 +78,6 @@ class TestScreenshot:
                 "timeout": 60000,
                 "wait_until": "load",
             },
-            html="x",
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             screenshot_options={
@@ -100,7 +101,6 @@ class TestScreenshot:
             selector="selector",
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
-            url="https://example.com",
             user_agent="userAgent",
             viewport={
                 "height": 0,
@@ -113,17 +113,18 @@ class TestScreenshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -132,9 +133,10 @@ class TestScreenshot:
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,29 +147,28 @@ class TestScreenshot:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
+                html="<h1>Hello World!</h1>",
             )
 
-
-class TestAsyncScreenshot:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
-
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        screenshot = await async_client.browser_rendering.screenshot.create(
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
+            url="https://example.com/",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        screenshot = await async_client.browser_rendering.screenshot.create(
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
+            url="https://example.com/",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -214,7 +215,6 @@ class TestAsyncScreenshot:
                 "timeout": 60000,
                 "wait_until": "load",
             },
-            html="x",
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             screenshot_options={
@@ -238,7 +238,6 @@ class TestAsyncScreenshot:
             selector="selector",
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
-            url="https://example.com",
             user_agent="userAgent",
             viewport={
                 "height": 0,
@@ -251,17 +250,161 @@ class TestAsyncScreenshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.screenshot.with_raw_response.create(
+            account_id="account_id",
+            url="https://example.com/",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        screenshot = response.parse()
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
+        with client.browser_rendering.screenshot.with_streaming_response.create(
+            account_id="account_id",
+            url="https://example.com/",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            screenshot = response.parse()
+            assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.screenshot.with_raw_response.create(
+                account_id="",
+                url="https://example.com/",
+            )
+
+
+class TestAsyncScreenshot:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @parametrize
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        screenshot = await async_client.browser_rendering.screenshot.create(
+            account_id="account_id",
+            html="<h1>Hello World!</h1>",
+        )
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+        screenshot = await async_client.browser_rendering.screenshot.create(
+            account_id="account_id",
+            html="<h1>Hello World!</h1>",
+            cache_ttl=86400,
+            action_timeout=120000,
+            add_script_tag=[
+                {
+                    "id": "id",
+                    "content": "content",
+                    "type": "type",
+                    "url": "url",
+                }
+            ],
+            add_style_tag=[
+                {
+                    "content": "content",
+                    "url": "url",
+                }
+            ],
+            allow_request_pattern=["string"],
+            allow_resource_types=["document"],
+            authenticate={
+                "password": "x",
+                "username": "x",
+            },
+            best_attempt=True,
+            cookies=[
+                {
+                    "name": "name",
+                    "value": "value",
+                    "domain": "domain",
+                    "expires": 0,
+                    "http_only": True,
+                    "partition_key": "partitionKey",
+                    "path": "path",
+                    "priority": "Low",
+                    "same_party": True,
+                    "same_site": "Strict",
+                    "secure": True,
+                    "source_port": 0,
+                    "source_scheme": "Unset",
+                    "url": "url",
+                }
+            ],
+            emulate_media_type="emulateMediaType",
+            goto_options={
+                "referer": "referer",
+                "referrer_policy": "referrerPolicy",
+                "timeout": 60000,
+                "wait_until": "load",
+            },
+            reject_request_pattern=["string"],
+            reject_resource_types=["document"],
+            screenshot_options={
+                "capture_beyond_viewport": True,
+                "clip": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0,
+                    "scale": 0,
+                },
+                "encoding": "binary",
+                "from_surface": True,
+                "full_page": True,
+                "omit_background": True,
+                "optimize_for_speed": True,
+                "quality": 0,
+                "type": "png",
+            },
+            scroll_page=True,
+            selector="selector",
+            set_extra_http_headers={"foo": "string"},
+            set_java_script_enabled=True,
+            user_agent="userAgent",
+            viewport={
+                "height": 0,
+                "width": 0,
+                "device_scale_factor": 0,
+                "has_touch": True,
+                "is_landscape": True,
+                "is_mobile": True,
+            },
+            wait_for_selector={
+                "selector": "selector",
+                "hidden": True,
+                "timeout": 120000,
+                "visible": True,
+            },
+            wait_for_timeout=120000,
+        )
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -270,9 +413,10 @@ class TestAsyncScreenshot:
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,8 +427,146 @@ class TestAsyncScreenshot:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
+                html="<h1>Hello World!</h1>",
+            )
+
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        screenshot = await async_client.browser_rendering.screenshot.create(
+            account_id="account_id",
+            url="https://example.com/",
+        )
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        screenshot = await async_client.browser_rendering.screenshot.create(
+            account_id="account_id",
+            url="https://example.com/",
+            cache_ttl=86400,
+            action_timeout=120000,
+            add_script_tag=[
+                {
+                    "id": "id",
+                    "content": "content",
+                    "type": "type",
+                    "url": "url",
+                }
+            ],
+            add_style_tag=[
+                {
+                    "content": "content",
+                    "url": "url",
+                }
+            ],
+            allow_request_pattern=["string"],
+            allow_resource_types=["document"],
+            authenticate={
+                "password": "x",
+                "username": "x",
+            },
+            best_attempt=True,
+            cookies=[
+                {
+                    "name": "name",
+                    "value": "value",
+                    "domain": "domain",
+                    "expires": 0,
+                    "http_only": True,
+                    "partition_key": "partitionKey",
+                    "path": "path",
+                    "priority": "Low",
+                    "same_party": True,
+                    "same_site": "Strict",
+                    "secure": True,
+                    "source_port": 0,
+                    "source_scheme": "Unset",
+                    "url": "url",
+                }
+            ],
+            emulate_media_type="emulateMediaType",
+            goto_options={
+                "referer": "referer",
+                "referrer_policy": "referrerPolicy",
+                "timeout": 60000,
+                "wait_until": "load",
+            },
+            reject_request_pattern=["string"],
+            reject_resource_types=["document"],
+            screenshot_options={
+                "capture_beyond_viewport": True,
+                "clip": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0,
+                    "scale": 0,
+                },
+                "encoding": "binary",
+                "from_surface": True,
+                "full_page": True,
+                "omit_background": True,
+                "optimize_for_speed": True,
+                "quality": 0,
+                "type": "png",
+            },
+            scroll_page=True,
+            selector="selector",
+            set_extra_http_headers={"foo": "string"},
+            set_java_script_enabled=True,
+            user_agent="userAgent",
+            viewport={
+                "height": 0,
+                "width": 0,
+                "device_scale_factor": 0,
+                "has_touch": True,
+                "is_landscape": True,
+                "is_mobile": True,
+            },
+            wait_for_selector={
+                "selector": "selector",
+                "hidden": True,
+                "timeout": 120000,
+                "visible": True,
+            },
+            wait_for_timeout=120000,
+        )
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.screenshot.with_raw_response.create(
+            account_id="account_id",
+            url="https://example.com/",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        screenshot = await response.parse()
+        assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.screenshot.with_streaming_response.create(
+            account_id="account_id",
+            url="https://example.com/",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            screenshot = await response.parse()
+            assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.screenshot.with_raw_response.create(
+                account_id="",
+                url="https://example.com/",
             )

@@ -6,13 +6,14 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["IPTimeseriesParams"]
 
 
 class IPTimeseriesParams(TypedDict, total=False):
-    asn: List[str]
+    asn: SequenceNotStr[str]
     """Filters results by Autonomous System.
 
     Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list.
@@ -20,10 +21,10 @@ class IPTimeseriesParams(TypedDict, total=False):
     results from AS174, but includes results from AS3356.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -31,7 +32,7 @@ class IPTimeseriesParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
@@ -43,11 +44,11 @@ class IPTimeseriesParams(TypedDict, total=False):
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
     """Filters results by IP version (Ipv4 vs. IPv6)."""
 
-    location: List[str]
+    location: SequenceNotStr[str]
     """Filters results by location.
 
     Specify a comma-separated list of alpha-2 location codes.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""

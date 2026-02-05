@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -14,7 +14,7 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.access_user import AccessUser
 from .....types.zero_trust.identity_providers.scim import user_list_params
@@ -47,18 +47,20 @@ class UsersResource(SyncAPIResource):
         identity_provider_id: str,
         *,
         account_id: str,
-        cf_resource_id: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        idp_resource_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        cf_resource_id: str | Omit = omit,
+        email: str | Omit = omit,
+        idp_resource_id: str | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AccessUser]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[AccessUser]:
         """
         Lists SCIM User resources synced to Cloudflare via the System for Cross-domain
         Identity Management (SCIM).
@@ -76,6 +78,10 @@ class UsersResource(SyncAPIResource):
           idp_resource_id: The IdP-generated Id of the SCIM User resource; also known as the "external Id".
 
           name: The name of the SCIM User resource.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           username: The username of the SCIM User resource.
 
@@ -95,7 +101,7 @@ class UsersResource(SyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users",
-            page=SyncSinglePage[AccessUser],
+            page=SyncV4PagePaginationArray[AccessUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,6 +113,8 @@ class UsersResource(SyncAPIResource):
                         "email": email,
                         "idp_resource_id": idp_resource_id,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "username": username,
                     },
                     user_list_params.UserListParams,
@@ -141,18 +149,20 @@ class AsyncUsersResource(AsyncAPIResource):
         identity_provider_id: str,
         *,
         account_id: str,
-        cf_resource_id: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        idp_resource_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        cf_resource_id: str | Omit = omit,
+        email: str | Omit = omit,
+        idp_resource_id: str | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccessUser, AsyncSinglePage[AccessUser]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AccessUser, AsyncV4PagePaginationArray[AccessUser]]:
         """
         Lists SCIM User resources synced to Cloudflare via the System for Cross-domain
         Identity Management (SCIM).
@@ -170,6 +180,10 @@ class AsyncUsersResource(AsyncAPIResource):
           idp_resource_id: The IdP-generated Id of the SCIM User resource; also known as the "external Id".
 
           name: The name of the SCIM User resource.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           username: The username of the SCIM User resource.
 
@@ -189,7 +203,7 @@ class AsyncUsersResource(AsyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users",
-            page=AsyncSinglePage[AccessUser],
+            page=AsyncV4PagePaginationArray[AccessUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,6 +215,8 @@ class AsyncUsersResource(AsyncAPIResource):
                         "email": email,
                         "idp_resource_id": idp_resource_id,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "username": username,
                     },
                     user_list_params.UserListParams,

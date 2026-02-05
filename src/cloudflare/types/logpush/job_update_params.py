@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
 from typing_extensions import Literal, TypedDict
 
 from .output_options_param import OutputOptionsParam
@@ -18,10 +18,10 @@ class JobUpdateParams(TypedDict, total=False):
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     destination_conf: str
-    """Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
+    """Uniquely identifies a resource (such as an s3 bucket) where data.
 
-    Additional configuration parameters supported by the destination may be
-    included.
+    will be pushed. Additional configuration parameters supported by the destination
+    may be included.
     """
 
     enabled: bool
@@ -37,17 +37,16 @@ class JobUpdateParams(TypedDict, total=False):
     frequency: Optional[Literal["high", "low"]]
     """This field is deprecated.
 
-    Please use `max_upload_*` parameters instead. The frequency at which Cloudflare
-    sends batches of logs to your destination. Setting frequency to high sends your
-    logs in larger quantities of smaller files. Setting frequency to low sends logs
-    in smaller quantities of larger files.
+    Please use `max_upload_*` parameters instead. . The frequency at which
+    Cloudflare sends batches of logs to your destination. Setting frequency to high
+    sends your logs in larger quantities of smaller files. Setting frequency to low
+    sends logs in smaller quantities of larger files.
     """
 
-    kind: Literal["edge"]
+    kind: Literal["", "edge"]
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
-    Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-    `http_requests` dataset.
+    Log Delivery jobs (when supported by the dataset).
     """
 
     logpull_options: Optional[str]
@@ -59,37 +58,34 @@ class JobUpdateParams(TypedDict, total=False):
     keep on making this call for you, setting start and end times appropriately.
     """
 
-    max_upload_bytes: Optional[int]
+    max_upload_bytes: Union[Literal[0], int, None]
     """The maximum uncompressed file size of a batch of logs.
 
     This setting value must be between `5 MB` and `1 GB`, or `0` to disable it. Note
     that you cannot set a minimum file size; this means that log files may be much
-    smaller than this batch size. This parameter is not available for jobs with
-    `edge` as its kind.
+    smaller than this batch size.
     """
 
-    max_upload_interval_seconds: Optional[int]
+    max_upload_interval_seconds: Union[Literal[0], int, None]
     """The maximum interval in seconds for log batches.
 
     This setting must be between 30 and 300 seconds (5 minutes), or `0` to disable
     it. Note that you cannot specify a minimum interval for log batches; this means
-    that log files may be sent in shorter intervals than this. This parameter is
-    only used for jobs with `edge` as its kind.
+    that log files may be sent in shorter intervals than this.
     """
 
-    max_upload_records: Optional[int]
+    max_upload_records: Union[Literal[0], int, None]
     """The maximum number of log lines per batch.
 
     This setting must be between 1000 and 1,000,000 lines, or `0` to disable it.
     Note that you cannot specify a minimum number of log lines per batch; this means
-    that log files may contain many fewer lines than this. This parameter is not
-    available for jobs with `edge` as its kind.
+    that log files may contain many fewer lines than this.
     """
 
     name: Optional[str]
     """Optional human readable job name.
 
-    Not unique. Cloudflare suggests that you set this to a meaningful string, like
+    Not unique. Cloudflare suggests. that you set this to a meaningful string, like
     the domain name, to make it easier to identify your job.
     """
 

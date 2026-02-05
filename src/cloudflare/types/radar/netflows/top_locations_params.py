@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["TopLocationsParams"]
 
 
 class TopLocationsParams(TypedDict, total=False):
-    asn: List[str]
+    asn: SequenceNotStr[str]
     """Filters results by Autonomous System.
 
     Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list.
@@ -20,7 +21,7 @@ class TopLocationsParams(TypedDict, total=False):
     results from AS174, but includes results from AS3356.
     """
 
-    continent: List[str]
+    continent: SequenceNotStr[str]
     """Filters results by continent.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -28,10 +29,10 @@ class TopLocationsParams(TypedDict, total=False):
     includes results from NA.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -39,16 +40,24 @@ class TopLocationsParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
+    geo_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="geoId")]
+    """Filters results by Geolocation.
+
+    Specify a comma-separated list of GeoNames IDs. Prefix with `-` to exclude
+    geoIds from results. For example, `-2267056,360689` excludes results from the
+    2267056 (Lisbon), but includes results from 5128638 (New York).
+    """
+
     limit: int
     """Limits the number of objects returned in the response."""
 
-    location: List[str]
+    location: SequenceNotStr[str]
     """Filters results by location.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -56,5 +65,5 @@ class TopLocationsParams(TypedDict, total=False):
     includes results from PT.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""

@@ -11,6 +11,11 @@ __all__ = ["AzureAD", "Config"]
 
 
 class Config(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     claims: Optional[List[str]] = None
     """Custom claims"""
 

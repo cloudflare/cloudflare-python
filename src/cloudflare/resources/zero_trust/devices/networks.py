@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Creates a new device managed network.
@@ -106,15 +106,15 @@ class NetworksResource(SyncAPIResource):
         network_id: str,
         *,
         account_id: str,
-        config: network_update_params.Config | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        type: Literal["tls"] | NotGiven = NOT_GIVEN,
+        config: network_update_params.Config | Omit = omit,
+        name: str | Omit = omit,
+        type: Literal["tls"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Updates a configured device managed network.
@@ -170,7 +170,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DeviceNetwork]:
         """
         Fetches a list of managed networks for an account.
@@ -205,7 +205,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DeviceNetwork]:
         """
         Deletes a device managed network and fetches a list of the remaining device
@@ -246,7 +246,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Fetches details for a single managed network.
@@ -311,7 +311,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Creates a new device managed network.
@@ -359,15 +359,15 @@ class AsyncNetworksResource(AsyncAPIResource):
         network_id: str,
         *,
         account_id: str,
-        config: network_update_params.Config | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        type: Literal["tls"] | NotGiven = NOT_GIVEN,
+        config: network_update_params.Config | Omit = omit,
+        name: str | Omit = omit,
+        type: Literal["tls"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Updates a configured device managed network.
@@ -423,7 +423,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DeviceNetwork, AsyncSinglePage[DeviceNetwork]]:
         """
         Fetches a list of managed networks for an account.
@@ -458,7 +458,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DeviceNetwork, AsyncSinglePage[DeviceNetwork]]:
         """
         Deletes a device managed network and fetches a list of the remaining device
@@ -499,7 +499,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceNetwork]:
         """
         Fetches details for a single managed network.

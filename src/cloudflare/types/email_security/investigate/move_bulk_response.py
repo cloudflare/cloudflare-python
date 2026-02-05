@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
@@ -10,14 +11,16 @@ __all__ = ["MoveBulkResponse"]
 class MoveBulkResponse(BaseModel):
     completed_timestamp: datetime
 
-    destination: str
-
     item_count: int
 
-    message_id: str
+    success: bool
 
-    operation: str
+    destination: Optional[str] = None
 
-    recipient: str
+    message_id: Optional[str] = None
 
-    status: str
+    operation: Optional[str] = None
+
+    recipient: Optional[str] = None
+
+    status: Optional[str] = None

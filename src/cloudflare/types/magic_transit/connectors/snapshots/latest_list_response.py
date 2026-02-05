@@ -7,6 +7,7 @@ from ....._models import BaseModel
 __all__ = [
     "LatestListResponse",
     "Item",
+    "ItemBond",
     "ItemDHCPLease",
     "ItemDisk",
     "ItemInterface",
@@ -18,7 +19,19 @@ __all__ = [
 ]
 
 
+class ItemBond(BaseModel):
+    """Snapshot Bond"""
+
+    name: str
+    """Name of the network interface"""
+
+    status: str
+    """Current status of the network interface"""
+
+
 class ItemDHCPLease(BaseModel):
+    """Snapshot DHCP lease"""
+
     client_id: str
     """Client ID of the device the IP Address was leased to"""
 
@@ -42,6 +55,8 @@ class ItemDHCPLease(BaseModel):
 
 
 class ItemDisk(BaseModel):
+    """Snapshot Disk"""
+
     in_progress: float
     """I/Os currently in progress"""
 
@@ -107,6 +122,8 @@ class ItemDisk(BaseModel):
 
 
 class ItemInterfaceIPAddress(BaseModel):
+    """Snapshot Interface Address"""
+
     interface_name: str
     """Name of the network interface"""
 
@@ -118,6 +135,8 @@ class ItemInterfaceIPAddress(BaseModel):
 
 
 class ItemInterface(BaseModel):
+    """Snapshot Interface"""
+
     name: str
     """Name of the network interface"""
 
@@ -134,6 +153,8 @@ class ItemInterface(BaseModel):
 
 
 class ItemMount(BaseModel):
+    """Snapshot Mount"""
+
     file_system: str
     """File system on disk (EXT4, NTFS, etc.)"""
 
@@ -163,6 +184,8 @@ class ItemMount(BaseModel):
 
 
 class ItemNetdev(BaseModel):
+    """Snapshot Netdev"""
+
     name: str
     """Name of the network device"""
 
@@ -219,6 +242,8 @@ class ItemNetdev(BaseModel):
 
 
 class ItemThermal(BaseModel):
+    """Snapshot Thermal"""
+
     label: str
     """Sensor identifier for the component"""
 
@@ -236,6 +261,8 @@ class ItemThermal(BaseModel):
 
 
 class ItemTunnel(BaseModel):
+    """Snapshot Tunnels"""
+
     health_state: str
     """Name of tunnel health state (unknown, healthy, degraded, down)"""
 
@@ -254,8 +281,13 @@ class ItemTunnel(BaseModel):
     connector_id: Optional[str] = None
     """Connector identifier"""
 
+    probed_mtu: Optional[float] = None
+    """MTU as measured between the two ends of the tunnel"""
+
 
 class Item(BaseModel):
+    """Snapshot"""
+
     count_reclaim_failures: float
     """Count of failures to reclaim space"""
 
@@ -273,6 +305,8 @@ class Item(BaseModel):
 
     v: str
     """Version"""
+
+    bonds: Optional[List[ItemBond]] = None
 
     cpu_count: Optional[float] = None
     """Count of processors/cores"""

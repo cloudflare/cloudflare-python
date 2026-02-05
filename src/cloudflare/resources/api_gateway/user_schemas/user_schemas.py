@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Mapping, cast
 from typing_extensions import Literal
 
@@ -15,7 +16,7 @@ from .hosts import (
     HostsResourceWithStreamingResponse,
     AsyncHostsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from .operations import (
@@ -42,8 +43,8 @@ from ....types.api_gateway import (
     user_schema_list_params,
     user_schema_create_params,
 )
-from ....types.api_gateway.public_schema import PublicSchema
-from ....types.api_gateway.schema_upload import SchemaUpload
+from ....types.api_gateway.old_public_schema import OldPublicSchema
+from ....types.api_gateway.user_schema_create_response import UserSchemaCreateResponse
 from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
 
 __all__ = ["UserSchemasResource", "AsyncUserSchemasResource"]
@@ -77,21 +78,24 @@ class UserSchemasResource(SyncAPIResource):
         """
         return UserSchemasResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def create(
         self,
         *,
         zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
-        name: str | NotGiven = NOT_GIVEN,
-        validation_enabled: Literal["true", "false"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        validation_enabled: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SchemaUpload:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserSchemaCreateResponse:
         """
         Upload a schema to a zone
 
@@ -138,26 +142,29 @@ class UserSchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SchemaUpload]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
+            cast_to=cast(Type[UserSchemaCreateResponse], ResultWrapper[UserSchemaCreateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        validation_enabled: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[PublicSchema]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[OldPublicSchema]:
         """
         Retrieve information about all schemas on a zone
 
@@ -184,7 +191,7 @@ class UserSchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=SyncV4PagePaginationArray[PublicSchema],
+            page=SyncV4PagePaginationArray[OldPublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,9 +207,12 @@ class UserSchemasResource(SyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=PublicSchema,
+            model=OldPublicSchema,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def delete(
         self,
         schema_id: str,
@@ -213,7 +223,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
@@ -241,19 +251,22 @@ class UserSchemasResource(SyncAPIResource):
             cast_to=UserSchemaDeleteResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def edit(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        validation_enabled: Literal[True] | NotGiven = NOT_GIVEN,
+        validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PublicSchema:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OldPublicSchema:
         """
         Enable validation for a schema
 
@@ -284,24 +297,27 @@ class UserSchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def get(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PublicSchema:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OldPublicSchema:
         """
         Retrieve information about a specific schema on a zone
 
@@ -330,9 +346,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams),
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
         )
 
 
@@ -364,21 +380,24 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         """
         return AsyncUserSchemasResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def create(
         self,
         *,
         zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
-        name: str | NotGiven = NOT_GIVEN,
-        validation_enabled: Literal["true", "false"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        validation_enabled: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SchemaUpload:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserSchemaCreateResponse:
         """
         Upload a schema to a zone
 
@@ -425,26 +444,29 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SchemaUpload]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
+            cast_to=cast(Type[UserSchemaCreateResponse], ResultWrapper[UserSchemaCreateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        validation_enabled: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[OldPublicSchema, AsyncV4PagePaginationArray[OldPublicSchema]]:
         """
         Retrieve information about all schemas on a zone
 
@@ -471,7 +493,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=AsyncV4PagePaginationArray[PublicSchema],
+            page=AsyncV4PagePaginationArray[OldPublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -487,9 +509,12 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=PublicSchema,
+            model=OldPublicSchema,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def delete(
         self,
         schema_id: str,
@@ -500,7 +525,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
@@ -528,19 +553,22 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             cast_to=UserSchemaDeleteResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def edit(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        validation_enabled: Literal[True] | NotGiven = NOT_GIVEN,
+        validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PublicSchema:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OldPublicSchema:
         """
         Enable validation for a schema
 
@@ -571,24 +599,27 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def get(
         self,
         schema_id: str,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PublicSchema:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OldPublicSchema:
         """
         Retrieve information about a specific schema on a zone
 
@@ -619,9 +650,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams
                 ),
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
         )
 
 
@@ -629,20 +660,30 @@ class UserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: UserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = to_raw_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -658,20 +699,30 @@ class AsyncUserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = async_to_raw_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -687,20 +738,30 @@ class UserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: UserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = to_streamed_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -716,20 +777,30 @@ class AsyncUserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = async_to_streamed_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

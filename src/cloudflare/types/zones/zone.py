@@ -11,6 +11,8 @@ __all__ = ["Zone", "Account", "Meta", "Owner", "Plan", "Tenant", "TenantUnit"]
 
 
 class Account(BaseModel):
+    """The account the zone belongs to."""
+
     id: Optional[str] = None
     """Identifier"""
 
@@ -19,6 +21,8 @@ class Account(BaseModel):
 
 
 class Meta(BaseModel):
+    """Metadata about the zone."""
+
     cdn_only: Optional[bool] = None
     """The zone is only configured for CDN."""
 
@@ -41,6 +45,8 @@ class Meta(BaseModel):
 
 
 class Owner(BaseModel):
+    """The owner of the zone."""
+
     id: Optional[str] = None
     """Identifier"""
 
@@ -52,6 +58,8 @@ class Owner(BaseModel):
 
 
 class Plan(BaseModel):
+    """A Zones subscription information."""
+
     id: Optional[str] = None
     """Identifier"""
 
@@ -84,6 +92,10 @@ class Plan(BaseModel):
 
 
 class Tenant(BaseModel):
+    """
+    The root organizational unit that this zone belongs to (such as a tenant or organization).
+    """
+
     id: Optional[str] = None
     """Identifier"""
 
@@ -92,6 +104,10 @@ class Tenant(BaseModel):
 
 
 class TenantUnit(BaseModel):
+    """
+    The immediate parent organizational unit that this zone belongs to (such as under a tenant or sub-organization).
+    """
+
     id: Optional[str] = None
     """Identifier"""
 

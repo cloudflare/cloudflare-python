@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Any, Type, Iterable, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -17,8 +17,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.rules.lists import item_list_params, item_create_params, item_update_params
+from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.rules.lists import item_list_params, item_create_params, item_delete_params, item_update_params
 from ....types.rules.lists.item_get_response import ItemGetResponse
 from ....types.rules.lists.item_list_response import ItemListResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse
@@ -59,18 +60,20 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemCreateResponse:
         """Appends new items to the list.
 
         This operation is asynchronous.
 
         To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -86,22 +89,17 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                body=maybe_transform(body, Iterable[item_create_params.Body]),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=maybe_transform(body, Iterable[item_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemCreateResponse], ResultWrapper[ItemCreateResponse]),
         )
 
     def update(
@@ -115,18 +113,20 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUpdateResponse:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
 
         This operation is asynchronous. To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -142,22 +142,17 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                body=maybe_transform(body, Iterable[item_update_params.Body]),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=maybe_transform(body, Iterable[item_update_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemUpdateResponse], ResultWrapper[ItemUpdateResponse]),
         )
 
     def list(
@@ -165,21 +160,21 @@ class ItemsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemListResponse:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPaginationAfter[ItemListResponse]:
         """
         Fetches all the items in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -208,29 +203,24 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemListResponse,
-            self._get(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "cursor": cursor,
-                            "per_page": per_page,
-                            "search": search,
-                        },
-                        item_list_params.ItemListParams,
-                    ),
-                    post_parser=ResultWrapper[ItemListResponse]._unwrapper,
+        return self._get_api_list(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            page=SyncCursorPaginationAfter[ItemListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "per_page": per_page,
+                        "search": search,
+                    },
+                    item_list_params.ItemListParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -238,23 +228,26 @@ class ItemsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
+        items: Iterable[item_delete_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemDeleteResponse:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
 
         To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -270,21 +263,17 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=maybe_transform({"items": items}, item_delete_params.ItemDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemDeleteResponse], ResultWrapper[ItemDeleteResponse]),
         )
 
     def get(
@@ -298,13 +287,13 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -373,18 +362,20 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemCreateResponse:
         """Appends new items to the list.
 
         This operation is asynchronous.
 
         To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -400,22 +391,17 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemCreateResponse], ResultWrapper[ItemCreateResponse]),
         )
 
     async def update(
@@ -429,18 +415,20 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUpdateResponse:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
 
         This operation is asynchronous. To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -456,44 +444,39 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemUpdateResponse], ResultWrapper[ItemUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         list_id: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemListResponse:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ItemListResponse, AsyncCursorPaginationAfter[ItemListResponse]]:
         """
         Fetches all the items in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -522,29 +505,24 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemListResponse,
-            await self._get(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "cursor": cursor,
-                            "per_page": per_page,
-                            "search": search,
-                        },
-                        item_list_params.ItemListParams,
-                    ),
-                    post_parser=ResultWrapper[ItemListResponse]._unwrapper,
+        return self._get_api_list(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            page=AsyncCursorPaginationAfter[ItemListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "per_page": per_page,
+                        "search": search,
+                    },
+                    item_list_params.ItemListParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -552,23 +530,26 @@ class AsyncItemsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
+        items: Iterable[item_delete_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemDeleteResponse:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
 
         To get current the operation status, invoke the
-        [Get bulk operation status](/operations/lists-get-bulk-operation-status)
-        endpoint with the returned `operation_id`.
+        `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -584,21 +565,17 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            ItemDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/rules/lists/{list_id}/items",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=await async_maybe_transform({"items": items}, item_delete_params.ItemDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemDeleteResponse], ResultWrapper[ItemDeleteResponse]),
         )
 
     async def get(
@@ -612,13 +589,13 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 

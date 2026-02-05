@@ -14,7 +14,7 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -25,10 +25,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.pages import project_edit_params, project_create_params
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....types.pages import project_edit_params, project_list_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.pages.project import Project
 from .deployments.deployments import (
     DeploymentsResource,
     AsyncDeploymentsResource,
@@ -37,7 +36,10 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
-from ....types.pages.deployment import Deployment
+from ....types.pages.project_get_response import ProjectGetResponse
+from ....types.pages.project_edit_response import ProjectEditResponse
+from ....types.pages.project_list_response import ProjectListResponse
+from ....types.pages.project_create_response import ProjectCreateResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -74,31 +76,33 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_create_params.Source | NotGiven = NOT_GIVEN,
+        name: str,
+        production_branch: str,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
+        source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectCreateResponse:
         """
         Create a new project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
+
+          name: Name of the project.
+
+          production_branch: Production branch of the project. Used to identify production deployments.
 
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
 
-          name: Name of the project.
-
-          production_branch: Production branch of the project. Used to identify production deployments.
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -114,10 +118,10 @@ class ProjectsResource(SyncAPIResource):
             f"/accounts/{account_id}/pages/projects",
             body=maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_create_params.ProjectCreateParams,
@@ -127,27 +131,33 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
         )
 
     def list(
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Deployment]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[ProjectListResponse]:
         """
         Fetch a list of all user projects.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
+
+          page: Which page of projects to fetch.
+
+          per_page: How many projects to return per page.
 
           extra_headers: Send extra headers
 
@@ -161,11 +171,21 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=SyncSinglePage[Deployment],
+            page=SyncV4PagePaginationArray[ProjectListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    project_list_params.ProjectListParams,
+                ),
             ),
-            model=Deployment,
+            model=ProjectListResponse,
         )
 
     def delete(
@@ -178,13 +198,13 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -217,25 +237,25 @@ class ProjectsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectEditResponse:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
         delete an environment variable, set the key to null.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -246,6 +266,8 @@ class ProjectsResource(SyncAPIResource):
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -276,9 +298,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
         )
 
     def get(
@@ -291,13 +313,13 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectGetResponse:
         """
         Fetch a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -320,9 +342,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
         )
 
     def purge_build_cache(
@@ -335,13 +357,13 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Purge all cached build artifacts for a Pages project
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -402,31 +424,33 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_create_params.Source | NotGiven = NOT_GIVEN,
+        name: str,
+        production_branch: str,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
+        source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectCreateResponse:
         """
         Create a new project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
+
+          name: Name of the project.
+
+          production_branch: Production branch of the project. Used to identify production deployments.
 
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
 
-          name: Name of the project.
-
-          production_branch: Production branch of the project. Used to identify production deployments.
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -442,10 +466,10 @@ class AsyncProjectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/pages/projects",
             body=await async_maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_create_params.ProjectCreateParams,
@@ -455,27 +479,33 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
         )
 
     def list(
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ProjectListResponse, AsyncV4PagePaginationArray[ProjectListResponse]]:
         """
         Fetch a list of all user projects.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
+
+          page: Which page of projects to fetch.
+
+          per_page: How many projects to return per page.
 
           extra_headers: Send extra headers
 
@@ -489,11 +519,21 @@ class AsyncProjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=AsyncSinglePage[Deployment],
+            page=AsyncV4PagePaginationArray[ProjectListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    project_list_params.ProjectListParams,
+                ),
             ),
-            model=Deployment,
+            model=ProjectListResponse,
         )
 
     async def delete(
@@ -506,13 +546,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -545,25 +585,25 @@ class AsyncProjectsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectEditResponse:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
         delete an environment variable, set the key to null.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -574,6 +614,8 @@ class AsyncProjectsResource(AsyncAPIResource):
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -604,9 +646,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
         )
 
     async def get(
@@ -619,13 +661,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectGetResponse:
         """
         Fetch a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -648,9 +690,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
         )
 
     async def purge_build_cache(
@@ -663,13 +705,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Purge all cached build artifacts for a Pages project
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 

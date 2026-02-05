@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -53,16 +53,18 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        endpoint: Optional[str] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Literal["s3"] | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
+        vendor: Literal["s3"],
+        endpoint: Optional[str] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
+        region: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -83,15 +85,16 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Literal["gcs"] | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
+        vendor: Literal["gcs"],
+        path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -112,16 +115,17 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Provider | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
+        vendor: Provider,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -137,24 +141,26 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"])
+    @required_args(["account_id", "bucket", "secret", "vendor"])
     def source(
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        endpoint: Optional[str] | NotGiven = NOT_GIVEN,
+        bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
-        | NotGiven = NOT_GIVEN,
-        vendor: Literal["s3"] | Literal["gcs"] | Provider | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
+        vendor: Literal["s3"] | Literal["gcs"] | Provider,
+        endpoint: Optional[str] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
+        region: Optional[str] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -163,9 +169,11 @@ class ConnectivityPrecheckResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bucket": bucket,
-                    "endpoint": endpoint,
                     "secret": secret,
                     "vendor": vendor,
+                    "endpoint": endpoint,
+                    "path_prefix": path_prefix,
+                    "region": region,
                     "jurisdiction": jurisdiction,
                 },
                 connectivity_precheck_source_params.ConnectivityPrecheckSourceParams,
@@ -186,16 +194,16 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_target_params.Secret | NotGiven = NOT_GIVEN,
-        vendor: Provider | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_target_params.Secret,
+        vendor: Provider,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckTargetResponse]:
         """
         Check whether tokens are valid against the target bucket
@@ -216,9 +224,9 @@ class ConnectivityPrecheckResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bucket": bucket,
-                    "jurisdiction": jurisdiction,
                     "secret": secret,
                     "vendor": vendor,
+                    "jurisdiction": jurisdiction,
                 },
                 connectivity_precheck_target_params.ConnectivityPrecheckTargetParams,
             ),
@@ -260,16 +268,18 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        endpoint: Optional[str] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Literal["s3"] | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
+        vendor: Literal["s3"],
+        endpoint: Optional[str] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
+        region: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -290,15 +300,16 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Literal["gcs"] | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
+        vendor: Literal["gcs"],
+        path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -319,16 +330,17 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret | NotGiven = NOT_GIVEN,
-        vendor: Provider | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
+        vendor: Provider,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         """
         Check whether tokens are valid against the source bucket
@@ -344,24 +356,26 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"])
+    @required_args(["account_id", "bucket", "secret", "vendor"])
     async def source(
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        endpoint: Optional[str] | NotGiven = NOT_GIVEN,
+        bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
-        | NotGiven = NOT_GIVEN,
-        vendor: Literal["s3"] | Literal["gcs"] | Provider | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
+        vendor: Literal["s3"] | Literal["gcs"] | Provider,
+        endpoint: Optional[str] | Omit = omit,
+        path_prefix: Optional[str] | Omit = omit,
+        region: Optional[str] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -370,9 +384,11 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bucket": bucket,
-                    "endpoint": endpoint,
                     "secret": secret,
                     "vendor": vendor,
+                    "endpoint": endpoint,
+                    "path_prefix": path_prefix,
+                    "region": region,
                     "jurisdiction": jurisdiction,
                 },
                 connectivity_precheck_source_params.ConnectivityPrecheckSourceParams,
@@ -393,16 +409,16 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        bucket: str | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
-        secret: connectivity_precheck_target_params.Secret | NotGiven = NOT_GIVEN,
-        vendor: Provider | NotGiven = NOT_GIVEN,
+        bucket: str,
+        secret: connectivity_precheck_target_params.Secret,
+        vendor: Provider,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckTargetResponse]:
         """
         Check whether tokens are valid against the target bucket
@@ -423,9 +439,9 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bucket": bucket,
-                    "jurisdiction": jurisdiction,
                     "secret": secret,
                     "vendor": vendor,
+                    "jurisdiction": jurisdiction,
                 },
                 connectivity_precheck_target_params.ConnectivityPrecheckTargetParams,
             ),

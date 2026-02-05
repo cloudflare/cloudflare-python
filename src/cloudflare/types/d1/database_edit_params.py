@@ -16,6 +16,8 @@ class DatabaseEditParams(TypedDict, total=False):
 
 
 class ReadReplication(TypedDict, total=False):
+    """Configuration for D1 read replication."""
+
     mode: Required[Literal["auto", "disabled"]]
     """The read replication mode for the database.
 

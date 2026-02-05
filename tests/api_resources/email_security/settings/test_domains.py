@@ -39,6 +39,7 @@ class TestDomains:
             allowed_delivery_mode="DIRECT",
             direction="asc",
             domain=["string"],
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             order="domain",
             page=1,
             per_page=1,
@@ -178,6 +179,7 @@ class TestDomains:
             folder="AllItems",
             integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             lookback_hops=1,
+            regions=["GLOBAL"],
             require_tls_inbound=True,
             require_tls_outbound=True,
             transport="transport",
@@ -265,7 +267,9 @@ class TestDomains:
 
 
 class TestAsyncDomains:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -282,6 +286,7 @@ class TestAsyncDomains:
             allowed_delivery_mode="DIRECT",
             direction="asc",
             domain=["string"],
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             order="domain",
             page=1,
             per_page=1,
@@ -421,6 +426,7 @@ class TestAsyncDomains:
             folder="AllItems",
             integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             lookback_hops=1,
+            regions=["GLOBAL"],
             require_tls_inbound=True,
             require_tls_outbound=True,
             transport="transport",

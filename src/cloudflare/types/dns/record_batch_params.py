@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 from .a_record_param import ARecordParam
@@ -58,6 +59,8 @@ class Delete(TypedDict, total=False):
 
 
 class PostDNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -77,7 +80,14 @@ class PostDNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
 
 class PostDNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
+
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Required[Literal["OPENPGPKEY"]]
     """Record type."""
@@ -100,15 +110,8 @@ class PostDNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     settings: PostDNSRecordsOpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 Post: TypeAlias = Union[

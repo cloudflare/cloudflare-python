@@ -20,8 +20,20 @@ class ApplicationListParams(TypedDict, total=False):
     domain: str
     """The domain of the app."""
 
+    exact: bool
+    """True for only exact string matches against passed name/domain query parameters."""
+
     name: str
     """The name of the app."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     search: str
     """Search for apps by other listed query parameters."""
+
+    target_attributes: str
+    """Target Criteria attributes in key=value format."""

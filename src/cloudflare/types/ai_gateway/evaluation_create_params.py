@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["EvaluationCreateParams"]
 
@@ -11,8 +12,8 @@ __all__ = ["EvaluationCreateParams"]
 class EvaluationCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    dataset_ids: Required[List[str]]
+    dataset_ids: Required[SequenceNotStr[str]]
 
-    evaluation_type_ids: Required[List[str]]
+    evaluation_type_ids: Required[SequenceNotStr[str]]
 
     name: Required[str]

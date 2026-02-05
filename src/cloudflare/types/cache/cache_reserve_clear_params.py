@@ -9,6 +9,6 @@ __all__ = ["CacheReserveClearParams"]
 
 class CacheReserveClearParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     body: Required[object]

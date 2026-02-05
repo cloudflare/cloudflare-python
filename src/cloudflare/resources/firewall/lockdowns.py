@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,16 +54,16 @@ class LockdownsResource(SyncAPIResource):
         *,
         zone_id: str,
         configurations: ConfigurationParam,
-        urls: List[OverrideURL],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        urls: SequenceNotStr[OverrideURL],
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Creates a new Zone Lockdown rule.
@@ -79,8 +79,8 @@ class LockdownsResource(SyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
-          description: An informative summary of the rate limit. This value is sanitized and any tags
-              will be removed.
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
 
           paused: When true, indicates that the rule is currently paused.
 
@@ -126,13 +126,13 @@ class LockdownsResource(SyncAPIResource):
         *,
         zone_id: str,
         configurations: ConfigurationParam,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Updates an existing Zone Lockdown rule.
@@ -185,23 +185,23 @@ class LockdownsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        description_search: str | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        ip_range_search: str | NotGiven = NOT_GIVEN,
-        ip_search: str | NotGiven = NOT_GIVEN,
-        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        uri_search: str | NotGiven = NOT_GIVEN,
+        created_on: Union[str, datetime] | Omit = omit,
+        description: str | Omit = omit,
+        description_search: str | Omit = omit,
+        ip: str | Omit = omit,
+        ip_range_search: str | Omit = omit,
+        ip_search: str | Omit = omit,
+        modified_on: Union[str, datetime] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        priority: float | Omit = omit,
+        uri_search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Lockdown]:
         """Fetches Zone Lockdown rules.
 
@@ -284,7 +284,7 @@ class LockdownsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LockdownDeleteResponse]:
         """
         Deletes an existing Zone Lockdown rule.
@@ -328,7 +328,7 @@ class LockdownsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Fetches the details of a Zone Lockdown rule.
@@ -388,16 +388,16 @@ class AsyncLockdownsResource(AsyncAPIResource):
         *,
         zone_id: str,
         configurations: ConfigurationParam,
-        urls: List[OverrideURL],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        urls: SequenceNotStr[OverrideURL],
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Creates a new Zone Lockdown rule.
@@ -413,8 +413,8 @@ class AsyncLockdownsResource(AsyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
-          description: An informative summary of the rate limit. This value is sanitized and any tags
-              will be removed.
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
 
           paused: When true, indicates that the rule is currently paused.
 
@@ -460,13 +460,13 @@ class AsyncLockdownsResource(AsyncAPIResource):
         *,
         zone_id: str,
         configurations: ConfigurationParam,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Updates an existing Zone Lockdown rule.
@@ -519,23 +519,23 @@ class AsyncLockdownsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        description_search: str | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        ip_range_search: str | NotGiven = NOT_GIVEN,
-        ip_search: str | NotGiven = NOT_GIVEN,
-        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        uri_search: str | NotGiven = NOT_GIVEN,
+        created_on: Union[str, datetime] | Omit = omit,
+        description: str | Omit = omit,
+        description_search: str | Omit = omit,
+        ip: str | Omit = omit,
+        ip_range_search: str | Omit = omit,
+        ip_search: str | Omit = omit,
+        modified_on: Union[str, datetime] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        priority: float | Omit = omit,
+        uri_search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Lockdown, AsyncV4PagePaginationArray[Lockdown]]:
         """Fetches Zone Lockdown rules.
 
@@ -618,7 +618,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LockdownDeleteResponse]:
         """
         Deletes an existing Zone Lockdown rule.
@@ -662,7 +662,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Lockdown:
         """
         Fetches the details of a Zone Lockdown rule.

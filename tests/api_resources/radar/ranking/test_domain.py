@@ -32,7 +32,7 @@ class TestDomain:
             date=[parse_date("2019-12-27")],
             format="JSON",
             include_top_locations=True,
-            limit=5,
+            limit=1,
             name=["main_series"],
             ranking_type="POPULAR",
         )
@@ -71,7 +71,9 @@ class TestDomain:
 
 
 class TestAsyncDomain:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -87,7 +89,7 @@ class TestAsyncDomain:
             date=[parse_date("2019-12-27")],
             format="JSON",
             include_top_locations=True,
-            limit=5,
+            limit=1,
             name=["main_series"],
             ranking_type="POPULAR",
         )

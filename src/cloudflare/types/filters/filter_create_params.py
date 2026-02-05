@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from .firewall_filter_param import FirewallFilterParam
 
 __all__ = ["FilterCreateParams"]
 
@@ -11,9 +14,4 @@ class FilterCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Defines an identifier."""
 
-    expression: Required[str]
-    """The filter expression.
-
-    For more information, refer to
-    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
-    """
+    body: Required[Iterable[FirewallFilterParam]]

@@ -15,7 +15,7 @@ class RulesetListParams(TypedDict, total=False):
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     cursor: str
-    """Cursor to use for the next page."""
+    """The cursor to use for the next page."""
 
     per_page: int
-    """Number of rulesets to return per page."""
+    """The number of rulesets to return per page."""

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -18,7 +18,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
+from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.accounts.logs import audit_list_params
 from ....types.accounts.logs.audit_list_response import AuditListResponse
@@ -52,37 +52,38 @@ class AuditResource(SyncAPIResource):
         account_id: str,
         before: Union[str, date],
         since: Union[str, date],
-        account_name: audit_list_params.AccountName | NotGiven = NOT_GIVEN,
-        action_result: audit_list_params.ActionResult | NotGiven = NOT_GIVEN,
-        action_type: audit_list_params.ActionType | NotGiven = NOT_GIVEN,
-        actor_context: audit_list_params.ActorContext | NotGiven = NOT_GIVEN,
-        actor_email: audit_list_params.ActorEmail | NotGiven = NOT_GIVEN,
-        actor_id: audit_list_params.ActorID | NotGiven = NOT_GIVEN,
-        actor_ip_address: audit_list_params.ActorIPAddress | NotGiven = NOT_GIVEN,
-        actor_token_id: audit_list_params.ActorTokenID | NotGiven = NOT_GIVEN,
-        actor_token_name: audit_list_params.ActorTokenName | NotGiven = NOT_GIVEN,
-        actor_type: audit_list_params.ActorType | NotGiven = NOT_GIVEN,
-        audit_log_id: audit_list_params.AuditLogID | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        raw_cf_rayid: audit_list_params.RawCfRayID | NotGiven = NOT_GIVEN,
-        raw_method: audit_list_params.RawMethod | NotGiven = NOT_GIVEN,
-        raw_status_code: audit_list_params.RawStatusCode | NotGiven = NOT_GIVEN,
-        raw_uri: audit_list_params.RawURI | NotGiven = NOT_GIVEN,
-        resource_id: audit_list_params.ResourceID | NotGiven = NOT_GIVEN,
-        resource_product: audit_list_params.ResourceProduct | NotGiven = NOT_GIVEN,
-        resource_scope: audit_list_params.ResourceScope | NotGiven = NOT_GIVEN,
-        resource_type: audit_list_params.ResourceType | NotGiven = NOT_GIVEN,
-        zone_id: audit_list_params.ZoneID | NotGiven = NOT_GIVEN,
-        zone_name: audit_list_params.ZoneName | NotGiven = NOT_GIVEN,
+        id: audit_list_params.ID | Omit = omit,
+        account_name: audit_list_params.AccountName | Omit = omit,
+        action_result: audit_list_params.ActionResult | Omit = omit,
+        action_type: audit_list_params.ActionType | Omit = omit,
+        actor_context: audit_list_params.ActorContext | Omit = omit,
+        actor_email: audit_list_params.ActorEmail | Omit = omit,
+        actor_id: audit_list_params.ActorID | Omit = omit,
+        actor_ip_address: audit_list_params.ActorIPAddress | Omit = omit,
+        actor_token_id: audit_list_params.ActorTokenID | Omit = omit,
+        actor_token_name: audit_list_params.ActorTokenName | Omit = omit,
+        actor_type: audit_list_params.ActorType | Omit = omit,
+        audit_log_id: audit_list_params.AuditLogID | Omit = omit,
+        cursor: str | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        limit: float | Omit = omit,
+        raw_cf_rayid: audit_list_params.RawCfRayID | Omit = omit,
+        raw_method: audit_list_params.RawMethod | Omit = omit,
+        raw_status_code: audit_list_params.RawStatusCode | Omit = omit,
+        raw_uri: audit_list_params.RawURI | Omit = omit,
+        resource_id: audit_list_params.ResourceID | Omit = omit,
+        resource_product: audit_list_params.ResourceProduct | Omit = omit,
+        resource_scope: audit_list_params.ResourceScope | Omit = omit,
+        resource_type: audit_list_params.ResourceType | Omit = omit,
+        zone_id: audit_list_params.ZoneID | Omit = omit,
+        zone_name: audit_list_params.ZoneName | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorLimitPagination[AuditListResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPaginationAfter[AuditListResponse]:
         """Gets a list of audit logs for an account.
 
         <br /> <br /> This is the beta release
@@ -124,7 +125,7 @@ class AuditResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/logs/audit",
-            page=SyncCursorLimitPagination[AuditListResponse],
+            page=SyncCursorPaginationAfter[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -134,6 +135,7 @@ class AuditResource(SyncAPIResource):
                     {
                         "before": before,
                         "since": since,
+                        "id": id,
                         "account_name": account_name,
                         "action_result": action_result,
                         "action_type": action_type,
@@ -192,37 +194,38 @@ class AsyncAuditResource(AsyncAPIResource):
         account_id: str,
         before: Union[str, date],
         since: Union[str, date],
-        account_name: audit_list_params.AccountName | NotGiven = NOT_GIVEN,
-        action_result: audit_list_params.ActionResult | NotGiven = NOT_GIVEN,
-        action_type: audit_list_params.ActionType | NotGiven = NOT_GIVEN,
-        actor_context: audit_list_params.ActorContext | NotGiven = NOT_GIVEN,
-        actor_email: audit_list_params.ActorEmail | NotGiven = NOT_GIVEN,
-        actor_id: audit_list_params.ActorID | NotGiven = NOT_GIVEN,
-        actor_ip_address: audit_list_params.ActorIPAddress | NotGiven = NOT_GIVEN,
-        actor_token_id: audit_list_params.ActorTokenID | NotGiven = NOT_GIVEN,
-        actor_token_name: audit_list_params.ActorTokenName | NotGiven = NOT_GIVEN,
-        actor_type: audit_list_params.ActorType | NotGiven = NOT_GIVEN,
-        audit_log_id: audit_list_params.AuditLogID | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        raw_cf_rayid: audit_list_params.RawCfRayID | NotGiven = NOT_GIVEN,
-        raw_method: audit_list_params.RawMethod | NotGiven = NOT_GIVEN,
-        raw_status_code: audit_list_params.RawStatusCode | NotGiven = NOT_GIVEN,
-        raw_uri: audit_list_params.RawURI | NotGiven = NOT_GIVEN,
-        resource_id: audit_list_params.ResourceID | NotGiven = NOT_GIVEN,
-        resource_product: audit_list_params.ResourceProduct | NotGiven = NOT_GIVEN,
-        resource_scope: audit_list_params.ResourceScope | NotGiven = NOT_GIVEN,
-        resource_type: audit_list_params.ResourceType | NotGiven = NOT_GIVEN,
-        zone_id: audit_list_params.ZoneID | NotGiven = NOT_GIVEN,
-        zone_name: audit_list_params.ZoneName | NotGiven = NOT_GIVEN,
+        id: audit_list_params.ID | Omit = omit,
+        account_name: audit_list_params.AccountName | Omit = omit,
+        action_result: audit_list_params.ActionResult | Omit = omit,
+        action_type: audit_list_params.ActionType | Omit = omit,
+        actor_context: audit_list_params.ActorContext | Omit = omit,
+        actor_email: audit_list_params.ActorEmail | Omit = omit,
+        actor_id: audit_list_params.ActorID | Omit = omit,
+        actor_ip_address: audit_list_params.ActorIPAddress | Omit = omit,
+        actor_token_id: audit_list_params.ActorTokenID | Omit = omit,
+        actor_token_name: audit_list_params.ActorTokenName | Omit = omit,
+        actor_type: audit_list_params.ActorType | Omit = omit,
+        audit_log_id: audit_list_params.AuditLogID | Omit = omit,
+        cursor: str | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        limit: float | Omit = omit,
+        raw_cf_rayid: audit_list_params.RawCfRayID | Omit = omit,
+        raw_method: audit_list_params.RawMethod | Omit = omit,
+        raw_status_code: audit_list_params.RawStatusCode | Omit = omit,
+        raw_uri: audit_list_params.RawURI | Omit = omit,
+        resource_id: audit_list_params.ResourceID | Omit = omit,
+        resource_product: audit_list_params.ResourceProduct | Omit = omit,
+        resource_scope: audit_list_params.ResourceScope | Omit = omit,
+        resource_type: audit_list_params.ResourceType | Omit = omit,
+        zone_id: audit_list_params.ZoneID | Omit = omit,
+        zone_name: audit_list_params.ZoneName | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuditListResponse, AsyncCursorLimitPagination[AuditListResponse]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AuditListResponse, AsyncCursorPaginationAfter[AuditListResponse]]:
         """Gets a list of audit logs for an account.
 
         <br /> <br /> This is the beta release
@@ -264,7 +267,7 @@ class AsyncAuditResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/logs/audit",
-            page=AsyncCursorLimitPagination[AuditListResponse],
+            page=AsyncCursorPaginationAfter[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,6 +277,7 @@ class AsyncAuditResource(AsyncAPIResource):
                     {
                         "before": before,
                         "since": since,
+                        "id": id,
                         "account_name": account_name,
                         "action_result": action_result,
                         "action_type": action_type,

@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Union, Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["InstanceBulkParams", "Body"]
+__all__ = ["InstanceBulkParams", "Body", "BodyInstanceRetention"]
 
 
 class InstanceBulkParams(TypedDict, total=False):
@@ -14,7 +14,17 @@ class InstanceBulkParams(TypedDict, total=False):
     body: Iterable[Body]
 
 
+class BodyInstanceRetention(TypedDict, total=False):
+    error_retention: Union[int, str]
+    """Duration in milliseconds or as a string like '5 minutes'"""
+
+    success_retention: Union[int, str]
+    """Duration in milliseconds or as a string like '5 minutes'"""
+
+
 class Body(TypedDict, total=False):
     instance_id: str
+
+    instance_retention: BodyInstanceRetention
 
     params: object

@@ -9,6 +9,8 @@ __all__ = ["TargetListResponse", "IP", "IPIPV4", "IPIPV6"]
 
 
 class IPIPV4(BaseModel):
+    """The target's IPv4 address"""
+
     ip_addr: Optional[str] = None
     """IP address of the target"""
 
@@ -20,6 +22,8 @@ class IPIPV4(BaseModel):
 
 
 class IPIPV6(BaseModel):
+    """The target's IPv6 address"""
+
     ip_addr: Optional[str] = None
     """IP address of the target"""
 
@@ -31,6 +35,8 @@ class IPIPV6(BaseModel):
 
 
 class IP(BaseModel):
+    """The IPv4/IPv6 address that identifies where to reach a target"""
+
     ipv4: Optional[IPIPV4] = None
     """The target's IPv4 address"""
 

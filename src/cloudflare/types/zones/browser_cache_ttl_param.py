@@ -12,7 +12,7 @@ class BrowserCacheTTLParam(TypedDict, total=False):
     """Control how long resources cached by client browsers remain valid."""
 
     value: int
-    """The number of seconds to cache resources for.
-
-    The API prohibits setting this to 0 for non-Enterprise domains.
+    """
+    The number of seconds to cache resources for. Setting this to 0 enables "Respect
+    Existing Headers".
     """

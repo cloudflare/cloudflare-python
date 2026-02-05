@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -31,7 +31,7 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -42,7 +42,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .user_policy_checks import (
     UserPolicyChecksResource,
@@ -127,40 +127,40 @@ class ApplicationsResource(SyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -268,25 +268,25 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SaaSApplicationPolicy] | Omit = omit,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -349,41 +349,44 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -504,41 +507,44 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -658,26 +664,31 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        bg_color: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        policies: SequenceNotStr[application_create_params.AppLauncherApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -699,6 +710,14 @@ class ApplicationsResource(SyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -708,9 +727,6 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -733,27 +749,21 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -768,31 +778,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -809,27 +812,21 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -844,31 +841,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -884,21 +874,90 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+              .proxy.cloudflare-gateway.com
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h. Note: unsupported for infrastructure type applications.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        domain: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -915,9 +974,6 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -940,16 +996,16 @@ class ApplicationsResource(SyncAPIResource):
         *,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -982,40 +1038,40 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -1122,53 +1178,88 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy]
+        domain: str | Omit = omit,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ]
+        | Omit = omit,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_create_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
+        | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig
+        | application_create_params.SaaSApplicationSCIMConfig
+        | application_create_params.BrowserSSHApplicationSCIMConfig
+        | application_create_params.BrowserVNCApplicationSCIMConfig
+        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        bg_color: str | Omit = omit,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
+        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
@@ -1247,40 +1338,40 @@ class ApplicationsResource(SyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1391,25 +1482,25 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SaaSApplicationPolicy] | Omit = omit,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1475,41 +1566,44 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1633,41 +1727,44 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1790,26 +1887,31 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        bg_color: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        policies: SequenceNotStr[application_update_params.AppLauncherApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1833,6 +1935,14 @@ class ApplicationsResource(SyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -1842,9 +1952,6 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1868,27 +1975,21 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1905,31 +2006,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1947,27 +2041,21 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -1984,31 +2072,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2025,21 +2106,93 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+              .proxy.cloudflare-gateway.com
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h. Note: unsupported for infrastructure type applications.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        domain: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -2058,9 +2211,6 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2084,16 +2234,16 @@ class ApplicationsResource(SyncAPIResource):
         *,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -2129,40 +2279,40 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -2272,53 +2422,88 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy]
+        domain: str | Omit = omit,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ]
+        | Omit = omit,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_update_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
+        | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig
+        | application_update_params.SaaSApplicationSCIMConfig
+        | application_update_params.BrowserSSHApplicationSCIMConfig
+        | application_update_params.BrowserVNCApplicationSCIMConfig
+        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        bg_color: str | Omit = omit,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
+        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
@@ -2395,19 +2580,23 @@ class ApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        aud: str | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        aud: str | Omit = omit,
+        domain: str | Omit = omit,
+        exact: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ApplicationListResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[ApplicationListResponse]:
         """
         Lists all Access applications in an account or zone.
 
@@ -2420,9 +2609,17 @@ class ApplicationsResource(SyncAPIResource):
 
           domain: The domain of the app.
 
+          exact: True for only exact string matches against passed name/domain query parameters.
+
           name: The name of the app.
 
+          page: Page number of results.
+
+          per_page: Number of results per page.
+
           search: Search for apps by other listed query parameters.
+
+          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -2446,7 +2643,7 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=SyncSinglePage[ApplicationListResponse],
+            page=SyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2456,8 +2653,12 @@ class ApplicationsResource(SyncAPIResource):
                     {
                         "aud": aud,
                         "domain": domain,
+                        "exact": exact,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
+                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),
@@ -2469,14 +2670,14 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationDeleteResponse]:
         """
         Deletes an application from Access.
@@ -2526,14 +2727,14 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
@@ -2588,14 +2789,14 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Revokes all tokens issued for an application.
@@ -2688,40 +2889,40 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -2829,25 +3030,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SaaSApplicationPolicy] | Omit = omit,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -2910,41 +3111,44 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3065,41 +3269,44 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3219,26 +3426,31 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        bg_color: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        policies: SequenceNotStr[application_create_params.AppLauncherApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3260,6 +3472,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -3269,9 +3489,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3294,27 +3511,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3329,31 +3540,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3370,27 +3574,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3405,31 +3603,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3445,21 +3636,90 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+              .proxy.cloudflare-gateway.com
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h. Note: unsupported for infrastructure type applications.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        domain: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3476,9 +3736,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -3501,16 +3758,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3543,40 +3800,40 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
@@ -3683,53 +3940,88 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy]
+        domain: str | Omit = omit,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ]
+        | Omit = omit,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_create_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
+        | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig
+        | application_create_params.SaaSApplicationSCIMConfig
+        | application_create_params.BrowserSSHApplicationSCIMConfig
+        | application_create_params.BrowserVNCApplicationSCIMConfig
+        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        bg_color: str | Omit = omit,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
+        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
@@ -3808,40 +4100,40 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -3952,25 +4244,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SaaSApplicationPolicy] | Omit = omit,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4036,41 +4328,44 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4194,41 +4489,44 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4351,26 +4649,31 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        bg_color: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        policies: SequenceNotStr[application_update_params.AppLauncherApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4394,6 +4697,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -4403,9 +4714,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4429,27 +4737,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4466,31 +4768,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -4508,27 +4803,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4545,31 +4834,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -4586,21 +4868,93 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+              .proxy.cloudflare-gateway.com
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h. Note: unsupported for infrastructure type applications.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        domain: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        type: ApplicationType | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4619,9 +4973,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -4645,16 +4996,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        name: str | Omit = omit,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4690,40 +5041,40 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
@@ -4833,53 +5184,88 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allow_iframe: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-        custom_deny_message: str | NotGiven = NOT_GIVEN,
-        custom_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
-        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        logo_url: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy]
+        domain: str | Omit = omit,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ]
+        | Omit = omit,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allow_authenticate_via_warp: bool | Omit = omit,
+        allow_iframe: bool | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        app_launcher_visible: bool | Omit = omit,
+        auto_redirect_to_identity: bool | Omit = omit,
+        cors_headers: CORSHeadersParam | Omit = omit,
+        custom_deny_message: str | Omit = omit,
+        custom_deny_url: str | Omit = omit,
+        custom_non_identity_deny_url: str | Omit = omit,
+        custom_pages: SequenceNotStr[str] | Omit = omit,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | Omit = omit,
+        enable_binding_cookie: bool | Omit = omit,
+        http_only_cookie_attribute: bool | Omit = omit,
+        logo_url: str | Omit = omit,
+        name: str | Omit = omit,
+        options_preflight_bypass: bool | Omit = omit,
+        path_cookie_attribute: bool | Omit = omit,
+        policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_update_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
-        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
-        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
-        skip_interstitial: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
-        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
+        | Omit = omit,
+        read_service_tokens_from_header: str | Omit = omit,
+        same_site_cookie_attribute: str | Omit = omit,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig
+        | application_update_params.SaaSApplicationSCIMConfig
+        | application_update_params.BrowserSSHApplicationSCIMConfig
+        | application_update_params.BrowserVNCApplicationSCIMConfig
+        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        service_auth_401_redirect: bool | Omit = omit,
+        session_duration: str | Omit = omit,
+        skip_interstitial: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
+        app_launcher_logo_url: str | Omit = omit,
+        bg_color: str | Omit = omit,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | Omit = omit,
+        header_bg_color: str | Omit = omit,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
+        skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
+        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
@@ -4956,19 +5342,23 @@ class AsyncApplicationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        aud: str | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        aud: str | Omit = omit,
+        domain: str | Omit = omit,
+        exact: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncV4PagePaginationArray[ApplicationListResponse]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -4981,9 +5371,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           domain: The domain of the app.
 
+          exact: True for only exact string matches against passed name/domain query parameters.
+
           name: The name of the app.
 
+          page: Page number of results.
+
+          per_page: Number of results per page.
+
           search: Search for apps by other listed query parameters.
+
+          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -5007,7 +5405,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=AsyncSinglePage[ApplicationListResponse],
+            page=AsyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -5017,8 +5415,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     {
                         "aud": aud,
                         "domain": domain,
+                        "exact": exact,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
+                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),
@@ -5030,14 +5432,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationDeleteResponse]:
         """
         Deletes an application from Access.
@@ -5087,14 +5489,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
@@ -5149,14 +5551,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Revokes all tokens issued for an application.

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .identity_provider_type import IdentityProviderType
 from .generic_oauth_config_param import GenericOAuthConfigParam
 from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
@@ -71,7 +72,12 @@ class AzureAD(TypedDict, total=False):
 
 
 class AzureADConfig(TypedDict, total=False):
-    claims: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -138,13 +144,18 @@ class AccessCentrify(TypedDict, total=False):
 
 
 class AccessCentrifyConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     centrify_account: str
     """Your centrify account url"""
 
     centrify_app_id: str
     """Your centrify app id"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -251,7 +262,12 @@ class AccessGoogle(TypedDict, total=False):
 
 
 class AccessGoogleConfig(TypedDict, total=False):
-    claims: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -296,10 +312,15 @@ class AccessGoogleApps(TypedDict, total=False):
 
 
 class AccessGoogleAppsConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     apps_domain: str
     """Your companies TLD"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -375,13 +396,18 @@ class AccessOIDC(TypedDict, total=False):
 
 
 class AccessOIDCConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     auth_url: str
     """The authorization_endpoint URL of your IdP"""
 
     certs_url: str
     """The jwks_uri endpoint of your IdP to allow the IdP keys to sign the tokens"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -396,7 +422,7 @@ class AccessOIDCConfig(TypedDict, total=False):
     pkce_enabled: bool
     """Enable Proof Key for Code Exchange (PKCE)"""
 
-    scopes: List[str]
+    scopes: SequenceNotStr[str]
     """OAuth scopes"""
 
     token_url: str
@@ -435,10 +461,15 @@ class AccessOkta(TypedDict, total=False):
 
 
 class AccessOktaConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     authorization_server_id: str
     """Your okta authorization server id"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -486,7 +517,12 @@ class AccessOnelogin(TypedDict, total=False):
 
 
 class AccessOneloginConfig(TypedDict, total=False):
-    claims: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -534,7 +570,12 @@ class AccessPingone(TypedDict, total=False):
 
 
 class AccessPingoneConfig(TypedDict, total=False):
-    claims: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -590,7 +631,12 @@ class AccessSAMLConfigHeaderAttribute(TypedDict, total=False):
 
 
 class AccessSAMLConfig(TypedDict, total=False):
-    attributes: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    attributes: SequenceNotStr[str]
     """
     A list of SAML attribute names that will be added to your signed JWT token and
     can be used in SAML policy rules.
@@ -605,7 +651,7 @@ class AccessSAMLConfig(TypedDict, total=False):
     the Access callback.
     """
 
-    idp_public_certs: List[str]
+    idp_public_certs: SequenceNotStr[str]
     """X509 certificate to verify the signature in the SAML authentication response"""
 
     issuer_url: str
@@ -684,6 +730,11 @@ class AccessOnetimepin(TypedDict, total=False):
 
 
 class AccessOnetimepinConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     pass
 
 

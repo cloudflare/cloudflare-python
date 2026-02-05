@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,7 +31,7 @@ from .metadata import (
     MetadataResourceWithStreamingResponse,
     AsyncMetadataResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.kv import (
@@ -102,7 +102,7 @@ class NamespacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
@@ -111,7 +111,7 @@ class NamespacesResource(SyncAPIResource):
         to be replaced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           title: A human-readable string name for a Namespace.
 
@@ -149,13 +149,13 @@ class NamespacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Namespace:
         """
         Modifies a namespace's title.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -190,22 +190,22 @@ class NamespacesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "title"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Namespace]:
         """
         Returns the namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order namespaces.
 
@@ -256,13 +256,13 @@ class NamespacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -295,13 +295,13 @@ class NamespacesResource(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        body: List[str],
+        body: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
@@ -309,7 +309,7 @@ class NamespacesResource(SyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -327,7 +327,7 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._post(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
-            body=maybe_transform(body, List[str]),
+            body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,33 +343,32 @@ class NamespacesResource(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        keys: List[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
+        keys: SequenceNotStr[str],
+        type: Literal["text", "json"] | Omit = omit,
+        with_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -419,7 +418,7 @@ class NamespacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkUpdateResponse]:
         """Write multiple keys and values at once.
 
@@ -431,7 +430,7 @@ class NamespacesResource(SyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -470,13 +469,13 @@ class NamespacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -547,7 +546,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
@@ -556,7 +555,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         to be replaced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           title: A human-readable string name for a Namespace.
 
@@ -594,13 +593,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Namespace:
         """
         Modifies a namespace's title.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -635,22 +634,22 @@ class AsyncNamespacesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "title"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Namespace, AsyncV4PagePaginationArray[Namespace]]:
         """
         Returns the namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order namespaces.
 
@@ -701,13 +700,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -740,13 +739,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        body: List[str],
+        body: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
@@ -754,7 +753,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -772,7 +771,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._post(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
-            body=await async_maybe_transform(body, List[str]),
+            body=await async_maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -788,33 +787,32 @@ class AsyncNamespacesResource(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        keys: List[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
+        keys: SequenceNotStr[str],
+        type: Literal["text", "json"] | Omit = omit,
+        with_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -864,7 +862,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NamespaceBulkUpdateResponse]:
         """Write multiple keys and values at once.
 
@@ -876,7 +874,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -915,13 +913,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 

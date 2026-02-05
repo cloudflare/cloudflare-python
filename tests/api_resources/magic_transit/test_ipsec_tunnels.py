@@ -42,6 +42,13 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
+            custom_remote_identities={"fqdn_id": "fqdn_id"},
             customer_endpoint="203.0.113.1",
             description="Tunnel for ISP X",
             health_check={
@@ -51,6 +58,7 @@ class TestIPSECTunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
             x_magic_new_hc_target=True,
@@ -118,6 +126,13 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
+            custom_remote_identities={"fqdn_id": "fqdn_id"},
             customer_endpoint="203.0.113.1",
             description="Tunnel for ISP X",
             health_check={
@@ -127,6 +142,7 @@ class TestIPSECTunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
             x_magic_new_hc_target=True,
@@ -459,7 +475,9 @@ class TestIPSECTunnels:
 
 
 class TestAsyncIPSECTunnels:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -478,6 +496,13 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
+            custom_remote_identities={"fqdn_id": "fqdn_id"},
             customer_endpoint="203.0.113.1",
             description="Tunnel for ISP X",
             health_check={
@@ -487,6 +512,7 @@ class TestAsyncIPSECTunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
             x_magic_new_hc_target=True,
@@ -554,6 +580,13 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
+            automatic_return_routing=True,
+            bgp={
+                "customer_asn": 0,
+                "extra_prefixes": ["string"],
+                "md5_key": "md5_key",
+            },
+            custom_remote_identities={"fqdn_id": "fqdn_id"},
             customer_endpoint="203.0.113.1",
             description="Tunnel for ISP X",
             health_check={
@@ -563,6 +596,7 @@ class TestAsyncIPSECTunnels:
                 "target": {"saved": "203.0.113.1"},
                 "type": "request",
             },
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
             x_magic_new_hc_target=True,

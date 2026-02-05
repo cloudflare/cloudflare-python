@@ -17,4 +17,9 @@ class SAML(BaseModel):
 
 
 class SAMLGroupRule(BaseModel):
+    """
+    Matches a SAML group.
+    Requires a SAML identity provider.
+    """
+
     saml: SAML

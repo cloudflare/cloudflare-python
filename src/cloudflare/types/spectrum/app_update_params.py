@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .dns_param import DNSParam
 from .edge_ips_param import EdgeIPsParam
 from .origin_dns_param import OriginDNSParam
@@ -20,30 +21,12 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     dns: Required[DNSParam]
     """The name and type of DNS record for the Spectrum application."""
 
-    ip_firewall: Required[bool]
-    """
-    Enables IP Access Rules for this application. Notes: Only available for TCP
-    applications.
-    """
-
     protocol: Required[str]
     """The port configuration at Cloudflare's edge.
 
     May specify a single port, for example `"tcp/1000"`, or a range of ports, for
     example `"tcp/1000-2000"`.
     """
-
-    proxy_protocol: Required[Literal["off", "v1", "v2", "simple"]]
-    """Enables Proxy Protocol to the origin.
-
-    Refer to
-    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-    Proxy Protocol.
-    """
-
-    tls: Required[Literal["off", "flexible", "full", "strict"]]
-    """The type of TLS termination associated with the application."""
 
     traffic_type: Required[Literal["direct", "http", "https"]]
     """Determines how data travels from the edge to your origin.
@@ -63,7 +46,13 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     edge_ips: EdgeIPsParam
     """The anycast edge IP configuration for the hostname of this application."""
 
-    origin_direct: List[str]
+    ip_firewall: bool
+    """
+    Enables IP Access Rules for this application. Notes: Only available for TCP
+    applications.
+    """
+
+    origin_direct: SequenceNotStr[str]
     """List of origin IP addresses.
 
     Array may contain multiple IP addresses for load balancing.
@@ -82,6 +71,18 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     field.
     """
 
+    proxy_protocol: Literal["off", "v1", "v2", "simple"]
+    """Enables Proxy Protocol to the origin.
+
+    Refer to
+    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+    Proxy Protocol.
+    """
+
+    tls: Literal["off", "flexible", "full", "strict"]
+    """The type of TLS termination associated with the application."""
+
 
 class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
     zone_id: Required[str]
@@ -97,7 +98,7 @@ class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
     example `"tcp/1000-2000"`.
     """
 
-    origin_direct: List[str]
+    origin_direct: SequenceNotStr[str]
     """List of origin IP addresses.
 
     Array may contain multiple IP addresses for load balancing.

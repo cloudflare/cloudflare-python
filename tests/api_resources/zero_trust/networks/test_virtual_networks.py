@@ -86,6 +86,7 @@ class TestVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             is_default=True,
+            is_default_network=True,
             is_deleted=True,
             name="us-east-1-vpc",
         )
@@ -279,7 +280,9 @@ class TestVirtualNetworks:
 
 
 class TestAsyncVirtualNetworks:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -347,6 +350,7 @@ class TestAsyncVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             is_default=True,
+            is_default_network=True,
             is_deleted=True,
             name="us-east-1-vpc",
         )

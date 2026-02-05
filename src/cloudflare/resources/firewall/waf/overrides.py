@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -59,13 +59,13 @@ class OverridesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Creates a URI-based WAF override for a zone.
@@ -112,13 +112,13 @@ class OverridesResource(SyncAPIResource):
         id: str,
         rewrite_action: RewriteActionParam,
         rules: WAFRuleParam,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Updates an existing URI-based WAF override.
@@ -184,14 +184,14 @@ class OverridesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Override]:
         """
         Fetches the URI-based WAF overrides in a zone.
@@ -246,7 +246,7 @@ class OverridesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OverrideDeleteResponse]:
         """
         Deletes an existing URI-based WAF override.
@@ -294,7 +294,7 @@ class OverridesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Fetches the details of a URI-based WAF override.
@@ -357,13 +357,13 @@ class AsyncOverridesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Creates a URI-based WAF override for a zone.
@@ -410,13 +410,13 @@ class AsyncOverridesResource(AsyncAPIResource):
         id: str,
         rewrite_action: RewriteActionParam,
         rules: WAFRuleParam,
-        urls: List[OverrideURL],
+        urls: SequenceNotStr[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Updates an existing URI-based WAF override.
@@ -482,14 +482,14 @@ class AsyncOverridesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Override, AsyncV4PagePaginationArray[Override]]:
         """
         Fetches the URI-based WAF overrides in a zone.
@@ -544,7 +544,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OverrideDeleteResponse]:
         """
         Deletes an existing URI-based WAF override.
@@ -592,7 +592,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
         """
         Fetches the details of a URI-based WAF override.
@@ -636,27 +636,27 @@ class OverridesResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                overrides.create  # pyright: ignore[reportDeprecated],
+                overrides.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                overrides.update  # pyright: ignore[reportDeprecated],
+                overrides.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                overrides.list  # pyright: ignore[reportDeprecated],
+                overrides.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                overrides.delete  # pyright: ignore[reportDeprecated],
+                overrides.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                overrides.get  # pyright: ignore[reportDeprecated],
+                overrides.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -667,27 +667,27 @@ class AsyncOverridesResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                overrides.create  # pyright: ignore[reportDeprecated],
+                overrides.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                overrides.update  # pyright: ignore[reportDeprecated],
+                overrides.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                overrides.list  # pyright: ignore[reportDeprecated],
+                overrides.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                overrides.delete  # pyright: ignore[reportDeprecated],
+                overrides.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                overrides.get  # pyright: ignore[reportDeprecated],
+                overrides.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -698,27 +698,27 @@ class OverridesResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                overrides.create  # pyright: ignore[reportDeprecated],
+                overrides.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                overrides.update  # pyright: ignore[reportDeprecated],
+                overrides.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                overrides.list  # pyright: ignore[reportDeprecated],
+                overrides.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                overrides.delete  # pyright: ignore[reportDeprecated],
+                overrides.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                overrides.get  # pyright: ignore[reportDeprecated],
+                overrides.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -729,26 +729,26 @@ class AsyncOverridesResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                overrides.create  # pyright: ignore[reportDeprecated],
+                overrides.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                overrides.update  # pyright: ignore[reportDeprecated],
+                overrides.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                overrides.list  # pyright: ignore[reportDeprecated],
+                overrides.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                overrides.delete  # pyright: ignore[reportDeprecated],
+                overrides.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                overrides.get  # pyright: ignore[reportDeprecated],
+                overrides.get,  # pyright: ignore[reportDeprecated],
             )
         )

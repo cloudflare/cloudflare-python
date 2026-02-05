@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -58,26 +59,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def arc(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -147,26 +151,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def dkim(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -236,26 +243,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def dmarc(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -324,26 +334,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def encrypted(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupEncryptedResponse:
         """
         Retrieves the distribution of emails by encryption status (encrypted vs.
@@ -413,26 +426,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of emails by IP version over time.
@@ -501,26 +517,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     def spf(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupSPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework) validation
@@ -611,26 +630,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def arc(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -700,26 +722,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def dkim(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -789,26 +814,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def dmarc(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -877,26 +905,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def encrypted(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupEncryptedResponse:
         """
         Retrieves the distribution of emails by encryption status (encrypted vs.
@@ -966,26 +997,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of emails by IP version over time.
@@ -1054,26 +1088,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
+    )
     async def spf(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupSPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework) validation
@@ -1148,23 +1185,35 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = to_raw_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_raw_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_raw_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = to_raw_response_wrapper(
-            timeseries_groups.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_raw_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1172,23 +1221,35 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = async_to_raw_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_raw_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_raw_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = async_to_raw_response_wrapper(
-            timeseries_groups.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_raw_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1196,23 +1257,35 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = to_streamed_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_streamed_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_streamed_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = to_streamed_response_wrapper(
-            timeseries_groups.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_streamed_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1220,21 +1293,33 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = async_to_streamed_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_streamed_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_streamed_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.encrypted = async_to_streamed_response_wrapper(
-            timeseries_groups.encrypted,
+        self.encrypted = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_streamed_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )

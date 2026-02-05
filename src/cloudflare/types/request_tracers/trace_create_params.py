@@ -10,7 +10,7 @@ __all__ = ["TraceCreateParams", "Body", "Context", "ContextGeoloc"]
 
 class TraceCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     method: Required[str]
     """HTTP Method of tracing request"""
@@ -48,6 +48,8 @@ class Body(TypedDict, total=False):
 
 
 class ContextGeoloc(TypedDict, total=False):
+    """Geodata for tracing request"""
+
     city: str
 
     continent: str
@@ -70,6 +72,8 @@ class ContextGeoloc(TypedDict, total=False):
 
 
 class Context(TypedDict, total=False):
+    """Additional request parameters"""
+
     bot_score: int
     """Bot score used for evaluating tracing request processing"""
 

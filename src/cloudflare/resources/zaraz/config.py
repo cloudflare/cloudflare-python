@@ -6,7 +6,7 @@ from typing import Dict, Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,15 +55,15 @@ class ConfigResource(SyncAPIResource):
         triggers: Dict[str, config_update_params.Triggers],
         variables: Dict[str, config_update_params.Variables],
         zaraz_version: int,
-        analytics: config_update_params.Analytics | NotGiven = NOT_GIVEN,
-        consent: config_update_params.Consent | NotGiven = NOT_GIVEN,
-        history_change: bool | NotGiven = NOT_GIVEN,
+        analytics: config_update_params.Analytics | Omit = omit,
+        consent: config_update_params.Consent | Omit = omit,
+        history_change: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Updates Zaraz configuration for a zone.
@@ -141,7 +141,7 @@ class ConfigResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """Gets latest Zaraz configuration for a zone.
 
@@ -206,15 +206,15 @@ class AsyncConfigResource(AsyncAPIResource):
         triggers: Dict[str, config_update_params.Triggers],
         variables: Dict[str, config_update_params.Variables],
         zaraz_version: int,
-        analytics: config_update_params.Analytics | NotGiven = NOT_GIVEN,
-        consent: config_update_params.Consent | NotGiven = NOT_GIVEN,
-        history_change: bool | NotGiven = NOT_GIVEN,
+        analytics: config_update_params.Analytics | Omit = omit,
+        consent: config_update_params.Consent | Omit = omit,
+        history_change: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Updates Zaraz configuration for a zone.
@@ -292,7 +292,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """Gets latest Zaraz configuration for a zone.
 

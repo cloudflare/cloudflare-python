@@ -4,10 +4,41 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["DeviceGetResponse", "LastSeenUser"]
+__all__ = ["DeviceGetResponse", "LastSeenRegistration", "LastSeenRegistrationPolicy", "LastSeenUser"]
+
+
+class LastSeenRegistrationPolicy(BaseModel):
+    """A summary of the device profile evaluated for the registration."""
+
+    id: str
+    """The ID of the device settings profile."""
+
+    default: bool
+    """Whether the device settings profile is the default profile for the account."""
+
+    deleted: bool
+    """Whether the device settings profile was deleted."""
+
+    name: str
+    """The name of the device settings profile."""
+
+    updated_at: str
+    """
+    The RFC3339 timestamp of when the device settings profile last changed for the
+    registration.
+    """
+
+
+class LastSeenRegistration(BaseModel):
+    """The last seen registration for the device."""
+
+    policy: Optional[LastSeenRegistrationPolicy] = None
+    """A summary of the device profile evaluated for the registration."""
 
 
 class LastSeenUser(BaseModel):
+    """The last user to use the WARP device."""
+
     id: Optional[str] = None
     """UUID."""
 
@@ -19,6 +50,8 @@ class LastSeenUser(BaseModel):
 
 
 class DeviceGetResponse(BaseModel):
+    """A WARP Device."""
+
     id: str
     """The unique ID of the device."""
 
@@ -52,6 +85,9 @@ class DeviceGetResponse(BaseModel):
     hardware_id: Optional[str] = None
     """A string that uniquely identifies the hardware or virtual machine (VM)."""
 
+    last_seen_registration: Optional[LastSeenRegistration] = None
+    """The last seen registration for the device."""
+
     last_seen_user: Optional[LastSeenUser] = None
     """The last user to use the WARP device."""
 
@@ -68,14 +104,17 @@ class DeviceGetResponse(BaseModel):
     """The device operating system version number."""
 
     os_version_extra: Optional[str] = None
-    """Additional operating system version data.
+    """Additional operating system version details.
 
-    For macOS or iOS, the Product Version Extra. For Linux, the kernel release
-    version.
+    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
+    Version Extra. For Linux, the distribution name and version.
     """
 
     public_ip: Optional[str] = None
-    """The public IP address of the WARP client."""
+    """
+    **Deprecated**: IP information is provided by DEX - see
+    https://developers.cloudflare.com/api/resources/zero_trust/subresources/dex/subresources/fleet_status/subresources/devices/methods/list/
+    """
 
     serial_number: Optional[str] = None
     """The device serial number."""

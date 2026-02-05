@@ -27,13 +27,16 @@ class TestAnnotations:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         annotation = client.radar.annotations.list(
             asn=174,
+            data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
+            event_type="OUTAGE",
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(AnnotationListResponse, annotation, path=["response"])
 
@@ -59,7 +62,9 @@ class TestAnnotations:
 
 
 class TestAsyncAnnotations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -70,13 +75,16 @@ class TestAsyncAnnotations:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         annotation = await async_client.radar.annotations.list(
             asn=174,
+            data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
+            event_type="OUTAGE",
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(AnnotationListResponse, annotation, path=["response"])
 

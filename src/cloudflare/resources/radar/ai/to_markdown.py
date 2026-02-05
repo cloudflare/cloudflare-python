@@ -2,10 +2,21 @@
 
 from __future__ import annotations
 
+import os
+import typing_extensions
+
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ...._utils import maybe_transform
+from ...._files import read_file_content
+from ...._types import (
+    Body,
+    Query,
+    Headers,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    not_given,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -16,7 +27,6 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.radar.ai import to_markdown_create_params
 from ....types.radar.ai.to_markdown_create_response import ToMarkdownCreateResponse
 
 __all__ = ["ToMarkdownResource", "AsyncToMarkdownResource"]
@@ -42,17 +52,20 @@ class ToMarkdownResource(SyncAPIResource):
         """
         return ToMarkdownResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
+    )
     def create(
         self,
+        body: FileContent | BinaryTypes,
         *,
         account_id: str,
-        body: FileTypes | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownCreateResponse]:
         """
         Convert Files into Markdown
@@ -68,10 +81,11 @@ class ToMarkdownResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=SyncSinglePage[ToMarkdownCreateResponse],
-            body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
+            content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -100,17 +114,20 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         return AsyncToMarkdownResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
+    )
     def create(
         self,
+        body: FileContent | BinaryTypes,
         *,
         account_id: str,
-        body: FileTypes | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownCreateResponse, AsyncSinglePage[ToMarkdownCreateResponse]]:
         """
         Convert Files into Markdown
@@ -126,10 +143,11 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=AsyncSinglePage[ToMarkdownCreateResponse],
-            body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
+            content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -142,8 +160,10 @@ class ToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = to_raw_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -151,8 +171,10 @@ class AsyncToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = async_to_raw_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -160,8 +182,10 @@ class ToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = to_streamed_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -169,6 +193,8 @@ class AsyncToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = async_to_streamed_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )

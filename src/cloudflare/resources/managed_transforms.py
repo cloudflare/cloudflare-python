@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,7 +54,7 @@ class ManagedTransformsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedTransformListResponse:
         """
         Fetches a list of all Managed Transforms.
@@ -93,7 +93,7 @@ class ManagedTransformsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Disables all Managed Transforms.
@@ -131,7 +131,7 @@ class ManagedTransformsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedTransformEditResponse:
         """
         Updates the status of one or more Managed Transforms.
@@ -202,7 +202,7 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedTransformListResponse:
         """
         Fetches a list of all Managed Transforms.
@@ -241,7 +241,7 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Disables all Managed Transforms.
@@ -279,7 +279,7 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedTransformEditResponse:
         """
         Updates the status of one or more Managed Transforms.

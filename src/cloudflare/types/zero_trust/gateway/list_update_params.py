@@ -5,19 +5,25 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .gateway_item_param import GatewayItemParam
-
-__all__ = ["ListUpdateParams"]
+__all__ = ["ListUpdateParams", "Item"]
 
 
 class ListUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
     name: Required[str]
-    """The name of the list."""
+    """Specify the list name."""
 
     description: str
-    """The description of the list."""
+    """Provide the list description."""
 
-    items: Iterable[GatewayItemParam]
-    """The items in the list."""
+    items: Iterable[Item]
+    """Add items to the list."""
+
+
+class Item(TypedDict, total=False):
+    description: str
+    """Provide the list item description (optional)."""
+
+    value: str
+    """Specify the item value."""

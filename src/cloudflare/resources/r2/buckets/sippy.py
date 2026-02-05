@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import is_given, required_args, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,15 +52,15 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
@@ -92,15 +92,15 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
@@ -126,30 +126,74 @@ class SippyResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Sippy:
+        """
+        Sets configuration for Sippy for an existing R2 bucket.
+
+        Args:
+          account_id: Account ID.
+
+          bucket_name: Name of the bucket.
+
+          destination: R2 bucket to copy objects to.
+
+          source: General S3-compatible provider to copy objects from.
+
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["account_id"])
     def update(
         self,
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination
+        | sippy_update_params.R2EnableSippyGcsDestination
+        | sippy_update_params.R2EnableSippyS3Destination
+        | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
-        | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        | sippy_update_params.R2EnableSippyS3Source
+        | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._put(
@@ -176,13 +220,13 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SippyDeleteResponse:
         """
         Disables Sippy on this bucket.
@@ -207,7 +251,7 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -227,13 +271,13 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
@@ -258,7 +302,7 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -300,15 +344,15 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
@@ -340,15 +384,15 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
@@ -374,30 +418,74 @@ class AsyncSippyResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
+        source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Sippy:
+        """
+        Sets configuration for Sippy for an existing R2 bucket.
+
+        Args:
+          account_id: Account ID.
+
+          bucket_name: Name of the bucket.
+
+          destination: R2 bucket to copy objects to.
+
+          source: General S3-compatible provider to copy objects from.
+
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["account_id"])
     async def update(
         self,
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination
+        | sippy_update_params.R2EnableSippyGcsDestination
+        | sippy_update_params.R2EnableSippyS3Destination
+        | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
-        | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        | sippy_update_params.R2EnableSippyS3Source
+        | Omit = omit,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -424,13 +512,13 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SippyDeleteResponse:
         """
         Disables Sippy on this bucket.
@@ -455,7 +543,7 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -475,13 +563,13 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
@@ -506,7 +594,7 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(

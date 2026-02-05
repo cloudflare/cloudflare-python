@@ -11,9 +11,6 @@ class DomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifer of the account."""
 
-    environment: Required[str]
-    """Worker environment associated with the zone and hostname."""
-
     hostname: Required[str]
     """Hostname of the Worker Domain."""
 
@@ -22,3 +19,6 @@ class DomainUpdateParams(TypedDict, total=False):
 
     zone_id: Required[str]
     """Identifier of the zone."""
+
+    environment: str
+    """Worker environment associated with the zone and hostname."""

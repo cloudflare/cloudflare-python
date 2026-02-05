@@ -8,6 +8,8 @@ __all__ = ["WorkerMetadataParam"]
 
 
 class WorkerMetadataParam(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     body_part: str
     """Name of the part in the multipart request that contains the script (e.g.
 

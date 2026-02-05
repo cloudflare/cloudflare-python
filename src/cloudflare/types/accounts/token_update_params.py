@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from ..shared_params.token_policy import TokenPolicy
 from ..shared.token_condition_cidr_list import TokenConditionCIDRList
@@ -23,9 +24,6 @@ class TokenUpdateParams(TypedDict, total=False):
     policies: Required[Iterable[TokenPolicy]]
     """List of access policies assigned to the token."""
 
-    status: Required[Literal["active", "disabled", "expired"]]
-    """Status of the token."""
-
     condition: Condition
 
     expires_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -37,18 +35,23 @@ class TokenUpdateParams(TypedDict, total=False):
     not_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The time before which the token MUST NOT be accepted for processing."""
 
+    status: Literal["active", "disabled", "expired"]
+    """Status of the token."""
+
 
 _ConditionRequestIPReservedKeywords = TypedDict(
     "_ConditionRequestIPReservedKeywords",
     {
-        "in": List[TokenConditionCIDRList],
+        "in": SequenceNotStr[TokenConditionCIDRList],
     },
     total=False,
 )
 
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
-    not_in: List[TokenConditionCIDRList]
+    """Client IP restrictions."""
+
+    not_in: SequenceNotStr[TokenConditionCIDRList]
     """List of IPv4/IPv6 CIDR addresses."""
 
 

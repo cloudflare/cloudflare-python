@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["TemporaryCredentialCreateParams"]
@@ -26,8 +26,8 @@ class TemporaryCredentialCreateParams(TypedDict, total=False):
     ttl_seconds: Required[Annotated[float, PropertyInfo(alias="ttlSeconds")]]
     """How long the credentials will live for in seconds."""
 
-    objects: List[str]
+    objects: SequenceNotStr[str]
     """Optional object paths to scope the credentials to."""
 
-    prefixes: List[str]
+    prefixes: SequenceNotStr[str]
     """Optional prefix paths to scope the credentials to."""

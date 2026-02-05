@@ -14,7 +14,7 @@ from .purge import (
     PurgeResourceWithStreamingResponse,
     AsyncPurgeResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .messages import (
     MessagesResource,
@@ -42,6 +42,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
+)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_edit_params, queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
@@ -52,16 +60,20 @@ __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 class QueuesResource(SyncAPIResource):
     @cached_property
-    def consumers(self) -> ConsumersResource:
-        return ConsumersResource(self._client)
-
-    @cached_property
     def messages(self) -> MessagesResource:
         return MessagesResource(self._client)
 
     @cached_property
     def purge(self) -> PurgeResource:
         return PurgeResource(self._client)
+
+    @cached_property
+    def consumers(self) -> ConsumersResource:
+        return ConsumersResource(self._client)
+
+    @cached_property
+    def subscriptions(self) -> SubscriptionsResource:
+        return SubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> QueuesResourceWithRawResponse:
@@ -92,7 +104,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Create a new queue
@@ -128,14 +140,14 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """Updates a Queue.
 
@@ -188,7 +200,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Queue]:
         """
         Returns the queues owned by an account.
@@ -225,7 +237,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueDeleteResponse:
         """
         Deletes a queue
@@ -260,14 +272,14 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Updates a Queue.
@@ -318,7 +330,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Get details about a specific queue.
@@ -355,16 +367,20 @@ class QueuesResource(SyncAPIResource):
 
 class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
-    def consumers(self) -> AsyncConsumersResource:
-        return AsyncConsumersResource(self._client)
-
-    @cached_property
     def messages(self) -> AsyncMessagesResource:
         return AsyncMessagesResource(self._client)
 
     @cached_property
     def purge(self) -> AsyncPurgeResource:
         return AsyncPurgeResource(self._client)
+
+    @cached_property
+    def consumers(self) -> AsyncConsumersResource:
+        return AsyncConsumersResource(self._client)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsResource:
+        return AsyncSubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
@@ -395,7 +411,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Create a new queue
@@ -431,14 +447,14 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """Updates a Queue.
 
@@ -491,7 +507,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Queue, AsyncSinglePage[Queue]]:
         """
         Returns the queues owned by an account.
@@ -528,7 +544,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueDeleteResponse:
         """
         Deletes a queue
@@ -563,14 +579,14 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Updates a Queue.
@@ -621,7 +637,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Get details about a specific queue.
@@ -680,16 +696,20 @@ class QueuesResourceWithRawResponse:
         )
 
     @cached_property
-    def consumers(self) -> ConsumersResourceWithRawResponse:
-        return ConsumersResourceWithRawResponse(self._queues.consumers)
-
-    @cached_property
     def messages(self) -> MessagesResourceWithRawResponse:
         return MessagesResourceWithRawResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> PurgeResourceWithRawResponse:
         return PurgeResourceWithRawResponse(self._queues.purge)
+
+    @cached_property
+    def consumers(self) -> ConsumersResourceWithRawResponse:
+        return ConsumersResourceWithRawResponse(self._queues.consumers)
+
+    @cached_property
+    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
+        return SubscriptionsResourceWithRawResponse(self._queues.subscriptions)
 
 
 class AsyncQueuesResourceWithRawResponse:
@@ -716,16 +736,20 @@ class AsyncQueuesResourceWithRawResponse:
         )
 
     @cached_property
-    def consumers(self) -> AsyncConsumersResourceWithRawResponse:
-        return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
-
-    @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
         return AsyncMessagesResourceWithRawResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> AsyncPurgeResourceWithRawResponse:
         return AsyncPurgeResourceWithRawResponse(self._queues.purge)
+
+    @cached_property
+    def consumers(self) -> AsyncConsumersResourceWithRawResponse:
+        return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
+        return AsyncSubscriptionsResourceWithRawResponse(self._queues.subscriptions)
 
 
 class QueuesResourceWithStreamingResponse:
@@ -752,16 +776,20 @@ class QueuesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def consumers(self) -> ConsumersResourceWithStreamingResponse:
-        return ConsumersResourceWithStreamingResponse(self._queues.consumers)
-
-    @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
         return MessagesResourceWithStreamingResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> PurgeResourceWithStreamingResponse:
         return PurgeResourceWithStreamingResponse(self._queues.purge)
+
+    @cached_property
+    def consumers(self) -> ConsumersResourceWithStreamingResponse:
+        return ConsumersResourceWithStreamingResponse(self._queues.consumers)
+
+    @cached_property
+    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
+        return SubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)
 
 
 class AsyncQueuesResourceWithStreamingResponse:
@@ -788,13 +816,17 @@ class AsyncQueuesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
-        return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
-
-    @cached_property
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
         return AsyncMessagesResourceWithStreamingResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> AsyncPurgeResourceWithStreamingResponse:
         return AsyncPurgeResourceWithStreamingResponse(self._queues.purge)
+
+    @cached_property
+    def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
+        return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
+        return AsyncSubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)

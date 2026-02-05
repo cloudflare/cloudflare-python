@@ -38,6 +38,11 @@ __all__ = [
 
 
 class AccessCentrifyConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     centrify_account: Optional[str] = None
     """Your centrify account url"""
 
@@ -142,6 +147,11 @@ class AccessGitHub(BaseModel):
 
 
 class AccessGoogleConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -184,6 +194,11 @@ class AccessGoogle(BaseModel):
 
 
 class AccessGoogleAppsConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     apps_domain: Optional[str] = None
     """Your companies TLD"""
 
@@ -257,6 +272,11 @@ class AccessLinkedin(BaseModel):
 
 
 class AccessOIDCConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     auth_url: Optional[str] = None
     """The authorization_endpoint URL of your IdP"""
 
@@ -314,6 +334,11 @@ class AccessOIDC(BaseModel):
 
 
 class AccessOktaConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     authorization_server_id: Optional[str] = None
     """Your okta authorization server id"""
 
@@ -362,6 +387,11 @@ class AccessOkta(BaseModel):
 
 
 class AccessOneloginConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -407,6 +437,11 @@ class AccessOnelogin(BaseModel):
 
 
 class AccessPingoneConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -460,6 +495,11 @@ class AccessSAMLConfigHeaderAttribute(BaseModel):
 
 
 class AccessSAMLConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     attributes: Optional[List[str]] = None
     """
     A list of SAML attribute names that will be added to your signed JWT token and
@@ -548,6 +588,11 @@ class AccessYandex(BaseModel):
 
 
 class AccessOnetimepinConfig(BaseModel):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     redirect_url: Optional[str] = None
 
 

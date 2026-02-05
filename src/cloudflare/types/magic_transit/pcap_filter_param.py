@@ -8,6 +8,8 @@ __all__ = ["PCAPFilterParam"]
 
 
 class PCAPFilterParam(TypedDict, total=False):
+    """The packet capture filter. When this field is empty, all packets are captured."""
+
     destination_address: str
     """The destination IP address of the packet."""
 

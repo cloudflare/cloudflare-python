@@ -11,7 +11,7 @@ __all__ = ["SubscriptionCreateParams"]
 
 class SubscriptionCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Subscription identifier tag."""
+    """Identifier"""
 
     frequency: Literal["weekly", "monthly", "quarterly", "yearly"]
     """How often the subscription is renewed automatically."""

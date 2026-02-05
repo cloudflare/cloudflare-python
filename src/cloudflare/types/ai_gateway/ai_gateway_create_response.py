@@ -1,12 +1,68 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["AIGatewayCreateResponse"]
+__all__ = [
+    "AIGatewayCreateResponse",
+    "DLP",
+    "DLPUnionMember0",
+    "DLPUnionMember1",
+    "DLPUnionMember1Policy",
+    "Otel",
+    "Stripe",
+    "StripeUsageEvent",
+]
+
+
+class DLPUnionMember0(BaseModel):
+    action: Literal["BLOCK", "FLAG"]
+
+    enabled: bool
+
+    profiles: List[str]
+
+
+class DLPUnionMember1Policy(BaseModel):
+    id: str
+
+    action: Literal["FLAG", "BLOCK"]
+
+    check: List[Literal["REQUEST", "RESPONSE"]]
+
+    enabled: bool
+
+    profiles: List[str]
+
+
+class DLPUnionMember1(BaseModel):
+    enabled: bool
+
+    policies: List[DLPUnionMember1Policy]
+
+
+DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class Otel(BaseModel):
+    authorization: str
+
+    headers: Dict[str, str]
+
+    url: str
+
+
+class StripeUsageEvent(BaseModel):
+    payload: str
+
+
+class Stripe(BaseModel):
+    authorization: str
+
+    usage_events: List[StripeUsageEvent]
 
 
 class AIGatewayCreateResponse(BaseModel):
@@ -37,6 +93,10 @@ class AIGatewayCreateResponse(BaseModel):
 
     authentication: Optional[bool] = None
 
+    dlp: Optional[DLP] = None
+
+    is_default: Optional[bool] = None
+
     log_management: Optional[int] = None
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] = None
@@ -44,3 +104,11 @@ class AIGatewayCreateResponse(BaseModel):
     logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None
+
+    otel: Optional[List[Otel]] = None
+
+    store_id: Optional[str] = None
+
+    stripe: Optional[Stripe] = None
+
+    zdr: Optional[bool] = None

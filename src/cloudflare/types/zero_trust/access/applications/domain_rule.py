@@ -11,4 +11,6 @@ class EmailDomain(BaseModel):
 
 
 class DomainRule(BaseModel):
+    """Match an entire email domain."""
+
     email_domain: EmailDomain

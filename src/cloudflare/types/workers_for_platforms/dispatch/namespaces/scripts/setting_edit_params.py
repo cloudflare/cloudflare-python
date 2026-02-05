@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ......_types import SequenceNotStr
 from .....workers.migration_step_param import MigrationStepParam
 from .....workers.single_step_migration_param import SingleStepMigrationParam
 from .....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -18,11 +19,14 @@ __all__ = [
     "SettingsBindingWorkersBindingKindAssets",
     "SettingsBindingWorkersBindingKindBrowser",
     "SettingsBindingWorkersBindingKindD1",
+    "SettingsBindingWorkersBindingKindDataBlob",
     "SettingsBindingWorkersBindingKindDispatchNamespace",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutbound",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "SettingsBindingWorkersBindingKindDurableObjectNamespace",
     "SettingsBindingWorkersBindingKindHyperdrive",
+    "SettingsBindingWorkersBindingKindInherit",
+    "SettingsBindingWorkersBindingKindImages",
     "SettingsBindingWorkersBindingKindJson",
     "SettingsBindingWorkersBindingKindKVNamespace",
     "SettingsBindingWorkersBindingKindMTLSCertificate",
@@ -31,19 +35,25 @@ __all__ = [
     "SettingsBindingWorkersBindingKindQueue",
     "SettingsBindingWorkersBindingKindR2Bucket",
     "SettingsBindingWorkersBindingKindSecretText",
+    "SettingsBindingWorkersBindingKindSendEmail",
     "SettingsBindingWorkersBindingKindService",
-    "SettingsBindingWorkersBindingKindTailConsumer",
+    "SettingsBindingWorkersBindingKindTextBlob",
     "SettingsBindingWorkersBindingKindVectorize",
     "SettingsBindingWorkersBindingKindVersionMetadata",
     "SettingsBindingWorkersBindingKindSecretsStoreSecret",
     "SettingsBindingWorkersBindingKindSecretKey",
     "SettingsBindingWorkersBindingKindWorkflow",
+    "SettingsBindingWorkersBindingKindWasmModule",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
     "SettingsObservability",
     "SettingsObservabilityLogs",
     "SettingsPlacement",
+    "SettingsPlacementMode",
+    "SettingsPlacementRegion",
+    "SettingsPlacementHostname",
+    "SettingsPlacementHost",
 ]
 
 
@@ -103,7 +113,23 @@ class SettingsBindingWorkersBindingKindD1(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["data_blob"]]
+    """The kind of resource that the binding provides."""
+
+
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -112,7 +138,9 @@ class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    """Outbound worker."""
+
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -127,7 +155,7 @@ class SettingsBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
@@ -167,6 +195,36 @@ class SettingsBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindInherit(TypedDict, total=False):
+    name: Required[str]
+    """The name of the inherited binding."""
+
+    type: Required[Literal["inherit"]]
+    """The kind of resource that the binding provides."""
+
+    old_name: str
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: str
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class SettingsBindingWorkersBindingKindImages(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -246,6 +304,13 @@ class SettingsBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
+    jurisdiction: Literal["eu", "fedramp"]
+    """
+    The
+    [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
+    of the R2 bucket.
+    """
+
 
 class SettingsBindingWorkersBindingKindSecretText(TypedDict, total=False):
     name: Required[str]
@@ -258,10 +323,24 @@ class SettingsBindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
-    environment: Required[str]
-    """Optional environment if the Worker utilizes one."""
+class SettingsBindingWorkersBindingKindSendEmail(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
 
+    type: Required[Literal["send_email"]]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: SequenceNotStr[str]
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: SequenceNotStr[str]
+    """List of allowed sender addresses."""
+
+    destination_address: str
+    """Destination address for the email."""
+
+
+class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -271,15 +350,21 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
 
+    environment: str
+    """Optional environment if the Worker utilizes one."""
 
-class SettingsBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
+
+class SettingsBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
+    part: Required[str]
+    """The name of the file containing the text content.
 
-    type: Required[Literal["tail_consumer"]]
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -377,15 +462,32 @@ class SettingsBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
+class SettingsBindingWorkersBindingKindWasmModule(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["wasm_module"]]
+    """The kind of resource that the binding provides."""
+
+
 SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
     SettingsBindingWorkersBindingKindAssets,
     SettingsBindingWorkersBindingKindBrowser,
     SettingsBindingWorkersBindingKindD1,
+    SettingsBindingWorkersBindingKindDataBlob,
     SettingsBindingWorkersBindingKindDispatchNamespace,
     SettingsBindingWorkersBindingKindDurableObjectNamespace,
     SettingsBindingWorkersBindingKindHyperdrive,
+    SettingsBindingWorkersBindingKindInherit,
+    SettingsBindingWorkersBindingKindImages,
     SettingsBindingWorkersBindingKindJson,
     SettingsBindingWorkersBindingKindKVNamespace,
     SettingsBindingWorkersBindingKindMTLSCertificate,
@@ -394,17 +496,21 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindQueue,
     SettingsBindingWorkersBindingKindR2Bucket,
     SettingsBindingWorkersBindingKindSecretText,
+    SettingsBindingWorkersBindingKindSendEmail,
     SettingsBindingWorkersBindingKindService,
-    SettingsBindingWorkersBindingKindTailConsumer,
+    SettingsBindingWorkersBindingKindTextBlob,
     SettingsBindingWorkersBindingKindVectorize,
     SettingsBindingWorkersBindingKindVersionMetadata,
     SettingsBindingWorkersBindingKindSecretsStoreSecret,
     SettingsBindingWorkersBindingKindSecretKey,
     SettingsBindingWorkersBindingKindWorkflow,
+    SettingsBindingWorkersBindingKindWasmModule,
 ]
 
 
 class SettingsLimits(TypedDict, total=False):
+    """Limits to apply for this Worker."""
+
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
 
@@ -427,6 +533,8 @@ SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SettingsMigratio
 
 
 class SettingsObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: Required[bool]
     """Whether logs are enabled for the Worker."""
 
@@ -437,11 +545,19 @@ class SettingsObservabilityLogs(TypedDict, total=False):
     are enabled for the Worker.
     """
 
+    destinations: SequenceNotStr[str]
+    """A list of destinations where logs will be exported to."""
+
     head_sampling_rate: Optional[float]
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
 
+    persist: bool
+    """Whether log persistence is enabled for the Worker."""
+
 
 class SettingsObservability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
 
@@ -455,12 +571,32 @@ class SettingsObservability(TypedDict, total=False):
     """Log settings for the Worker."""
 
 
-class SettingsPlacement(TypedDict, total=False):
-    mode: Literal["smart"]
+class SettingsPlacementMode(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
     """
     Enables
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+
+class SettingsPlacementRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class SettingsPlacementHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class SettingsPlacementHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+SettingsPlacement: TypeAlias = Union[
+    SettingsPlacementMode, SettingsPlacementRegion, SettingsPlacementHostname, SettingsPlacementHost
+]
 
 
 class Settings(TypedDict, total=False):
@@ -478,7 +614,7 @@ class Settings(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
@@ -501,13 +637,15 @@ class Settings(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
-    tags: List[str]
-    """Tags to help you manage your Workers."""
+    tags: Optional[SequenceNotStr[str]]
+    """Tags associated with the Worker."""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Literal["standard"]
+    usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

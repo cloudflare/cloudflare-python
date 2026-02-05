@@ -10,6 +10,8 @@ __all__ = ["Domain", "RegistrantContact", "TransferIn"]
 
 
 class RegistrantContact(BaseModel):
+    """Shows contact information for domain registrant."""
+
     address: str
     """Address."""
 
@@ -51,6 +53,8 @@ class RegistrantContact(BaseModel):
 
 
 class TransferIn(BaseModel):
+    """Statuses for domain transfers into Cloudflare Registrar."""
+
     accept_foa: Optional[Literal["needed", "ok"]] = None
     """Form of authorization has been accepted by the registrant."""
 

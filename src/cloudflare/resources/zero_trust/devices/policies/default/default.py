@@ -22,7 +22,7 @@ from .includes import (
     IncludesResourceWithStreamingResponse,
     AsyncIncludesResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from .certificates import (
@@ -99,29 +99,29 @@ class DefaultResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-        allow_updates: bool | NotGiven = NOT_GIVEN,
-        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-        auto_connect: float | NotGiven = NOT_GIVEN,
-        captive_portal: float | NotGiven = NOT_GIVEN,
-        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
-        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
-        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
-        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
-        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
-        service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-        support_url: str | NotGiven = NOT_GIVEN,
-        switch_locked: bool | NotGiven = NOT_GIVEN,
-        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        allow_mode_switch: bool | Omit = omit,
+        allow_updates: bool | Omit = omit,
+        allowed_to_leave: bool | Omit = omit,
+        auto_connect: float | Omit = omit,
+        captive_portal: float | Omit = omit,
+        disable_auto_fallback: bool | Omit = omit,
+        exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
+        exclude_office_ips: bool | Omit = omit,
+        include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
+        lan_allow_minutes: float | Omit = omit,
+        lan_allow_subnet_size: float | Omit = omit,
+        register_interface_ip_with_dns: bool | Omit = omit,
+        sccm_vpn_boundary_support: bool | Omit = omit,
+        service_mode_v2: default_edit_params.ServiceModeV2 | Omit = omit,
+        support_url: str | Omit = omit,
+        switch_locked: bool | Omit = omit,
+        tunnel_protocol: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DefaultEditResponse]:
         """
         Updates the default device settings profile for an account.
@@ -223,7 +223,7 @@ class DefaultResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DefaultGetResponse]:
         """
         Fetches the default device settings profile for an account.
@@ -292,29 +292,29 @@ class AsyncDefaultResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-        allow_updates: bool | NotGiven = NOT_GIVEN,
-        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-        auto_connect: float | NotGiven = NOT_GIVEN,
-        captive_portal: float | NotGiven = NOT_GIVEN,
-        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
-        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
-        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
-        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
-        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
-        service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-        support_url: str | NotGiven = NOT_GIVEN,
-        switch_locked: bool | NotGiven = NOT_GIVEN,
-        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        allow_mode_switch: bool | Omit = omit,
+        allow_updates: bool | Omit = omit,
+        allowed_to_leave: bool | Omit = omit,
+        auto_connect: float | Omit = omit,
+        captive_portal: float | Omit = omit,
+        disable_auto_fallback: bool | Omit = omit,
+        exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
+        exclude_office_ips: bool | Omit = omit,
+        include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
+        lan_allow_minutes: float | Omit = omit,
+        lan_allow_subnet_size: float | Omit = omit,
+        register_interface_ip_with_dns: bool | Omit = omit,
+        sccm_vpn_boundary_support: bool | Omit = omit,
+        service_mode_v2: default_edit_params.ServiceModeV2 | Omit = omit,
+        support_url: str | Omit = omit,
+        switch_locked: bool | Omit = omit,
+        tunnel_protocol: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DefaultEditResponse]:
         """
         Updates the default device settings profile for an account.
@@ -416,7 +416,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DefaultGetResponse]:
         """
         Fetches the default device settings profile for an account.

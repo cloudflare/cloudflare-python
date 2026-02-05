@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,16 +49,17 @@ class DirectUploadsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        expiry: Union[str, datetime] | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
@@ -76,6 +77,8 @@ class DirectUploadsResource(SyncAPIResource):
           id: Optional Image Custom ID. Up to 1024 chars. Can include any number of subpaths,
               and utf8 characters. Cannot start nor end with a / (forward slash). Cannot be a
               UUID.
+
+          creator: Can set the creator field with an internal user ID.
 
           expiry: The date after which the upload will not be accepted. Minimum: Now + 2 minutes.
               Maximum: Now + 6 hours.
@@ -104,6 +107,7 @@ class DirectUploadsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
+                    "creator": creator,
                     "expiry": expiry,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
@@ -145,16 +149,17 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        expiry: Union[str, datetime] | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
@@ -172,6 +177,8 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
           id: Optional Image Custom ID. Up to 1024 chars. Can include any number of subpaths,
               and utf8 characters. Cannot start nor end with a / (forward slash). Cannot be a
               UUID.
+
+          creator: Can set the creator field with an internal user ID.
 
           expiry: The date after which the upload will not be accepted. Minimum: Now + 2 minutes.
               Maximum: Now + 6 hours.
@@ -200,6 +207,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
+                    "creator": creator,
                     "expiry": expiry,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,

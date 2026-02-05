@@ -2,15 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ScopeParam"]
 
 
 class ScopeParam(TypedDict, total=False):
-    colo_names: List[str]
+    """Used only for ECMP routes."""
+
+    colo_names: SequenceNotStr[str]
     """List of colo names for the ECMP scope."""
 
-    colo_regions: List[str]
+    colo_regions: SequenceNotStr[str]
     """List of colo regions for the ECMP scope."""

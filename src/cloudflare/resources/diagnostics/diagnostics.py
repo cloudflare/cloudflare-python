@@ -12,6 +12,14 @@ from .traceroutes import (
     TraceroutesResourceWithStreamingResponse,
     AsyncTraceroutesResourceWithStreamingResponse,
 )
+from .endpoint_healthchecks import (
+    EndpointHealthchecksResource,
+    AsyncEndpointHealthchecksResource,
+    EndpointHealthchecksResourceWithRawResponse,
+    AsyncEndpointHealthchecksResourceWithRawResponse,
+    EndpointHealthchecksResourceWithStreamingResponse,
+    AsyncEndpointHealthchecksResourceWithStreamingResponse,
+)
 
 __all__ = ["DiagnosticsResource", "AsyncDiagnosticsResource"]
 
@@ -20,6 +28,10 @@ class DiagnosticsResource(SyncAPIResource):
     @cached_property
     def traceroutes(self) -> TraceroutesResource:
         return TraceroutesResource(self._client)
+
+    @cached_property
+    def endpoint_healthchecks(self) -> EndpointHealthchecksResource:
+        return EndpointHealthchecksResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DiagnosticsResourceWithRawResponse:
@@ -45,6 +57,10 @@ class AsyncDiagnosticsResource(AsyncAPIResource):
     @cached_property
     def traceroutes(self) -> AsyncTraceroutesResource:
         return AsyncTraceroutesResource(self._client)
+
+    @cached_property
+    def endpoint_healthchecks(self) -> AsyncEndpointHealthchecksResource:
+        return AsyncEndpointHealthchecksResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDiagnosticsResourceWithRawResponse:
@@ -74,6 +90,10 @@ class DiagnosticsResourceWithRawResponse:
     def traceroutes(self) -> TraceroutesResourceWithRawResponse:
         return TraceroutesResourceWithRawResponse(self._diagnostics.traceroutes)
 
+    @cached_property
+    def endpoint_healthchecks(self) -> EndpointHealthchecksResourceWithRawResponse:
+        return EndpointHealthchecksResourceWithRawResponse(self._diagnostics.endpoint_healthchecks)
+
 
 class AsyncDiagnosticsResourceWithRawResponse:
     def __init__(self, diagnostics: AsyncDiagnosticsResource) -> None:
@@ -82,6 +102,10 @@ class AsyncDiagnosticsResourceWithRawResponse:
     @cached_property
     def traceroutes(self) -> AsyncTraceroutesResourceWithRawResponse:
         return AsyncTraceroutesResourceWithRawResponse(self._diagnostics.traceroutes)
+
+    @cached_property
+    def endpoint_healthchecks(self) -> AsyncEndpointHealthchecksResourceWithRawResponse:
+        return AsyncEndpointHealthchecksResourceWithRawResponse(self._diagnostics.endpoint_healthchecks)
 
 
 class DiagnosticsResourceWithStreamingResponse:
@@ -92,6 +116,10 @@ class DiagnosticsResourceWithStreamingResponse:
     def traceroutes(self) -> TraceroutesResourceWithStreamingResponse:
         return TraceroutesResourceWithStreamingResponse(self._diagnostics.traceroutes)
 
+    @cached_property
+    def endpoint_healthchecks(self) -> EndpointHealthchecksResourceWithStreamingResponse:
+        return EndpointHealthchecksResourceWithStreamingResponse(self._diagnostics.endpoint_healthchecks)
+
 
 class AsyncDiagnosticsResourceWithStreamingResponse:
     def __init__(self, diagnostics: AsyncDiagnosticsResource) -> None:
@@ -100,3 +128,7 @@ class AsyncDiagnosticsResourceWithStreamingResponse:
     @cached_property
     def traceroutes(self) -> AsyncTraceroutesResourceWithStreamingResponse:
         return AsyncTraceroutesResourceWithStreamingResponse(self._diagnostics.traceroutes)
+
+    @cached_property
+    def endpoint_healthchecks(self) -> AsyncEndpointHealthchecksResourceWithStreamingResponse:
+        return AsyncEndpointHealthchecksResourceWithStreamingResponse(self._diagnostics.endpoint_healthchecks)

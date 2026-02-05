@@ -26,6 +26,7 @@ __all__ = [
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
+    "TeamsDevicesAntivirusInputRequest",
     "TeamsDevicesCustomS2sInputRequest",
 ]
 
@@ -104,6 +105,11 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     """List of certificate Subject Alternative Names."""
 
 
+class TeamsDevicesAntivirusInputRequest(BaseModel):
+    update_window_days: Optional[float] = None
+    """Number of days that the antivirus should be updated within."""
+
+
 class TeamsDevicesCustomS2sInputRequest(BaseModel):
     connection_id: str
     """Posture Integration ID."""
@@ -130,6 +136,7 @@ DeviceInput: TypeAlias = Union[
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInput,
     TeamsDevicesClientCertificateV2InputRequest,
+    TeamsDevicesAntivirusInputRequest,
     WorkspaceOneInput,
     CrowdstrikeInput,
     IntuneInput,

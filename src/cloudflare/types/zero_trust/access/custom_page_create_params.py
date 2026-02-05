@@ -19,6 +19,3 @@ class CustomPageCreateParams(TypedDict, total=False):
 
     type: Required[Literal["identity_denied", "forbidden"]]
     """Custom page type."""
-
-    app_count: int
-    """Number of apps the custom page is assigned to."""

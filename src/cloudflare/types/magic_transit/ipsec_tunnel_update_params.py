@@ -5,11 +5,19 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["IPSECTunnelUpdateParams", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
+__all__ = [
+    "IPSECTunnelUpdateParams",
+    "BGP",
+    "CustomRemoteIdentities",
+    "HealthCheck",
+    "HealthCheckTarget",
+    "HealthCheckTargetMagicHealthCheckTarget",
+]
 
 
 class IPSECTunnelUpdateParams(TypedDict, total=False):
@@ -29,6 +37,16 @@ class IPSECTunnelUpdateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
+    bgp: BGP
+
+    custom_remote_identities: CustomRemoteIdentities
+
     customer_endpoint: str
     """The IP address assigned to the customer side of the IPsec tunnel.
 
@@ -39,6 +57,14 @@ class IPSECTunnelUpdateParams(TypedDict, total=False):
     """An optional description forthe IPsec tunnel."""
 
     health_check: HealthCheck
+
+    interface_address6: str
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
+    """
 
     psk: str
     """A randomly generated or provided string for use in the IPsec tunnel."""
@@ -52,7 +78,58 @@ class IPSECTunnelUpdateParams(TypedDict, total=False):
     x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
 
 
+class BGP(TypedDict, total=False):
+    customer_asn: Required[int]
+    """ASN used on the customer end of the BGP session"""
+
+    extra_prefixes: SequenceNotStr[str]
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    md5_key: str
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
+
+
+class CustomRemoteIdentities(TypedDict, total=False):
+    fqdn_id: str
+    """A custom IKE ID of type FQDN that may be used to identity the IPsec tunnel.
+
+    The generated IKE IDs can still be used even if this custom value is specified.
+
+    Must be of the form `<custom label>.<account ID>.custom.ipsec.cloudflare.com`.
+
+    This custom ID does not need to be unique. Two IPsec tunnels may have the same
+    custom fqdn_id. However, if another IPsec tunnel has the same value then the two
+    tunnels cannot have the same cloudflare_endpoint.
+    """
+
+
 class HealthCheckTargetMagicHealthCheckTarget(TypedDict, total=False):
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the ICMP echo will be forwarded to this address. This field defaults to `customer_gre_endpoint address`. This field is ignored for bidirectional healthchecks as the interface_address (not assigned to the Cloudflare side of the tunnel) is used as the target.
+    """
+
     saved: str
     """The saved health check target.
 

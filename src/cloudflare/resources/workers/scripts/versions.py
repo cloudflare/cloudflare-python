@@ -6,8 +6,18 @@ from typing import Type, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NotGiven,
+    FileTypes,
+    SequenceNotStr,
+    omit,
+    not_given,
+)
+from ...._utils import is_given, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -53,12 +63,13 @@ class VersionsResource(SyncAPIResource):
         *,
         account_id: str,
         metadata: version_create_params.Metadata,
+        files: SequenceNotStr[FileTypes] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionCreateResponse:
         """Upload a Worker Version without deploying to Cloudflare's network.
 
@@ -71,7 +82,15 @@ class VersionsResource(SyncAPIResource):
 
           script_name: Name of the script.
 
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+          metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
+
+          files: An array of modules (often JavaScript files) comprising a Worker script. At
+              least one module must be present and referenced in the metadata as `main_module`
+              or `body_part` by filename.<br/>Possible Content-Type(s) are:
+              `application/javascript+module`, `text/javascript+module`,
+              `application/javascript`, `text/javascript`, `text/x-python`,
+              `text/x-python-requirement`, `application/wasm`, `text/plain`,
+              `application/octet-stream`, `application/source-map`.
 
           extra_headers: Send extra headers
 
@@ -85,18 +104,27 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        body = deepcopy_minimal(
+            {
+                "metadata": metadata,
+            }
+        )
+        extracted_files = [("files", file) for file in files] if is_given(files) else []
+
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
-            body=maybe_transform({"metadata": metadata}, version_create_params.VersionCreateParams),
+            body=maybe_transform(body, version_create_params.VersionCreateParams),
+            files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                multipart_syntax="json",
                 post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
@@ -107,15 +135,15 @@ class VersionsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        deployable: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        deployable: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[VersionListResponse]:
         """List of Worker Versions.
 
@@ -175,7 +203,7 @@ class VersionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
         Get Version Detail
@@ -238,12 +266,13 @@ class AsyncVersionsResource(AsyncAPIResource):
         *,
         account_id: str,
         metadata: version_create_params.Metadata,
+        files: SequenceNotStr[FileTypes] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionCreateResponse:
         """Upload a Worker Version without deploying to Cloudflare's network.
 
@@ -256,7 +285,15 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           script_name: Name of the script.
 
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+          metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
+
+          files: An array of modules (often JavaScript files) comprising a Worker script. At
+              least one module must be present and referenced in the metadata as `main_module`
+              or `body_part` by filename.<br/>Possible Content-Type(s) are:
+              `application/javascript+module`, `text/javascript+module`,
+              `application/javascript`, `text/javascript`, `text/x-python`,
+              `text/x-python-requirement`, `application/wasm`, `text/plain`,
+              `application/octet-stream`, `application/source-map`.
 
           extra_headers: Send extra headers
 
@@ -270,18 +307,26 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        body = deepcopy_minimal(
+            {
+                "metadata": metadata,
+            }
+        )
+        extracted_files = [("files", file) for file in files] if is_given(files) else []
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
-            body=await async_maybe_transform({"metadata": metadata}, version_create_params.VersionCreateParams),
+            body=await async_maybe_transform(body, version_create_params.VersionCreateParams),
+            files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                multipart_syntax="json",
                 post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
@@ -292,15 +337,15 @@ class AsyncVersionsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        deployable: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        deployable: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePagination[VersionListResponse]]:
         """List of Worker Versions.
 
@@ -360,7 +405,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
         Get Version Detail

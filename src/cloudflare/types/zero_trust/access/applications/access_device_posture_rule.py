@@ -11,4 +11,6 @@ class DevicePosture(BaseModel):
 
 
 class AccessDevicePostureRule(BaseModel):
+    """Enforces a device posture rule has run successfully"""
+
     device_posture: DevicePosture

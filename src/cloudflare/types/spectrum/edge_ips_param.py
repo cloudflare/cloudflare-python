@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["EdgeIPsParam", "Dynamic", "Static"]
 
@@ -21,7 +23,7 @@ class Dynamic(TypedDict, total=False):
 
 
 class Static(TypedDict, total=False):
-    ips: List[str]
+    ips: SequenceNotStr[str]
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
     application.

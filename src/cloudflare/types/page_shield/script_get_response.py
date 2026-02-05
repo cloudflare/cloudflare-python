@@ -9,6 +9,8 @@ __all__ = ["ScriptGetResponse", "Version"]
 
 
 class Version(BaseModel):
+    """The version of the analyzed script."""
+
     cryptomining_score: Optional[int] = None
     """The cryptomining score of the JavaScript content."""
 

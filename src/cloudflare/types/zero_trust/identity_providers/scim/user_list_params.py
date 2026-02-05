@@ -28,5 +28,11 @@ class UserListParams(TypedDict, total=False):
     name: str
     """The name of the SCIM User resource."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     username: str
     """The username of the SCIM User resource."""

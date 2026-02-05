@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 
 from ...._models import BaseModel
 
@@ -8,6 +8,11 @@ __all__ = ["Key"]
 
 
 class Key(BaseModel):
+    """A name for a value.
+
+    A value stored under a given key may be retrieved via the same key.
+    """
+
     name: str
     """A key's name.
 
@@ -21,5 +26,5 @@ class Key(BaseModel):
     will expire. This property is omitted for keys that will not expire.
     """
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[object] = None
     """Arbitrary JSON that is associated with a key."""

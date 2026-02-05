@@ -6,16 +6,17 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = ["SummaryARCParams"]
 
 
 class SummaryARCParams(TypedDict, total=False):
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -23,7 +24,7 @@ class SummaryARCParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     dkim: List[Literal["PASS", "NONE", "FAIL"]]
@@ -38,7 +39,7 @@ class SummaryARCParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
     spf: List[Literal["PASS", "NONE", "FAIL"]]

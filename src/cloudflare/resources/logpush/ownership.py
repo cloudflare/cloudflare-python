@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,21 +49,21 @@ class OwnershipResource(SyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OwnershipCreateResponse]:
         """
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -108,21 +108,21 @@ class OwnershipResource(SyncAPIResource):
         *,
         destination_conf: str,
         ownership_challenge: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.
@@ -195,21 +195,21 @@ class AsyncOwnershipResource(AsyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OwnershipCreateResponse]:
         """
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -256,21 +256,21 @@ class AsyncOwnershipResource(AsyncAPIResource):
         *,
         destination_conf: str,
         ownership_challenge: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.

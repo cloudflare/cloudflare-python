@@ -11,6 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.leaked_credential_checks import (
+    DetectionGetResponse,
     DetectionListResponse,
     DetectionCreateResponse,
     DetectionUpdateResponse,
@@ -213,9 +214,59 @@ class TestDetections:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        detection = client.leaked_credential_checks.detections.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.leaked_credential_checks.detections.with_raw_response.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        detection = response.parse()
+        assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.leaked_credential_checks.detections.with_streaming_response.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            detection = response.parse()
+            assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.leaked_credential_checks.detections.with_raw_response.get(
+                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                zone_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `detection_id` but received ''"):
+            client.leaked_credential_checks.detections.with_raw_response.get(
+                detection_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
 
 class TestAsyncDetections:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -404,6 +455,54 @@ class TestAsyncDetections:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `detection_id` but received ''"):
             await async_client.leaked_credential_checks.detections.with_raw_response.delete(
+                detection_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        detection = await async_client.leaked_credential_checks.detections.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.leaked_credential_checks.detections.with_raw_response.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        detection = await response.parse()
+        assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.leaked_credential_checks.detections.with_streaming_response.get(
+            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            detection = await response.parse()
+            assert_matches_type(DetectionGetResponse, detection, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.leaked_credential_checks.detections.with_raw_response.get(
+                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                zone_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `detection_id` but received ''"):
+            await async_client.leaked_credential_checks.detections.with_raw_response.get(
                 detection_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -8,5 +8,7 @@ __all__ = ["LeakedCredentialCheckGetResponse"]
 
 
 class LeakedCredentialCheckGetResponse(BaseModel):
+    """Defines the overall status for Leaked Credential Checks."""
+
     enabled: Optional[bool] = None
     """Determines whether or not Leaked Credential Checks are enabled."""

@@ -8,6 +8,11 @@ __all__ = ["WANStaticAddressing"]
 
 
 class WANStaticAddressing(BaseModel):
+    """(optional) if omitted, use DHCP.
+
+    Submit secondary_address when site is in high availability mode.
+    """
+
     address: str
     """A valid CIDR notation representing an IP range."""
 

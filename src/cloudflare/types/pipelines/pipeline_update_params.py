@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "PipelineUpdateParams",
@@ -89,11 +91,13 @@ class Destination(TypedDict, total=False):
 
 
 class SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(TypedDict, total=False):
-    origins: List[str]
+    origins: SequenceNotStr[str]
     """Specifies allowed origins to allow Cross Origin HTTP Requests."""
 
 
 class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(TypedDict, total=False):
+    """[DEPRECATED] HTTP source configuration. Use the new streams API instead."""
+
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 
@@ -106,6 +110,11 @@ class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(TypedDict, total=False
 
 
 class SourceCloudflarePipelinesWorkersPipelinesBindingSource(TypedDict, total=False):
+    """[DEPRECATED] Worker binding source configuration.
+
+    Use the new streams API instead.
+    """
+
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 

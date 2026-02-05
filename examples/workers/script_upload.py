@@ -26,7 +26,7 @@ Then, define a "dispatch_namespace_name" variable and add a
 
 import os
 
-from cloudflare import Cloudflare, BadRequestError
+from cloudflare import Cloudflare, APIStatusError
 
 API_TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN")
 if API_TOKEN is None:
@@ -59,7 +59,7 @@ def main() -> None:
         # https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/update/
         script = client.workers.scripts.update(
             script_name,
-            account_id=ACCOUNT_ID, # type: ignore
+            account_id=ACCOUNT_ID,  # type: ignore
             # https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/
             metadata={
                 "main_module": script_file_name,
@@ -71,25 +71,27 @@ def main() -> None:
                     }
                 ],
             },
-            files={
+            files=[
                 # Add main_module file
-                script_file_name: (
+                # Note: Content-Type must be "application/javascript" or "text/javascript"
+                (
                     script_file_name,
                     bytes(script_content, "utf-8"),
-                    "application/javascript+module",
-                )
+                    "application/javascript",
+                ),
                 # Can add other files, such as more modules or source maps
-                # source_map_file_name: (
-                #   source_map_file_name,
-                #   bytes(source_map_content, "utf-8"),
-                #   "application/source-map"
-                #)
-            },
+                # (
+                #     source_map_file_name,
+                #     bytes(source_map_content, "utf-8"),
+                #     "application/source-map",
+                # ),
+            ],
         )
         print("Script Upload success!")
         print(script.to_json(indent=2))
-    except BadRequestError as err:
+    except APIStatusError as err:
         print("Script Upload failure!")
+        print(f"Error code: {err.status_code}")
         print(err)
 
 

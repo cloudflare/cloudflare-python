@@ -8,6 +8,8 @@ __all__ = ["TargetParam", "Constraint"]
 
 
 class Constraint(TypedDict, total=False):
+    """String constraint."""
+
     operator: Required[Literal["matches", "contains", "equals", "not_equal", "not_contain"]]
     """
     The matches operator can use asterisks and pipes as wildcard and 'or' operators.
@@ -21,6 +23,8 @@ class Constraint(TypedDict, total=False):
 
 
 class TargetParam(TypedDict, total=False):
+    """URL target."""
+
     constraint: Constraint
     """String constraint."""
 

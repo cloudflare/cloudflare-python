@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = ["TimeseriesGroupDurationParams"]
@@ -19,7 +20,7 @@ class TimeseriesGroupDurationParams(TypedDict, total=False):
     [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
     """
 
-    continent: List[str]
+    continent: SequenceNotStr[str]
     """Filters results by continent.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -27,10 +28,10 @@ class TimeseriesGroupDurationParams(TypedDict, total=False):
     includes results from NA.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -38,7 +39,7 @@ class TimeseriesGroupDurationParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     direction: Literal["ORIGIN", "TARGET"]
@@ -53,7 +54,7 @@ class TimeseriesGroupDurationParams(TypedDict, total=False):
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
     """Filters results by IP version (Ipv4 vs. IPv6)."""
 
-    location: List[str]
+    location: SequenceNotStr[str]
     """Filters results by location.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -61,7 +62,7 @@ class TimeseriesGroupDurationParams(TypedDict, total=False):
     includes results from PT.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
     normalization: Literal["PERCENTAGE", "MIN0_MAX"]

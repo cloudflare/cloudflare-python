@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,18 +53,21 @@ class SchemaValidationResource(SyncAPIResource):
         """
         return SchemaValidationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def update(
         self,
         operation_id: str,
         *,
         zone_id: str,
-        mitigation_action: Optional[Literal["log", "block", "none"]] | NotGiven = NOT_GIVEN,
+        mitigation_action: Optional[Literal["log", "block", "none"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaValidationUpdateResponse:
         """
         Updates operation-level schema validation settings on the zone
@@ -105,6 +109,9 @@ class SchemaValidationResource(SyncAPIResource):
             cast_to=SchemaValidationUpdateResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def edit(
         self,
         *,
@@ -115,7 +122,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingsMultipleRequest:
         """
         Updates multiple operation-level schema validation settings on the zone
@@ -146,6 +153,9 @@ class SchemaValidationResource(SyncAPIResource):
             cast_to=cast(Type[SettingsMultipleRequest], ResultWrapper[SettingsMultipleRequest]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def get(
         self,
         operation_id: str,
@@ -156,7 +166,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaValidationGetResponse:
         """
         Retrieves operation-level schema validation settings on the zone
@@ -207,18 +217,21 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         """
         return AsyncSchemaValidationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def update(
         self,
         operation_id: str,
         *,
         zone_id: str,
-        mitigation_action: Optional[Literal["log", "block", "none"]] | NotGiven = NOT_GIVEN,
+        mitigation_action: Optional[Literal["log", "block", "none"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaValidationUpdateResponse:
         """
         Updates operation-level schema validation settings on the zone
@@ -260,6 +273,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             cast_to=SchemaValidationUpdateResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def edit(
         self,
         *,
@@ -270,7 +286,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingsMultipleRequest:
         """
         Updates multiple operation-level schema validation settings on the zone
@@ -303,6 +319,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             cast_to=cast(Type[SettingsMultipleRequest], ResultWrapper[SettingsMultipleRequest]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def get(
         self,
         operation_id: str,
@@ -313,7 +332,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaValidationGetResponse:
         """
         Retrieves operation-level schema validation settings on the zone
@@ -348,14 +367,20 @@ class SchemaValidationResourceWithRawResponse:
     def __init__(self, schema_validation: SchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = to_raw_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -363,14 +388,20 @@ class AsyncSchemaValidationResourceWithRawResponse:
     def __init__(self, schema_validation: AsyncSchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = async_to_raw_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -378,14 +409,20 @@ class SchemaValidationResourceWithStreamingResponse:
     def __init__(self, schema_validation: SchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = to_streamed_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -393,12 +430,18 @@ class AsyncSchemaValidationResourceWithStreamingResponse:
     def __init__(self, schema_validation: AsyncSchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = async_to_streamed_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.edit,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.get,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -48,7 +48,7 @@ from .release import (
     ReleaseResourceWithStreamingResponse,
     AsyncReleaseResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from .detections import (
@@ -136,30 +136,35 @@ class InvestigateResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        action_log: bool | NotGiven = NOT_GIVEN,
-        alert_id: str | NotGiven = NOT_GIVEN,
-        detections_only: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
-        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        metric: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        recipient: str | NotGiven = NOT_GIVEN,
-        sender: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        action_log: bool | Omit = omit,
+        alert_id: str | Omit = omit,
+        cursor: str | Omit = omit,
+        detections_only: bool | Omit = omit,
+        domain: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
+        message_id: str | Omit = omit,
+        metric: str | Omit = omit,
+        page: Optional[int] | Omit = omit,
+        per_page: int | Omit = omit,
+        query: str | Omit = omit,
+        recipient: str | Omit = omit,
+        sender: str | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
+        subject: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
-        """
-        Returns information for each email that matches the search parameter(s).
+        """Returns information for each email that matches the search parameter(s).
+
+        If the
+        search takes too long, the endpoint returns 202 with a Location header pointing
+        to a polling endpoint where results can be retrieved once ready.
 
         Args:
           account_id: Account Identifier
@@ -176,7 +181,7 @@ class InvestigateResource(SyncAPIResource):
 
           message_action: The message actions the search filters by.
 
-          page: The page number of paginated results.
+          page: Deprecated: Use cursor pagination instead.
 
           per_page: The number of results per page.
 
@@ -229,6 +234,7 @@ class InvestigateResource(SyncAPIResource):
                     {
                         "action_log": action_log,
                         "alert_id": alert_id,
+                        "cursor": cursor,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
@@ -242,6 +248,7 @@ class InvestigateResource(SyncAPIResource):
                         "recipient": recipient,
                         "sender": sender,
                         "start": start,
+                        "subject": subject,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
@@ -259,7 +266,7 @@ class InvestigateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvestigateGetResponse:
         """
         Get message details
@@ -346,30 +353,35 @@ class AsyncInvestigateResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        action_log: bool | NotGiven = NOT_GIVEN,
-        alert_id: str | NotGiven = NOT_GIVEN,
-        detections_only: bool | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
-        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        metric: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        recipient: str | NotGiven = NOT_GIVEN,
-        sender: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        action_log: bool | Omit = omit,
+        alert_id: str | Omit = omit,
+        cursor: str | Omit = omit,
+        detections_only: bool | Omit = omit,
+        domain: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
+        message_id: str | Omit = omit,
+        metric: str | Omit = omit,
+        page: Optional[int] | Omit = omit,
+        per_page: int | Omit = omit,
+        query: str | Omit = omit,
+        recipient: str | Omit = omit,
+        sender: str | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
+        subject: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
-        """
-        Returns information for each email that matches the search parameter(s).
+        """Returns information for each email that matches the search parameter(s).
+
+        If the
+        search takes too long, the endpoint returns 202 with a Location header pointing
+        to a polling endpoint where results can be retrieved once ready.
 
         Args:
           account_id: Account Identifier
@@ -386,7 +398,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           message_action: The message actions the search filters by.
 
-          page: The page number of paginated results.
+          page: Deprecated: Use cursor pagination instead.
 
           per_page: The number of results per page.
 
@@ -439,6 +451,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                     {
                         "action_log": action_log,
                         "alert_id": alert_id,
+                        "cursor": cursor,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
@@ -452,6 +465,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "recipient": recipient,
                         "sender": sender,
                         "start": start,
+                        "subject": subject,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
@@ -469,7 +483,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvestigateGetResponse:
         """
         Get message details

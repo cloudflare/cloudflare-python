@@ -34,11 +34,15 @@ class IAMUpdateMemberWithPolicies(TypedDict, total=False):
 
 
 class IAMUpdateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
+    """A group of permissions."""
+
     id: Required[str]
     """Identifier of the group."""
 
 
 class IAMUpdateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
+    """A group of scoped resources."""
+
     id: Required[str]
     """Identifier of the group."""
 

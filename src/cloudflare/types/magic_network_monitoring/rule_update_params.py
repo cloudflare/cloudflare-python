@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["RuleUpdateParams"]
 
@@ -50,4 +52,4 @@ class RuleUpdateParams(TypedDict, total=False):
     Minimum of 1 and no maximum.
     """
 
-    prefixes: List[str]
+    prefixes: SequenceNotStr[str]

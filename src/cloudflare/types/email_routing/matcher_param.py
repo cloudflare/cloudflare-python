@@ -8,6 +8,8 @@ __all__ = ["MatcherParam"]
 
 
 class MatcherParam(TypedDict, total=False):
+    """Matching pattern to forward your actions."""
+
     type: Required[Literal["all", "literal"]]
     """Type of matcher."""
 

@@ -21,6 +21,8 @@ class ResourceSharingCreateParams(TypedDict, total=False):
 
 
 class Recipient(TypedDict, total=False):
+    """Account or organization ID must be provided."""
+
     account_id: str
     """Account identifier."""
 
@@ -38,5 +40,14 @@ class Resource(TypedDict, total=False):
     resource_id: Required[str]
     """Share Resource identifier."""
 
-    resource_type: Required[Literal["custom-ruleset", "widget"]]
+    resource_type: Required[
+        Literal[
+            "custom-ruleset",
+            "widget",
+            "gateway-policy",
+            "gateway-destination-ip",
+            "gateway-block-page-settings",
+            "gateway-extended-email-matching",
+        ]
+    ]
     """Resource Type."""

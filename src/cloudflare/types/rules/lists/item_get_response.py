@@ -7,71 +7,86 @@ from ..hostname import Hostname
 from ..redirect import Redirect
 from ...._models import BaseModel
 
-__all__ = ["ItemGetResponse", "UnionMember0", "UnionMember1"]
+__all__ = [
+    "ItemGetResponse",
+    "ListsListItemIPFull",
+    "ListsListItemHostnameFull",
+    "ListsListItemRedirectFull",
+    "ListsListItemASNFull",
+]
 
 
-class UnionMember0(BaseModel):
-    id: Optional[str] = None
-    """The unique ID of the list."""
+class ListsListItemIPFull(BaseModel):
+    id: str
+    """Defines the unique ID of the item in the List."""
 
-    asn: Optional[int] = None
-    """Defines a non-negative 32 bit integer."""
+    created_on: str
+    """The RFC 3339 timestamp of when the list was created."""
+
+    ip: str
+    """An IPv4 address, an IPv4 CIDR, an IPv6 address, or an IPv6 CIDR."""
+
+    modified_on: str
+    """The RFC 3339 timestamp of when the list was last modified."""
 
     comment: Optional[str] = None
     """Defines an informative summary of the list item."""
 
-    created_on: Optional[str] = None
-    """The RFC 3339 timestamp of when the item was created."""
 
-    hostname: Optional[Hostname] = None
+class ListsListItemHostnameFull(BaseModel):
+    id: str
+    """Defines the unique ID of the item in the List."""
+
+    created_on: str
+    """The RFC 3339 timestamp of when the list was created."""
+
+    hostname: Hostname
     """
     Valid characters for hostnames are ASCII(7) letters from a to z, the digits from
     0 to 9, wildcards (\\**), and the hyphen (-).
     """
 
-    ip: Optional[str] = None
-    """An IPv4 address, an IPv4 CIDR, or an IPv6 CIDR.
-
-    IPv6 CIDRs are limited to a maximum of /64.
-    """
-
-    modified_on: Optional[str] = None
-    """The RFC 3339 timestamp of when the item was last modified."""
-
-    redirect: Optional[Redirect] = None
-    """The definition of the redirect."""
-
-
-class UnionMember1(BaseModel):
-    id: Optional[str] = None
-    """The unique ID of the list."""
-
-    asn: Optional[int] = None
-    """Defines a non-negative 32 bit integer."""
+    modified_on: str
+    """The RFC 3339 timestamp of when the list was last modified."""
 
     comment: Optional[str] = None
     """Defines an informative summary of the list item."""
 
-    created_on: Optional[str] = None
-    """The RFC 3339 timestamp of when the item was created."""
 
-    hostname: Optional[Hostname] = None
-    """
-    Valid characters for hostnames are ASCII(7) letters from a to z, the digits from
-    0 to 9, wildcards (\\**), and the hyphen (-).
-    """
+class ListsListItemRedirectFull(BaseModel):
+    id: str
+    """Defines the unique ID of the item in the List."""
 
-    ip: Optional[str] = None
-    """An IPv4 address, an IPv4 CIDR, or an IPv6 CIDR.
+    created_on: str
+    """The RFC 3339 timestamp of when the list was created."""
 
-    IPv6 CIDRs are limited to a maximum of /64.
-    """
+    modified_on: str
+    """The RFC 3339 timestamp of when the list was last modified."""
 
-    modified_on: Optional[str] = None
-    """The RFC 3339 timestamp of when the item was last modified."""
-
-    redirect: Optional[Redirect] = None
+    redirect: Redirect
     """The definition of the redirect."""
 
+    comment: Optional[str] = None
+    """Defines an informative summary of the list item."""
 
-ItemGetResponse: TypeAlias = Union[UnionMember0, UnionMember1]
+
+class ListsListItemASNFull(BaseModel):
+    id: str
+    """Defines the unique ID of the item in the List."""
+
+    asn: int
+    """Defines a non-negative 32 bit integer."""
+
+    created_on: str
+    """The RFC 3339 timestamp of when the list was created."""
+
+    modified_on: str
+    """The RFC 3339 timestamp of when the list was last modified."""
+
+    comment: Optional[str] = None
+    """Defines an informative summary of the list item."""
+
+
+ItemGetResponse: TypeAlias = Union[
+    ListsListItemIPFull, ListsListItemHostnameFull, ListsListItemRedirectFull, ListsListItemASNFull
+]

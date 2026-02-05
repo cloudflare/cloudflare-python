@@ -136,6 +136,8 @@ ItemE: TypeAlias = Annotated[
 
 
 class Item(BaseModel):
+    """Recorded Event"""
+
     e: ItemE
 
     n: float

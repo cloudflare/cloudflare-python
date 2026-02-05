@@ -8,9 +8,13 @@ __all__ = ["EveryoneRuleParam", "Everyone"]
 
 
 class Everyone(TypedDict, total=False):
+    """An empty object which matches on all users."""
+
     pass
 
 
 class EveryoneRuleParam(TypedDict, total=False):
+    """Matches everyone."""
+
     everyone: Required[Everyone]
     """An empty object which matches on all users."""

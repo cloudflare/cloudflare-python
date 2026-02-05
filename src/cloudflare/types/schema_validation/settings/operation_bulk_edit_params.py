@@ -16,6 +16,8 @@ class OperationBulkEditParams(TypedDict, total=False):
 
 
 class Body(TypedDict, total=False):
+    """Operation ID to mitigation action mappings"""
+
     mitigation_action: Optional[Literal["none", "log", "block"]]
     """Mitigation actions are as follows:
 

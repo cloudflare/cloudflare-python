@@ -60,6 +60,44 @@ class TestSubdomains:
             )
 
     @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        subdomain = client.workers.subdomains.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert subdomain is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.workers.subdomains.with_raw_response.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subdomain = response.parse()
+        assert subdomain is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.workers.subdomains.with_streaming_response.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subdomain = response.parse()
+            assert subdomain is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.subdomains.with_raw_response.delete(
+                account_id="",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subdomain = client.workers.subdomains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -99,7 +137,9 @@ class TestSubdomains:
 
 
 class TestAsyncSubdomains:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -141,6 +181,44 @@ class TestAsyncSubdomains:
             await async_client.workers.subdomains.with_raw_response.update(
                 account_id="",
                 subdomain="my-subdomain",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        subdomain = await async_client.workers.subdomains.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert subdomain is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.subdomains.with_raw_response.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subdomain = await response.parse()
+        assert subdomain is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.subdomains.with_streaming_response.delete(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subdomain = await response.parse()
+            assert subdomain is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.subdomains.with_raw_response.delete(
+                account_id="",
             )
 
     @parametrize

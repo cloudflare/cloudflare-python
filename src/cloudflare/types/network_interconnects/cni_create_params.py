@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["CNICreateParams", "Magic", "BGP"]
 
@@ -34,7 +36,7 @@ class BGP(TypedDict, total=False):
     customer_asn: Required[int]
     """ASN used on the customer end of the BGP session"""
 
-    extra_prefixes: Required[List[str]]
+    extra_prefixes: Required[SequenceNotStr[str]]
     """Extra set of static prefixes to advertise to the customer's end of the session"""
 
     md5_key: Optional[str]

@@ -10,21 +10,17 @@ __all__ = ["ThreatEventEditResponse"]
 
 
 class ThreatEventEditResponse(BaseModel):
-    id: float
-
-    account_id: float = FieldInfo(alias="accountId")
-
     attacker: str
 
     attacker_country: str = FieldInfo(alias="attackerCountry")
 
     category: str
 
-    category_id: float = FieldInfo(alias="categoryId")
-
     date: str
 
     event: str
+
+    has_children: bool = FieldInfo(alias="hasChildren")
 
     indicator: str
 

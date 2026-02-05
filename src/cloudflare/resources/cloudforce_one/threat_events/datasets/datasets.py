@@ -4,15 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from .health import (
-    HealthResource,
-    AsyncHealthResource,
-    HealthResourceWithRawResponse,
-    AsyncHealthResourceWithRawResponse,
-    HealthResourceWithStreamingResponse,
-    AsyncHealthResourceWithStreamingResponse,
-)
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Query, Headers, NotGiven, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -34,10 +26,6 @@ __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
 class DatasetsResource(SyncAPIResource):
-    @cached_property
-    def health(self) -> HealthResource:
-        return HealthResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
@@ -68,7 +56,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
         Creates a dataset
@@ -115,7 +103,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
         Lists all datasets in an account
@@ -153,7 +141,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
         Updates an existing dataset
@@ -205,7 +193,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
         Reads a dataset
@@ -246,7 +234,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
         """
         Reads data for a raw event
@@ -283,10 +271,6 @@ class DatasetsResource(SyncAPIResource):
 
 class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
-    def health(self) -> AsyncHealthResource:
-        return AsyncHealthResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -316,7 +300,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
         Creates a dataset
@@ -363,7 +347,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
         Lists all datasets in an account
@@ -401,7 +385,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
         Updates an existing dataset
@@ -453,7 +437,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
         Reads a dataset
@@ -494,7 +478,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
         """
         Reads data for a raw event
@@ -549,10 +533,6 @@ class DatasetsResourceWithRawResponse:
             datasets.raw,
         )
 
-    @cached_property
-    def health(self) -> HealthResourceWithRawResponse:
-        return HealthResourceWithRawResponse(self._datasets.health)
-
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -573,10 +553,6 @@ class AsyncDatasetsResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             datasets.raw,
         )
-
-    @cached_property
-    def health(self) -> AsyncHealthResourceWithRawResponse:
-        return AsyncHealthResourceWithRawResponse(self._datasets.health)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -599,10 +575,6 @@ class DatasetsResourceWithStreamingResponse:
             datasets.raw,
         )
 
-    @cached_property
-    def health(self) -> HealthResourceWithStreamingResponse:
-        return HealthResourceWithStreamingResponse(self._datasets.health)
-
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -623,7 +595,3 @@ class AsyncDatasetsResourceWithStreamingResponse:
         self.raw = async_to_streamed_response_wrapper(
             datasets.raw,
         )
-
-    @cached_property
-    def health(self) -> AsyncHealthResourceWithStreamingResponse:
-        return AsyncHealthResourceWithStreamingResponse(self._datasets.health)

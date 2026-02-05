@@ -47,17 +47,20 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
-                    "dcp": False,
-                    "dd": False,
-                    "dk": False,
+                    "dcp": True,
+                    "dd": True,
+                    "dk": True,
                     "download": "enabled",
                     "dp": False,
-                    "du": False,
+                    "du": True,
                     "keyboard": "enabled",
                     "paste": "enabled",
                     "printing": "enabled",
@@ -98,6 +101,7 @@ class TestRules:
                     "ipv4_fallback": "192.0.2.3",
                     "ipv6": "2001:DB8::/64",
                 },
+                "forensic_copy": {"enabled": True},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -207,17 +211,20 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
-                    "dcp": False,
-                    "dd": False,
-                    "dk": False,
+                    "dcp": True,
+                    "dd": True,
+                    "dk": True,
                     "download": "enabled",
                     "dp": False,
-                    "du": False,
+                    "du": True,
                     "keyboard": "enabled",
                     "paste": "enabled",
                     "printing": "enabled",
@@ -258,6 +265,7 @@ class TestRules:
                     "ipv4_fallback": "192.0.2.3",
                     "ipv6": "2001:DB8::/64",
                 },
+                "forensic_copy": {"enabled": True},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -485,6 +493,44 @@ class TestRules:
             )
 
     @parametrize
+    def test_method_list_tenant(self, client: Cloudflare) -> None:
+        rule = client.zero_trust.gateway.rules.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_tenant(self, client: Cloudflare) -> None:
+        response = client.zero_trust.gateway.rules.with_raw_response.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_tenant(self, client: Cloudflare) -> None:
+        with client.zero_trust.gateway.rules.with_streaming_response.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list_tenant(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.rules.with_raw_response.list_tenant(
+                account_id="",
+            )
+
+    @parametrize
     def test_method_reset_expiration(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.reset_expiration(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -534,7 +580,9 @@ class TestRules:
 
 
 class TestAsyncRules:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -562,17 +610,20 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
-                    "dcp": False,
-                    "dd": False,
-                    "dk": False,
+                    "dcp": True,
+                    "dd": True,
+                    "dk": True,
                     "download": "enabled",
                     "dp": False,
-                    "du": False,
+                    "du": True,
                     "keyboard": "enabled",
                     "paste": "enabled",
                     "printing": "enabled",
@@ -613,6 +664,7 @@ class TestAsyncRules:
                     "ipv4_fallback": "192.0.2.3",
                     "ipv6": "2001:DB8::/64",
                 },
+                "forensic_copy": {"enabled": True},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -722,17 +774,20 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
-                    "dcp": False,
-                    "dd": False,
-                    "dk": False,
+                    "dcp": True,
+                    "dd": True,
+                    "dk": True,
                     "download": "enabled",
                     "dp": False,
-                    "du": False,
+                    "du": True,
                     "keyboard": "enabled",
                     "paste": "enabled",
                     "printing": "enabled",
@@ -773,6 +828,7 @@ class TestAsyncRules:
                     "ipv4_fallback": "192.0.2.3",
                     "ipv6": "2001:DB8::/64",
                 },
+                "forensic_copy": {"enabled": True},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -997,6 +1053,44 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.get(
                 rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @parametrize
+    async def test_method_list_tenant(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.zero_trust.gateway.rules.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_tenant(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.gateway.rules.with_raw_response.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_tenant(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.gateway.rules.with_streaming_response.list_tenant(
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list_tenant(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.rules.with_raw_response.list_tenant(
+                account_id="",
             )
 
     @parametrize

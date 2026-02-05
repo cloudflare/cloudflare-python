@@ -71,6 +71,12 @@ class Pool(BaseModel):
     pool.
     """
 
+    monitor_group: Optional[str] = None
+    """
+    The ID of the Monitor Group to use for checking the health of origins within
+    this pool.
+    """
+
     name: Optional[str] = None
     """A short name (tag) for the pool.
 

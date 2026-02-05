@@ -6,10 +6,12 @@ from typing import List, Union, Iterable
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = [
     "AuditListParams",
+    "ID",
     "AccountName",
     "ActionResult",
     "ActionType",
@@ -51,6 +53,8 @@ class AuditListParams(TypedDict, total=False):
     This can be a date string 2019-04-30 (interpreted in UTC) or an absolute
     timestamp that conforms to RFC3339.
     """
+
+    id: ID
 
     account_name: AccountName
 
@@ -113,10 +117,23 @@ class AuditListParams(TypedDict, total=False):
     zone_name: ZoneName
 
 
+_IDReservedKeywords = TypedDict(
+    "_IDReservedKeywords",
+    {
+        "not": SequenceNotStr[str],
+    },
+    total=False,
+)
+
+
+class ID(_IDReservedKeywords, total=False):
+    pass
+
+
 _AccountNameReservedKeywords = TypedDict(
     "_AccountNameReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -168,7 +185,7 @@ class ActorContext(_ActorContextReservedKeywords, total=False):
 _ActorEmailReservedKeywords = TypedDict(
     "_ActorEmailReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -181,7 +198,7 @@ class ActorEmail(_ActorEmailReservedKeywords, total=False):
 _ActorIDReservedKeywords = TypedDict(
     "_ActorIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -194,7 +211,7 @@ class ActorID(_ActorIDReservedKeywords, total=False):
 _ActorIPAddressReservedKeywords = TypedDict(
     "_ActorIPAddressReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -207,7 +224,7 @@ class ActorIPAddress(_ActorIPAddressReservedKeywords, total=False):
 _ActorTokenIDReservedKeywords = TypedDict(
     "_ActorTokenIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -220,7 +237,7 @@ class ActorTokenID(_ActorTokenIDReservedKeywords, total=False):
 _ActorTokenNameReservedKeywords = TypedDict(
     "_ActorTokenNameReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -246,7 +263,7 @@ class ActorType(_ActorTypeReservedKeywords, total=False):
 _AuditLogIDReservedKeywords = TypedDict(
     "_AuditLogIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -259,7 +276,7 @@ class AuditLogID(_AuditLogIDReservedKeywords, total=False):
 _RawCfRayIDReservedKeywords = TypedDict(
     "_RawCfRayIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -272,7 +289,7 @@ class RawCfRayID(_RawCfRayIDReservedKeywords, total=False):
 _RawMethodReservedKeywords = TypedDict(
     "_RawMethodReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -298,7 +315,7 @@ class RawStatusCode(_RawStatusCodeReservedKeywords, total=False):
 _RawURIReservedKeywords = TypedDict(
     "_RawURIReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -311,7 +328,7 @@ class RawURI(_RawURIReservedKeywords, total=False):
 _ResourceIDReservedKeywords = TypedDict(
     "_ResourceIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -324,7 +341,7 @@ class ResourceID(_ResourceIDReservedKeywords, total=False):
 _ResourceProductReservedKeywords = TypedDict(
     "_ResourceProductReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -350,7 +367,7 @@ class ResourceScope(_ResourceScopeReservedKeywords, total=False):
 _ResourceTypeReservedKeywords = TypedDict(
     "_ResourceTypeReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -363,7 +380,7 @@ class ResourceType(_ResourceTypeReservedKeywords, total=False):
 _ZoneIDReservedKeywords = TypedDict(
     "_ZoneIDReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )
@@ -376,7 +393,7 @@ class ZoneID(_ZoneIDReservedKeywords, total=False):
 _ZoneNameReservedKeywords = TypedDict(
     "_ZoneNameReservedKeywords",
     {
-        "not": List[str],
+        "not": SequenceNotStr[str],
     },
     total=False,
 )

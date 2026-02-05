@@ -9,7 +9,7 @@ __all__ = ["TieredCachingEditParams"]
 
 class TieredCachingEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     value: Required[Literal["on", "off"]]
     """Enables Tiered Caching."""

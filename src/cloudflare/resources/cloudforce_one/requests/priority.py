@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -53,7 +53,7 @@ class PriorityResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        labels: List[Label],
+        labels: SequenceNotStr[Label],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -62,7 +62,7 @@ class PriorityResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Priority]:
         """
         Create a New Priority Intelligence Requirement
@@ -114,7 +114,7 @@ class PriorityResource(SyncAPIResource):
         priority_id: str,
         *,
         account_id: str,
-        labels: List[Label],
+        labels: SequenceNotStr[Label],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -123,7 +123,7 @@ class PriorityResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Update a Priority Intelligence Requirement
@@ -184,7 +184,7 @@ class PriorityResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PriorityDeleteResponse:
         """
         Delete a Priority Intelligence Requirement
@@ -224,7 +224,7 @@ class PriorityResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Get a Priority Intelligence Requirement
@@ -267,7 +267,7 @@ class PriorityResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
         Get Priority Intelligence Requirement Quota
@@ -322,7 +322,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        labels: List[Label],
+        labels: SequenceNotStr[Label],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -331,7 +331,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Priority]:
         """
         Create a New Priority Intelligence Requirement
@@ -383,7 +383,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         priority_id: str,
         *,
         account_id: str,
-        labels: List[Label],
+        labels: SequenceNotStr[Label],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -392,7 +392,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Update a Priority Intelligence Requirement
@@ -453,7 +453,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PriorityDeleteResponse:
         """
         Delete a Priority Intelligence Requirement
@@ -493,7 +493,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Get a Priority Intelligence Requirement
@@ -536,7 +536,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
         Get Priority Intelligence Requirement Quota

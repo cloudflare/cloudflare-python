@@ -16,7 +16,7 @@ __all__ = ["PoolEditParams"]
 
 class PoolEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     check_regions: Optional[List[CheckRegion]]
     """A list of regions from which to run health checks.
@@ -41,7 +41,7 @@ class PoolEditParams(TypedDict, total=False):
     decimal degrees. If this is set, longitude must also be set.
     """
 
-    load_shedding: LoadSheddingParam
+    load_shedding: Optional[LoadSheddingParam]
     """Configures load shedding policies and percentages for the pool."""
 
     longitude: float
@@ -61,6 +61,12 @@ class PoolEditParams(TypedDict, total=False):
     """
     The ID of the Monitor to use for checking the health of origins within this
     pool.
+    """
+
+    monitor_group: str
+    """
+    The ID of the Monitor Group to use for checking the health of origins within
+    this pool.
     """
 
     name: str
@@ -84,7 +90,7 @@ class PoolEditParams(TypedDict, total=False):
     Use null to reset.
     """
 
-    origin_steering: OriginSteeringParam
+    origin_steering: Optional[OriginSteeringParam]
     """Configures origin steering for the pool.
 
     Controls how origins are selected for new sessions and traffic without session

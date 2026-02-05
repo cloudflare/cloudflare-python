@@ -38,6 +38,7 @@ class TestSubmissions:
             query="query",
             requested_disposition="MALICIOUS",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="status",
             submission_id="submission_id",
             type="TEAM",
         )
@@ -76,7 +77,9 @@ class TestSubmissions:
 
 
 class TestAsyncSubmissions:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -97,6 +100,7 @@ class TestAsyncSubmissions:
             query="query",
             requested_disposition="MALICIOUS",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="status",
             submission_id="submission_id",
             type="TEAM",
         )

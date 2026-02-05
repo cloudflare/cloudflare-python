@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .identity_provider_type import IdentityProviderType
 from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
@@ -12,7 +12,12 @@ __all__ = ["AzureADParam", "Config"]
 
 
 class Config(TypedDict, total=False):
-    claims: List[str]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -60,27 +61,30 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def bitrate(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupBitrateResponse:
         """
         Retrieves the distribution of layer 3 attacks by bitrate over time.
@@ -157,27 +161,30 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBitrateResponse], ResultWrapper[TimeseriesGroupBitrateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def duration(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDurationResponse:
         """
         Retrieves the distribution of layer 3 attacks by duration over time.
@@ -254,28 +261,31 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def industry(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIndustryResponse:
         """
         Retrieves the distribution of layer 3 attacks by targeted industry over time.
@@ -357,26 +367,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of layer 3 attacks by IP version over time.
@@ -450,26 +463,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def protocol(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupProtocolResponse:
         """
         Retrieves the distribution of layer 3 attacks by protocol over time.
@@ -543,28 +559,31 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def vector(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVectorResponse:
         """
         Retrieves the distribution of layer 3 attacks by vector over time.
@@ -646,28 +665,31 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupVectorResponse], ResultWrapper[TimeseriesGroupVectorResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     def vertical(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVerticalResponse:
         """
         Retrieves the distribution of layer 3 attacks by targeted vertical over time.
@@ -770,27 +792,30 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def bitrate(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupBitrateResponse:
         """
         Retrieves the distribution of layer 3 attacks by bitrate over time.
@@ -867,27 +892,30 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBitrateResponse], ResultWrapper[TimeseriesGroupBitrateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def duration(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupDurationResponse:
         """
         Retrieves the distribution of layer 3 attacks by duration over time.
@@ -964,28 +992,31 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def industry(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIndustryResponse:
         """
         Retrieves the distribution of layer 3 attacks by targeted industry over time.
@@ -1067,26 +1098,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of layer 3 attacks by IP version over time.
@@ -1160,26 +1194,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def protocol(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupProtocolResponse:
         """
         Retrieves the distribution of layer 3 attacks by protocol over time.
@@ -1253,28 +1290,31 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def vector(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVectorResponse:
         """
         Retrieves the distribution of layer 3 attacks by vector over time.
@@ -1356,28 +1396,31 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupVectorResponse], ResultWrapper[TimeseriesGroupVectorResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 3 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/timeseries_groups_v2/) instead."
+    )
     async def vertical(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        direction: Literal["ORIGIN", "TARGET"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVerticalResponse:
         """
         Retrieves the distribution of layer 3 attacks by targeted vertical over time.
@@ -1464,26 +1507,40 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = to_raw_response_wrapper(
-            timeseries_groups.bitrate,
+        self.bitrate = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.duration = to_raw_response_wrapper(
-            timeseries_groups.duration,
+        self.duration = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_raw_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.protocol = to_raw_response_wrapper(
-            timeseries_groups.protocol,
+        self.protocol = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vector = to_raw_response_wrapper(
-            timeseries_groups.vector,
+        self.vector = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_raw_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1491,26 +1548,40 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = async_to_raw_response_wrapper(
-            timeseries_groups.bitrate,
+        self.bitrate = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.duration = async_to_raw_response_wrapper(
-            timeseries_groups.duration,
+        self.duration = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_raw_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.protocol = async_to_raw_response_wrapper(
-            timeseries_groups.protocol,
+        self.protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vector = async_to_raw_response_wrapper(
-            timeseries_groups.vector,
+        self.vector = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_raw_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1518,26 +1589,40 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = to_streamed_response_wrapper(
-            timeseries_groups.bitrate,
+        self.bitrate = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.duration = to_streamed_response_wrapper(
-            timeseries_groups.duration,
+        self.duration = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_streamed_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.protocol = to_streamed_response_wrapper(
-            timeseries_groups.protocol,
+        self.protocol = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vector = to_streamed_response_wrapper(
-            timeseries_groups.vector,
+        self.vector = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_streamed_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1545,24 +1630,38 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = async_to_streamed_response_wrapper(
-            timeseries_groups.bitrate,
+        self.bitrate = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.duration = async_to_streamed_response_wrapper(
-            timeseries_groups.duration,
+        self.duration = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_streamed_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.protocol = async_to_streamed_response_wrapper(
-            timeseries_groups.protocol,
+        self.protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vector = async_to_streamed_response_wrapper(
-            timeseries_groups.vector,
+        self.vector = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_streamed_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )

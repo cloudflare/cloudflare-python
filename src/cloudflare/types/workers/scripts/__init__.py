@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from .deployment import Deployment as Deployment
 from .consumer_script import ConsumerScript as ConsumerScript
-from .deployment_param import DeploymentParam as DeploymentParam
+from .secret_get_params import SecretGetParams as SecretGetParams
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .secret_get_response import SecretGetResponse as SecretGetResponse
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .version_list_params import VersionListParams as VersionListParams
+from .secret_delete_params import SecretDeleteParams as SecretDeleteParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .tail_create_response import TailCreateResponse as TailCreateResponse
@@ -23,14 +24,14 @@ from .version_list_response import VersionListResponse as VersionListResponse
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams
 from .secret_update_response import SecretUpdateResponse as SecretUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
-from .deployment_get_response import DeploymentGetResponse as DeploymentGetResponse
 from .subdomain_create_params import SubdomainCreateParams as SubdomainCreateParams
 from .version_create_response import VersionCreateResponse as VersionCreateResponse
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
+from .deployment_list_response import DeploymentListResponse as DeploymentListResponse
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
 from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
 from .subdomain_delete_response import SubdomainDeleteResponse as SubdomainDeleteResponse
-from .deployment_create_response import DeploymentCreateResponse as DeploymentCreateResponse
+from .deployment_delete_response import DeploymentDeleteResponse as DeploymentDeleteResponse
 from .script_and_version_setting_edit_params import (
     ScriptAndVersionSettingEditParams as ScriptAndVersionSettingEditParams,
 )

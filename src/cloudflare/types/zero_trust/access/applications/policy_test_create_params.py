@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ..decision import Decision
+from ....._types import SequenceNotStr
 from .access_rule_param import AccessRuleParam
 from ..approval_group_param import ApprovalGroupParam
 
@@ -16,7 +17,7 @@ class PolicyTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    policies: List[Policy]
+    policies: SequenceNotStr[Policy]
 
 
 class PolicyUnionMember0(TypedDict, total=False):

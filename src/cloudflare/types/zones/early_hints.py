@@ -10,6 +10,10 @@ __all__ = ["EarlyHints"]
 
 
 class EarlyHints(BaseModel):
+    """
+    When enabled, Cloudflare will attempt to speed up overall page loads by serving `103` responses with `Link` headers from the final response. Refer to [Early Hints](https://developers.cloudflare.com/cache/about/early-hints) for more information.
+    """
+
     id: Literal["early_hints"]
     """ID of the zone setting."""
 

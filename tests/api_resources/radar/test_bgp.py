@@ -33,7 +33,7 @@ class TestBGP:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             name=["main_series"],
-            prefix=["1.1.1.0/24"],
+            prefix=["string"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
@@ -60,7 +60,9 @@ class TestBGP:
 
 
 class TestAsyncBGP:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
@@ -77,7 +79,7 @@ class TestAsyncBGP:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             name=["main_series"],
-            prefix=["1.1.1.0/24"],
+            prefix=["string"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])

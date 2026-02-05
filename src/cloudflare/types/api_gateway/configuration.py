@@ -14,6 +14,8 @@ __all__ = [
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
+    """Auth ID Characteristic"""
+
     name: str
     """The name of the characteristic field, i.e., the header or cookie name."""
 
@@ -22,6 +24,8 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(BaseModel):
+    """Auth ID Characteristic extracted from JWT Token Claims"""
+
     name: str
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where

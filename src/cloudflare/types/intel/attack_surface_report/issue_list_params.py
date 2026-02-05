@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 from .issue_type import IssueType
 from .severity_query_param import SeverityQueryParam
@@ -18,9 +19,9 @@ class IssueListParams(TypedDict, total=False):
 
     dismissed: bool
 
-    issue_class: List[str]
+    issue_class: SequenceNotStr[str]
 
-    issue_class_neq: Annotated[List[str], PropertyInfo(alias="issue_class~neq")]
+    issue_class_neq: Annotated[SequenceNotStr[str], PropertyInfo(alias="issue_class~neq")]
 
     issue_type: List[IssueType]
 
@@ -32,14 +33,14 @@ class IssueListParams(TypedDict, total=False):
     per_page: int
     """Number of results per page of results"""
 
-    product: List[str]
+    product: SequenceNotStr[str]
 
-    product_neq: Annotated[List[str], PropertyInfo(alias="product~neq")]
+    product_neq: Annotated[SequenceNotStr[str], PropertyInfo(alias="product~neq")]
 
     severity: List[SeverityQueryParam]
 
     severity_neq: Annotated[List[SeverityQueryParam], PropertyInfo(alias="severity~neq")]
 
-    subject: List[str]
+    subject: SequenceNotStr[str]
 
-    subject_neq: Annotated[List[str], PropertyInfo(alias="subject~neq")]
+    subject_neq: Annotated[SequenceNotStr[str], PropertyInfo(alias="subject~neq")]

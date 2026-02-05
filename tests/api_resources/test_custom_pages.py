@@ -10,7 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.custom_pages import CustomPageGetResponse, CustomPageUpdateResponse
+from cloudflare.types.custom_pages import (
+    CustomPageGetResponse,
+    CustomPageListResponse,
+    CustomPageUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +26,7 @@ class TestCustomPages:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         custom_page = client.custom_pages.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -33,7 +37,7 @@ class TestCustomPages:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         custom_page = client.custom_pages.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -44,7 +48,7 @@ class TestCustomPages:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.custom_pages.with_raw_response.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -59,7 +63,7 @@ class TestCustomPages:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.custom_pages.with_streaming_response.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -75,17 +79,9 @@ class TestCustomPages:
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.custom_pages.with_raw_response.update(
-                identifier="",
-                state="default",
-                url="http://www.example.com",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.custom_pages.with_raw_response.update(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 state="default",
                 url="http://www.example.com",
                 account_id="",
@@ -93,7 +89,7 @@ class TestCustomPages:
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.custom_pages.with_raw_response.update(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 state="default",
                 url="http://www.example.com",
                 account_id="account_id",
@@ -105,7 +101,7 @@ class TestCustomPages:
         custom_page = client.custom_pages.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(SyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -113,7 +109,7 @@ class TestCustomPages:
         custom_page = client.custom_pages.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(SyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -125,7 +121,7 @@ class TestCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = response.parse()
-        assert_matches_type(SyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(SyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -137,7 +133,7 @@ class TestCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = response.parse()
-            assert_matches_type(SyncSinglePage[object], custom_page, path=["response"])
+            assert_matches_type(SyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +154,7 @@ class TestCustomPages:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_page = client.custom_pages.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
         assert_matches_type(Optional[CustomPageGetResponse], custom_page, path=["response"])
@@ -167,7 +163,7 @@ class TestCustomPages:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         custom_page = client.custom_pages.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
         assert_matches_type(Optional[CustomPageGetResponse], custom_page, path=["response"])
@@ -176,7 +172,7 @@ class TestCustomPages:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.custom_pages.with_raw_response.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
 
@@ -189,7 +185,7 @@ class TestCustomPages:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.custom_pages.with_streaming_response.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -203,33 +199,29 @@ class TestCustomPages:
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.custom_pages.with_raw_response.get(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.custom_pages.with_raw_response.get(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.custom_pages.with_raw_response.get(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 account_id="account_id",
             )
 
 
 class TestAsyncCustomPages:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.custom_pages.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -240,7 +232,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.custom_pages.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -251,7 +243,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_pages.with_raw_response.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -266,7 +258,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_pages.with_streaming_response.update(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             state="default",
             url="http://www.example.com",
             account_id="account_id",
@@ -282,17 +274,9 @@ class TestAsyncCustomPages:
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.custom_pages.with_raw_response.update(
-                identifier="",
-                state="default",
-                url="http://www.example.com",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.custom_pages.with_raw_response.update(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 state="default",
                 url="http://www.example.com",
                 account_id="",
@@ -300,7 +284,7 @@ class TestAsyncCustomPages:
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.custom_pages.with_raw_response.update(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 state="default",
                 url="http://www.example.com",
                 account_id="account_id",
@@ -312,7 +296,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.custom_pages.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(AsyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -320,7 +304,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.custom_pages.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(AsyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -332,7 +316,7 @@ class TestAsyncCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = await response.parse()
-        assert_matches_type(AsyncSinglePage[object], custom_page, path=["response"])
+        assert_matches_type(AsyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
@@ -344,7 +328,7 @@ class TestAsyncCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = await response.parse()
-            assert_matches_type(AsyncSinglePage[object], custom_page, path=["response"])
+            assert_matches_type(AsyncSinglePage[CustomPageListResponse], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +349,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.custom_pages.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
         assert_matches_type(Optional[CustomPageGetResponse], custom_page, path=["response"])
@@ -374,7 +358,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.custom_pages.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
         assert_matches_type(Optional[CustomPageGetResponse], custom_page, path=["response"])
@@ -383,7 +367,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_pages.with_raw_response.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         )
 
@@ -396,7 +380,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_pages.with_streaming_response.get(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="ratelimit_block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -410,20 +394,14 @@ class TestAsyncCustomPages:
     @pytest.mark.skip(reason="TODO: investigate prism failures")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.custom_pages.with_raw_response.get(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.custom_pages.with_raw_response.get(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.custom_pages.with_raw_response.get(
-                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ratelimit_block",
                 account_id="account_id",
             )

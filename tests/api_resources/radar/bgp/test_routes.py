@@ -32,7 +32,7 @@ class TestRoutes:
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         route = client.radar.bgp.routes.ases(
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             sort_by="ipv4",
             sort_order="ASC",
@@ -199,7 +199,9 @@ class TestRoutes:
 
 
 class TestAsyncRoutes:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_ases(self, async_client: AsyncCloudflare) -> None:
@@ -210,7 +212,7 @@ class TestAsyncRoutes:
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.radar.bgp.routes.ases(
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             sort_by="ipv4",
             sort_order="ASC",

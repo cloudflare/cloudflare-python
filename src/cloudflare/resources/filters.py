@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Type, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -20,8 +20,16 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from ..pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.filters import filter_list_params, filter_create_params, filter_update_params
+from ..types.filters import (
+    filter_list_params,
+    filter_update_params,
+    filter_bulk_delete_params,
+    filter_bulk_update_params,
+)
 from ..types.filters.firewall_filter import FirewallFilter
+from ..types.filters.firewall_filter_param import FirewallFilterParam
+from ..types.filters.filter_delete_response import FilterDeleteResponse
+from ..types.filters.filter_bulk_delete_response import FilterBulkDeleteResponse
 
 __all__ = ["FiltersResource", "AsyncFiltersResource"]
 
@@ -53,22 +61,19 @@ class FiltersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        expression: str,
+        body: Iterable[FirewallFilterParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[FirewallFilter]:
         """
         Creates one or more filters.
 
         Args:
           zone_id: Defines an identifier.
-
-          expression: The filter expression. For more information, refer to
-              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
 
           extra_headers: Send extra headers
 
@@ -83,7 +88,7 @@ class FiltersResource(SyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/filters",
             page=SyncSinglePage[FirewallFilter],
-            body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
+            body=maybe_transform(body, Iterable[FirewallFilterParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -99,13 +104,16 @@ class FiltersResource(SyncAPIResource):
         filter_id: str,
         *,
         zone_id: str,
-        body: object,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        paused: bool | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Updates an existing filter.
@@ -114,6 +122,15 @@ class FiltersResource(SyncAPIResource):
           zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
+
+          description: An informative summary of the filter.
+
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
+          paused: When true, indicates that the filter is currently paused.
+
+          ref: A short reference tag. Allows you to select related filters.
 
           extra_headers: Send extra headers
 
@@ -129,7 +146,15 @@ class FiltersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return self._put(
             f"/zones/{zone_id}/filters/{filter_id}",
-            body=maybe_transform(body, filter_update_params.FilterUpdateParams),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "expression": expression,
+                    "paused": paused,
+                    "ref": ref,
+                },
+                filter_update_params.FilterUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,19 +172,19 @@ class FiltersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[FirewallFilter]:
         """Fetches filters in a zone.
 
@@ -230,8 +255,8 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallFilter:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> FilterDeleteResponse:
         """
         Deletes an existing filter.
 
@@ -259,9 +284,9 @@ class FiltersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
+                post_parser=ResultWrapper[FilterDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
+            cast_to=cast(Type[FilterDeleteResponse], ResultWrapper[FilterDeleteResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -271,13 +296,14 @@ class FiltersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[FirewallFilter]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[FilterBulkDeleteResponse]:
         """
         Deletes one or more existing filters.
 
@@ -294,14 +320,17 @@ class FiltersResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
+        return self._delete(
             f"/zones/{zone_id}/filters",
-            page=SyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"id": id}, filter_bulk_delete_params.FilterBulkDeleteParams),
+                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
             ),
-            model=FirewallFilter,
-            method="delete",
+            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -311,12 +340,13 @@ class FiltersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: Iterable[filter_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[FirewallFilter]:
         """
         Updates one or more existing filters.
@@ -337,6 +367,7 @@ class FiltersResource(SyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/filters",
             page=SyncSinglePage[FirewallFilter],
+            body=maybe_transform(body, Iterable[filter_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -357,7 +388,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Fetches the details of a filter.
@@ -419,22 +450,19 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        expression: str,
+        body: Iterable[FirewallFilterParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Creates one or more filters.
 
         Args:
           zone_id: Defines an identifier.
-
-          expression: The filter expression. For more information, refer to
-              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
 
           extra_headers: Send extra headers
 
@@ -449,7 +477,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/filters",
             page=AsyncSinglePage[FirewallFilter],
-            body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
+            body=maybe_transform(body, Iterable[FirewallFilterParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -465,13 +493,16 @@ class AsyncFiltersResource(AsyncAPIResource):
         filter_id: str,
         *,
         zone_id: str,
-        body: object,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        paused: bool | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Updates an existing filter.
@@ -480,6 +511,15 @@ class AsyncFiltersResource(AsyncAPIResource):
           zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
+
+          description: An informative summary of the filter.
+
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
+          paused: When true, indicates that the filter is currently paused.
+
+          ref: A short reference tag. Allows you to select related filters.
 
           extra_headers: Send extra headers
 
@@ -495,7 +535,15 @@ class AsyncFiltersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return await self._put(
             f"/zones/{zone_id}/filters/{filter_id}",
-            body=await async_maybe_transform(body, filter_update_params.FilterUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "expression": expression,
+                    "paused": paused,
+                    "ref": ref,
+                },
+                filter_update_params.FilterUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -513,19 +561,19 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncV4PagePaginationArray[FirewallFilter]]:
         """Fetches filters in a zone.
 
@@ -596,8 +644,8 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallFilter:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> FilterDeleteResponse:
         """
         Deletes an existing filter.
 
@@ -625,25 +673,26 @@ class AsyncFiltersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
+                post_parser=ResultWrapper[FilterDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
+            cast_to=cast(Type[FilterDeleteResponse], ResultWrapper[FilterDeleteResponse]),
         )
 
     @typing_extensions.deprecated(
         "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    def bulk_delete(
+    async def bulk_delete(
         self,
         *,
         zone_id: str,
+        id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[FilterBulkDeleteResponse]:
         """
         Deletes one or more existing filters.
 
@@ -660,14 +709,17 @@ class AsyncFiltersResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
+        return await self._delete(
             f"/zones/{zone_id}/filters",
-            page=AsyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"id": id}, filter_bulk_delete_params.FilterBulkDeleteParams),
+                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
             ),
-            model=FirewallFilter,
-            method="delete",
+            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -677,12 +729,13 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: Iterable[filter_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Updates one or more existing filters.
@@ -703,6 +756,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/filters",
             page=AsyncSinglePage[FirewallFilter],
+            body=maybe_transform(body, Iterable[filter_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -723,7 +777,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Fetches the details of a filter.
@@ -764,37 +818,37 @@ class FiltersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -805,37 +859,37 @@ class AsyncFiltersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -846,37 +900,37 @@ class FiltersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -887,36 +941,36 @@ class AsyncFiltersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )

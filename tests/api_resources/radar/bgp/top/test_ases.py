@@ -31,9 +31,9 @@ class TestAses:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
-            prefix=["1.1.1.0/24"],
+            prefix=["string"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
@@ -94,7 +94,9 @@ class TestAses:
 
 
 class TestAsyncAses:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -109,9 +111,9 @@ class TestAsyncAses:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
-            prefix=["1.1.1.0/24"],
+            prefix=["string"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])

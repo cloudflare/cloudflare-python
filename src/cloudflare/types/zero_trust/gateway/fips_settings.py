@@ -8,5 +8,7 @@ __all__ = ["FipsSettings"]
 
 
 class FipsSettings(BaseModel):
+    """Specify FIPS settings."""
+
     tls: Optional[bool] = None
-    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
+    """Enforce cipher suites and TLS versions compliant with FIPS 140-2."""

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = [
@@ -20,11 +21,15 @@ __all__ = [
 
 
 class ActionParametersMatchedData(TypedDict, total=False):
+    """The configuration to use for matched data logging."""
+
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
 
 
 class ActionParametersOverridesCategory(TypedDict, total=False):
+    """A category-level override."""
+
     category: Required[str]
     """The name of the category to override."""
 
@@ -35,10 +40,15 @@ class ActionParametersOverridesCategory(TypedDict, total=False):
     """Whether to enable execution of rules in the category."""
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
-    """The sensitivity level to use for rules in the category."""
+    """The sensitivity level to use for rules in the category.
+
+    This option is only applicable for DDoS phases.
+    """
 
 
 class ActionParametersOverridesRule(TypedDict, total=False):
+    """A rule-level override."""
+
     id: Required[str]
     """The ID of the rule to override."""
 
@@ -52,10 +62,15 @@ class ActionParametersOverridesRule(TypedDict, total=False):
     """The score threshold to use for the rule."""
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
-    """The sensitivity level to use for the rule."""
+    """The sensitivity level to use for the rule.
+
+    This option is only applicable for DDoS phases.
+    """
 
 
 class ActionParametersOverrides(TypedDict, total=False):
+    """A set of overrides to apply to the target ruleset."""
+
     action: str
     """An action to override all rules with.
 
@@ -86,6 +101,8 @@ class ActionParametersOverrides(TypedDict, total=False):
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     id: Required[str]
     """The ID of the ruleset to execute."""
 
@@ -97,17 +114,21 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -115,9 +136,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -133,7 +154,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -143,8 +164,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -165,7 +186,7 @@ class ExecuteRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -174,7 +195,7 @@ class ExecuteRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
 from .label import Label
+from ...._types import SequenceNotStr
 
 __all__ = ["PriorityCreateParams"]
 
@@ -14,7 +14,7 @@ class PriorityCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    labels: Required[List[Label]]
+    labels: Required[SequenceNotStr[Label]]
     """List of labels."""
 
     priority: Required[int]

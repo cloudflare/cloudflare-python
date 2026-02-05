@@ -8,6 +8,8 @@ __all__ = ["RedirectParam"]
 
 
 class RedirectParam(TypedDict, total=False):
+    """The definition of the redirect."""
+
     source_url: Required[str]
 
     target_url: Required[str]

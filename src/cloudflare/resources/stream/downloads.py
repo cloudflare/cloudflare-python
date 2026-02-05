@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -19,6 +19,8 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.stream import download_create_params
+from ...types.stream.download_get_response import DownloadGetResponse
+from ...types.stream.download_create_response import DownloadCreateResponse
 from ...types.stream.download_delete_response import DownloadDeleteResponse
 
 __all__ = ["DownloadsResource", "AsyncDownloadsResource"]
@@ -55,10 +57,13 @@ class DownloadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Creates a download for a video when a video is ready to view.
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DownloadCreateResponse]:
+        """Creates a download for a video when a video is ready to view.
+
+        Use
+        `/downloads/{download_type}` instead for type-specific downloads. Available
+        types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -85,9 +90,9 @@ class DownloadsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DownloadCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DownloadCreateResponse]], ResultWrapper[DownloadCreateResponse]),
         )
 
     def delete(
@@ -100,10 +105,12 @@ class DownloadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Delete the downloads for a video.
+        """Delete the downloads for a video.
+
+        Use `/downloads/{download_type}` instead for
+        type-specific downloads. Available types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -144,8 +151,8 @@ class DownloadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DownloadGetResponse]:
         """
         Lists the downloads created for a video.
 
@@ -173,9 +180,9 @@ class DownloadsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DownloadGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DownloadGetResponse]], ResultWrapper[DownloadGetResponse]),
         )
 
 
@@ -210,10 +217,13 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Creates a download for a video when a video is ready to view.
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DownloadCreateResponse]:
+        """Creates a download for a video when a video is ready to view.
+
+        Use
+        `/downloads/{download_type}` instead for type-specific downloads. Available
+        types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -240,9 +250,9 @@ class AsyncDownloadsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DownloadCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DownloadCreateResponse]], ResultWrapper[DownloadCreateResponse]),
         )
 
     async def delete(
@@ -255,10 +265,12 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Delete the downloads for a video.
+        """Delete the downloads for a video.
+
+        Use `/downloads/{download_type}` instead for
+        type-specific downloads. Available types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -299,8 +311,8 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DownloadGetResponse]:
         """
         Lists the downloads created for a video.
 
@@ -328,9 +340,9 @@ class AsyncDownloadsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DownloadGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DownloadGetResponse]], ResultWrapper[DownloadGetResponse]),
         )
 
 

@@ -22,6 +22,9 @@ class DirectUploadCreateParams(TypedDict, total=False):
     Cannot start nor end with a / (forward slash). Cannot be a UUID.
     """
 
+    creator: str
+    """Can set the creator field with an internal user ID."""
+
     expiry: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The date after which the upload will not be accepted.
 

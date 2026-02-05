@@ -16,4 +16,9 @@ class GSuite(TypedDict, total=False):
 
 
 class GSuiteGroupRuleParam(TypedDict, total=False):
+    """
+    Matches a group in Google Workspace.
+    Requires a Google Workspace identity provider.
+    """
+
     gsuite: Required[GSuite]

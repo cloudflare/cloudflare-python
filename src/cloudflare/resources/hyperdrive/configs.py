@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,20 +51,27 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origin: config_create_params.Origin,
-        caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
+        caching: config_create_params.Caching | Omit = omit,
+        mtls: config_create_params.MTLS | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Creates and returns a new Hyperdrive configuration.
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -84,6 +91,7 @@ class ConfigsResource(SyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -104,14 +112,15 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origin: config_update_params.Origin,
-        caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
+        caching: config_update_params.Caching | Omit = omit,
+        mtls: config_update_params.MTLS | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Updates and returns the specified Hyperdrive configuration.
@@ -120,6 +129,12 @@ class ConfigsResource(SyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -141,6 +156,7 @@ class ConfigsResource(SyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -163,7 +179,7 @@ class ConfigsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Hyperdrive]:
         """
         Returns a list of Hyperdrives.
@@ -200,7 +216,7 @@ class ConfigsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes the specified Hyperdrive.
@@ -239,16 +255,17 @@ class ConfigsResource(SyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        caching: config_edit_params.Caching | Omit = omit,
+        mtls: config_edit_params.MTLS | Omit = omit,
+        name: str | Omit = omit,
+        origin: config_edit_params.Origin | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """Patches and returns the specified Hyperdrive configuration.
 
@@ -259,6 +276,12 @@ class ConfigsResource(SyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -280,6 +303,7 @@ class ConfigsResource(SyncAPIResource):
                     "mtls": mtls,
                     "name": name,
                     "origin": origin,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_edit_params.ConfigEditParams,
             ),
@@ -303,7 +327,7 @@ class ConfigsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Returns the specified Hyperdrive configuration.
@@ -364,20 +388,27 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origin: config_create_params.Origin,
-        caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
+        caching: config_create_params.Caching | Omit = omit,
+        mtls: config_create_params.MTLS | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Creates and returns a new Hyperdrive configuration.
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -397,6 +428,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -417,14 +449,15 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origin: config_update_params.Origin,
-        caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
+        caching: config_update_params.Caching | Omit = omit,
+        mtls: config_update_params.MTLS | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Updates and returns the specified Hyperdrive configuration.
@@ -433,6 +466,12 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -454,6 +493,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -476,7 +516,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Hyperdrive, AsyncSinglePage[Hyperdrive]]:
         """
         Returns a list of Hyperdrives.
@@ -513,7 +553,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes the specified Hyperdrive.
@@ -552,16 +592,17 @@ class AsyncConfigsResource(AsyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
-        mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        caching: config_edit_params.Caching | Omit = omit,
+        mtls: config_edit_params.MTLS | Omit = omit,
+        name: str | Omit = omit,
+        origin: config_edit_params.Origin | Omit = omit,
+        origin_connection_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """Patches and returns the specified Hyperdrive configuration.
 
@@ -572,6 +613,12 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -593,6 +640,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "mtls": mtls,
                     "name": name,
                     "origin": origin,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_edit_params.ConfigEditParams,
             ),
@@ -616,7 +664,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
         """
         Returns the specified Hyperdrive configuration.

@@ -12,6 +12,7 @@ class UserListParams(TypedDict, total=False):
     """Identifier."""
 
     page: int
+    """Page number of results."""
 
     per_page: int
 

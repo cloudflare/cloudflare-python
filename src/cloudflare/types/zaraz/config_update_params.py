@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .neo_event_param import NeoEventParam
 from .button_text_translation_param import ButtonTextTranslationParam
@@ -104,12 +105,16 @@ class ConfigUpdateParams(TypedDict, total=False):
 
 
 class SettingsContextEnricher(TypedDict, total=False):
+    """Details of the worker that receives and edits Zaraz Context object."""
+
     escaped_worker_name: Required[Annotated[str, PropertyInfo(alias="escapedWorkerName")]]
 
     worker_tag: Required[Annotated[str, PropertyInfo(alias="workerTag")]]
 
 
 class Settings(TypedDict, total=False):
+    """General Zaraz settings."""
+
     auto_inject_script: Required[Annotated[bool, PropertyInfo(alias="autoInjectScript")]]
     """Automatic injection of Zaraz scripts enabled."""
 
@@ -154,7 +159,7 @@ class Settings(TypedDict, total=False):
 
 
 class ToolsZarazManagedComponent(TypedDict, total=False):
-    blocking_triggers: Required[Annotated[List[str], PropertyInfo(alias="blockingTriggers")]]
+    blocking_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockingTriggers")]]
     """List of blocking trigger IDs"""
 
     component: Required[str]
@@ -169,7 +174,7 @@ class ToolsZarazManagedComponent(TypedDict, total=False):
     name: Required[str]
     """Tool's name defined by the user"""
 
-    permissions: Required[List[str]]
+    permissions: Required[SequenceNotStr[str]]
     """List of permissions granted to the component"""
 
     settings: Required[Dict[str, Union[str, bool]]]
@@ -204,13 +209,15 @@ class ToolsZarazManagedComponent(TypedDict, total=False):
 
 
 class ToolsWorkerWorker(TypedDict, total=False):
+    """Cloudflare worker that acts as a managed component"""
+
     escaped_worker_name: Required[Annotated[str, PropertyInfo(alias="escapedWorkerName")]]
 
     worker_tag: Required[Annotated[str, PropertyInfo(alias="workerTag")]]
 
 
 class ToolsWorker(TypedDict, total=False):
-    blocking_triggers: Required[Annotated[List[str], PropertyInfo(alias="blockingTriggers")]]
+    blocking_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockingTriggers")]]
     """List of blocking trigger IDs"""
 
     component: Required[str]
@@ -225,7 +232,7 @@ class ToolsWorker(TypedDict, total=False):
     name: Required[str]
     """Tool's name defined by the user"""
 
-    permissions: Required[List[str]]
+    permissions: Required[SequenceNotStr[str]]
     """List of permissions granted to the component"""
 
     settings: Required[Dict[str, Union[str, bool]]]
@@ -547,6 +554,8 @@ Variables: TypeAlias = Union[VariablesZarazStringVariable, VariablesZarazSecretV
 
 
 class Analytics(TypedDict, total=False):
+    """Cloudflare Monitoring settings."""
+
     default_purpose: Annotated[str, PropertyInfo(alias="defaultPurpose")]
     """Consent purpose assigned to Monitoring."""
 
@@ -574,6 +583,8 @@ class ConsentPurposesWithTranslations(TypedDict, total=False):
 
 
 class Consent(TypedDict, total=False):
+    """Consent management configuration."""
+
     enabled: Required[bool]
 
     button_text_translations: Annotated[ButtonTextTranslationParam, PropertyInfo(alias="buttonTextTranslations")]

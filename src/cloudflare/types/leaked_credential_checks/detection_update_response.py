@@ -8,6 +8,10 @@ __all__ = ["DetectionUpdateResponse"]
 
 
 class DetectionUpdateResponse(BaseModel):
+    """
+    Defines a custom set of username/password expressions to match Leaked Credential Checks on.
+    """
+
     id: Optional[str] = None
     """Defines the unique ID for this custom detection."""
 

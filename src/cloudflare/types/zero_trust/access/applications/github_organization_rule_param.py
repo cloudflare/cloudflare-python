@@ -21,4 +21,9 @@ class GitHubOrganization(TypedDict, total=False):
 
 
 class GitHubOrganizationRuleParam(TypedDict, total=False):
+    """
+    Matches a Github organization.
+    Requires a Github identity provider.
+    """
+
     github_organization: Required[Annotated[GitHubOrganization, PropertyInfo(alias="github-organization")]]

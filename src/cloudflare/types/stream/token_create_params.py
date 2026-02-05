@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["TokenCreateParams", "AccessRule"]
@@ -55,6 +56,11 @@ class TokenCreateParams(TypedDict, total=False):
 
 
 class AccessRule(TypedDict, total=False):
+    """Defines rules for fine-grained control over content than signed URL tokens alone.
+
+    Access rules primarily make tokens conditionally valid based on user information. Access Rules are specified on token payloads as the `accessRules` property containing an array of Rule objects.
+    """
+
     action: Literal["allow", "block"]
     """The action to take when a request matches a rule.
 
@@ -62,13 +68,13 @@ class AccessRule(TypedDict, total=False):
     rule.
     """
 
-    country: List[str]
+    country: SequenceNotStr[str]
     """
     An array of 2-letter country codes in ISO 3166-1 Alpha-2 format used to match
     requests.
     """
 
-    ip: List[str]
+    ip: SequenceNotStr[str]
     """An array of IPv4 or IPV6 addresses or CIDRs used to match requests."""
 
     type: Literal["any", "ip.src", "ip.geoip.country"]

@@ -18,7 +18,6 @@ from .log_rule_param import LogRuleParam as LogRuleParam
 from .set_config_rule import SetConfigRule as SetConfigRule
 from .skip_rule_param import SkipRuleParam as SkipRuleParam
 from .block_rule_param import BlockRuleParam as BlockRuleParam
-from .rewrite_uri_part import RewriteURIPart as RewriteURIPart
 from .route_rule_param import RouteRuleParam as RouteRuleParam
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .score_rule_param import ScoreRuleParam as ScoreRuleParam
@@ -45,7 +44,6 @@ from .set_config_rule_param import SetConfigRuleParam as SetConfigRuleParam
 from .version_list_response import VersionListResponse as VersionListResponse
 from .compress_response_rule import CompressResponseRule as CompressResponseRule
 from .managed_challenge_rule import ManagedChallengeRule as ManagedChallengeRule
-from .rewrite_uri_part_param import RewriteURIPartParam as RewriteURIPartParam
 from .serve_error_rule_param import ServeErrorRuleParam as ServeErrorRuleParam
 from .ddos_dynamic_rule_param import DDoSDynamicRuleParam as DDoSDynamicRuleParam
 from .ruleset_create_response import RulesetCreateResponse as RulesetCreateResponse

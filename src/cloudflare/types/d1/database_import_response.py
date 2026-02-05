@@ -9,6 +9,8 @@ __all__ = ["DatabaseImportResponse", "Result", "ResultMeta", "ResultMetaTimings"
 
 
 class ResultMetaTimings(BaseModel):
+    """Various durations for the query."""
+
     sql_duration_ms: Optional[float] = None
     """The duration of the SQL query execution inside the database.
 
@@ -47,6 +49,9 @@ class ResultMeta(BaseModel):
     rows_written: Optional[float] = None
     """Number of rows written during the SQL query execution, including indices."""
 
+    served_by_colo: Optional[str] = None
+    """The three letters airport code of the colo that handled the query."""
+
     served_by_primary: Optional[bool] = None
     """Denotes if the query has been handled by the database primary instance."""
 
@@ -61,6 +66,8 @@ class ResultMeta(BaseModel):
 
 
 class Result(BaseModel):
+    """Only present when status = 'complete'"""
+
     final_bookmark: Optional[str] = None
     """
     The time-travel bookmark if you need restore your D1 to directly after the

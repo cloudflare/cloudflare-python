@@ -16,11 +16,14 @@ __all__ = [
     "ConfigIngressOriginRequestAccess",
     "ConfigOriginRequest",
     "ConfigOriginRequestAccess",
-    "ConfigWARPRouting",
 ]
 
 
 class ConfigIngressOriginRequestAccess(BaseModel):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: List[str] = FieldInfo(alias="audTag")
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -35,6 +38,10 @@ class ConfigIngressOriginRequestAccess(BaseModel):
 
 
 class ConfigIngressOriginRequest(BaseModel):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: Optional[ConfigIngressOriginRequestAccess] = None
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -71,6 +78,9 @@ class ConfigIngressOriginRequest(BaseModel):
 
     keep_alive_timeout: Optional[int] = FieldInfo(alias="keepAliveTimeout", default=None)
     """Timeout after which an idle keepalive connection can be discarded."""
+
+    match_sn_ito_host: Optional[bool] = FieldInfo(alias="matchSNItoHost", default=None)
+    """Auto configure the Hostname on the origin server certificate."""
 
     no_happy_eyeballs: Optional[bool] = FieldInfo(alias="noHappyEyeballs", default=None)
     """
@@ -109,6 +119,8 @@ class ConfigIngressOriginRequest(BaseModel):
 
 
 class ConfigIngress(BaseModel):
+    """Public hostname"""
+
     hostname: str
     """Public hostname for this service."""
 
@@ -131,6 +143,10 @@ class ConfigIngress(BaseModel):
 
 
 class ConfigOriginRequestAccess(BaseModel):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: List[str] = FieldInfo(alias="audTag")
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -145,6 +161,10 @@ class ConfigOriginRequestAccess(BaseModel):
 
 
 class ConfigOriginRequest(BaseModel):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: Optional[ConfigOriginRequestAccess] = None
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -182,6 +202,9 @@ class ConfigOriginRequest(BaseModel):
     keep_alive_timeout: Optional[int] = FieldInfo(alias="keepAliveTimeout", default=None)
     """Timeout after which an idle keepalive connection can be discarded."""
 
+    match_sn_ito_host: Optional[bool] = FieldInfo(alias="matchSNItoHost", default=None)
+    """Auto configure the Hostname on the origin server certificate."""
+
     no_happy_eyeballs: Optional[bool] = FieldInfo(alias="noHappyEyeballs", default=None)
     """
     Disable the “happy eyeballs” algorithm for IPv4/IPv6 fallback if your local
@@ -218,11 +241,9 @@ class ConfigOriginRequest(BaseModel):
     """
 
 
-class ConfigWARPRouting(BaseModel):
-    enabled: Optional[bool] = None
-
-
 class Config(BaseModel):
+    """The tunnel configuration and ingress rules."""
+
     ingress: Optional[List[ConfigIngress]] = None
     """List of public hostname definitions.
 
@@ -235,14 +256,10 @@ class Config(BaseModel):
     between cloudflared and origin server.
     """
 
-    warp_routing: Optional[ConfigWARPRouting] = FieldInfo(alias="warp-routing", default=None)
-    """Enable private network access from WARP users to private network routes.
-
-    This is enabled if the tunnel has an assigned route.
-    """
-
 
 class ConfigurationGetResponse(BaseModel):
+    """Cloudflare Tunnel configuration"""
+
     account_id: Optional[str] = None
     """Identifier."""
 

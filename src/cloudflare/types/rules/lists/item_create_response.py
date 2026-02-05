@@ -1,16 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
-from typing_extensions import TypeAlias
-
 from ...._models import BaseModel
 
-__all__ = ["ItemCreateResponse", "OperationID"]
+__all__ = ["ItemCreateResponse"]
 
 
-class OperationID(BaseModel):
-    operation_id: Optional[str] = None
+class ItemCreateResponse(BaseModel):
+    operation_id: str
     """The unique operation ID of the asynchronous action."""
-
-
-ItemCreateResponse: TypeAlias = Union[OperationID, OperationID]

@@ -9,10 +9,10 @@ __all__ = ["ValidateDestinationExistsParams"]
 
 class ValidateDestinationExistsParams(TypedDict, total=False):
     destination_conf: Required[str]
-    """Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
+    """Uniquely identifies a resource (such as an s3 bucket) where data.
 
-    Additional configuration parameters supported by the destination may be
-    included.
+    will be pushed. Additional configuration parameters supported by the destination
+    may be included.
     """
 
     account_id: str

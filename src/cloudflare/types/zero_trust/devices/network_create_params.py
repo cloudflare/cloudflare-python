@@ -24,6 +24,10 @@ class NetworkCreateParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
+    """
+    The configuration object containing information for the WARP client to detect the managed network.
+    """
+
     tls_sockaddr: Required[str]
     """
     A network address of the form "host:port" that the WARP client will use to

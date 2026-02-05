@@ -40,7 +40,7 @@ from .unrevoke import (
     UnrevokeResourceWithStreamingResponse,
     AsyncUnrevokeResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from .dex_tests import (
     DEXTestsResource,
     AsyncDEXTestsResource,
@@ -192,7 +192,7 @@ class DevicesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Device]:
         """List WARP devices.
 
@@ -236,7 +236,7 @@ class DevicesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceGetResponse]:
         """Fetches a single WARP device.
 
@@ -356,7 +356,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """List WARP devices.
 
@@ -400,7 +400,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceGetResponse]:
         """Fetches a single WARP device.
 
@@ -448,12 +448,12 @@ class DevicesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                devices.list  # pyright: ignore[reportDeprecated],
+                devices.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                devices.get  # pyright: ignore[reportDeprecated],
+                devices.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -512,12 +512,12 @@ class AsyncDevicesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                devices.list  # pyright: ignore[reportDeprecated],
+                devices.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                devices.get  # pyright: ignore[reportDeprecated],
+                devices.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -576,12 +576,12 @@ class DevicesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                devices.list  # pyright: ignore[reportDeprecated],
+                devices.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                devices.get  # pyright: ignore[reportDeprecated],
+                devices.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -640,12 +640,12 @@ class AsyncDevicesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                devices.list  # pyright: ignore[reportDeprecated],
+                devices.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                devices.get  # pyright: ignore[reportDeprecated],
+                devices.get,  # pyright: ignore[reportDeprecated],
             )
         )
 

@@ -6,7 +6,7 @@ from typing import List, Type, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,16 +55,16 @@ class ACLsResource(SyncAPIResource):
         lan_1: ACLConfigurationParam,
         lan_2: ACLConfigurationParam,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Creates a new Site ACL.
@@ -129,19 +129,19 @@ class ACLsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        lan_1: ACLConfigurationParam | Omit = omit,
+        lan_2: ACLConfigurationParam | Omit = omit,
+        name: str | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Update a specific Site ACL.
@@ -214,7 +214,7 @@ class ACLsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ACL]:
         """
         Lists Site ACLs associated with an account.
@@ -256,7 +256,7 @@ class ACLsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Remove a specific Site ACL.
@@ -300,19 +300,19 @@ class ACLsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        lan_1: ACLConfigurationParam | Omit = omit,
+        lan_2: ACLConfigurationParam | Omit = omit,
+        name: str | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Patch a specific Site ACL.
@@ -386,7 +386,7 @@ class ACLsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Get a specific Site ACL.
@@ -453,16 +453,16 @@ class AsyncACLsResource(AsyncAPIResource):
         lan_1: ACLConfigurationParam,
         lan_2: ACLConfigurationParam,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Creates a new Site ACL.
@@ -527,19 +527,19 @@ class AsyncACLsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        lan_1: ACLConfigurationParam | Omit = omit,
+        lan_2: ACLConfigurationParam | Omit = omit,
+        name: str | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Update a specific Site ACL.
@@ -612,7 +612,7 @@ class AsyncACLsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ACL, AsyncSinglePage[ACL]]:
         """
         Lists Site ACLs associated with an account.
@@ -654,7 +654,7 @@ class AsyncACLsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Remove a specific Site ACL.
@@ -698,19 +698,19 @@ class AsyncACLsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forward_locally: bool | NotGiven = NOT_GIVEN,
-        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forward_locally: bool | Omit = omit,
+        lan_1: ACLConfigurationParam | Omit = omit,
+        lan_2: ACLConfigurationParam | Omit = omit,
+        name: str | Omit = omit,
+        protocols: List[AllowedProtocol] | Omit = omit,
+        unidirectional: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Patch a specific Site ACL.
@@ -784,7 +784,7 @@ class AsyncACLsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ACL:
         """
         Get a specific Site ACL.

@@ -35,8 +35,8 @@ class TestZone:
             internal_dns={"reference_zone_id": "reference_zone_id"},
             multi_provider=False,
             nameservers={
-                "type": "cloudflare.standard",
                 "ns_set": 1,
+                "type": "cloudflare.standard",
             },
             ns_ttl=86400,
             secondary_overrides=False,
@@ -131,7 +131,9 @@ class TestZone:
 
 
 class TestAsyncZone:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="HTTP 422 from prism")
     @parametrize
@@ -151,8 +153,8 @@ class TestAsyncZone:
             internal_dns={"reference_zone_id": "reference_zone_id"},
             multi_provider=False,
             nameservers={
-                "type": "cloudflare.standard",
                 "ns_set": 1,
+                "type": "cloudflare.standard",
             },
             ns_ttl=86400,
             secondary_overrides=False,

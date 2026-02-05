@@ -10,6 +10,10 @@ __all__ = ["AdvancedDDoS"]
 
 
 class AdvancedDDoS(BaseModel):
+    """
+    Advanced protection from Distributed Denial of Service (DDoS) attacks on your website. This is an uneditable value that is 'on' in the case of Business and Enterprise zones.
+    """
+
     id: Literal["advanced_ddos"]
     """ID of the zone setting."""
 

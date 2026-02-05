@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["SingleStepMigrationParam", "RenamedClass", "TransferredClass"]
 
@@ -36,13 +38,15 @@ class TransferredClass(_TransferredClassReservedKeywords, total=False):
 
 
 class SingleStepMigrationParam(TypedDict, total=False):
-    deleted_classes: List[str]
+    """A single set of migrations to apply."""
+
+    deleted_classes: SequenceNotStr[str]
     """A list of classes to delete Durable Object namespaces from."""
 
-    new_classes: List[str]
+    new_classes: SequenceNotStr[str]
     """A list of classes to create Durable Object namespaces from."""
 
-    new_sqlite_classes: List[str]
+    new_sqlite_classes: SequenceNotStr[str]
     """A list of classes to create Durable Object namespaces with SQLite from."""
 
     new_tag: str

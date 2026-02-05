@@ -31,16 +31,20 @@ class StreamListParams(TypedDict, total=False):
     """
 
     search: str
-    """Searches over the `name` key in the `meta` field.
+    """Provides a partial word match of the `name` key in the `meta` field.
 
-    This field can be set with or after the upload request.
+    Slow for medium to large video libraries. May be unavailable for very large
+    libraries.
     """
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Lists videos created after the specified date."""
 
-    status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
+    status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
     """Specifies the processing status for all quality levels for a video."""
 
     type: str
     """Specifies whether the video is `vod` or `live`."""
+
+    video_name: str
+    """Provides a fast, exact string match on the `name` key in the `meta` field."""

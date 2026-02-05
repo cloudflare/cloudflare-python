@@ -14,6 +14,12 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     description: str
     """An optional description of the interconnect."""
 
@@ -29,6 +35,14 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
     """
 
+    interface_address6: str
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
+    """
+
     mtu: int
     """The Maximum Transmission Unit (MTU) in bytes for the interconnect.
 
@@ -39,6 +53,8 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
 
 
 class GRE(TypedDict, total=False):
+    """The configuration specific to GRE interconnects."""
+
     cloudflare_endpoint: str
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part

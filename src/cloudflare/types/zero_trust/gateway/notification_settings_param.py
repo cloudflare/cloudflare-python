@@ -8,17 +8,19 @@ __all__ = ["NotificationSettingsParam"]
 
 
 class NotificationSettingsParam(TypedDict, total=False):
+    """Configure the message the user's device shows during an antivirus scan."""
+
     enabled: bool
-    """Set notification on"""
+    """Specify whether to enable notifications."""
 
     include_context: bool
-    """If true, context information will be passed as query parameters"""
+    """Specify whether to include context information as query parameters."""
 
     msg: str
-    """Customize the message shown in the notification."""
+    """Specify the message to show in the notification."""
 
     support_url: str
-    """Optional URL to direct users to additional information.
+    """Specify a URL that directs users to more information.
 
-    If not set, the notification will open a block page.
+    If unset, the notification opens a block page.
     """

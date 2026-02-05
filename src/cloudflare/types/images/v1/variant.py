@@ -11,6 +11,8 @@ __all__ = ["Variant", "Variants", "VariantsHero", "VariantsHeroOptions"]
 
 
 class VariantsHeroOptions(BaseModel):
+    """Allows you to define image resizing sizes for different use cases."""
+
     fit: Literal["scale-down", "contain", "cover", "crop", "pad"]
     """
     The fit property describes how the width and height dimensions should be

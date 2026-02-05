@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ....._types import FileTypes, SequenceNotStr
 from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -20,11 +21,14 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
     "MetadataBindingWorkersBindingKindD1",
+    "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
+    "MetadataBindingWorkersBindingKindInherit",
+    "MetadataBindingWorkersBindingKindImages",
     "MetadataBindingWorkersBindingKindJson",
     "MetadataBindingWorkersBindingKindKVNamespace",
     "MetadataBindingWorkersBindingKindMTLSCertificate",
@@ -33,18 +37,25 @@ __all__ = [
     "MetadataBindingWorkersBindingKindQueue",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
+    "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
-    "MetadataBindingWorkersBindingKindTailConsumer",
+    "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
     "MetadataBindingWorkersBindingKindSecretsStoreSecret",
     "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataBindingWorkersBindingKindWorkflow",
+    "MetadataBindingWorkersBindingKindWasmModule",
+    "MetadataLimits",
     "MetadataMigrations",
     "MetadataMigrationsWorkersMultipleStepMigrations",
     "MetadataObservability",
     "MetadataObservabilityLogs",
     "MetadataPlacement",
+    "MetadataPlacementUnionMember0",
+    "MetadataPlacementUnionMember1",
+    "MetadataPlacementUnionMember2",
+    "MetadataPlacementUnionMember3",
 ]
 
 
@@ -56,10 +67,23 @@ class ScriptUpdateParams(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     metadata: Required[Metadata]
-    """JSON encoded metadata about the uploaded parts and Worker configuration."""
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
+    files: SequenceNotStr[FileTypes]
+    """An array of modules (often JavaScript files) comprising a Worker script.
+
+    At least one module must be present and referenced in the metadata as
+    `main_module` or `body_part` by filename.<br/>Possible Content-Type(s) are:
+    `application/javascript+module`, `text/javascript+module`,
+    `application/javascript`, `text/javascript`, `text/x-python`,
+    `text/x-python-requirement`, `application/wasm`, `text/plain`,
+    `application/octet-stream`, `application/source-map`.
+    """
 
 
 class MetadataAssetsConfig(TypedDict, total=False):
+    """Configuration for assets within a Worker."""
+
     _headers: str
     """
     The contents of a \\__headers file (used to attach custom headers on asset
@@ -81,7 +105,7 @@ class MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
-    run_worker_first: List[str]
+    run_worker_first: Union[SequenceNotStr[str], bool]
     """Contains a list path rules to control routing to either the Worker or assets.
 
     Glob (\\**) and negative (!) rules are supported. Rules must start with either '/'
@@ -89,8 +113,17 @@ class MetadataAssetsConfig(TypedDict, total=False):
     have higher precedence than non-negative rules.
     """
 
+    serve_directly: bool
+    """
+    When true and the incoming request matches an asset, that will be served instead
+    of invoking the Worker script. When false, requests will always invoke the
+    Worker script.
+    """
+
 
 class MetadataAssets(TypedDict, total=False):
+    """Configuration for assets within a Worker."""
+
     config: MetadataAssetsConfig
     """Configuration for assets within a Worker."""
 
@@ -144,7 +177,23 @@ class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["data_blob"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -153,7 +202,9 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    """Outbound worker."""
+
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -168,7 +219,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
@@ -208,6 +259,36 @@ class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindInherit(TypedDict, total=False):
+    name: Required[str]
+    """The name of the inherited binding."""
+
+    type: Required[Literal["inherit"]]
+    """The kind of resource that the binding provides."""
+
+    old_name: str
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: str
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -287,6 +368,13 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
+    jurisdiction: Literal["eu", "fedramp"]
+    """
+    The
+    [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
+    of the R2 bucket.
+    """
+
 
 class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     name: Required[str]
@@ -299,10 +387,24 @@ class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
-    environment: Required[str]
-    """Optional environment if the Worker utilizes one."""
+class MetadataBindingWorkersBindingKindSendEmail(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
 
+    type: Required[Literal["send_email"]]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: SequenceNotStr[str]
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: SequenceNotStr[str]
+    """List of allowed sender addresses."""
+
+    destination_address: str
+    """Destination address for the email."""
+
+
+class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -312,15 +414,21 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
 
+    environment: str
+    """Optional environment if the Worker utilizes one."""
 
-class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
+
+class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
+    part: Required[str]
+    """The name of the file containing the text content.
 
-    type: Required[Literal["tail_consumer"]]
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -418,15 +526,32 @@ class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
+class MetadataBindingWorkersBindingKindWasmModule(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["wasm_module"]]
+    """The kind of resource that the binding provides."""
+
+
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
     MetadataBindingWorkersBindingKindD1,
+    MetadataBindingWorkersBindingKindDataBlob,
     MetadataBindingWorkersBindingKindDispatchNamespace,
     MetadataBindingWorkersBindingKindDurableObjectNamespace,
     MetadataBindingWorkersBindingKindHyperdrive,
+    MetadataBindingWorkersBindingKindInherit,
+    MetadataBindingWorkersBindingKindImages,
     MetadataBindingWorkersBindingKindJson,
     MetadataBindingWorkersBindingKindKVNamespace,
     MetadataBindingWorkersBindingKindMTLSCertificate,
@@ -435,14 +560,23 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindQueue,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
+    MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
-    MetadataBindingWorkersBindingKindTailConsumer,
+    MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
     MetadataBindingWorkersBindingKindSecretsStoreSecret,
     MetadataBindingWorkersBindingKindSecretKey,
     MetadataBindingWorkersBindingKindWorkflow,
+    MetadataBindingWorkersBindingKindWasmModule,
 ]
+
+
+class MetadataLimits(TypedDict, total=False):
+    """Limits to apply for this Worker."""
+
+    cpu_ms: int
+    """The amount of CPU time this Worker can use in milliseconds."""
 
 
 class MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
@@ -463,6 +597,8 @@ MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, MetadataMigratio
 
 
 class MetadataObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: Required[bool]
     """Whether logs are enabled for the Worker."""
 
@@ -473,11 +609,19 @@ class MetadataObservabilityLogs(TypedDict, total=False):
     are enabled for the Worker.
     """
 
+    destinations: SequenceNotStr[str]
+    """A list of destinations where logs will be exported to."""
+
     head_sampling_rate: Optional[float]
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
 
+    persist: bool
+    """Whether log persistence is enabled for the Worker."""
+
 
 class MetadataObservability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
 
@@ -491,15 +635,40 @@ class MetadataObservability(TypedDict, total=False):
     """Log settings for the Worker."""
 
 
-class MetadataPlacement(TypedDict, total=False):
-    mode: Literal["smart"]
+class MetadataPlacementUnionMember0(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
     """
     Enables
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
 
+class MetadataPlacementUnionMember1(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember2(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class MetadataPlacementUnionMember3(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+MetadataPlacement: TypeAlias = Union[
+    MetadataPlacementUnionMember0,
+    MetadataPlacementUnionMember1,
+    MetadataPlacementUnionMember2,
+    MetadataPlacementUnionMember3,
+]
+
+
 class Metadata(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     assets: MetadataAssets
     """Configuration for assets within a Worker."""
 
@@ -511,7 +680,7 @@ class Metadata(TypedDict, total=False):
     """
 
     body_part: str
-    """Name of the part in the multipart request that contains the script (e.g.
+    """Name of the uploaded file that contains the script (e.g.
 
     the file adding a listener to the `fetch` event). Indicates a
     `service worker syntax` Worker.
@@ -524,7 +693,7 @@ class Metadata(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
@@ -537,14 +706,17 @@ class Metadata(TypedDict, total=False):
     of providing a completion token.
     """
 
-    keep_bindings: List[str]
+    keep_bindings: SequenceNotStr[str]
     """List of binding types to keep from previous_upload."""
+
+    limits: MetadataLimits
+    """Limits to apply for this Worker."""
 
     logpush: bool
     """Whether Logpush is turned on for the Worker."""
 
     main_module: str
-    """Name of the part in the multipart request that contains the main module (e.g.
+    """Name of the uploaded file that contains the main module (e.g.
 
     the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
     """
@@ -559,13 +731,15 @@ class Metadata(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """List of strings to use as tags for this Worker."""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Literal["standard"]
+    usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

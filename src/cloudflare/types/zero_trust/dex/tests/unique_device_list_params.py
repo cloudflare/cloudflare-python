@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = ["UniqueDeviceListParams"]
@@ -13,7 +13,7 @@ __all__ = ["UniqueDeviceListParams"]
 class UniqueDeviceListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    device_id: Annotated[List[str], PropertyInfo(alias="deviceId")]
+    device_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="deviceId")]
     """Optionally filter result stats to a specific device(s).
 
     Cannot be used in combination with colo param.

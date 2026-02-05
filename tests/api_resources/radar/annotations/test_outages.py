@@ -34,9 +34,10 @@ class TestOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
@@ -72,7 +73,7 @@ class TestOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
@@ -98,7 +99,9 @@ class TestOutages:
 
 
 class TestAsyncOutages:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -113,9 +116,10 @@ class TestAsyncOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
@@ -151,7 +155,7 @@ class TestAsyncOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 

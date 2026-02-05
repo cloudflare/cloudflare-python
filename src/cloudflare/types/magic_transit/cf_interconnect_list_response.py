@@ -10,6 +10,8 @@ __all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE"]
 
 
 class InterconnectGRE(BaseModel):
+    """The configuration specific to GRE interconnects."""
+
     cloudflare_endpoint: Optional[str] = None
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
@@ -20,6 +22,12 @@ class InterconnectGRE(BaseModel):
 class Interconnect(BaseModel):
     id: Optional[str] = None
     """Identifier"""
+
+    automatic_return_routing: Optional[bool] = None
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
 
     colo_name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
@@ -40,6 +48,14 @@ class Interconnect(BaseModel):
     A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
     of the tunnel. Select the subnet from the following private IP space:
     10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+    """
+
+    interface_address6: Optional[str] = None
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
     """
 
     modified_on: Optional[datetime] = None

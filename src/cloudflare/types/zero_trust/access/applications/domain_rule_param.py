@@ -13,4 +13,6 @@ class EmailDomain(TypedDict, total=False):
 
 
 class DomainRuleParam(TypedDict, total=False):
+    """Match an entire email domain."""
+
     email_domain: Required[EmailDomain]

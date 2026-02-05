@@ -9,6 +9,8 @@ __all__ = ["LabeledRegion"]
 
 
 class LabeledRegion(BaseModel):
+    """A test region with a label."""
+
     label: Optional[str] = None
 
     value: Optional[

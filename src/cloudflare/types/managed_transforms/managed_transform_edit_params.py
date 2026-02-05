@@ -20,6 +20,8 @@ class ManagedTransformEditParams(TypedDict, total=False):
 
 
 class ManagedRequestHeader(TypedDict, total=False):
+    """A Managed Transform object."""
+
     id: Required[str]
     """The human-readable identifier of the Managed Transform."""
 
@@ -28,6 +30,8 @@ class ManagedRequestHeader(TypedDict, total=False):
 
 
 class ManagedResponseHeader(TypedDict, total=False):
+    """A Managed Transform object."""
+
     id: Required[str]
     """The human-readable identifier of the Managed Transform."""
 

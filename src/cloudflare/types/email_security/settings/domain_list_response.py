@@ -56,9 +56,13 @@ class DomainListResponse(BaseModel):
 
     lookback_hops: int
 
+    regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]]
+
     transport: str
 
     authorization: Optional[Authorization] = None
+
+    dmarc_status: Optional[Literal["none", "good", "invalid"]] = None
 
     emails_processed: Optional[EmailsProcessed] = None
 
@@ -73,3 +77,5 @@ class DomainListResponse(BaseModel):
     require_tls_inbound: Optional[bool] = None
 
     require_tls_outbound: Optional[bool] = None
+
+    spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None

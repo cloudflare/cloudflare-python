@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["DatasetCreateParams", "Filter"]
 
@@ -39,4 +41,4 @@ class Filter(TypedDict, total=False):
 
     operator: Required[Literal["eq", "contains", "lt", "gt"]]
 
-    value: Required[List[Union[str, float, bool]]]
+    value: Required[SequenceNotStr[Union[str, float, bool]]]

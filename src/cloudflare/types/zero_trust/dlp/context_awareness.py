@@ -7,6 +7,10 @@ __all__ = ["ContextAwareness"]
 
 
 class ContextAwareness(BaseModel):
+    """
+    Scan the context of predefined entries to only return matches surrounded by keywords.
+    """
+
     enabled: bool
     """
     If true, scan the context of predefined entries to only return matches

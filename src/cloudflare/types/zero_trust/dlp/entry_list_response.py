@@ -12,9 +12,10 @@ __all__ = [
     "CustomEntry",
     "PredefinedEntry",
     "PredefinedEntryConfidence",
+    "PredefinedEntryVariant",
     "IntegrationEntry",
     "ExactDataEntry",
-    "DocumentTemplateEntry",
+    "DocumentFingerprintEntry",
     "WordListEntry",
 ]
 
@@ -36,6 +37,8 @@ class CustomEntry(BaseModel):
 
     profile_id: Optional[str] = None
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
 
 class PredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
@@ -46,6 +49,14 @@ class PredefinedEntryConfidence(BaseModel):
     Indicates whether this entry has any form of validation that is not an AI remote
     service.
     """
+
+
+class PredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
 
 
 class PredefinedEntry(BaseModel):
@@ -60,6 +71,10 @@ class PredefinedEntry(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+    variant: Optional[PredefinedEntryVariant] = None
 
 
 class IntegrationEntry(BaseModel):
@@ -76,6 +91,8 @@ class IntegrationEntry(BaseModel):
     updated_at: datetime
 
     profile_id: Optional[str] = None
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
 class ExactDataEntry(BaseModel):
@@ -99,8 +116,10 @@ class ExactDataEntry(BaseModel):
 
     updated_at: datetime
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-class DocumentTemplateEntry(BaseModel):
+
+class DocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -109,9 +128,11 @@ class DocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
 class WordListEntry(BaseModel):
@@ -131,7 +152,9 @@ class WordListEntry(BaseModel):
 
     profile_id: Optional[str] = None
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
 
 EntryListResponse: TypeAlias = Union[
-    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentTemplateEntry, WordListEntry
+    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentFingerprintEntry, WordListEntry
 ]

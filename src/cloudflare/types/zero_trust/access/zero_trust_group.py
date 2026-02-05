@@ -11,6 +11,8 @@ __all__ = ["ZeroTrustGroup", "Meta"]
 
 
 class Meta(BaseModel):
+    """The metadata of the SCIM resource."""
+
     created: Optional[datetime] = None
     """The timestamp of when the SCIM resource was created."""
 

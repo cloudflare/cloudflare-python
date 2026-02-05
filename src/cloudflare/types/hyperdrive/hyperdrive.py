@@ -26,7 +26,10 @@ class OriginPublicDatabase(BaseModel):
     """Defines the host (hostname or IP) of your origin database."""
 
     port: int
-    """Defines the port (default: 5432 for Postgres) of your origin database."""
+    """Defines the port of your origin database.
+
+    Defaults to 5432 for PostgreSQL or 3306 for MySQL if not specified.
+    """
 
     scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
@@ -68,15 +71,15 @@ class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
     """Set to true to disable caching of SQL responses. Default is false."""
 
     max_age: Optional[int] = None
-    """Specify the maximum duration items should persist in the cache.
+    """Specify the maximum duration (in seconds) items should persist in the cache.
 
-    Not returned if set to the default (60).
+    Defaults to 60 seconds if not specified.
     """
 
     stale_while_revalidate: Optional[int] = None
     """Specify the number of seconds the cache may serve a stale response.
 
-    Omitted if set to the default (15).
+    Defaults to 15 seconds if not specified.
     """
 
 
@@ -99,6 +102,10 @@ class Hyperdrive(BaseModel):
     """Define configurations using a unique string identifier."""
 
     name: str
+    """The name of the Hyperdrive configuration.
+
+    Used to identify the configuration in the Cloudflare dashboard and API.
+    """
 
     origin: Origin
 
@@ -111,3 +118,9 @@ class Hyperdrive(BaseModel):
     """Defines the last modified time of the Hyperdrive configuration."""
 
     mtls: Optional[MTLS] = None
+
+    origin_connection_limit: Optional[int] = None
+    """
+    The (soft) maximum number of connections the Hyperdrive is allowed to make to
+    the origin database.
+    """

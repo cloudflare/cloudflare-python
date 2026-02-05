@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["DomainEditParams"]
 
@@ -12,11 +14,11 @@ class DomainEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
-    ip_restrictions: Required[List[str]]
+    ip_restrictions: Required[SequenceNotStr[str]]
 
     allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]
 
-    domain: Optional[str]
+    domain: str
 
     drop_dispositions: List[
         Literal[
@@ -35,9 +37,11 @@ class DomainEditParams(TypedDict, total=False):
 
     folder: Literal["AllItems", "Inbox"]
 
-    integration_id: Optional[str]
+    integration_id: str
 
-    lookback_hops: Optional[int]
+    lookback_hops: int
+
+    regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]]
 
     require_tls_inbound: bool
 

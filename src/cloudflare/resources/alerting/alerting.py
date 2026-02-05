@@ -18,6 +18,14 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .silences import (
+    SilencesResource,
+    AsyncSilencesResource,
+    SilencesResourceWithRawResponse,
+    AsyncSilencesResourceWithRawResponse,
+    SilencesResourceWithStreamingResponse,
+    AsyncSilencesResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .available_alerts import (
@@ -58,6 +66,10 @@ class AlertingResource(SyncAPIResource):
         return PoliciesResource(self._client)
 
     @cached_property
+    def silences(self) -> SilencesResource:
+        return SilencesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AlertingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -93,6 +105,10 @@ class AsyncAlertingResource(AsyncAPIResource):
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
         return AsyncPoliciesResource(self._client)
+
+    @cached_property
+    def silences(self) -> AsyncSilencesResource:
+        return AsyncSilencesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAlertingResourceWithRawResponse:
@@ -134,6 +150,10 @@ class AlertingResourceWithRawResponse:
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._alerting.policies)
 
+    @cached_property
+    def silences(self) -> SilencesResourceWithRawResponse:
+        return SilencesResourceWithRawResponse(self._alerting.silences)
+
 
 class AsyncAlertingResourceWithRawResponse:
     def __init__(self, alerting: AsyncAlertingResource) -> None:
@@ -154,6 +174,10 @@ class AsyncAlertingResourceWithRawResponse:
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._alerting.policies)
+
+    @cached_property
+    def silences(self) -> AsyncSilencesResourceWithRawResponse:
+        return AsyncSilencesResourceWithRawResponse(self._alerting.silences)
 
 
 class AlertingResourceWithStreamingResponse:
@@ -176,6 +200,10 @@ class AlertingResourceWithStreamingResponse:
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._alerting.policies)
 
+    @cached_property
+    def silences(self) -> SilencesResourceWithStreamingResponse:
+        return SilencesResourceWithStreamingResponse(self._alerting.silences)
+
 
 class AsyncAlertingResourceWithStreamingResponse:
     def __init__(self, alerting: AsyncAlertingResource) -> None:
@@ -196,3 +224,7 @@ class AsyncAlertingResourceWithStreamingResponse:
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self._alerting.policies)
+
+    @cached_property
+    def silences(self) -> AsyncSilencesResourceWithStreamingResponse:
+        return AsyncSilencesResourceWithStreamingResponse(self._alerting.silences)

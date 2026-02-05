@@ -33,9 +33,9 @@ class TestRanking:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             domain_category=["string"],
-            domains=["string"],
+            domains=["google.com"],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             ranking_type="POPULAR",
@@ -102,7 +102,9 @@ class TestRanking:
 
 
 class TestAsyncRanking:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
@@ -116,9 +118,9 @@ class TestAsyncRanking:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             domain_category=["string"],
-            domains=["string"],
+            domains=["google.com"],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
             ranking_type="POPULAR",

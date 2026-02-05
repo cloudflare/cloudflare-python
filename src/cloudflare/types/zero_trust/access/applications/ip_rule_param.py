@@ -13,4 +13,6 @@ class IP(TypedDict, total=False):
 
 
 class IPRuleParam(TypedDict, total=False):
+    """Matches an IP address block."""
+
     ip: Required[IP]

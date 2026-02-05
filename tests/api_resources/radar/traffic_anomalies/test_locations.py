@@ -30,7 +30,7 @@ class TestLocations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             status="VERIFIED",
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])
@@ -57,7 +57,9 @@ class TestLocations:
 
 
 class TestAsyncLocations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -71,7 +73,7 @@ class TestAsyncLocations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             status="VERIFIED",
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])

@@ -32,7 +32,7 @@ class TestDatasets:
             dataset_type="RANKING_BUCKET",
             date=parse_date("2024-09-19"),
             format="JSON",
-            limit=5,
+            limit=1,
             offset=0,
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
@@ -136,7 +136,9 @@ class TestDatasets:
 
 
 class TestAsyncDatasets:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -149,7 +151,7 @@ class TestAsyncDatasets:
             dataset_type="RANKING_BUCKET",
             date=parse_date("2024-09-19"),
             format="JSON",
-            limit=5,
+            limit=1,
             offset=0,
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])

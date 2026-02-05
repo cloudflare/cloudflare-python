@@ -20,5 +20,14 @@ class ResourceCreateParams(TypedDict, total=False):
     resource_id: Required[str]
     """Share Resource identifier."""
 
-    resource_type: Required[Literal["custom-ruleset", "widget"]]
+    resource_type: Required[
+        Literal[
+            "custom-ruleset",
+            "widget",
+            "gateway-policy",
+            "gateway-destination-ip",
+            "gateway-block-page-settings",
+            "gateway-extended-email-matching",
+        ]
+    ]
     """Resource Type."""

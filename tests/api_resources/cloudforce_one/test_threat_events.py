@@ -19,6 +19,8 @@ from cloudflare.types.cloudforce_one import (
     ThreatEventBulkCreateResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -30,12 +32,9 @@ class TestThreatEvents:
     def test_method_create(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -46,12 +45,9 @@ class TestThreatEvents:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={
                 "data": {"foo": "bar"},
                 "source": "example.com",
@@ -59,11 +55,22 @@ class TestThreatEvents:
             },
             tlp="amber",
             body_account_id=123456,
+            attacker="Flying Yeti",
+            attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
+            indicators=[
+                {
+                    "indicator_type": "domain",
+                    "value": "malicious.com",
+                }
+            ],
+            indicator_type="domain",
+            insight="This domain was likely registered for phishing purposes",
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
+            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -72,12 +79,9 @@ class TestThreatEvents:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.with_raw_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -92,12 +96,9 @@ class TestThreatEvents:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.with_streaming_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
@@ -115,12 +116,9 @@ class TestThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
             client.cloudforce_one.threat_events.with_raw_response.create(
                 path_account_id="",
-                attacker="Flying Yeti",
-                attacker_country="CN",
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
-                indicator_type="domain",
                 raw={"data": {"foo": "bar"}},
                 tlp="amber",
             )
@@ -140,6 +138,7 @@ class TestThreatEvents:
             account_id="account_id",
             dataset_id=["string"],
             force_refresh=True,
+            format="json",
             order="asc",
             order_by="orderBy",
             page=0,
@@ -247,12 +246,9 @@ class TestThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -263,17 +259,54 @@ class TestThreatEvents:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    def test_method_bulk_create_with_all_params(self, client: Cloudflare) -> None:
+        threat_event = client.cloudforce_one.threat_events.bulk_create(
+            account_id="account_id",
+            data=[
+                {
+                    "category": "Domain Resolution",
+                    "date": parse_datetime("2022-04-01T00:00:00Z"),
+                    "event": "An attacker registered the domain domain.com",
+                    "raw": {
+                        "data": {"foo": "bar"},
+                        "source": "example.com",
+                        "tlp": "amber",
+                    },
+                    "tlp": "amber",
+                    "account_id": 123456,
+                    "attacker": "Flying Yeti",
+                    "attacker_country": "CN",
+                    "dataset_id": "durableObjectName",
+                    "indicator": "domain.com",
+                    "indicators": [
+                        {
+                            "indicator_type": "domain",
+                            "value": "malicious.com",
+                        }
+                    ],
+                    "indicator_type": "domain",
+                    "insight": "This domain was likely registered for phishing purposes",
+                    "tags": ["malware"],
+                    "target_country": "US",
+                    "target_industry": "Agriculture",
+                    "uuid": "12345678-1234-1234-1234-1234567890ab",
+                }
+            ],
+            dataset_id="durableObjectName",
+            preserve_uuid=True,
+        )
+        assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     def test_raw_response_bulk_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.with_raw_response.bulk_create(
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -293,12 +326,9 @@ class TestThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -321,12 +351,9 @@ class TestThreatEvents:
                 account_id="",
                 data=[
                     {
-                        "attacker": "Flying Yeti",
-                        "attacker_country": "CN",
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",
-                        "indicator_type": "domain",
                         "raw": {"data": {"foo": "bar"}},
                         "tlp": "amber",
                     }
@@ -352,10 +379,18 @@ class TestThreatEvents:
             attacker="Flying Yeti",
             attacker_country="CN",
             category="Domain Resolution",
+            created_at=parse_datetime("2025-12-19T00:00:00Z"),
+            dataset_id="9b769969-a211-466c-8ac3-cb91266a066a",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator="domain2.com",
-            indicator_type="sha256",
+            indicator_type="domain",
+            insight="new insight",
+            raw={
+                "data": {"foo": "bar"},
+                "source": "example.com",
+                "tlp": "amber",
+            },
             target_country="US",
             target_industry="Insurance",
             tlp="amber",
@@ -408,19 +443,22 @@ class TestThreatEvents:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        threat_event = client.cloudforce_one.threat_events.get(
-            event_id="event_id",
-            account_id="account_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            threat_event = client.cloudforce_one.threat_events.get(
+                event_id="event_id",
+                account_id="account_id",
+            )
+
         assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.cloudforce_one.threat_events.with_raw_response.get(
-            event_id="event_id",
-            account_id="account_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.cloudforce_one.threat_events.with_raw_response.get(
+                event_id="event_id",
+                account_id="account_id",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -430,48 +468,49 @@ class TestThreatEvents:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.cloudforce_one.threat_events.with_streaming_response.get(
-            event_id="event_id",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.cloudforce_one.threat_events.with_streaming_response.get(
+                event_id="event_id",
+                account_id="account_id",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            threat_event = response.parse()
-            assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
+                threat_event = response.parse()
+                assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.cloudforce_one.threat_events.with_raw_response.get(
-                event_id="event_id",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.cloudforce_one.threat_events.with_raw_response.get(
+                    event_id="event_id",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
-            client.cloudforce_one.threat_events.with_raw_response.get(
-                event_id="",
-                account_id="account_id",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+                client.cloudforce_one.threat_events.with_raw_response.get(
+                    event_id="",
+                    account_id="account_id",
+                )
 
 
 class TestAsyncThreatEvents:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -482,12 +521,9 @@ class TestAsyncThreatEvents:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={
                 "data": {"foo": "bar"},
                 "source": "example.com",
@@ -495,11 +531,22 @@ class TestAsyncThreatEvents:
             },
             tlp="amber",
             body_account_id=123456,
+            attacker="Flying Yeti",
+            attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
+            indicators=[
+                {
+                    "indicator_type": "domain",
+                    "value": "malicious.com",
+                }
+            ],
+            indicator_type="domain",
+            insight="This domain was likely registered for phishing purposes",
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
+            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -508,12 +555,9 @@ class TestAsyncThreatEvents:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.with_raw_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -528,12 +572,9 @@ class TestAsyncThreatEvents:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.with_streaming_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
-            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
@@ -551,12 +592,9 @@ class TestAsyncThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.with_raw_response.create(
                 path_account_id="",
-                attacker="Flying Yeti",
-                attacker_country="CN",
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
-                indicator_type="domain",
                 raw={"data": {"foo": "bar"}},
                 tlp="amber",
             )
@@ -576,6 +614,7 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             dataset_id=["string"],
             force_refresh=True,
+            format="json",
             order="asc",
             order_by="orderBy",
             page=0,
@@ -683,12 +722,9 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -699,17 +735,54 @@ class TestAsyncThreatEvents:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    async def test_method_bulk_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        threat_event = await async_client.cloudforce_one.threat_events.bulk_create(
+            account_id="account_id",
+            data=[
+                {
+                    "category": "Domain Resolution",
+                    "date": parse_datetime("2022-04-01T00:00:00Z"),
+                    "event": "An attacker registered the domain domain.com",
+                    "raw": {
+                        "data": {"foo": "bar"},
+                        "source": "example.com",
+                        "tlp": "amber",
+                    },
+                    "tlp": "amber",
+                    "account_id": 123456,
+                    "attacker": "Flying Yeti",
+                    "attacker_country": "CN",
+                    "dataset_id": "durableObjectName",
+                    "indicator": "domain.com",
+                    "indicators": [
+                        {
+                            "indicator_type": "domain",
+                            "value": "malicious.com",
+                        }
+                    ],
+                    "indicator_type": "domain",
+                    "insight": "This domain was likely registered for phishing purposes",
+                    "tags": ["malware"],
+                    "target_country": "US",
+                    "target_industry": "Agriculture",
+                    "uuid": "12345678-1234-1234-1234-1234567890ab",
+                }
+            ],
+            dataset_id="durableObjectName",
+            preserve_uuid=True,
+        )
+        assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     async def test_raw_response_bulk_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.with_raw_response.bulk_create(
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -729,12 +802,9 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
-                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -757,12 +827,9 @@ class TestAsyncThreatEvents:
                 account_id="",
                 data=[
                     {
-                        "attacker": "Flying Yeti",
-                        "attacker_country": "CN",
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",
-                        "indicator_type": "domain",
                         "raw": {"data": {"foo": "bar"}},
                         "tlp": "amber",
                     }
@@ -788,10 +855,18 @@ class TestAsyncThreatEvents:
             attacker="Flying Yeti",
             attacker_country="CN",
             category="Domain Resolution",
+            created_at=parse_datetime("2025-12-19T00:00:00Z"),
+            dataset_id="9b769969-a211-466c-8ac3-cb91266a066a",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator="domain2.com",
-            indicator_type="sha256",
+            indicator_type="domain",
+            insight="new insight",
+            raw={
+                "data": {"foo": "bar"},
+                "source": "example.com",
+                "tlp": "amber",
+            },
             target_country="US",
             target_industry="Insurance",
             tlp="amber",
@@ -844,19 +919,22 @@ class TestAsyncThreatEvents:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        threat_event = await async_client.cloudforce_one.threat_events.get(
-            event_id="event_id",
-            account_id="account_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            threat_event = await async_client.cloudforce_one.threat_events.get(
+                event_id="event_id",
+                account_id="account_id",
+            )
+
         assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.cloudforce_one.threat_events.with_raw_response.get(
-            event_id="event_id",
-            account_id="account_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloudforce_one.threat_events.with_raw_response.get(
+                event_id="event_id",
+                account_id="account_id",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -866,29 +944,31 @@ class TestAsyncThreatEvents:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.cloudforce_one.threat_events.with_streaming_response.get(
-            event_id="event_id",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloudforce_one.threat_events.with_streaming_response.get(
+                event_id="event_id",
+                account_id="account_id",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            threat_event = await response.parse()
-            assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
+                threat_event = await response.parse()
+                assert_matches_type(ThreatEventGetResponse, threat_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.cloudforce_one.threat_events.with_raw_response.get(
-                event_id="event_id",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.cloudforce_one.threat_events.with_raw_response.get(
+                    event_id="event_id",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
-            await async_client.cloudforce_one.threat_events.with_raw_response.get(
-                event_id="",
-                account_id="account_id",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+                await async_client.cloudforce_one.threat_events.with_raw_response.get(
+                    event_id="",
+                    account_id="account_id",
+                )

@@ -848,6 +848,7 @@ class StatusLifecycleErrors(BaseModel):
         1015,
         1016,
         1017,
+        1018,
         2001,
         2002,
         2003,
@@ -971,6 +972,12 @@ class StatusLifecycleErrors(BaseModel):
         102064,
         102065,
         102066,
+        102067,
+        102068,
+        102069,
+        102070,
+        102071,
+        102072,
         103001,
         103002,
         103003,
@@ -1612,6 +1619,8 @@ class OnRampListResponse(BaseModel):
 
     cloud_type: Literal["AWS", "AZURE", "GOOGLE"]
 
+    dynamic_routing: bool
+
     install_routes_in_cloud: bool
 
     install_routes_in_magic_wan: bool
@@ -1625,6 +1634,8 @@ class OnRampListResponse(BaseModel):
     attached_hubs: Optional[List[str]] = None
 
     attached_vpcs: Optional[List[str]] = None
+
+    cloud_asn: Optional[int] = None
 
     description: Optional[str] = None
 

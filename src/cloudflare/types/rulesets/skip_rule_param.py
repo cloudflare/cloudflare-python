@@ -6,12 +6,21 @@ from typing import Dict, List
 from typing_extensions import Literal, Required, TypedDict
 
 from .phase import Phase
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = ["SkipRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"]
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
+    phase: Literal["current"]
+    """A phase to skip the execution of.
+
+    This option is only compatible with the products option.
+    """
+
     phases: List[Phase]
     """A list of phases to skip the execution of.
 
@@ -21,7 +30,7 @@ class ActionParameters(TypedDict, total=False):
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
     """A list of legacy security products to skip the execution of."""
 
-    rules: Dict[str, List[str]]
+    rules: Dict[str, SequenceNotStr[str]]
     """
     A mapping of ruleset IDs to a list of rule IDs in that ruleset to skip the
     execution of. This option is incompatible with the ruleset option.
@@ -33,7 +42,7 @@ class ActionParameters(TypedDict, total=False):
     This option is incompatible with the rulesets option.
     """
 
-    rulesets: List[str]
+    rulesets: SequenceNotStr[str]
     """A list of ruleset IDs to skip the execution of.
 
     This option is incompatible with the ruleset and phases options.
@@ -41,17 +50,21 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -59,9 +72,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -77,7 +90,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -87,8 +100,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -109,7 +122,7 @@ class SkipRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -118,7 +131,7 @@ class SkipRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

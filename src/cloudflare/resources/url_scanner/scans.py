@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -258,18 +258,18 @@ class ScansResource(SyncAPIResource):
             "ZM",
             "ZW",
         ]
-        | NotGiven = NOT_GIVEN,
-        customagent: str | NotGiven = NOT_GIVEN,
-        custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        referer: str | NotGiven = NOT_GIVEN,
-        screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | NotGiven = NOT_GIVEN,
-        visibility: Literal["Public", "Unlisted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        customagent: str | Omit = omit,
+        custom_headers: Dict[str, str] | Omit = omit,
+        referer: str | Omit = omit,
+        screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | Omit = omit,
+        visibility: Literal["Public", "Unlisted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanCreateResponse:
         """Submit a URL to scan.
 
@@ -325,14 +325,14 @@ class ScansResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        q: str | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        q: str | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanListResponse:
         """Use a subset of ElasticSearch Query syntax to filter scans.
 
@@ -384,13 +384,13 @@ class ScansResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[scan_bulk_create_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[scan_bulk_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanBulkCreateResponse:
         """Submit URLs to scan.
 
@@ -433,7 +433,7 @@ class ScansResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Returns a plain text response, with the scan's DOM content as rendered by
@@ -475,7 +475,7 @@ class ScansResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanGetResponse:
         """
         Get URL scan by uuid
@@ -515,7 +515,7 @@ class ScansResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanHARResponse:
         """Get a URL scan's HAR file.
 
@@ -552,13 +552,13 @@ class ScansResource(SyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
-        resolution: Literal["desktop", "mobile", "tablet"] | NotGiven = NOT_GIVEN,
+        resolution: Literal["desktop", "mobile", "tablet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Get scan's screenshot by resolution (desktop/mobile/tablet).
@@ -818,18 +818,18 @@ class AsyncScansResource(AsyncAPIResource):
             "ZM",
             "ZW",
         ]
-        | NotGiven = NOT_GIVEN,
-        customagent: str | NotGiven = NOT_GIVEN,
-        custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        referer: str | NotGiven = NOT_GIVEN,
-        screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | NotGiven = NOT_GIVEN,
-        visibility: Literal["Public", "Unlisted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        customagent: str | Omit = omit,
+        custom_headers: Dict[str, str] | Omit = omit,
+        referer: str | Omit = omit,
+        screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | Omit = omit,
+        visibility: Literal["Public", "Unlisted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanCreateResponse:
         """Submit a URL to scan.
 
@@ -885,14 +885,14 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        q: str | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        q: str | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanListResponse:
         """Use a subset of ElasticSearch Query syntax to filter scans.
 
@@ -944,13 +944,13 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[scan_bulk_create_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[scan_bulk_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanBulkCreateResponse:
         """Submit URLs to scan.
 
@@ -993,7 +993,7 @@ class AsyncScansResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Returns a plain text response, with the scan's DOM content as rendered by
@@ -1035,7 +1035,7 @@ class AsyncScansResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanGetResponse:
         """
         Get URL scan by uuid
@@ -1075,7 +1075,7 @@ class AsyncScansResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScanHARResponse:
         """Get a URL scan's HAR file.
 
@@ -1112,13 +1112,13 @@ class AsyncScansResource(AsyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
-        resolution: Literal["desktop", "mobile", "tablet"] | NotGiven = NOT_GIVEN,
+        resolution: Literal["desktop", "mobile", "tablet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Get scan's screenshot by resolution (desktop/mobile/tablet).

@@ -14,4 +14,9 @@ class Okta(BaseModel):
 
 
 class OktaGroupRule(BaseModel):
+    """
+    Matches an Okta group.
+    Requires an Okta identity provider.
+    """
+
     okta: Okta

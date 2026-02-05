@@ -9,6 +9,8 @@ __all__ = ["HTTPConfiguration"]
 
 
 class HTTPConfiguration(BaseModel):
+    """Parameters specific to an HTTP or HTTPS health check."""
+
     allow_insecure: Optional[bool] = None
     """Do not validate the certificate when the health check uses HTTPS."""
 

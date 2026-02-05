@@ -8,5 +8,7 @@ __all__ = ["SkipConfigurationParam"]
 
 
 class SkipConfigurationParam(TypedDict, total=False):
+    """Content types to exclude from context analysis and return all matches."""
+
     files: Required[bool]
     """If the content type is a file, skip context analysis and return all matches."""

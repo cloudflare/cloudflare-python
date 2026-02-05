@@ -8,6 +8,8 @@ __all__ = ["DNSParam"]
 
 
 class DNSParam(TypedDict, total=False):
+    """The name and type of DNS record for the Spectrum application."""
+
     name: str
     """The name of the DNS record associated with the application."""
 

@@ -55,6 +55,7 @@ class TestConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -158,6 +159,7 @@ class TestConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -353,6 +355,7 @@ class TestConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -449,7 +452,9 @@ class TestConfigs:
 
 
 class TestAsyncConfigs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -488,6 +493,7 @@ class TestAsyncConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -591,6 +597,7 @@ class TestAsyncConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -786,6 +793,7 @@ class TestAsyncConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 

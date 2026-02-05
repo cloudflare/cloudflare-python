@@ -11,6 +11,9 @@ class RecipientListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier."""
 
+    include_resources: bool
+    """Include resources in the response."""
+
     page: int
     """Page number."""
 

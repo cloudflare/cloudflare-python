@@ -10,6 +10,8 @@ __all__ = ["ProxyReadTimeout"]
 
 
 class ProxyReadTimeout(BaseModel):
+    """Maximum time between two read operations from origin."""
+
     id: Literal["proxy_read_timeout"]
     """ID of the zone setting."""
 

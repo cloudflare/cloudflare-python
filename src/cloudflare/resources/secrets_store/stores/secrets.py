@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -68,7 +68,7 @@ class SecretsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[SecretCreateResponse]:
         """
         Creates a secret in the account
@@ -106,17 +106,18 @@ class SecretsResource(SyncAPIResource):
         store_id: str,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        scopes: Iterable[SequenceNotStr[str]] | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[SecretListResponse]:
         """
         Lists all store secrets
@@ -133,6 +134,8 @@ class SecretsResource(SyncAPIResource):
           page: Page number
 
           per_page: Number of objects to return per page
+
+          scopes: Only secrets with the given scopes will be returned
 
           search: Search secrets using a filter string, filtering across name and comment
 
@@ -162,6 +165,7 @@ class SecretsResource(SyncAPIResource):
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "scopes": scopes,
                         "search": search,
                     },
                     secret_list_params.SecretListParams,
@@ -181,7 +185,7 @@ class SecretsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretDeleteResponse]:
         """
         Deletes a single secret
@@ -229,7 +233,7 @@ class SecretsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[SecretBulkDeleteResponse]:
         """
         Deletes one or more secrets
@@ -268,12 +272,14 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: SequenceNotStr[str],
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretDuplicateResponse]:
         """
         Duplicates the secret, keeping the value
@@ -286,6 +292,10 @@ class SecretsResource(SyncAPIResource):
           secret_id: Secret identifier tag.
 
           name: The name of the secret
+
+          scopes: The list of services that can use this secret.
+
+          comment: Freeform text describing the secret
 
           extra_headers: Send extra headers
 
@@ -303,7 +313,14 @@ class SecretsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._post(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
-            body=maybe_transform({"name": name}, secret_duplicate_params.SecretDuplicateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "scopes": scopes,
+                    "comment": comment,
+                },
+                secret_duplicate_params.SecretDuplicateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -320,15 +337,14 @@ class SecretsResource(SyncAPIResource):
         *,
         account_id: str,
         store_id: str,
-        name: str,
-        scopes: List[str] | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        scopes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretEditResponse]:
         """
         Updates a single secret
@@ -340,12 +356,9 @@ class SecretsResource(SyncAPIResource):
 
           secret_id: Secret identifier tag.
 
-          name: The name of the secret
+          comment: Freeform text describing the secret
 
           scopes: The list of services that can use this secret.
-
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
 
           extra_headers: Send extra headers
 
@@ -365,9 +378,8 @@ class SecretsResource(SyncAPIResource):
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
             body=maybe_transform(
                 {
-                    "name": name,
+                    "comment": comment,
                     "scopes": scopes,
-                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),
@@ -392,7 +404,7 @@ class SecretsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretGetResponse]:
         """
         Returns details of a single secret
@@ -462,7 +474,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SecretCreateResponse, AsyncSinglePage[SecretCreateResponse]]:
         """
         Creates a secret in the account
@@ -500,17 +512,18 @@ class AsyncSecretsResource(AsyncAPIResource):
         store_id: str,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        scopes: Iterable[SequenceNotStr[str]] | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SecretListResponse, AsyncV4PagePaginationArray[SecretListResponse]]:
         """
         Lists all store secrets
@@ -527,6 +540,8 @@ class AsyncSecretsResource(AsyncAPIResource):
           page: Page number
 
           per_page: Number of objects to return per page
+
+          scopes: Only secrets with the given scopes will be returned
 
           search: Search secrets using a filter string, filtering across name and comment
 
@@ -556,6 +571,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "scopes": scopes,
                         "search": search,
                     },
                     secret_list_params.SecretListParams,
@@ -575,7 +591,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretDeleteResponse]:
         """
         Deletes a single secret
@@ -623,7 +639,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SecretBulkDeleteResponse, AsyncSinglePage[SecretBulkDeleteResponse]]:
         """
         Deletes one or more secrets
@@ -662,12 +678,14 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: SequenceNotStr[str],
+        comment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretDuplicateResponse]:
         """
         Duplicates the secret, keeping the value
@@ -680,6 +698,10 @@ class AsyncSecretsResource(AsyncAPIResource):
           secret_id: Secret identifier tag.
 
           name: The name of the secret
+
+          scopes: The list of services that can use this secret.
+
+          comment: Freeform text describing the secret
 
           extra_headers: Send extra headers
 
@@ -697,7 +719,14 @@ class AsyncSecretsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
-            body=await async_maybe_transform({"name": name}, secret_duplicate_params.SecretDuplicateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "scopes": scopes,
+                    "comment": comment,
+                },
+                secret_duplicate_params.SecretDuplicateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -714,15 +743,14 @@ class AsyncSecretsResource(AsyncAPIResource):
         *,
         account_id: str,
         store_id: str,
-        name: str,
-        scopes: List[str] | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        scopes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretEditResponse]:
         """
         Updates a single secret
@@ -734,12 +762,9 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           secret_id: Secret identifier tag.
 
-          name: The name of the secret
+          comment: Freeform text describing the secret
 
           scopes: The list of services that can use this secret.
-
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
 
           extra_headers: Send extra headers
 
@@ -759,9 +784,8 @@ class AsyncSecretsResource(AsyncAPIResource):
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
+                    "comment": comment,
                     "scopes": scopes,
-                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),
@@ -786,7 +810,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretGetResponse]:
         """
         Returns details of a single secret

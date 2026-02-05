@@ -6,7 +6,7 @@ from typing import Any, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,13 +51,13 @@ class AppTypesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AppType]:
         """
-        Fetches all application and application type mappings.
+        List all application and application type mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Provide the identifier string.
 
           extra_headers: Send extra headers
 
@@ -108,13 +108,13 @@ class AsyncAppTypesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AppType, AsyncSinglePage[AppType]]:
         """
-        Fetches all application and application type mappings.
+        List all application and application type mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Provide the identifier string.
 
           extra_headers: Send extra headers
 

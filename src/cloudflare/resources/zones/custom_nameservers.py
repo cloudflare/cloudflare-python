@@ -6,7 +6,7 @@ import typing_extensions
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,14 +52,14 @@ class CustomNameserversResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        ns_set: float | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        ns_set: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CustomNameserverUpdateResponse]:
         """
         Set metadata for account-level custom nameservers on a zone.
@@ -72,7 +72,7 @@ class CustomNameserversResource(SyncAPIResource):
         [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Whether zone uses account-level custom nameservers.
 
@@ -117,7 +117,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
@@ -126,7 +126,7 @@ class CustomNameserversResource(SyncAPIResource):
         [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -174,14 +174,14 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        ns_set: float | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        ns_set: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomNameserverUpdateResponse, AsyncSinglePage[CustomNameserverUpdateResponse]]:
         """
         Set metadata for account-level custom nameservers on a zone.
@@ -194,7 +194,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Whether zone uses account-level custom nameservers.
 
@@ -239,7 +239,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
@@ -248,7 +248,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -275,12 +275,12 @@ class CustomNameserversResourceWithRawResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -291,12 +291,12 @@ class AsyncCustomNameserversResourceWithRawResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -307,12 +307,12 @@ class CustomNameserversResourceWithStreamingResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -323,11 +323,11 @@ class AsyncCustomNameserversResourceWithStreamingResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )

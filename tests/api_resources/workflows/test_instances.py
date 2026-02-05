@@ -38,6 +38,10 @@ class TestInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={
+                "error_retention": 0,
+                "success_retention": 0,
+            },
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -95,8 +99,10 @@ class TestInstances:
         instance = client.workflows.instances.list(
             workflow_name="x",
             account_id="account_id",
+            cursor="cursor",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            direction="asc",
             page=1,
             per_page=1,
             status="queued",
@@ -159,6 +165,10 @@ class TestInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {
+                        "error_retention": 0,
+                        "success_retention": 0,
+                    },
                     "params": {},
                 }
             ],
@@ -267,7 +277,9 @@ class TestInstances:
 
 
 class TestAsyncInstances:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -283,6 +295,10 @@ class TestAsyncInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={
+                "error_retention": 0,
+                "success_retention": 0,
+            },
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -340,8 +356,10 @@ class TestAsyncInstances:
         instance = await async_client.workflows.instances.list(
             workflow_name="x",
             account_id="account_id",
+            cursor="cursor",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            direction="asc",
             page=1,
             per_page=1,
             status="queued",
@@ -404,6 +422,10 @@ class TestAsyncInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {
+                        "error_retention": 0,
+                        "success_retention": 0,
+                    },
                     "params": {},
                 }
             ],

@@ -12,6 +12,11 @@ __all__ = ["HealthCheckParam", "Target", "TargetMagicHealthCheckTarget"]
 
 
 class TargetMagicHealthCheckTarget(TypedDict, total=False):
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the ICMP echo will be forwarded to this address. This field defaults to `customer_gre_endpoint address`. This field is ignored for bidirectional healthchecks as the interface_address (not assigned to the Cloudflare side of the tunnel) is used as the target.
+    """
+
     saved: str
     """The saved health check target.
 

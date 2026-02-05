@@ -16,7 +16,7 @@ class Error(BaseModel):
 
 
 class ScreenshotCreateResponse(BaseModel):
-    status: bool
+    success: bool
     """Response status"""
 
     errors: Optional[List[Error]] = None

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["AutomaticPlatformOptimizationParam"]
 
@@ -22,7 +23,7 @@ class AutomaticPlatformOptimizationParam(TypedDict, total=False):
     enabled: Required[bool]
     """Indicates whether or not Automatic Platform Optimization is enabled."""
 
-    hostnames: Required[List[str]]
+    hostnames: Required[SequenceNotStr[str]]
     """
     An array of hostnames where Automatic Platform Optimization for WordPress is
     activated.

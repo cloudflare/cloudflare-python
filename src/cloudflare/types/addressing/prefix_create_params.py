@@ -12,11 +12,20 @@ class PrefixCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier of a Cloudflare account."""
 
-    asn: Required[Optional[int]]
+    asn: Required[int]
     """Autonomous System Number (ASN) the prefix will be advertised under."""
 
     cidr: Required[str]
     """IP Prefix in Classless Inter-Domain Routing format."""
 
-    loa_document_id: Required[Optional[str]]
+    delegate_loa_creation: bool
+    """
+    Whether Cloudflare is allowed to generate the LOA document on behalf of the
+    prefix owner.
+    """
+
+    description: str
+    """Description of the prefix."""
+
+    loa_document_id: Optional[str]
     """Identifier for the uploaded LOA document."""

@@ -185,6 +185,7 @@ class TestTrustedDomains:
             is_similarity=True,
             order="pattern",
             page=1,
+            pattern="pattern",
             per_page=1,
             search="search",
         )
@@ -362,7 +363,9 @@ class TestTrustedDomains:
 
 
 class TestAsyncTrustedDomains:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
@@ -525,6 +528,7 @@ class TestAsyncTrustedDomains:
             is_similarity=True,
             order="pattern",
             page=1,
+            pattern="pattern",
             per_page=1,
             search="search",
         )

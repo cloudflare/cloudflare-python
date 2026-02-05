@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ConfigCreateParams", "WARPDevice"]
 
@@ -20,12 +22,14 @@ class ConfigCreateParams(TypedDict, total=False):
     name: Required[str]
     """The account name."""
 
-    router_ips: List[str]
+    router_ips: SequenceNotStr[str]
 
     warp_devices: Iterable[WARPDevice]
 
 
 class WARPDevice(TypedDict, total=False):
+    """Object representing a warp device with an ID and name."""
+
     id: Required[str]
     """Unique identifier for the warp device."""
 

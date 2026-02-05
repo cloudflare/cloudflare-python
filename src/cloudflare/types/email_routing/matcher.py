@@ -9,6 +9,8 @@ __all__ = ["Matcher"]
 
 
 class Matcher(BaseModel):
+    """Matching pattern to forward your actions."""
+
     type: Literal["all", "literal"]
     """Type of matcher."""
 

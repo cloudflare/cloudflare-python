@@ -17,5 +17,11 @@ class ServiceTokenListParams(TypedDict, total=False):
     name: str
     """The name of the service token."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     search: str
     """Search for service tokens by other listed query parameters."""

@@ -32,6 +32,8 @@ class AllowPolicyListParams(TypedDict, total=False):
     page: int
     """The page number of paginated results."""
 
+    pattern: str
+
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
 
     per_page: int

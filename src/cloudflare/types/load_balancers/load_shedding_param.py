@@ -8,6 +8,8 @@ __all__ = ["LoadSheddingParam"]
 
 
 class LoadSheddingParam(TypedDict, total=False):
+    """Configures load shedding policies and percentages for the pool."""
+
     default_percent: float
     """The percent of traffic to shed from the pool, according to the default policy.
 

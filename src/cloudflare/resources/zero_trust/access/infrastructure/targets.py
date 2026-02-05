@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import List, Type, Union, Iterable, Optional, cast
+from typing import Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -69,7 +69,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetCreateResponse]:
         """
         Create new target
@@ -124,7 +124,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetUpdateResponse]:
         """
         Update target
@@ -175,32 +175,32 @@ class TargetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        created_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        hostname: Optional[str] | NotGiven = NOT_GIVEN,
-        hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_like: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
-        ips: List[str] | NotGiven = NOT_GIVEN,
-        ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv6_start: Optional[str] | NotGiven = NOT_GIVEN,
-        modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        target_ids: List[str] | NotGiven = NOT_GIVEN,
-        virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
+        created_after: Union[str, datetime, None] | Omit = omit,
+        created_before: Union[str, datetime, None] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        hostname: Optional[str] | Omit = omit,
+        hostname_contains: Optional[str] | Omit = omit,
+        ip_like: Optional[str] | Omit = omit,
+        ip_v4: Optional[str] | Omit = omit,
+        ip_v6: Optional[str] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        ipv4_end: Optional[str] | Omit = omit,
+        ipv4_start: Optional[str] | Omit = omit,
+        ipv6_end: Optional[str] | Omit = omit,
+        ipv6_start: Optional[str] | Omit = omit,
+        modified_after: Union[str, datetime, None] | Omit = omit,
+        modified_before: Union[str, datetime, None] | Omit = omit,
+        order: Literal["hostname", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        target_ids: SequenceNotStr[str] | Omit = omit,
+        virtual_network_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TargetListResponse]:
         """Lists and sorts an account’s targets.
 
@@ -314,7 +314,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete target
@@ -355,7 +355,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes one or more targets.
@@ -386,13 +386,13 @@ class TargetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        target_ids: List[str],
+        target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes one or more targets.
@@ -432,7 +432,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TargetBulkUpdateResponse]:
         """
         Adds one or more targets.
@@ -471,7 +471,7 @@ class TargetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetGetResponse]:
         """
         Get target
@@ -537,7 +537,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetCreateResponse]:
         """
         Create new target
@@ -592,7 +592,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetUpdateResponse]:
         """
         Update target
@@ -643,32 +643,32 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        created_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        hostname: Optional[str] | NotGiven = NOT_GIVEN,
-        hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_like: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
-        ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
-        ips: List[str] | NotGiven = NOT_GIVEN,
-        ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
-        ipv6_start: Optional[str] | NotGiven = NOT_GIVEN,
-        modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        target_ids: List[str] | NotGiven = NOT_GIVEN,
-        virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
+        created_after: Union[str, datetime, None] | Omit = omit,
+        created_before: Union[str, datetime, None] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        hostname: Optional[str] | Omit = omit,
+        hostname_contains: Optional[str] | Omit = omit,
+        ip_like: Optional[str] | Omit = omit,
+        ip_v4: Optional[str] | Omit = omit,
+        ip_v6: Optional[str] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        ipv4_end: Optional[str] | Omit = omit,
+        ipv4_start: Optional[str] | Omit = omit,
+        ipv6_end: Optional[str] | Omit = omit,
+        ipv6_start: Optional[str] | Omit = omit,
+        modified_after: Union[str, datetime, None] | Omit = omit,
+        modified_before: Union[str, datetime, None] | Omit = omit,
+        order: Literal["hostname", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        target_ids: SequenceNotStr[str] | Omit = omit,
+        virtual_network_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TargetListResponse, AsyncV4PagePaginationArray[TargetListResponse]]:
         """Lists and sorts an account’s targets.
 
@@ -782,7 +782,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete target
@@ -823,7 +823,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes one or more targets.
@@ -854,13 +854,13 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        target_ids: List[str],
+        target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Removes one or more targets.
@@ -902,7 +902,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TargetBulkUpdateResponse, AsyncSinglePage[TargetBulkUpdateResponse]]:
         """
         Adds one or more targets.
@@ -941,7 +941,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetGetResponse]:
         """
         Get target
@@ -994,7 +994,7 @@ class TargetsResourceWithRawResponse:
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+                targets.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete_v2 = to_raw_response_wrapper(
@@ -1026,7 +1026,7 @@ class AsyncTargetsResourceWithRawResponse:
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+                targets.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete_v2 = async_to_raw_response_wrapper(
@@ -1058,7 +1058,7 @@ class TargetsResourceWithStreamingResponse:
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+                targets.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete_v2 = to_streamed_response_wrapper(
@@ -1090,7 +1090,7 @@ class AsyncTargetsResourceWithStreamingResponse:
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+                targets.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete_v2 = async_to_streamed_response_wrapper(

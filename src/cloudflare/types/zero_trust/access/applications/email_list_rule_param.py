@@ -13,4 +13,6 @@ class EmailList(TypedDict, total=False):
 
 
 class EmailListRuleParam(TypedDict, total=False):
+    """Matches an email address from a list."""
+
     email_list: Required[EmailList]

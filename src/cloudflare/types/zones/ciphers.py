@@ -10,6 +10,11 @@ __all__ = ["Ciphers"]
 
 
 class Ciphers(BaseModel):
+    """An allowlist of ciphers for TLS termination.
+
+    These ciphers must be in the BoringSSL format.
+    """
+
     id: Literal["ciphers"]
     """ID of the zone setting."""
 

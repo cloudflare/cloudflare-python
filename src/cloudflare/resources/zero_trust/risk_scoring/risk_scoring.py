@@ -14,7 +14,7 @@ from .summary import (
     SummaryResourceWithStreamingResponse,
     AsyncSummaryResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from .behaviours import (
     BehavioursResource,
@@ -88,7 +88,7 @@ class RiskScoringResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
@@ -128,7 +128,7 @@ class RiskScoringResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Clear the risk score for a particular user
@@ -201,7 +201,7 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
@@ -241,7 +241,7 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Clear the risk score for a particular user

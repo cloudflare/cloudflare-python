@@ -10,6 +10,10 @@ __all__ = ["TLSClientAuth"]
 
 
 class TLSClientAuth(BaseModel):
+    """
+    TLS Client Auth requires Cloudflare to connect to your origin server using a client certificate (Enterprise Only).
+    """
+
     id: Literal["tls_client_auth"]
     """ID of the zone setting."""
 

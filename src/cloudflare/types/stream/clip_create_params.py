@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .allowed_origins import AllowedOrigins
 
@@ -24,7 +24,7 @@ class ClipCreateParams(TypedDict, total=False):
     start_time_seconds: Required[Annotated[int, PropertyInfo(alias="startTimeSeconds")]]
     """Specifies the start time for the video clip in seconds."""
 
-    allowed_origins: Annotated[List[AllowedOrigins], PropertyInfo(alias="allowedOrigins")]
+    allowed_origins: Annotated[SequenceNotStr[AllowedOrigins], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

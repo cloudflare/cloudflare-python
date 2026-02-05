@@ -13,4 +13,6 @@ class Geo(TypedDict, total=False):
 
 
 class CountryRuleParam(TypedDict, total=False):
+    """Matches a specific country"""
+
     geo: Required[Geo]

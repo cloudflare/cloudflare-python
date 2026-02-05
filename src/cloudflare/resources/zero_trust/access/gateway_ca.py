@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -54,7 +54,7 @@ class GatewayCAResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayCACreateResponse]:
         """
         Adds a new SSH Certificate Authority (CA).
@@ -93,7 +93,7 @@ class GatewayCAResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[GatewayCAListResponse]:
         """
         Lists SSH Certificate Authorities (CA).
@@ -130,7 +130,7 @@ class GatewayCAResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayCADeleteResponse]:
         """
         Deletes an SSH Certificate Authority.
@@ -194,7 +194,7 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayCACreateResponse]:
         """
         Adds a new SSH Certificate Authority (CA).
@@ -233,7 +233,7 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GatewayCAListResponse, AsyncSinglePage[GatewayCAListResponse]]:
         """
         Lists SSH Certificate Authorities (CA).
@@ -270,7 +270,7 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayCADeleteResponse]:
         """
         Deletes an SSH Certificate Authority.

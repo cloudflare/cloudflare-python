@@ -47,6 +47,7 @@ class TestContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
+            files=[b"raw file contents"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
@@ -191,7 +192,9 @@ class TestContent:
 
 
 class TestAsyncContent:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -215,6 +218,7 @@ class TestAsyncContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
+            files=[b"raw file contents"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )

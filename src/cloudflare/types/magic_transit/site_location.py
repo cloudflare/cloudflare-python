@@ -8,6 +8,8 @@ __all__ = ["SiteLocation"]
 
 
 class SiteLocation(BaseModel):
+    """Location of site in latitude and longitude."""
+
     lat: Optional[str] = None
     """Latitude"""
 

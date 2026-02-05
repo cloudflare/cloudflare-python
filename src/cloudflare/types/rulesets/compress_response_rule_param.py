@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = [
@@ -17,27 +18,35 @@ __all__ = [
 
 
 class ActionParametersAlgorithm(TypedDict, total=False):
+    """Compression algorithm to enable."""
+
     name: Literal["none", "auto", "default", "gzip", "brotli", "zstd"]
-    """Name of compression algorithm to enable."""
+    """Name of the compression algorithm to enable."""
 
 
 class ActionParameters(TypedDict, total=False):
-    algorithms: Iterable[ActionParametersAlgorithm]
+    """The parameters configuring the rule's action."""
+
+    algorithms: Required[Iterable[ActionParametersAlgorithm]]
     """Custom order for compression algorithms."""
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -45,9 +54,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -63,7 +72,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -73,8 +82,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -95,7 +104,7 @@ class CompressResponseRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -104,7 +113,7 @@ class CompressResponseRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

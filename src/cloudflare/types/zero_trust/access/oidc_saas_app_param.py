@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, List, Iterable
 from typing_extensions import Literal, TypedDict
 
+from ...._types import SequenceNotStr
+
 __all__ = ["OIDCSaaSAppParam", "CustomClaim", "CustomClaimSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 
 
@@ -89,7 +91,7 @@ class OIDCSaaSAppParam(TypedDict, total=False):
     public_key: str
     """The Access public certificate that will be used to verify your identity."""
 
-    redirect_uris: List[str]
+    redirect_uris: SequenceNotStr[str]
     """
     The permitted URL's for Cloudflare to return Authorization codes and Access/ID
     tokens

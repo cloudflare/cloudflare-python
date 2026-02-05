@@ -9,7 +9,7 @@ __all__ = ["CustomNameserverUpdateParams"]
 
 class CustomNameserverUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: bool
     """Whether zone uses account-level custom nameservers."""

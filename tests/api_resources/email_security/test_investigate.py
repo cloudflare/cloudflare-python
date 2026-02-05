@@ -32,6 +32,7 @@ class TestInvestigate:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             action_log=True,
             alert_id="alert_id",
+            cursor="cursor",
             detections_only=True,
             domain="domain",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -45,6 +46,7 @@ class TestInvestigate:
             recipient="recipient",
             sender="sender",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subject="subject",
         )
         assert_matches_type(SyncV4PagePaginationArray[InvestigateListResponse], investigate, path=["response"])
 
@@ -129,7 +131,9 @@ class TestInvestigate:
 
 
 class TestAsyncInvestigate:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -144,6 +148,7 @@ class TestAsyncInvestigate:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             action_log=True,
             alert_id="alert_id",
+            cursor="cursor",
             detections_only=True,
             domain="domain",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -157,6 +162,7 @@ class TestAsyncInvestigate:
             recipient="recipient",
             sender="sender",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subject="subject",
         )
         assert_matches_type(AsyncV4PagePaginationArray[InvestigateListResponse], investigate, path=["response"])
 

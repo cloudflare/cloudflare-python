@@ -42,6 +42,7 @@ class TestTelemetry:
                     "value": "string",
                 }
             ],
+            from_=0,
             key_needle={
                 "value": "string",
                 "is_regex": True,
@@ -53,10 +54,7 @@ class TestTelemetry:
                 "is_regex": True,
                 "match_case": True,
             },
-            timeframe={
-                "from": 0,
-                "to": 0,
-            },
+            to=0,
         )
         assert_matches_type(SyncSinglePage[TelemetryKeysResponse], telemetry, path=["response"])
 
@@ -117,7 +115,7 @@ class TestTelemetry:
             dry=True,
             granularity=0,
             ignore_series=True,
-            limit=100,
+            limit=2000,
             offset="offset",
             offset_by=0,
             offset_direction="offsetDirection",
@@ -311,7 +309,9 @@ class TestTelemetry:
 
 
 class TestAsyncTelemetry:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_keys(self, async_client: AsyncCloudflare) -> None:
@@ -333,6 +333,7 @@ class TestAsyncTelemetry:
                     "value": "string",
                 }
             ],
+            from_=0,
             key_needle={
                 "value": "string",
                 "is_regex": True,
@@ -344,10 +345,7 @@ class TestAsyncTelemetry:
                 "is_regex": True,
                 "match_case": True,
             },
-            timeframe={
-                "from": 0,
-                "to": 0,
-            },
+            to=0,
         )
         assert_matches_type(AsyncSinglePage[TelemetryKeysResponse], telemetry, path=["response"])
 
@@ -408,7 +406,7 @@ class TestAsyncTelemetry:
             dry=True,
             granularity=0,
             ignore_series=True,
-            limit=100,
+            limit=2000,
             offset="offset",
             offset_by=0,
             offset_direction="offsetDirection",

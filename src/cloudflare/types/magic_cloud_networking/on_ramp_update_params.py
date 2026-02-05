@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["OnRampUpdateParams"]
 
@@ -11,9 +12,9 @@ __all__ = ["OnRampUpdateParams"]
 class OnRampUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    attached_hubs: List[str]
+    attached_hubs: SequenceNotStr[str]
 
-    attached_vpcs: List[str]
+    attached_vpcs: SequenceNotStr[str]
 
     description: str
 

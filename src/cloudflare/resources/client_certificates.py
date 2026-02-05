@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -20,7 +20,11 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.client_certificates import client_certificate_list_params, client_certificate_create_params
+from ..types.client_certificates import (
+    client_certificate_edit_params,
+    client_certificate_list_params,
+    client_certificate_create_params,
+)
 from ..types.client_certificates.client_certificate import ClientCertificate
 
 __all__ = ["ClientCertificatesResource", "AsyncClientCertificatesResource"]
@@ -57,7 +61,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Create a new API Shield mTLS Client Certificate
@@ -102,18 +106,17 @@ class ClientCertificatesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["all", "active", "pending_reactivation", "pending_revocation", "revoked"]
-        | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["all", "active", "pending_reactivation", "pending_revocation", "revoked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ClientCertificate]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
@@ -174,7 +177,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
@@ -216,12 +219,13 @@ class ClientCertificatesResource(SyncAPIResource):
         client_certificate_id: str,
         *,
         zone_id: str,
+        reactivate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
@@ -248,6 +252,9 @@ class ClientCertificatesResource(SyncAPIResource):
             )
         return self._patch(
             f"/zones/{zone_id}/client_certificates/{client_certificate_id}",
+            body=maybe_transform(
+                {"reactivate": reactivate}, client_certificate_edit_params.ClientCertificateEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -268,7 +275,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Get Details for a single mTLS API Shield Client Certificate
@@ -336,7 +343,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Create a new API Shield mTLS Client Certificate
@@ -381,18 +388,17 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["all", "active", "pending_reactivation", "pending_revocation", "revoked"]
-        | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["all", "active", "pending_reactivation", "pending_revocation", "revoked"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ClientCertificate, AsyncV4PagePaginationArray[ClientCertificate]]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
@@ -453,7 +459,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
@@ -495,12 +501,13 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         client_certificate_id: str,
         *,
         zone_id: str,
+        reactivate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
@@ -527,6 +534,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
             )
         return await self._patch(
             f"/zones/{zone_id}/client_certificates/{client_certificate_id}",
+            body=await async_maybe_transform(
+                {"reactivate": reactivate}, client_certificate_edit_params.ClientCertificateEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -547,7 +557,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
         Get Details for a single mTLS API Shield Client Certificate

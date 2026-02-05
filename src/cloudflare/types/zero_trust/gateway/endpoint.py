@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ...._models import BaseModel
 from .doh_endpoint import DOHEndpoint
 from .dot_endpoint import DOTEndpoint
@@ -12,10 +10,12 @@ __all__ = ["Endpoint"]
 
 
 class Endpoint(BaseModel):
-    doh: Optional[DOHEndpoint] = None
+    """Configure the destination endpoints for this location."""
 
-    dot: Optional[DOTEndpoint] = None
+    doh: DOHEndpoint
 
-    ipv4: Optional[IPV4Endpoint] = None
+    dot: DOTEndpoint
 
-    ipv6: Optional[IPV6Endpoint] = None
+    ipv4: IPV4Endpoint
+
+    ipv6: IPV6Endpoint

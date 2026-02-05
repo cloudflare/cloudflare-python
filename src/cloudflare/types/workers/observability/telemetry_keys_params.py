@@ -2,20 +2,23 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
-__all__ = ["TelemetryKeysParams", "Filter", "KeyNeedle", "Needle", "Timeframe"]
+__all__ = ["TelemetryKeysParams", "Filter", "KeyNeedle", "Needle"]
 
 
 class TelemetryKeysParams(TypedDict, total=False):
     account_id: Required[str]
 
-    datasets: List[str]
+    datasets: SequenceNotStr[str]
 
     filters: Iterable[Filter]
+
+    from_: Annotated[float, PropertyInfo(alias="from")]
 
     key_needle: Annotated[KeyNeedle, PropertyInfo(alias="keyNeedle")]
     """Search for a specific substring in the keys."""
@@ -23,9 +26,9 @@ class TelemetryKeysParams(TypedDict, total=False):
     limit: float
 
     needle: Needle
-    """Search for a specific substring in the event."""
+    """Search for a specific substring in any of the events"""
 
-    timeframe: Timeframe
+    to: float
 
 
 class Filter(TypedDict, total=False):
@@ -70,6 +73,8 @@ class Filter(TypedDict, total=False):
 
 
 class KeyNeedle(TypedDict, total=False):
+    """Search for a specific substring in the keys."""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]
@@ -78,21 +83,10 @@ class KeyNeedle(TypedDict, total=False):
 
 
 class Needle(TypedDict, total=False):
+    """Search for a specific substring in any of the events"""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]
 
     match_case: Annotated[bool, PropertyInfo(alias="matchCase")]
-
-
-_TimeframeReservedKeywords = TypedDict(
-    "_TimeframeReservedKeywords",
-    {
-        "from": float,
-    },
-    total=False,
-)
-
-
-class Timeframe(_TimeframeReservedKeywords, total=False):
-    to: Required[float]

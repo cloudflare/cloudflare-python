@@ -20,6 +20,10 @@ class ResourceGroupUpdateParams(TypedDict, total=False):
 
 
 class ScopeObject(TypedDict, total=False):
+    """
+    A scope object represents any resource that can have actions applied against invite.
+    """
+
     key: Required[str]
     """
     This is a combination of pre-defined resource name and identifier (like Zone ID
@@ -28,6 +32,8 @@ class ScopeObject(TypedDict, total=False):
 
 
 class Scope(TypedDict, total=False):
+    """A scope is a combination of scope objects which provides additional context."""
+
     key: Required[str]
     """
     This is a combination of pre-defined resource name and identifier (like Account

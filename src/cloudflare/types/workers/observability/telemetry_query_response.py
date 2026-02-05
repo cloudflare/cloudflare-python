@@ -24,15 +24,15 @@ __all__ = [
     "Calculation",
     "CalculationAggregate",
     "CalculationAggregateGroup",
-    "CalculationSery",
-    "CalculationSeryData",
-    "CalculationSeryDataGroup",
+    "CalculationSeries",
+    "CalculationSeriesData",
+    "CalculationSeriesDataGroup",
     "Compare",
     "CompareAggregate",
     "CompareAggregateGroup",
-    "CompareSery",
-    "CompareSeryData",
-    "CompareSeryDataGroup",
+    "CompareSeries",
+    "CompareSeriesData",
+    "CompareSeriesDataGroup",
     "Events",
     "EventsEvent",
     "EventsEventMetadata",
@@ -43,9 +43,9 @@ __all__ = [
     "EventsEventWorkersUnionMember1DiagnosticsChannelEvent",
     "EventsEventWorkersUnionMember1ScriptVersion",
     "EventsField",
-    "EventsSery",
-    "EventsSeryData",
-    "EventsSeryDataAggregates",
+    "EventsSeries",
+    "EventsSeriesData",
+    "EventsSeriesDataAggregates",
     "Invocation",
     "InvocationMetadata",
     "InvocationWorkers",
@@ -55,9 +55,10 @@ __all__ = [
     "InvocationWorkersUnionMember1DiagnosticsChannelEvent",
     "InvocationWorkersUnionMember1ScriptVersion",
     "Pattern",
-    "PatternSery",
-    "PatternSeryData",
-    "PatternSeryDataGroup",
+    "PatternSeries",
+    "PatternSeriesData",
+    "PatternSeriesDataGroup",
+    "Trace",
 ]
 
 
@@ -164,6 +165,8 @@ class RunQueryParametersHaving(BaseModel):
 
 
 class RunQueryParametersNeedle(BaseModel):
+    """Define an expression to search using full-text search."""
+
     value: Union[str, float, bool]
 
     is_regex: Optional[bool] = FieldInfo(alias="isRegex", default=None)
@@ -172,6 +175,8 @@ class RunQueryParametersNeedle(BaseModel):
 
 
 class RunQueryParametersOrderBy(BaseModel):
+    """Configure the order of the results returned by the query."""
+
     value: str
     """Configure which Calculation to order the results by."""
 
@@ -236,11 +241,13 @@ class RunQuery(BaseModel):
 
 
 class RunTimeframe(BaseModel):
+    """Time range for the query execution"""
+
     from_: float = FieldInfo(alias="from")
-    """Set the start time for your query using UNIX time in milliseconds."""
+    """Start timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
     to: float
-    """Set the end time for your query using UNIX time in milliseconds."""
+    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
 
 class RunStatistics(BaseModel):
@@ -253,8 +260,16 @@ class RunStatistics(BaseModel):
     rows_read: float
     """Number of rows scanned from the table."""
 
+    abr_level: Optional[float] = None
+    """The level of Adaptive Bit Rate (ABR) sampling used for the query.
+
+    If empty the ABR level is 1
+    """
+
 
 class Run(BaseModel):
+    """A Workers Observability Query Object"""
+
     id: str
 
     account_id: str = FieldInfo(alias="accountId")
@@ -270,6 +285,7 @@ class Run(BaseModel):
     status: Literal["STARTED", "COMPLETED"]
 
     timeframe: RunTimeframe
+    """Time range for the query execution"""
 
     user_id: str = FieldInfo(alias="userId")
 
@@ -283,6 +299,10 @@ class Run(BaseModel):
 
 
 class Statistics(BaseModel):
+    """
+    The statistics object contains information about query performance from the database, it does not include any network latency
+    """
+
     bytes_read: float
     """Number of uncompressed bytes read from the table."""
 
@@ -291,6 +311,12 @@ class Statistics(BaseModel):
 
     rows_read: float
     """Number of rows scanned from the table."""
+
+    abr_level: Optional[float] = None
+    """The level of Adaptive Bit Rate (ABR) sampling used for the query.
+
+    If empty the ABR level is 1
+    """
 
 
 class CalculationAggregateGroup(BaseModel):
@@ -311,13 +337,13 @@ class CalculationAggregate(BaseModel):
     groups: Optional[List[CalculationAggregateGroup]] = None
 
 
-class CalculationSeryDataGroup(BaseModel):
+class CalculationSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class CalculationSeryData(BaseModel):
+class CalculationSeriesData(BaseModel):
     count: float
 
     first_seen: str = FieldInfo(alias="firstSeen")
@@ -330,11 +356,11 @@ class CalculationSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[CalculationSeryDataGroup]] = None
+    groups: Optional[List[CalculationSeriesDataGroup]] = None
 
 
-class CalculationSery(BaseModel):
-    data: List[CalculationSeryData]
+class CalculationSeries(BaseModel):
+    data: List[CalculationSeriesData]
 
     time: str
 
@@ -344,7 +370,7 @@ class Calculation(BaseModel):
 
     calculation: str
 
-    series: List[CalculationSery]
+    series: List[CalculationSeries]
 
     alias: Optional[str] = None
 
@@ -367,13 +393,13 @@ class CompareAggregate(BaseModel):
     groups: Optional[List[CompareAggregateGroup]] = None
 
 
-class CompareSeryDataGroup(BaseModel):
+class CompareSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class CompareSeryData(BaseModel):
+class CompareSeriesData(BaseModel):
     count: float
 
     first_seen: str = FieldInfo(alias="firstSeen")
@@ -386,11 +412,11 @@ class CompareSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[CompareSeryDataGroup]] = None
+    groups: Optional[List[CompareSeriesDataGroup]] = None
 
 
-class CompareSery(BaseModel):
-    data: List[CompareSeryData]
+class CompareSeries(BaseModel):
+    data: List[CompareSeriesData]
 
     time: str
 
@@ -400,7 +426,7 @@ class Compare(BaseModel):
 
     calculation: str
 
-    series: List[CompareSery]
+    series: List[CompareSeries]
 
     alias: Optional[str] = None
 
@@ -460,6 +486,8 @@ class EventsEventMetadata(BaseModel):
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
+    transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+
     trigger: Optional[str] = None
 
     type: Optional[str] = None
@@ -480,11 +508,11 @@ class EventsEventWorkersUnionMember0(BaseModel):
         "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
     ] = FieldInfo(alias="eventType")
 
-    outcome: str
-
     request_id: str = FieldInfo(alias="requestId")
 
     script_name: str = FieldInfo(alias="scriptName")
+
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
 
     entrypoint: Optional[str] = None
 
@@ -501,6 +529,8 @@ class EventsEventWorkersUnionMember0(BaseModel):
     ] = None
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
+
+    outcome: Optional[str] = None
 
     script_version: Optional[EventsEventWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
@@ -546,6 +576,8 @@ class EventsEventWorkersUnionMember1(BaseModel):
 
     dispatch_namespace: Optional[str] = FieldInfo(alias="dispatchNamespace", default=None)
 
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
+
     entrypoint: Optional[str] = None
 
     event: Optional[Dict[str, Union[str, float, bool]]] = None
@@ -563,6 +595,8 @@ EventsEventWorkers: TypeAlias = Union[EventsEventWorkersUnionMember0, EventsEven
 
 
 class EventsEvent(BaseModel):
+    """The data structure of a telemetry event"""
+
     metadata: EventsEventMetadata = FieldInfo(alias="$metadata")
 
     dataset: str
@@ -570,6 +604,12 @@ class EventsEvent(BaseModel):
     source: Union[str, object]
 
     timestamp: int
+
+    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    """
+    Cloudflare Containers event information enriches your logs so you can easily
+    identify and debug issues.
+    """
 
     workers: Optional[EventsEventWorkers] = FieldInfo(alias="$workers", default=None)
     """
@@ -584,7 +624,7 @@ class EventsField(BaseModel):
     type: str
 
 
-class EventsSeryDataAggregates(BaseModel):
+class EventsSeriesDataAggregates(BaseModel):
     api_count: int = FieldInfo(alias="_count")
 
     api_first_seen: str = FieldInfo(alias="_firstSeen")
@@ -596,8 +636,8 @@ class EventsSeryDataAggregates(BaseModel):
     bin: Optional[object] = None
 
 
-class EventsSeryData(BaseModel):
-    aggregates: EventsSeryDataAggregates
+class EventsSeriesData(BaseModel):
+    aggregates: EventsSeriesDataAggregates
 
     count: float
 
@@ -611,8 +651,8 @@ class EventsSeryData(BaseModel):
     """Groups in the query results."""
 
 
-class EventsSery(BaseModel):
-    data: List[EventsSeryData]
+class EventsSeries(BaseModel):
+    data: List[EventsSeriesData]
 
     time: str
 
@@ -624,7 +664,7 @@ class Events(BaseModel):
 
     fields: Optional[List[EventsField]] = None
 
-    series: Optional[List[EventsSery]] = None
+    series: Optional[List[EventsSeries]] = None
 
 
 class InvocationMetadata(BaseModel):
@@ -682,6 +722,8 @@ class InvocationMetadata(BaseModel):
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
+    transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+
     trigger: Optional[str] = None
 
     type: Optional[str] = None
@@ -702,11 +744,11 @@ class InvocationWorkersUnionMember0(BaseModel):
         "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
     ] = FieldInfo(alias="eventType")
 
-    outcome: str
-
     request_id: str = FieldInfo(alias="requestId")
 
     script_name: str = FieldInfo(alias="scriptName")
+
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
 
     entrypoint: Optional[str] = None
 
@@ -723,6 +765,8 @@ class InvocationWorkersUnionMember0(BaseModel):
     ] = None
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
+
+    outcome: Optional[str] = None
 
     script_version: Optional[InvocationWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
@@ -768,6 +812,8 @@ class InvocationWorkersUnionMember1(BaseModel):
 
     dispatch_namespace: Optional[str] = FieldInfo(alias="dispatchNamespace", default=None)
 
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
+
     entrypoint: Optional[str] = None
 
     event: Optional[Dict[str, Union[str, float, bool]]] = None
@@ -785,6 +831,8 @@ InvocationWorkers: TypeAlias = Union[InvocationWorkersUnionMember0, InvocationWo
 
 
 class Invocation(BaseModel):
+    """The data structure of a telemetry event"""
+
     metadata: InvocationMetadata = FieldInfo(alias="$metadata")
 
     dataset: str
@@ -793,6 +841,12 @@ class Invocation(BaseModel):
 
     timestamp: int
 
+    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    """
+    Cloudflare Containers event information enriches your logs so you can easily
+    identify and debug issues.
+    """
+
     workers: Optional[InvocationWorkers] = FieldInfo(alias="$workers", default=None)
     """
     Cloudflare Workers event information enriches your logs so you can easily
@@ -800,13 +854,13 @@ class Invocation(BaseModel):
     """
 
 
-class PatternSeryDataGroup(BaseModel):
+class PatternSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class PatternSeryData(BaseModel):
+class PatternSeriesData(BaseModel):
     count: float
 
     interval: float
@@ -815,11 +869,11 @@ class PatternSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[PatternSeryDataGroup]] = None
+    groups: Optional[List[PatternSeriesDataGroup]] = None
 
 
-class PatternSery(BaseModel):
-    data: PatternSeryData
+class PatternSeries(BaseModel):
+    data: PatternSeriesData
 
     time: str
 
@@ -829,9 +883,29 @@ class Pattern(BaseModel):
 
     pattern: str
 
-    series: List[PatternSery]
+    series: List[PatternSeries]
 
     service: str
+
+
+class Trace(BaseModel):
+    root_span_name: str = FieldInfo(alias="rootSpanName")
+
+    root_transaction_name: str = FieldInfo(alias="rootTransactionName")
+
+    service: List[str]
+
+    spans: float
+
+    trace_duration_ms: float = FieldInfo(alias="traceDurationMs")
+
+    trace_end_ms: float = FieldInfo(alias="traceEndMs")
+
+    trace_id: str = FieldInfo(alias="traceId")
+
+    trace_start_ms: float = FieldInfo(alias="traceStartMs")
+
+    errors: Optional[List[str]] = None
 
 
 class TelemetryQueryResponse(BaseModel):
@@ -853,3 +927,5 @@ class TelemetryQueryResponse(BaseModel):
     invocations: Optional[Dict[str, List[Invocation]]] = None
 
     patterns: Optional[List[Pattern]] = None
+
+    traces: Optional[List[Trace]] = None

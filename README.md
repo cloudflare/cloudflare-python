@@ -1,8 +1,9 @@
 # Cloudflare Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/cloudflare.svg)](https://pypi.org/project/cloudflare/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/cloudflare.svg?label=pypi%20(stable))](https://pypi.org/project/cloudflare/)
 
-The Cloudflare Python library provides convenient access to the Cloudflare REST API from any Python 3.8+
+The Cloudflare Python library provides convenient access to the Cloudflare REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -69,6 +70,42 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install cloudflare[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from cloudflare import DefaultAioHttpClient
+from cloudflare import AsyncCloudflare
+
+
+async def main() -> None:
+    async with AsyncCloudflare(
+        api_token=os.environ.get("CLOUDFLARE_API_TOKEN"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        zone = await client.zones.create(
+            account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+            name="example.com",
+            type="full",
+        )
+        print(zone.id)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -244,7 +281,7 @@ client.with_options(max_retries=5).zones.get(
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from cloudflare import Cloudflare
@@ -438,7 +475,7 @@ print(cloudflare.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -48,17 +48,21 @@ class SettingsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+        disable_for_time: float | Omit = omit,
+        external_emergency_signal_enabled: bool | Omit = omit,
+        external_emergency_signal_fingerprint: str | Omit = omit,
+        external_emergency_signal_interval: str | Omit = omit,
+        external_emergency_signal_url: str | Omit = omit,
+        gateway_proxy_enabled: bool | Omit = omit,
+        gateway_udp_proxy_enabled: bool | Omit = omit,
+        root_certificate_installation_enabled: bool | Omit = omit,
+        use_zt_virtual_ip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
@@ -66,6 +70,20 @@ class SettingsResource(SyncAPIResource):
         Args:
           disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
               WARP.
+
+          external_emergency_signal_enabled: Controls whether the external emergency disconnect feature is enabled.
+
+          external_emergency_signal_fingerprint: The SHA256 fingerprint (64 hexadecimal characters) of the HTTPS server
+              certificate for the external_emergency_signal_url. If provided, the WARP client
+              will use this value to verify the server's identity. The device will ignore any
+              response if the server's certificate fingerprint does not exactly match this
+              value.
+
+          external_emergency_signal_interval: The interval at which the WARP client fetches the emergency disconnect signal,
+              formatted as a duration string (e.g., "5m", "2m30s", "1h"). Minimum 30 seconds.
+
+          external_emergency_signal_url: The HTTPS URL from which to fetch the emergency disconnect signal. Must use
+              HTTPS and have an IPv4 or IPv6 address as the host.
 
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
@@ -90,6 +108,10 @@ class SettingsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "disable_for_time": disable_for_time,
+                    "external_emergency_signal_enabled": external_emergency_signal_enabled,
+                    "external_emergency_signal_fingerprint": external_emergency_signal_fingerprint,
+                    "external_emergency_signal_interval": external_emergency_signal_interval,
+                    "external_emergency_signal_url": external_emergency_signal_url,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
@@ -116,7 +138,7 @@ class SettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Resets the current device settings for a Zero Trust account.
@@ -148,17 +170,21 @@ class SettingsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+        disable_for_time: float | Omit = omit,
+        external_emergency_signal_enabled: bool | Omit = omit,
+        external_emergency_signal_fingerprint: str | Omit = omit,
+        external_emergency_signal_interval: str | Omit = omit,
+        external_emergency_signal_url: str | Omit = omit,
+        gateway_proxy_enabled: bool | Omit = omit,
+        gateway_udp_proxy_enabled: bool | Omit = omit,
+        root_certificate_installation_enabled: bool | Omit = omit,
+        use_zt_virtual_ip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Patches the current device settings for a Zero Trust account.
@@ -166,6 +192,20 @@ class SettingsResource(SyncAPIResource):
         Args:
           disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
               WARP.
+
+          external_emergency_signal_enabled: Controls whether the external emergency disconnect feature is enabled.
+
+          external_emergency_signal_fingerprint: The SHA256 fingerprint (64 hexadecimal characters) of the HTTPS server
+              certificate for the external_emergency_signal_url. If provided, the WARP client
+              will use this value to verify the server's identity. The device will ignore any
+              response if the server's certificate fingerprint does not exactly match this
+              value.
+
+          external_emergency_signal_interval: The interval at which the WARP client fetches the emergency disconnect signal,
+              formatted as a duration string (e.g., "5m", "2m30s", "1h"). Minimum 30 seconds.
+
+          external_emergency_signal_url: The HTTPS URL from which to fetch the emergency disconnect signal. Must use
+              HTTPS and have an IPv4 or IPv6 address as the host.
 
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
@@ -190,6 +230,10 @@ class SettingsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "disable_for_time": disable_for_time,
+                    "external_emergency_signal_enabled": external_emergency_signal_enabled,
+                    "external_emergency_signal_fingerprint": external_emergency_signal_fingerprint,
+                    "external_emergency_signal_interval": external_emergency_signal_interval,
+                    "external_emergency_signal_url": external_emergency_signal_url,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
@@ -216,7 +260,7 @@ class SettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
@@ -269,17 +313,21 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+        disable_for_time: float | Omit = omit,
+        external_emergency_signal_enabled: bool | Omit = omit,
+        external_emergency_signal_fingerprint: str | Omit = omit,
+        external_emergency_signal_interval: str | Omit = omit,
+        external_emergency_signal_url: str | Omit = omit,
+        gateway_proxy_enabled: bool | Omit = omit,
+        gateway_udp_proxy_enabled: bool | Omit = omit,
+        root_certificate_installation_enabled: bool | Omit = omit,
+        use_zt_virtual_ip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
@@ -287,6 +335,20 @@ class AsyncSettingsResource(AsyncAPIResource):
         Args:
           disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
               WARP.
+
+          external_emergency_signal_enabled: Controls whether the external emergency disconnect feature is enabled.
+
+          external_emergency_signal_fingerprint: The SHA256 fingerprint (64 hexadecimal characters) of the HTTPS server
+              certificate for the external_emergency_signal_url. If provided, the WARP client
+              will use this value to verify the server's identity. The device will ignore any
+              response if the server's certificate fingerprint does not exactly match this
+              value.
+
+          external_emergency_signal_interval: The interval at which the WARP client fetches the emergency disconnect signal,
+              formatted as a duration string (e.g., "5m", "2m30s", "1h"). Minimum 30 seconds.
+
+          external_emergency_signal_url: The HTTPS URL from which to fetch the emergency disconnect signal. Must use
+              HTTPS and have an IPv4 or IPv6 address as the host.
 
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
@@ -311,6 +373,10 @@ class AsyncSettingsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "disable_for_time": disable_for_time,
+                    "external_emergency_signal_enabled": external_emergency_signal_enabled,
+                    "external_emergency_signal_fingerprint": external_emergency_signal_fingerprint,
+                    "external_emergency_signal_interval": external_emergency_signal_interval,
+                    "external_emergency_signal_url": external_emergency_signal_url,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
@@ -337,7 +403,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Resets the current device settings for a Zero Trust account.
@@ -369,17 +435,21 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+        disable_for_time: float | Omit = omit,
+        external_emergency_signal_enabled: bool | Omit = omit,
+        external_emergency_signal_fingerprint: str | Omit = omit,
+        external_emergency_signal_interval: str | Omit = omit,
+        external_emergency_signal_url: str | Omit = omit,
+        gateway_proxy_enabled: bool | Omit = omit,
+        gateway_udp_proxy_enabled: bool | Omit = omit,
+        root_certificate_installation_enabled: bool | Omit = omit,
+        use_zt_virtual_ip: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Patches the current device settings for a Zero Trust account.
@@ -387,6 +457,20 @@ class AsyncSettingsResource(AsyncAPIResource):
         Args:
           disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
               WARP.
+
+          external_emergency_signal_enabled: Controls whether the external emergency disconnect feature is enabled.
+
+          external_emergency_signal_fingerprint: The SHA256 fingerprint (64 hexadecimal characters) of the HTTPS server
+              certificate for the external_emergency_signal_url. If provided, the WARP client
+              will use this value to verify the server's identity. The device will ignore any
+              response if the server's certificate fingerprint does not exactly match this
+              value.
+
+          external_emergency_signal_interval: The interval at which the WARP client fetches the emergency disconnect signal,
+              formatted as a duration string (e.g., "5m", "2m30s", "1h"). Minimum 30 seconds.
+
+          external_emergency_signal_url: The HTTPS URL from which to fetch the emergency disconnect signal. Must use
+              HTTPS and have an IPv4 or IPv6 address as the host.
 
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
@@ -411,6 +495,10 @@ class AsyncSettingsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "disable_for_time": disable_for_time,
+                    "external_emergency_signal_enabled": external_emergency_signal_enabled,
+                    "external_emergency_signal_fingerprint": external_emergency_signal_fingerprint,
+                    "external_emergency_signal_interval": external_emergency_signal_interval,
+                    "external_emergency_signal_url": external_emergency_signal_url,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
@@ -437,7 +525,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.

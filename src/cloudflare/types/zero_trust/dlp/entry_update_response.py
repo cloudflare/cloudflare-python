@@ -2,24 +2,26 @@
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
 from .profiles.pattern import Pattern
 
 __all__ = [
     "EntryUpdateResponse",
-    "CustomEntry",
-    "PredefinedEntry",
-    "PredefinedEntryConfidence",
-    "IntegrationEntry",
-    "ExactDataEntry",
-    "DocumentTemplateEntry",
-    "WordListEntry",
+    "Custom",
+    "Predefined",
+    "PredefinedConfidence",
+    "PredefinedVariant",
+    "Integration",
+    "ExactData",
+    "DocumentFingerprint",
+    "WordList",
 ]
 
 
-class CustomEntry(BaseModel):
+class Custom(BaseModel):
     id: str
 
     created_at: datetime
@@ -37,7 +39,7 @@ class CustomEntry(BaseModel):
     profile_id: Optional[str] = None
 
 
-class PredefinedEntryConfidence(BaseModel):
+class PredefinedConfidence(BaseModel):
     ai_context_available: bool
     """Indicates whether this entry has AI remote service validation."""
 
@@ -48,10 +50,18 @@ class PredefinedEntryConfidence(BaseModel):
     """
 
 
-class PredefinedEntry(BaseModel):
+class PredefinedVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
+class Predefined(BaseModel):
     id: str
 
-    confidence: PredefinedEntryConfidence
+    confidence: PredefinedConfidence
 
     enabled: bool
 
@@ -61,8 +71,10 @@ class PredefinedEntry(BaseModel):
 
     profile_id: Optional[str] = None
 
+    variant: Optional[PredefinedVariant] = None
 
-class IntegrationEntry(BaseModel):
+
+class Integration(BaseModel):
     id: str
 
     created_at: datetime
@@ -78,7 +90,7 @@ class IntegrationEntry(BaseModel):
     profile_id: Optional[str] = None
 
 
-class ExactDataEntry(BaseModel):
+class ExactData(BaseModel):
     id: str
 
     case_sensitive: bool
@@ -100,7 +112,7 @@ class ExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class DocumentTemplateEntry(BaseModel):
+class DocumentFingerprint(BaseModel):
     id: str
 
     created_at: datetime
@@ -109,12 +121,12 @@ class DocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
 
-class WordListEntry(BaseModel):
+class WordList(BaseModel):
     id: str
 
     created_at: datetime
@@ -132,6 +144,6 @@ class WordListEntry(BaseModel):
     profile_id: Optional[str] = None
 
 
-EntryUpdateResponse: TypeAlias = Union[
-    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentTemplateEntry, WordListEntry
+EntryUpdateResponse: TypeAlias = Annotated[
+    Union[Custom, Predefined, Integration, ExactData, DocumentFingerprint, WordList], PropertyInfo(discriminator="type")
 ]

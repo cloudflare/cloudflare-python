@@ -15,6 +15,9 @@ class LOADocumentCreateResponse(BaseModel):
     account_id: Optional[str] = None
     """Identifier of a Cloudflare account."""
 
+    auto_generated: Optional[bool] = None
+    """Whether the LOA has been auto-generated for the prefix owner by Cloudflare."""
+
     created: Optional[datetime] = None
 
     filename: Optional[str] = None

@@ -28,10 +28,10 @@ class TestSearch:
     def test_method_global_with_all_params(self, client: Cloudflare) -> None:
         search = client.radar.search.global_(
             query="United",
-            exclude=["ASNS"],
+            exclude=["ADM1S"],
             format="JSON",
-            include=["ASNS"],
-            limit=5,
+            include=["ADM1S"],
+            limit=1,
             limit_per_group=0,
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
@@ -62,7 +62,9 @@ class TestSearch:
 
 
 class TestAsyncSearch:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_global(self, async_client: AsyncCloudflare) -> None:
@@ -75,10 +77,10 @@ class TestAsyncSearch:
     async def test_method_global_with_all_params(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.radar.search.global_(
             query="United",
-            exclude=["ASNS"],
+            exclude=["ADM1S"],
             format="JSON",
-            include=["ASNS"],
-            limit=5,
+            include=["ADM1S"],
+            limit=1,
             limit_per_group=0,
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])

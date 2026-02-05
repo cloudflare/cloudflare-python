@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ......_types import SequenceNotStr
 from ......_utils import PropertyInfo
 
 __all__ = ["UpdateListParams"]
@@ -15,7 +16,7 @@ class UpdateListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    idp_id: Required[List[str]]
+    idp_id: Required[SequenceNotStr[str]]
     """The unique Id of the IdP that has SCIM enabled."""
 
     cf_resource_id: str
@@ -29,6 +30,12 @@ class UpdateListParams(TypedDict, total=False):
 
     limit: int
     """The maximum number of update logs to retrieve."""
+
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
 
     request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]]
     """The request method of the SCIM request."""

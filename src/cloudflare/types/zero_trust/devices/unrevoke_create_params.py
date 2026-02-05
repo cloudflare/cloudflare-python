@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["UnrevokeCreateParams"]
 
@@ -11,5 +12,5 @@ __all__ = ["UnrevokeCreateParams"]
 class UnrevokeCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    body: Required[List[str]]
+    body: Required[SequenceNotStr[str]]
     """A list of Registration IDs to unrevoke."""

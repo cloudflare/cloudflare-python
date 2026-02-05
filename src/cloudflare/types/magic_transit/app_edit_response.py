@@ -8,6 +8,8 @@ __all__ = ["AppEditResponse"]
 
 
 class AppEditResponse(BaseModel):
+    """Custom app defined for an account."""
+
     account_app_id: str
     """Magic account app ID."""
 

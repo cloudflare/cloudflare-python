@@ -8,6 +8,10 @@ __all__ = ["DEXTestDeleteResponse", "DEXTest", "DEXTestData", "DEXTestTargetPoli
 
 
 class DEXTestData(BaseModel):
+    """
+    The configuration object which contains the details for the WARP client to conduct the test.
+    """
+
     host: Optional[str] = None
     """The desired endpoint to test."""
 

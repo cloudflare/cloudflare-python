@@ -36,7 +36,7 @@ class TestSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            previews_enabled=True,
+            previews_enabled=False,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -182,7 +182,9 @@ class TestSubdomain:
 
 
 class TestAsyncSubdomain:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -199,7 +201,7 @@ class TestAsyncSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            previews_enabled=True,
+            previews_enabled=False,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 

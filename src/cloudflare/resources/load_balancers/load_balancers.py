@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, Iterable, cast
+from typing import Dict, Type, Iterable, cast
 
 import httpx
 
@@ -14,7 +14,7 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .previews import (
     PreviewsResource,
@@ -51,6 +51,14 @@ from .pools.pools import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from .monitor_groups import (
+    MonitorGroupsResource,
+    AsyncMonitorGroupsResource,
+    MonitorGroupsResourceWithRawResponse,
+    AsyncMonitorGroupsResourceWithRawResponse,
+    MonitorGroupsResourceWithStreamingResponse,
+    AsyncMonitorGroupsResourceWithStreamingResponse,
+)
 from .monitors.monitors import (
     MonitorsResource,
     AsyncMonitorsResource,
@@ -84,6 +92,10 @@ class LoadBalancersResource(SyncAPIResource):
     @cached_property
     def monitors(self) -> MonitorsResource:
         return MonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> MonitorGroupsResource:
+        return MonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> PoolsResource:
@@ -124,30 +136,30 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        default_pools: List[DefaultPools],
+        default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        networks: List[str] | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Create a new load balancer.
@@ -181,7 +193,7 @@ class LoadBalancersResource(SyncAPIResource):
 
           networks: List of networks where Load Balancer or Pool is enabled.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -205,41 +217,37 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -317,31 +325,31 @@ class LoadBalancersResource(SyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
-        default_pools: List[DefaultPools],
+        default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        networks: List[str] | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Update a configured load balancer.
@@ -377,7 +385,7 @@ class LoadBalancersResource(SyncAPIResource):
 
           networks: List of networks where Load Balancer or Pool is enabled.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -401,41 +409,37 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -520,7 +524,7 @@ class LoadBalancersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LoadBalancer]:
         """
         List configured load balancers.
@@ -555,7 +559,7 @@ class LoadBalancersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerDeleteResponse:
         """
         Delete a configured load balancer.
@@ -590,30 +594,30 @@ class LoadBalancersResource(SyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        fallback_pool: str | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        fallback_pool: str | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        name: str | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
@@ -647,7 +651,7 @@ class LoadBalancersResource(SyncAPIResource):
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -671,41 +675,37 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -790,7 +790,7 @@ class LoadBalancersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
@@ -825,6 +825,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
     def monitors(self) -> AsyncMonitorsResource:
         return AsyncMonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResource:
+        return AsyncMonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> AsyncPoolsResource:
@@ -865,30 +869,30 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        default_pools: List[DefaultPools],
+        default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        networks: List[str] | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Create a new load balancer.
@@ -922,7 +926,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           networks: List of networks where Load Balancer or Pool is enabled.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -946,41 +950,37 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -1058,31 +1058,31 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
-        default_pools: List[DefaultPools],
+        default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        networks: List[str] | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Update a configured load balancer.
@@ -1118,7 +1118,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           networks: List of networks where Load Balancer or Pool is enabled.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -1142,41 +1142,37 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -1261,7 +1257,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LoadBalancer, AsyncSinglePage[LoadBalancer]]:
         """
         List configured load balancers.
@@ -1296,7 +1292,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerDeleteResponse:
         """
         Delete a configured load balancer.
@@ -1331,30 +1327,30 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
-        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        fallback_pool: str | NotGiven = NOT_GIVEN,
-        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-        ttl: float | NotGiven = NOT_GIVEN,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        fallback_pool: str | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        name: str | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
@@ -1388,7 +1384,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
 
-          pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
               region_pool mapping if it exists else to default_pools.
@@ -1412,41 +1408,37 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are:
-
-              - `"cookie"`: On the first request to a proxied load balancer, a cookie is
-                generated, encoding information of which origin the request will be forwarded
-                to. Subsequent requests, by the same client to the same load balancer, will be
-                sent to the origin server the cookie encodes, for the duration of the cookie
-                and as long as the origin server remains healthy. If the cookie has expired or
-                the origin server is unhealthy, then a new origin server is calculated and
-                used.
-              - `"ip_cookie"`: Behaves the same as `"cookie"` except the initial origin
-                selection is stable and based on the client's ip address.
-              - `"header"`: On the first request to a proxied load balancer, a session key
-                based on the configured HTTP headers (see
-                `session_affinity_attributes.headers`) is generated, encoding the request
-                headers used for storing in the load balancer session state which origin the
-                request will be forwarded to. Subsequent requests to the load balancer with
-                the same headers will be sent to the same origin server, for the duration of
-                the session and as long as the origin server remains healthy. If the session
-                has been idle for the duration of `session_affinity_ttl` seconds or the origin
-                server is unhealthy, then a new origin server is calculated and used. See
-                `headers` in `session_affinity_attributes` for additional required
-                configuration.
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
 
           session_affinity_attributes: Configures attributes for session affinity.
 
           session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
               expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are:
-
-              - `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used
-                unless explicitly set. The accepted range of values is between [1800, 604800].
-              - `"header"`: The current default of 1800 seconds will be used unless explicitly
-                set. The accepted range of values is between [30, 3600]. Note: With session
-                affinity by header, sessions only expire after they haven't been used for the
-                number of seconds specified.
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
 
           steering_policy: Steering Policy for this load balancer.
 
@@ -1531,7 +1523,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
@@ -1590,6 +1582,10 @@ class LoadBalancersResourceWithRawResponse:
         return MonitorsResourceWithRawResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithRawResponse:
+        return MonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithRawResponse:
         return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
@@ -1632,6 +1628,10 @@ class AsyncLoadBalancersResourceWithRawResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithRawResponse:
         return AsyncMonitorsResourceWithRawResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithRawResponse:
+        return AsyncMonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithRawResponse:
@@ -1678,6 +1678,10 @@ class LoadBalancersResourceWithStreamingResponse:
         return MonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithStreamingResponse:
+        return MonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithStreamingResponse:
         return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
@@ -1720,6 +1724,10 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithStreamingResponse:
         return AsyncMonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithStreamingResponse:
+        return AsyncMonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithStreamingResponse:

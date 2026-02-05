@@ -8,6 +8,11 @@ __all__ = ["CookieAttributesParam"]
 
 
 class CookieAttributesParam(TypedDict, total=False):
+    """Configures cookie attributes for the waiting room cookie.
+
+    This encrypted cookie stores a user's status in the waiting room, such as queue position.
+    """
+
     samesite: Literal["auto", "lax", "none", "strict"]
     """Configures the SameSite attribute on the waiting room cookie.
 

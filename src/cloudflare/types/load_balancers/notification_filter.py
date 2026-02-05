@@ -9,6 +9,11 @@ __all__ = ["NotificationFilter"]
 
 
 class NotificationFilter(BaseModel):
+    """Filter pool and origin health notifications by resource type or health status.
+
+    Use null to reset.
+    """
+
     origin: Optional[FilterOptions] = None
     """Filter options for a particular resource type (pool or origin).
 

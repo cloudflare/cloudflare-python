@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,14 +50,14 @@ class URLNormalizationResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        scope: Literal["incoming", "both"],
+        scope: Literal["incoming", "both", "none"],
         type: Literal["cloudflare", "rfc3986"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLNormalizationUpdateResponse:
         """
         Updates the URL Normalization settings.
@@ -107,7 +107,7 @@ class URLNormalizationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes the URL Normalization settings.
@@ -143,7 +143,7 @@ class URLNormalizationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLNormalizationGetResponse:
         """
         Fetches the current URL Normalization settings.
@@ -198,14 +198,14 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        scope: Literal["incoming", "both"],
+        scope: Literal["incoming", "both", "none"],
         type: Literal["cloudflare", "rfc3986"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLNormalizationUpdateResponse:
         """
         Updates the URL Normalization settings.
@@ -255,7 +255,7 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes the URL Normalization settings.
@@ -291,7 +291,7 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLNormalizationGetResponse:
         """
         Fetches the current URL Normalization settings.

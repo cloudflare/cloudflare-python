@@ -37,6 +37,7 @@ class TestCfInterconnects:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            automatic_return_routing=True,
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -46,6 +47,7 @@ class TestCfInterconnects:
                 "type": "request",
             },
             interface_address="192.0.2.0/31",
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             x_magic_new_hc_target=True,
         )
@@ -255,7 +257,9 @@ class TestCfInterconnects:
 
 
 class TestAsyncCfInterconnects:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -272,6 +276,7 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            automatic_return_routing=True,
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -281,6 +286,7 @@ class TestAsyncCfInterconnects:
                 "type": "request",
             },
             interface_address="192.0.2.0/31",
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             x_magic_new_hc_target=True,
         )

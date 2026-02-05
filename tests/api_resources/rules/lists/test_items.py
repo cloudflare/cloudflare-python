@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from cloudflare.types.rules.lists import (
     ItemGetResponse,
     ItemListResponse,
@@ -28,7 +29,7 @@ class TestItems:
         item = client.rules.lists.items.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
 
@@ -37,7 +38,7 @@ class TestItems:
         response = client.rules.lists.items.with_raw_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -50,7 +51,7 @@ class TestItems:
         with client.rules.lists.items.with_streaming_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,14 +67,14 @@ class TestItems:
             client.rules.lists.items.with_raw_response.create(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.items.with_raw_response.create(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -81,7 +82,7 @@ class TestItems:
         item = client.rules.lists.items.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemUpdateResponse, item, path=["response"])
 
@@ -90,7 +91,7 @@ class TestItems:
         response = client.rules.lists.items.with_raw_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -103,7 +104,7 @@ class TestItems:
         with client.rules.lists.items.with_streaming_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,14 +120,14 @@ class TestItems:
             client.rules.lists.items.with_raw_response.update(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.items.with_raw_response.update(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -135,7 +136,7 @@ class TestItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -146,7 +147,7 @@ class TestItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -158,7 +159,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -170,7 +171,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(ItemListResponse, item, path=["response"])
+            assert_matches_type(SyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -193,6 +194,15 @@ class TestItems:
         item = client.rules.lists.items.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        item = client.rules.lists.items.delete(
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            items=[{"id": "34b12448945f11eaa1b71c4d701ab86e"}],
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 
@@ -298,14 +308,16 @@ class TestItems:
 
 
 class TestAsyncItems:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
 
@@ -314,7 +326,7 @@ class TestAsyncItems:
         response = await async_client.rules.lists.items.with_raw_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -327,7 +339,7 @@ class TestAsyncItems:
         async with async_client.rules.lists.items.with_streaming_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,14 +355,14 @@ class TestAsyncItems:
             await async_client.rules.lists.items.with_raw_response.create(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.create(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -358,7 +370,7 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemUpdateResponse, item, path=["response"])
 
@@ -367,7 +379,7 @@ class TestAsyncItems:
         response = await async_client.rules.lists.items.with_raw_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -380,7 +392,7 @@ class TestAsyncItems:
         async with async_client.rules.lists.items.with_streaming_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -396,14 +408,14 @@ class TestAsyncItems:
             await async_client.rules.lists.items.with_raw_response.update(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.update(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -412,7 +424,7 @@ class TestAsyncItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -423,7 +435,7 @@ class TestAsyncItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -435,7 +447,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(ItemListResponse, item, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -447,7 +459,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(ItemListResponse, item, path=["response"])
+            assert_matches_type(AsyncCursorPaginationAfter[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -470,6 +482,15 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        item = await async_client.rules.lists.items.delete(
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            items=[{"id": "34b12448945f11eaa1b71c4d701ab86e"}],
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 

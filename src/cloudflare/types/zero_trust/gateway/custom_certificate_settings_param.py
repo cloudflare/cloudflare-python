@@ -2,14 +2,23 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["CustomCertificateSettingsParam"]
 
 
 class CustomCertificateSettingsParam(TypedDict, total=False):
-    enabled: Required[bool]
-    """Enable use of custom certificate authority for signing Gateway traffic."""
+    """Specify custom certificate settings for BYO-PKI.
+
+    This field is deprecated; use `certificate` instead.
+    """
+
+    enabled: Required[Optional[bool]]
+    """
+    Specify whether to enable a custom certificate authority for signing Gateway
+    traffic.
+    """
 
     id: str
-    """UUID of certificate (ID from MTLS certificate store)."""
+    """Specify the UUID of the certificate (ID from MTLS certificate store)."""

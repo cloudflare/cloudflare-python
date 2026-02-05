@@ -2,22 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["ThreatEventCreateParams", "Raw"]
+__all__ = ["ThreatEventCreateParams", "Raw", "Indicator"]
 
 
 class ThreatEventCreateParams(TypedDict, total=False):
     path_account_id: Required[Annotated[str, PropertyInfo(alias="account_id")]]
     """Account ID."""
-
-    attacker: Required[str]
-
-    attacker_country: Required[Annotated[str, PropertyInfo(alias="attackerCountry")]]
 
     category: Required[str]
 
@@ -25,23 +22,41 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     event: Required[str]
 
-    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
-
     raw: Required[Raw]
 
     tlp: Required[str]
 
     body_account_id: Annotated[float, PropertyInfo(alias="accountId")]
 
+    attacker: Optional[str]
+
+    attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
+
     dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
 
     indicator: str
 
-    tags: List[str]
+    indicators: Iterable[Indicator]
+    """Array of indicators for this event.
+
+    Supports multiple indicators per event for complex scenarios.
+    """
+
+    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
+
+    insight: str
+
+    tags: SequenceNotStr[str]
 
     target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
 
     target_industry: Annotated[str, PropertyInfo(alias="targetIndustry")]
+
+    uuid: str
+    """Optional UUID for the event.
+
+    Only used when preserveUuid=true in bulk create. Must be a valid UUID format.
+    """
 
 
 class Raw(TypedDict, total=False):
@@ -50,3 +65,11 @@ class Raw(TypedDict, total=False):
     source: str
 
     tlp: str
+
+
+class Indicator(TypedDict, total=False):
+    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
+    """The type of indicator (e.g., DOMAIN, IP, JA3, HASH)"""
+
+    value: Required[str]
+    """The indicator value (e.g., domain name, IP address, hash)"""

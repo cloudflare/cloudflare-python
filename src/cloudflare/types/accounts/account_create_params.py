@@ -11,12 +11,7 @@ class AccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """Account name"""
 
-    type: Required[Literal["standard", "enterprise"]]
-    """the type of account being created.
-
-    For self-serve customers, use standard. for enterprise customers, use
-    enterprise.
-    """
+    type: Literal["standard", "enterprise"]
 
     unit: Unit
     """
@@ -27,5 +22,9 @@ class AccountCreateParams(TypedDict, total=False):
 
 
 class Unit(TypedDict, total=False):
+    """
+    information related to the tenant unit, and optionally, an id of the unit to create the account on. see https://developers.cloudflare.com/tenant/how-to/manage-accounts/
+    """
+
     id: str
     """Tenant unit ID"""

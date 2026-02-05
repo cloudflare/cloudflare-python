@@ -14,11 +14,11 @@ class UARuleListParams(TypedDict, total=False):
     description: str
     """A string to search for in the description of existing rules."""
 
-    description_search: str
-    """A string to search for in the description of existing rules."""
-
     page: float
     """Page number of paginated results."""
+
+    paused: bool
+    """When true, indicates that the rule is currently paused."""
 
     per_page: float
     """The maximum number of results per page.
@@ -27,5 +27,5 @@ class UARuleListParams(TypedDict, total=False):
     or `20`.
     """
 
-    ua_search: str
+    user_agent: str
     """A string to search for in the user agent values of existing rules."""

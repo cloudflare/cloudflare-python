@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,15 +56,15 @@ class KeylessCertificatesResource(SyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        name: str | Omit = omit,
+        tunnel: TunnelParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
@@ -130,7 +130,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[KeylessCertificate]:
         """
         List all Keyless SSL configurations for a given zone.
@@ -167,7 +167,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
@@ -210,17 +210,17 @@ class KeylessCertificatesResource(SyncAPIResource):
         keyless_certificate_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        port: float | NotGiven = NOT_GIVEN,
-        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        host: str | Omit = omit,
+        name: str | Omit = omit,
+        port: float | Omit = omit,
+        tunnel: TunnelParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
@@ -289,7 +289,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.
@@ -353,15 +353,15 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        name: str | Omit = omit,
+        tunnel: TunnelParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
@@ -427,7 +427,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[KeylessCertificate, AsyncSinglePage[KeylessCertificate]]:
         """
         List all Keyless SSL configurations for a given zone.
@@ -464,7 +464,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
@@ -507,17 +507,17 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         keyless_certificate_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        port: float | NotGiven = NOT_GIVEN,
-        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        host: str | Omit = omit,
+        name: str | Omit = omit,
+        port: float | Omit = omit,
+        tunnel: TunnelParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
@@ -586,7 +586,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.

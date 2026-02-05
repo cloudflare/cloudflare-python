@@ -10,6 +10,8 @@ __all__ = ["Script"]
 
 
 class Script(BaseModel):
+    """Details about a worker uploaded to a Workers for Platforms namespace."""
+
     created_on: Optional[datetime] = None
     """When the script was created."""
 

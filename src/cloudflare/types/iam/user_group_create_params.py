@@ -20,11 +20,17 @@ class UserGroupCreateParams(TypedDict, total=False):
 
 
 class PolicyPermissionGroup(TypedDict, total=False):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: Required[str]
     """Permission Group identifier tag."""
 
 
 class PolicyResourceGroup(TypedDict, total=False):
+    """A group of scoped resources."""
+
     id: Required[str]
     """Resource Group identifier tag."""
 

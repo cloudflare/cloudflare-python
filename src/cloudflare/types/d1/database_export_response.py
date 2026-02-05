@@ -9,6 +9,8 @@ __all__ = ["DatabaseExportResponse", "Result"]
 
 
 class Result(BaseModel):
+    """Only present when status = 'complete'"""
+
     filename: Optional[str] = None
     """The generated SQL filename."""
 

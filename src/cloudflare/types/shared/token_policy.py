@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,12 +9,18 @@ __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 
 
 class PermissionGroupMeta(BaseModel):
+    """Attributes associated to the permission group."""
+
     key: Optional[str] = None
 
     value: Optional[str] = None
 
 
 class PermissionGroup(BaseModel):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: str
     """Identifier of the permission group."""
 
@@ -35,5 +41,5 @@ class TokenPolicy(BaseModel):
     permission_groups: List[PermissionGroup]
     """A set of permission groups that are specified to the policy."""
 
-    resources: Dict[str, str]
+    resources: Union[Dict[str, str], Dict[str, Dict[str, str]]]
     """A list of resource names that the policy applies to."""

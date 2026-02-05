@@ -40,6 +40,7 @@ class TestOnRamps:
         on_ramp = client.magic_cloud_networking.on_ramps.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -52,6 +53,7 @@ class TestOnRamps:
         on_ramp = client.magic_cloud_networking.on_ramps.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -59,6 +61,7 @@ class TestOnRamps:
             adopted_hub_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             attached_hubs=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             attached_vpcs=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            cloud_asn=0,
             description="description",
             hub_provider_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             manage_hub_to_hub_attachments=True,
@@ -74,6 +77,7 @@ class TestOnRamps:
         response = client.magic_cloud_networking.on_ramps.with_raw_response.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -90,6 +94,7 @@ class TestOnRamps:
         with client.magic_cloud_networking.on_ramps.with_streaming_response.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -109,6 +114,7 @@ class TestOnRamps:
             client.magic_cloud_networking.on_ramps.with_raw_response.create(
                 account_id="",
                 cloud_type="AWS",
+                dynamic_routing=True,
                 install_routes_in_cloud=True,
                 install_routes_in_magic_wan=True,
                 name="name",
@@ -576,13 +582,16 @@ class TestOnRamps:
 
 
 class TestAsyncOnRamps:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         on_ramp = await async_client.magic_cloud_networking.on_ramps.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -595,6 +604,7 @@ class TestAsyncOnRamps:
         on_ramp = await async_client.magic_cloud_networking.on_ramps.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -602,6 +612,7 @@ class TestAsyncOnRamps:
             adopted_hub_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             attached_hubs=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             attached_vpcs=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            cloud_asn=0,
             description="description",
             hub_provider_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             manage_hub_to_hub_attachments=True,
@@ -617,6 +628,7 @@ class TestAsyncOnRamps:
         response = await async_client.magic_cloud_networking.on_ramps.with_raw_response.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -633,6 +645,7 @@ class TestAsyncOnRamps:
         async with async_client.magic_cloud_networking.on_ramps.with_streaming_response.create(
             account_id="account_id",
             cloud_type="AWS",
+            dynamic_routing=True,
             install_routes_in_cloud=True,
             install_routes_in_magic_wan=True,
             name="name",
@@ -652,6 +665,7 @@ class TestAsyncOnRamps:
             await async_client.magic_cloud_networking.on_ramps.with_raw_response.create(
                 account_id="",
                 cloud_type="AWS",
+                dynamic_routing=True,
                 install_routes_in_cloud=True,
                 install_routes_in_magic_wan=True,
                 name="name",

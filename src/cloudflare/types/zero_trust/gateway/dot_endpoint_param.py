@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import TypedDict
 
 from .ip_network_param import IPNetworkParam
@@ -12,11 +12,11 @@ __all__ = ["DOTEndpointParam"]
 
 class DOTEndpointParam(TypedDict, total=False):
     enabled: bool
-    """True if the endpoint is enabled for this location."""
+    """Indicate whether the DOT endpoint is enabled for this location."""
 
-    networks: Iterable[IPNetworkParam]
-    """A list of allowed source IP network ranges for this endpoint.
+    networks: Optional[Iterable[IPNetworkParam]]
+    """Specify the list of allowed source IP network ranges for this endpoint.
 
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
+    When the list is empty, the endpoint allows all source IPs. The list takes
+    effect only if the endpoint is enabled for this location.
     """

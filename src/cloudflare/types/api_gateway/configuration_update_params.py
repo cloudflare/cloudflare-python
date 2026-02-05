@@ -19,8 +19,13 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
     auth_id_characteristics: Required[Iterable[AuthIDCharacteristic]]
 
+    normalize: bool
+    """Ensures that the configuration is written or retrieved in normalized fashion"""
+
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
+    """Auth ID Characteristic"""
+
     name: Required[str]
     """The name of the characteristic field, i.e., the header or cookie name."""
 
@@ -29,6 +34,8 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(TypedDict, total=False):
+    """Auth ID Characteristic extracted from JWT Token Claims"""
+
     name: Required[str]
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where

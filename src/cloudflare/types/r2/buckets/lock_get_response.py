@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import datetime
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -19,18 +19,24 @@ __all__ = [
 
 
 class RuleConditionR2LockRuleAgeCondition(BaseModel):
+    """Condition to apply a lock rule to an object for how long in seconds."""
+
     max_age_seconds: int = FieldInfo(alias="maxAgeSeconds")
 
     type: Literal["Age"]
 
 
 class RuleConditionR2LockRuleDateCondition(BaseModel):
-    date: datetime.date
+    """Condition to apply a lock rule to an object until a specific date."""
+
+    date: datetime
 
     type: Literal["Date"]
 
 
 class RuleConditionR2LockRuleIndefiniteCondition(BaseModel):
+    """Condition to apply a lock rule indefinitely."""
+
     type: Literal["Indefinite"]
 
 

@@ -9,5 +9,7 @@ __all__ = ["PSKMetadata"]
 
 
 class PSKMetadata(BaseModel):
+    """The PSK metadata that includes when the PSK was generated."""
+
     last_generated_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""

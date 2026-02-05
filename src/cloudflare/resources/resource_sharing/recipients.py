@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.resource_sharing import recipient_list_params, recipient_create_params
+from ...types.resource_sharing import recipient_get_params, recipient_list_params, recipient_create_params
 from ...types.resource_sharing.recipient_get_response import RecipientGetResponse
 from ...types.resource_sharing.recipient_list_response import RecipientListResponse
 from ...types.resource_sharing.recipient_create_response import RecipientCreateResponse
@@ -53,14 +53,14 @@ class RecipientsResource(SyncAPIResource):
         share_id: str,
         *,
         path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
+        body_account_id: str | Omit = omit,
+        organization_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
         Create a new share recipient
@@ -110,14 +110,15 @@ class RecipientsResource(SyncAPIResource):
         share_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[RecipientListResponse]:
         """
         List share recipients by share ID.
@@ -126,6 +127,8 @@ class RecipientsResource(SyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_resources: Include resources in the response.
 
           page: Page number.
 
@@ -153,6 +156,7 @@ class RecipientsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "include_resources": include_resources,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -173,7 +177,7 @@ class RecipientsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
         Deletion is not immediate, an updated share recipient object with a new status
@@ -218,12 +222,13 @@ class RecipientsResource(SyncAPIResource):
         *,
         account_id: str,
         share_id: str,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientGetResponse]:
         """
         Get share recipient by ID.
@@ -234,6 +239,8 @@ class RecipientsResource(SyncAPIResource):
           share_id: Share identifier tag.
 
           recipient_id: Share Recipient identifier tag.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -256,6 +263,9 @@ class RecipientsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"include_resources": include_resources}, recipient_get_params.RecipientGetParams
+                ),
                 post_parser=ResultWrapper[Optional[RecipientGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecipientGetResponse]], ResultWrapper[RecipientGetResponse]),
@@ -287,14 +297,14 @@ class AsyncRecipientsResource(AsyncAPIResource):
         share_id: str,
         *,
         path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
+        body_account_id: str | Omit = omit,
+        organization_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
         Create a new share recipient
@@ -344,14 +354,15 @@ class AsyncRecipientsResource(AsyncAPIResource):
         share_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RecipientListResponse, AsyncV4PagePaginationArray[RecipientListResponse]]:
         """
         List share recipients by share ID.
@@ -360,6 +371,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_resources: Include resources in the response.
 
           page: Page number.
 
@@ -387,6 +400,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "include_resources": include_resources,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -407,7 +421,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
         Deletion is not immediate, an updated share recipient object with a new status
@@ -452,12 +466,13 @@ class AsyncRecipientsResource(AsyncAPIResource):
         *,
         account_id: str,
         share_id: str,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientGetResponse]:
         """
         Get share recipient by ID.
@@ -468,6 +483,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
           share_id: Share identifier tag.
 
           recipient_id: Share Recipient identifier tag.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -490,6 +507,9 @@ class AsyncRecipientsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_resources": include_resources}, recipient_get_params.RecipientGetParams
+                ),
                 post_parser=ResultWrapper[Optional[RecipientGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecipientGetResponse]], ResultWrapper[RecipientGetResponse]),

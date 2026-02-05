@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -17,9 +17,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.access import Decision, policy_create_params, policy_update_params
+from ....types.zero_trust.access import Decision, policy_list_params, policy_create_params, policy_update_params
 from ....types.zero_trust.access.decision import Decision
 from ....types.zero_trust.access.policy_get_response import PolicyGetResponse
 from ....types.zero_trust.access.approval_group_param import ApprovalGroupParam
@@ -59,20 +59,20 @@ class PoliciesResource(SyncAPIResource):
         decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Access reusable policy.
@@ -157,20 +157,20 @@ class PoliciesResource(SyncAPIResource):
         decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
         Updates a Access reusable policy.
@@ -255,18 +255,24 @@ class PoliciesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PolicyListResponse]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[PolicyListResponse]:
         """
         Lists Access reusable policies.
 
         Args:
           account_id: Identifier.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -280,9 +286,19 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/policies",
-            page=SyncSinglePage[PolicyListResponse],
+            page=SyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )
@@ -297,7 +313,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyDeleteResponse]:
         """
         Deletes an Access reusable policy.
@@ -341,7 +357,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """
         Fetches a single Access reusable policy.
@@ -403,20 +419,20 @@ class AsyncPoliciesResource(AsyncAPIResource):
         decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Access reusable policy.
@@ -501,20 +517,20 @@ class AsyncPoliciesResource(AsyncAPIResource):
         decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
         Updates a Access reusable policy.
@@ -599,18 +615,24 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[PolicyListResponse, AsyncV4PagePaginationArray[PolicyListResponse]]:
         """
         Lists Access reusable policies.
 
         Args:
           account_id: Identifier.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -624,9 +646,19 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/policies",
-            page=AsyncSinglePage[PolicyListResponse],
+            page=AsyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )
@@ -641,7 +673,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyDeleteResponse]:
         """
         Deletes an Access reusable policy.
@@ -685,7 +717,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """
         Fetches a single Access reusable policy.

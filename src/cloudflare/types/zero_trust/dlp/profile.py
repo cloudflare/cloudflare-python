@@ -16,27 +16,30 @@ __all__ = [
     "CustomProfileEntryCustomEntry",
     "CustomProfileEntryPredefinedEntry",
     "CustomProfileEntryPredefinedEntryConfidence",
+    "CustomProfileEntryPredefinedEntryVariant",
     "CustomProfileEntryIntegrationEntry",
     "CustomProfileEntryExactDataEntry",
-    "CustomProfileEntryDocumentTemplateEntry",
+    "CustomProfileEntryDocumentFingerprintEntry",
     "CustomProfileEntryWordListEntry",
     "PredefinedProfile",
     "PredefinedProfileEntry",
     "PredefinedProfileEntryCustomEntry",
     "PredefinedProfileEntryPredefinedEntry",
     "PredefinedProfileEntryPredefinedEntryConfidence",
+    "PredefinedProfileEntryPredefinedEntryVariant",
     "PredefinedProfileEntryIntegrationEntry",
     "PredefinedProfileEntryExactDataEntry",
-    "PredefinedProfileEntryDocumentTemplateEntry",
+    "PredefinedProfileEntryDocumentFingerprintEntry",
     "PredefinedProfileEntryWordListEntry",
     "IntegrationProfile",
     "IntegrationProfileEntry",
     "IntegrationProfileEntryCustomEntry",
     "IntegrationProfileEntryPredefinedEntry",
     "IntegrationProfileEntryPredefinedEntryConfidence",
+    "IntegrationProfileEntryPredefinedEntryVariant",
     "IntegrationProfileEntryIntegrationEntry",
     "IntegrationProfileEntryExactDataEntry",
-    "IntegrationProfileEntryDocumentTemplateEntry",
+    "IntegrationProfileEntryDocumentFingerprintEntry",
     "IntegrationProfileEntryWordListEntry",
 ]
 
@@ -70,6 +73,14 @@ class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
+class CustomProfileEntryPredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
 class CustomProfileEntryPredefinedEntry(BaseModel):
     id: str
 
@@ -82,6 +93,8 @@ class CustomProfileEntryPredefinedEntry(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
+    variant: Optional[CustomProfileEntryPredefinedEntryVariant] = None
 
 
 class CustomProfileEntryIntegrationEntry(BaseModel):
@@ -122,7 +135,7 @@ class CustomProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class CustomProfileEntryDocumentTemplateEntry(BaseModel):
+class CustomProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -131,7 +144,7 @@ class CustomProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -159,7 +172,7 @@ CustomProfileEntry: TypeAlias = Union[
     CustomProfileEntryPredefinedEntry,
     CustomProfileEntryIntegrationEntry,
     CustomProfileEntryExactDataEntry,
-    CustomProfileEntryDocumentTemplateEntry,
+    CustomProfileEntryDocumentFingerprintEntry,
     CustomProfileEntryWordListEntry,
 ]
 
@@ -171,16 +184,8 @@ class CustomProfile(BaseModel):
     allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
-    context_awareness: ContextAwareness
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
-
     created_at: datetime
     """When the profile was created."""
-
-    entries: List[CustomProfileEntry]
 
     name: str
     """The name of the profile."""
@@ -196,8 +201,16 @@ class CustomProfile(BaseModel):
 
     confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
 
+    context_awareness: Optional[ContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
+
     description: Optional[str] = None
     """The description of the profile."""
+
+    entries: Optional[List[CustomProfileEntry]] = None
 
 
 class PredefinedProfileEntryCustomEntry(BaseModel):
@@ -229,6 +242,14 @@ class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
+class PredefinedProfileEntryPredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
 class PredefinedProfileEntryPredefinedEntry(BaseModel):
     id: str
 
@@ -241,6 +262,8 @@ class PredefinedProfileEntryPredefinedEntry(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
+    variant: Optional[PredefinedProfileEntryPredefinedEntryVariant] = None
 
 
 class PredefinedProfileEntryIntegrationEntry(BaseModel):
@@ -281,7 +304,7 @@ class PredefinedProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class PredefinedProfileEntryDocumentTemplateEntry(BaseModel):
+class PredefinedProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -290,7 +313,7 @@ class PredefinedProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -318,7 +341,7 @@ PredefinedProfileEntry: TypeAlias = Union[
     PredefinedProfileEntryPredefinedEntry,
     PredefinedProfileEntryIntegrationEntry,
     PredefinedProfileEntryExactDataEntry,
-    PredefinedProfileEntryDocumentTemplateEntry,
+    PredefinedProfileEntryDocumentFingerprintEntry,
     PredefinedProfileEntryWordListEntry,
 ]
 
@@ -381,6 +404,14 @@ class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
+class IntegrationProfileEntryPredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
 class IntegrationProfileEntryPredefinedEntry(BaseModel):
     id: str
 
@@ -393,6 +424,8 @@ class IntegrationProfileEntryPredefinedEntry(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
+    variant: Optional[IntegrationProfileEntryPredefinedEntryVariant] = None
 
 
 class IntegrationProfileEntryIntegrationEntry(BaseModel):
@@ -433,7 +466,7 @@ class IntegrationProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class IntegrationProfileEntryDocumentTemplateEntry(BaseModel):
+class IntegrationProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -442,7 +475,7 @@ class IntegrationProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -470,7 +503,7 @@ IntegrationProfileEntry: TypeAlias = Union[
     IntegrationProfileEntryPredefinedEntry,
     IntegrationProfileEntryIntegrationEntry,
     IntegrationProfileEntryExactDataEntry,
-    IntegrationProfileEntryDocumentTemplateEntry,
+    IntegrationProfileEntryDocumentFingerprintEntry,
     IntegrationProfileEntryWordListEntry,
 ]
 
