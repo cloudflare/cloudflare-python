@@ -130,7 +130,7 @@ class TestValues:
 
         # Verify the request was made
         assert respx_mock.calls.call_count == 1
-        request = respx_mock.calls[0].request
+        request: httpx.Request = cast(Any, respx_mock.calls[0]).request
 
         # Verify Content-Type is multipart/form-data (with boundary)
         content_type = request.headers.get("content-type", "")
@@ -396,7 +396,7 @@ class TestAsyncValues:
 
         # Verify the request was made
         assert respx_mock.calls.call_count == 1
-        request = respx_mock.calls[0].request
+        request: httpx.Request = cast(Any, respx_mock.calls[0]).request
 
         # Verify Content-Type is multipart/form-data (with boundary)
         content_type = request.headers.get("content-type", "")
