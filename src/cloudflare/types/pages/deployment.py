@@ -4,12 +4,12 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
-from ..stage import Stage
-from ...._utils import PropertyInfo
-from ...._models import BaseModel
+from .stage import Stage
+from ..._utils import PropertyInfo
+from ..._models import BaseModel
 
 __all__ = [
-    "DeploymentListResponse",
+    "Deployment",
     "BuildConfig",
     "DeploymentTrigger",
     "DeploymentTriggerMetadata",
@@ -161,7 +161,7 @@ class Source(BaseModel):
     """The source control management provider."""
 
 
-class DeploymentListResponse(BaseModel):
+class Deployment(BaseModel):
     id: str
     """Id of the deployment."""
 

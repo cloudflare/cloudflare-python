@@ -4,21 +4,12 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
-from .stage import Stage
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
+from .deployment import Deployment
 
 __all__ = [
-    "ProjectGetResponse",
-    "CanonicalDeployment",
-    "CanonicalDeploymentBuildConfig",
-    "CanonicalDeploymentDeploymentTrigger",
-    "CanonicalDeploymentDeploymentTriggerMetadata",
-    "CanonicalDeploymentEnvVars",
-    "CanonicalDeploymentEnvVarsPagesPlainTextEnvVar",
-    "CanonicalDeploymentEnvVarsPagesSecretTextEnvVar",
-    "CanonicalDeploymentSource",
-    "CanonicalDeploymentSourceConfig",
+    "Project",
     "DeploymentConfigs",
     "DeploymentConfigsPreview",
     "DeploymentConfigsPreviewEnvVars",
@@ -56,218 +47,10 @@ __all__ = [
     "DeploymentConfigsProductionR2Buckets",
     "DeploymentConfigsProductionServices",
     "DeploymentConfigsProductionVectorizeBindings",
-    "LatestDeployment",
-    "LatestDeploymentBuildConfig",
-    "LatestDeploymentDeploymentTrigger",
-    "LatestDeploymentDeploymentTriggerMetadata",
-    "LatestDeploymentEnvVars",
-    "LatestDeploymentEnvVarsPagesPlainTextEnvVar",
-    "LatestDeploymentEnvVarsPagesSecretTextEnvVar",
-    "LatestDeploymentSource",
-    "LatestDeploymentSourceConfig",
     "BuildConfig",
     "Source",
     "SourceConfig",
 ]
-
-
-class CanonicalDeploymentBuildConfig(BaseModel):
-    """Configs for the project build process."""
-
-    web_analytics_tag: Optional[str] = None
-    """The classifying tag for analytics."""
-
-    web_analytics_token: Optional[str] = None
-    """The auth token for analytics."""
-
-    build_caching: Optional[bool] = None
-    """Enable build caching for the project."""
-
-    build_command: Optional[str] = None
-    """Command used to build project."""
-
-    destination_dir: Optional[str] = None
-    """Assets output directory of the build."""
-
-    root_dir: Optional[str] = None
-    """Directory to run the command."""
-
-
-class CanonicalDeploymentDeploymentTriggerMetadata(BaseModel):
-    """Additional info about the trigger."""
-
-    branch: str
-    """Where the trigger happened."""
-
-    commit_dirty: bool
-    """Whether the deployment trigger commit was dirty."""
-
-    commit_hash: str
-    """Hash of the deployment trigger commit."""
-
-    commit_message: str
-    """Message of the deployment trigger commit."""
-
-
-class CanonicalDeploymentDeploymentTrigger(BaseModel):
-    """Info about what caused the deployment."""
-
-    metadata: CanonicalDeploymentDeploymentTriggerMetadata
-    """Additional info about the trigger."""
-
-    type: Literal["github:push", "ad_hoc", "deploy_hook"]
-    """What caused the deployment."""
-
-
-class CanonicalDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
-    """A plaintext environment variable."""
-
-    type: Literal["plain_text"]
-
-    value: str
-    """Environment variable value."""
-
-
-class CanonicalDeploymentEnvVarsPagesSecretTextEnvVar(BaseModel):
-    """An encrypted environment variable."""
-
-    type: Literal["secret_text"]
-
-    value: str
-    """Secret value."""
-
-
-CanonicalDeploymentEnvVars: TypeAlias = Annotated[
-    Union[
-        Optional[CanonicalDeploymentEnvVarsPagesPlainTextEnvVar],
-        Optional[CanonicalDeploymentEnvVarsPagesSecretTextEnvVar],
-        None,
-    ],
-    PropertyInfo(discriminator="type"),
-]
-
-
-class CanonicalDeploymentSourceConfig(BaseModel):
-    deployments_enabled: bool
-    """
-    Whether to enable automatic deployments when pushing to the source repository.
-    When disabled, no deployments (production or preview) will be triggered
-    automatically.
-    """
-
-    owner: str
-    """The owner of the repository."""
-
-    owner_id: str
-    """The owner ID of the repository."""
-
-    path_excludes: List[str]
-    """A list of paths that should be excluded from triggering a preview deployment.
-
-    Wildcard syntax (`*`) is supported.
-    """
-
-    path_includes: List[str]
-    """A list of paths that should be watched to trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported.
-    """
-
-    pr_comments_enabled: bool
-    """Whether to enable PR comments."""
-
-    preview_branch_excludes: List[str]
-    """A list of branches that should not trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported. Must be used with
-    `preview_deployment_setting` set to `custom`.
-    """
-
-    preview_branch_includes: List[str]
-    """A list of branches that should trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported. Must be used with
-    `preview_deployment_setting` set to `custom`.
-    """
-
-    preview_deployment_setting: Literal["all", "none", "custom"]
-    """Controls whether commits to preview branches trigger a preview deployment."""
-
-    production_branch: str
-    """The production branch of the repository."""
-
-    production_deployments_enabled: bool
-    """Whether to trigger a production deployment on commits to the production branch."""
-
-    repo_id: str
-    """The ID of the repository."""
-
-    repo_name: str
-    """The name of the repository."""
-
-
-class CanonicalDeploymentSource(BaseModel):
-    """Configs for the project source control."""
-
-    config: CanonicalDeploymentSourceConfig
-
-    type: Literal["github", "gitlab"]
-    """The source control management provider."""
-
-
-class CanonicalDeployment(BaseModel):
-    """Most recent production deployment of the project."""
-
-    id: str
-    """Id of the deployment."""
-
-    aliases: Optional[List[str]] = None
-    """A list of alias URLs pointing to this deployment."""
-
-    build_config: CanonicalDeploymentBuildConfig
-    """Configs for the project build process."""
-
-    created_on: datetime
-    """When the deployment was created."""
-
-    deployment_trigger: CanonicalDeploymentDeploymentTrigger
-    """Info about what caused the deployment."""
-
-    env_vars: Optional[Dict[str, Optional[CanonicalDeploymentEnvVars]]] = None
-    """Environment variables used for builds and Pages Functions."""
-
-    environment: Literal["preview", "production"]
-    """Type of deploy."""
-
-    is_skipped: bool
-    """If the deployment has been skipped."""
-
-    latest_stage: Stage
-    """The status of the deployment."""
-
-    modified_on: datetime
-    """When the deployment was last modified."""
-
-    project_id: str
-    """Id of the project."""
-
-    project_name: str
-    """Name of the project."""
-
-    short_id: str
-    """Short Id (8 character) of the deployment."""
-
-    source: CanonicalDeploymentSource
-    """Configs for the project source control."""
-
-    stages: List[Stage]
-    """List of past stages."""
-
-    url: str
-    """The live URL to view this deployment."""
-
-    uses_functions: Optional[bool] = None
-    """Whether the deployment uses functions."""
 
 
 class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(BaseModel):
@@ -680,205 +463,6 @@ class DeploymentConfigs(BaseModel):
     """Configs for production deploys."""
 
 
-class LatestDeploymentBuildConfig(BaseModel):
-    """Configs for the project build process."""
-
-    web_analytics_tag: Optional[str] = None
-    """The classifying tag for analytics."""
-
-    web_analytics_token: Optional[str] = None
-    """The auth token for analytics."""
-
-    build_caching: Optional[bool] = None
-    """Enable build caching for the project."""
-
-    build_command: Optional[str] = None
-    """Command used to build project."""
-
-    destination_dir: Optional[str] = None
-    """Assets output directory of the build."""
-
-    root_dir: Optional[str] = None
-    """Directory to run the command."""
-
-
-class LatestDeploymentDeploymentTriggerMetadata(BaseModel):
-    """Additional info about the trigger."""
-
-    branch: str
-    """Where the trigger happened."""
-
-    commit_dirty: bool
-    """Whether the deployment trigger commit was dirty."""
-
-    commit_hash: str
-    """Hash of the deployment trigger commit."""
-
-    commit_message: str
-    """Message of the deployment trigger commit."""
-
-
-class LatestDeploymentDeploymentTrigger(BaseModel):
-    """Info about what caused the deployment."""
-
-    metadata: LatestDeploymentDeploymentTriggerMetadata
-    """Additional info about the trigger."""
-
-    type: Literal["github:push", "ad_hoc", "deploy_hook"]
-    """What caused the deployment."""
-
-
-class LatestDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
-    """A plaintext environment variable."""
-
-    type: Literal["plain_text"]
-
-    value: str
-    """Environment variable value."""
-
-
-class LatestDeploymentEnvVarsPagesSecretTextEnvVar(BaseModel):
-    """An encrypted environment variable."""
-
-    type: Literal["secret_text"]
-
-    value: str
-    """Secret value."""
-
-
-LatestDeploymentEnvVars: TypeAlias = Annotated[
-    Union[
-        Optional[LatestDeploymentEnvVarsPagesPlainTextEnvVar],
-        Optional[LatestDeploymentEnvVarsPagesSecretTextEnvVar],
-        None,
-    ],
-    PropertyInfo(discriminator="type"),
-]
-
-
-class LatestDeploymentSourceConfig(BaseModel):
-    deployments_enabled: bool
-    """
-    Whether to enable automatic deployments when pushing to the source repository.
-    When disabled, no deployments (production or preview) will be triggered
-    automatically.
-    """
-
-    owner: str
-    """The owner of the repository."""
-
-    owner_id: str
-    """The owner ID of the repository."""
-
-    path_excludes: List[str]
-    """A list of paths that should be excluded from triggering a preview deployment.
-
-    Wildcard syntax (`*`) is supported.
-    """
-
-    path_includes: List[str]
-    """A list of paths that should be watched to trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported.
-    """
-
-    pr_comments_enabled: bool
-    """Whether to enable PR comments."""
-
-    preview_branch_excludes: List[str]
-    """A list of branches that should not trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported. Must be used with
-    `preview_deployment_setting` set to `custom`.
-    """
-
-    preview_branch_includes: List[str]
-    """A list of branches that should trigger a preview deployment.
-
-    Wildcard syntax (`*`) is supported. Must be used with
-    `preview_deployment_setting` set to `custom`.
-    """
-
-    preview_deployment_setting: Literal["all", "none", "custom"]
-    """Controls whether commits to preview branches trigger a preview deployment."""
-
-    production_branch: str
-    """The production branch of the repository."""
-
-    production_deployments_enabled: bool
-    """Whether to trigger a production deployment on commits to the production branch."""
-
-    repo_id: str
-    """The ID of the repository."""
-
-    repo_name: str
-    """The name of the repository."""
-
-
-class LatestDeploymentSource(BaseModel):
-    """Configs for the project source control."""
-
-    config: LatestDeploymentSourceConfig
-
-    type: Literal["github", "gitlab"]
-    """The source control management provider."""
-
-
-class LatestDeployment(BaseModel):
-    """Most recent deployment of the project."""
-
-    id: str
-    """Id of the deployment."""
-
-    aliases: Optional[List[str]] = None
-    """A list of alias URLs pointing to this deployment."""
-
-    build_config: LatestDeploymentBuildConfig
-    """Configs for the project build process."""
-
-    created_on: datetime
-    """When the deployment was created."""
-
-    deployment_trigger: LatestDeploymentDeploymentTrigger
-    """Info about what caused the deployment."""
-
-    env_vars: Optional[Dict[str, Optional[LatestDeploymentEnvVars]]] = None
-    """Environment variables used for builds and Pages Functions."""
-
-    environment: Literal["preview", "production"]
-    """Type of deploy."""
-
-    is_skipped: bool
-    """If the deployment has been skipped."""
-
-    latest_stage: Stage
-    """The status of the deployment."""
-
-    modified_on: datetime
-    """When the deployment was last modified."""
-
-    project_id: str
-    """Id of the project."""
-
-    project_name: str
-    """Name of the project."""
-
-    short_id: str
-    """Short Id (8 character) of the deployment."""
-
-    source: LatestDeploymentSource
-    """Configs for the project source control."""
-
-    stages: List[Stage]
-    """List of past stages."""
-
-    url: str
-    """The live URL to view this deployment."""
-
-    uses_functions: Optional[bool] = None
-    """Whether the deployment uses functions."""
-
-
 class BuildConfig(BaseModel):
     """Configs for the project build process."""
 
@@ -969,11 +553,11 @@ class Source(BaseModel):
     """The source control management provider."""
 
 
-class ProjectGetResponse(BaseModel):
+class Project(BaseModel):
     id: str
     """ID of the project."""
 
-    canonical_deployment: Optional[CanonicalDeployment] = None
+    canonical_deployment: Optional[Deployment] = None
     """Most recent production deployment of the project."""
 
     created_on: datetime
@@ -988,7 +572,7 @@ class ProjectGetResponse(BaseModel):
     framework_version: str
     """Version of the framework the project is using."""
 
-    latest_deployment: Optional[LatestDeployment] = None
+    latest_deployment: Optional[Deployment] = None
     """Most recent deployment of the project."""
 
     name: str

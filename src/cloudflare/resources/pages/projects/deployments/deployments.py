@@ -29,11 +29,7 @@ from .history.history import (
 )
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.pages.projects import deployment_list_params, deployment_create_params
-from .....types.pages.projects.deployment_get_response import DeploymentGetResponse
-from .....types.pages.projects.deployment_list_response import DeploymentListResponse
-from .....types.pages.projects.deployment_retry_response import DeploymentRetryResponse
-from .....types.pages.projects.deployment_create_response import DeploymentCreateResponse
-from .....types.pages.projects.deployment_rollback_response import DeploymentRollbackResponse
+from .....types.pages.deployment import Deployment
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -86,7 +82,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentCreateResponse:
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -181,9 +177,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def list(
@@ -200,7 +196,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[DeploymentListResponse]:
+    ) -> SyncV4PagePaginationArray[Deployment]:
         """
         Fetch a list of project deployments.
 
@@ -229,7 +225,7 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=SyncV4PagePaginationArray[DeploymentListResponse],
+            page=SyncV4PagePaginationArray[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -244,7 +240,7 @@ class DeploymentsResource(SyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=DeploymentListResponse,
+            model=Deployment,
         )
 
     def delete(
@@ -308,7 +304,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentGetResponse:
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -340,9 +336,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def retry(
@@ -357,7 +353,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentRetryResponse:
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -389,9 +385,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def rollback(
@@ -406,7 +402,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentRollbackResponse:
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -440,9 +436,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 
@@ -494,7 +490,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentCreateResponse:
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -589,9 +585,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def list(
@@ -608,7 +604,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DeploymentListResponse, AsyncV4PagePaginationArray[DeploymentListResponse]]:
+    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
         """
         Fetch a list of project deployments.
 
@@ -637,7 +633,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=AsyncV4PagePaginationArray[DeploymentListResponse],
+            page=AsyncV4PagePaginationArray[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -652,7 +648,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=DeploymentListResponse,
+            model=Deployment,
         )
 
     async def delete(
@@ -716,7 +712,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentGetResponse:
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -748,9 +744,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     async def retry(
@@ -765,7 +761,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentRetryResponse:
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -797,9 +793,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     async def rollback(
@@ -814,7 +810,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DeploymentRollbackResponse:
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -848,9 +844,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 

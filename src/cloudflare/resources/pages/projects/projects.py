@@ -28,6 +28,7 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....types.pages import project_edit_params, project_list_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.pages.project import Project
 from .deployments.deployments import (
     DeploymentsResource,
     AsyncDeploymentsResource,
@@ -36,10 +37,6 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
-from ....types.pages.project_get_response import ProjectGetResponse
-from ....types.pages.project_edit_response import ProjectEditResponse
-from ....types.pages.project_list_response import ProjectListResponse
-from ....types.pages.project_create_response import ProjectCreateResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -87,7 +84,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectCreateResponse:
+    ) -> Project:
         """
         Create a new project.
 
@@ -131,9 +128,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def list(
@@ -148,7 +145,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[ProjectListResponse]:
+    ) -> SyncV4PagePaginationArray[Project]:
         """
         Fetch a list of all user projects.
 
@@ -171,7 +168,7 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=SyncV4PagePaginationArray[ProjectListResponse],
+            page=SyncV4PagePaginationArray[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -185,7 +182,7 @@ class ProjectsResource(SyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            model=ProjectListResponse,
+            model=Project,
         )
 
     def delete(
@@ -248,7 +245,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectEditResponse:
+    ) -> Project:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -298,9 +295,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def get(
@@ -314,7 +311,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectGetResponse:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -342,9 +339,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def purge_build_cache(
@@ -435,7 +432,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectCreateResponse:
+    ) -> Project:
         """
         Create a new project.
 
@@ -479,9 +476,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def list(
@@ -496,7 +493,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ProjectListResponse, AsyncV4PagePaginationArray[ProjectListResponse]]:
+    ) -> AsyncPaginator[Project, AsyncV4PagePaginationArray[Project]]:
         """
         Fetch a list of all user projects.
 
@@ -519,7 +516,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=AsyncV4PagePaginationArray[ProjectListResponse],
+            page=AsyncV4PagePaginationArray[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -533,7 +530,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            model=ProjectListResponse,
+            model=Project,
         )
 
     async def delete(
@@ -596,7 +593,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectEditResponse:
+    ) -> Project:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -646,9 +643,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     async def get(
@@ -662,7 +659,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProjectGetResponse:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -690,9 +687,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     async def purge_build_cache(
