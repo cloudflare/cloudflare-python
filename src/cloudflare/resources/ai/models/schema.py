@@ -19,6 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.ai.models import schema_get_params
+from ....types.ai.models.schema_get_response import SchemaGetResponse
 
 __all__ = ["SchemaResource", "AsyncSchemaResource"]
 
@@ -54,7 +55,7 @@ class SchemaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SchemaGetResponse:
         """
         Get Model Schema
 
@@ -79,9 +80,9 @@ class SchemaResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"model": model}, schema_get_params.SchemaGetParams),
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[SchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SchemaGetResponse], ResultWrapper[SchemaGetResponse]),
         )
 
 
@@ -116,7 +117,7 @@ class AsyncSchemaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SchemaGetResponse:
         """
         Get Model Schema
 
@@ -141,9 +142,9 @@ class AsyncSchemaResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"model": model}, schema_get_params.SchemaGetParams),
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[SchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SchemaGetResponse], ResultWrapper[SchemaGetResponse]),
         )
 
 

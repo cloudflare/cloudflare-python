@@ -1,14 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
-__all__ = ["Consumer", "MqWorkerConsumer", "MqWorkerConsumerSettings", "MqHTTPConsumer", "MqHTTPConsumerSettings"]
+__all__ = [
+    "ConsumerListResponse",
+    "MqWorkerConsumerResponse",
+    "MqWorkerConsumerResponseSettings",
+    "MqHTTPConsumerResponse",
+    "MqHTTPConsumerResponseSettings",
+]
 
 
-class MqWorkerConsumerSettings(BaseModel):
+class MqWorkerConsumerResponseSettings(BaseModel):
     batch_size: Optional[float] = None
     """The maximum number of messages to include in a batch."""
 
@@ -34,24 +42,26 @@ class MqWorkerConsumerSettings(BaseModel):
     """
 
 
-class MqWorkerConsumer(BaseModel):
+class MqWorkerConsumerResponse(BaseModel):
     consumer_id: Optional[str] = None
     """A Resource identifier."""
 
-    created_on: Optional[str] = None
+    created_on: Optional[datetime] = None
 
-    queue_id: Optional[str] = None
-    """A Resource identifier."""
+    dead_letter_queue: Optional[str] = None
+    """Name of the dead letter queue, or empty string if not configured"""
 
-    script: Optional[str] = None
+    queue_name: Optional[str] = None
+
+    script_name: Optional[str] = None
     """Name of a Worker"""
 
-    settings: Optional[MqWorkerConsumerSettings] = None
+    settings: Optional[MqWorkerConsumerResponseSettings] = None
 
     type: Optional[Literal["worker"]] = None
 
 
-class MqHTTPConsumerSettings(BaseModel):
+class MqHTTPConsumerResponseSettings(BaseModel):
     batch_size: Optional[float] = None
     """The maximum number of messages to include in a batch."""
 
@@ -71,18 +81,22 @@ class MqHTTPConsumerSettings(BaseModel):
     """
 
 
-class MqHTTPConsumer(BaseModel):
+class MqHTTPConsumerResponse(BaseModel):
     consumer_id: Optional[str] = None
     """A Resource identifier."""
 
-    created_on: Optional[str] = None
+    created_on: Optional[datetime] = None
 
-    queue_id: Optional[str] = None
-    """A Resource identifier."""
+    dead_letter_queue: Optional[str] = None
+    """Name of the dead letter queue, or empty string if not configured"""
 
-    settings: Optional[MqHTTPConsumerSettings] = None
+    queue_name: Optional[str] = None
+
+    settings: Optional[MqHTTPConsumerResponseSettings] = None
 
     type: Optional[Literal["http_pull"]] = None
 
 
-Consumer: TypeAlias = Union[MqWorkerConsumer, MqHTTPConsumer]
+ConsumerListResponse: TypeAlias = Annotated[
+    Union[MqWorkerConsumerResponse, MqHTTPConsumerResponse], PropertyInfo(discriminator="type")
+]

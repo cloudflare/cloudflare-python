@@ -14,6 +14,8 @@ class VersionGetResponse(BaseModel):
 
     created_on: datetime
 
+    has_dag: bool
+
     modified_on: datetime
 
     workflow_id: str

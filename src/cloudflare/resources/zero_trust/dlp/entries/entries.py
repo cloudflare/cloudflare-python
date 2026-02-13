@@ -93,6 +93,7 @@ class EntriesResource(SyncAPIResource):
         enabled: bool,
         name: str,
         pattern: PatternParam,
+        description: Optional[str] | Omit = omit,
         profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,6 +123,7 @@ class EntriesResource(SyncAPIResource):
                     "enabled": enabled,
                     "name": name,
                     "pattern": pattern,
+                    "description": description,
                     "profile_id": profile_id,
                 },
                 entry_create_params.EntryCreateParams,
@@ -145,6 +147,7 @@ class EntriesResource(SyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
+        description: Optional[str] | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,6 +237,7 @@ class EntriesResource(SyncAPIResource):
         name: str | Omit = omit,
         pattern: PatternParam | Omit = omit,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
+        description: Optional[str] | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -255,6 +259,7 @@ class EntriesResource(SyncAPIResource):
                         "name": name,
                         "pattern": pattern,
                         "type": type,
+                        "description": description,
                         "enabled": enabled,
                     },
                     entry_update_params.EntryUpdateParams,
@@ -431,6 +436,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         enabled: bool,
         name: str,
         pattern: PatternParam,
+        description: Optional[str] | Omit = omit,
         profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -460,6 +466,7 @@ class AsyncEntriesResource(AsyncAPIResource):
                     "enabled": enabled,
                     "name": name,
                     "pattern": pattern,
+                    "description": description,
                     "profile_id": profile_id,
                 },
                 entry_create_params.EntryCreateParams,
@@ -483,6 +490,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
+        description: Optional[str] | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -572,6 +580,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         name: str | Omit = omit,
         pattern: PatternParam | Omit = omit,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
+        description: Optional[str] | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -593,6 +602,7 @@ class AsyncEntriesResource(AsyncAPIResource):
                         "name": name,
                         "pattern": pattern,
                         "type": type,
+                        "description": description,
                         "enabled": enabled,
                     },
                     entry_update_params.EntryUpdateParams,

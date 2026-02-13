@@ -22,4 +22,6 @@ class CustomUpdateResponse(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+
     profile_id: Optional[str] = None

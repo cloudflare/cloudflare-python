@@ -9,8 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.snippets import RuleListResponse, RuleDeleteResponse, RuleUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +27,7 @@ class TestRules:
                 }
             ],
         )
-        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -46,7 +44,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -63,7 +61,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +83,7 @@ class TestRules:
         rule = client.snippets.rules.list(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(SyncSinglePage[RuleListResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -96,7 +94,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncSinglePage[RuleListResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -107,7 +105,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncSinglePage[RuleListResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +121,7 @@ class TestRules:
         rule = client.snippets.rules.delete(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -134,7 +132,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -145,7 +143,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -173,7 +171,7 @@ class TestAsyncRules:
                 }
             ],
         )
-        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -190,7 +188,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -207,7 +205,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +227,7 @@ class TestAsyncRules:
         rule = await async_client.snippets.rules.list(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(AsyncSinglePage[RuleListResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -240,7 +238,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncSinglePage[RuleListResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -251,7 +249,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncSinglePage[RuleListResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -267,7 +265,7 @@ class TestAsyncRules:
         rule = await async_client.snippets.rules.delete(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -278,7 +276,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -289,7 +287,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -145,11 +145,15 @@ class ZonesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
-        """
-        Create Zone
+        """Create Zone
 
         Args:
           name: The domain name.
+
+        Per
+              [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.4) the
+              overall zone name can be up to 253 characters, with each segment ("label") not
+              exceeding 63 characters.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.
@@ -465,11 +469,15 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
-        """
-        Create Zone
+        """Create Zone
 
         Args:
           name: The domain name.
+
+        Per
+              [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.4) the
+              overall zone name can be up to 253 characters, with each segment ("label") not
+              exceeding 63 characters.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.

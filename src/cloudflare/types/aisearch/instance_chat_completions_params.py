@@ -14,10 +14,6 @@ __all__ = [
     "AISearchOptionsQueryRewrite",
     "AISearchOptionsReranking",
     "AISearchOptionsRetrieval",
-    "AISearchOptionsRetrievalFilters",
-    "AISearchOptionsRetrievalFiltersUnionMember0",
-    "AISearchOptionsRetrievalFiltersUnionMember1",
-    "AISearchOptionsRetrievalFiltersUnionMember1Filter",
 ]
 
 
@@ -30,6 +26,7 @@ class InstanceChatCompletionsParams(TypedDict, total=False):
 
     model: Literal[
         "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "@cf/zai-org/glm-4.7-flash",
         "@cf/meta/llama-3.1-8b-instruct-fast",
         "@cf/meta/llama-3.1-8b-instruct-fp8",
         "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -74,6 +71,7 @@ class AISearchOptionsQueryRewrite(TypedDict, total=False):
 
     model: Literal[
         "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "@cf/zai-org/glm-4.7-flash",
         "@cf/meta/llama-3.1-8b-instruct-fast",
         "@cf/meta/llama-3.1-8b-instruct-fp8",
         "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -112,43 +110,18 @@ class AISearchOptionsReranking(TypedDict, total=False):
     model: Literal["@cf/baai/bge-reranker-base", ""]
 
 
-class AISearchOptionsRetrievalFiltersUnionMember0(TypedDict, total=False):
-    key: Required[str]
-
-    type: Required[Literal["eq", "ne", "gt", "gte", "lt", "lte"]]
-
-    value: Required[Union[str, float, bool]]
-
-
-class AISearchOptionsRetrievalFiltersUnionMember1Filter(TypedDict, total=False):
-    key: Required[str]
-
-    type: Required[Literal["eq", "ne", "gt", "gte", "lt", "lte"]]
-
-    value: Required[Union[str, float, bool]]
-
-
-class AISearchOptionsRetrievalFiltersUnionMember1(TypedDict, total=False):
-    filters: Required[Iterable[AISearchOptionsRetrievalFiltersUnionMember1Filter]]
-
-    type: Required[Literal["and", "or"]]
-
-
-AISearchOptionsRetrievalFilters: TypeAlias = Union[
-    AISearchOptionsRetrievalFiltersUnionMember0, AISearchOptionsRetrievalFiltersUnionMember1
-]
-
-
 class AISearchOptionsRetrieval(TypedDict, total=False):
     context_expansion: int
 
-    filters: AISearchOptionsRetrievalFilters
+    filters: Dict[str, object]
 
     match_threshold: float
 
     max_num_results: int
 
     retrieval_type: Literal["vector", "keyword", "hybrid"]
+
+    return_on_failure: bool
 
 
 class AISearchOptions(TypedDict, total=False):

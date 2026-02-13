@@ -496,8 +496,8 @@ class CTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CTTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of certificates grouped by chosen the specified
-        dimension over time.
+        Retrieves the distribution of certificates grouped by the specified dimension
+        over time.
 
         Args:
           dimension: Specifies the certificate attribute by which to group the results.
@@ -1060,8 +1060,8 @@ class AsyncCTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CTTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of certificates grouped by chosen the specified
-        dimension over time.
+        Retrieves the distribution of certificates grouped by the specified dimension
+        over time.
 
         Args:
           dimension: Specifies the certificate attribute by which to group the results.

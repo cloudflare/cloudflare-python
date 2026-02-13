@@ -40,6 +40,7 @@ class TestTimeseriesGroups:
             timeseries_group = client.radar.ai.timeseries_groups.summary(
                 dimension="USER_AGENT",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -50,6 +51,7 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                user_agent=["string"],
                 vertical=["string"],
             )
 
@@ -94,6 +96,7 @@ class TestTimeseriesGroups:
             timeseries_group = client.radar.ai.timeseries_groups.timeseries(
                 agg_interval="1h",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -148,6 +151,7 @@ class TestTimeseriesGroups:
                 dimension="USER_AGENT",
                 agg_interval="1h",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -158,7 +162,8 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                normalization="MIN0_MAX",
+                normalization="PERCENTAGE",
+                user_agent=["string"],
                 vertical=["string"],
             )
 
@@ -258,6 +263,7 @@ class TestAsyncTimeseriesGroups:
             timeseries_group = await async_client.radar.ai.timeseries_groups.summary(
                 dimension="USER_AGENT",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -268,6 +274,7 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                user_agent=["string"],
                 vertical=["string"],
             )
 
@@ -312,6 +319,7 @@ class TestAsyncTimeseriesGroups:
             timeseries_group = await async_client.radar.ai.timeseries_groups.timeseries(
                 agg_interval="1h",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -366,6 +374,7 @@ class TestAsyncTimeseriesGroups:
                 dimension="USER_AGENT",
                 agg_interval="1h",
                 asn=["string"],
+                content_type=["HTML"],
                 continent=["string"],
                 crawl_purpose=["string"],
                 date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -376,7 +385,8 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                normalization="MIN0_MAX",
+                normalization="PERCENTAGE",
+                user_agent=["string"],
                 vertical=["string"],
             )
 

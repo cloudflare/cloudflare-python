@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,6 +57,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
         vendor: Literal["s3"],
         endpoint: Optional[str] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -88,6 +89,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
         vendor: Literal["gcs"],
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -119,6 +121,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -152,6 +155,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Literal["s3"] | Literal["gcs"] | Provider,
         endpoint: Optional[str] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -172,6 +176,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
                     "secret": secret,
                     "vendor": vendor,
                     "endpoint": endpoint,
+                    "keys": keys,
                     "path_prefix": path_prefix,
                     "region": region,
                     "jurisdiction": jurisdiction,
@@ -272,6 +277,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
         vendor: Literal["s3"],
         endpoint: Optional[str] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -303,6 +309,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
         vendor: Literal["gcs"],
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,6 +341,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -367,6 +375,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Literal["s3"] | Literal["gcs"] | Provider,
         endpoint: Optional[str] | Omit = omit,
+        keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -387,6 +396,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
                     "secret": secret,
                     "vendor": vendor,
                     "endpoint": endpoint,
+                    "keys": keys,
                     "path_prefix": path_prefix,
                     "region": region,
                     "jurisdiction": jurisdiction,

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
@@ -8,20 +8,15 @@ from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "Queue",
-    "Consumer",
-    "ConsumerMqWorkerConsumerResponse",
-    "ConsumerMqWorkerConsumerResponseSettings",
-    "ConsumerMqHTTPConsumerResponse",
-    "ConsumerMqHTTPConsumerResponseSettings",
-    "Producer",
-    "ProducerMqWorkerProducer",
-    "ProducerMqR2Producer",
-    "Settings",
+    "ConsumerUpdateResponse",
+    "MqWorkerConsumerResponse",
+    "MqWorkerConsumerResponseSettings",
+    "MqHTTPConsumerResponse",
+    "MqHTTPConsumerResponseSettings",
 ]
 
 
-class ConsumerMqWorkerConsumerResponseSettings(BaseModel):
+class MqWorkerConsumerResponseSettings(BaseModel):
     batch_size: Optional[float] = None
     """The maximum number of messages to include in a batch."""
 
@@ -47,7 +42,7 @@ class ConsumerMqWorkerConsumerResponseSettings(BaseModel):
     """
 
 
-class ConsumerMqWorkerConsumerResponse(BaseModel):
+class MqWorkerConsumerResponse(BaseModel):
     consumer_id: Optional[str] = None
     """A Resource identifier."""
 
@@ -61,12 +56,12 @@ class ConsumerMqWorkerConsumerResponse(BaseModel):
     script_name: Optional[str] = None
     """Name of a Worker"""
 
-    settings: Optional[ConsumerMqWorkerConsumerResponseSettings] = None
+    settings: Optional[MqWorkerConsumerResponseSettings] = None
 
     type: Optional[Literal["worker"]] = None
 
 
-class ConsumerMqHTTPConsumerResponseSettings(BaseModel):
+class MqHTTPConsumerResponseSettings(BaseModel):
     batch_size: Optional[float] = None
     """The maximum number of messages to include in a batch."""
 
@@ -86,7 +81,7 @@ class ConsumerMqHTTPConsumerResponseSettings(BaseModel):
     """
 
 
-class ConsumerMqHTTPConsumerResponse(BaseModel):
+class MqHTTPConsumerResponse(BaseModel):
     consumer_id: Optional[str] = None
     """A Resource identifier."""
 
@@ -97,57 +92,11 @@ class ConsumerMqHTTPConsumerResponse(BaseModel):
 
     queue_name: Optional[str] = None
 
-    settings: Optional[ConsumerMqHTTPConsumerResponseSettings] = None
+    settings: Optional[MqHTTPConsumerResponseSettings] = None
 
     type: Optional[Literal["http_pull"]] = None
 
 
-Consumer: TypeAlias = Annotated[
-    Union[ConsumerMqWorkerConsumerResponse, ConsumerMqHTTPConsumerResponse], PropertyInfo(discriminator="type")
+ConsumerUpdateResponse: TypeAlias = Annotated[
+    Union[MqWorkerConsumerResponse, MqHTTPConsumerResponse], PropertyInfo(discriminator="type")
 ]
-
-
-class ProducerMqWorkerProducer(BaseModel):
-    script: Optional[str] = None
-
-    type: Optional[Literal["worker"]] = None
-
-
-class ProducerMqR2Producer(BaseModel):
-    bucket_name: Optional[str] = None
-
-    type: Optional[Literal["r2_bucket"]] = None
-
-
-Producer: TypeAlias = Union[ProducerMqWorkerProducer, ProducerMqR2Producer]
-
-
-class Settings(BaseModel):
-    delivery_delay: Optional[float] = None
-    """Number of seconds to delay delivery of all messages to consumers."""
-
-    delivery_paused: Optional[bool] = None
-    """Indicates if message delivery to consumers is currently paused."""
-
-    message_retention_period: Optional[float] = None
-    """Number of seconds after which an unconsumed message will be delayed."""
-
-
-class Queue(BaseModel):
-    consumers: Optional[List[Consumer]] = None
-
-    consumers_total_count: Optional[float] = None
-
-    created_on: Optional[str] = None
-
-    modified_on: Optional[str] = None
-
-    producers: Optional[List[Producer]] = None
-
-    producers_total_count: Optional[float] = None
-
-    queue_id: Optional[str] = None
-
-    queue_name: Optional[str] = None
-
-    settings: Optional[Settings] = None

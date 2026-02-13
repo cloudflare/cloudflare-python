@@ -20,6 +20,7 @@ __all__ = [
     "PromptResponseFormat",
     "Messages",
     "MessagesMessage",
+    "MessagesMessageContentUnionMember1",
     "MessagesFunction",
     "MessagesResponseFormat",
     "MessagesTool",
@@ -284,8 +285,16 @@ class Messages(TypedDict, total=False):
     """
 
 
+class MessagesMessageContentUnionMember1(TypedDict, total=False):
+    text: str
+    """Text content"""
+
+    type: str
+    """Type of the content (text)"""
+
+
 class MessagesMessage(TypedDict, total=False):
-    content: Required[str]
+    content: Required[Union[str, Iterable[MessagesMessageContentUnionMember1]]]
     """The content of the message as a string."""
 
     role: Required[str]

@@ -388,7 +388,7 @@ class NetFlowsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetFlowsTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of NetFlows traffic, grouped by chosen the specified
+        Retrieves the distribution of NetFlows traffic, grouped by the specified
         dimension over time.
 
         Args:
@@ -823,7 +823,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetFlowsTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of NetFlows traffic, grouped by chosen the specified
+        Retrieves the distribution of NetFlows traffic, grouped by the specified
         dimension over time.
 
         Args:

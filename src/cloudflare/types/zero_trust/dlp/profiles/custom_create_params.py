@@ -52,6 +52,8 @@ class EntryDLPNewCustomEntry(TypedDict, total=False):
 
     pattern: Required[PatternParam]
 
+    description: Optional[str]
+
 
 class EntryDLPNewWordListEntry(TypedDict, total=False):
     enabled: Required[bool]

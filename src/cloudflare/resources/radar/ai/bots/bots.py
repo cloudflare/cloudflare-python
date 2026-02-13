@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -62,9 +62,30 @@ class BotsResource(SyncAPIResource):
 
     def summary_v2(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -75,6 +96,7 @@ class BotsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -94,6 +116,8 @@ class BotsResource(SyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -123,6 +147,8 @@ class BotsResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          user_agent: Filters results by user agent.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -145,6 +171,7 @@ class BotsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -155,6 +182,7 @@ class BotsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "user_agent": user_agent,
                         "vertical": vertical,
                     },
                     bot_summary_v2_params.BotSummaryV2Params,
@@ -169,6 +197,27 @@ class BotsResource(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -200,6 +249,8 @@ class BotsResource(SyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -252,6 +303,7 @@ class BotsResource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -274,10 +326,31 @@ class BotsResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -288,7 +361,8 @@ class BotsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,7 +372,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
+        Retrieves the distribution of HTTP requests from AI bots, grouped by the
         specified dimension over time.
 
         Args:
@@ -312,6 +386,8 @@ class BotsResource(SyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -344,6 +420,8 @@ class BotsResource(SyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          user_agent: Filters results by user agent.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -367,6 +445,7 @@ class BotsResource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -378,6 +457,7 @@ class BotsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "user_agent": user_agent,
                         "vertical": vertical,
                     },
                     bot_timeseries_groups_params.BotTimeseriesGroupsParams,
@@ -414,9 +494,30 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def summary_v2(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -427,6 +528,7 @@ class AsyncBotsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -446,6 +548,8 @@ class AsyncBotsResource(AsyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -475,6 +579,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          user_agent: Filters results by user agent.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -497,6 +603,7 @@ class AsyncBotsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -507,6 +614,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "user_agent": user_agent,
                         "vertical": vertical,
                     },
                     bot_summary_v2_params.BotSummaryV2Params,
@@ -521,6 +629,27 @@ class AsyncBotsResource(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -552,6 +681,8 @@ class AsyncBotsResource(AsyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -604,6 +735,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -626,10 +758,31 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         crawl_purpose: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -640,7 +793,8 @@ class AsyncBotsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -650,7 +804,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
+        Retrieves the distribution of HTTP requests from AI bots, grouped by the
         specified dimension over time.
 
         Args:
@@ -664,6 +818,8 @@ class AsyncBotsResource(AsyncAPIResource):
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -696,6 +852,8 @@ class AsyncBotsResource(AsyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          user_agent: Filters results by user agent.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -719,6 +877,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "content_type": content_type,
                         "continent": continent,
                         "crawl_purpose": crawl_purpose,
                         "date_end": date_end,
@@ -730,6 +889,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "user_agent": user_agent,
                         "vertical": vertical,
                     },
                     bot_timeseries_groups_params.BotTimeseriesGroupsParams,

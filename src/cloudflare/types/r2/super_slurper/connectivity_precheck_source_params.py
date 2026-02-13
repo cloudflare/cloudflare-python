@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 from ..buckets.provider import Provider
 
@@ -30,6 +31,8 @@ class R2SlurperS3SourceSchema(TypedDict, total=False):
 
     endpoint: Optional[str]
 
+    keys: Optional[SequenceNotStr[str]]
+
     path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 
     region: Optional[str]
@@ -50,6 +53,8 @@ class R2SlurperGcsSourceSchema(TypedDict, total=False):
 
     vendor: Required[Literal["gcs"]]
 
+    keys: Optional[SequenceNotStr[str]]
+
     path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 
 
@@ -69,6 +74,8 @@ class R2SlurperR2SourceSchema(TypedDict, total=False):
     vendor: Required[Provider]
 
     jurisdiction: Literal["default", "eu", "fedramp"]
+
+    keys: Optional[SequenceNotStr[str]]
 
     path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 

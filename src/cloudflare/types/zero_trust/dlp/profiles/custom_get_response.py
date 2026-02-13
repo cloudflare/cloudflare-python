@@ -21,6 +21,15 @@ __all__ = [
     "CustomEntryExactDataEntry",
     "CustomEntryDocumentFingerprintEntry",
     "CustomEntryWordListEntry",
+    "CustomSharedEntry",
+    "CustomSharedEntryCustomEntry",
+    "CustomSharedEntryPredefinedEntry",
+    "CustomSharedEntryPredefinedEntryConfidence",
+    "CustomSharedEntryPredefinedEntryVariant",
+    "CustomSharedEntryIntegrationEntry",
+    "CustomSharedEntryExactDataEntry",
+    "CustomSharedEntryDocumentFingerprintEntry",
+    "CustomSharedEntryWordListEntry",
     "Predefined",
     "PredefinedEntry",
     "PredefinedEntryCustomEntry",
@@ -41,6 +50,15 @@ __all__ = [
     "IntegrationEntryExactDataEntry",
     "IntegrationEntryDocumentFingerprintEntry",
     "IntegrationEntryWordListEntry",
+    "IntegrationSharedEntry",
+    "IntegrationSharedEntryCustomEntry",
+    "IntegrationSharedEntryPredefinedEntry",
+    "IntegrationSharedEntryPredefinedEntryConfidence",
+    "IntegrationSharedEntryPredefinedEntryVariant",
+    "IntegrationSharedEntryIntegrationEntry",
+    "IntegrationSharedEntryExactDataEntry",
+    "IntegrationSharedEntryDocumentFingerprintEntry",
+    "IntegrationSharedEntryWordListEntry",
 ]
 
 
@@ -58,6 +76,8 @@ class CustomEntryCustomEntry(BaseModel):
     type: Literal["custom"]
 
     updated_at: datetime
+
+    description: Optional[str] = None
 
     profile_id: Optional[str] = None
 
@@ -177,6 +197,141 @@ CustomEntry: TypeAlias = Union[
 ]
 
 
+class CustomSharedEntryCustomEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    pattern: Pattern
+
+    type: Literal["custom"]
+
+    updated_at: datetime
+
+    description: Optional[str] = None
+
+    profile_id: Optional[str] = None
+
+
+class CustomSharedEntryPredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+    """Indicates whether this entry has AI remote service validation."""
+
+    available: bool
+    """
+    Indicates whether this entry has any form of validation that is not an AI remote
+    service.
+    """
+
+
+class CustomSharedEntryPredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
+class CustomSharedEntryPredefinedEntry(BaseModel):
+    id: str
+
+    confidence: CustomSharedEntryPredefinedEntryConfidence
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["predefined"]
+
+    profile_id: Optional[str] = None
+
+    variant: Optional[CustomSharedEntryPredefinedEntryVariant] = None
+
+
+class CustomSharedEntryIntegrationEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class CustomSharedEntryExactDataEntry(BaseModel):
+    id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    secret: bool
+
+    type: Literal["exact_data"]
+
+    updated_at: datetime
+
+
+class CustomSharedEntryDocumentFingerprintEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_fingerprint"]
+
+    updated_at: datetime
+
+
+class CustomSharedEntryWordListEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["word_list"]
+
+    updated_at: datetime
+
+    word_list: object
+
+    profile_id: Optional[str] = None
+
+
+CustomSharedEntry: TypeAlias = Union[
+    CustomSharedEntryCustomEntry,
+    CustomSharedEntryPredefinedEntry,
+    CustomSharedEntryIntegrationEntry,
+    CustomSharedEntryExactDataEntry,
+    CustomSharedEntryDocumentFingerprintEntry,
+    CustomSharedEntryWordListEntry,
+]
+
+
 class Custom(BaseModel):
     id: str
     """The id of the profile (uuid)."""
@@ -212,6 +367,8 @@ class Custom(BaseModel):
 
     entries: Optional[List[CustomEntry]] = None
 
+    shared_entries: Optional[List[CustomSharedEntry]] = None
+
 
 class PredefinedEntryCustomEntry(BaseModel):
     id: str
@@ -227,6 +384,8 @@ class PredefinedEntryCustomEntry(BaseModel):
     type: Literal["custom"]
 
     updated_at: datetime
+
+    description: Optional[str] = None
 
     profile_id: Optional[str] = None
 
@@ -390,6 +549,8 @@ class IntegrationEntryCustomEntry(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+
     profile_id: Optional[str] = None
 
 
@@ -508,6 +669,141 @@ IntegrationEntry: TypeAlias = Union[
 ]
 
 
+class IntegrationSharedEntryCustomEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    pattern: Pattern
+
+    type: Literal["custom"]
+
+    updated_at: datetime
+
+    description: Optional[str] = None
+
+    profile_id: Optional[str] = None
+
+
+class IntegrationSharedEntryPredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+    """Indicates whether this entry has AI remote service validation."""
+
+    available: bool
+    """
+    Indicates whether this entry has any form of validation that is not an AI remote
+    service.
+    """
+
+
+class IntegrationSharedEntryPredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+    description: Optional[str] = None
+
+
+class IntegrationSharedEntryPredefinedEntry(BaseModel):
+    id: str
+
+    confidence: IntegrationSharedEntryPredefinedEntryConfidence
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["predefined"]
+
+    profile_id: Optional[str] = None
+
+    variant: Optional[IntegrationSharedEntryPredefinedEntryVariant] = None
+
+
+class IntegrationSharedEntryIntegrationEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class IntegrationSharedEntryExactDataEntry(BaseModel):
+    id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    secret: bool
+
+    type: Literal["exact_data"]
+
+    updated_at: datetime
+
+
+class IntegrationSharedEntryDocumentFingerprintEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_fingerprint"]
+
+    updated_at: datetime
+
+
+class IntegrationSharedEntryWordListEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["word_list"]
+
+    updated_at: datetime
+
+    word_list: object
+
+    profile_id: Optional[str] = None
+
+
+IntegrationSharedEntry: TypeAlias = Union[
+    IntegrationSharedEntryCustomEntry,
+    IntegrationSharedEntryPredefinedEntry,
+    IntegrationSharedEntryIntegrationEntry,
+    IntegrationSharedEntryExactDataEntry,
+    IntegrationSharedEntryDocumentFingerprintEntry,
+    IntegrationSharedEntryWordListEntry,
+]
+
+
 class Integration(BaseModel):
     id: str
 
@@ -516,6 +812,8 @@ class Integration(BaseModel):
     entries: List[IntegrationEntry]
 
     name: str
+
+    shared_entries: List[IntegrationSharedEntry]
 
     type: Literal["integration"]
 

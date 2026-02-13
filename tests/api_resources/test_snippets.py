@@ -132,7 +132,7 @@ class TestSnippets:
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(str, snippet, path=["response"])
+        assert_matches_type(object, snippet, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -144,7 +144,7 @@ class TestSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = response.parse()
-        assert_matches_type(str, snippet, path=["response"])
+        assert_matches_type(object, snippet, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -156,7 +156,7 @@ class TestSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = response.parse()
-            assert_matches_type(str, snippet, path=["response"])
+            assert_matches_type(object, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +338,7 @@ class TestAsyncSnippets:
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(str, snippet, path=["response"])
+        assert_matches_type(object, snippet, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -350,7 +350,7 @@ class TestAsyncSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = await response.parse()
-        assert_matches_type(str, snippet, path=["response"])
+        assert_matches_type(object, snippet, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -362,7 +362,7 @@ class TestAsyncSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = await response.parse()
-            assert_matches_type(str, snippet, path=["response"])
+            assert_matches_type(object, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

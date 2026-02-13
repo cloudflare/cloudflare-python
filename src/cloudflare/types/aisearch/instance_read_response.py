@@ -43,6 +43,8 @@ class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
 
 
 class PublicEndpointParamsMcp(BaseModel):
+    description: Optional[str] = None
+
     disabled: Optional[bool] = None
     """Disable MCP endpoint for this public endpoint"""
 
@@ -131,13 +133,7 @@ class InstanceReadResponse(BaseModel):
     id: str
     """Use your AI Search ID."""
 
-    account_id: str
-
-    account_tag: str
-
     created_at: datetime
-
-    internal_id: str
 
     modified_at: datetime
 
@@ -152,6 +148,7 @@ class InstanceReadResponse(BaseModel):
     aisearch_model: Optional[
         Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -184,8 +181,6 @@ class InstanceReadResponse(BaseModel):
 
     cache_threshold: Optional[Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]] = None
 
-    chunk: Optional[bool] = None
-
     chunk_overlap: Optional[int] = None
 
     chunk_size: Optional[int] = None
@@ -208,8 +203,6 @@ class InstanceReadResponse(BaseModel):
     ] = None
 
     enable: Optional[bool] = None
-
-    engine_version: Optional[float] = None
 
     hybrid_search_enabled: Optional[bool] = None
 
@@ -234,6 +227,7 @@ class InstanceReadResponse(BaseModel):
     rewrite_model: Optional[
         Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -270,45 +264,4 @@ class InstanceReadResponse(BaseModel):
 
     status: Optional[str] = None
 
-    summarization: Optional[bool] = None
-
-    summarization_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ] = None
-
-    system_prompt_aisearch: Optional[str] = FieldInfo(alias="system_prompt_ai_search", default=None)
-
-    system_prompt_index_summarization: Optional[str] = None
-
-    system_prompt_rewrite_query: Optional[str] = None
-
     token_id: Optional[str] = None
-
-    vectorize_active_namespace: Optional[str] = None

@@ -2791,16 +2791,22 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.queues import Consumer, ConsumerDeleteResponse
+from cloudflare.types.queues import (
+    ConsumerCreateResponse,
+    ConsumerUpdateResponse,
+    ConsumerListResponse,
+    ConsumerDeleteResponse,
+    ConsumerGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">create</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/consumer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer.py">Optional[Consumer]</a></code>
-- <code title="put /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">update</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer.py">Optional[Consumer]</a></code>
-- <code title="get /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">list</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/consumer.py">SyncSinglePage[Consumer]</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">create</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/consumer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_create_response.py">Optional[ConsumerCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">update</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_update_response.py">Optional[ConsumerUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">list</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/consumer_list_response.py">SyncSinglePage[ConsumerListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">delete</a>(consumer_id, \*, account_id, queue_id) -> <a href="./src/cloudflare/types/queues/consumer_delete_response.py">ConsumerDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">get</a>(consumer_id, \*, account_id, queue_id) -> <a href="./src/cloudflare/types/queues/consumer.py">Optional[Consumer]</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">get</a>(consumer_id, \*, account_id, queue_id) -> <a href="./src/cloudflare/types/queues/consumer_get_response.py">Optional[ConsumerGetResponse]</a></code>
 
 ## Subscriptions
 
@@ -9383,19 +9389,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.snippets import (
-    SnippetUpdateResponse,
-    SnippetListResponse,
-    SnippetDeleteResponse,
-    SnippetGetResponse,
-)
+from cloudflare.types.snippets import SnippetUpdateResponse, SnippetListResponse, SnippetGetResponse
 ```
 
 Methods:
 
 - <code title="put /zones/{zone_id}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">update</a>(snippet_name, \*, zone_id, \*\*<a href="src/cloudflare/types/snippets/snippet_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/snippet_update_response.py">SnippetUpdateResponse</a></code>
 - <code title="get /zones/{zone_id}/snippets">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/snippets/snippet_list_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/snippet_list_response.py">SyncV4PagePaginationArray[SnippetListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">delete</a>(snippet_name, \*, zone_id) -> <a href="./src/cloudflare/types/snippets/snippet_delete_response.py">str</a></code>
+- <code title="delete /zones/{zone_id}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">delete</a>(snippet_name, \*, zone_id) -> object</code>
 - <code title="get /zones/{zone_id}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">get</a>(snippet_name, \*, zone_id) -> <a href="./src/cloudflare/types/snippets/snippet_get_response.py">SnippetGetResponse</a></code>
 
 ## Content
@@ -9406,17 +9407,11 @@ Methods:
 
 ## Rules
 
-Types:
-
-```python
-from cloudflare.types.snippets import RuleUpdateResponse, RuleListResponse, RuleDeleteResponse
-```
-
 Methods:
 
-- <code title="put /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/snippets/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/rule_update_response.py">SyncSinglePage[RuleUpdateResponse]</a></code>
-- <code title="get /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/snippets/rule_list_response.py">SyncSinglePage[RuleListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/snippets/rule_delete_response.py">SyncSinglePage[RuleDeleteResponse]</a></code>
+- <code title="put /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/snippets/rule_update_params.py">params</a>) -> object</code>
+- <code title="get /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">list</a>(\*, zone_id) -> object</code>
+- <code title="delete /zones/{zone_id}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">delete</a>(\*, zone_id) -> object</code>
 
 # RealtimeKit
 
@@ -9814,7 +9809,6 @@ Types:
 from cloudflare.types.cloudforce_one import (
     ThreatEventCreateResponse,
     ThreatEventListResponse,
-    ThreatEventDeleteResponse,
     ThreatEventBulkCreateResponse,
     ThreatEventEditResponse,
     ThreatEventGetResponse,
@@ -9825,7 +9819,6 @@ Methods:
 
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">create</a>(\*, path_account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_create_response.py">ThreatEventCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_list_response.py">ThreatEventListResponse</a></code>
-- <code title="delete /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_delete_response.py">ThreatEventDeleteResponse</a></code>
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create/bulk">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">bulk_create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_bulk_create_response.py">ThreatEventBulkCreateResponse</a></code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">edit</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_edit_response.py">ThreatEventEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">get</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_get_response.py">ThreatEventGetResponse</a></code>
@@ -10613,9 +10606,15 @@ Methods:
 
 ### Schema
 
+Types:
+
+```python
+from cloudflare.types.ai.models import SchemaGetResponse
+```
+
 Methods:
 
-- <code title="get /accounts/{account_id}/ai/models/schema">client.ai.models.schema.<a href="./src/cloudflare/resources/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/models/schema_get_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/ai/models/schema">client.ai.models.schema.<a href="./src/cloudflare/resources/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/models/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/models/schema_get_response.py">SchemaGetResponse</a></code>
 
 ## ToMarkdown
 

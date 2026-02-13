@@ -41,6 +41,9 @@ class ActionParameters(TypedDict, total=False):
     bic: bool
     """Whether to enable Browser Integrity Check (BIC)."""
 
+    content_converter: bool
+    """Whether to enable content conversion (e.g., HTML to Markdown)."""
+
     disable_apps: Literal[True]
     """Whether to disable Cloudflare Apps."""
 

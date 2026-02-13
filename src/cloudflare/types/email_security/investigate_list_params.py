@@ -29,7 +29,7 @@ class InvestigateListParams(TypedDict, total=False):
     """The sender domains the search filters by."""
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The end of the search date range. Defaults to `now`."""
+    """The end of the search date range. Defaults to `now` if not provided."""
 
     final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
     """The dispositions the search filters by."""
@@ -79,6 +79,9 @@ class InvestigateListParams(TypedDict, total=False):
     sender: str
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The beginning of the search date range. Defaults to `now - 30 days`."""
+    """
+    The beginning of the search date range. Defaults to `now - 30 days` if not
+    provided.
+    """
 
     subject: str

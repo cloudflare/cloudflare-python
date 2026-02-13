@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -90,9 +90,10 @@ class InstancesResource(SyncAPIResource):
         id: str,
         source: str,
         type: Literal["r2", "web-crawler"],
-        ai_gateway_id: str | Omit = omit,
+        ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -143,6 +144,7 @@ class InstancesResource(SyncAPIResource):
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -240,9 +242,10 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        ai_gateway_id: str | Omit = omit,
+        ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -297,6 +300,7 @@ class InstancesResource(SyncAPIResource):
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -330,6 +334,7 @@ class InstancesResource(SyncAPIResource):
         summarization: bool | Omit = omit,
         summarization_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -357,9 +362,9 @@ class InstancesResource(SyncAPIResource):
             "",
         ]
         | Omit = omit,
-        system_prompt_aisearch: str | Omit = omit,
-        system_prompt_index_summarization: str | Omit = omit,
-        system_prompt_rewrite_query: str | Omit = omit,
+        system_prompt_aisearch: Optional[str] | Omit = omit,
+        system_prompt_index_summarization: Optional[str] | Omit = omit,
+        system_prompt_rewrite_query: Optional[str] | Omit = omit,
         token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -530,6 +535,7 @@ class InstancesResource(SyncAPIResource):
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -771,9 +777,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         source: str,
         type: Literal["r2", "web-crawler"],
-        ai_gateway_id: str | Omit = omit,
+        ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -824,6 +831,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -921,9 +929,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        ai_gateway_id: str | Omit = omit,
+        ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -978,6 +987,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -1011,6 +1021,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         summarization: bool | Omit = omit,
         summarization_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -1038,9 +1049,9 @@ class AsyncInstancesResource(AsyncAPIResource):
             "",
         ]
         | Omit = omit,
-        system_prompt_aisearch: str | Omit = omit,
-        system_prompt_index_summarization: str | Omit = omit,
-        system_prompt_rewrite_query: str | Omit = omit,
+        system_prompt_aisearch: Optional[str] | Omit = omit,
+        system_prompt_index_summarization: Optional[str] | Omit = omit,
+        system_prompt_rewrite_query: Optional[str] | Omit = omit,
         token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1211,6 +1222,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",

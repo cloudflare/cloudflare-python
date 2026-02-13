@@ -110,7 +110,6 @@ from ....types.cloudforce_one.threat_event_get_response import ThreatEventGetRes
 from ....types.cloudforce_one.threat_event_edit_response import ThreatEventEditResponse
 from ....types.cloudforce_one.threat_event_list_response import ThreatEventListResponse
 from ....types.cloudforce_one.threat_event_create_response import ThreatEventCreateResponse
-from ....types.cloudforce_one.threat_event_delete_response import ThreatEventDeleteResponse
 from ....types.cloudforce_one.threat_event_bulk_create_response import ThreatEventBulkCreateResponse
 
 __all__ = ["ThreatEventsResource", "AsyncThreatEventsResource"]
@@ -327,50 +326,6 @@ class ThreatEventsResource(SyncAPIResource):
                 ),
             ),
             cast_to=ThreatEventListResponse,
-        )
-
-    def delete(
-        self,
-        event_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ThreatEventDeleteResponse:
-        """The `datasetId` parameter must be defined.
-
-        To list existing datasets (and their
-        IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
-
-        Args:
-          account_id: Account ID.
-
-          event_id: Event UUID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not event_id:
-            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ThreatEventDeleteResponse,
         )
 
     def bulk_create(
@@ -756,50 +711,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventListResponse,
         )
 
-    async def delete(
-        self,
-        event_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ThreatEventDeleteResponse:
-        """The `datasetId` parameter must be defined.
-
-        To list existing datasets (and their
-        IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
-
-        Args:
-          account_id: Account ID.
-
-          event_id: Event UUID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not event_id:
-            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ThreatEventDeleteResponse,
-        )
-
     async def bulk_create(
         self,
         *,
@@ -980,9 +891,6 @@ class ThreatEventsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             threat_events.list,
         )
-        self.delete = to_raw_response_wrapper(
-            threat_events.delete,
-        )
         self.bulk_create = to_raw_response_wrapper(
             threat_events.bulk_create,
         )
@@ -1045,9 +953,6 @@ class AsyncThreatEventsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             threat_events.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            threat_events.delete,
         )
         self.bulk_create = async_to_raw_response_wrapper(
             threat_events.bulk_create,
@@ -1112,9 +1017,6 @@ class ThreatEventsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             threat_events.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            threat_events.delete,
-        )
         self.bulk_create = to_streamed_response_wrapper(
             threat_events.bulk_create,
         )
@@ -1177,9 +1079,6 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             threat_events.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            threat_events.delete,
         )
         self.bulk_create = async_to_streamed_response_wrapper(
             threat_events.bulk_create,

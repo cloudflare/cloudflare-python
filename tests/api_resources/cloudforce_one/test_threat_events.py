@@ -15,7 +15,6 @@ from cloudflare.types.cloudforce_one import (
     ThreatEventEditResponse,
     ThreatEventListResponse,
     ThreatEventCreateResponse,
-    ThreatEventDeleteResponse,
     ThreatEventBulkCreateResponse,
 )
 
@@ -185,58 +184,6 @@ class TestThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.threat_events.with_raw_response.list(
                 account_id="",
-            )
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    def test_method_delete(self, client: Cloudflare) -> None:
-        threat_event = client.cloudforce_one.threat_events.delete(
-            event_id="event_id",
-            account_id="account_id",
-        )
-        assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.cloudforce_one.threat_events.with_raw_response.delete(
-            event_id="event_id",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        threat_event = response.parse()
-        assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.cloudforce_one.threat_events.with_streaming_response.delete(
-            event_id="event_id",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            threat_event = response.parse()
-            assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.cloudforce_one.threat_events.with_raw_response.delete(
-                event_id="event_id",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
-            client.cloudforce_one.threat_events.with_raw_response.delete(
-                event_id="",
-                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
@@ -660,58 +607,6 @@ class TestAsyncThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.with_raw_response.list(
                 account_id="",
-            )
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        threat_event = await async_client.cloudforce_one.threat_events.delete(
-            event_id="event_id",
-            account_id="account_id",
-        )
-        assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.cloudforce_one.threat_events.with_raw_response.delete(
-            event_id="event_id",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        threat_event = await response.parse()
-        assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.cloudforce_one.threat_events.with_streaming_response.delete(
-            event_id="event_id",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            threat_event = await response.parse()
-            assert_matches_type(ThreatEventDeleteResponse, threat_event, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.cloudforce_one.threat_events.with_raw_response.delete(
-                event_id="event_id",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
-            await async_client.cloudforce_one.threat_events.with_raw_response.delete(
-                event_id="",
-                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")

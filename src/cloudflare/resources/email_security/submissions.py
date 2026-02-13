@@ -74,13 +74,14 @@ class SubmissionsResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          end: The end of the search date range. Defaults to `now`.
+          end: The end of the search date range. Defaults to `now` if not provided.
 
           page: The page number of paginated results.
 
           per_page: The number of results per page.
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days` if not
+              provided.
 
           extra_headers: Send extra headers
 
@@ -169,13 +170,14 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          end: The end of the search date range. Defaults to `now`.
+          end: The end of the search date range. Defaults to `now` if not provided.
 
           page: The page number of paginated results.
 
           per_page: The number of results per page.
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days` if not
+              provided.
 
           extra_headers: Send extra headers
 

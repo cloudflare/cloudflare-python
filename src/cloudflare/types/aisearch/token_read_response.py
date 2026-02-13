@@ -11,13 +11,7 @@ __all__ = ["TokenReadResponse"]
 class TokenReadResponse(BaseModel):
     id: str
 
-    account_id: str
-
-    account_tag: str
-
     cf_api_id: str
-
-    cf_api_key: str
 
     created_at: datetime
 
@@ -32,5 +26,3 @@ class TokenReadResponse(BaseModel):
     legacy: Optional[bool] = None
 
     modified_by: Optional[str] = None
-
-    synced_at: Optional[datetime] = None

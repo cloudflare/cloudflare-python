@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -35,11 +35,12 @@ class InstanceCreateParams(TypedDict, total=False):
 
     type: Required[Literal["r2", "web-crawler"]]
 
-    ai_gateway_id: str
+    ai_gateway_id: Optional[str]
 
     aisearch_model: Annotated[
         Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "@cf/zai-org/glm-4.7-flash",
             "@cf/meta/llama-3.1-8b-instruct-fast",
             "@cf/meta/llama-3.1-8b-instruct-fp8",
             "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -102,6 +103,7 @@ class InstanceCreateParams(TypedDict, total=False):
 
     rewrite_model: Literal[
         "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "@cf/zai-org/glm-4.7-flash",
         "@cf/meta/llama-3.1-8b-instruct-fast",
         "@cf/meta/llama-3.1-8b-instruct-fp8",
         "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -156,6 +158,8 @@ class PublicEndpointParamsChatCompletionsEndpoint(TypedDict, total=False):
 
 
 class PublicEndpointParamsMcp(TypedDict, total=False):
+    description: str
+
     disabled: bool
     """Disable MCP endpoint for this public endpoint"""
 

@@ -12,6 +12,7 @@ __all__ = [
     "CertificatePackCreateResponse",
     "Certificate",
     "CertificateGeoRestrictions",
+    "DCVDelegationRecord",
     "ValidationError",
     "ValidationRecord",
 ]
@@ -63,13 +64,14 @@ class Certificate(BaseModel):
     """Identifier."""
 
 
-class ValidationError(BaseModel):
-    message: Optional[str] = None
-    """A domain validation error."""
-
-
-class ValidationRecord(BaseModel):
+class DCVDelegationRecord(BaseModel):
     """Certificate's required validation record."""
+
+    cname: Optional[str] = None
+    """The CNAME record hostname for DCV delegation."""
+
+    cname_target: Optional[str] = None
+    """The CNAME record target value for DCV delegation."""
 
     emails: Optional[List[str]] = None
     """
@@ -85,6 +87,54 @@ class ValidationRecord(BaseModel):
 
     http_url: Optional[str] = None
     """The url that will be checked during domain validation."""
+
+    status: Optional[str] = None
+    """Status of the validation record."""
+
+    txt_name: Optional[str] = None
+    """
+    The hostname that the certificate authority (CA) will check for a TXT record
+    during domain validation .
+    """
+
+    txt_value: Optional[str] = None
+    """
+    The TXT record that the certificate authority (CA) will check during domain
+    validation.
+    """
+
+
+class ValidationError(BaseModel):
+    message: Optional[str] = None
+    """A domain validation error."""
+
+
+class ValidationRecord(BaseModel):
+    """Certificate's required validation record."""
+
+    cname: Optional[str] = None
+    """The CNAME record hostname for DCV delegation."""
+
+    cname_target: Optional[str] = None
+    """The CNAME record target value for DCV delegation."""
+
+    emails: Optional[List[str]] = None
+    """
+    The set of email addresses that the certificate authority (CA) will use to
+    complete domain validation.
+    """
+
+    http_body: Optional[str] = None
+    """
+    The content that the certificate authority (CA) will expect to find at the
+    http_url during the domain validation.
+    """
+
+    http_url: Optional[str] = None
+    """The url that will be checked during domain validation."""
+
+    status: Optional[str] = None
+    """Status of the validation record."""
 
     txt_name: Optional[str] = None
     """
@@ -136,6 +186,9 @@ class CertificatePackCreateResponse(BaseModel):
     This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to
     true.
     """
+
+    dcv_delegation_records: Optional[List[DCVDelegationRecord]] = None
+    """DCV Delegation records for domain validation."""
 
     primary_certificate: Optional[str] = None
     """Identifier of the primary certificate in a pack."""

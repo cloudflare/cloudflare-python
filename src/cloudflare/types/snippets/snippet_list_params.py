@@ -9,10 +9,10 @@ __all__ = ["SnippetListParams"]
 
 class SnippetListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """The unique ID of the zone."""
+    """Use this field to specify the unique ID of the zone."""
 
     page: int
-    """The current page number."""
+    """Specifies the current page number."""
 
     per_page: int
-    """The number of results to return per page."""
+    """Specifies how many results to return per page."""
