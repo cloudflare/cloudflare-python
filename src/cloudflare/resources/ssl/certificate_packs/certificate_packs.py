@@ -27,7 +27,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_params, certificate_pack_create_params
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.ssl.host import Host
 from ....types.ssl.certificate_pack_get_response import CertificatePackGetResponse
@@ -139,6 +139,9 @@ class CertificatePacksResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        deploy: Literal["staging", "production"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         status: Literal["all"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -146,12 +149,18 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[CertificatePackListResponse]:
+    ) -> SyncV4PagePaginationArray[CertificatePackListResponse]:
         """
         For a given zone, list all active certificate packs.
 
         Args:
           zone_id: Identifier.
+
+          deploy: Specify the deployment environment for the certificate packs.
+
+          page: Page number of paginated results.
+
+          per_page: Number of certificate packs per page.
 
           status: Include Certificate Packs of all statuses, not just active ones.
 
@@ -167,13 +176,21 @@ class CertificatePacksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page=SyncSinglePage[CertificatePackListResponse],
+            page=SyncV4PagePaginationArray[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+                query=maybe_transform(
+                    {
+                        "deploy": deploy,
+                        "page": page,
+                        "per_page": per_page,
+                        "status": status,
+                    },
+                    certificate_pack_list_params.CertificatePackListParams,
+                ),
             ),
             model=CertificatePackListResponse,
         )
@@ -426,6 +443,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        deploy: Literal["staging", "production"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         status: Literal["all"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -433,12 +453,18 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CertificatePackListResponse, AsyncSinglePage[CertificatePackListResponse]]:
+    ) -> AsyncPaginator[CertificatePackListResponse, AsyncV4PagePaginationArray[CertificatePackListResponse]]:
         """
         For a given zone, list all active certificate packs.
 
         Args:
           zone_id: Identifier.
+
+          deploy: Specify the deployment environment for the certificate packs.
+
+          page: Page number of paginated results.
+
+          per_page: Number of certificate packs per page.
 
           status: Include Certificate Packs of all statuses, not just active ones.
 
@@ -454,13 +480,21 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page=AsyncSinglePage[CertificatePackListResponse],
+            page=AsyncV4PagePaginationArray[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+                query=maybe_transform(
+                    {
+                        "deploy": deploy,
+                        "page": page,
+                        "per_page": per_page,
+                        "status": status,
+                    },
+                    certificate_pack_list_params.CertificatePackListParams,
+                ),
             ),
             model=CertificatePackListResponse,
         )
