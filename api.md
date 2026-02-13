@@ -7280,6 +7280,26 @@ Methods:
 
 - <code title="get /accounts/{account_id}/zerotrust/subnets">client.zero_trust.networks.subnets.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/subnets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnet_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnet_list_response.py">SyncV4PagePaginationArray[SubnetListResponse]</a></code>
 
+#### WARP
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.networks.subnets import (
+    WARPCreateResponse,
+    WARPDeleteResponse,
+    WARPEditResponse,
+    WARPGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/zerotrust/subnets/warp">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_create_response.py">WARPCreateResponse</a></code>
+- <code title="delete /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">delete</a>(subnet_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_delete_response.py">Optional[WARPDeleteResponse]</a></code>
+- <code title="patch /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">edit</a>(subnet_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_edit_response.py">WARPEditResponse</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">get</a>(subnet_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_get_response.py">WARPGetResponse</a></code>
+
 #### CloudflareSource
 
 Types:

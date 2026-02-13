@@ -6,6 +6,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .warp import (
+    WARPResource,
+    AsyncWARPResource,
+    WARPResourceWithRawResponse,
+    AsyncWARPResourceWithRawResponse,
+    WARPResourceWithStreamingResponse,
+    AsyncWARPResourceWithStreamingResponse,
+)
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform
 from ....._compat import cached_property
@@ -33,6 +41,10 @@ __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
 
 class SubnetsResource(SyncAPIResource):
+    @cached_property
+    def warp(self) -> WARPResource:
+        return WARPResource(self._client)
+
     @cached_property
     def cloudflare_source(self) -> CloudflareSourceResource:
         return CloudflareSourceResource(self._client)
@@ -150,6 +162,10 @@ class SubnetsResource(SyncAPIResource):
 
 
 class AsyncSubnetsResource(AsyncAPIResource):
+    @cached_property
+    def warp(self) -> AsyncWARPResource:
+        return AsyncWARPResource(self._client)
+
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResource:
         return AsyncCloudflareSourceResource(self._client)
@@ -275,6 +291,10 @@ class SubnetsResourceWithRawResponse:
         )
 
     @cached_property
+    def warp(self) -> WARPResourceWithRawResponse:
+        return WARPResourceWithRawResponse(self._subnets.warp)
+
+    @cached_property
     def cloudflare_source(self) -> CloudflareSourceResourceWithRawResponse:
         return CloudflareSourceResourceWithRawResponse(self._subnets.cloudflare_source)
 
@@ -286,6 +306,10 @@ class AsyncSubnetsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             subnets.list,
         )
+
+    @cached_property
+    def warp(self) -> AsyncWARPResourceWithRawResponse:
+        return AsyncWARPResourceWithRawResponse(self._subnets.warp)
 
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResourceWithRawResponse:
@@ -301,6 +325,10 @@ class SubnetsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def warp(self) -> WARPResourceWithStreamingResponse:
+        return WARPResourceWithStreamingResponse(self._subnets.warp)
+
+    @cached_property
     def cloudflare_source(self) -> CloudflareSourceResourceWithStreamingResponse:
         return CloudflareSourceResourceWithStreamingResponse(self._subnets.cloudflare_source)
 
@@ -312,6 +340,10 @@ class AsyncSubnetsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             subnets.list,
         )
+
+    @cached_property
+    def warp(self) -> AsyncWARPResourceWithStreamingResponse:
+        return AsyncWARPResourceWithStreamingResponse(self._subnets.warp)
 
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResourceWithStreamingResponse:
