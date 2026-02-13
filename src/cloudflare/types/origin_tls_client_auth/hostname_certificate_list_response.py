@@ -1,33 +1,48 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
+from typing_extensions import Literal
 
-from .authenticated_origin_pull import AuthenticatedOriginPull
+from ..._models import BaseModel
 
 __all__ = ["HostnameCertificateListResponse"]
 
 
-class HostnameCertificateListResponse(AuthenticatedOriginPull):
+class HostnameCertificateListResponse(BaseModel):
     id: Optional[str] = None
     """Identifier."""
 
-    cert_id: Optional[str] = None  # type: ignore
-    """Identifier."""
-
-    certificate: Optional[str] = None  # type: ignore
+    certificate: Optional[str] = None
     """The hostname certificate."""
 
-    enabled: Optional[bool] = None  # type: ignore
-    """Indicates whether hostname-level authenticated origin pulls is enabled.
+    expires_on: Optional[datetime] = None
+    """The date when the certificate expires."""
 
-    A null value voids the association.
-    """
+    issuer: Optional[str] = None
+    """The certificate authority that issued the certificate."""
 
-    hostname: Optional[str] = None  # type: ignore
-    """
-    The hostname on the origin for which the client certificate uploaded will be
-    used.
-    """
+    serial_number: Optional[str] = None
+    """The serial number on the uploaded certificate."""
 
-    private_key: Optional[str] = None
-    """The hostname certificate's private key."""
+    signature: Optional[str] = None
+    """The type of hash used for the certificate."""
+
+    status: Optional[
+        Literal[
+            "initializing",
+            "pending_deployment",
+            "pending_deletion",
+            "active",
+            "deleted",
+            "deployment_timed_out",
+            "deletion_timed_out",
+        ]
+    ] = None
+    """Status of the certificate or the association."""
+
+    updated_at: Optional[datetime] = None
+    """The time when the certificate was updated."""
+
+    uploaded_on: Optional[datetime] = None
+    """The time when the certificate was uploaded."""

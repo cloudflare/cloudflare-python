@@ -41,5 +41,8 @@ class HostnameCertificateDeleteResponse(BaseModel):
     ] = None
     """Status of the certificate or the association."""
 
+    updated_at: Optional[datetime] = None
+    """The time when the certificate was updated."""
+
     uploaded_on: Optional[datetime] = None
     """The time when the certificate was uploaded."""
