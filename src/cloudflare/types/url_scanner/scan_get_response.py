@@ -47,6 +47,11 @@ __all__ = [
     "MetaProcessorsWappaData",
     "MetaProcessorsWappaDataCategory",
     "MetaProcessorsWappaDataConfidence",
+    "MetaProcessorsRobotsTXT",
+    "MetaProcessorsRobotsTXTData",
+    "MetaProcessorsRobotsTXTDataRules",
+    "MetaProcessorsRobotsTXTDataRulesapi_empty",
+    "MetaProcessorsRobotsTXTDataRulesapi_emptyContentSignal",
     "MetaProcessorsURLCategories",
     "MetaProcessorsURLCategoriesData",
     "MetaProcessorsURLCategoriesDataContent",
@@ -498,6 +503,42 @@ class MetaProcessorsWappa(BaseModel):
     data: List[MetaProcessorsWappaData]
 
 
+class MetaProcessorsRobotsTXTDataRulesapi_emptyContentSignal(BaseModel):
+    ai_input: Optional[str] = FieldInfo(alias="ai-input", default=None)
+
+    ai_train: Optional[str] = FieldInfo(alias="ai-train", default=None)
+
+    search: Optional[str] = None
+
+
+class MetaProcessorsRobotsTXTDataRulesapi_empty(BaseModel):
+    allow: List[str]
+
+    disallow: List[str]
+
+    content_signal: Optional[MetaProcessorsRobotsTXTDataRulesapi_emptyContentSignal] = FieldInfo(
+        alias="contentSignal", default=None
+    )
+
+    crawl_delay: Optional[float] = FieldInfo(alias="crawlDelay", default=None)
+
+
+class MetaProcessorsRobotsTXTDataRules(BaseModel):
+    api_empty: MetaProcessorsRobotsTXTDataRulesapi_empty = FieldInfo(alias="*")
+
+
+class MetaProcessorsRobotsTXTData(BaseModel):
+    rules: MetaProcessorsRobotsTXTDataRules
+
+    sitemaps: List[str]
+
+    hash: Optional[str] = None
+
+
+class MetaProcessorsRobotsTXT(BaseModel):
+    data: List[MetaProcessorsRobotsTXTData]
+
+
 class MetaProcessorsURLCategoriesDataContent(BaseModel):
     id: float
 
@@ -566,6 +607,8 @@ class MetaProcessors(BaseModel):
     radar_rank: MetaProcessorsRadarRank = FieldInfo(alias="radarRank")
 
     wappa: MetaProcessorsWappa
+
+    robots_txt: Optional[MetaProcessorsRobotsTXT] = FieldInfo(alias="robotsTxt", default=None)
 
     url_categories: Optional[MetaProcessorsURLCategories] = FieldInfo(alias="urlCategories", default=None)
 
