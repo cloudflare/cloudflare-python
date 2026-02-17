@@ -15,9 +15,10 @@ class OnRampCreateParams(TypedDict, total=False):
     cloud_type: Required[Literal["AWS", "AZURE", "GOOGLE"]]
 
     dynamic_routing: Required[bool]
-    """
-    if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
-    be set to false
+    """Enables BGP routing.
+
+    When enabling this feature, set both install_routes_in_cloud and
+    install_routes_in_magic_wan to false.
     """
 
     install_routes_in_cloud: Required[bool]
@@ -35,9 +36,9 @@ class OnRampCreateParams(TypedDict, total=False):
     attached_vpcs: SequenceNotStr[str]
 
     cloud_asn: int
-    """the ASN to use on the cloud side.
+    """Sets the cloud-side ASN.
 
-    If unset or zero, the cloud's default will be used.
+    If unset or zero, the cloud's default ASN takes effect.
     """
 
     description: str
