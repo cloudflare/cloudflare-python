@@ -6564,6 +6564,28 @@ Methods:
 - <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}/network-path">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">network_path</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_network_path_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/network_path_response.py">Optional[NetworkPathResponse]</a></code>
 - <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}/percentiles">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">percentiles</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_percentiles_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/traceroute_test_percentiles_response.py">Optional[TracerouteTestPercentilesResponse]</a></code>
 
+### Rules
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex import (
+    RuleCreateResponse,
+    RuleUpdateResponse,
+    RuleListResponse,
+    RuleDeleteResponse,
+    RuleGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dex/rules">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_create_response.py">Optional[RuleCreateResponse]</a></code>
+- <code title="patch /accounts/{account_id}/dex/rules/{rule_id}">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_update_response.py">Optional[RuleUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/rules">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_list_response.py">SyncV4PagePagination[Optional[RuleListResponse]]</a></code>
+- <code title="delete /accounts/{account_id}/dex/rules/{rule_id}">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_delete_response.py">Optional[RuleDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/rules/{rule_id}">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_get_response.py">Optional[RuleGetResponse]</a></code>
+
 ## Tunnels
 
 Types:
