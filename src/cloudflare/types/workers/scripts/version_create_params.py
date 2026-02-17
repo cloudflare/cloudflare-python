@@ -21,6 +21,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
@@ -138,8 +139,16 @@ class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -151,7 +160,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -240,7 +249,7 @@ class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]

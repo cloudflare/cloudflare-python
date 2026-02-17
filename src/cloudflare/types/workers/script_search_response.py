@@ -10,6 +10,9 @@ __all__ = ["ScriptSearchResponse", "ScriptSearchResponseItem"]
 
 
 class ScriptSearchResponseItem(BaseModel):
+    id: str
+    """Identifier."""
+
     created_on: datetime
     """When the script was created."""
 
@@ -18,9 +21,6 @@ class ScriptSearchResponseItem(BaseModel):
 
     script_name: str
     """Name of the script, used in URLs and route configuration."""
-
-    script_tag: str
-    """Identifier."""
 
     environment_is_default: Optional[bool] = None
     """Whether the environment is the default environment."""

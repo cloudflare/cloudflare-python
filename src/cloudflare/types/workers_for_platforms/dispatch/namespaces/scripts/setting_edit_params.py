@@ -22,6 +22,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindDataBlob",
     "SettingsBindingWorkersBindingKindDispatchNamespace",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "SettingsBindingWorkersBindingKindDurableObjectNamespace",
     "SettingsBindingWorkersBindingKindHyperdrive",
@@ -137,8 +138,16 @@ class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -150,7 +159,7 @@ class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -239,7 +248,7 @@ class SettingsBindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class SettingsBindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]

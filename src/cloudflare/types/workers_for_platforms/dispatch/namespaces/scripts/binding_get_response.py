@@ -18,6 +18,7 @@ __all__ = [
     "WorkersBindingKindDataBlob",
     "WorkersBindingKindDispatchNamespace",
     "WorkersBindingKindDispatchNamespaceOutbound",
+    "WorkersBindingKindDispatchNamespaceOutboundParam",
     "WorkersBindingKindDispatchNamespaceOutboundWorker",
     "WorkersBindingKindDurableObjectNamespace",
     "WorkersBindingKindHyperdrive",
@@ -105,8 +106,16 @@ class WorkersBindingKindDataBlob(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class WorkersBindingKindDispatchNamespaceOutboundParam(BaseModel):
+    name: str
+    """Name of the parameter."""
+
+
 class WorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
     """Outbound worker."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: Optional[str] = None
     """Environment of the outbound worker."""
@@ -118,7 +127,7 @@ class WorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
 class WorkersBindingKindDispatchNamespaceOutbound(BaseModel):
     """Outbound worker."""
 
-    params: Optional[List[str]] = None
+    params: Optional[List[WorkersBindingKindDispatchNamespaceOutboundParam]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -207,7 +216,7 @@ class WorkersBindingKindImages(BaseModel):
 
 
 class WorkersBindingKindJson(BaseModel):
-    json_: str = FieldInfo(alias="json")
+    json_: object = FieldInfo(alias="json")
     """JSON data to use."""
 
     name: str

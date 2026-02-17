@@ -25,6 +25,7 @@ __all__ = [
     "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
+    "BindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
@@ -258,8 +259,16 @@ class BindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -271,7 +280,7 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=
 class BindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[BindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -360,7 +369,7 @@ class BindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class BindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]
