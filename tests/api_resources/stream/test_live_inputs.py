@@ -33,6 +33,7 @@ class TestLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_creator="defaultCreator",
             delete_recording_after_days=45,
+            enabled=True,
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
@@ -90,6 +91,7 @@ class TestLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_creator="defaultCreator",
             delete_recording_after_days=45,
+            enabled=True,
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
@@ -302,6 +304,7 @@ class TestAsyncLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_creator="defaultCreator",
             delete_recording_after_days=45,
+            enabled=True,
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
@@ -359,6 +362,7 @@ class TestAsyncLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_creator="defaultCreator",
             delete_recording_after_days=45,
+            enabled=True,
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],

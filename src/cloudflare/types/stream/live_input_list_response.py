@@ -23,6 +23,9 @@ class LiveInput(BaseModel):
     scheduled deletion.
     """
 
+    enabled: Optional[bool] = None
+    """Indicates whether the live input is enabled and can accept streams."""
+
     meta: Optional[object] = None
     """
     A user modifiable key-value store used to reference other systems of record for

@@ -26,6 +26,9 @@ class LiveInputUpdateParams(TypedDict, total=False):
     scheduled deletion.
     """
 
+    enabled: bool
+    """Indicates whether the live input is enabled and can accept streams."""
+
     meta: object
     """
     A user modifiable key-value store used to reference other systems of record for
