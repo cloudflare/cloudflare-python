@@ -48,6 +48,8 @@ class ChunkScoringDetails(BaseModel):
 
     keyword_score: Optional[float] = None
 
+    reranking_score: Optional[float] = None
+
     vector_rank: Optional[float] = None
 
     vector_score: Optional[float] = None

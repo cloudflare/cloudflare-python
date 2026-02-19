@@ -87,6 +87,8 @@ class InstanceUpdateParams(TypedDict, total=False):
         "",
     ]
 
+    fusion_method: Literal["max", "rrf"]
+
     hybrid_search_enabled: bool
 
     max_num_results: int
@@ -136,7 +138,7 @@ class InstanceUpdateParams(TypedDict, total=False):
 
     score_threshold: float
 
-    source_params: SourceParams
+    source_params: Optional[SourceParams]
 
     summarization: bool
 

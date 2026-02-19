@@ -205,6 +205,8 @@ class InstanceReadResponse(BaseModel):
 
     enable: Optional[bool] = None
 
+    fusion_method: Optional[Literal["max", "rrf"]] = None
+
     hybrid_search_enabled: Optional[bool] = None
 
     last_activity: Optional[datetime] = None

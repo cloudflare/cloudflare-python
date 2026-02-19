@@ -56,6 +56,7 @@ class TestInstances:
                 }
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -176,6 +177,7 @@ class TestInstances:
                 }
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -410,6 +412,7 @@ class TestInstances:
                 "retrieval": {
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
+                    "fusion_method": "max",
                     "match_threshold": 0,
                     "max_num_results": 1,
                     "retrieval_type": "vector",
@@ -572,6 +575,7 @@ class TestInstances:
                 "retrieval": {
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
+                    "fusion_method": "max",
                     "match_threshold": 0,
                     "max_num_results": 1,
                     "retrieval_type": "vector",
@@ -728,6 +732,7 @@ class TestAsyncInstances:
                 }
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -848,6 +853,7 @@ class TestAsyncInstances:
                 }
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -1082,6 +1088,7 @@ class TestAsyncInstances:
                 "retrieval": {
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
+                    "fusion_method": "max",
                     "match_threshold": 0,
                     "max_num_results": 1,
                     "retrieval_type": "vector",
@@ -1244,6 +1251,7 @@ class TestAsyncInstances:
                 "retrieval": {
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
+                    "fusion_method": "max",
                     "match_threshold": 0,
                     "max_num_results": 1,
                     "retrieval_type": "vector",

@@ -90,6 +90,8 @@ class InstanceCreateParams(TypedDict, total=False):
         "",
     ]
 
+    fusion_method: Literal["max", "rrf"]
+
     hybrid_search_enabled: bool
 
     max_num_results: int
@@ -137,7 +139,7 @@ class InstanceCreateParams(TypedDict, total=False):
 
     score_threshold: float
 
-    source_params: SourceParams
+    source_params: Optional[SourceParams]
 
     token_id: str
 

@@ -11,7 +11,7 @@ class PolicyListResponse(BaseModel):
     id: str
     """Identifier"""
 
-    action: Literal["allow", "log"]
+    action: Literal["allow", "log", "add_reporting_directives"]
     """The action to take if the expression matches"""
 
     description: str

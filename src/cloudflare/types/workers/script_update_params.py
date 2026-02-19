@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import FileTypes, SequenceNotStr
+from ..._utils import PropertyInfo
 from .migration_step_param import MigrationStepParam
 from .single_step_migration_param import SingleStepMigrationParam
 from .scripts.consumer_script_param import ConsumerScriptParam
@@ -13,6 +14,7 @@ from .scripts.consumer_script_param import ConsumerScriptParam
 __all__ = [
     "ScriptUpdateParams",
     "Metadata",
+    "MetadataAnnotations",
     "MetadataAssets",
     "MetadataAssetsConfig",
     "MetadataBinding",
@@ -87,6 +89,16 @@ class ScriptUpdateParams(TypedDict, total=False):
     `text/x-python-requirement`, `application/wasm`, `text/plain`,
     `application/octet-stream`, `application/source-map`.
     """
+
+
+class MetadataAnnotations(TypedDict, total=False):
+    """Annotations for the version created by this upload."""
+
+    workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
+    """Human-readable message about the version."""
+
+    workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
+    """User-provided identifier for the version."""
 
 
 class MetadataAssetsConfig(TypedDict, total=False):
@@ -767,6 +779,9 @@ MetadataPlacement: TypeAlias = Union[
 
 class Metadata(TypedDict, total=False):
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
+    annotations: MetadataAnnotations
+    """Annotations for the version created by this upload."""
 
     assets: MetadataAssets
     """Configuration for assets within a Worker."""

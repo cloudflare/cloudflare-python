@@ -137,6 +137,7 @@ class InstancesResource(SyncAPIResource):
             "",
         ]
         | Omit = omit,
+        fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
@@ -176,7 +177,7 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source_params: instance_create_params.SourceParams | Omit = omit,
+        source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -215,6 +216,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk_size": chunk_size,
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
+                    "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -294,6 +296,7 @@ class InstancesResource(SyncAPIResource):
             "",
         ]
         | Omit = omit,
+        fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
@@ -334,7 +337,7 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source_params: instance_update_params.SourceParams | Omit = omit,
+        source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
         summarization_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -409,6 +412,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk_size": chunk_size,
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
+                    "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -830,6 +834,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             "",
         ]
         | Omit = omit,
+        fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
@@ -869,7 +874,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source_params: instance_create_params.SourceParams | Omit = omit,
+        source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -908,6 +913,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk_size": chunk_size,
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
+                    "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -987,6 +993,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             "",
         ]
         | Omit = omit,
+        fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
@@ -1027,7 +1034,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source_params: instance_update_params.SourceParams | Omit = omit,
+        source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
         summarization_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -1102,6 +1109,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk_size": chunk_size,
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
+                    "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,

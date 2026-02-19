@@ -84,6 +84,8 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
 
     filters: Dict[str, object]
 
+    fusion_method: Literal["max", "rrf"]
+
     match_threshold: float
 
     max_num_results: int
