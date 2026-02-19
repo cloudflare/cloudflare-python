@@ -7222,6 +7222,27 @@ Methods:
 - <code title="post /accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate">client.zero_trust.gateway.certificates.<a href="./src/cloudflare/resources/zero_trust/gateway/certificates.py">deactivate</a>(certificate_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/certificate_deactivate_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/certificate_deactivate_response.py">Optional[CertificateDeactivateResponse]</a></code>
 - <code title="get /accounts/{account_id}/gateway/certificates/{certificate_id}">client.zero_trust.gateway.certificates.<a href="./src/cloudflare/resources/zero_trust/gateway/certificates.py">get</a>(certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/certificate_get_response.py">Optional[CertificateGetResponse]</a></code>
 
+### Pacfiles
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.gateway import (
+    PacfileCreateResponse,
+    PacfileUpdateResponse,
+    PacfileListResponse,
+    PacfileGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/gateway/pacfiles">client.zero_trust.gateway.pacfiles.<a href="./src/cloudflare/resources/zero_trust/gateway/pacfiles.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/pacfile_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/pacfile_create_response.py">Optional[PacfileCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/gateway/pacfiles/{pacfile_id}">client.zero_trust.gateway.pacfiles.<a href="./src/cloudflare/resources/zero_trust/gateway/pacfiles.py">update</a>(pacfile_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/pacfile_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/pacfile_update_response.py">Optional[PacfileUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/gateway/pacfiles">client.zero_trust.gateway.pacfiles.<a href="./src/cloudflare/resources/zero_trust/gateway/pacfiles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/pacfile_list_response.py">SyncSinglePage[PacfileListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/gateway/pacfiles/{pacfile_id}">client.zero_trust.gateway.pacfiles.<a href="./src/cloudflare/resources/zero_trust/gateway/pacfiles.py">delete</a>(pacfile_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/gateway/pacfiles/{pacfile_id}">client.zero_trust.gateway.pacfiles.<a href="./src/cloudflare/resources/zero_trust/gateway/pacfiles.py">get</a>(pacfile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/pacfile_get_response.py">Optional[PacfileGetResponse]</a></code>
+
 ## Networks
 
 ### Routes

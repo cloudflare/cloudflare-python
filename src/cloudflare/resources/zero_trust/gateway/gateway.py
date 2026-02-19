@@ -22,6 +22,14 @@ from .logging import (
     LoggingResourceWithStreamingResponse,
     AsyncLoggingResourceWithStreamingResponse,
 )
+from .pacfiles import (
+    PacfilesResource,
+    AsyncPacfilesResource,
+    PacfilesResourceWithRawResponse,
+    AsyncPacfilesResourceWithRawResponse,
+    PacfilesResourceWithStreamingResponse,
+    AsyncPacfilesResourceWithStreamingResponse,
+)
 from ...._types import Body, Query, Headers, NotGiven, not_given
 from .app_types import (
     AppTypesResource,
@@ -143,6 +151,10 @@ class GatewayResource(SyncAPIResource):
     @cached_property
     def certificates(self) -> CertificatesResource:
         return CertificatesResource(self._client)
+
+    @cached_property
+    def pacfiles(self) -> PacfilesResource:
+        return PacfilesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GatewayResourceWithRawResponse:
@@ -278,6 +290,10 @@ class AsyncGatewayResource(AsyncAPIResource):
     @cached_property
     def certificates(self) -> AsyncCertificatesResource:
         return AsyncCertificatesResource(self._client)
+
+    @cached_property
+    def pacfiles(self) -> AsyncPacfilesResource:
+        return AsyncPacfilesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncGatewayResourceWithRawResponse:
@@ -424,6 +440,10 @@ class GatewayResourceWithRawResponse:
     def certificates(self) -> CertificatesResourceWithRawResponse:
         return CertificatesResourceWithRawResponse(self._gateway.certificates)
 
+    @cached_property
+    def pacfiles(self) -> PacfilesResourceWithRawResponse:
+        return PacfilesResourceWithRawResponse(self._gateway.pacfiles)
+
 
 class AsyncGatewayResourceWithRawResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -475,6 +495,10 @@ class AsyncGatewayResourceWithRawResponse:
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
         return AsyncCertificatesResourceWithRawResponse(self._gateway.certificates)
+
+    @cached_property
+    def pacfiles(self) -> AsyncPacfilesResourceWithRawResponse:
+        return AsyncPacfilesResourceWithRawResponse(self._gateway.pacfiles)
 
 
 class GatewayResourceWithStreamingResponse:
@@ -528,6 +552,10 @@ class GatewayResourceWithStreamingResponse:
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
         return CertificatesResourceWithStreamingResponse(self._gateway.certificates)
 
+    @cached_property
+    def pacfiles(self) -> PacfilesResourceWithStreamingResponse:
+        return PacfilesResourceWithStreamingResponse(self._gateway.pacfiles)
+
 
 class AsyncGatewayResourceWithStreamingResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -579,3 +607,7 @@ class AsyncGatewayResourceWithStreamingResponse:
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
         return AsyncCertificatesResourceWithStreamingResponse(self._gateway.certificates)
+
+    @cached_property
+    def pacfiles(self) -> AsyncPacfilesResourceWithStreamingResponse:
+        return AsyncPacfilesResourceWithStreamingResponse(self._gateway.pacfiles)
