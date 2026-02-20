@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 from .login_design_param import LoginDesignParam
 
-__all__ = ["OrganizationUpdateParams", "CustomPages"]
+__all__ = ["OrganizationUpdateParams", "CustomPages", "MfaConfig"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
@@ -59,6 +60,22 @@ class OrganizationUpdateParams(TypedDict, total=False):
 
     login_design: LoginDesignParam
 
+    mfa_config: MfaConfig
+    """Configures multi-factor authentication (MFA) settings for an organization."""
+
+    mfa_configuration_allowed: bool
+    """
+    Indicates if this organization can enforce multi-factor authentication (MFA)
+    requirements at the application and policy level.
+    """
+
+    mfa_required_for_all_apps: bool
+    """Determines whether global MFA settings apply to applications by default.
+
+    The organization must have MFA enabled with at least one authentication method
+    and a session duration configured.
+    """
+
     name: str
     """The name of your Zero Trust organization."""
 
@@ -97,3 +114,17 @@ class CustomPages(TypedDict, total=False):
 
     identity_denied: str
     """The uid of the custom page to use when a user is denied access."""
+
+
+class MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings for an organization."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """

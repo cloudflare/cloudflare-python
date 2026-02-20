@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
@@ -27,9 +27,14 @@ __all__ = [
     "SelfHostedApplicationDestinationPublicDestination",
     "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
+    "SelfHostedApplicationMfaConfig",
+    "SelfHostedApplicationOAuthConfiguration",
+    "SelfHostedApplicationOAuthConfigurationDynamicClientRegistration",
+    "SelfHostedApplicationOAuthConfigurationGrant",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
+    "SelfHostedApplicationPolicyUnionMember2MfaConfig",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -39,6 +44,7 @@ __all__ = [
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
     "SaaSApplicationPolicyUnionMember2",
+    "SaaSApplicationPolicyUnionMember2MfaConfig",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
@@ -50,9 +56,14 @@ __all__ = [
     "BrowserSSHApplicationDestinationPublicDestination",
     "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserSSHApplicationMfaConfig",
+    "BrowserSSHApplicationOAuthConfiguration",
+    "BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration",
+    "BrowserSSHApplicationOAuthConfigurationGrant",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
+    "BrowserSSHApplicationPolicyUnionMember2MfaConfig",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -63,9 +74,14 @@ __all__ = [
     "BrowserVNCApplicationDestinationPublicDestination",
     "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserVNCApplicationMfaConfig",
+    "BrowserVNCApplicationOAuthConfiguration",
+    "BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration",
+    "BrowserVNCApplicationOAuthConfigurationGrant",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
+    "BrowserVNCApplicationPolicyUnionMember2MfaConfig",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -77,22 +93,27 @@ __all__ = [
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
+    "AppLauncherApplicationPolicyUnionMember2MfaConfig",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig",
     "GatewayIdentityProxyEndpointApplication",
     "GatewayIdentityProxyEndpointApplicationPolicy",
     "GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink",
     "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2",
+    "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig",
     "BookmarkApplication",
     "BookmarkApplicationPolicy",
     "BookmarkApplicationPolicyAccessAppPolicyLink",
     "BookmarkApplicationPolicyUnionMember2",
+    "BookmarkApplicationPolicyUnionMember2MfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -104,14 +125,53 @@ __all__ = [
     "BrowserRdpApplicationDestinationPublicDestination",
     "BrowserRdpApplicationDestinationPrivateDestination",
     "BrowserRdpApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserRdpApplicationMfaConfig",
+    "BrowserRdpApplicationOAuthConfiguration",
+    "BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration",
+    "BrowserRdpApplicationOAuthConfigurationGrant",
     "BrowserRdpApplicationPolicy",
     "BrowserRdpApplicationPolicyAccessAppPolicyLink",
     "BrowserRdpApplicationPolicyUnionMember2",
+    "BrowserRdpApplicationPolicyUnionMember2MfaConfig",
     "BrowserRdpApplicationSCIMConfig",
     "BrowserRdpApplicationSCIMConfigAuthentication",
     "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
     "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "McpServerApplication",
+    "McpServerApplicationDestination",
+    "McpServerApplicationDestinationPublicDestination",
+    "McpServerApplicationDestinationPrivateDestination",
+    "McpServerApplicationDestinationViaMcpServerPortalDestination",
+    "McpServerApplicationOAuthConfiguration",
+    "McpServerApplicationOAuthConfigurationDynamicClientRegistration",
+    "McpServerApplicationOAuthConfigurationGrant",
+    "McpServerApplicationPolicy",
+    "McpServerApplicationPolicyAccessAppPolicyLink",
+    "McpServerApplicationPolicyUnionMember2",
+    "McpServerApplicationPolicyUnionMember2MfaConfig",
+    "McpServerApplicationSCIMConfig",
+    "McpServerApplicationSCIMConfigAuthentication",
+    "McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "McpServerPortalApplication",
+    "McpServerPortalApplicationDestination",
+    "McpServerPortalApplicationDestinationPublicDestination",
+    "McpServerPortalApplicationDestinationPrivateDestination",
+    "McpServerPortalApplicationDestinationViaMcpServerPortalDestination",
+    "McpServerPortalApplicationOAuthConfiguration",
+    "McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration",
+    "McpServerPortalApplicationOAuthConfigurationGrant",
+    "McpServerPortalApplicationPolicy",
+    "McpServerPortalApplicationPolicyAccessAppPolicyLink",
+    "McpServerPortalApplicationPolicyUnionMember2",
+    "McpServerPortalApplicationPolicyUnionMember2MfaConfig",
+    "McpServerPortalApplicationSCIMConfig",
+    "McpServerPortalApplicationSCIMConfigAuthentication",
+    "McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
 ]
 
 
@@ -205,8 +265,20 @@ class SelfHostedApplication(TypedDict, total=False):
     logo_url: str
     """The image URL for the logo shown in the App Launcher dashboard."""
 
+    mfa_config: SelfHostedApplicationMfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
     name: str
     """The name of the application."""
+
+    oauth_configuration: SelfHostedApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
 
     options_preflight_bypass: bool
     """
@@ -346,6 +418,82 @@ SelfHostedApplicationDestination: TypeAlias = Union[
 ]
 
 
+class SelfHostedApplicationMfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class SelfHostedApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class SelfHostedApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class SelfHostedApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: SelfHostedApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: SelfHostedApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """A JSON that links a reusable policy to an application."""
 
@@ -356,6 +504,26 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
+    """
+
+
+class SelfHostedApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
     """
 
 
@@ -378,6 +546,9 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: SelfHostedApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -575,6 +746,26 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SaaSApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -594,6 +785,9 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: SaaSApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -827,8 +1021,20 @@ class BrowserSSHApplication(TypedDict, total=False):
     logo_url: str
     """The image URL for the logo shown in the App Launcher dashboard."""
 
+    mfa_config: BrowserSSHApplicationMfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
     name: str
     """The name of the application."""
+
+    oauth_configuration: BrowserSSHApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
 
     options_preflight_bypass: bool
     """
@@ -968,6 +1174,82 @@ BrowserSSHApplicationDestination: TypeAlias = Union[
 ]
 
 
+class BrowserSSHApplicationMfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class BrowserSSHApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class BrowserSSHApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: BrowserSSHApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """A JSON that links a reusable policy to an application."""
 
@@ -978,6 +1260,26 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
+    """
+
+
+class BrowserSSHApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
     """
 
 
@@ -1000,6 +1302,9 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: BrowserSSHApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1233,8 +1538,20 @@ class BrowserVNCApplication(TypedDict, total=False):
     logo_url: str
     """The image URL for the logo shown in the App Launcher dashboard."""
 
+    mfa_config: BrowserVNCApplicationMfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
     name: str
     """The name of the application."""
+
+    oauth_configuration: BrowserVNCApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
 
     options_preflight_bypass: bool
     """
@@ -1374,6 +1691,82 @@ BrowserVNCApplicationDestination: TypeAlias = Union[
 ]
 
 
+class BrowserVNCApplicationMfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class BrowserVNCApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class BrowserVNCApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: BrowserVNCApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
 class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """A JSON that links a reusable policy to an application."""
 
@@ -1384,6 +1777,26 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
+    """
+
+
+class BrowserVNCApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
     """
 
 
@@ -1406,6 +1819,9 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: BrowserVNCApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1661,6 +2077,26 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class AppLauncherApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1680,6 +2116,9 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: AppLauncherApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1773,6 +2212,26 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1792,6 +2251,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1887,6 +2349,26 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1906,6 +2388,9 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2010,6 +2495,26 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
     """
 
 
+class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -2029,6 +2534,9 @@ class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2106,6 +2614,26 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BookmarkApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
 class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -2125,6 +2653,9 @@ class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: BookmarkApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2335,8 +2866,20 @@ class BrowserRdpApplication(TypedDict, total=False):
     logo_url: str
     """The image URL for the logo shown in the App Launcher dashboard."""
 
+    mfa_config: BrowserRdpApplicationMfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
     name: str
     """The name of the application."""
+
+    oauth_configuration: BrowserRdpApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
 
     options_preflight_bypass: bool
     """
@@ -2490,6 +3033,82 @@ BrowserRdpApplicationDestination: TypeAlias = Union[
 ]
 
 
+class BrowserRdpApplicationMfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class BrowserRdpApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class BrowserRdpApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: BrowserRdpApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
 class BrowserRdpApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """A JSON that links a reusable policy to an application."""
 
@@ -2500,6 +3119,26 @@ class BrowserRdpApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
+    """
+
+
+class BrowserRdpApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
     """
 
 
@@ -2522,6 +3161,9 @@ class BrowserRdpApplicationPolicyUnionMember2(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: BrowserRdpApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2648,6 +3290,848 @@ class BrowserRdpApplicationSCIMConfig(TypedDict, total=False):
     """
 
 
+class McpServerApplication(TypedDict, total=False):
+    type: Required[ApplicationType]
+    """The application type."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    allow_authenticate_via_warp: bool
+    """
+    When set to true, users can authenticate to this application using their WARP
+    session. When set to false this application will always require direct IdP
+    authentication. This setting always overrides the organization setting for WARP
+    authentication.
+    """
+
+    allowed_idps: SequenceNotStr[AllowedIdPs]
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    auto_redirect_to_identity: bool
+    """When set to `true`, users skip the identity provider selection step during
+    login.
+
+    You must specify only one identity provider in allowed_idps.
+    """
+
+    custom_deny_message: str
+    """
+    The custom error message shown to a user when they are denied access to the
+    application.
+    """
+
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: SequenceNotStr[str]
+    """The custom pages that will be displayed when applicable for this application"""
+
+    destinations: Iterable[McpServerApplicationDestination]
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
+    http_only_cookie_attribute: bool
+    """
+    Enables the HttpOnly cookie attribute, which increases security against XSS
+    attacks.
+    """
+
+    logo_url: str
+    """The image URL for the logo shown in the App Launcher dashboard."""
+
+    name: str
+    """The name of the application."""
+
+    oauth_configuration: McpServerApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
+
+    options_preflight_bypass: bool
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
+
+    policies: SequenceNotStr[McpServerApplicationPolicy]
+    """
+    The policies that Access applies to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
+    same_site_cookie_attribute: str
+    """
+    Sets the SameSite cookie setting, which provides increased security against CSRF
+    attacks.
+    """
+
+    scim_config: McpServerApplicationSCIMConfig
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for this application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    """
+
+    tags: SequenceNotStr[str]
+    """The tags you want assigned to an application.
+
+    Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+
+class McpServerApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
+    type: Literal["public"]
+
+    uri: str
+    """The URI of the destination.
+
+    Public destinations' URIs can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    """
+
+
+class McpServerApplicationDestinationPrivateDestination(TypedDict, total=False):
+    cidr: str
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: str
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Literal["tcp", "udp"]
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: str
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Literal["private"]
+
+    vnet_id: str
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+class McpServerApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
+McpServerApplicationDestination: TypeAlias = Union[
+    McpServerApplicationDestinationPublicDestination,
+    McpServerApplicationDestinationPrivateDestination,
+    McpServerApplicationDestinationViaMcpServerPortalDestination,
+]
+
+
+class McpServerApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class McpServerApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class McpServerApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: McpServerApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: McpServerApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
+class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
+    id: str
+    """The UUID of the policy"""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class McpServerApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class McpServerApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    mfa_config: McpServerApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+McpServerApplicationPolicy: TypeAlias = Union[
+    McpServerApplicationPolicyAccessAppPolicyLink, str, McpServerApplicationPolicyUnionMember2
+]
+
+
+class McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    TypedDict, total=False
+):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
+    client_id: Required[str]
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: Required[str]
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Required[Literal["access_service_token"]]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    TypedDict, total=False
+):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
+    client_id: Required[str]
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: Required[str]
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Required[Literal["access_service_token"]]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
+    McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
+McpServerApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
+    McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    Iterable[McpServerApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
+]
+
+
+class McpServerApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    idp_uid: Required[str]
+    """
+    The UID of the IdP to use as the source for SCIM resources to provision to this
+    application.
+    """
+
+    remote_uri: Required[str]
+    """The base URI for the application's SCIM-compatible API."""
+
+    authentication: McpServerApplicationSCIMConfigAuthentication
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM
+    provisioning to an application.
+    """
+
+    deactivate_on_delete: bool
+    """
+    If false, propagates DELETE requests to the target application for SCIM
+    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
+    targets do not support DELETE operations.
+    """
+
+    enabled: bool
+    """Whether SCIM provisioning is turned on for this application."""
+
+    mappings: Iterable[SCIMConfigMappingParam]
+    """
+    A list of mappings to apply to SCIM resources before provisioning them in this
+    application. These can transform or filter the resources to be provisioned.
+    """
+
+
+class McpServerPortalApplication(TypedDict, total=False):
+    type: Required[ApplicationType]
+    """The application type."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    allow_authenticate_via_warp: bool
+    """
+    When set to true, users can authenticate to this application using their WARP
+    session. When set to false this application will always require direct IdP
+    authentication. This setting always overrides the organization setting for WARP
+    authentication.
+    """
+
+    allowed_idps: SequenceNotStr[AllowedIdPs]
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    auto_redirect_to_identity: bool
+    """When set to `true`, users skip the identity provider selection step during
+    login.
+
+    You must specify only one identity provider in allowed_idps.
+    """
+
+    custom_deny_message: str
+    """
+    The custom error message shown to a user when they are denied access to the
+    application.
+    """
+
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: SequenceNotStr[str]
+    """The custom pages that will be displayed when applicable for this application"""
+
+    destinations: Iterable[McpServerPortalApplicationDestination]
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
+    domain: str
+    """The primary hostname and path secured by Access.
+
+    This domain will be displayed if the app is visible in the App Launcher.
+    """
+
+    http_only_cookie_attribute: bool
+    """
+    Enables the HttpOnly cookie attribute, which increases security against XSS
+    attacks.
+    """
+
+    logo_url: str
+    """The image URL for the logo shown in the App Launcher dashboard."""
+
+    name: str
+    """The name of the application."""
+
+    oauth_configuration: McpServerPortalApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
+
+    options_preflight_bypass: bool
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
+
+    policies: SequenceNotStr[McpServerPortalApplicationPolicy]
+    """
+    The policies that Access applies to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
+    same_site_cookie_attribute: str
+    """
+    Sets the SameSite cookie setting, which provides increased security against CSRF
+    attacks.
+    """
+
+    scim_config: McpServerPortalApplicationSCIMConfig
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for this application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    """
+
+    tags: SequenceNotStr[str]
+    """The tags you want assigned to an application.
+
+    Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+
+class McpServerPortalApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
+    type: Literal["public"]
+
+    uri: str
+    """The URI of the destination.
+
+    Public destinations' URIs can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    """
+
+
+class McpServerPortalApplicationDestinationPrivateDestination(TypedDict, total=False):
+    cidr: str
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: str
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Literal["tcp", "udp"]
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: str
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Literal["private"]
+
+    vnet_id: str
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+class McpServerPortalApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
+McpServerPortalApplicationDestination: TypeAlias = Union[
+    McpServerPortalApplicationDestinationPublicDestination,
+    McpServerPortalApplicationDestinationPrivateDestination,
+    McpServerPortalApplicationDestinationViaMcpServerPortalDestination,
+]
+
+
+class McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration(TypedDict, total=False):
+    """Settings for OAuth dynamic client registration."""
+
+    allow_any_on_localhost: bool
+    """Allows any client with redirect URIs on localhost."""
+
+    allow_any_on_loopback: bool
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: SequenceNotStr[str]
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    """
+
+    enabled: bool
+    """Whether dynamic client registration is enabled."""
+
+
+class McpServerPortalApplicationOAuthConfigurationGrant(TypedDict, total=False):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: str
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: str
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class McpServerPortalApplicationOAuthConfiguration(TypedDict, total=False):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: bool
+    """Whether the OAuth configuration is enabled for this application.
+
+    When set to `false`, Access will not handle OAuth for this application. Defaults
+    to `true` if omitted.
+    """
+
+    grant: McpServerPortalApplicationOAuthConfigurationGrant
+    """Settings for OAuth grant behavior."""
+
+
+class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
+    id: str
+    """The UUID of the policy"""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class McpServerPortalApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
+
+
+class McpServerPortalApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    mfa_config: McpServerPortalApplicationPolicyUnionMember2MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+McpServerPortalApplicationPolicy: TypeAlias = Union[
+    McpServerPortalApplicationPolicyAccessAppPolicyLink, str, McpServerPortalApplicationPolicyUnionMember2
+]
+
+
+class McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    TypedDict, total=False
+):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
+    client_id: Required[str]
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: Required[str]
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Required[Literal["access_service_token"]]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    TypedDict, total=False
+):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
+    client_id: Required[str]
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: Required[str]
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Required[Literal["access_service_token"]]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
+    McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
+McpServerPortalApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
+    McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    Iterable[McpServerPortalApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
+]
+
+
+class McpServerPortalApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    idp_uid: Required[str]
+    """
+    The UID of the IdP to use as the source for SCIM resources to provision to this
+    application.
+    """
+
+    remote_uri: Required[str]
+    """The base URI for the application's SCIM-compatible API."""
+
+    authentication: McpServerPortalApplicationSCIMConfigAuthentication
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM
+    provisioning to an application.
+    """
+
+    deactivate_on_delete: bool
+    """
+    If false, propagates DELETE requests to the target application for SCIM
+    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
+    targets do not support DELETE operations.
+    """
+
+    enabled: bool
+    """Whether SCIM provisioning is turned on for this application."""
+
+    mappings: Iterable[SCIMConfigMappingParam]
+    """
+    A list of mappings to apply to SCIM resources before provisioning them in this
+    application. These can transform or filter the resources to be provisioned.
+    """
+
+
 ApplicationCreateParams: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
@@ -2660,4 +4144,6 @@ ApplicationCreateParams: TypeAlias = Union[
     BookmarkApplication,
     InfrastructureApplication,
     BrowserRdpApplication,
+    McpServerApplication,
+    McpServerPortalApplication,
 ]
