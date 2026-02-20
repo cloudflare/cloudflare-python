@@ -37,6 +37,8 @@ __all__ = [
     "Variant12",
     "Variant13",
     "Variant13Message",
+    "Variant13MessageContentUnionMember1",
+    "Variant13MessageContentUnionMember1ImageURL",
     "MultimodalEmbeddings",
 ]
 
@@ -572,8 +574,26 @@ class Variant13(TypedDict, total=False):
     """
 
 
+class Variant13MessageContentUnionMember1ImageURL(TypedDict, total=False):
+    """Image URL object (when type is 'image_url')."""
+
+    url: Required[str]
+    """Image URI with data (e.g. data:image/jpeg;base64,/9j/...)."""
+
+
+class Variant13MessageContentUnionMember1(TypedDict, total=False):
+    type: Required[str]
+    """Type of the content part (e.g. 'text', 'image_url')."""
+
+    image_url: Variant13MessageContentUnionMember1ImageURL
+    """Image URL object (when type is 'image_url')."""
+
+    text: str
+    """Text content (when type is 'text')."""
+
+
 class Variant13Message(TypedDict, total=False):
-    content: Required[str]
+    content: Required[Union[str, Iterable[Variant13MessageContentUnionMember1]]]
     """The content of the message as a string."""
 
     role: Required[str]

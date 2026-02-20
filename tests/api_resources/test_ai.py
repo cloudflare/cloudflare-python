@@ -926,7 +926,7 @@ class TestAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -941,7 +941,7 @@ class TestAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -965,7 +965,7 @@ class TestAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -984,7 +984,7 @@ class TestAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -1006,7 +1006,7 @@ class TestAI:
                 image="image",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "role",
                     }
                 ],
@@ -1019,7 +1019,7 @@ class TestAI:
                 image="image",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "role",
                     }
                 ],
@@ -1998,7 +1998,7 @@ class TestAsyncAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -2013,7 +2013,7 @@ class TestAsyncAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -2037,7 +2037,7 @@ class TestAsyncAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -2056,7 +2056,7 @@ class TestAsyncAI:
             image="image",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "role",
                 }
             ],
@@ -2078,7 +2078,7 @@ class TestAsyncAI:
                 image="image",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "role",
                     }
                 ],
@@ -2091,7 +2091,7 @@ class TestAsyncAI:
                 image="image",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "role",
                     }
                 ],
