@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "CtSummaryResponse",
+    "CTSummaryResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
@@ -194,7 +194,7 @@ Summary0: TypeAlias = Union[
 ]
 
 
-class CtSummaryResponse(BaseModel):
+class CTSummaryResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 

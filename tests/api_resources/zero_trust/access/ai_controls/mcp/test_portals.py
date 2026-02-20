@@ -42,6 +42,7 @@ class TestPortals:
             hostname="exmaple.com",
             name="My MCP Portal",
             description="This is my custom MCP Portal",
+            secure_web_gateway=False,
             servers=[
                 {
                     "server_id": "my-mcp-server",
@@ -122,6 +123,7 @@ class TestPortals:
             description="This is my custom MCP Portal",
             hostname="exmaple.com",
             name="My MCP Portal",
+            secure_web_gateway=False,
             servers=[
                 {
                     "server_id": "my-mcp-server",
@@ -354,6 +356,7 @@ class TestAsyncPortals:
             hostname="exmaple.com",
             name="My MCP Portal",
             description="This is my custom MCP Portal",
+            secure_web_gateway=False,
             servers=[
                 {
                     "server_id": "my-mcp-server",
@@ -434,6 +437,7 @@ class TestAsyncPortals:
             description="This is my custom MCP Portal",
             hostname="exmaple.com",
             name="My MCP Portal",
+            secure_web_gateway=False,
             servers=[
                 {
                     "server_id": "my-mcp-server",

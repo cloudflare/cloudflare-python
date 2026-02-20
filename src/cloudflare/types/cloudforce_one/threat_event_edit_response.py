@@ -16,6 +16,8 @@ class ThreatEventEditResponse(BaseModel):
 
     category: str
 
+    dataset_id: str = FieldInfo(alias="datasetId")
+
     date: str
 
     event: str

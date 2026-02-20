@@ -35,6 +35,9 @@ class ActionParameters(BaseModel):
     bic: Optional[bool] = None
     """Whether to enable Browser Integrity Check (BIC)."""
 
+    content_converter: Optional[bool] = None
+    """Whether to enable content conversion (e.g., HTML to Markdown)."""
+
     disable_apps: Optional[Literal[True]] = None
     """Whether to disable Cloudflare Apps."""
 

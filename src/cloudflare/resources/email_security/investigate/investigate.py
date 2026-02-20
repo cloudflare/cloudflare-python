@@ -175,7 +175,7 @@ class InvestigateResource(SyncAPIResource):
 
           domain: The sender domains the search filters by.
 
-          end: The end of the search date range. Defaults to `now`.
+          end: The end of the search date range. Defaults to `now` if not provided.
 
           final_disposition: The dispositions the search filters by.
 
@@ -210,7 +210,8 @@ class InvestigateResource(SyncAPIResource):
               - x_originating_ip
               - Subject
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days` if not
+              provided.
 
           extra_headers: Send extra headers
 
@@ -392,7 +393,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           domain: The sender domains the search filters by.
 
-          end: The end of the search date range. Defaults to `now`.
+          end: The end of the search date range. Defaults to `now` if not provided.
 
           final_disposition: The dispositions the search filters by.
 
@@ -427,7 +428,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
               - x_originating_ip
               - Subject
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days` if not
+              provided.
 
           extra_headers: Send extra headers
 

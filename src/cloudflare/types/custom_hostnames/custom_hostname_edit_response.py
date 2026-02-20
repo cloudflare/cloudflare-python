@@ -12,13 +12,80 @@ from .domain_validation_type import DomainValidationType
 
 __all__ = [
     "CustomHostnameEditResponse",
+    "OwnershipVerification",
+    "OwnershipVerificationHTTP",
     "SSL",
+    "SsldcvDelegationRecord",
     "SSLSettings",
     "SSLValidationError",
     "SSLValidationRecord",
-    "OwnershipVerification",
-    "OwnershipVerificationHTTP",
 ]
+
+
+class OwnershipVerification(BaseModel):
+    """This is a record which can be placed to activate a hostname."""
+
+    name: Optional[str] = None
+    """DNS Name for record."""
+
+    type: Optional[Literal["txt"]] = None
+    """DNS Record type."""
+
+    value: Optional[str] = None
+    """Content for the record."""
+
+
+class OwnershipVerificationHTTP(BaseModel):
+    """
+    This presents the token to be served by the given http url to activate a hostname.
+    """
+
+    http_body: Optional[str] = None
+    """Token to be served."""
+
+    http_url: Optional[str] = None
+    """
+    The HTTP URL that will be checked during custom hostname verification and where
+    the customer should host the token.
+    """
+
+
+class SsldcvDelegationRecord(BaseModel):
+    cname: Optional[str] = None
+    """The CNAME record hostname for DCV delegation."""
+
+    cname_target: Optional[str] = None
+    """The CNAME record target value for DCV delegation."""
+
+    emails: Optional[List[str]] = None
+    """
+    The set of email addresses that the certificate authority (CA) will use to
+    complete domain validation.
+    """
+
+    http_body: Optional[str] = None
+    """
+    The content that the certificate authority (CA) will expect to find at the
+    http_url during the domain validation.
+    """
+
+    http_url: Optional[str] = None
+    """The url that will be checked during domain validation."""
+
+    status: Optional[str] = None
+    """Status of the validation record."""
+
+    txt_name: Optional[str] = None
+    """
+    The hostname that the certificate authority (CA) will check for a TXT record
+    during domain validation .
+    """
+
+    txt_value: Optional[str] = None
+    """
+    The TXT record that the certificate authority (CA) will check during domain
+    validation.
+    """
 
 
 class SSLSettings(BaseModel):
@@ -47,6 +114,12 @@ class SSLValidationError(BaseModel):
 
 
 class SSLValidationRecord(BaseModel):
+    cname: Optional[str] = None
+    """The CNAME record hostname for DCV delegation."""
+
+    cname_target: Optional[str] = None
+    """The CNAME record target value for DCV delegation."""
+
     emails: Optional[List[str]] = None
     """
     The set of email addresses that the certificate authority (CA) will use to
@@ -61,6 +134,9 @@ class SSLValidationRecord(BaseModel):
 
     http_url: Optional[str] = None
     """The url that will be checked during domain validation."""
+
+    status: Optional[str] = None
+    """Status of the validation record."""
 
     txt_name: Optional[str] = None
     """
@@ -98,6 +174,9 @@ class SSL(BaseModel):
 
     custom_key: Optional[str] = None
     """The key for a custom uploaded certificate."""
+
+    dcv_delegation_records: Optional[List[SsldcvDelegationRecord]] = None
+    """DCV Delegation records for domain validation."""
 
     expires_on: Optional[datetime] = None
     """The time the custom certificate expires on."""
@@ -167,42 +246,12 @@ class SSL(BaseModel):
     """Indicates whether the certificate covers a wildcard."""
 
 
-class OwnershipVerification(BaseModel):
-    """This is a record which can be placed to activate a hostname."""
-
-    name: Optional[str] = None
-    """DNS Name for record."""
-
-    type: Optional[Literal["txt"]] = None
-    """DNS Record type."""
-
-    value: Optional[str] = None
-    """Content for the record."""
-
-
-class OwnershipVerificationHTTP(BaseModel):
-    """
-    This presents the token to be served by the given http url to activate a hostname.
-    """
-
-    http_body: Optional[str] = None
-    """Token to be served."""
-
-    http_url: Optional[str] = None
-    """
-    The HTTP URL that will be checked during custom hostname verification and where
-    the customer should host the token.
-    """
-
-
 class CustomHostnameEditResponse(BaseModel):
     id: str
     """Identifier."""
 
     hostname: str
     """The custom hostname that will point to your hostname via CNAME."""
-
-    ssl: SSL
 
     created_at: Optional[datetime] = None
     """This is the time the hostname was created."""
@@ -236,6 +285,8 @@ class CustomHostnameEditResponse(BaseModel):
     This presents the token to be served by the given http url to activate a
     hostname.
     """
+
+    ssl: Optional[SSL] = None
 
     status: Optional[
         Literal[

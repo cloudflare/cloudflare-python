@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .profiles.pattern_param import PatternParam
@@ -18,6 +18,8 @@ class Variant0(TypedDict, total=False):
     pattern: Required[PatternParam]
 
     type: Required[Literal["custom"]]
+
+    description: Optional[str]
 
     enabled: bool
 

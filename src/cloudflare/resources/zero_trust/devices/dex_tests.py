@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -17,9 +18,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.devices import dex_test_create_params, dex_test_update_params
+from ....types.zero_trust.devices import dex_test_list_params, dex_test_create_params, dex_test_update_params
 from ....types.zero_trust.devices.dex_test_get_response import DEXTestGetResponse
 from ....types.zero_trust.devices.dex_test_list_response import DEXTestListResponse
 from ....types.zero_trust.devices.dex_test_create_response import DEXTestCreateResponse
@@ -196,17 +197,29 @@ class DEXTestsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        kind: Literal["http", "traceroute"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        test_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[DEXTestListResponse]:
+    ) -> SyncV4PagePaginationArray[DEXTestListResponse]:
         """
         Fetch all DEX tests
 
         Args:
+          kind: Filter by test type
+
+          page: Page number of paginated results
+
+          per_page: Number of items per page
+
+          test_name: Filter by test name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -219,9 +232,21 @@ class DEXTestsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/devices/dex_tests",
-            page=SyncSinglePage[DEXTestListResponse],
+            page=SyncV4PagePaginationArray[DEXTestListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "kind": kind,
+                        "page": page,
+                        "per_page": per_page,
+                        "test_name": test_name,
+                    },
+                    dex_test_list_params.DEXTestListParams,
+                ),
             ),
             model=DEXTestListResponse,
         )
@@ -480,17 +505,29 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        kind: Literal["http", "traceroute"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        test_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DEXTestListResponse, AsyncSinglePage[DEXTestListResponse]]:
+    ) -> AsyncPaginator[DEXTestListResponse, AsyncV4PagePaginationArray[DEXTestListResponse]]:
         """
         Fetch all DEX tests
 
         Args:
+          kind: Filter by test type
+
+          page: Page number of paginated results
+
+          per_page: Number of items per page
+
+          test_name: Filter by test name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -503,9 +540,21 @@ class AsyncDEXTestsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/devices/dex_tests",
-            page=AsyncSinglePage[DEXTestListResponse],
+            page=AsyncV4PagePaginationArray[DEXTestListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "kind": kind,
+                        "page": page,
+                        "per_page": per_page,
+                        "test_name": test_name,
+                    },
+                    dex_test_list_params.DEXTestListParams,
+                ),
             ),
             model=DEXTestListResponse,
         )

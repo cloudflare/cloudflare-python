@@ -50,6 +50,7 @@ if TYPE_CHECKING:
         web3,
         cache,
         calls,
+        fraud,
         intel,
         pages,
         radar,
@@ -139,6 +140,7 @@ if TYPE_CHECKING:
     from .resources.ips import IPsResource, AsyncIPsResource
     from .resources.ai.ai import AIResource, AsyncAIResource
     from .resources.d1.d1 import D1Resource, AsyncD1Resource
+    from .resources.fraud import FraudResource, AsyncFraudResource
     from .resources.kv.kv import KVResource, AsyncKVResource
     from .resources.r2.r2 import R2Resource, AsyncR2Resource
     from .resources.acm.acm import ACMResource, AsyncACMResource
@@ -792,6 +794,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.bot_management import BotManagementResource
 
         return BotManagementResource(self)
+
+    @cached_property
+    def fraud(self) -> FraudResource:
+        from .resources.fraud import FraudResource
+
+        return FraudResource(self)
 
     @cached_property
     def origin_post_quantum_encryption(self) -> OriginPostQuantumEncryptionResource:
@@ -1654,6 +1662,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncBotManagementResource(self)
 
     @cached_property
+    def fraud(self) -> AsyncFraudResource:
+        from .resources.fraud import AsyncFraudResource
+
+        return AsyncFraudResource(self)
+
+    @cached_property
     def origin_post_quantum_encryption(self) -> AsyncOriginPostQuantumEncryptionResource:
         from .resources.origin_post_quantum_encryption import AsyncOriginPostQuantumEncryptionResource
 
@@ -2442,6 +2456,12 @@ class CloudflareWithRawResponse:
         return BotManagementResourceWithRawResponse(self._client.bot_management)
 
     @cached_property
+    def fraud(self) -> fraud.FraudResourceWithRawResponse:
+        from .resources.fraud import FraudResourceWithRawResponse
+
+        return FraudResourceWithRawResponse(self._client.fraud)
+
+    @cached_property
     def origin_post_quantum_encryption(
         self,
     ) -> origin_post_quantum_encryption.OriginPostQuantumEncryptionResourceWithRawResponse:
@@ -3057,6 +3077,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncBotManagementResourceWithRawResponse(self._client.bot_management)
 
     @cached_property
+    def fraud(self) -> fraud.AsyncFraudResourceWithRawResponse:
+        from .resources.fraud import AsyncFraudResourceWithRawResponse
+
+        return AsyncFraudResourceWithRawResponse(self._client.fraud)
+
+    @cached_property
     def origin_post_quantum_encryption(
         self,
     ) -> origin_post_quantum_encryption.AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
@@ -3670,6 +3696,12 @@ class CloudflareWithStreamedResponse:
         from .resources.bot_management import BotManagementResourceWithStreamingResponse
 
         return BotManagementResourceWithStreamingResponse(self._client.bot_management)
+
+    @cached_property
+    def fraud(self) -> fraud.FraudResourceWithStreamingResponse:
+        from .resources.fraud import FraudResourceWithStreamingResponse
+
+        return FraudResourceWithStreamingResponse(self._client.fraud)
 
     @cached_property
     def origin_post_quantum_encryption(
@@ -4289,6 +4321,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.bot_management import AsyncBotManagementResourceWithStreamingResponse
 
         return AsyncBotManagementResourceWithStreamingResponse(self._client.bot_management)
+
+    @cached_property
+    def fraud(self) -> fraud.AsyncFraudResourceWithStreamingResponse:
+        from .resources.fraud import AsyncFraudResourceWithStreamingResponse
+
+        return AsyncFraudResourceWithStreamingResponse(self._client.fraud)
 
     @cached_property
     def origin_post_quantum_encryption(

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .geo_restrictions_param import GeoRestrictionsParam
 from ..custom_hostnames.bundle_method import BundleMethod
@@ -25,6 +25,9 @@ class CustomCertificateEditParams(TypedDict, total=False):
     certificate: str
     """The zone's SSL certificate or certificate and the intermediate(s)."""
 
+    deploy: Literal["staging", "production"]
+    """The environment to deploy the certificate to, defaults to production"""
+
     geo_restrictions: GeoRestrictionsParam
     """
     Specify the region where your private key can be held locally for optimal TLS
@@ -46,7 +49,9 @@ class CustomCertificateEditParams(TypedDict, total=False):
     (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
     can be chosen, such as 'country: IN', as well as 'region: EU' which refers to
     the EU region. If there are too few data centers satisfying the policy, it will
-    be rejected.
+    be rejected. Note: The API accepts this field as either "policy" or
+    "policy_restrictions" in requests. Responses return this field as
+    "policy_restrictions". example: "(country: US) or (region: EU)"
     """
 
     private_key: str

@@ -14,6 +14,8 @@ class LAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
+    bond_id: Optional[int] = None
+
     ha_link: Optional[bool] = None
     """mark true to use this LAN for HA probing.
 

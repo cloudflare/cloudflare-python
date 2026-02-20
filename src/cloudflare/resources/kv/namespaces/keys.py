@@ -19,7 +19,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
+from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.kv.namespaces import key_list_params, key_bulk_get_params, key_bulk_update_params
 from ....types.kv.namespaces.key import Key
@@ -64,7 +64,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPaginationAfter[Key]:
+    ) -> SyncCursorLimitPagination[Key]:
         """
         Lists a namespace's keys.
 
@@ -98,7 +98,7 @@ class KeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=SyncCursorPaginationAfter[Key],
+            page=SyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,7 +323,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Key, AsyncCursorPaginationAfter[Key]]:
+    ) -> AsyncPaginator[Key, AsyncCursorLimitPagination[Key]]:
         """
         Lists a namespace's keys.
 
@@ -357,7 +357,7 @@ class AsyncKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=AsyncCursorPaginationAfter[Key],
+            page=AsyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

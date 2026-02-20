@@ -9,13 +9,13 @@ __all__ = ["SnippetUpdateResponse"]
 
 
 class SnippetUpdateResponse(BaseModel):
-    """A result."""
+    """Contain the response result."""
 
     created_on: datetime
-    """The timestamp of when the snippet was created."""
+    """Indicates when the snippet was created."""
 
     snippet_name: str
-    """The identifying name of the snippet."""
+    """Identify the snippet."""
 
     modified_on: Optional[datetime] = None
-    """The timestamp of when the snippet was last modified."""
+    """Indicates when the snippet was last modified."""

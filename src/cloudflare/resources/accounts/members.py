@@ -73,6 +73,10 @@ class MembersResource(SyncAPIResource):
 
           roles: Array of roles associated with this member.
 
+          status: Status of the member invitation. If not provided during creation, defaults to
+              'pending'. Changing from 'accepted' back to 'pending' will trigger a replacement
+              of the member resource in Terraform.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,6 +111,10 @@ class MembersResource(SyncAPIResource):
           email: The contact email address of the user.
 
           policies: Array of policies associated with this member.
+
+          status: Status of the member invitation. If not provided during creation, defaults to
+              'pending'. Changing from 'accepted' back to 'pending' will trigger a replacement
+              of the member resource in Terraform.
 
           extra_headers: Send extra headers
 
@@ -461,6 +469,10 @@ class AsyncMembersResource(AsyncAPIResource):
 
           roles: Array of roles associated with this member.
 
+          status: Status of the member invitation. If not provided during creation, defaults to
+              'pending'. Changing from 'accepted' back to 'pending' will trigger a replacement
+              of the member resource in Terraform.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -495,6 +507,10 @@ class AsyncMembersResource(AsyncAPIResource):
           email: The contact email address of the user.
 
           policies: Array of policies associated with this member.
+
+          status: Status of the member invitation. If not provided during creation, defaults to
+              'pending'. Changing from 'accepted' back to 'pending' will trigger a replacement
+              of the member resource in Terraform.
 
           extra_headers: Send extra headers
 

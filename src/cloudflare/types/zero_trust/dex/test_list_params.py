@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -24,6 +24,9 @@ class TestListParams(TypedDict, total=False):
 
     Cannot be used in combination with colo param.
     """
+
+    kind: Literal["http", "traceroute"]
+    """Filter by test type"""
 
     page: float
     """Page number of paginated results"""

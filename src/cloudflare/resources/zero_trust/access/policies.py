@@ -63,6 +63,7 @@ class PoliciesResource(SyncAPIResource):
         approval_required: bool | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.MfaConfig | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -100,6 +101,8 @@ class PoliciesResource(SyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
+          mfa_config: Configures multi-factor authentication (MFA) settings.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -132,6 +135,7 @@ class PoliciesResource(SyncAPIResource):
                     "approval_required": approval_required,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -161,6 +165,7 @@ class PoliciesResource(SyncAPIResource):
         approval_required: bool | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.MfaConfig | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -200,6 +205,8 @@ class PoliciesResource(SyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
+          mfa_config: Configures multi-factor authentication (MFA) settings.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -234,6 +241,7 @@ class PoliciesResource(SyncAPIResource):
                     "approval_required": approval_required,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -423,6 +431,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         approval_required: bool | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.MfaConfig | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -460,6 +469,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
+          mfa_config: Configures multi-factor authentication (MFA) settings.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -492,6 +503,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "approval_required": approval_required,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -521,6 +533,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         approval_required: bool | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.MfaConfig | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -560,6 +573,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
+          mfa_config: Configures multi-factor authentication (MFA) settings.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -594,6 +609,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "approval_required": approval_required,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,

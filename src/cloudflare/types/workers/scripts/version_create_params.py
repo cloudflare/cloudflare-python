@@ -21,6 +21,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
@@ -32,6 +33,8 @@ __all__ = [
     "MetadataBindingWorkersBindingKindPlainText",
     "MetadataBindingWorkersBindingKindPipelines",
     "MetadataBindingWorkersBindingKindQueue",
+    "MetadataBindingWorkersBindingKindRatelimit",
+    "MetadataBindingWorkersBindingKindRatelimitSimple",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
@@ -136,8 +139,16 @@ class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -149,7 +160,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -238,7 +249,7 @@ class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]
@@ -300,6 +311,30 @@ class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
     """Name of the Queue to bind to."""
 
     type: Required[Literal["queue"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class MetadataBindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[MetadataBindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
     """The kind of resource that the binding provides."""
 
 
@@ -503,6 +538,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindPlainText,
     MetadataBindingWorkersBindingKindPipelines,
     MetadataBindingWorkersBindingKindQueue,
+    MetadataBindingWorkersBindingKindRatelimit,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,

@@ -59,6 +59,7 @@ class PoliciesResource(SyncAPIResource):
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -91,6 +92,8 @@ class PoliciesResource(SyncAPIResource):
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings.
 
           precedence: The order of execution for this policy. Must be unique for each policy within an
               app.
@@ -132,6 +135,7 @@ class PoliciesResource(SyncAPIResource):
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
@@ -159,6 +163,7 @@ class PoliciesResource(SyncAPIResource):
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -192,6 +197,8 @@ class PoliciesResource(SyncAPIResource):
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings.
 
           precedence: The order of execution for this policy. Must be unique for each policy within an
               app.
@@ -235,6 +242,7 @@ class PoliciesResource(SyncAPIResource):
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
@@ -482,6 +490,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -514,6 +523,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings.
 
           precedence: The order of execution for this policy. Must be unique for each policy within an
               app.
@@ -555,6 +566,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
@@ -582,6 +594,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -615,6 +628,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings.
 
           precedence: The order of execution for this policy. Must be unique for each policy within an
               app.
@@ -658,6 +673,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
                     "isolation_required": isolation_required,
+                    "mfa_config": mfa_config,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,

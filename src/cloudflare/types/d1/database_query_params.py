@@ -28,7 +28,7 @@ class MultipleQueries(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    batch: Iterable[MultipleQueriesBatch]
+    batch: Required[Iterable[MultipleQueriesBatch]]
 
 
 class MultipleQueriesBatch(TypedDict, total=False):

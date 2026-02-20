@@ -49,6 +49,8 @@ class UnionMember0(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+
     profile_id: Optional[str] = None
 
     profiles: Optional[List[UnionMember0Profile]] = None

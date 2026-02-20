@@ -9,7 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.organizations.organization_profile_get_params import Result
+from cloudflare.types.organizations.organization_profile_get_params import (  # pyright: ignore[reportMissingImports]
+    Result,  # pyright: ignore[reportUnknownVariableType]
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -77,32 +79,32 @@ class TestOrganizationProfile:
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        organization_profile = client.organizations.organization_profile.get(
+        organization_profile = client.organizations.organization_profile.get(  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
-        assert_matches_type(Result, organization_profile, path=["response"])
+        assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.organizations.organization_profile.with_raw_response.get(
+        response = client.organizations.organization_profile.with_raw_response.get(  # pyright: ignore[reportUnknownVariableType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        organization_profile = response.parse()
-        assert_matches_type(Result, organization_profile, path=["response"])
+        organization_profile = response.parse()  # pyright: ignore[reportUnknownVariableType]
+        assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.organizations.organization_profile.with_streaming_response.get(
+        with client.organizations.organization_profile.with_streaming_response.get(  # pyright: ignore[reportUnknownVariableType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
-        ) as response:
+        ) as response:  # pyright: ignore[reportUnknownVariableType]
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            organization_profile = response.parse()
-            assert_matches_type(Result, organization_profile, path=["response"])
+            organization_profile = response.parse()  # pyright: ignore[reportUnknownVariableType]
+            assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,32 +181,32 @@ class TestAsyncOrganizationProfile:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        organization_profile = await async_client.organizations.organization_profile.get(
+        organization_profile = await async_client.organizations.organization_profile.get(  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
-        assert_matches_type(Result, organization_profile, path=["response"])
+        assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.organizations.organization_profile.with_raw_response.get(
+        response = await async_client.organizations.organization_profile.with_raw_response.get(  # pyright: ignore[reportUnknownVariableType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        organization_profile = await response.parse()
-        assert_matches_type(Result, organization_profile, path=["response"])
+        organization_profile = await response.parse()  # pyright: ignore[reportUnknownVariableType]
+        assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.organizations.organization_profile.with_streaming_response.get(
+        async with async_client.organizations.organization_profile.with_streaming_response.get(  # pyright: ignore[reportUnknownVariableType]
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
-        ) as response:
+        ) as response:  # pyright: ignore[reportUnknownVariableType]
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            organization_profile = await response.parse()
-            assert_matches_type(Result, organization_profile, path=["response"])
+            organization_profile = await response.parse()  # pyright: ignore[reportUnknownVariableType]
+            assert_matches_type(Result, organization_profile, path=["response"])  # pyright: ignore[reportUnknownArgumentType]
 
         assert cast(Any, response.is_closed) is True
 

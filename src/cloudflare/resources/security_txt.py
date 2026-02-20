@@ -68,7 +68,7 @@ class SecurityTXTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTUpdateResponse:
         """
-        Update security.txt
+        Updates security.txt
 
         Args:
           zone_id: Identifier.
@@ -117,7 +117,7 @@ class SecurityTXTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTDeleteResponse:
         """
-        Delete security.txt
+        Deletes security.txt
 
         Args:
           zone_id: Identifier.
@@ -152,7 +152,7 @@ class SecurityTXTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecurityTXTGetResponse]:
         """
-        Get security.txt
+        Retrieves security.txt
 
         Args:
           zone_id: Identifier.
@@ -221,7 +221,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTUpdateResponse:
         """
-        Update security.txt
+        Updates security.txt
 
         Args:
           zone_id: Identifier.
@@ -270,7 +270,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTDeleteResponse:
         """
-        Delete security.txt
+        Deletes security.txt
 
         Args:
           zone_id: Identifier.
@@ -305,7 +305,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecurityTXTGetResponse]:
         """
-        Get security.txt
+        Retrieves security.txt
 
         Args:
           zone_id: Identifier.

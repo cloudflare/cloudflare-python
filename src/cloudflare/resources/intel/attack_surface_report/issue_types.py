@@ -52,7 +52,7 @@ class IssueTypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IssueTypeGetResponse]:
         """
-        Get Security Center Issues Types
+        Retrieves Security Center Issues Types
 
         Args:
           account_id: Identifier.
@@ -109,7 +109,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IssueTypeGetResponse, AsyncSinglePage[IssueTypeGetResponse]]:
         """
-        Get Security Center Issues Types
+        Retrieves Security Center Issues Types
 
         Args:
           account_id: Identifier.

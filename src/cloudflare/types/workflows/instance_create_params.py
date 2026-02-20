@@ -20,7 +20,7 @@ class InstanceCreateParams(TypedDict, total=False):
 
 class InstanceRetention(TypedDict, total=False):
     error_retention: Union[int, str]
-    """Duration in milliseconds or as a string like '5 minutes'"""
+    """Specifies the duration in milliseconds or as a string like '5 minutes'."""
 
     success_retention: Union[int, str]
-    """Duration in milliseconds or as a string like '5 minutes'"""
+    """Specifies the duration in milliseconds or as a string like '5 minutes'."""

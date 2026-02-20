@@ -30,6 +30,7 @@ class TestV2:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             continuation_token="continuation_token",
             creator="creator",
+            meta={"field_operator": "<field>[<operator>]"},
             per_page=10,
             sort_order="asc",
         )
@@ -85,6 +86,7 @@ class TestAsyncV2:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             continuation_token="continuation_token",
             creator="creator",
+            meta={"field_operator": "<field>[<operator>]"},
             per_page=10,
             sort_order="asc",
         )

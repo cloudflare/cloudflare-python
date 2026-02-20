@@ -31,6 +31,8 @@ class ServerUpdateResponse(BaseModel):
 
     error: Optional[str] = None
 
+    last_successful_sync: Optional[datetime] = None
+
     last_synced: Optional[datetime] = None
 
     modified_at: Optional[datetime] = None

@@ -25,8 +25,8 @@ class TestToMarkdown:
     def test_method_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             to_markdown = client.radar.ai.to_markdown.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             )
 
         assert_matches_type(SyncSinglePage[ToMarkdownCreateResponse], to_markdown, path=["response"])
@@ -36,8 +36,8 @@ class TestToMarkdown:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.radar.ai.to_markdown.with_raw_response.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             )
 
         assert response.is_closed is True
@@ -50,8 +50,8 @@ class TestToMarkdown:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.radar.ai.to_markdown.with_streaming_response.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,8 +67,8 @@ class TestToMarkdown:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 client.radar.ai.to_markdown.with_raw_response.create(
-                    body=b"raw file contents",
                     account_id="",
+                    files=[b"raw file contents"],
                 )
 
 
@@ -82,8 +82,8 @@ class TestAsyncToMarkdown:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             to_markdown = await async_client.radar.ai.to_markdown.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             )
 
         assert_matches_type(AsyncSinglePage[ToMarkdownCreateResponse], to_markdown, path=["response"])
@@ -93,8 +93,8 @@ class TestAsyncToMarkdown:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.radar.ai.to_markdown.with_raw_response.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             )
 
         assert response.is_closed is True
@@ -107,8 +107,8 @@ class TestAsyncToMarkdown:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.radar.ai.to_markdown.with_streaming_response.create(
-                body=b"raw file contents",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                files=[b"raw file contents"],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,6 +124,6 @@ class TestAsyncToMarkdown:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 await async_client.radar.ai.to_markdown.with_raw_response.create(
-                    body=b"raw file contents",
                     account_id="",
+                    files=[b"raw file contents"],
                 )

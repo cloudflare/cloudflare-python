@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -64,6 +65,7 @@ class TestsResource(SyncAPIResource):
         account_id: str,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
+        kind: Literal["http", "traceroute"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         test_name: str | Omit = omit,
@@ -83,6 +85,8 @@ class TestsResource(SyncAPIResource):
 
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
+
+          kind: Filter by test type
 
           page: Page number of paginated results
 
@@ -112,6 +116,7 @@ class TestsResource(SyncAPIResource):
                     {
                         "colo": colo,
                         "device_id": device_id,
+                        "kind": kind,
                         "page": page,
                         "per_page": per_page,
                         "test_name": test_name,
@@ -153,6 +158,7 @@ class AsyncTestsResource(AsyncAPIResource):
         account_id: str,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
+        kind: Literal["http", "traceroute"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         test_name: str | Omit = omit,
@@ -172,6 +178,8 @@ class AsyncTestsResource(AsyncAPIResource):
 
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
+
+          kind: Filter by test type
 
           page: Page number of paginated results
 
@@ -201,6 +209,7 @@ class AsyncTestsResource(AsyncAPIResource):
                     {
                         "colo": colo,
                         "device_id": device_id,
+                        "kind": kind,
                         "page": page,
                         "per_page": per_page,
                         "test_name": test_name,

@@ -31,10 +31,10 @@ class InsightListParams(TypedDict, total=False):
     issue_type_neq: Annotated[List[IssueType], PropertyInfo(alias="issue_type~neq")]
 
     page: int
-    """Current page within paginated list of results"""
+    """Specifies the current page within paginated list of results."""
 
     per_page: int
-    """Number of results per page of results"""
+    """Sets the number of results per page of results."""
 
     product: SequenceNotStr[str]
 

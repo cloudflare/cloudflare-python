@@ -14,7 +14,7 @@ class FilterOptionsParam(TypedDict, total=False):
     Use null to reset.
     """
 
-    disable: bool
+    disable: Optional[bool]
     """If set true, disable notifications for this type of resource (pool or origin)."""
 
     healthy: Optional[bool]

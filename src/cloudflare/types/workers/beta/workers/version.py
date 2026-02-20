@@ -24,6 +24,7 @@ __all__ = [
     "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
+    "BindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
@@ -35,6 +36,8 @@ __all__ = [
     "BindingWorkersBindingKindPlainText",
     "BindingWorkersBindingKindPipelines",
     "BindingWorkersBindingKindQueue",
+    "BindingWorkersBindingKindRatelimit",
+    "BindingWorkersBindingKindRatelimitSimple",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
     "BindingWorkersBindingKindSendEmail",
@@ -51,6 +54,18 @@ __all__ = [
     "MigrationsWorkersMultipleStepMigrations",
     "Module",
     "Placement",
+    "PlacementMode",
+    "PlacementRegion",
+    "PlacementHostname",
+    "PlacementHost",
+    "PlacementUnionMember4",
+    "PlacementUnionMember5",
+    "PlacementUnionMember6",
+    "PlacementUnionMember7",
+    "PlacementUnionMember7Target",
+    "PlacementUnionMember7TargetRegion",
+    "PlacementUnionMember7TargetHostname",
+    "PlacementUnionMember7TargetHost",
 ]
 
 
@@ -165,8 +180,16 @@ class BindingWorkersBindingKindDataBlob(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindDispatchNamespaceOutboundParam(BaseModel):
+    name: str
+    """Name of the parameter."""
+
+
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
     """Outbound worker."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: Optional[str] = None
     """Environment of the outbound worker."""
@@ -178,7 +201,7 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
 class BindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
     """Outbound worker."""
 
-    params: Optional[List[str]] = None
+    params: Optional[List[BindingWorkersBindingKindDispatchNamespaceOutboundParam]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -267,7 +290,7 @@ class BindingWorkersBindingKindImages(BaseModel):
 
 
 class BindingWorkersBindingKindJson(BaseModel):
-    json_: str = FieldInfo(alias="json")
+    json_: object = FieldInfo(alias="json")
     """JSON data to use."""
 
     name: str
@@ -329,6 +352,30 @@ class BindingWorkersBindingKindQueue(BaseModel):
     """Name of the Queue to bind to."""
 
     type: Literal["queue"]
+    """The kind of resource that the binding provides."""
+
+
+class BindingWorkersBindingKindRatelimitSimple(BaseModel):
+    """The rate limit configuration."""
+
+    limit: float
+    """The limit (requests per period)."""
+
+    period: int
+    """The period in seconds."""
+
+
+class BindingWorkersBindingKindRatelimit(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: str
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: BindingWorkersBindingKindRatelimitSimple
+    """The rate limit configuration."""
+
+    type: Literal["ratelimit"]
     """The kind of resource that the binding provides."""
 
 
@@ -518,6 +565,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindPlainText,
         BindingWorkersBindingKindPipelines,
         BindingWorkersBindingKindQueue,
+        BindingWorkersBindingKindRatelimit,
         BindingWorkersBindingKindR2Bucket,
         BindingWorkersBindingKindSecretText,
         BindingWorkersBindingKindSendEmail,
@@ -559,11 +607,91 @@ class Module(BaseModel):
     """The name of the module."""
 
 
-class Placement(BaseModel):
-    """Placement settings for the version."""
+class PlacementMode(BaseModel):
+    mode: Literal["smart"]
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
-    mode: Optional[Literal["smart"]] = None
-    """Placement mode for the version."""
+
+class PlacementRegion(BaseModel):
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementHostname(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementHost(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+
+class PlacementUnionMember4(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementUnionMember5(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember6(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember7TargetRegion(BaseModel):
+    region: str
+    """Cloud region in format 'provider:region'."""
+
+
+class PlacementUnionMember7TargetHostname(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementUnionMember7TargetHost(BaseModel):
+    host: str
+    """TCP host:port for targeted placement."""
+
+
+PlacementUnionMember7Target: TypeAlias = Union[
+    PlacementUnionMember7TargetRegion, PlacementUnionMember7TargetHostname, PlacementUnionMember7TargetHost
+]
+
+
+class PlacementUnionMember7(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    target: List[PlacementUnionMember7Target]
+    """Array of placement targets (currently limited to single target)."""
+
+
+Placement: TypeAlias = Union[
+    PlacementMode,
+    PlacementRegion,
+    PlacementHostname,
+    PlacementHost,
+    PlacementUnionMember4,
+    PlacementUnionMember5,
+    PlacementUnionMember6,
+    PlacementUnionMember7,
+]
 
 
 class Version(BaseModel):
@@ -639,7 +767,11 @@ class Version(BaseModel):
     """
 
     placement: Optional[Placement] = None
-    """Placement settings for the version."""
+    """
+    Configuration for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
+    """
 
     source: Optional[str] = None
     """The client used to create the version."""

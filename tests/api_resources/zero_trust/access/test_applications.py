@@ -101,7 +101,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -142,6 +160,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -392,7 +411,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -433,6 +470,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -560,7 +598,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -601,6 +657,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -979,6 +1036,12 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -1233,7 +1296,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -1274,6 +1355,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -1349,6 +1431,321 @@ class TestApplications:
                     }
                 ],
                 type="self_hosted",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_12(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="mcp",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="mcp",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            type="mcp",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_12(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            type="mcp",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_13(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="mcp_portal",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="mcp_portal",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            domain="test.example.com/admin",
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            type="mcp_portal",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_13(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            type="mcp_portal",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp_portal",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp_portal",
                 account_id="account_id",
             )
 
@@ -1431,7 +1828,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -1472,6 +1887,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1748,7 +2164,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -1789,6 +2223,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1930,7 +2365,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -1971,6 +2424,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2415,6 +2869,12 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -2701,7 +3161,25 @@ class TestApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -2742,6 +3220,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2836,6 +3315,347 @@ class TestApplications:
                     }
                 ],
                 type="self_hosted",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_12(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_12(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_12(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="mcp",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_13(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_13(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            domain="test.example.com/admin",
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_13(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="mcp_portal",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp_portal",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp_portal",
                 account_id="account_id",
             )
 
@@ -3186,7 +4006,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -3227,6 +4065,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3477,7 +4316,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -3518,6 +4375,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3645,7 +4503,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -3686,6 +4562,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4064,6 +4941,12 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -4318,7 +5201,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -4359,6 +5260,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4434,6 +5336,321 @@ class TestAsyncApplications:
                     }
                 ],
                 type="self_hosted",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_12(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="mcp",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="mcp",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            type="mcp",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            type="mcp",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_13(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="mcp_portal",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="mcp_portal",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            domain="test.example.com/admin",
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            type="mcp_portal",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            type="mcp_portal",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp_portal",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="mcp_portal",
                 account_id="account_id",
             )
 
@@ -4516,7 +5733,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -4557,6 +5792,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4833,7 +6069,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -4874,6 +6128,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5015,7 +6270,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -5056,6 +6329,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5500,6 +6774,12 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -5786,7 +7066,25 @@ class TestAsyncApplications:
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            mfa_config={
+                "allowed_authenticators": ["totp", "biometrics", "security_key"],
+                "mfa_bypass": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
             policies=[
@@ -5827,6 +7125,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5921,6 +7220,347 @@ class TestAsyncApplications:
                     }
                 ],
                 type="self_hosted",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_12(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="mcp",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_13(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+            allow_authenticate_via_warp=True,
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
+            auto_redirect_to_identity=True,
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "cidr": "10.5.0.0/24",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80-90",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "10.5.0.3/32",
+                    "hostname": "hostname",
+                    "l4_protocol": "tcp",
+                    "port_range": "80",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "cidr": "cidr",
+                    "hostname": "private-sni.example.com",
+                    "l4_protocol": "tcp",
+                    "port_range": "port_range",
+                    "type": "private",
+                    "vnet_id": "vnet_id",
+                },
+                {
+                    "mcp_server_id": "mcp-server-1",
+                    "type": "via_mcp_server_portal",
+                },
+            ],
+            domain="test.example.com/admin",
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            oauth_configuration={
+                "dynamic_client_registration": {
+                    "allow_any_on_localhost": True,
+                    "allow_any_on_loopback": True,
+                    "allowed_uris": ["https://example.com/callback"],
+                    "enabled": True,
+                },
+                "enabled": True,
+                "grant": {
+                    "access_token_lifetime": "5m",
+                    "session_duration": "24h",
+                },
+            },
+            options_preflight_bypass=True,
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
+            same_site_cookie_attribute="strict",
+            scim_config={
+                "idp_uid": "idp_uid",
+                "remote_uri": "remote_uri",
+                "authentication": {
+                    "password": "password",
+                    "scheme": "httpbasic",
+                    "user": "user",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "strictness": "strict",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    }
+                ],
+            },
+            session_duration="24h",
+            tags=["engineers"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type="mcp_portal",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="mcp_portal",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp_portal",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="mcp_portal",
                 account_id="account_id",
             )
 

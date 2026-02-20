@@ -44,6 +44,7 @@ class TestConnectivityPrecheck:
             },
             vendor="s3",
             endpoint="endpoint",
+            keys=["string"],
             path_prefix="pathPrefix",
             region="region",
         )
@@ -121,6 +122,7 @@ class TestConnectivityPrecheck:
                 "private_key": "privateKey",
             },
             vendor="gcs",
+            keys=["string"],
             path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
@@ -198,6 +200,7 @@ class TestConnectivityPrecheck:
             },
             vendor="r2",
             jurisdiction="default",
+            keys=["string"],
             path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
@@ -357,6 +360,7 @@ class TestAsyncConnectivityPrecheck:
             },
             vendor="s3",
             endpoint="endpoint",
+            keys=["string"],
             path_prefix="pathPrefix",
             region="region",
         )
@@ -434,6 +438,7 @@ class TestAsyncConnectivityPrecheck:
                 "private_key": "privateKey",
             },
             vendor="gcs",
+            keys=["string"],
             path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
@@ -511,6 +516,7 @@ class TestAsyncConnectivityPrecheck:
             },
             vendor="r2",
             jurisdiction="default",
+            keys=["string"],
             path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])

@@ -11,15 +11,15 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.types.radar import (
-    CtSummaryResponse,
-    CtTimeseriesResponse,
-    CtTimeseriesGroupsResponse,
+    CTSummaryResponse,
+    CTTimeseriesResponse,
+    CTTimeseriesGroupsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestCt:
+class TestCT:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
@@ -27,7 +27,7 @@ class TestCt:
         ct = client.radar.ct.summary(
             dimension="CA",
         )
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     def test_raw_response_summary(self, client: Cloudflare) -> None:
@@ -67,7 +67,7 @@ class TestCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = response.parse()
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     def test_streaming_response_summary(self, client: Cloudflare) -> None:
@@ -78,14 +78,14 @@ class TestCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = response.parse()
-            assert_matches_type(CtSummaryResponse, ct, path=["response"])
+            assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_timeseries(self, client: Cloudflare) -> None:
         ct = client.radar.ct.timeseries()
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
@@ -112,7 +112,7 @@ class TestCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     def test_raw_response_timeseries(self, client: Cloudflare) -> None:
@@ -121,7 +121,7 @@ class TestCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = response.parse()
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     def test_streaming_response_timeseries(self, client: Cloudflare) -> None:
@@ -130,7 +130,7 @@ class TestCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = response.parse()
-            assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+            assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +139,7 @@ class TestCt:
         ct = client.radar.ct.timeseries_groups(
             dimension="CA",
         )
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
@@ -169,7 +169,7 @@ class TestCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     def test_raw_response_timeseries_groups(self, client: Cloudflare) -> None:
@@ -180,7 +180,7 @@ class TestCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = response.parse()
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     def test_streaming_response_timeseries_groups(self, client: Cloudflare) -> None:
@@ -191,12 +191,12 @@ class TestCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = response.parse()
-            assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+            assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncCt:
+class TestAsyncCT:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -206,7 +206,7 @@ class TestAsyncCt:
         ct = await async_client.radar.ct.summary(
             dimension="CA",
         )
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -235,7 +235,7 @@ class TestAsyncCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     async def test_raw_response_summary(self, async_client: AsyncCloudflare) -> None:
@@ -246,7 +246,7 @@ class TestAsyncCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = await response.parse()
-        assert_matches_type(CtSummaryResponse, ct, path=["response"])
+        assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
     @parametrize
     async def test_streaming_response_summary(self, async_client: AsyncCloudflare) -> None:
@@ -257,14 +257,14 @@ class TestAsyncCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = await response.parse()
-            assert_matches_type(CtSummaryResponse, ct, path=["response"])
+            assert_matches_type(CTSummaryResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
         ct = await async_client.radar.ct.timeseries()
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -291,7 +291,7 @@ class TestAsyncCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     async def test_raw_response_timeseries(self, async_client: AsyncCloudflare) -> None:
@@ -300,7 +300,7 @@ class TestAsyncCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = await response.parse()
-        assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
     @parametrize
     async def test_streaming_response_timeseries(self, async_client: AsyncCloudflare) -> None:
@@ -309,7 +309,7 @@ class TestAsyncCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = await response.parse()
-            assert_matches_type(CtTimeseriesResponse, ct, path=["response"])
+            assert_matches_type(CTTimeseriesResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +318,7 @@ class TestAsyncCt:
         ct = await async_client.radar.ct.timeseries_groups(
             dimension="CA",
         )
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -348,7 +348,7 @@ class TestAsyncCt:
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     async def test_raw_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
@@ -359,7 +359,7 @@ class TestAsyncCt:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ct = await response.parse()
-        assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+        assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
     @parametrize
     async def test_streaming_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
@@ -370,6 +370,6 @@ class TestAsyncCt:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ct = await response.parse()
-            assert_matches_type(CtTimeseriesGroupsResponse, ct, path=["response"])
+            assert_matches_type(CTTimeseriesGroupsResponse, ct, path=["response"])
 
         assert cast(Any, response.is_closed) is True

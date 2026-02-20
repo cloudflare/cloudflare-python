@@ -52,6 +52,8 @@ class EntryDLPNewCustomEntryWithID(TypedDict, total=False):
 
     pattern: Required[PatternParam]
 
+    description: Optional[str]
+
 
 class EntryDLPNewCustomEntry(TypedDict, total=False):
     enabled: Required[bool]
@@ -59,6 +61,8 @@ class EntryDLPNewCustomEntry(TypedDict, total=False):
     name: Required[str]
 
     pattern: Required[PatternParam]
+
+    description: Optional[str]
 
 
 Entry: TypeAlias = Union[EntryDLPNewCustomEntryWithID, EntryDLPNewCustomEntry]

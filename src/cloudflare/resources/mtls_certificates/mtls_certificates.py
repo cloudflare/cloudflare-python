@@ -74,7 +74,10 @@ class MTLSCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MTLSCertificateCreateResponse]:
         """
-        Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
+        Upload a certificate that you want to use with mTLS-enabled Cloudflare services,
+        such as Bring Your Own CA (BYO-CA) for mTLS. To create certificates issued by
+        the Cloudflare managed CA, use the
+        [Create Client Certificate endpoint](/api/resources/client_certificates/methods/create/).
 
         Args:
           account_id: Identifier.
@@ -131,7 +134,10 @@ class MTLSCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[MTLSCertificate]:
         """
-        Lists all mTLS certificates.
+        Lists all mTLS certificates uploaded to your account, such as Bring Your Own CA
+        (BYO-CA) for mTLS. To list certificates issued by the Cloudflare managed CA, use
+        the
+        [List Client Certificates endpoint](/api/resources/client_certificates/methods/list/).
 
         Args:
           account_id: Identifier.
@@ -214,8 +220,11 @@ class MTLSCertificatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MTLSCertificate]:
-        """
-        Fetches a single mTLS certificate.
+        """Fetches a single mTLS certificate uploaded to your account.
+
+        To get a certificate
+        issued by the Cloudflare managed CA, use the
+        [Client Certificate Details endpoint](/api/resources/client_certificates/methods/get/).
 
         Args:
           account_id: Identifier.
@@ -289,7 +298,10 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MTLSCertificateCreateResponse]:
         """
-        Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
+        Upload a certificate that you want to use with mTLS-enabled Cloudflare services,
+        such as Bring Your Own CA (BYO-CA) for mTLS. To create certificates issued by
+        the Cloudflare managed CA, use the
+        [Create Client Certificate endpoint](/api/resources/client_certificates/methods/create/).
 
         Args:
           account_id: Identifier.
@@ -346,7 +358,10 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MTLSCertificate, AsyncSinglePage[MTLSCertificate]]:
         """
-        Lists all mTLS certificates.
+        Lists all mTLS certificates uploaded to your account, such as Bring Your Own CA
+        (BYO-CA) for mTLS. To list certificates issued by the Cloudflare managed CA, use
+        the
+        [List Client Certificates endpoint](/api/resources/client_certificates/methods/list/).
 
         Args:
           account_id: Identifier.
@@ -429,8 +444,11 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MTLSCertificate]:
-        """
-        Fetches a single mTLS certificate.
+        """Fetches a single mTLS certificate uploaded to your account.
+
+        To get a certificate
+        issued by the Cloudflare managed CA, use the
+        [Client Certificate Details endpoint](/api/resources/client_certificates/methods/get/).
 
         Args:
           account_id: Identifier.

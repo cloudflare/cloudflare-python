@@ -501,8 +501,8 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from bots, grouped by chosen the
-        specified dimension over time.
+        Retrieves the distribution of HTTP requests from bots, grouped by the specified
+        dimension over time.
 
         Args:
           dimension: Specifies the attribute by which to group the results.
@@ -1050,8 +1050,8 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from bots, grouped by chosen the
-        specified dimension over time.
+        Retrieves the distribution of HTTP requests from bots, grouped by the specified
+        dimension over time.
 
         Args:
           dimension: Specifies the attribute by which to group the results.

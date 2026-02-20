@@ -84,14 +84,14 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[IssueListResponse]]:
         """
-        Get Security Center Issues
+        Retrieves Security Center Issues
 
         Args:
           account_id: Identifier.
 
-          page: Current page within paginated list of results
+          page: Specifies the current page within paginated list of results.
 
-          per_page: Number of results per page of results
+          per_page: Sets the number of results per page of results.
 
           extra_headers: Send extra headers
 
@@ -157,7 +157,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueClassResponse]:
         """
-        Get Security Center Issue Counts by Class
+        Retrieves Security Center Issue Counts by Class
 
         Args:
           account_id: Identifier.
@@ -215,7 +215,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IssueDismissResponse:
         """
-        Archive Security Center Insight
+        Archives Security Center Insight
 
         Args:
           account_id: Identifier.
@@ -265,7 +265,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueSeverityResponse]:
         """
-        Get Security Center Issue Counts by Severity
+        Retrieves Security Center Issue Counts by Severity
 
         Args:
           account_id: Identifier.
@@ -332,7 +332,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueTypeResponse]:
         """
-        Get Security Center Issue Counts by Type
+        Retrieves Security Center Issue Counts by Type
 
         Args:
           account_id: Identifier.
@@ -422,14 +422,14 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[IssueListResponse], AsyncV4PagePagination[Optional[IssueListResponse]]]:
         """
-        Get Security Center Issues
+        Retrieves Security Center Issues
 
         Args:
           account_id: Identifier.
 
-          page: Current page within paginated list of results
+          page: Specifies the current page within paginated list of results.
 
-          per_page: Number of results per page of results
+          per_page: Sets the number of results per page of results.
 
           extra_headers: Send extra headers
 
@@ -495,7 +495,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueClassResponse]:
         """
-        Get Security Center Issue Counts by Class
+        Retrieves Security Center Issue Counts by Class
 
         Args:
           account_id: Identifier.
@@ -553,7 +553,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IssueDismissResponse:
         """
-        Archive Security Center Insight
+        Archives Security Center Insight
 
         Args:
           account_id: Identifier.
@@ -603,7 +603,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueSeverityResponse]:
         """
-        Get Security Center Issue Counts by Severity
+        Retrieves Security Center Issue Counts by Severity
 
         Args:
           account_id: Identifier.
@@ -670,7 +670,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueTypeResponse]:
         """
-        Get Security Center Issue Counts by Type
+        Retrieves Security Center Issue Counts by Type
 
         Args:
           account_id: Identifier.

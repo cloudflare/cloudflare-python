@@ -70,7 +70,7 @@ class SeverityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SeverityGetResponse]:
         """
-        Get Security Center Insight Counts by Severity
+        Retrieves Security Center Insight Counts by Severity
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -170,7 +170,7 @@ class AsyncSeverityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SeverityGetResponse]:
         """
-        Get Security Center Insight Counts by Severity
+        Retrieves Security Center Insight Counts by Severity
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.

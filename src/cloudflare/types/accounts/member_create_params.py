@@ -28,6 +28,12 @@ class IAMCreateMemberWithRoles(TypedDict, total=False):
     """Array of roles associated with this member."""
 
     status: Literal["accepted", "pending"]
+    """Status of the member invitation.
+
+    If not provided during creation, defaults to 'pending'. Changing from 'accepted'
+    back to 'pending' will trigger a replacement of the member resource in
+    Terraform.
+    """
 
 
 class IAMCreateMemberWithPolicies(TypedDict, total=False):
@@ -41,6 +47,12 @@ class IAMCreateMemberWithPolicies(TypedDict, total=False):
     """Array of policies associated with this member."""
 
     status: Literal["accepted", "pending"]
+    """Status of the member invitation.
+
+    If not provided during creation, defaults to 'pending'. Changing from 'accepted'
+    back to 'pending' will trigger a replacement of the member resource in
+    Terraform.
+    """
 
 
 class IAMCreateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):

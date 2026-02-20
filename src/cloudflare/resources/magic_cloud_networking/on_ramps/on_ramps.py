@@ -112,11 +112,10 @@ class OnRampsResource(SyncAPIResource):
         Create a new On-ramp (Closed Beta).
 
         Args:
-          dynamic_routing: if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
-              be set to false
+          dynamic_routing: Enables BGP routing. When enabling this feature, set both
+              install_routes_in_cloud and install_routes_in_magic_wan to false.
 
-          cloud_asn: the ASN to use on the cloud side. If unset or zero, the cloud's default will be
-              used.
+          cloud_asn: Sets the cloud-side ASN. If unset or zero, the cloud's default ASN takes effect.
 
           extra_headers: Send extra headers
 
@@ -608,11 +607,10 @@ class AsyncOnRampsResource(AsyncAPIResource):
         Create a new On-ramp (Closed Beta).
 
         Args:
-          dynamic_routing: if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
-              be set to false
+          dynamic_routing: Enables BGP routing. When enabling this feature, set both
+              install_routes_in_cloud and install_routes_in_magic_wan to false.
 
-          cloud_asn: the ASN to use on the cloud side. If unset or zero, the cloud's default will be
-              used.
+          cloud_asn: Sets the cloud-side ASN. If unset or zero, the cloud's default ASN takes effect.
 
           extra_headers: Send extra headers
 

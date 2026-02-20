@@ -25,6 +25,7 @@ __all__ = [
     "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
+    "BindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
@@ -36,6 +37,8 @@ __all__ = [
     "BindingWorkersBindingKindPlainText",
     "BindingWorkersBindingKindPipelines",
     "BindingWorkersBindingKindQueue",
+    "BindingWorkersBindingKindRatelimit",
+    "BindingWorkersBindingKindRatelimitSimple",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
     "BindingWorkersBindingKindSendEmail",
@@ -52,6 +55,18 @@ __all__ = [
     "MigrationsWorkersMultipleStepMigrations",
     "Module",
     "Placement",
+    "PlacementMode",
+    "PlacementRegion",
+    "PlacementHostname",
+    "PlacementHost",
+    "PlacementUnionMember4",
+    "PlacementUnionMember5",
+    "PlacementUnionMember6",
+    "PlacementUnionMember7",
+    "PlacementUnionMember7Target",
+    "PlacementUnionMember7TargetRegion",
+    "PlacementUnionMember7TargetHostname",
+    "PlacementUnionMember7TargetHost",
 ]
 
 
@@ -128,7 +143,11 @@ class VersionCreateParams(TypedDict, total=False):
     """
 
     placement: Placement
-    """Placement settings for the version."""
+    """
+    Configuration for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
+    """
 
     usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the version."""
@@ -240,8 +259,16 @@ class BindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -253,7 +280,7 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=
 class BindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[BindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -342,7 +369,7 @@ class BindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class BindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]
@@ -404,6 +431,30 @@ class BindingWorkersBindingKindQueue(TypedDict, total=False):
     """Name of the Queue to bind to."""
 
     type: Required[Literal["queue"]]
+    """The kind of resource that the binding provides."""
+
+
+class BindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class BindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[BindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
     """The kind of resource that the binding provides."""
 
 
@@ -607,6 +658,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindPlainText,
     BindingWorkersBindingKindPipelines,
     BindingWorkersBindingKindQueue,
+    BindingWorkersBindingKindRatelimit,
     BindingWorkersBindingKindR2Bucket,
     BindingWorkersBindingKindSecretText,
     BindingWorkersBindingKindSendEmail,
@@ -659,8 +711,88 @@ class Module(TypedDict, total=False):
 set_pydantic_config(Module, {"arbitrary_types_allowed": True})
 
 
-class Placement(TypedDict, total=False):
-    """Placement settings for the version."""
+class PlacementMode(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
-    mode: Literal["smart"]
-    """Placement mode for the version."""
+
+class PlacementRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+class PlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class PlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+PlacementUnionMember7Target: TypeAlias = Union[
+    PlacementUnionMember7TargetRegion, PlacementUnionMember7TargetHostname, PlacementUnionMember7TargetHost
+]
+
+
+class PlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[PlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
+Placement: TypeAlias = Union[
+    PlacementMode,
+    PlacementRegion,
+    PlacementHostname,
+    PlacementHost,
+    PlacementUnionMember4,
+    PlacementUnionMember5,
+    PlacementUnionMember6,
+    PlacementUnionMember7,
+]

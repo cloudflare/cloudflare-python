@@ -63,6 +63,7 @@ class LiveInputsResource(SyncAPIResource):
         account_id: str,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
+        enabled: bool | Omit = omit,
         meta: object | Omit = omit,
         recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -87,6 +88,8 @@ class LiveInputsResource(SyncAPIResource):
               indicate no change, or include with a `null` value to remove an existing
               scheduled deletion.
 
+          enabled: Indicates whether the live input is enabled and can accept streams.
+
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
 
@@ -110,6 +113,7 @@ class LiveInputsResource(SyncAPIResource):
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
+                    "enabled": enabled,
                     "meta": meta,
                     "recording": recording,
                 },
@@ -132,6 +136,7 @@ class LiveInputsResource(SyncAPIResource):
         account_id: str,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
+        enabled: bool | Omit = omit,
         meta: object | Omit = omit,
         recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -156,6 +161,8 @@ class LiveInputsResource(SyncAPIResource):
               to calculate a scheduled deletion date for that recording. Omit the field to
               indicate no change, or include with a `null` value to remove an existing
               scheduled deletion.
+
+          enabled: Indicates whether the live input is enabled and can accept streams.
 
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
@@ -184,6 +191,7 @@ class LiveInputsResource(SyncAPIResource):
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
+                    "enabled": enabled,
                     "meta": meta,
                     "recording": recording,
                 },
@@ -366,6 +374,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         account_id: str,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
+        enabled: bool | Omit = omit,
         meta: object | Omit = omit,
         recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -390,6 +399,8 @@ class AsyncLiveInputsResource(AsyncAPIResource):
               indicate no change, or include with a `null` value to remove an existing
               scheduled deletion.
 
+          enabled: Indicates whether the live input is enabled and can accept streams.
+
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
 
@@ -413,6 +424,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
+                    "enabled": enabled,
                     "meta": meta,
                     "recording": recording,
                 },
@@ -435,6 +447,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         account_id: str,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
+        enabled: bool | Omit = omit,
         meta: object | Omit = omit,
         recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -459,6 +472,8 @@ class AsyncLiveInputsResource(AsyncAPIResource):
               to calculate a scheduled deletion date for that recording. Omit the field to
               indicate no change, or include with a `null` value to remove an existing
               scheduled deletion.
+
+          enabled: Indicates whether the live input is enabled and can accept streams.
 
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
@@ -487,6 +502,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
+                    "enabled": enabled,
                     "meta": meta,
                     "recording": recording,
                 },

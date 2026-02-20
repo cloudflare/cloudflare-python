@@ -116,7 +116,7 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
-        Get Items.
+        Get Item.
 
         Args:
           id: Use your AI Search ID.
@@ -237,7 +237,7 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
-        Get Items.
+        Get Item.
 
         Args:
           id: Use your AI Search ID.

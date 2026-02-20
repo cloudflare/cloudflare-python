@@ -38,7 +38,6 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.snippets import snippet_list_params, snippet_update_params
 from ...types.snippets.snippet_get_response import SnippetGetResponse
 from ...types.snippets.snippet_list_response import SnippetListResponse
-from ...types.snippets.snippet_delete_response import SnippetDeleteResponse
 from ...types.snippets.snippet_update_response import SnippetUpdateResponse
 
 __all__ = ["SnippetsResource", "AsyncSnippetsResource"]
@@ -89,11 +88,11 @@ class SnippetsResource(SyncAPIResource):
         Creates or updates a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
-          metadata: Metadata about the snippet.
+          metadata: Provide metadata about the snippet.
 
           extra_headers: Send extra headers
 
@@ -142,11 +141,11 @@ class SnippetsResource(SyncAPIResource):
         Fetches all snippets belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          page: The current page number.
+          page: Specifies the current page number.
 
-          per_page: The number of results to return per page.
+          per_page: Specifies how many results to return per page.
 
           extra_headers: Send extra headers
 
@@ -188,14 +187,14 @@ class SnippetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> str:
+    ) -> object:
         """
         Deletes a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 
@@ -216,9 +215,9 @@ class SnippetsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SnippetDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -237,9 +236,9 @@ class SnippetsResource(SyncAPIResource):
         Fetches a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 
@@ -311,11 +310,11 @@ class AsyncSnippetsResource(AsyncAPIResource):
         Creates or updates a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
-          metadata: Metadata about the snippet.
+          metadata: Provide metadata about the snippet.
 
           extra_headers: Send extra headers
 
@@ -364,11 +363,11 @@ class AsyncSnippetsResource(AsyncAPIResource):
         Fetches all snippets belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          page: The current page number.
+          page: Specifies the current page number.
 
-          per_page: The number of results to return per page.
+          per_page: Specifies how many results to return per page.
 
           extra_headers: Send extra headers
 
@@ -410,14 +409,14 @@ class AsyncSnippetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> str:
+    ) -> object:
         """
         Deletes a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 
@@ -438,9 +437,9 @@ class AsyncSnippetsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SnippetDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -459,9 +458,9 @@ class AsyncSnippetsResource(AsyncAPIResource):
         Fetches a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 

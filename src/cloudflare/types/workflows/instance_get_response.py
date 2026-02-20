@@ -50,7 +50,8 @@ class StepUnionMember0Attempt(BaseModel):
 
 
 class StepUnionMember0ConfigRetries(BaseModel):
-    delay: Union[float, object]
+    delay: Union[str, float]
+    """Specifies the delay duration."""
 
     limit: float
 
@@ -60,7 +61,8 @@ class StepUnionMember0ConfigRetries(BaseModel):
 class StepUnionMember0Config(BaseModel):
     retries: StepUnionMember0ConfigRetries
 
-    timeout: Union[float, object]
+    timeout: Union[str, float]
+    """Specifies the timeout duration."""
 
 
 class StepUnionMember0(BaseModel):

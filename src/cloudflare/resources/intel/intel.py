@@ -34,14 +34,6 @@ from .asn.asn import (
     ASNResourceWithStreamingResponse,
     AsyncASNResourceWithStreamingResponse,
 )
-from .ip_lists import (
-    IPListsResource,
-    AsyncIPListsResource,
-    IPListsResourceWithRawResponse,
-    AsyncIPListsResourceWithRawResponse,
-    IPListsResourceWithStreamingResponse,
-    AsyncIPListsResourceWithStreamingResponse,
-)
 from ..._compat import cached_property
 from .sinkholes import (
     SinkholesResource,
@@ -118,10 +110,6 @@ class IntelResource(SyncAPIResource):
         return IPsResource(self._client)
 
     @cached_property
-    def ip_lists(self) -> IPListsResource:
-        return IPListsResource(self._client)
-
-    @cached_property
     def miscategorizations(self) -> MiscategorizationsResource:
         return MiscategorizationsResource(self._client)
 
@@ -181,10 +169,6 @@ class AsyncIntelResource(AsyncAPIResource):
     @cached_property
     def ips(self) -> AsyncIPsResource:
         return AsyncIPsResource(self._client)
-
-    @cached_property
-    def ip_lists(self) -> AsyncIPListsResource:
-        return AsyncIPListsResource(self._client)
 
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResource:
@@ -251,10 +235,6 @@ class IntelResourceWithRawResponse:
         return IPsResourceWithRawResponse(self._intel.ips)
 
     @cached_property
-    def ip_lists(self) -> IPListsResourceWithRawResponse:
-        return IPListsResourceWithRawResponse(self._intel.ip_lists)
-
-    @cached_property
     def miscategorizations(self) -> MiscategorizationsResourceWithRawResponse:
         return MiscategorizationsResourceWithRawResponse(self._intel.miscategorizations)
 
@@ -298,10 +278,6 @@ class AsyncIntelResourceWithRawResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithRawResponse:
         return AsyncIPsResourceWithRawResponse(self._intel.ips)
-
-    @cached_property
-    def ip_lists(self) -> AsyncIPListsResourceWithRawResponse:
-        return AsyncIPListsResourceWithRawResponse(self._intel.ip_lists)
 
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResourceWithRawResponse:
@@ -349,10 +325,6 @@ class IntelResourceWithStreamingResponse:
         return IPsResourceWithStreamingResponse(self._intel.ips)
 
     @cached_property
-    def ip_lists(self) -> IPListsResourceWithStreamingResponse:
-        return IPListsResourceWithStreamingResponse(self._intel.ip_lists)
-
-    @cached_property
     def miscategorizations(self) -> MiscategorizationsResourceWithStreamingResponse:
         return MiscategorizationsResourceWithStreamingResponse(self._intel.miscategorizations)
 
@@ -396,10 +368,6 @@ class AsyncIntelResourceWithStreamingResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithStreamingResponse:
         return AsyncIPsResourceWithStreamingResponse(self._intel.ips)
-
-    @cached_property
-    def ip_lists(self) -> AsyncIPListsResourceWithStreamingResponse:
-        return AsyncIPListsResourceWithStreamingResponse(self._intel.ip_lists)
 
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResourceWithStreamingResponse:

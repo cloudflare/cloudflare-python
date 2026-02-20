@@ -37,6 +37,8 @@ class Server(BaseModel):
 
     error: Optional[str] = None
 
+    last_successful_sync: Optional[datetime] = None
+
     last_synced: Optional[datetime] = None
 
     modified_at: Optional[datetime] = None
@@ -67,3 +69,6 @@ class PortalReadResponse(BaseModel):
     modified_at: Optional[datetime] = None
 
     modified_by: Optional[str] = None
+
+    secure_web_gateway: Optional[bool] = None
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""

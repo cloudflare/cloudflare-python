@@ -132,7 +132,7 @@ class TelemetryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelemetryQueryResponse:
         """
-        Runs a temporary or saved query
+        Run a temporary or saved query.
 
         Args:
           query_id: Unique identifier for the query to execute
@@ -226,7 +226,7 @@ class TelemetryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TelemetryValuesResponse]:
         """
-        List unique values found in your events
+        List unique values found in your events.
 
         Args:
           needle: Search for a specific substring in the event.
@@ -368,7 +368,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelemetryQueryResponse:
         """
-        Runs a temporary or saved query
+        Run a temporary or saved query.
 
         Args:
           query_id: Unique identifier for the query to execute
@@ -462,7 +462,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TelemetryValuesResponse, AsyncSinglePage[TelemetryValuesResponse]]:
         """
-        List unique values found in your events
+        List unique values found in your events.
 
         Args:
           needle: Search for a specific substring in the event.

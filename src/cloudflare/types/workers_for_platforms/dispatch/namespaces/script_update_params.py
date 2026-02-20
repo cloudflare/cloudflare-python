@@ -24,6 +24,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
@@ -35,6 +36,8 @@ __all__ = [
     "MetadataBindingWorkersBindingKindPlainText",
     "MetadataBindingWorkersBindingKindPipelines",
     "MetadataBindingWorkersBindingKindQueue",
+    "MetadataBindingWorkersBindingKindRatelimit",
+    "MetadataBindingWorkersBindingKindRatelimitSimple",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
@@ -56,6 +59,14 @@ __all__ = [
     "MetadataPlacementUnionMember1",
     "MetadataPlacementUnionMember2",
     "MetadataPlacementUnionMember3",
+    "MetadataPlacementUnionMember4",
+    "MetadataPlacementUnionMember5",
+    "MetadataPlacementUnionMember6",
+    "MetadataPlacementUnionMember7",
+    "MetadataPlacementUnionMember7Target",
+    "MetadataPlacementUnionMember7TargetRegion",
+    "MetadataPlacementUnionMember7TargetHostname",
+    "MetadataPlacementUnionMember7TargetHost",
 ]
 
 
@@ -191,8 +202,16 @@ class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -204,7 +223,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[MetadataBindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -293,7 +312,7 @@ class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]
@@ -355,6 +374,30 @@ class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
     """Name of the Queue to bind to."""
 
     type: Required[Literal["queue"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class MetadataBindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[MetadataBindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
     """The kind of resource that the binding provides."""
 
 
@@ -558,6 +601,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindPlainText,
     MetadataBindingWorkersBindingKindPipelines,
     MetadataBindingWorkersBindingKindQueue,
+    MetadataBindingWorkersBindingKindRatelimit,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,
@@ -658,11 +702,69 @@ class MetadataPlacementUnionMember3(TypedDict, total=False):
     """TCP host and port for targeted placement."""
 
 
+class MetadataPlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class MetadataPlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class MetadataPlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class MetadataPlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+MetadataPlacementUnionMember7Target: TypeAlias = Union[
+    MetadataPlacementUnionMember7TargetRegion,
+    MetadataPlacementUnionMember7TargetHostname,
+    MetadataPlacementUnionMember7TargetHost,
+]
+
+
+class MetadataPlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[MetadataPlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
 MetadataPlacement: TypeAlias = Union[
     MetadataPlacementUnionMember0,
     MetadataPlacementUnionMember1,
     MetadataPlacementUnionMember2,
     MetadataPlacementUnionMember3,
+    MetadataPlacementUnionMember4,
+    MetadataPlacementUnionMember5,
+    MetadataPlacementUnionMember6,
+    MetadataPlacementUnionMember7,
 ]
 
 
@@ -731,8 +833,7 @@ class Metadata(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
     tags: SequenceNotStr[str]

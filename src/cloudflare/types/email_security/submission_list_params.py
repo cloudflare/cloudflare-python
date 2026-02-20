@@ -16,7 +16,7 @@ class SubmissionListParams(TypedDict, total=False):
     """Account Identifier"""
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The end of the search date range. Defaults to `now`."""
+    """The end of the search date range. Defaults to `now` if not provided."""
 
     original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
@@ -33,7 +33,10 @@ class SubmissionListParams(TypedDict, total=False):
     requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The beginning of the search date range. Defaults to `now - 30 days`."""
+    """
+    The beginning of the search date range. Defaults to `now - 30 days` if not
+    provided.
+    """
 
     status: str
 

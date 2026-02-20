@@ -43,6 +43,7 @@ class TestEntries:
                 "regex": "regex",
                 "validation": "luhn",
             },
+            description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
@@ -111,6 +112,7 @@ class TestEntries:
                 "validation": "luhn",
             },
             type="custom",
+            description="description",
             enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
@@ -466,6 +468,7 @@ class TestAsyncEntries:
                 "regex": "regex",
                 "validation": "luhn",
             },
+            description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
@@ -534,6 +537,7 @@ class TestAsyncEntries:
                 "validation": "luhn",
             },
             type="custom",
+            description="description",
             enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])

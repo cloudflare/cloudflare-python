@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..decision import Decision
 from ....._types import SequenceNotStr
 from .access_rule_param import AccessRuleParam
 from ..approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0"]
+__all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0", "PolicyUnionMember0MfaConfig"]
 
 
 class PolicyTestCreateParams(TypedDict, total=False):
@@ -18,6 +18,26 @@ class PolicyTestCreateParams(TypedDict, total=False):
     """Identifier."""
 
     policies: SequenceNotStr[Policy]
+
+
+class PolicyUnionMember0MfaConfig(TypedDict, total=False):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: bool
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
 
 
 class PolicyUnionMember0(TypedDict, total=False):
@@ -57,6 +77,9 @@ class PolicyUnionMember0(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: PolicyUnionMember0MfaConfig
+    """Configures multi-factor authentication (MFA) settings."""
 
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""

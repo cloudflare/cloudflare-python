@@ -7,28 +7,28 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "ConsumerCreateParams",
-    "MqWorkerConsumer",
-    "MqWorkerConsumerSettings",
-    "MqHTTPConsumer",
-    "MqHTTPConsumerSettings",
+    "MqWorkerConsumerRequest",
+    "MqWorkerConsumerRequestSettings",
+    "MqHTTPConsumerRequest",
+    "MqHTTPConsumerRequestSettings",
 ]
 
 
-class MqWorkerConsumer(TypedDict, total=False):
+class MqWorkerConsumerRequest(TypedDict, total=False):
     account_id: Required[str]
     """A Resource identifier."""
 
-    dead_letter_queue: str
-
-    script_name: str
+    script_name: Required[str]
     """Name of a Worker"""
 
-    settings: MqWorkerConsumerSettings
+    type: Required[Literal["worker"]]
 
-    type: Literal["worker"]
+    dead_letter_queue: str
+
+    settings: MqWorkerConsumerRequestSettings
 
 
-class MqWorkerConsumerSettings(TypedDict, total=False):
+class MqWorkerConsumerRequestSettings(TypedDict, total=False):
     batch_size: float
     """The maximum number of messages to include in a batch."""
 
@@ -54,18 +54,18 @@ class MqWorkerConsumerSettings(TypedDict, total=False):
     """
 
 
-class MqHTTPConsumer(TypedDict, total=False):
+class MqHTTPConsumerRequest(TypedDict, total=False):
     account_id: Required[str]
     """A Resource identifier."""
 
+    type: Required[Literal["http_pull"]]
+
     dead_letter_queue: str
 
-    settings: MqHTTPConsumerSettings
-
-    type: Literal["http_pull"]
+    settings: MqHTTPConsumerRequestSettings
 
 
-class MqHTTPConsumerSettings(TypedDict, total=False):
+class MqHTTPConsumerRequestSettings(TypedDict, total=False):
     batch_size: float
     """The maximum number of messages to include in a batch."""
 
@@ -85,4 +85,4 @@ class MqHTTPConsumerSettings(TypedDict, total=False):
     """
 
 
-ConsumerCreateParams: TypeAlias = Union[MqWorkerConsumer, MqHTTPConsumer]
+ConsumerCreateParams: TypeAlias = Union[MqWorkerConsumerRequest, MqHTTPConsumerRequest]

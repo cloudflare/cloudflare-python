@@ -1,11 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .login_design import LoginDesign
 
-__all__ = ["Organization", "CustomPages"]
+__all__ = ["Organization", "CustomPages", "MfaConfig"]
 
 
 class CustomPages(BaseModel):
@@ -17,6 +18,20 @@ class CustomPages(BaseModel):
 
     identity_denied: Optional[str] = None
     """The uid of the custom page to use when a user is denied access."""
+
+
+class MfaConfig(BaseModel):
+    """Configures multi-factor authentication (MFA) settings for an organization."""
+
+    allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
+    """Lists the MFA methods that users can authenticate with."""
+
+    session_duration: Optional[str] = None
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
 
 
 class Organization(BaseModel):
@@ -37,6 +52,23 @@ class Organization(BaseModel):
 
     custom_pages: Optional[CustomPages] = None
 
+    deny_unmatched_requests: Optional[bool] = None
+    """
+    Determines whether to deny all requests to Cloudflare-protected resources that
+    lack an associated Access application. If enabled, you must explicitly configure
+    an Access application and policy to allow traffic to your Cloudflare-protected
+    resources. For domains you want to be public across all subdomains, add the
+    domain to the `deny_unmatched_requests_exempted_zone_names` array.
+    """
+
+    deny_unmatched_requests_exempted_zone_names: Optional[List[str]] = None
+    """Contains zone names to exempt from the `deny_unmatched_requests` feature.
+
+    Requests to a subdomain in an exempted zone will block unauthenticated traffic
+    by default if there is a configured Access application and policy that matches
+    the request.
+    """
+
     is_ui_read_only: Optional[bool] = None
     """Lock all settings as Read-Only in the Dashboard, regardless of user permission.
 
@@ -44,6 +76,22 @@ class Organization(BaseModel):
     """
 
     login_design: Optional[LoginDesign] = None
+
+    mfa_config: Optional[MfaConfig] = None
+    """Configures multi-factor authentication (MFA) settings for an organization."""
+
+    mfa_configuration_allowed: Optional[bool] = None
+    """
+    Indicates if this organization can enforce multi-factor authentication (MFA)
+    requirements at the application and policy level.
+    """
+
+    mfa_required_for_all_apps: Optional[bool] = None
+    """Determines whether global MFA settings apply to applications by default.
+
+    The organization must have MFA enabled with at least one authentication method
+    and a session duration configured.
+    """
 
     name: Optional[str] = None
     """The name of your Zero Trust organization."""

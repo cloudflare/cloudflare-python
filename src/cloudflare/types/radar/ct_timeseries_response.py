@@ -9,13 +9,13 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "CtTimeseriesResponse",
+    "CTTimeseriesResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
-    "CtTimeseriesResponseItem",
+    "CTTimeseriesResponseItem",
 ]
 
 
@@ -128,24 +128,24 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class CtTimeseriesResponseItem(BaseModel):
+class CTTimeseriesResponseItem(BaseModel):
     timestamps: List[datetime]
 
     values: List[str]
 
 
-class CtTimeseriesResponse(BaseModel):
+class CTTimeseriesResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, CtTimeseriesResponseItem] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, CTTimeseriesResponseItem] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> CtTimeseriesResponseItem: ...
+        def __getattr__(self, attr: str) -> CTTimeseriesResponseItem: ...
     else:
-        __pydantic_extra__: Dict[str, CtTimeseriesResponseItem]
+        __pydantic_extra__: Dict[str, CTTimeseriesResponseItem]

@@ -17,4 +17,8 @@ class MoveBulkParams(TypedDict, total=False):
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
 
-    postfix_ids: Required[SequenceNotStr[str]]
+    ids: SequenceNotStr[str]
+    """List of message IDs to move."""
+
+    postfix_ids: SequenceNotStr[str]
+    """Deprecated: Use `ids` instead. List of message IDs to move."""

@@ -50,6 +50,7 @@ class TestCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
+                    "description": "description",
                 }
             ],
             ocr_enabled=True,
@@ -128,6 +129,7 @@ class TestCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
+                    "description": "description",
                 }
             ],
             ocr_enabled=True,
@@ -315,6 +317,7 @@ class TestAsyncCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
+                    "description": "description",
                 }
             ],
             ocr_enabled=True,
@@ -393,6 +396,7 @@ class TestAsyncCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
+                    "description": "description",
                 }
             ],
             ocr_enabled=True,

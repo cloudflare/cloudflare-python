@@ -45,6 +45,7 @@ __all__ = [
     "ZonesSchemasBrowserCheck",
     "ZonesSchemasCacheLevel",
     "ZonesChinaNetworkEnabled",
+    "ZonesContentConverter",
     "ZonesCNAMEFlattening",
     "ZonesSchemasEdgeCacheTTL",
     "ZonesSchemasEmailObfuscation",
@@ -212,6 +213,29 @@ class ZonesChinaNetworkEnabled(BaseModel):
     """ID of the zone setting."""
 
     value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesContentConverter(BaseModel):
+    """
+    When enabled and the client sends an Accept header requesting text/markdown,
+    Cloudflare will convert HTML responses to Markdown format using the toMarkdown() service.
+    Refer to the [developer documentation](https://developers.cloudflare.com/workers-ai/features/markdown-conversion/) for more information.
+    """
+
+    id: Literal["content_converter"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "on"]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -774,6 +798,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesSchemasCacheLevel,
     ChallengeTTL,
     ZonesChinaNetworkEnabled,
+    ZonesContentConverter,
     Ciphers,
     ZonesCNAMEFlattening,
     DevelopmentMode,

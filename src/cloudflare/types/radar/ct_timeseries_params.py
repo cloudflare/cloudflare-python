@@ -9,10 +9,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["CtTimeseriesParams"]
+__all__ = ["CTTimeseriesParams"]
 
 
-class CtTimeseriesParams(TypedDict, total=False):
+class CTTimeseriesParams(TypedDict, total=False):
     agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
     """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
 

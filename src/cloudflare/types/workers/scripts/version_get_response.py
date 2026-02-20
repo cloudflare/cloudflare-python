@@ -20,6 +20,7 @@ __all__ = [
     "ResourcesBindingWorkersBindingKindDataBlob",
     "ResourcesBindingWorkersBindingKindDispatchNamespace",
     "ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "ResourcesBindingWorkersBindingKindDurableObjectNamespace",
     "ResourcesBindingWorkersBindingKindHyperdrive",
@@ -31,6 +32,8 @@ __all__ = [
     "ResourcesBindingWorkersBindingKindPlainText",
     "ResourcesBindingWorkersBindingKindPipelines",
     "ResourcesBindingWorkersBindingKindQueue",
+    "ResourcesBindingWorkersBindingKindRatelimit",
+    "ResourcesBindingWorkersBindingKindRatelimitSimple",
     "ResourcesBindingWorkersBindingKindR2Bucket",
     "ResourcesBindingWorkersBindingKindSecretText",
     "ResourcesBindingWorkersBindingKindSendEmail",
@@ -110,8 +113,16 @@ class ResourcesBindingWorkersBindingKindDataBlob(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundParam(BaseModel):
+    name: str
+    """Name of the parameter."""
+
+
 class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
     """Outbound worker."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: Optional[str] = None
     """Environment of the outbound worker."""
@@ -123,7 +134,7 @@ class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseMode
 class ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
     """Outbound worker."""
 
-    params: Optional[List[str]] = None
+    params: Optional[List[ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundParam]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -212,7 +223,7 @@ class ResourcesBindingWorkersBindingKindImages(BaseModel):
 
 
 class ResourcesBindingWorkersBindingKindJson(BaseModel):
-    json_: str = FieldInfo(alias="json")
+    json_: object = FieldInfo(alias="json")
     """JSON data to use."""
 
     name: str
@@ -274,6 +285,30 @@ class ResourcesBindingWorkersBindingKindQueue(BaseModel):
     """Name of the Queue to bind to."""
 
     type: Literal["queue"]
+    """The kind of resource that the binding provides."""
+
+
+class ResourcesBindingWorkersBindingKindRatelimitSimple(BaseModel):
+    """The rate limit configuration."""
+
+    limit: float
+    """The limit (requests per period)."""
+
+    period: int
+    """The period in seconds."""
+
+
+class ResourcesBindingWorkersBindingKindRatelimit(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: str
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: ResourcesBindingWorkersBindingKindRatelimitSimple
+    """The rate limit configuration."""
+
+    type: Literal["ratelimit"]
     """The kind of resource that the binding provides."""
 
 
@@ -463,6 +498,7 @@ ResourcesBinding: TypeAlias = Annotated[
         ResourcesBindingWorkersBindingKindPlainText,
         ResourcesBindingWorkersBindingKindPipelines,
         ResourcesBindingWorkersBindingKindQueue,
+        ResourcesBindingWorkersBindingKindRatelimit,
         ResourcesBindingWorkersBindingKindR2Bucket,
         ResourcesBindingWorkersBindingKindSecretText,
         ResourcesBindingWorkersBindingKindSendEmail,

@@ -73,6 +73,7 @@ class CustomCertificatesResource(SyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
+        deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
         type: Literal["legacy_custom", "sni_custom"] | Omit = omit,
@@ -98,6 +99,8 @@ class CustomCertificatesResource(SyncAPIResource):
               the shortest chain and newest intermediates. And the force bundle verifies the
               chain, but does not otherwise modify it.
 
+          deploy: The environment to deploy the certificate to, defaults to production
+
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
               encrypted, but will incur some latency while Keyless SSL is used to complete the
@@ -114,7 +117,9 @@ class CustomCertificatesResource(SyncAPIResource):
               (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
               can be chosen, such as 'country: IN', as well as 'region: EU' which refers to
               the EU region. If there are too few data centers satisfying the policy, it will
-              be rejected.
+              be rejected. Note: The API accepts this field as either "policy" or
+              "policy_restrictions" in requests. Responses return this field as
+              "policy_restrictions". example: "(country: US) or (region: EU)"
 
           type: The type 'legacy_custom' enables support for legacy clients which do not include
               SNI in the TLS handshake.
@@ -136,6 +141,7 @@ class CustomCertificatesResource(SyncAPIResource):
                     "certificate": certificate,
                     "private_key": private_key,
                     "bundle_method": bundle_method,
+                    "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
                     "type": type,
@@ -270,6 +276,7 @@ class CustomCertificatesResource(SyncAPIResource):
         zone_id: str,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
+        deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
         private_key: str | Omit = omit,
@@ -298,6 +305,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
+          deploy: The environment to deploy the certificate to, defaults to production
+
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
               encrypted, but will incur some latency while Keyless SSL is used to complete the
@@ -314,7 +323,9 @@ class CustomCertificatesResource(SyncAPIResource):
               (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
               can be chosen, such as 'country: IN', as well as 'region: EU' which refers to
               the EU region. If there are too few data centers satisfying the policy, it will
-              be rejected.
+              be rejected. Note: The API accepts this field as either "policy" or
+              "policy_restrictions" in requests. Responses return this field as
+              "policy_restrictions". example: "(country: US) or (region: EU)"
 
           private_key: The zone's private key.
 
@@ -338,6 +349,7 @@ class CustomCertificatesResource(SyncAPIResource):
                 {
                     "bundle_method": bundle_method,
                     "certificate": certificate,
+                    "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
                     "private_key": private_key,
@@ -432,6 +444,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
+        deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
         type: Literal["legacy_custom", "sni_custom"] | Omit = omit,
@@ -457,6 +470,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
               the shortest chain and newest intermediates. And the force bundle verifies the
               chain, but does not otherwise modify it.
 
+          deploy: The environment to deploy the certificate to, defaults to production
+
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
               encrypted, but will incur some latency while Keyless SSL is used to complete the
@@ -473,7 +488,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
               (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
               can be chosen, such as 'country: IN', as well as 'region: EU' which refers to
               the EU region. If there are too few data centers satisfying the policy, it will
-              be rejected.
+              be rejected. Note: The API accepts this field as either "policy" or
+              "policy_restrictions" in requests. Responses return this field as
+              "policy_restrictions". example: "(country: US) or (region: EU)"
 
           type: The type 'legacy_custom' enables support for legacy clients which do not include
               SNI in the TLS handshake.
@@ -495,6 +512,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                     "certificate": certificate,
                     "private_key": private_key,
                     "bundle_method": bundle_method,
+                    "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
                     "type": type,
@@ -629,6 +647,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         zone_id: str,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
+        deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
         private_key: str | Omit = omit,
@@ -657,6 +676,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
+          deploy: The environment to deploy the certificate to, defaults to production
+
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
               encrypted, but will incur some latency while Keyless SSL is used to complete the
@@ -673,7 +694,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
               (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
               can be chosen, such as 'country: IN', as well as 'region: EU' which refers to
               the EU region. If there are too few data centers satisfying the policy, it will
-              be rejected.
+              be rejected. Note: The API accepts this field as either "policy" or
+              "policy_restrictions" in requests. Responses return this field as
+              "policy_restrictions". example: "(country: US) or (region: EU)"
 
           private_key: The zone's private key.
 
@@ -697,6 +720,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 {
                     "bundle_method": bundle_method,
                     "certificate": certificate,
+                    "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
                     "private_key": private_key,

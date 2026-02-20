@@ -22,6 +22,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindDataBlob",
     "SettingsBindingWorkersBindingKindDispatchNamespace",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "SettingsBindingWorkersBindingKindDurableObjectNamespace",
     "SettingsBindingWorkersBindingKindHyperdrive",
@@ -33,6 +34,8 @@ __all__ = [
     "SettingsBindingWorkersBindingKindPlainText",
     "SettingsBindingWorkersBindingKindPipelines",
     "SettingsBindingWorkersBindingKindQueue",
+    "SettingsBindingWorkersBindingKindRatelimit",
+    "SettingsBindingWorkersBindingKindRatelimitSimple",
     "SettingsBindingWorkersBindingKindR2Bucket",
     "SettingsBindingWorkersBindingKindSecretText",
     "SettingsBindingWorkersBindingKindSendEmail",
@@ -54,6 +57,14 @@ __all__ = [
     "SettingsPlacementRegion",
     "SettingsPlacementHostname",
     "SettingsPlacementHost",
+    "SettingsPlacementUnionMember4",
+    "SettingsPlacementUnionMember5",
+    "SettingsPlacementUnionMember6",
+    "SettingsPlacementUnionMember7",
+    "SettingsPlacementUnionMember7Target",
+    "SettingsPlacementUnionMember7TargetRegion",
+    "SettingsPlacementUnionMember7TargetHostname",
+    "SettingsPlacementUnionMember7TargetHost",
 ]
 
 
@@ -124,8 +135,16 @@ class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam(TypedDict, total=False):
+    name: Required[str]
+    """Name of the parameter."""
+
+
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     """Outbound worker."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the outbound worker."""
 
     environment: str
     """Environment of the outbound worker."""
@@ -137,7 +156,7 @@ class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
     """Outbound worker."""
 
-    params: SequenceNotStr[str]
+    params: Iterable[SettingsBindingWorkersBindingKindDispatchNamespaceOutboundParam]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -226,7 +245,7 @@ class SettingsBindingWorkersBindingKindImages(TypedDict, total=False):
 
 
 class SettingsBindingWorkersBindingKindJson(TypedDict, total=False):
-    json: Required[str]
+    json: Required[object]
     """JSON data to use."""
 
     name: Required[str]
@@ -288,6 +307,30 @@ class SettingsBindingWorkersBindingKindQueue(TypedDict, total=False):
     """Name of the Queue to bind to."""
 
     type: Required[Literal["queue"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class SettingsBindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[SettingsBindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
     """The kind of resource that the binding provides."""
 
 
@@ -491,6 +534,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindPlainText,
     SettingsBindingWorkersBindingKindPipelines,
     SettingsBindingWorkersBindingKindQueue,
+    SettingsBindingWorkersBindingKindRatelimit,
     SettingsBindingWorkersBindingKindR2Bucket,
     SettingsBindingWorkersBindingKindSecretText,
     SettingsBindingWorkersBindingKindSendEmail,
@@ -591,8 +635,69 @@ class SettingsPlacementHost(TypedDict, total=False):
     """TCP host and port for targeted placement."""
 
 
+class SettingsPlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class SettingsPlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class SettingsPlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class SettingsPlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class SettingsPlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class SettingsPlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+SettingsPlacementUnionMember7Target: TypeAlias = Union[
+    SettingsPlacementUnionMember7TargetRegion,
+    SettingsPlacementUnionMember7TargetHostname,
+    SettingsPlacementUnionMember7TargetHost,
+]
+
+
+class SettingsPlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[SettingsPlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
 SettingsPlacement: TypeAlias = Union[
-    SettingsPlacementMode, SettingsPlacementRegion, SettingsPlacementHostname, SettingsPlacementHost
+    SettingsPlacementMode,
+    SettingsPlacementRegion,
+    SettingsPlacementHostname,
+    SettingsPlacementHost,
+    SettingsPlacementUnionMember4,
+    SettingsPlacementUnionMember5,
+    SettingsPlacementUnionMember6,
+    SettingsPlacementUnionMember7,
 ]
 
 
@@ -634,8 +739,7 @@ class Settings(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
     tags: Optional[SequenceNotStr[str]]

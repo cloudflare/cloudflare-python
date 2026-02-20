@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -198,12 +198,32 @@ class SchemaFieldJson(TypedDict, total=False):
     sql_name: str
 
 
-class SchemaFieldStruct(total=False):
-    pass
+class SchemaFieldStruct(TypedDict, total=False):
+    type: Required[Literal["struct"]]
+
+    metadata_key: Optional[str]
+
+    name: str
+
+    required: bool
+
+    sql_name: str
+
+    fields: Optional[List["SchemaField"]]
 
 
-class SchemaFieldList(total=False):
-    pass
+class SchemaFieldList(TypedDict, total=False):
+    type: Required[Literal["list"]]
+
+    metadata_key: Optional[str]
+
+    name: str
+
+    required: bool
+
+    sql_name: str
+
+    element: Optional["SchemaField"]
 
 
 SchemaField: TypeAlias = Union[

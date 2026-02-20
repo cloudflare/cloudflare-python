@@ -9,10 +9,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["CtSummaryParams"]
+__all__ = ["CTSummaryParams"]
 
 
-class CtSummaryParams(TypedDict, total=False):
+class CTSummaryParams(TypedDict, total=False):
     ca: SequenceNotStr[str]
     """Filters results by certificate authority."""
 

@@ -48,14 +48,6 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
-from .ip_lists import (
-    IPListsResource,
-    AsyncIPListsResource,
-    IPListsResourceWithRawResponse,
-    AsyncIPListsResourceWithRawResponse,
-    IPListsResourceWithStreamingResponse,
-    AsyncIPListsResourceWithStreamingResponse,
-)
 from .sinkholes import (
     SinkholesResource,
     AsyncSinkholesResource,
@@ -128,12 +120,6 @@ __all__ = [
     "AsyncIPsResourceWithRawResponse",
     "IPsResourceWithStreamingResponse",
     "AsyncIPsResourceWithStreamingResponse",
-    "IPListsResource",
-    "AsyncIPListsResource",
-    "IPListsResourceWithRawResponse",
-    "AsyncIPListsResourceWithRawResponse",
-    "IPListsResourceWithStreamingResponse",
-    "AsyncIPListsResourceWithStreamingResponse",
     "MiscategorizationsResource",
     "AsyncMiscategorizationsResource",
     "MiscategorizationsResourceWithRawResponse",

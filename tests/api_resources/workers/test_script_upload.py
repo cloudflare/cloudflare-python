@@ -39,7 +39,7 @@ class TestScriptUpload:
                     }
                 ],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "my-hello-world-script.mjs": (
                     "my-hello-world-script.mjs",
                     bytes(script_content, "utf-8"),
@@ -73,7 +73,7 @@ class TestScriptUpload:
             metadata={
                 "main_module": "index.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "index.mjs": (
                     "index.mjs",
                     bytes(main_script, "utf-8"),
@@ -118,7 +118,7 @@ class TestScriptUpload:
                     },
                 ],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -147,7 +147,7 @@ class TestScriptUpload:
                 "compatibility_date": "2024-01-01",
                 "compatibility_flags": ["nodejs_compat"],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -176,7 +176,7 @@ class TestScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -208,7 +208,7 @@ class TestScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -239,7 +239,7 @@ class TestScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -301,7 +301,7 @@ class TestAsyncScriptUpload:
                     }
                 ],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "my-hello-world-script.mjs": (
                     "my-hello-world-script.mjs",
                     bytes(script_content, "utf-8"),
@@ -335,7 +335,7 @@ class TestAsyncScriptUpload:
             metadata={
                 "main_module": "index.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "index.mjs": (
                     "index.mjs",
                     bytes(main_script, "utf-8"),
@@ -380,7 +380,7 @@ class TestAsyncScriptUpload:
                     },
                 ],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -409,7 +409,7 @@ class TestAsyncScriptUpload:
                 "compatibility_date": "2024-01-01",
                 "compatibility_flags": ["nodejs_compat"],
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -438,7 +438,7 @@ class TestAsyncScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -470,7 +470,7 @@ class TestAsyncScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),
@@ -501,7 +501,7 @@ class TestAsyncScriptUpload:
             metadata={
                 "main_module": "worker.mjs",
             },
-            files={
+            files={  # pyright: ignore[reportArgumentType]
                 "worker.mjs": (
                     "worker.mjs",
                     bytes(script_content, "utf-8"),

@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .ct import (
-    CtResource,
-    AsyncCtResource,
-    CtResourceWithRawResponse,
-    AsyncCtResourceWithRawResponse,
-    CtResourceWithStreamingResponse,
-    AsyncCtResourceWithStreamingResponse,
+    CTResource,
+    AsyncCTResource,
+    CTResourceWithRawResponse,
+    AsyncCTResourceWithRawResponse,
+    CTResourceWithStreamingResponse,
+    AsyncCTResourceWithStreamingResponse,
 )
 from .logs import (
     LogsResource,
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncLogsResourceWithRawResponse",
     "LogsResourceWithStreamingResponse",
     "AsyncLogsResourceWithStreamingResponse",
-    "CtResource",
-    "AsyncCtResource",
-    "CtResourceWithRawResponse",
-    "AsyncCtResourceWithRawResponse",
-    "CtResourceWithStreamingResponse",
-    "AsyncCtResourceWithStreamingResponse",
+    "CTResource",
+    "AsyncCTResource",
+    "CTResourceWithRawResponse",
+    "AsyncCTResourceWithRawResponse",
+    "CTResourceWithStreamingResponse",
+    "AsyncCTResourceWithStreamingResponse",
 ]

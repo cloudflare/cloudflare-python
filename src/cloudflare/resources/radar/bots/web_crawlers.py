@@ -159,7 +159,7 @@ class WebCrawlersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from crawlers, grouped by chosen the
+        Retrieves the distribution of HTTP requests from crawlers, grouped by the
         specified dimension over time.
 
         Args:
@@ -364,7 +364,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerTimeseriesGroupsResponse:
         """
-        Retrieves the distribution of HTTP requests from crawlers, grouped by chosen the
+        Retrieves the distribution of HTTP requests from crawlers, grouped by the
         specified dimension over time.
 
         Args:

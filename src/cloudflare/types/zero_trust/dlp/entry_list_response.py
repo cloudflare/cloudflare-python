@@ -35,6 +35,8 @@ class CustomEntry(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+
     profile_id: Optional[str] = None
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None

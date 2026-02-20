@@ -18,6 +18,7 @@ _ModelT = TypeVar("_ModelT", bound=pydantic.BaseModel)
 # pyright: reportIncompatibleMethodOverride=false
 
 PYDANTIC_V1 = pydantic.VERSION.startswith("1.")
+PYDANTIC_V2 = pydantic.VERSION.startswith("2.")
 
 if TYPE_CHECKING:
 

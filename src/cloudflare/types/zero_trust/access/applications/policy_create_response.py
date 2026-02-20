@@ -2,13 +2,34 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..decision import Decision
 from ....._models import BaseModel
 from .access_rule import AccessRule
 from ..approval_group import ApprovalGroup
 
-__all__ = ["PolicyCreateResponse"]
+__all__ = ["PolicyCreateResponse", "MfaConfig"]
+
+
+class MfaConfig(BaseModel):
+    """Configures multi-factor authentication (MFA) settings."""
+
+    allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
+    """Lists the MFA methods that users can authenticate with."""
+
+    mfa_bypass: Optional[bool] = None
+    """Indicates whether to bypass MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: Optional[str] = None
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples:`5m` or `24h`.
+    """
 
 
 class PolicyCreateResponse(BaseModel):
@@ -50,6 +71,9 @@ class PolicyCreateResponse(BaseModel):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
+
+    mfa_config: Optional[MfaConfig] = None
+    """Configures multi-factor authentication (MFA) settings."""
 
     name: Optional[str] = None
     """The name of the Access policy."""

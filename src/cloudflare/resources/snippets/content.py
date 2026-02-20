@@ -58,9 +58,9 @@ class ContentResource(SyncAPIResource):
         Fetches the content of a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 
@@ -120,9 +120,9 @@ class AsyncContentResource(AsyncAPIResource):
         Fetches the content of a snippet belonging to the zone.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Use this field to specify the unique ID of the zone.
 
-          snippet_name: The identifying name of the snippet.
+          snippet_name: Identify the snippet.
 
           extra_headers: Send extra headers
 

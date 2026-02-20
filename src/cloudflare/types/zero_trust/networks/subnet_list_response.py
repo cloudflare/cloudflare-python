@@ -37,5 +37,5 @@ class SubnetListResponse(BaseModel):
     network: Optional[str] = None
     """The private IPv4 or IPv6 range defining the subnet, in CIDR notation."""
 
-    subnet_type: Optional[Literal["cloudflare_source"]] = None
+    subnet_type: Optional[Literal["cloudflare_source", "warp"]] = None
     """The type of subnet."""

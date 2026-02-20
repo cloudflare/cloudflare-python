@@ -15,5 +15,3 @@ class TokenCreateParams(TypedDict, total=False):
     cf_api_key: Required[str]
 
     name: Required[str]
-
-    legacy: bool

@@ -6,6 +6,7 @@ from .token_list_params import TokenListParams as TokenListParams
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .token_list_response import TokenListResponse as TokenListResponse
 from .token_read_response import TokenReadResponse as TokenReadResponse
+from .token_update_params import TokenUpdateParams as TokenUpdateParams
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .token_delete_response import TokenDeleteResponse as TokenDeleteResponse
@@ -13,8 +14,12 @@ from .token_update_response import TokenUpdateResponse as TokenUpdateResponse
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_list_response import InstanceListResponse as InstanceListResponse
 from .instance_read_response import InstanceReadResponse as InstanceReadResponse
+from .instance_search_params import InstanceSearchParams as InstanceSearchParams
 from .instance_update_params import InstanceUpdateParams as InstanceUpdateParams
 from .instance_stats_response import InstanceStatsResponse as InstanceStatsResponse
 from .instance_create_response import InstanceCreateResponse as InstanceCreateResponse
 from .instance_delete_response import InstanceDeleteResponse as InstanceDeleteResponse
+from .instance_search_response import InstanceSearchResponse as InstanceSearchResponse
 from .instance_update_response import InstanceUpdateResponse as InstanceUpdateResponse
+from .instance_chat_completions_params import InstanceChatCompletionsParams as InstanceChatCompletionsParams
+from .instance_chat_completions_response import InstanceChatCompletionsResponse as InstanceChatCompletionsResponse

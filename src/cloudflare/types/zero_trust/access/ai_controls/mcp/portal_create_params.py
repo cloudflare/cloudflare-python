@@ -20,6 +20,9 @@ class PortalCreateParams(TypedDict, total=False):
 
     description: str
 
+    secure_web_gateway: bool
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""
+
     servers: Iterable[Server]
 
 
