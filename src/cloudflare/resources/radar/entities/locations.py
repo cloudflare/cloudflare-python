@@ -49,10 +49,13 @@ class LocationsResource(SyncAPIResource):
     def list(
         self,
         *,
+        continent: Literal["AF", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        region: str | Omit = omit,
+        subregion: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,6 +67,8 @@ class LocationsResource(SyncAPIResource):
         Retrieves a list of locations.
 
         Args:
+          continent: Filters results by continent code.
+
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
@@ -72,6 +77,10 @@ class LocationsResource(SyncAPIResource):
               codes.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          region: Filters results by region.
+
+          subregion: Filters results by subregion.
 
           extra_headers: Send extra headers
 
@@ -90,10 +99,13 @@ class LocationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "format": format,
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "region": region,
+                        "subregion": subregion,
                     },
                     location_list_params.LocationListParams,
                 ),
@@ -172,10 +184,13 @@ class AsyncLocationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        continent: Literal["AF", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        region: str | Omit = omit,
+        subregion: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,6 +202,8 @@ class AsyncLocationsResource(AsyncAPIResource):
         Retrieves a list of locations.
 
         Args:
+          continent: Filters results by continent code.
+
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
@@ -195,6 +212,10 @@ class AsyncLocationsResource(AsyncAPIResource):
               codes.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          region: Filters results by region.
+
+          subregion: Filters results by subregion.
 
           extra_headers: Send extra headers
 
@@ -213,10 +234,13 @@ class AsyncLocationsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "continent": continent,
                         "format": format,
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "region": region,
+                        "subregion": subregion,
                     },
                     location_list_params.LocationListParams,
                 ),

@@ -10,6 +10,8 @@ __all__ = ["LocationListResponse", "Location"]
 class Location(BaseModel):
     alpha2: str
 
+    continent: str
+
     latitude: str
     """A numeric string."""
 
@@ -17,6 +19,10 @@ class Location(BaseModel):
     """A numeric string."""
 
     name: str
+
+    region: str
+
+    subregion: str
 
 
 class LocationListResponse(BaseModel):

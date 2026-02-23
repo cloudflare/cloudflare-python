@@ -12,6 +12,8 @@ class Location(BaseModel):
 
     confidence_level: int = FieldInfo(alias="confidenceLevel")
 
+    continent: str
+
     latitude: str
     """A numeric string."""
 

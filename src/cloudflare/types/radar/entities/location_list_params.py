@@ -8,6 +8,9 @@ __all__ = ["LocationListParams"]
 
 
 class LocationListParams(TypedDict, total=False):
+    continent: Literal["AF", "AS", "EU", "NA", "OC", "SA"]
+    """Filters results by continent code."""
+
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
@@ -22,3 +25,9 @@ class LocationListParams(TypedDict, total=False):
 
     offset: int
     """Skips the specified number of objects before fetching the results."""
+
+    region: str
+    """Filters results by region."""
+
+    subregion: str
+    """Filters results by subregion."""

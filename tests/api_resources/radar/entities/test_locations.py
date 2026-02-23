@@ -28,10 +28,13 @@ class TestLocations:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.entities.locations.list(
+            continent="EU",
             format="JSON",
             limit=1,
             location="US,CA",
             offset=0,
+            region="Middle East",
+            subregion="Southern Europe",
         )
         assert_matches_type(LocationListResponse, location, path=["response"])
 
@@ -115,10 +118,13 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.entities.locations.list(
+            continent="EU",
             format="JSON",
             limit=1,
             location="US,CA",
             offset=0,
+            region="Middle East",
+            subregion="Southern Europe",
         )
         assert_matches_type(LocationListResponse, location, path=["response"])
 
