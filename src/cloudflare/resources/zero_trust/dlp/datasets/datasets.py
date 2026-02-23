@@ -37,9 +37,7 @@ from .versions.versions import (
 )
 from .....types.zero_trust.dlp import dataset_create_params, dataset_update_params
 from .....types.zero_trust.dlp.dataset import Dataset
-from .....types.zero_trust.dlp.dataset_get_response import DatasetGetResponse
-from .....types.zero_trust.dlp.dataset_create_response import DatasetCreateResponse
-from .....types.zero_trust.dlp.dataset_update_response import DatasetUpdateResponse
+from .....types.zero_trust.dlp.dataset_creation import DatasetCreation
 
 __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
@@ -87,7 +85,7 @@ class DatasetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetCreateResponse]:
+    ) -> Optional[DatasetCreation]:
         """Create a new dataset
 
         Args:
@@ -137,9 +135,9 @@ class DatasetsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DatasetCreation]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetCreateResponse]], ResultWrapper[DatasetCreateResponse]),
+            cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
 
     def update(
@@ -156,7 +154,7 @@ class DatasetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetUpdateResponse]:
+    ) -> Optional[Dataset]:
         """
         Update details about a dataset
 
@@ -196,9 +194,9 @@ class DatasetsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetUpdateResponse]], ResultWrapper[DatasetUpdateResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
     def list(
@@ -283,7 +281,7 @@ class DatasetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetGetResponse]:
+    ) -> Optional[Dataset]:
         """
         Fetch a specific dataset
 
@@ -307,9 +305,9 @@ class DatasetsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetGetResponse]], ResultWrapper[DatasetGetResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 
@@ -356,7 +354,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetCreateResponse]:
+    ) -> Optional[DatasetCreation]:
         """Create a new dataset
 
         Args:
@@ -406,9 +404,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[DatasetCreation]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetCreateResponse]], ResultWrapper[DatasetCreateResponse]),
+            cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
 
     async def update(
@@ -425,7 +423,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetUpdateResponse]:
+    ) -> Optional[Dataset]:
         """
         Update details about a dataset
 
@@ -465,9 +463,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetUpdateResponse]], ResultWrapper[DatasetUpdateResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
     def list(
@@ -552,7 +550,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DatasetGetResponse]:
+    ) -> Optional[Dataset]:
         """
         Fetch a specific dataset
 
@@ -576,9 +574,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DatasetGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DatasetGetResponse]], ResultWrapper[DatasetGetResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 

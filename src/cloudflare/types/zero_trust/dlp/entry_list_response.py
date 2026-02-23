@@ -9,18 +9,18 @@ from .profiles.pattern import Pattern
 
 __all__ = [
     "EntryListResponse",
-    "CustomEntry",
-    "PredefinedEntry",
-    "PredefinedEntryConfidence",
-    "PredefinedEntryVariant",
-    "IntegrationEntry",
-    "ExactDataEntry",
-    "DocumentFingerprintEntry",
-    "WordListEntry",
+    "UnionMember0",
+    "UnionMember1",
+    "UnionMember1Confidence",
+    "UnionMember1Variant",
+    "UnionMember2",
+    "UnionMember3",
+    "UnionMember4",
+    "UnionMember5",
 ]
 
 
-class CustomEntry(BaseModel):
+class UnionMember0(BaseModel):
     id: str
 
     created_at: datetime
@@ -42,7 +42,7 @@ class CustomEntry(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class PredefinedEntryConfidence(BaseModel):
+class UnionMember1Confidence(BaseModel):
     ai_context_available: bool
     """Indicates whether this entry has AI remote service validation."""
 
@@ -53,7 +53,7 @@ class PredefinedEntryConfidence(BaseModel):
     """
 
 
-class PredefinedEntryVariant(BaseModel):
+class UnionMember1Variant(BaseModel):
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
@@ -61,10 +61,10 @@ class PredefinedEntryVariant(BaseModel):
     description: Optional[str] = None
 
 
-class PredefinedEntry(BaseModel):
+class UnionMember1(BaseModel):
     id: str
 
-    confidence: PredefinedEntryConfidence
+    confidence: UnionMember1Confidence
 
     enabled: bool
 
@@ -76,10 +76,10 @@ class PredefinedEntry(BaseModel):
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-    variant: Optional[PredefinedEntryVariant] = None
+    variant: Optional[UnionMember1Variant] = None
 
 
-class IntegrationEntry(BaseModel):
+class UnionMember2(BaseModel):
     id: str
 
     created_at: datetime
@@ -97,7 +97,7 @@ class IntegrationEntry(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class ExactDataEntry(BaseModel):
+class UnionMember3(BaseModel):
     id: str
 
     case_sensitive: bool
@@ -121,7 +121,7 @@ class ExactDataEntry(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class DocumentFingerprintEntry(BaseModel):
+class UnionMember4(BaseModel):
     id: str
 
     created_at: datetime
@@ -137,7 +137,7 @@ class DocumentFingerprintEntry(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class WordListEntry(BaseModel):
+class UnionMember5(BaseModel):
     id: str
 
     created_at: datetime
@@ -157,6 +157,4 @@ class WordListEntry(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-EntryListResponse: TypeAlias = Union[
-    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentFingerprintEntry, WordListEntry
-]
+EntryListResponse: TypeAlias = Union[UnionMember0, UnionMember1, UnionMember2, UnionMember3, UnionMember4, UnionMember5]

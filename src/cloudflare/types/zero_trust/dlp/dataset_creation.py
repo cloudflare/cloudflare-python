@@ -5,10 +5,10 @@ from typing import Optional
 from .dataset import Dataset
 from ...._models import BaseModel
 
-__all__ = ["DatasetCreateResponse"]
+__all__ = ["DatasetCreation"]
 
 
-class DatasetCreateResponse(BaseModel):
+class DatasetCreation(BaseModel):
     dataset: Dataset
 
     encoding_version: int

@@ -28,8 +28,8 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.dlp.datasets.upload_edit_response import UploadEditResponse
-from .....types.zero_trust.dlp.datasets.upload_create_response import UploadCreateResponse
+from .....types.zero_trust.dlp.dataset import Dataset
+from .....types.zero_trust.dlp.datasets.new_version import NewVersion
 
 __all__ = ["UploadResource", "AsyncUploadResource"]
 
@@ -65,7 +65,7 @@ class UploadResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[UploadCreateResponse]:
+    ) -> Optional[NewVersion]:
         """
         Prepare to upload a new version of a dataset
 
@@ -89,9 +89,9 @@ class UploadResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[UploadCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UploadCreateResponse]], ResultWrapper[UploadCreateResponse]),
+            cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
 
     def edit(
@@ -107,7 +107,7 @@ class UploadResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[UploadEditResponse]:
+    ) -> Optional[Dataset]:
         """This is used for single-column EDMv1 and Custom Word Lists.
 
         The EDM format can
@@ -137,9 +137,9 @@ class UploadResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[UploadEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UploadEditResponse]], ResultWrapper[UploadEditResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 
@@ -174,7 +174,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[UploadCreateResponse]:
+    ) -> Optional[NewVersion]:
         """
         Prepare to upload a new version of a dataset
 
@@ -198,9 +198,9 @@ class AsyncUploadResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[UploadCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UploadCreateResponse]], ResultWrapper[UploadCreateResponse]),
+            cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
 
     async def edit(
@@ -216,7 +216,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[UploadEditResponse]:
+    ) -> Optional[Dataset]:
         """This is used for single-column EDMv1 and Custom Word Lists.
 
         The EDM format can
@@ -246,9 +246,9 @@ class AsyncUploadResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[UploadEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UploadEditResponse]], ResultWrapper[UploadEditResponse]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 

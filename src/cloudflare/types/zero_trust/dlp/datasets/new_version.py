@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["UploadCreateResponse", "Column"]
+__all__ = ["NewVersion", "Column"]
 
 
 class Column(BaseModel):
@@ -18,7 +18,7 @@ class Column(BaseModel):
     upload_status: Literal["empty", "uploading", "pending", "processing", "failed", "complete"]
 
 
-class UploadCreateResponse(BaseModel):
+class NewVersion(BaseModel):
     encoding_version: int
 
     max_cells: int

@@ -19,8 +19,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.profiles import predefined_update_params
-from .....types.zero_trust.dlp.profiles.predefined_get_response import PredefinedGetResponse
-from .....types.zero_trust.dlp.profiles.predefined_update_response import PredefinedUpdateResponse
+from .....types.zero_trust.dlp.profiles.predefined_profile import PredefinedProfile
 
 __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
@@ -62,7 +61,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedUpdateResponse]:
+    ) -> Optional[PredefinedProfile]:
         """This is similar to `update_predefined` but only returns entries that are
         enabled.
 
@@ -100,9 +99,9 @@ class PredefinedResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedUpdateResponse]], ResultWrapper[PredefinedUpdateResponse]),
+            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
         )
 
     def delete(
@@ -157,7 +156,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedGetResponse]:
+    ) -> Optional[PredefinedProfile]:
         """
         This is similar to `get_predefined` but only returns entries that are enabled.
         This is needed for our terraform API Fetches a predefined DLP profile by id.
@@ -182,9 +181,9 @@ class PredefinedResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedGetResponse]], ResultWrapper[PredefinedGetResponse]),
+            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
         )
 
 
@@ -225,7 +224,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedUpdateResponse]:
+    ) -> Optional[PredefinedProfile]:
         """This is similar to `update_predefined` but only returns entries that are
         enabled.
 
@@ -263,9 +262,9 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedUpdateResponse]], ResultWrapper[PredefinedUpdateResponse]),
+            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
         )
 
     async def delete(
@@ -320,7 +319,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedGetResponse]:
+    ) -> Optional[PredefinedProfile]:
         """
         This is similar to `get_predefined` but only returns entries that are enabled.
         This is needed for our terraform API Fetches a predefined DLP profile by id.
@@ -345,9 +344,9 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedGetResponse]], ResultWrapper[PredefinedGetResponse]),
+            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
         )
 
 

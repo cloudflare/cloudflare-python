@@ -18,11 +18,9 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
+from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profiles import custom_create_params, custom_update_params
 from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
-from .....types.zero_trust.dlp.profiles.custom_get_response import CustomGetResponse
-from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
-from .....types.zero_trust.dlp.profiles.custom_update_response import CustomUpdateResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -66,7 +64,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomCreateResponse]:
+    ) -> Optional[Profile]:
         """
         Creates a DLP custom profile.
 
@@ -92,7 +90,7 @@ class CustomResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[CustomCreateResponse],
+            Optional[Profile],
             self._post(
                 f"/accounts/{account_id}/dlp/profiles/custom",
                 body=maybe_transform(
@@ -114,10 +112,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCreateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -142,7 +140,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
+    ) -> Optional[Profile]:
         """
         Updates a DLP custom profile.
 
@@ -170,7 +168,7 @@ class CustomResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomUpdateResponse],
+            Optional[Profile],
             self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=maybe_transform(
@@ -192,10 +190,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -251,7 +249,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a custom DLP profile by id.
 
@@ -269,7 +267,7 @@ class CustomResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomGetResponse],
+            Optional[Profile],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -277,10 +275,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -325,7 +323,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomCreateResponse]:
+    ) -> Optional[Profile]:
         """
         Creates a DLP custom profile.
 
@@ -351,7 +349,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[CustomCreateResponse],
+            Optional[Profile],
             await self._post(
                 f"/accounts/{account_id}/dlp/profiles/custom",
                 body=await async_maybe_transform(
@@ -373,10 +371,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCreateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -401,7 +399,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
+    ) -> Optional[Profile]:
         """
         Updates a DLP custom profile.
 
@@ -429,7 +427,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomUpdateResponse],
+            Optional[Profile],
             await self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=await async_maybe_transform(
@@ -451,10 +449,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -510,7 +508,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a custom DLP profile by id.
 
@@ -528,7 +526,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomGetResponse],
+            Optional[Profile],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -536,10 +534,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -8,7 +8,7 @@ from .pattern import Pattern
 from ....._models import BaseModel
 
 __all__ = [
-    "PredefinedGetResponse",
+    "PredefinedProfile",
     "Entry",
     "EntryCustomEntry",
     "EntryPredefinedEntry",
@@ -156,7 +156,7 @@ Entry: TypeAlias = Union[
 ]
 
 
-class PredefinedGetResponse(BaseModel):
+class PredefinedProfile(BaseModel):
     id: str
     """The id of the predefined profile (uuid)."""
 
