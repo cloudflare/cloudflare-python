@@ -152,6 +152,14 @@ from .geolocations import (
     GeolocationsResourceWithStreamingResponse,
     AsyncGeolocationsResourceWithStreamingResponse,
 )
+from .post_quantum import (
+    PostQuantumResource,
+    AsyncPostQuantumResource,
+    PostQuantumResourceWithRawResponse,
+    AsyncPostQuantumResourceWithRawResponse,
+    PostQuantumResourceWithStreamingResponse,
+    AsyncPostQuantumResourceWithStreamingResponse,
+)
 from .verified_bots import (
     VerifiedBotsResource,
     AsyncVerifiedBotsResource,
@@ -234,6 +242,12 @@ __all__ = [
     "AsyncNetFlowsResourceWithRawResponse",
     "NetFlowsResourceWithStreamingResponse",
     "AsyncNetFlowsResourceWithStreamingResponse",
+    "PostQuantumResource",
+    "AsyncPostQuantumResource",
+    "PostQuantumResourceWithRawResponse",
+    "AsyncPostQuantumResourceWithRawResponse",
+    "PostQuantumResourceWithStreamingResponse",
+    "AsyncPostQuantumResourceWithStreamingResponse",
     "SearchResource",
     "AsyncSearchResource",
     "SearchResourceWithRawResponse",

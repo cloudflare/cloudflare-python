@@ -16,3 +16,5 @@ from .location_get_params import LocationGetParams as LocationGetParams
 from .location_list_params import LocationListParams as LocationListParams
 from .location_get_response import LocationGetResponse as LocationGetResponse
 from .location_list_response import LocationListResponse as LocationListResponse
+from .asn_botnet_threat_feed_params import ASNBotnetThreatFeedParams as ASNBotnetThreatFeedParams
+from .asn_botnet_threat_feed_response import ASNBotnetThreatFeedResponse as ASNBotnetThreatFeedResponse

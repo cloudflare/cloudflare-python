@@ -8126,6 +8126,36 @@ Methods:
 - <code title="get /radar/netflows/top/ases">client.radar.netflows.top.<a href="./src/cloudflare/resources/radar/netflows/top.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/netflows/top_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows/top_ases_response.py">TopAsesResponse</a></code>
 - <code title="get /radar/netflows/top/locations">client.radar.netflows.top.<a href="./src/cloudflare/resources/radar/netflows/top.py">locations</a>(\*\*<a href="src/cloudflare/types/radar/netflows/top_locations_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows/top_locations_response.py">TopLocationsResponse</a></code>
 
+## PostQuantum
+
+### Origin
+
+Types:
+
+```python
+from cloudflare.types.radar.post_quantum import (
+    OriginSummaryResponse,
+    OriginTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/post_quantum/origin/summary/{dimension}">client.radar.post_quantum.origin.<a href="./src/cloudflare/resources/radar/post_quantum/origin.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/post_quantum/origin_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/post_quantum/origin_summary_response.py">OriginSummaryResponse</a></code>
+- <code title="get /radar/post_quantum/origin/timeseries_groups/{dimension}">client.radar.post_quantum.origin.<a href="./src/cloudflare/resources/radar/post_quantum/origin.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/post_quantum/origin_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/post_quantum/origin_timeseries_groups_response.py">OriginTimeseriesGroupsResponse</a></code>
+
+### TLS
+
+Types:
+
+```python
+from cloudflare.types.radar.post_quantum import TLSSupportResponse
+```
+
+Methods:
+
+- <code title="get /radar/post_quantum/tls/support">client.radar.post_quantum.tls.<a href="./src/cloudflare/resources/radar/post_quantum/tls.py">support</a>(\*\*<a href="src/cloudflare/types/radar/post_quantum/tls_support_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/post_quantum/tls_support_response.py">TLSSupportResponse</a></code>
+
 ## Search
 
 Types:
@@ -8670,6 +8700,7 @@ Types:
 from cloudflare.types.radar.entities import (
     ASNListResponse,
     ASNAsSetResponse,
+    ASNBotnetThreatFeedResponse,
     ASNGetResponse,
     ASNIPResponse,
     ASNRelResponse,
@@ -8680,6 +8711,7 @@ Methods:
 
 - <code title="get /radar/entities/asns">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">list</a>(\*\*<a href="src/cloudflare/types/radar/entities/asn_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_list_response.py">ASNListResponse</a></code>
 - <code title="get /radar/entities/asns/{asn}/as_set">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">as_set</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_as_set_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_as_set_response.py">ASNAsSetResponse</a></code>
+- <code title="get /radar/entities/asns/botnet_threat_feed">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">botnet_threat_feed</a>(\*\*<a href="src/cloudflare/types/radar/entities/asn_botnet_threat_feed_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_botnet_threat_feed_response.py">ASNBotnetThreatFeedResponse</a></code>
 - <code title="get /radar/entities/asns/{asn}">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">get</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_get_response.py">ASNGetResponse</a></code>
 - <code title="get /radar/entities/asns/ip">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">ip</a>(\*\*<a href="src/cloudflare/types/radar/entities/asn_ip_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_ip_response.py">ASNIPResponse</a></code>
 - <code title="get /radar/entities/asns/{asn}/rel">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">rel</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_rel_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_rel_response.py">ASNRelResponse</a></code>

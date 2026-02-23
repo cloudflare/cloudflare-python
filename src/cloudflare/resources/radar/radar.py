@@ -156,6 +156,14 @@ from .annotations.annotations import (
     AnnotationsResourceWithStreamingResponse,
     AsyncAnnotationsResourceWithStreamingResponse,
 )
+from .post_quantum.post_quantum import (
+    PostQuantumResource,
+    AsyncPostQuantumResource,
+    PostQuantumResourceWithRawResponse,
+    AsyncPostQuantumResourceWithRawResponse,
+    PostQuantumResourceWithStreamingResponse,
+    AsyncPostQuantumResourceWithStreamingResponse,
+)
 from .verified_bots.verified_bots import (
     VerifiedBotsResource,
     AsyncVerifiedBotsResource,
@@ -216,6 +224,10 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def netflows(self) -> NetFlowsResource:
         return NetFlowsResource(self._client)
+
+    @cached_property
+    def post_quantum(self) -> PostQuantumResource:
+        return PostQuantumResource(self._client)
 
     @cached_property
     def search(self) -> SearchResource:
@@ -325,6 +337,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def netflows(self) -> AsyncNetFlowsResource:
         return AsyncNetFlowsResource(self._client)
+
+    @cached_property
+    def post_quantum(self) -> AsyncPostQuantumResource:
+        return AsyncPostQuantumResource(self._client)
 
     @cached_property
     def search(self) -> AsyncSearchResource:
@@ -439,6 +455,10 @@ class RadarResourceWithRawResponse:
         return NetFlowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
+    def post_quantum(self) -> PostQuantumResourceWithRawResponse:
+        return PostQuantumResourceWithRawResponse(self._radar.post_quantum)
+
+    @cached_property
     def search(self) -> SearchResourceWithRawResponse:
         return SearchResourceWithRawResponse(self._radar.search)
 
@@ -530,6 +550,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def netflows(self) -> AsyncNetFlowsResourceWithRawResponse:
         return AsyncNetFlowsResourceWithRawResponse(self._radar.netflows)
+
+    @cached_property
+    def post_quantum(self) -> AsyncPostQuantumResourceWithRawResponse:
+        return AsyncPostQuantumResourceWithRawResponse(self._radar.post_quantum)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithRawResponse:
@@ -625,6 +649,10 @@ class RadarResourceWithStreamingResponse:
         return NetFlowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
+    def post_quantum(self) -> PostQuantumResourceWithStreamingResponse:
+        return PostQuantumResourceWithStreamingResponse(self._radar.post_quantum)
+
+    @cached_property
     def search(self) -> SearchResourceWithStreamingResponse:
         return SearchResourceWithStreamingResponse(self._radar.search)
 
@@ -716,6 +744,10 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def netflows(self) -> AsyncNetFlowsResourceWithStreamingResponse:
         return AsyncNetFlowsResourceWithStreamingResponse(self._radar.netflows)
+
+    @cached_property
+    def post_quantum(self) -> AsyncPostQuantumResourceWithStreamingResponse:
+        return AsyncPostQuantumResourceWithStreamingResponse(self._radar.post_quantum)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithStreamingResponse:

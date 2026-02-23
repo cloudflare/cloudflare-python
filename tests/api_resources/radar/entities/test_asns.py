@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_date
 from cloudflare.types.radar.entities import (
     ASNIPResponse,
     ASNGetResponse,
     ASNRelResponse,
     ASNListResponse,
     ASNAsSetResponse,
+    ASNBotnetThreatFeedResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -96,6 +98,46 @@ class TestASNs:
 
             asn = response.parse()
             assert_matches_type(ASNAsSetResponse, asn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_botnet_threat_feed(self, client: Cloudflare) -> None:
+        asn = client.radar.entities.asns.botnet_threat_feed()
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    def test_method_botnet_threat_feed_with_all_params(self, client: Cloudflare) -> None:
+        asn = client.radar.entities.asns.botnet_threat_feed(
+            asn=["string"],
+            compare_date_range="7d",
+            date=parse_date("2026-02-04"),
+            format="JSON",
+            limit=1,
+            location="US",
+            metric="OFFENSE_COUNT",
+            offset=0,
+            sort_order="ASC",
+        )
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    def test_raw_response_botnet_threat_feed(self, client: Cloudflare) -> None:
+        response = client.radar.entities.asns.with_raw_response.botnet_threat_feed()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        asn = response.parse()
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    def test_streaming_response_botnet_threat_feed(self, client: Cloudflare) -> None:
+        with client.radar.entities.asns.with_streaming_response.botnet_threat_feed() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            asn = response.parse()
+            assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,6 +338,46 @@ class TestAsyncASNs:
 
             asn = await response.parse()
             assert_matches_type(ASNAsSetResponse, asn, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_botnet_threat_feed(self, async_client: AsyncCloudflare) -> None:
+        asn = await async_client.radar.entities.asns.botnet_threat_feed()
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    async def test_method_botnet_threat_feed_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        asn = await async_client.radar.entities.asns.botnet_threat_feed(
+            asn=["string"],
+            compare_date_range="7d",
+            date=parse_date("2026-02-04"),
+            format="JSON",
+            limit=1,
+            location="US",
+            metric="OFFENSE_COUNT",
+            offset=0,
+            sort_order="ASC",
+        )
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    async def test_raw_response_botnet_threat_feed(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.entities.asns.with_raw_response.botnet_threat_feed()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        asn = await response.parse()
+        assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_botnet_threat_feed(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.entities.asns.with_streaming_response.botnet_threat_feed() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            asn = await response.parse()
+            assert_matches_type(ASNBotnetThreatFeedResponse, asn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
