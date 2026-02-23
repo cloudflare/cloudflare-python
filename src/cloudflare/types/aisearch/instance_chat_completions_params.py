@@ -119,6 +119,13 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
 
     fusion_method: Literal["max", "rrf"]
 
+    keyword_match_mode: Literal["exact_match", "fuzzy_match"]
+    """Controls how keyword search terms are matched.
+
+    exact_match requires all terms to appear (AND); fuzzy_match returns results
+    containing any term (OR). Defaults to exact_match.
+    """
+
     match_threshold: float
 
     max_num_results: int

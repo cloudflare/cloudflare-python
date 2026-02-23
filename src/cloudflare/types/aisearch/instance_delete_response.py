@@ -18,6 +18,7 @@ __all__ = [
     "PublicEndpointParamsMcp",
     "PublicEndpointParamsRateLimit",
     "PublicEndpointParamsSearchEndpoint",
+    "RetrievalOptions",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -74,6 +75,15 @@ class PublicEndpointParams(BaseModel):
     rate_limit: Optional[PublicEndpointParamsRateLimit] = None
 
     search_endpoint: Optional[PublicEndpointParamsSearchEndpoint] = None
+
+
+class RetrievalOptions(BaseModel):
+    keyword_match_mode: Optional[Literal["exact_match", "fuzzy_match"]] = None
+    """Controls how keyword search terms are matched.
+
+    exact_match requires all terms to appear (AND); fuzzy_match returns results
+    containing any term (OR). Defaults to exact_match.
+    """
 
 
 class SourceParamsWebCrawlerParseOptions(BaseModel):
@@ -226,6 +236,8 @@ class InstanceDeleteResponse(BaseModel):
     reranking: Optional[bool] = None
 
     reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] = None
+
+    retrieval_options: Optional[RetrievalOptions] = None
 
     rewrite_model: Optional[
         Literal[

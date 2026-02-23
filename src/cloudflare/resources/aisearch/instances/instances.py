@@ -144,6 +144,7 @@ class InstancesResource(SyncAPIResource):
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             "@cf/zai-org/glm-4.7-flash",
@@ -223,6 +224,7 @@ class InstancesResource(SyncAPIResource):
                     "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
+                    "retrieval_options": retrieval_options,
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
@@ -304,6 +306,7 @@ class InstancesResource(SyncAPIResource):
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             "@cf/zai-org/glm-4.7-flash",
@@ -420,6 +423,7 @@ class InstancesResource(SyncAPIResource):
                     "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
+                    "retrieval_options": retrieval_options,
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
@@ -841,6 +845,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             "@cf/zai-org/glm-4.7-flash",
@@ -920,6 +925,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
+                    "retrieval_options": retrieval_options,
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
@@ -1001,6 +1007,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
         rewrite_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             "@cf/zai-org/glm-4.7-flash",
@@ -1117,6 +1124,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
+                    "retrieval_options": retrieval_options,
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,

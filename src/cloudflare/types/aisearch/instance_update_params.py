@@ -18,6 +18,7 @@ __all__ = [
     "PublicEndpointParamsMcp",
     "PublicEndpointParamsRateLimit",
     "PublicEndpointParamsSearchEndpoint",
+    "RetrievalOptions",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -102,6 +103,8 @@ class InstanceUpdateParams(TypedDict, total=False):
     reranking: bool
 
     reranking_model: Literal["@cf/baai/bge-reranker-base", ""]
+
+    retrieval_options: Optional[RetrievalOptions]
 
     rewrite_model: Literal[
         "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -231,6 +234,15 @@ class PublicEndpointParams(TypedDict, total=False):
     rate_limit: PublicEndpointParamsRateLimit
 
     search_endpoint: PublicEndpointParamsSearchEndpoint
+
+
+class RetrievalOptions(TypedDict, total=False):
+    keyword_match_mode: Literal["exact_match", "fuzzy_match"]
+    """Controls how keyword search terms are matched.
+
+    exact_match requires all terms to appear (AND); fuzzy_match returns results
+    containing any term (OR). Defaults to exact_match.
+    """
 
 
 class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
