@@ -9,7 +9,30 @@ from ...._models import BaseModel
 from .approval_group import ApprovalGroup
 from .applications.access_rule import AccessRule
 
-__all__ = ["PolicyGetResponse", "MfaConfig"]
+__all__ = ["PolicyGetResponse", "ConnectionRules", "ConnectionRulesRdp", "MfaConfig"]
+
+
+class ConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class ConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[ConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
 class MfaConfig(BaseModel):
@@ -46,6 +69,12 @@ class PolicyGetResponse(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[ConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None

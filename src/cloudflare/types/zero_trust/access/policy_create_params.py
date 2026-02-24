@@ -9,7 +9,7 @@ from .decision import Decision
 from .approval_group_param import ApprovalGroupParam
 from .applications.access_rule_param import AccessRuleParam
 
-__all__ = ["PolicyCreateParams", "MfaConfig"]
+__all__ = ["PolicyCreateParams", "ConnectionRules", "ConnectionRulesRdp", "MfaConfig"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
@@ -38,6 +38,12 @@ class PolicyCreateParams(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -74,6 +80,29 @@ class PolicyCreateParams(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+
+class ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
 class MfaConfig(TypedDict, total=False):

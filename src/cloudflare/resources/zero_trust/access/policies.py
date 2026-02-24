@@ -61,6 +61,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
@@ -93,6 +94,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -133,6 +137,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
@@ -163,6 +168,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
@@ -197,6 +203,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -239,6 +248,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
@@ -429,6 +439,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
@@ -461,6 +472,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -501,6 +515,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
@@ -531,6 +546,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
@@ -565,6 +581,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -607,6 +626,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,

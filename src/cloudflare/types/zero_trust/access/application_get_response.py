@@ -31,6 +31,8 @@ __all__ = [
     "SelfHostedApplicationOAuthConfigurationDynamicClientRegistration",
     "SelfHostedApplicationOAuthConfigurationGrant",
     "SelfHostedApplicationPolicy",
+    "SelfHostedApplicationPolicyConnectionRules",
+    "SelfHostedApplicationPolicyConnectionRulesRdp",
     "SelfHostedApplicationPolicyMfaConfig",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -39,6 +41,8 @@ __all__ = [
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "SaaSApplication",
     "SaaSApplicationPolicy",
+    "SaaSApplicationPolicyConnectionRules",
+    "SaaSApplicationPolicyConnectionRulesRdp",
     "SaaSApplicationPolicyMfaConfig",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
@@ -56,6 +60,8 @@ __all__ = [
     "BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration",
     "BrowserSSHApplicationOAuthConfigurationGrant",
     "BrowserSSHApplicationPolicy",
+    "BrowserSSHApplicationPolicyConnectionRules",
+    "BrowserSSHApplicationPolicyConnectionRulesRdp",
     "BrowserSSHApplicationPolicyMfaConfig",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -72,6 +78,8 @@ __all__ = [
     "BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration",
     "BrowserVNCApplicationOAuthConfigurationGrant",
     "BrowserVNCApplicationPolicy",
+    "BrowserVNCApplicationPolicyConnectionRules",
+    "BrowserVNCApplicationPolicyConnectionRulesRdp",
     "BrowserVNCApplicationPolicyMfaConfig",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -82,18 +90,28 @@ __all__ = [
     "AppLauncherApplicationFooterLink",
     "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
+    "AppLauncherApplicationPolicyConnectionRules",
+    "AppLauncherApplicationPolicyConnectionRulesRdp",
     "AppLauncherApplicationPolicyMfaConfig",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationPolicy",
+    "DeviceEnrollmentPermissionsApplicationPolicyConnectionRules",
+    "DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp",
     "DeviceEnrollmentPermissionsApplicationPolicyMfaConfig",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
+    "BrowserIsolationPermissionsApplicationPolicyConnectionRules",
+    "BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp",
     "BrowserIsolationPermissionsApplicationPolicyMfaConfig",
     "GatewayIdentityProxyEndpointApplication",
     "GatewayIdentityProxyEndpointApplicationPolicy",
+    "GatewayIdentityProxyEndpointApplicationPolicyConnectionRules",
+    "GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp",
     "GatewayIdentityProxyEndpointApplicationPolicyMfaConfig",
     "BookmarkApplication",
     "BookmarkApplicationPolicy",
+    "BookmarkApplicationPolicyConnectionRules",
+    "BookmarkApplicationPolicyConnectionRulesRdp",
     "BookmarkApplicationPolicyMfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
@@ -111,6 +129,8 @@ __all__ = [
     "BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration",
     "BrowserRdpApplicationOAuthConfigurationGrant",
     "BrowserRdpApplicationPolicy",
+    "BrowserRdpApplicationPolicyConnectionRules",
+    "BrowserRdpApplicationPolicyConnectionRulesRdp",
     "BrowserRdpApplicationPolicyMfaConfig",
     "BrowserRdpApplicationSCIMConfig",
     "BrowserRdpApplicationSCIMConfigAuthentication",
@@ -126,6 +146,8 @@ __all__ = [
     "McpServerApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerApplicationOAuthConfigurationGrant",
     "McpServerApplicationPolicy",
+    "McpServerApplicationPolicyConnectionRules",
+    "McpServerApplicationPolicyConnectionRulesRdp",
     "McpServerApplicationPolicyMfaConfig",
     "McpServerApplicationSCIMConfig",
     "McpServerApplicationSCIMConfigAuthentication",
@@ -141,6 +163,8 @@ __all__ = [
     "McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerPortalApplicationOAuthConfigurationGrant",
     "McpServerPortalApplicationPolicy",
+    "McpServerPortalApplicationPolicyConnectionRules",
+    "McpServerPortalApplicationPolicyConnectionRulesRdp",
     "McpServerPortalApplicationPolicyMfaConfig",
     "McpServerPortalApplicationSCIMConfig",
     "McpServerPortalApplicationSCIMConfigAuthentication",
@@ -286,6 +310,29 @@ class SelfHostedApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class SelfHostedApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class SelfHostedApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[SelfHostedApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class SelfHostedApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -317,6 +364,12 @@ class SelfHostedApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[SelfHostedApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -656,6 +709,29 @@ class SelfHostedApplication(BaseModel):
     """
 
 
+class SaaSApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class SaaSApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[SaaSApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class SaaSApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -687,6 +763,12 @@ class SaaSApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[SaaSApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -1040,6 +1122,29 @@ class BrowserSSHApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class BrowserSSHApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserSSHApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[BrowserSSHApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserSSHApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -1071,6 +1176,12 @@ class BrowserSSHApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[BrowserSSHApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -1561,6 +1672,29 @@ class BrowserVNCApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class BrowserVNCApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserVNCApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[BrowserVNCApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserVNCApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -1592,6 +1726,12 @@ class BrowserVNCApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[BrowserVNCApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -1973,6 +2113,29 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
+class AppLauncherApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class AppLauncherApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[AppLauncherApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class AppLauncherApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2004,6 +2167,12 @@ class AppLauncherApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[AppLauncherApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -2158,6 +2327,29 @@ class AppLauncherApplication(BaseModel):
     """Determines when to skip the App Launcher landing page."""
 
 
+class DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class DeviceEnrollmentPermissionsApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class DeviceEnrollmentPermissionsApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2189,6 +2381,12 @@ class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[DeviceEnrollmentPermissionsApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -2310,6 +2508,29 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """
 
 
+class BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserIsolationPermissionsApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserIsolationPermissionsApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2341,6 +2562,12 @@ class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[BrowserIsolationPermissionsApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -2462,6 +2689,29 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """
 
 
+class GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class GatewayIdentityProxyEndpointApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class GatewayIdentityProxyEndpointApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2493,6 +2743,12 @@ class GatewayIdentityProxyEndpointApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[GatewayIdentityProxyEndpointApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -2614,6 +2870,29 @@ class GatewayIdentityProxyEndpointApplication(BaseModel):
     """
 
 
+class BookmarkApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BookmarkApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[BookmarkApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BookmarkApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2645,6 +2924,12 @@ class BookmarkApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[BookmarkApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -2987,6 +3272,29 @@ class BrowserRdpApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class BrowserRdpApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserRdpApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[BrowserRdpApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserRdpApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3018,6 +3326,12 @@ class BrowserRdpApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[BrowserRdpApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -3475,6 +3789,29 @@ class McpServerApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class McpServerApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class McpServerApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[McpServerApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class McpServerApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3506,6 +3843,12 @@ class McpServerApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[McpServerApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None
@@ -3899,6 +4242,29 @@ class McpServerPortalApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
+class McpServerPortalApplicationPolicyConnectionRulesRdp(BaseModel):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: Optional[List[Literal["text"]]] = None
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class McpServerPortalApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: Optional[McpServerPortalApplicationPolicyConnectionRulesRdp] = None
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class McpServerPortalApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3930,6 +4296,12 @@ class McpServerPortalApplicationPolicy(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: Optional[McpServerPortalApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     created_at: Optional[datetime] = None

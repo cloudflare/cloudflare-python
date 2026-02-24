@@ -34,6 +34,8 @@ __all__ = [
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
+    "SelfHostedApplicationPolicyUnionMember2ConnectionRules",
+    "SelfHostedApplicationPolicyUnionMember2ConnectionRulesRdp",
     "SelfHostedApplicationPolicyUnionMember2MfaConfig",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -44,6 +46,8 @@ __all__ = [
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
     "SaaSApplicationPolicyUnionMember2",
+    "SaaSApplicationPolicyUnionMember2ConnectionRules",
+    "SaaSApplicationPolicyUnionMember2ConnectionRulesRdp",
     "SaaSApplicationPolicyUnionMember2MfaConfig",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
@@ -63,6 +67,8 @@ __all__ = [
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
+    "BrowserSSHApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserSSHApplicationPolicyUnionMember2ConnectionRulesRdp",
     "BrowserSSHApplicationPolicyUnionMember2MfaConfig",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -81,6 +87,8 @@ __all__ = [
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
+    "BrowserVNCApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserVNCApplicationPolicyUnionMember2ConnectionRulesRdp",
     "BrowserVNCApplicationPolicyUnionMember2MfaConfig",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -93,26 +101,36 @@ __all__ = [
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
+    "AppLauncherApplicationPolicyUnionMember2ConnectionRules",
+    "AppLauncherApplicationPolicyUnionMember2ConnectionRulesRdp",
     "AppLauncherApplicationPolicyUnionMember2MfaConfig",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig",
     "GatewayIdentityProxyEndpointApplication",
     "GatewayIdentityProxyEndpointApplicationPolicy",
     "GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink",
     "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2",
+    "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRules",
+    "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRulesRdp",
     "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig",
     "BookmarkApplication",
     "BookmarkApplicationPolicy",
     "BookmarkApplicationPolicyAccessAppPolicyLink",
     "BookmarkApplicationPolicyUnionMember2",
+    "BookmarkApplicationPolicyUnionMember2ConnectionRules",
+    "BookmarkApplicationPolicyUnionMember2ConnectionRulesRdp",
     "BookmarkApplicationPolicyUnionMember2MfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
@@ -132,6 +150,8 @@ __all__ = [
     "BrowserRdpApplicationPolicy",
     "BrowserRdpApplicationPolicyAccessAppPolicyLink",
     "BrowserRdpApplicationPolicyUnionMember2",
+    "BrowserRdpApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserRdpApplicationPolicyUnionMember2ConnectionRulesRdp",
     "BrowserRdpApplicationPolicyUnionMember2MfaConfig",
     "BrowserRdpApplicationSCIMConfig",
     "BrowserRdpApplicationSCIMConfigAuthentication",
@@ -149,6 +169,8 @@ __all__ = [
     "McpServerApplicationPolicy",
     "McpServerApplicationPolicyAccessAppPolicyLink",
     "McpServerApplicationPolicyUnionMember2",
+    "McpServerApplicationPolicyUnionMember2ConnectionRules",
+    "McpServerApplicationPolicyUnionMember2ConnectionRulesRdp",
     "McpServerApplicationPolicyUnionMember2MfaConfig",
     "McpServerApplicationSCIMConfig",
     "McpServerApplicationSCIMConfigAuthentication",
@@ -166,6 +188,8 @@ __all__ = [
     "McpServerPortalApplicationPolicy",
     "McpServerPortalApplicationPolicyAccessAppPolicyLink",
     "McpServerPortalApplicationPolicyUnionMember2",
+    "McpServerPortalApplicationPolicyUnionMember2ConnectionRules",
+    "McpServerPortalApplicationPolicyUnionMember2ConnectionRulesRdp",
     "McpServerPortalApplicationPolicyUnionMember2MfaConfig",
     "McpServerPortalApplicationSCIMConfig",
     "McpServerPortalApplicationSCIMConfigAuthentication",
@@ -507,6 +531,29 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SelfHostedApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class SelfHostedApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: SelfHostedApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class SelfHostedApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -538,6 +585,12 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: SelfHostedApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -746,6 +799,29 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SaaSApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class SaaSApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: SaaSApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class SaaSApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -777,6 +853,12 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: SaaSApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -1263,6 +1345,29 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserSSHApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserSSHApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: BrowserSSHApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserSSHApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -1294,6 +1399,12 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserSSHApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -1780,6 +1891,29 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserVNCApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserVNCApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: BrowserVNCApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserVNCApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -1811,6 +1945,12 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserVNCApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -2077,6 +2217,29 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class AppLauncherApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class AppLauncherApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: AppLauncherApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class AppLauncherApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2108,6 +2271,12 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: AppLauncherApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -2212,6 +2381,29 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2243,6 +2435,12 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -2349,6 +2547,29 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2380,6 +2601,12 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -2495,6 +2722,29 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
     """
 
 
+class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2526,6 +2776,12 @@ class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -2614,6 +2870,29 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BookmarkApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BookmarkApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: BookmarkApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BookmarkApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -2645,6 +2924,12 @@ class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BookmarkApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -3122,6 +3407,29 @@ class BrowserRdpApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserRdpApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class BrowserRdpApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: BrowserRdpApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class BrowserRdpApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3153,6 +3461,12 @@ class BrowserRdpApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserRdpApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -3540,6 +3854,29 @@ class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class McpServerApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class McpServerApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: McpServerApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class McpServerApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3571,6 +3908,12 @@ class McpServerApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: McpServerApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool
@@ -3964,6 +4307,29 @@ class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False
     """
 
 
+class McpServerPortalApplicationPolicyUnionMember2ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class McpServerPortalApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: McpServerPortalApplicationPolicyUnionMember2ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+
 class McpServerPortalApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings."""
 
@@ -3995,6 +4361,12 @@ class McpServerPortalApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: McpServerPortalApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     isolation_required: bool

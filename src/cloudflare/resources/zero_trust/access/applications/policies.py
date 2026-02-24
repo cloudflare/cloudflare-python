@@ -58,6 +58,7 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
@@ -88,6 +89,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -134,6 +138,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
                     "precedence": precedence,
@@ -162,6 +167,7 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
@@ -193,6 +199,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -241,6 +250,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
                     "precedence": precedence,
@@ -489,6 +499,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
@@ -519,6 +530,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -565,6 +579,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
                     "precedence": precedence,
@@ -593,6 +608,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
         precedence: int | Omit = omit,
@@ -624,6 +640,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to targets secured by your
+              application.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -672,6 +691,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
                     "precedence": precedence,

@@ -52,6 +52,12 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
+            connection_rules={
+                "rdp": {
+                    "allowed_clipboard_local_to_remote_formats": ["text"],
+                    "allowed_clipboard_remote_to_local_formats": ["text"],
+                }
+            },
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
@@ -144,6 +150,12 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
+            connection_rules={
+                "rdp": {
+                    "allowed_clipboard_local_to_remote_formats": ["text"],
+                    "allowed_clipboard_remote_to_local_formats": ["text"],
+                }
+            },
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
@@ -483,6 +495,12 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
+            connection_rules={
+                "rdp": {
+                    "allowed_clipboard_local_to_remote_formats": ["text"],
+                    "allowed_clipboard_remote_to_local_formats": ["text"],
+                }
+            },
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
@@ -575,6 +593,12 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
+            connection_rules={
+                "rdp": {
+                    "allowed_clipboard_local_to_remote_formats": ["text"],
+                    "allowed_clipboard_remote_to_local_formats": ["text"],
+                }
+            },
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],

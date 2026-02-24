@@ -10,7 +10,14 @@ from ....._types import SequenceNotStr
 from .access_rule_param import AccessRuleParam
 from ..approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0", "PolicyUnionMember0MfaConfig"]
+__all__ = [
+    "PolicyTestCreateParams",
+    "Policy",
+    "PolicyUnionMember0",
+    "PolicyUnionMember0ConnectionRules",
+    "PolicyUnionMember0ConnectionRulesRdp",
+    "PolicyUnionMember0MfaConfig",
+]
 
 
 class PolicyTestCreateParams(TypedDict, total=False):
@@ -18,6 +25,29 @@ class PolicyTestCreateParams(TypedDict, total=False):
     """Identifier."""
 
     policies: SequenceNotStr[Policy]
+
+
+class PolicyUnionMember0ConnectionRulesRdp(TypedDict, total=False):
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
+
+    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from local machine to remote RDP session.
+    """
+
+    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    """
+    Clipboard formats allowed when copying from remote RDP session to local machine.
+    """
+
+
+class PolicyUnionMember0ConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to targets secured by your application.
+    """
+
+    rdp: PolicyUnionMember0ConnectionRulesRdp
+    """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
 class PolicyUnionMember0MfaConfig(TypedDict, total=False):
@@ -63,6 +93,12 @@ class PolicyUnionMember0(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: PolicyUnionMember0ConnectionRules
+    """
+    The rules that define how users may connect to targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
