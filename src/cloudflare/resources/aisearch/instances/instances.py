@@ -188,7 +188,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
-        Create new instances.
+        Create a new instances.
 
         Args:
           id: Use your AI Search ID.
@@ -586,7 +586,8 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceChatCompletionsResponse:
         """
-        Chat Completions
+        Performs a chat completion request against an AI Search instance, using indexed
+        content as context for generating responses.
 
         Args:
           id: Use your AI Search ID.
@@ -677,7 +678,8 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceSearchResponse:
         """
-        Search
+        Executes a semantic search query against an AI Search instance to find relevant
+        indexed content.
 
         Args:
           id: Use your AI Search ID.
@@ -726,7 +728,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceStatsResponse:
         """
-        Stats
+        Retrieves usage statistics for AI Search instances.
 
         Args:
           id: Use your AI Search ID.
@@ -889,7 +891,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
-        Create new instances.
+        Create a new instances.
 
         Args:
           id: Use your AI Search ID.
@@ -1287,7 +1289,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceChatCompletionsResponse:
         """
-        Chat Completions
+        Performs a chat completion request against an AI Search instance, using indexed
+        content as context for generating responses.
 
         Args:
           id: Use your AI Search ID.
@@ -1378,7 +1381,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceSearchResponse:
         """
-        Search
+        Executes a semantic search query against an AI Search instance to find relevant
+        indexed content.
 
         Args:
           id: Use your AI Search ID.
@@ -1427,7 +1431,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceStatsResponse:
         """
-        Stats
+        Retrieves usage statistics for AI Search instances.
 
         Args:
           id: Use your AI Search ID.

@@ -64,7 +64,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create new tokens.
+        Create a new tokens.
 
         Args:
           extra_headers: Send extra headers
@@ -310,7 +310,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create new tokens.
+        Create a new tokens.
 
         Args:
           extra_headers: Send extra headers

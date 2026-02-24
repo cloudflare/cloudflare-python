@@ -64,7 +64,7 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ItemListResponse]:
         """
-        Items List.
+        Lists indexed items in an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -116,7 +116,7 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
-        Get Item.
+        Retrieves a specific indexed item from an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -185,7 +185,7 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ItemListResponse, AsyncV4PagePaginationArray[ItemListResponse]]:
         """
-        Items List.
+        Lists indexed items in an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -237,7 +237,7 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemGetResponse:
         """
-        Get Item.
+        Retrieves a specific indexed item from an AI Search instance.
 
         Args:
           id: Use your AI Search ID.

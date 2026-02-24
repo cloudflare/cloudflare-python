@@ -21,7 +21,7 @@ class WarehouseMaintenanceConfigCompaction(BaseModel):
     """Specifies the state of maintenance operations."""
 
     target_size_mb: Literal["64", "128", "256", "512"]
-    """Sets the target file size for compaction in megabytes."""
+    """Sets the target file size for compaction in megabytes. Defaults to "128"."""
 
 
 class WarehouseMaintenanceConfigSnapshotExpiration(BaseModel):
@@ -32,11 +32,11 @@ class WarehouseMaintenanceConfigSnapshotExpiration(BaseModel):
 
     The system deletes snapshots older than this age. Format: <number><unit> where
     unit is d (days), h (hours), m (minutes), or s (seconds). Examples: "7d" (7
-    days), "48h" (48 hours), "2880m" (2,880 minutes).
+    days), "48h" (48 hours), "2880m" (2,880 minutes). Defaults to "7d".
     """
 
     min_snapshots_to_keep: int
-    """Specifies the minimum number of snapshots to retain."""
+    """Specifies the minimum number of snapshots to retain. Defaults to 100."""
 
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""

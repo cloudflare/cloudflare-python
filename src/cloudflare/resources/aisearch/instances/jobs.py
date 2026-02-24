@@ -61,7 +61,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobCreateResponse:
         """
-        Create new job
+        Creates a new indexing job for an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -105,7 +105,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[JobListResponse]:
         """
-        List Jobs
+        Lists indexing jobs for an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -155,7 +155,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobGetResponse:
         """
-        Get a Job Details
+        Retrieves details for a specific AI Search indexing job.
 
         Args:
           id: Use your AI Search ID.
@@ -202,7 +202,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobLogsResponse:
         """
-        List Job Logs
+        Lists log entries for an AI Search indexing job.
 
         Args:
           id: Use your AI Search ID.
@@ -274,7 +274,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobCreateResponse:
         """
-        Create new job
+        Creates a new indexing job for an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -318,7 +318,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[JobListResponse, AsyncV4PagePaginationArray[JobListResponse]]:
         """
-        List Jobs
+        Lists indexing jobs for an AI Search instance.
 
         Args:
           id: Use your AI Search ID.
@@ -368,7 +368,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobGetResponse:
         """
-        Get a Job Details
+        Retrieves details for a specific AI Search indexing job.
 
         Args:
           id: Use your AI Search ID.
@@ -415,7 +415,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobLogsResponse:
         """
-        List Job Logs
+        Lists log entries for an AI Search indexing job.
 
         Args:
           id: Use your AI Search ID.
