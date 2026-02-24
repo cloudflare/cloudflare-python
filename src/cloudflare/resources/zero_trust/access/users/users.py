@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -14,6 +16,7 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....._wrappers import ResultWrapper
 from .failed_logins import (
     FailedLoginsResource,
     AsyncFailedLoginsResource,
@@ -40,8 +43,11 @@ from .last_seen_identity import (
     LastSeenIdentityResourceWithStreamingResponse,
     AsyncLastSeenIdentityResourceWithStreamingResponse,
 )
-from .....types.zero_trust.access import user_list_params
+from .....types.zero_trust.access import user_list_params, user_create_params, user_update_params
+from .....types.zero_trust.access.user_get_response import UserGetResponse
 from .....types.zero_trust.access.user_list_response import UserListResponse
+from .....types.zero_trust.access.user_create_response import UserCreateResponse
+from .....types.zero_trust.access.user_update_response import UserUpdateResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -77,6 +83,117 @@ class UsersResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return UsersResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        account_id: str,
+        email: str,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserCreateResponse]:
+        """
+        Creates a new user.
+
+        Args:
+          account_id: Identifier.
+
+          email: The email of the user.
+
+          name: The name of the user.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/access/users",
+            body=maybe_transform(
+                {
+                    "email": email,
+                    "name": name,
+                },
+                user_create_params.UserCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserCreateResponse]], ResultWrapper[UserCreateResponse]),
+        )
+
+    def update(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        email: str,
+        name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserUpdateResponse]:
+        """Updates a specific user's name for an account.
+
+        Requires the user's current email
+        as confirmation (email cannot be changed).
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          email: The email of the user.
+
+          name: The name of the user.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            body=maybe_transform(
+                {
+                    "email": email,
+                    "name": name,
+                },
+                user_update_params.UserUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserUpdateResponse]], ResultWrapper[UserUpdateResponse]),
+        )
 
     def list(
         self,
@@ -142,6 +259,96 @@ class UsersResource(SyncAPIResource):
             model=UserListResponse,
         )
 
+    def delete(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """Deletes a specific user for an account.
+
+        This will also revoke any active seats
+        and tokens for the user.
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def get(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserGetResponse]:
+        """
+        Gets a specific user for an account.
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserGetResponse]], ResultWrapper[UserGetResponse]),
+        )
+
 
 class AsyncUsersResource(AsyncAPIResource):
     @cached_property
@@ -174,6 +381,117 @@ class AsyncUsersResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncUsersResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        account_id: str,
+        email: str,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserCreateResponse]:
+        """
+        Creates a new user.
+
+        Args:
+          account_id: Identifier.
+
+          email: The email of the user.
+
+          name: The name of the user.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/access/users",
+            body=await async_maybe_transform(
+                {
+                    "email": email,
+                    "name": name,
+                },
+                user_create_params.UserCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserCreateResponse]], ResultWrapper[UserCreateResponse]),
+        )
+
+    async def update(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        email: str,
+        name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserUpdateResponse]:
+        """Updates a specific user's name for an account.
+
+        Requires the user's current email
+        as confirmation (email cannot be changed).
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          email: The email of the user.
+
+          name: The name of the user.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            body=await async_maybe_transform(
+                {
+                    "email": email,
+                    "name": name,
+                },
+                user_update_params.UserUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserUpdateResponse]], ResultWrapper[UserUpdateResponse]),
+        )
 
     def list(
         self,
@@ -239,13 +557,115 @@ class AsyncUsersResource(AsyncAPIResource):
             model=UserListResponse,
         )
 
+    async def delete(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """Deletes a specific user for an account.
+
+        This will also revoke any active seats
+        and tokens for the user.
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    async def get(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[UserGetResponse]:
+        """
+        Gets a specific user for an account.
+
+        Args:
+          account_id: Identifier.
+
+          user_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/access/users/{user_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[UserGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[UserGetResponse]], ResultWrapper[UserGetResponse]),
+        )
+
 
 class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
+        self.create = to_raw_response_wrapper(
+            users.create,
+        )
+        self.update = to_raw_response_wrapper(
+            users.update,
+        )
         self.list = to_raw_response_wrapper(
             users.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            users.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            users.get,
         )
 
     @cached_property
@@ -265,8 +685,20 @@ class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
+        self.create = async_to_raw_response_wrapper(
+            users.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            users.update,
+        )
         self.list = async_to_raw_response_wrapper(
             users.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            users.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            users.get,
         )
 
     @cached_property
@@ -286,8 +718,20 @@ class UsersResourceWithStreamingResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
+        self.create = to_streamed_response_wrapper(
+            users.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            users.update,
+        )
         self.list = to_streamed_response_wrapper(
             users.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            users.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            users.get,
         )
 
     @cached_property
@@ -307,8 +751,20 @@ class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
+        self.create = async_to_streamed_response_wrapper(
+            users.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            users.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             users.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            users.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            users.get,
         )
 
     @cached_property

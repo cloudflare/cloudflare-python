@@ -6292,12 +6292,22 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import AccessUser, UserListResponse
+from cloudflare.types.zero_trust.access import (
+    AccessUser,
+    UserCreateResponse,
+    UserUpdateResponse,
+    UserListResponse,
+    UserGetResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /accounts/{account_id}/access/users">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/user_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/user_create_response.py">Optional[UserCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/access/users/{user_id}">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">update</a>(user_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/user_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/user_update_response.py">Optional[UserUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/access/users">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/user_list_response.py">SyncV4PagePaginationArray[UserListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/access/users/{user_id}">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">delete</a>(user_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/access/users/{user_id}">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">get</a>(user_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/user_get_response.py">Optional[UserGetResponse]</a></code>
 
 #### ActiveSessions
 
