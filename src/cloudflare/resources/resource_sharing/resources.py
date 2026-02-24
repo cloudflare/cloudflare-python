@@ -74,7 +74,7 @@ class ResourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceCreateResponse]:
         """
-        Create a new share resource
+        Adds a resource to an existing share, making it available to share recipients.
 
         Args:
           account_id: Account identifier.
@@ -393,7 +393,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceCreateResponse]:
         """
-        Create a new share resource
+        Adds a resource to an existing share, making it available to share recipients.
 
         Args:
           account_id: Account identifier.

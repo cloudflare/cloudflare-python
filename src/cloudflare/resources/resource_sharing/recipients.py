@@ -63,7 +63,8 @@ class RecipientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
-        Create a new share recipient
+        Adds a recipient to a resource share, granting them access to the shared
+        resources.
 
         Args:
           path_account_id: Account identifier.
@@ -307,7 +308,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
-        Create a new share recipient
+        Adds a recipient to a resource share, granting them access to the shared
+        resources.
 
         Args:
           path_account_id: Account identifier.

@@ -94,7 +94,8 @@ class ResourceSharingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
-        Create a new share
+        Creates a new resource share for sharing Cloudflare resources with other
+        accounts or organizations.
 
         Args:
           account_id: Account identifier.
@@ -420,7 +421,8 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
-        Create a new share
+        Creates a new resource share for sharing Cloudflare resources with other
+        accounts or organizations.
 
         Args:
           account_id: Account identifier.
