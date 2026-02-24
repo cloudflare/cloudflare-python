@@ -142,7 +142,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Retrieves the raw data entries in a custom threat indicator feed.
+        Revises details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -203,7 +203,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IndicatorFeedListResponse]:
         """
-        Retrieves details for a specific custom threat indicator feed.
+        Retrieves details for all accessible custom threat indicator feeds.
 
         Args:
           account_id: Identifier
@@ -279,7 +279,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
-        Retrieves the raw data entries in a custom threat indicator feed.
+        Retrieves details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -407,7 +407,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Retrieves the raw data entries in a custom threat indicator feed.
+        Revises details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -468,7 +468,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IndicatorFeedListResponse, AsyncSinglePage[IndicatorFeedListResponse]]:
         """
-        Retrieves details for a specific custom threat indicator feed.
+        Retrieves details for all accessible custom threat indicator feeds.
 
         Args:
           account_id: Identifier
@@ -544,7 +544,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
-        Retrieves the raw data entries in a custom threat indicator feed.
+        Retrieves details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
