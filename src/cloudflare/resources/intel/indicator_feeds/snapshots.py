@@ -58,7 +58,7 @@ class SnapshotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SnapshotUpdateResponse]:
         """
-        Update indicator feed data
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -129,7 +129,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SnapshotUpdateResponse]:
         """
-        Update indicator feed data
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier

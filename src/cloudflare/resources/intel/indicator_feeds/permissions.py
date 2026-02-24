@@ -60,7 +60,7 @@ class PermissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionCreateResponse]:
         """
-        Grant permission to indicator feed
+        Grants access permissions for a custom threat indicator feed to other accounts.
 
         Args:
           account_id: Identifier
@@ -110,7 +110,7 @@ class PermissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionListResponse]:
         """
-        List indicator feed permissions
+        Lists current access permissions for custom threat indicator feeds.
 
         Args:
           account_id: Identifier
@@ -151,7 +151,7 @@ class PermissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionDeleteResponse]:
         """
-        Revoke permission to indicator feed
+        Revokes access permissions for a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -224,7 +224,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionCreateResponse]:
         """
-        Grant permission to indicator feed
+        Grants access permissions for a custom threat indicator feed to other accounts.
 
         Args:
           account_id: Identifier
@@ -274,7 +274,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionListResponse]:
         """
-        List indicator feed permissions
+        Lists current access permissions for custom threat indicator feeds.
 
         Args:
           account_id: Identifier
@@ -315,7 +315,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionDeleteResponse]:
         """
-        Revoke permission to indicator feed
+        Revokes access permissions for a custom threat indicator feed.
 
         Args:
           account_id: Identifier

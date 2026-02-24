@@ -86,7 +86,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedCreateResponse]:
         """
-        Create new indicator feed
+        Creates a new custom threat indicator feed for sharing threat intelligence data.
 
         Args:
           account_id: Identifier
@@ -142,7 +142,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Update indicator feed metadata
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -203,7 +203,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IndicatorFeedListResponse]:
         """
-        Get indicator feeds owned by this account
+        Retrieves details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -240,7 +240,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Get indicator feed data
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -279,7 +279,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
-        Get indicator feed metadata
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -351,7 +351,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedCreateResponse]:
         """
-        Create new indicator feed
+        Creates a new custom threat indicator feed for sharing threat intelligence data.
 
         Args:
           account_id: Identifier
@@ -407,7 +407,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Update indicator feed metadata
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -468,7 +468,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IndicatorFeedListResponse, AsyncSinglePage[IndicatorFeedListResponse]]:
         """
-        Get indicator feeds owned by this account
+        Retrieves details for a specific custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -505,7 +505,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Get indicator feed data
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
@@ -544,7 +544,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
-        Get indicator feed metadata
+        Retrieves the raw data entries in a custom threat indicator feed.
 
         Args:
           account_id: Identifier
