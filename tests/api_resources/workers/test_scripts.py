@@ -111,6 +111,7 @@ class TestScripts:
                 ],
                 "usage_model": "standard",
             },
+            bindings_inherit="strict",
             files=[b"raw file contents"],
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
@@ -458,6 +459,7 @@ class TestAsyncScripts:
                 ],
                 "usage_model": "standard",
             },
+            bindings_inherit="strict",
             files=[b"raw file contents"],
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])

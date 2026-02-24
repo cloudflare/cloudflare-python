@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Mapping, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -63,6 +64,7 @@ class VersionsResource(SyncAPIResource):
         *,
         account_id: str,
         metadata: version_create_params.Metadata,
+        bindings_inherit: Literal["strict"] | Omit = omit,
         files: SequenceNotStr[FileTypes] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,6 +85,10 @@ class VersionsResource(SyncAPIResource):
           script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
+
+          bindings_inherit: When set to "strict", the upload will fail if any `inherit` type bindings cannot
+              be resolved against the previous version of the Worker. Without this,
+              unresolvable inherit bindings are silently dropped.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`
@@ -124,6 +130,9 @@ class VersionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"bindings_inherit": bindings_inherit}, version_create_params.VersionCreateParams
+                ),
                 post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
@@ -265,6 +274,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         *,
         account_id: str,
         metadata: version_create_params.Metadata,
+        bindings_inherit: Literal["strict"] | Omit = omit,
         files: SequenceNotStr[FileTypes] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -285,6 +295,10 @@ class AsyncVersionsResource(AsyncAPIResource):
           script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
+
+          bindings_inherit: When set to "strict", the upload will fail if any `inherit` type bindings cannot
+              be resolved against the previous version of the Worker. Without this,
+              unresolvable inherit bindings are silently dropped.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`
@@ -326,6 +340,9 @@ class AsyncVersionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"bindings_inherit": bindings_inherit}, version_create_params.VersionCreateParams
+                ),
                 post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),

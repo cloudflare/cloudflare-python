@@ -57,6 +57,7 @@ class TestVersions:
                 "keep_bindings": ["string"],
                 "usage_model": "standard",
             },
+            bindings_inherit="strict",
             files=[b"raw file contents"],
         )
         assert_matches_type(VersionCreateResponse, version, path=["response"])
@@ -268,6 +269,7 @@ class TestAsyncVersions:
                 "keep_bindings": ["string"],
                 "usage_model": "standard",
             },
+            bindings_inherit="strict",
             files=[b"raw file contents"],
         )
         assert_matches_type(VersionCreateResponse, version, path=["response"])

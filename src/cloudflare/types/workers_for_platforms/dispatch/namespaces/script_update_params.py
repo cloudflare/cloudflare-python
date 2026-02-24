@@ -80,6 +80,13 @@ class ScriptUpdateParams(TypedDict, total=False):
     metadata: Required[Metadata]
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
+    bindings_inherit: Literal["strict"]
+    """
+    When set to "strict", the upload will fail if any `inherit` type bindings cannot
+    be resolved against the previous version of the script. Without this,
+    unresolvable inherit bindings are silently dropped.
+    """
+
     files: SequenceNotStr[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.
 
