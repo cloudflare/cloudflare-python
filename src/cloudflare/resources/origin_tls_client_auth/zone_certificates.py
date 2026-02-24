@@ -116,7 +116,8 @@ class ZoneCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ZoneCertificateListResponse]:
         """
-        List Certificates
+        Lists all client certificates configured for zone-level authenticated origin
+        pulls.
 
         Args:
           zone_id: Identifier.
@@ -153,7 +154,7 @@ class ZoneCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneCertificateDeleteResponse]:
         """
-        Delete Certificate
+        Removes a client certificate used for zone-level authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -197,7 +198,8 @@ class ZoneCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneCertificateGetResponse]:
         """
-        Get Certificate Details
+        Retrieves details for a specific client certificate used in zone-level
+        authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -317,7 +319,8 @@ class AsyncZoneCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ZoneCertificateListResponse, AsyncSinglePage[ZoneCertificateListResponse]]:
         """
-        List Certificates
+        Lists all client certificates configured for zone-level authenticated origin
+        pulls.
 
         Args:
           zone_id: Identifier.
@@ -354,7 +357,7 @@ class AsyncZoneCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneCertificateDeleteResponse]:
         """
-        Delete Certificate
+        Removes a client certificate used for zone-level authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -398,7 +401,8 @@ class AsyncZoneCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneCertificateGetResponse]:
         """
-        Get Certificate Details
+        Retrieves details for a specific client certificate used in zone-level
+        authenticated origin pulls.
 
         Args:
           zone_id: Identifier.

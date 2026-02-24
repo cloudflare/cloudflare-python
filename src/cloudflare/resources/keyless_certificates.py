@@ -67,7 +67,8 @@ class KeylessCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
-        Create Keyless SSL Configuration
+        Creates a Keyless SSL configuration that allows SSL/TLS termination without
+        exposing private keys to Cloudflare. Keys remain on your infrastructure.
 
         Args:
           zone_id: Identifier.
@@ -169,8 +170,10 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificateDeleteResponse]:
-        """
-        Delete Keyless SSL Configuration
+        """Removes a Keyless SSL configuration.
+
+        SSL connections will no longer use the
+        keyless server for cryptographic operations.
 
         Args:
           zone_id: Identifier.
@@ -364,7 +367,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificate]:
         """
-        Create Keyless SSL Configuration
+        Creates a Keyless SSL configuration that allows SSL/TLS termination without
+        exposing private keys to Cloudflare. Keys remain on your infrastructure.
 
         Args:
           zone_id: Identifier.
@@ -466,8 +470,10 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeylessCertificateDeleteResponse]:
-        """
-        Delete Keyless SSL Configuration
+        """Removes a Keyless SSL configuration.
+
+        SSL connections will no longer use the
+        keyless server for cryptographic operations.
 
         Args:
           zone_id: Identifier.

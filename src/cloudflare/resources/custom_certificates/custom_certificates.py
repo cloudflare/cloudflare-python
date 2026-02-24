@@ -379,7 +379,9 @@ class CustomCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
-        SSL Configuration Details
+        Retrieves details for a specific custom SSL certificate, including certificate
+        metadata, bundle method, geographic restrictions, and associated keyless server
+        configuration.
 
         Args:
           zone_id: Identifier.
@@ -750,7 +752,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
-        SSL Configuration Details
+        Retrieves details for a specific custom SSL certificate, including certificate
+        metadata, bundle method, geographic restrictions, and associated keyless server
+        configuration.
 
         Args:
           zone_id: Identifier.

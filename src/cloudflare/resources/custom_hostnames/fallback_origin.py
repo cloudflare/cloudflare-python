@@ -58,8 +58,10 @@ class FallbackOriginResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginUpdateResponse]:
-        """
-        Update Fallback Origin for Custom Hostnames
+        """Updates the fallback origin configuration for custom hostnames on a zone.
+
+        Sets
+        the default origin server for custom hostname traffic.
 
         Args:
           zone_id: Identifier.
@@ -100,8 +102,10 @@ class FallbackOriginResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginDeleteResponse]:
-        """
-        Delete Fallback Origin for Custom Hostnames
+        """Removes the fallback origin configuration for custom hostnames on a zone.
+
+        Custom
+        hostnames without specific origins will no longer have a fallback.
 
         Args:
           zone_id: Identifier.
@@ -140,7 +144,9 @@ class FallbackOriginResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginGetResponse]:
         """
-        Get Fallback Origin for Custom Hostnames
+        Retrieves the current fallback origin configuration for custom hostnames on a
+        zone. The fallback origin handles traffic when specific custom hostname origins
+        are unavailable.
 
         Args:
           zone_id: Identifier.
@@ -200,8 +206,10 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginUpdateResponse]:
-        """
-        Update Fallback Origin for Custom Hostnames
+        """Updates the fallback origin configuration for custom hostnames on a zone.
+
+        Sets
+        the default origin server for custom hostname traffic.
 
         Args:
           zone_id: Identifier.
@@ -244,8 +252,10 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginDeleteResponse]:
-        """
-        Delete Fallback Origin for Custom Hostnames
+        """Removes the fallback origin configuration for custom hostnames on a zone.
+
+        Custom
+        hostnames without specific origins will no longer have a fallback.
 
         Args:
           zone_id: Identifier.
@@ -284,7 +294,9 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FallbackOriginGetResponse]:
         """
-        Get Fallback Origin for Custom Hostnames
+        Retrieves the current fallback origin configuration for custom hostnames on a
+        zone. The fallback origin handles traffic when specific custom hostname origins
+        are unavailable.
 
         Args:
           zone_id: Identifier.

@@ -102,7 +102,8 @@ class HostnamesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AuthenticatedOriginPull]:
         """
-        Get the Hostname Status for Client Authentication
+        Retrieves the client certificate authentication status for a specific hostname,
+        showing whether authenticated origin pulls are enabled.
 
         Args:
           zone_id: Identifier.
@@ -211,7 +212,8 @@ class AsyncHostnamesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AuthenticatedOriginPull]:
         """
-        Get the Hostname Status for Client Authentication
+        Retrieves the client certificate authentication status for a specific hostname,
+        showing whether authenticated origin pulls are enabled.
 
         Args:
           zone_id: Identifier.

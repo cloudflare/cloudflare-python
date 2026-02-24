@@ -173,7 +173,8 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[OriginTLSClientAuthListResponse]:
         """
-        List Certificates
+        Lists all client certificates configured for zone-level authenticated origin
+        pulls.
 
         Args:
           zone_id: Identifier.
@@ -213,7 +214,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
-        Delete Certificate
+        Removes a client certificate used for zone-level authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -262,7 +263,8 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
-        Get Certificate Details
+        Retrieves details for a specific client certificate used in zone-level
+        authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -406,7 +408,8 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OriginTLSClientAuthListResponse, AsyncSinglePage[OriginTLSClientAuthListResponse]]:
         """
-        List Certificates
+        Lists all client certificates configured for zone-level authenticated origin
+        pulls.
 
         Args:
           zone_id: Identifier.
@@ -446,7 +449,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
-        Delete Certificate
+        Removes a client certificate used for zone-level authenticated origin pulls.
 
         Args:
           zone_id: Identifier.
@@ -495,7 +498,8 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
-        Get Certificate Details
+        Retrieves details for a specific client certificate used in zone-level
+        authenticated origin pulls.
 
         Args:
           zone_id: Identifier.

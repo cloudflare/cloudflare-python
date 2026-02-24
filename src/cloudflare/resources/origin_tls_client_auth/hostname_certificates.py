@@ -116,7 +116,8 @@ class HostnameCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[HostnameCertificateListResponse]:
         """
-        List Certificates
+        Lists all client certificates configured for per-hostname authenticated origin
+        pulls on the zone.
 
         Args:
           zone_id: Identifier.
@@ -153,7 +154,11 @@ class HostnameCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameCertificateDeleteResponse]:
         """
-        Delete Hostname Client Certificate
+        Removes a client certificate used for authenticated origin pulls on a specific
+        hostname. Note: Before deleting the certificate, you must first invalidate the
+        hostname for client authentication by sending a PUT request with `enabled` set
+        to null. After invalidating the association, the certificate can be safely
+        deleted.
 
         Args:
           zone_id: Identifier.
@@ -319,7 +324,8 @@ class AsyncHostnameCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[HostnameCertificateListResponse, AsyncSinglePage[HostnameCertificateListResponse]]:
         """
-        List Certificates
+        Lists all client certificates configured for per-hostname authenticated origin
+        pulls on the zone.
 
         Args:
           zone_id: Identifier.
@@ -356,7 +362,11 @@ class AsyncHostnameCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameCertificateDeleteResponse]:
         """
-        Delete Hostname Client Certificate
+        Removes a client certificate used for authenticated origin pulls on a specific
+        hostname. Note: Before deleting the certificate, you must first invalidate the
+        hostname for client authentication by sending a PUT request with `enabled` set
+        to null. After invalidating the association, the certificate can be safely
+        deleted.
 
         Args:
           zone_id: Identifier.
