@@ -8,7 +8,7 @@ from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "ConsumerListResponse",
+    "Consumer",
     "MqWorkerConsumerResponse",
     "MqWorkerConsumerResponseSettings",
     "MqHTTPConsumerResponse",
@@ -97,6 +97,6 @@ class MqHTTPConsumerResponse(BaseModel):
     type: Optional[Literal["http_pull"]] = None
 
 
-ConsumerListResponse: TypeAlias = Annotated[
+Consumer: TypeAlias = Annotated[
     Union[MqWorkerConsumerResponse, MqHTTPConsumerResponse], PropertyInfo(discriminator="type")
 ]

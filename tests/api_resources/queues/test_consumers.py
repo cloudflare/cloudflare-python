@@ -10,13 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.queues import (
-    ConsumerGetResponse,
-    ConsumerListResponse,
-    ConsumerCreateResponse,
-    ConsumerDeleteResponse,
-    ConsumerUpdateResponse,
-)
+from cloudflare.types.queues import Consumer, ConsumerDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,7 +26,7 @@ class TestConsumers:
             script_name="my-consumer-worker",
             type="worker",
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
@@ -50,7 +44,7 @@ class TestConsumers:
                 "retry_delay": 10,
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
@@ -64,7 +58,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
@@ -78,7 +72,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +101,7 @@ class TestConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="http_pull",
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
@@ -123,7 +117,7 @@ class TestConsumers:
                 "visibility_timeout_ms": 6000,
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
@@ -136,7 +130,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
@@ -149,7 +143,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +172,7 @@ class TestConsumers:
             script_name="my-consumer-worker",
             type="worker",
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
@@ -197,7 +191,7 @@ class TestConsumers:
                 "retry_delay": 10,
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
@@ -212,7 +206,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
@@ -227,7 +221,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -268,7 +262,7 @@ class TestConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="http_pull",
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
@@ -285,7 +279,7 @@ class TestConsumers:
                 "visibility_timeout_ms": 6000,
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
@@ -299,7 +293,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
@@ -313,7 +307,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -349,7 +343,7 @@ class TestConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+        assert_matches_type(SyncSinglePage[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -361,7 +355,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(SyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+        assert_matches_type(SyncSinglePage[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -373,7 +367,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(SyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+            assert_matches_type(SyncSinglePage[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -458,7 +452,7 @@ class TestConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -471,7 +465,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -484,7 +478,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -525,7 +519,7 @@ class TestAsyncConsumers:
             script_name="my-consumer-worker",
             type="worker",
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -543,7 +537,7 @@ class TestAsyncConsumers:
                 "retry_delay": 10,
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -557,7 +551,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -571,7 +565,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -600,7 +594,7 @@ class TestAsyncConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="http_pull",
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -616,7 +610,7 @@ class TestAsyncConsumers:
                 "visibility_timeout_ms": 6000,
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -629,7 +623,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -642,7 +636,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -671,7 +665,7 @@ class TestAsyncConsumers:
             script_name="my-consumer-worker",
             type="worker",
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -690,7 +684,7 @@ class TestAsyncConsumers:
                 "retry_delay": 10,
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -705,7 +699,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -720,7 +714,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -761,7 +755,7 @@ class TestAsyncConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="http_pull",
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -778,7 +772,7 @@ class TestAsyncConsumers:
                 "visibility_timeout_ms": 6000,
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -792,7 +786,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -806,7 +800,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -842,7 +836,7 @@ class TestAsyncConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+        assert_matches_type(AsyncSinglePage[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -854,7 +848,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(AsyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+        assert_matches_type(AsyncSinglePage[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -866,7 +860,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(AsyncSinglePage[ConsumerListResponse], consumer, path=["response"])
+            assert_matches_type(AsyncSinglePage[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -951,7 +945,7 @@ class TestAsyncConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -964,7 +958,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+        assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -977,7 +971,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
+            assert_matches_type(Optional[Consumer], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

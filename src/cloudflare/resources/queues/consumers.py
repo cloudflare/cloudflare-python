@@ -21,11 +21,8 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import consumer_create_params, consumer_update_params
-from ...types.queues.consumer_get_response import ConsumerGetResponse
-from ...types.queues.consumer_list_response import ConsumerListResponse
-from ...types.queues.consumer_create_response import ConsumerCreateResponse
+from ...types.queues.consumer import Consumer
 from ...types.queues.consumer_delete_response import ConsumerDeleteResponse
-from ...types.queues.consumer_update_response import ConsumerUpdateResponse
 
 __all__ = ["ConsumersResource", "AsyncConsumersResource"]
 
@@ -66,7 +63,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
 
@@ -102,7 +99,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
 
@@ -139,13 +136,13 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
-            Optional[ConsumerCreateResponse],
+            Optional[Consumer],
             self._post(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers",
                 body=maybe_transform(
@@ -162,10 +159,10 @@ class ConsumersResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerCreateResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -187,7 +184,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -226,7 +223,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -266,7 +263,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -274,7 +271,7 @@ class ConsumersResource(SyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerUpdateResponse],
+            Optional[Consumer],
             self._put(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=maybe_transform(
@@ -291,10 +288,10 @@ class ConsumersResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerUpdateResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -310,7 +307,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ConsumerListResponse]:
+    ) -> SyncSinglePage[Consumer]:
         """
         Returns the consumers for a Queue
 
@@ -333,11 +330,11 @@ class ConsumersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/consumers",
-            page=SyncSinglePage[ConsumerListResponse],
+            page=SyncSinglePage[Consumer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ConsumerListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Consumer),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -397,7 +394,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerGetResponse]:
+    ) -> Optional[Consumer]:
         """
         Fetches the consumer for a queue by consumer id
 
@@ -423,7 +420,7 @@ class ConsumersResource(SyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerGetResponse],
+            Optional[Consumer],
             self._get(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 options=make_request_options(
@@ -431,10 +428,10 @@ class ConsumersResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerGetResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -476,7 +473,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
 
@@ -512,7 +509,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
 
@@ -549,13 +546,13 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerCreateResponse]:
+    ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
-            Optional[ConsumerCreateResponse],
+            Optional[Consumer],
             await self._post(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers",
                 body=await async_maybe_transform(
@@ -572,10 +569,10 @@ class AsyncConsumersResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerCreateResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -597,7 +594,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -636,7 +633,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -676,7 +673,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerUpdateResponse]:
+    ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -684,7 +681,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerUpdateResponse],
+            Optional[Consumer],
             await self._put(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=await async_maybe_transform(
@@ -701,10 +698,10 @@ class AsyncConsumersResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerUpdateResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -720,7 +717,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConsumerListResponse, AsyncSinglePage[ConsumerListResponse]]:
+    ) -> AsyncPaginator[Consumer, AsyncSinglePage[Consumer]]:
         """
         Returns the consumers for a Queue
 
@@ -743,11 +740,11 @@ class AsyncConsumersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/consumers",
-            page=AsyncSinglePage[ConsumerListResponse],
+            page=AsyncSinglePage[Consumer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ConsumerListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Consumer),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -807,7 +804,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ConsumerGetResponse]:
+    ) -> Optional[Consumer]:
         """
         Fetches the consumer for a queue by consumer id
 
@@ -833,7 +830,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerGetResponse],
+            Optional[Consumer],
             await self._get(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 options=make_request_options(
@@ -841,10 +838,10 @@ class AsyncConsumersResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Consumer]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerGetResponse]
+                    Any, ResultWrapper[Consumer]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
