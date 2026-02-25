@@ -1450,6 +1450,20 @@ Methods:
 
 - <code title="post /accounts/{account_id}/email-security/investigate/release">client.email_security.investigate.release.<a href="./src/cloudflare/resources/email_security/investigate/release.py">bulk</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/release_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/release_bulk_response.py">SyncSinglePage[ReleaseBulkResponse]</a></code>
 
+## Phishguard
+
+### Reports
+
+Types:
+
+```python
+from cloudflare.types.email_security.phishguard import ReportListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/phishguard/reports">client.email_security.phishguard.reports.<a href="./src/cloudflare/resources/email_security/phishguard/reports.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/phishguard/report_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/phishguard/report_list_response.py">SyncSinglePage[ReportListResponse]</a></code>
+
 ## Settings
 
 ### AllowPolicies

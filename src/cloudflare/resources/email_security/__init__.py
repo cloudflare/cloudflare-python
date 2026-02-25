@@ -8,6 +8,14 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
+from .phishguard import (
+    PhishguardResource,
+    AsyncPhishguardResource,
+    PhishguardResourceWithRawResponse,
+    AsyncPhishguardResourceWithRawResponse,
+    PhishguardResourceWithStreamingResponse,
+    AsyncPhishguardResourceWithStreamingResponse,
+)
 from .investigate import (
     InvestigateResource,
     AsyncInvestigateResource,
@@ -40,6 +48,12 @@ __all__ = [
     "AsyncInvestigateResourceWithRawResponse",
     "InvestigateResourceWithStreamingResponse",
     "AsyncInvestigateResourceWithStreamingResponse",
+    "PhishguardResource",
+    "AsyncPhishguardResource",
+    "PhishguardResourceWithRawResponse",
+    "AsyncPhishguardResourceWithRawResponse",
+    "PhishguardResourceWithStreamingResponse",
+    "AsyncPhishguardResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",
