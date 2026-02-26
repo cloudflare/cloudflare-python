@@ -15,7 +15,7 @@ __all__ = [
     "Policy",
     "PolicyUnionMember0",
     "PolicyUnionMember0ConnectionRules",
-    "PolicyUnionMember0ConnectionRulesRdp",
+    "PolicyUnionMember0ConnectionRulesRDP",
     "PolicyUnionMember0MfaConfig",
 ]
 
@@ -27,7 +27,7 @@ class PolicyTestCreateParams(TypedDict, total=False):
     policies: SequenceNotStr[Policy]
 
 
-class PolicyUnionMember0ConnectionRulesRdp(TypedDict, total=False):
+class PolicyUnionMember0ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
@@ -46,7 +46,7 @@ class PolicyUnionMember0ConnectionRules(TypedDict, total=False):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: PolicyUnionMember0ConnectionRulesRdp
+    rdp: PolicyUnionMember0ConnectionRulesRDP
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
