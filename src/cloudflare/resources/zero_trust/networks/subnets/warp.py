@@ -19,9 +19,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.networks.subnets import warp_edit_params, warp_create_params
-from .....types.zero_trust.networks.subnets.warp_get_response import WARPGetResponse
-from .....types.zero_trust.networks.subnets.warp_edit_response import WARPEditResponse
-from .....types.zero_trust.networks.subnets.warp_create_response import WARPCreateResponse
+from .....types.zero_trust.networks.subnets.subnet import Subnet
 from .....types.zero_trust.networks.subnets.warp_delete_response import WARPDeleteResponse
 
 __all__ = ["WARPResource", "AsyncWARPResource"]
@@ -61,7 +59,7 @@ class WARPResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPCreateResponse:
+    ) -> Subnet:
         """Create a WARP IP assignment subnet.
 
         Currently, only IPv4 subnets can be created.
@@ -114,9 +112,9 @@ class WARPResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPCreateResponse], ResultWrapper[WARPCreateResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
     def delete(
@@ -180,7 +178,7 @@ class WARPResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPEditResponse:
+    ) -> Subnet:
         """
         Updates a WARP IP assignment subnet.
 
@@ -232,9 +230,9 @@ class WARPResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPEditResponse], ResultWrapper[WARPEditResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
     def get(
@@ -248,7 +246,7 @@ class WARPResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPGetResponse:
+    ) -> Subnet:
         """
         Get a WARP IP assignment subnet.
 
@@ -276,9 +274,9 @@ class WARPResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPGetResponse], ResultWrapper[WARPGetResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
 
@@ -316,7 +314,7 @@ class AsyncWARPResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPCreateResponse:
+    ) -> Subnet:
         """Create a WARP IP assignment subnet.
 
         Currently, only IPv4 subnets can be created.
@@ -369,9 +367,9 @@ class AsyncWARPResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPCreateResponse], ResultWrapper[WARPCreateResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
     async def delete(
@@ -435,7 +433,7 @@ class AsyncWARPResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPEditResponse:
+    ) -> Subnet:
         """
         Updates a WARP IP assignment subnet.
 
@@ -487,9 +485,9 @@ class AsyncWARPResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPEditResponse], ResultWrapper[WARPEditResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
     async def get(
@@ -503,7 +501,7 @@ class AsyncWARPResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WARPGetResponse:
+    ) -> Subnet:
         """
         Get a WARP IP assignment subnet.
 
@@ -531,9 +529,9 @@ class AsyncWARPResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WARPGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[WARPGetResponse], ResultWrapper[WARPGetResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
 

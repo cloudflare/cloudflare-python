@@ -20,7 +20,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.networks.subnets import cloudflare_source_update_params
-from .....types.zero_trust.networks.subnets.cloudflare_source_update_response import CloudflareSourceUpdateResponse
+from .....types.zero_trust.networks.subnets.subnet import Subnet
 
 __all__ = ["CloudflareSourceResource", "AsyncCloudflareSourceResource"]
 
@@ -59,7 +59,7 @@ class CloudflareSourceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareSourceUpdateResponse:
+    ) -> Subnet:
         """
         Updates the Cloudflare Source subnet of the given address family
 
@@ -101,9 +101,9 @@ class CloudflareSourceResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CloudflareSourceUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[CloudflareSourceUpdateResponse], ResultWrapper[CloudflareSourceUpdateResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareSourceUpdateResponse:
+    ) -> Subnet:
         """
         Updates the Cloudflare Source subnet of the given address family
 
@@ -183,9 +183,9 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CloudflareSourceUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Subnet]._unwrapper,
             ),
-            cast_to=cast(Type[CloudflareSourceUpdateResponse], ResultWrapper[CloudflareSourceUpdateResponse]),
+            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
         )
 
 

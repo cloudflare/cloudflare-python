@@ -10,9 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.networks.subnets import (
-    WARPGetResponse,
-    WARPEditResponse,
-    WARPCreateResponse,
+    Subnet,
     WARPDeleteResponse,
 )
 
@@ -29,7 +27,7 @@ class TestWARP:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -40,7 +38,7 @@ class TestWARP:
             comment="example comment",
             is_default_network=True,
         )
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -53,7 +51,7 @@ class TestWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = response.parse()
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -66,7 +64,7 @@ class TestWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = response.parse()
-            assert_matches_type(WARPCreateResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -133,7 +131,7 @@ class TestWARP:
             subnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -145,7 +143,7 @@ class TestWARP:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -157,7 +155,7 @@ class TestWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = response.parse()
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -169,7 +167,7 @@ class TestWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = response.parse()
-            assert_matches_type(WARPEditResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -193,7 +191,7 @@ class TestWARP:
             subnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPGetResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -205,7 +203,7 @@ class TestWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = response.parse()
-        assert_matches_type(WARPGetResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -217,7 +215,7 @@ class TestWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = response.parse()
-            assert_matches_type(WARPGetResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +246,7 @@ class TestAsyncWARP:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -259,7 +257,7 @@ class TestAsyncWARP:
             comment="example comment",
             is_default_network=True,
         )
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -272,7 +270,7 @@ class TestAsyncWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = await response.parse()
-        assert_matches_type(WARPCreateResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -285,7 +283,7 @@ class TestAsyncWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = await response.parse()
-            assert_matches_type(WARPCreateResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -352,7 +350,7 @@ class TestAsyncWARP:
             subnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -364,7 +362,7 @@ class TestAsyncWARP:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -376,7 +374,7 @@ class TestAsyncWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = await response.parse()
-        assert_matches_type(WARPEditResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -388,7 +386,7 @@ class TestAsyncWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = await response.parse()
-            assert_matches_type(WARPEditResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +410,7 @@ class TestAsyncWARP:
             subnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPGetResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -424,7 +422,7 @@ class TestAsyncWARP:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp = await response.parse()
-        assert_matches_type(WARPGetResponse, warp, path=["response"])
+        assert_matches_type(Subnet, warp, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -436,7 +434,7 @@ class TestAsyncWARP:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp = await response.parse()
-            assert_matches_type(WARPGetResponse, warp, path=["response"])
+            assert_matches_type(Subnet, warp, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.networks.subnets import CloudflareSourceUpdateResponse
+from cloudflare.types.zero_trust.networks.subnets import Subnet
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestCloudflareSource:
             address_family="v4",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -34,7 +34,7 @@ class TestCloudflareSource:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -46,7 +46,7 @@ class TestCloudflareSource:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflare_source = response.parse()
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -58,7 +58,7 @@ class TestCloudflareSource:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflare_source = response.parse()
-            assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+            assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +82,7 @@ class TestAsyncCloudflareSource:
             address_family="v4",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -93,7 +93,7 @@ class TestAsyncCloudflareSource:
             name="IPv4 Cloudflare Source IPs",
             network="100.64.0.0/12",
         )
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -105,7 +105,7 @@ class TestAsyncCloudflareSource:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflare_source = await response.parse()
-        assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+        assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -117,7 +117,7 @@ class TestAsyncCloudflareSource:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflare_source = await response.parse()
-            assert_matches_type(CloudflareSourceUpdateResponse, cloudflare_source, path=["response"])
+            assert_matches_type(Subnet, cloudflare_source, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

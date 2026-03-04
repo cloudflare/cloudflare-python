@@ -35,7 +35,7 @@ from .cloudflare_source import (
     AsyncCloudflareSourceResourceWithStreamingResponse,
 )
 from .....types.zero_trust.networks import subnet_list_params
-from .....types.zero_trust.networks.subnet_list_response import SubnetListResponse
+from .....types.zero_trust.networks.subnets.subnet import Subnet
 
 __all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
@@ -89,7 +89,7 @@ class SubnetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[SubnetListResponse]:
+    ) -> SyncV4PagePaginationArray[Subnet]:
         """
         Lists and filters subnets in an account.
 
@@ -134,7 +134,7 @@ class SubnetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/zerotrust/subnets",
-            page=SyncV4PagePaginationArray[SubnetListResponse],
+            page=SyncV4PagePaginationArray[Subnet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -157,7 +157,7 @@ class SubnetsResource(SyncAPIResource):
                     subnet_list_params.SubnetListParams,
                 ),
             ),
-            model=SubnetListResponse,
+            model=Subnet,
         )
 
 
@@ -210,7 +210,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SubnetListResponse, AsyncV4PagePaginationArray[SubnetListResponse]]:
+    ) -> AsyncPaginator[Subnet, AsyncV4PagePaginationArray[Subnet]]:
         """
         Lists and filters subnets in an account.
 
@@ -255,7 +255,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/zerotrust/subnets",
-            page=AsyncV4PagePaginationArray[SubnetListResponse],
+            page=AsyncV4PagePaginationArray[Subnet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -278,7 +278,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
                     subnet_list_params.SubnetListParams,
                 ),
             ),
-            model=SubnetListResponse,
+            model=Subnet,
         )
 
 

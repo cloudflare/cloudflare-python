@@ -7340,47 +7340,30 @@ Methods:
 
 ### Subnets
 
-Types:
-
-```python
-from cloudflare.types.zero_trust.networks import SubnetListResponse
-```
-
 Methods:
 
-- <code title="get /accounts/{account_id}/zerotrust/subnets">client.zero_trust.networks.subnets.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/subnets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnet_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnet_list_response.py">SyncV4PagePaginationArray[SubnetListResponse]</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/subnets">client.zero_trust.networks.subnets.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/subnets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnet_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">SyncV4PagePaginationArray[Subnet]</a></code>
 
 #### WARP
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.networks.subnets import (
-    WARPCreateResponse,
-    WARPDeleteResponse,
-    WARPEditResponse,
-    WARPGetResponse,
-)
+from cloudflare.types.zero_trust.networks.subnets import Subnet, WARPDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/zerotrust/subnets/warp">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_create_response.py">WARPCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/zerotrust/subnets/warp">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
 - <code title="delete /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">delete</a>(subnet_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_delete_response.py">Optional[WARPDeleteResponse]</a></code>
-- <code title="patch /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">edit</a>(subnet_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_edit_response.py">WARPEditResponse</a></code>
-- <code title="get /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">get</a>(subnet_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/warp_get_response.py">WARPGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">edit</a>(subnet_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/warp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}">client.zero_trust.networks.subnets.warp.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/warp.py">get</a>(subnet_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
 
 #### CloudflareSource
 
-Types:
-
-```python
-from cloudflare.types.zero_trust.networks.subnets import CloudflareSourceUpdateResponse
-```
-
 Methods:
 
-- <code title="patch /accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}">client.zero_trust.networks.subnets.cloudflare_source.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/cloudflare_source.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_response.py">CloudflareSourceUpdateResponse</a></code>
+- <code title="patch /accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}">client.zero_trust.networks.subnets.cloudflare_source.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/cloudflare_source.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
 
 ### HostnameRoutes
 

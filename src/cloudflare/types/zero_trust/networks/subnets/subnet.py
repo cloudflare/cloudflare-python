@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["CloudflareSourceUpdateResponse"]
+__all__ = ["Subnet"]
 
 
-class CloudflareSourceUpdateResponse(BaseModel):
+class Subnet(BaseModel):
     id: Optional[str] = None
     """The UUID of the subnet."""
 
