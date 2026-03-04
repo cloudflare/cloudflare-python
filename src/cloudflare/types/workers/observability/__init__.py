@@ -4,7 +4,14 @@ from __future__ import annotations
 
 from .telemetry_keys_params import TelemetryKeysParams as TelemetryKeysParams
 from .telemetry_query_params import TelemetryQueryParams as TelemetryQueryParams
+from .destination_list_params import DestinationListParams as DestinationListParams
 from .telemetry_keys_response import TelemetryKeysResponse as TelemetryKeysResponse
 from .telemetry_values_params import TelemetryValuesParams as TelemetryValuesParams
 from .telemetry_query_response import TelemetryQueryResponse as TelemetryQueryResponse
+from .destination_create_params import DestinationCreateParams as DestinationCreateParams
+from .destination_list_response import DestinationListResponse as DestinationListResponse
+from .destination_update_params import DestinationUpdateParams as DestinationUpdateParams
 from .telemetry_values_response import TelemetryValuesResponse as TelemetryValuesResponse
+from .destination_create_response import DestinationCreateResponse as DestinationCreateResponse
+from .destination_delete_response import DestinationDeleteResponse as DestinationDeleteResponse
+from .destination_update_response import DestinationUpdateResponse as DestinationUpdateResponse

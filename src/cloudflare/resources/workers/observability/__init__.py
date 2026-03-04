@@ -8,6 +8,14 @@ from .telemetry import (
     TelemetryResourceWithStreamingResponse,
     AsyncTelemetryResourceWithStreamingResponse,
 )
+from .destinations import (
+    DestinationsResource,
+    AsyncDestinationsResource,
+    DestinationsResourceWithRawResponse,
+    AsyncDestinationsResourceWithRawResponse,
+    DestinationsResourceWithStreamingResponse,
+    AsyncDestinationsResourceWithStreamingResponse,
+)
 from .observability import (
     ObservabilityResource,
     AsyncObservabilityResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncTelemetryResourceWithRawResponse",
     "TelemetryResourceWithStreamingResponse",
     "AsyncTelemetryResourceWithStreamingResponse",
+    "DestinationsResource",
+    "AsyncDestinationsResource",
+    "DestinationsResourceWithRawResponse",
+    "AsyncDestinationsResourceWithRawResponse",
+    "DestinationsResourceWithStreamingResponse",
+    "AsyncDestinationsResourceWithStreamingResponse",
     "ObservabilityResource",
     "AsyncObservabilityResource",
     "ObservabilityResourceWithRawResponse",
