@@ -32,8 +32,6 @@ class TestInstances:
         instance = client.aisearch.instances.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -42,10 +40,10 @@ class TestInstances:
         instance = client.aisearch.instances.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
@@ -80,10 +78,19 @@ class TestInstances:
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
-            retrieval_options={"keyword_match_mode": "exact_match"},
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "exact_match",
+            },
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
+            source="source",
             source_params={
                 "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
                 "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
@@ -91,6 +98,12 @@ class TestInstances:
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
                         "include_headers": {"foo": "string"},
                         "include_images": True,
                         "specific_sitemaps": [
@@ -108,6 +121,7 @@ class TestInstances:
                 },
             },
             token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -116,8 +130,6 @@ class TestInstances:
         response = client.aisearch.instances.with_raw_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         )
 
         assert response.is_closed is True
@@ -130,8 +142,6 @@ class TestInstances:
         with client.aisearch.instances.with_streaming_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,8 +157,6 @@ class TestInstances:
             client.aisearch.instances.with_raw_response.create(
                 account_id="",
                 id="my-ai-search",
-                source="source",
-                type="r2",
             )
 
     @parametrize
@@ -203,7 +211,15 @@ class TestInstances:
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
-            retrieval_options={"keyword_match_mode": "exact_match"},
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "exact_match",
+            },
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
@@ -214,6 +230,12 @@ class TestInstances:
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
                         "include_headers": {"foo": "string"},
                         "include_images": True,
                         "specific_sitemaps": [
@@ -290,6 +312,8 @@ class TestInstances:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         instance = client.aisearch.instances.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            order_by="created_at",
+            order_by_direction="asc",
             page=1,
             per_page=1,
             search="search",
@@ -412,6 +436,12 @@ class TestInstances:
                     "model": "@cf/baai/bge-reranker-base",
                 },
                 "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
                     "fusion_method": "max",
@@ -576,6 +606,12 @@ class TestInstances:
                     "model": "@cf/baai/bge-reranker-base",
                 },
                 "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
                     "fusion_method": "max",
@@ -712,8 +748,6 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.instances.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -722,10 +756,10 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.instances.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
@@ -760,10 +794,19 @@ class TestAsyncInstances:
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
-            retrieval_options={"keyword_match_mode": "exact_match"},
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "exact_match",
+            },
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
+            source="source",
             source_params={
                 "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
                 "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
@@ -771,6 +814,12 @@ class TestAsyncInstances:
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
                         "include_headers": {"foo": "string"},
                         "include_images": True,
                         "specific_sitemaps": [
@@ -788,6 +837,7 @@ class TestAsyncInstances:
                 },
             },
             token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -796,8 +846,6 @@ class TestAsyncInstances:
         response = await async_client.aisearch.instances.with_raw_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         )
 
         assert response.is_closed is True
@@ -810,8 +858,6 @@ class TestAsyncInstances:
         async with async_client.aisearch.instances.with_streaming_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
-            source="source",
-            type="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -827,8 +873,6 @@ class TestAsyncInstances:
             await async_client.aisearch.instances.with_raw_response.create(
                 account_id="",
                 id="my-ai-search",
-                source="source",
-                type="r2",
             )
 
     @parametrize
@@ -883,7 +927,15 @@ class TestAsyncInstances:
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
-            retrieval_options={"keyword_match_mode": "exact_match"},
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "exact_match",
+            },
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
@@ -894,6 +946,12 @@ class TestAsyncInstances:
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
                         "include_headers": {"foo": "string"},
                         "include_images": True,
                         "specific_sitemaps": [
@@ -970,6 +1028,8 @@ class TestAsyncInstances:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.instances.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            order_by="created_at",
+            order_by_direction="asc",
             page=1,
             per_page=1,
             search="search",
@@ -1092,6 +1152,12 @@ class TestAsyncInstances:
                     "model": "@cf/baai/bge-reranker-base",
                 },
                 "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
                     "fusion_method": "max",
@@ -1256,6 +1322,12 @@ class TestAsyncInstances:
                     "model": "@cf/baai/bge-reranker-base",
                 },
                 "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
                     "context_expansion": 0,
                     "filters": {"foo": "bar"},
                     "fusion_method": "max",

@@ -54,7 +54,8 @@ class ReleaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ReleaseBulkResponse]:
         """
-        Release messages from quarantine
+        Releases a quarantined email message, allowing it to be delivered to the
+        recipient.
 
         Args:
           account_id: Account Identifier
@@ -116,7 +117,8 @@ class AsyncReleaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReleaseBulkResponse, AsyncSinglePage[ReleaseBulkResponse]]:
         """
-        Release messages from quarantine
+        Releases a quarantined email message, allowing it to be delivered to the
+        recipient.
 
         Args:
           account_id: Account Identifier

@@ -59,6 +59,8 @@ class LANsResource(SyncAPIResource):
         account_id: str,
         bond_id: int | Omit = omit,
         ha_link: bool | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -85,6 +87,10 @@ class LANsResource(SyncAPIResource):
           ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
               only one LAN can be set as the ha_link.
 
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
+
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
@@ -110,6 +116,8 @@ class LANsResource(SyncAPIResource):
                 {
                     "bond_id": bond_id,
                     "ha_link": ha_link,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -133,6 +141,8 @@ class LANsResource(SyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -155,6 +165,10 @@ class LANsResource(SyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
@@ -181,6 +195,8 @@ class LANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -297,6 +313,8 @@ class LANsResource(SyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -319,6 +337,10 @@ class LANsResource(SyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
@@ -345,6 +367,8 @@ class LANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -441,6 +465,8 @@ class AsyncLANsResource(AsyncAPIResource):
         account_id: str,
         bond_id: int | Omit = omit,
         ha_link: bool | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -467,6 +493,10 @@ class AsyncLANsResource(AsyncAPIResource):
           ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
               only one LAN can be set as the ha_link.
 
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
+
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
@@ -492,6 +522,8 @@ class AsyncLANsResource(AsyncAPIResource):
                 {
                     "bond_id": bond_id,
                     "ha_link": ha_link,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -515,6 +547,8 @@ class AsyncLANsResource(AsyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -537,6 +571,10 @@ class AsyncLANsResource(AsyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
@@ -563,6 +601,8 @@ class AsyncLANsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -679,6 +719,8 @@ class AsyncLANsResource(AsyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        is_breakout: bool | Omit = omit,
+        is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -701,6 +743,10 @@ class AsyncLANsResource(AsyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          is_breakout: mark true to use this LAN for source-based breakout traffic
+
+          is_prioritized: mark true to use this LAN for source-based prioritized traffic
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
@@ -727,6 +773,8 @@ class AsyncLANsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "is_breakout": is_breakout,
+                    "is_prioritized": is_prioritized,
                     "name": name,
                     "nat": nat,
                     "physport": physport,

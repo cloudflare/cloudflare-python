@@ -66,7 +66,7 @@ class ProviderConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProviderConfigCreateResponse:
         """
-        Create a new Provider Configs
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -122,7 +122,7 @@ class ProviderConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ProviderConfigListResponse]:
         """
-        List Provider Configs
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id
@@ -199,7 +199,7 @@ class AsyncProviderConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProviderConfigCreateResponse:
         """
-        Create a new Provider Configs
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -255,7 +255,7 @@ class AsyncProviderConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ProviderConfigListResponse, AsyncV4PagePaginationArray[ProviderConfigListResponse]]:
         """
-        List Provider Configs
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id

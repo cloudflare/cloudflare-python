@@ -12,13 +12,12 @@ from ..._models import BaseModel
 __all__ = [
     "SinkGetResponse",
     "Config",
-    "ConfigCloudflarePipelinesR2Table",
-    "ConfigCloudflarePipelinesR2TableCredentials",
-    "ConfigCloudflarePipelinesR2TableFileNaming",
-    "ConfigCloudflarePipelinesR2TablePartitioning",
-    "ConfigCloudflarePipelinesR2TableRollingPolicy",
-    "ConfigCloudflarePipelinesR2DataCatalogTable",
-    "ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy",
+    "ConfigCloudflarePipelinesR2TablePublic",
+    "ConfigCloudflarePipelinesR2TablePublicFileNaming",
+    "ConfigCloudflarePipelinesR2TablePublicPartitioning",
+    "ConfigCloudflarePipelinesR2TablePublicRollingPolicy",
+    "ConfigCloudflarePipelinesR2DataCatalogTablePublic",
+    "ConfigCloudflarePipelinesR2DataCatalogTablePublicRollingPolicy",
     "Format",
     "FormatJson",
     "FormatParquet",
@@ -41,15 +40,7 @@ __all__ = [
 ]
 
 
-class ConfigCloudflarePipelinesR2TableCredentials(BaseModel):
-    access_key_id: str
-    """Cloudflare Account ID for the bucket"""
-
-    secret_access_key: str
-    """Cloudflare Account ID for the bucket"""
-
-
-class ConfigCloudflarePipelinesR2TableFileNaming(BaseModel):
+class ConfigCloudflarePipelinesR2TablePublicFileNaming(BaseModel):
     """Controls filename prefix/suffix and strategy."""
 
     prefix: Optional[str] = None
@@ -62,14 +53,14 @@ class ConfigCloudflarePipelinesR2TableFileNaming(BaseModel):
     """This will overwrite the default file suffix. i.e .parquet, use with caution"""
 
 
-class ConfigCloudflarePipelinesR2TablePartitioning(BaseModel):
+class ConfigCloudflarePipelinesR2TablePublicPartitioning(BaseModel):
     """Data-layout partitioning for sinks."""
 
     time_pattern: Optional[str] = None
     """The pattern of the date string"""
 
 
-class ConfigCloudflarePipelinesR2TableRollingPolicy(BaseModel):
+class ConfigCloudflarePipelinesR2TablePublicRollingPolicy(BaseModel):
     """Rolling policy for file sinks (when & why to close a file and open a new one)."""
 
     file_size_bytes: Optional[int] = None
@@ -82,32 +73,32 @@ class ConfigCloudflarePipelinesR2TableRollingPolicy(BaseModel):
     """Number of seconds to wait before rolling over to a new file"""
 
 
-class ConfigCloudflarePipelinesR2Table(BaseModel):
+class ConfigCloudflarePipelinesR2TablePublic(BaseModel):
+    """R2 Sink public configuration."""
+
     account_id: str
     """Cloudflare Account ID for the bucket"""
 
     bucket: str
     """R2 Bucket to write to"""
 
-    credentials: ConfigCloudflarePipelinesR2TableCredentials
-
-    file_naming: Optional[ConfigCloudflarePipelinesR2TableFileNaming] = None
+    file_naming: Optional[ConfigCloudflarePipelinesR2TablePublicFileNaming] = None
     """Controls filename prefix/suffix and strategy."""
 
     jurisdiction: Optional[str] = None
     """Jurisdiction this bucket is hosted in"""
 
-    partitioning: Optional[ConfigCloudflarePipelinesR2TablePartitioning] = None
+    partitioning: Optional[ConfigCloudflarePipelinesR2TablePublicPartitioning] = None
     """Data-layout partitioning for sinks."""
 
     path: Optional[str] = None
     """Subpath within the bucket to write to"""
 
-    rolling_policy: Optional[ConfigCloudflarePipelinesR2TableRollingPolicy] = None
+    rolling_policy: Optional[ConfigCloudflarePipelinesR2TablePublicRollingPolicy] = None
     """Rolling policy for file sinks (when & why to close a file and open a new one)."""
 
 
-class ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy(BaseModel):
+class ConfigCloudflarePipelinesR2DataCatalogTablePublicRollingPolicy(BaseModel):
     """Rolling policy for file sinks (when & why to close a file and open a new one)."""
 
     file_size_bytes: Optional[int] = None
@@ -120,11 +111,8 @@ class ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy(BaseModel):
     """Number of seconds to wait before rolling over to a new file"""
 
 
-class ConfigCloudflarePipelinesR2DataCatalogTable(BaseModel):
-    """R2 Data Catalog Sink"""
-
-    token: str
-    """Authentication token"""
+class ConfigCloudflarePipelinesR2DataCatalogTablePublic(BaseModel):
+    """R2 Data Catalog Sink public configuration."""
 
     account_id: str
     """Cloudflare Account ID"""
@@ -138,11 +126,11 @@ class ConfigCloudflarePipelinesR2DataCatalogTable(BaseModel):
     namespace: Optional[str] = None
     """Table namespace"""
 
-    rolling_policy: Optional[ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy] = None
+    rolling_policy: Optional[ConfigCloudflarePipelinesR2DataCatalogTablePublicRollingPolicy] = None
     """Rolling policy for file sinks (when & why to close a file and open a new one)."""
 
 
-Config: TypeAlias = Union[ConfigCloudflarePipelinesR2Table, ConfigCloudflarePipelinesR2DataCatalogTable]
+Config: TypeAlias = Union[ConfigCloudflarePipelinesR2TablePublic, ConfigCloudflarePipelinesR2DataCatalogTablePublic]
 
 
 class FormatJson(BaseModel):

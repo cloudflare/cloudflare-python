@@ -262,7 +262,7 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
     Database (https://lumendatabase.org/).
     """
 
-    owner_notification: Required[Literal["send", "send-anon", "none"]]
+    owner_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.

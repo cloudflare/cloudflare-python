@@ -60,7 +60,8 @@ class ReclassifyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Change email classfication
+        Submits an email message for reclassification, updating its threat assessment
+        based on new analysis.
 
         Args:
           account_id: Account Identifier
@@ -138,7 +139,8 @@ class AsyncReclassifyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Change email classfication
+        Submits an email message for reclassification, updating its threat assessment
+        based on new analysis.
 
         Args:
           account_id: Account Identifier

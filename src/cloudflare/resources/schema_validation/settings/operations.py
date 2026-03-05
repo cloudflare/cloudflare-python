@@ -68,7 +68,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationUpdateResponse:
         """
-        Update per-operation schema validation setting
+        Fully updates schema validation settings for a specific API operation.
 
         Args:
           zone_id: Identifier.
@@ -125,7 +125,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
-        List per-operation schema validation settings
+        Lists all per-operation schema validation settings configured for the zone.
 
         Args:
           zone_id: Identifier.
@@ -176,7 +176,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
         """
-        Delete per-operation schema validation setting
+        Removes custom schema validation settings for a specific API operation,
+        reverting to zone-level defaults.
 
         Args:
           zone_id: Identifier.
@@ -220,7 +221,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkEditResponse:
         """
-        Bulk edit per-operation schema validation settings
+        Updates schema validation settings for multiple API operations in a single
+        request. Efficient for applying consistent validation rules across endpoints.
 
         Args:
           zone_id: Identifier.
@@ -261,7 +263,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Get per-operation schema validation setting
+        Retrieves the schema validation settings configured for a specific API
+        operation.
 
         Args:
           zone_id: Identifier.
@@ -327,7 +330,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationUpdateResponse:
         """
-        Update per-operation schema validation setting
+        Fully updates schema validation settings for a specific API operation.
 
         Args:
           zone_id: Identifier.
@@ -384,7 +387,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
-        List per-operation schema validation settings
+        Lists all per-operation schema validation settings configured for the zone.
 
         Args:
           zone_id: Identifier.
@@ -435,7 +438,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
         """
-        Delete per-operation schema validation setting
+        Removes custom schema validation settings for a specific API operation,
+        reverting to zone-level defaults.
 
         Args:
           zone_id: Identifier.
@@ -479,7 +483,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkEditResponse:
         """
-        Bulk edit per-operation schema validation settings
+        Updates schema validation settings for multiple API operations in a single
+        request. Efficient for applying consistent validation rules across endpoints.
 
         Args:
           zone_id: Identifier.
@@ -520,7 +525,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Get per-operation schema validation setting
+        Retrieves the schema validation settings configured for a specific API
+        operation.
 
         Args:
           zone_id: Identifier.

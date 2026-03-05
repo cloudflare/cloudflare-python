@@ -61,7 +61,8 @@ class MoveResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[MoveCreateResponse]:
         """
-        Move a message
+        Moves a single email message to a different folder or changes its quarantine
+        status.
 
         Args:
           account_id: Account Identifier
@@ -182,7 +183,8 @@ class AsyncMoveResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MoveCreateResponse, AsyncSinglePage[MoveCreateResponse]]:
         """
-        Move a message
+        Moves a single email message to a different folder or changes its quarantine
+        status.
 
         Args:
           account_id: Account Identifier

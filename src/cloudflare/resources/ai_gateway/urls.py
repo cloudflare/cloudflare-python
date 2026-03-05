@@ -56,7 +56,7 @@ class URLsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Get Gateway URL
+        Retrieves the endpoint URL for an AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -122,7 +122,7 @@ class AsyncURLsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Get Gateway URL
+        Retrieves the endpoint URL for an AI Gateway.
 
         Args:
           gateway_id: gateway id

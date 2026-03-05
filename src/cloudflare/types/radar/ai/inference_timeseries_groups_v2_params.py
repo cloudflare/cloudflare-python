@@ -71,7 +71,7 @@ class InferenceTimeseriesGroupsV2Params(TypedDict, total=False):
     name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"]
+    normalization: Literal["PERCENTAGE", "MIN0_MAX"]
     """Normalization method applied to the results.
 
     Refer to

@@ -60,7 +60,8 @@ class StatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatusEditResponse:
         """
-        Change status of instance
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
 
         Args:
           status: Apply action to instance.
@@ -128,7 +129,8 @@ class AsyncStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StatusEditResponse:
         """
-        Change status of instance
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
 
         Args:
           status: Apply action to instance.

@@ -209,8 +209,6 @@ class Version(BaseModel):
 class DynamicRoutingGetResponse(BaseModel):
     id: str
 
-    account_tag: str
-
     created_at: datetime
 
     deployment: Deployment

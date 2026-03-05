@@ -57,8 +57,10 @@ class ConfigurationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
-        """
-        Update configuration properties
+        """Updates API Shield configuration settings for a zone.
+
+        Can modify validation
+        strictness, enforcement mode, and other global settings.
 
         Args:
           zone_id: Identifier.
@@ -105,7 +107,8 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
-        Retrieve information about specific configuration properties
+        Gets the current API Shield configuration settings for a zone, including
+        validation behavior and enforcement mode.
 
         Args:
           zone_id: Identifier.
@@ -169,8 +172,10 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
-        """
-        Update configuration properties
+        """Updates API Shield configuration settings for a zone.
+
+        Can modify validation
+        strictness, enforcement mode, and other global settings.
 
         Args:
           zone_id: Identifier.
@@ -219,7 +224,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
-        Retrieve information about specific configuration properties
+        Gets the current API Shield configuration settings for a zone, including
+        validation behavior and enforcement mode.
 
         Args:
           zone_id: Identifier.

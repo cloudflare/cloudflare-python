@@ -22,6 +22,12 @@ class LAN(BaseModel):
     only works for site with HA turned on. only one LAN can be set as the ha_link.
     """
 
+    is_breakout: Optional[bool] = None
+    """mark true to use this LAN for source-based breakout traffic"""
+
+    is_prioritized: Optional[bool] = None
+    """mark true to use this LAN for source-based prioritized traffic"""
+
     name: Optional[str] = None
 
     nat: Optional[Nat] = None

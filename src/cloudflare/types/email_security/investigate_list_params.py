@@ -26,10 +26,16 @@ class InvestigateListParams(TypedDict, total=False):
     """Determines if the search results will include detections or not."""
 
     domain: str
-    """The sender domains the search filters by."""
+    """
+    Filter by a domain found in the email: sender domain, recipient domain, or a
+    domain in a link.
+    """
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now` if not provided."""
+
+    exact_subject: str
+    """Search for messages with an exact subject match."""
 
     final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
     """The dispositions the search filters by."""
@@ -75,8 +81,10 @@ class InvestigateListParams(TypedDict, total=False):
     """
 
     recipient: str
+    """Filter by recipient. Matches either an email address or a domain."""
 
     sender: str
+    """Filter by sender. Matches either an email address or a domain."""
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """
@@ -85,3 +93,7 @@ class InvestigateListParams(TypedDict, total=False):
     """
 
     subject: str
+    """
+    Search for messages containing individual keywords in any order within the
+    subject.
+    """

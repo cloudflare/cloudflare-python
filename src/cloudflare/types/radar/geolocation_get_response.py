@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -23,6 +24,8 @@ class GeolocationParentParent(BaseModel):
     type: Literal["CONTINENT", "COUNTRY", "ADM1"]
     """The type of the geolocation."""
 
+    code: Optional[str] = None
+
 
 class GeolocationParent(BaseModel):
     geo_id: str = FieldInfo(alias="geoId")
@@ -40,6 +43,8 @@ class GeolocationParent(BaseModel):
     type: Literal["CONTINENT", "COUNTRY", "ADM1"]
     """The type of the geolocation."""
 
+    code: Optional[str] = None
+
 
 class Geolocation(BaseModel):
     geo_id: str = FieldInfo(alias="geoId")
@@ -56,6 +61,8 @@ class Geolocation(BaseModel):
 
     type: Literal["CONTINENT", "COUNTRY", "ADM1"]
     """The type of the geolocation."""
+
+    code: Optional[str] = None
 
 
 class GeolocationGetResponse(BaseModel):

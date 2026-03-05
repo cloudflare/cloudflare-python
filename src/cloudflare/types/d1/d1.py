@@ -30,6 +30,12 @@ class D1(BaseModel):
     file_size: Optional[float] = None
     """The D1 database's size, in bytes."""
 
+    jurisdiction: Optional[Literal["eu", "fedramp"]] = None
+    """Specify the location to restrict the D1 database to run and store data.
+
+    If this option is present, the location hint is ignored.
+    """
+
     name: Optional[str] = None
     """D1 database name."""
 

@@ -32,6 +32,15 @@ class TestJobs:
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        job = client.aisearch.instances.jobs.create(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            description="description",
+        )
+        assert_matches_type(JobCreateResponse, job, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.aisearch.instances.jobs.with_raw_response.create(
             id="my-ai-search",
@@ -271,6 +280,15 @@ class TestAsyncJobs:
         job = await async_client.aisearch.instances.jobs.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        )
+        assert_matches_type(JobCreateResponse, job, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        job = await async_client.aisearch.instances.jobs.create(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            description="description",
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 

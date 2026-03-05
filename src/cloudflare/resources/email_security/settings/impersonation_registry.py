@@ -69,7 +69,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryCreateResponse:
         """
-        Create an entry in impersonation registry
+        Creates a display name entry for email security impersonation protection.
 
         Args:
           account_id: Account Identifier
@@ -186,7 +186,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryDeleteResponse:
         """
-        Delete an entry from impersonation registry
+        Removes a display name from impersonation protection monitoring.
 
         Args:
           account_id: Account Identifier
@@ -229,7 +229,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryEditResponse:
         """
-        Update an entry in impersonation registry
+        Updates a display name entry used for impersonation protection.
 
         Args:
           account_id: Account Identifier
@@ -277,7 +277,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryGetResponse:
         """
-        Get an entry in impersonation registry
+        Retrieves a display name entry used for impersonation protection.
 
         Args:
           account_id: Account Identifier
@@ -340,7 +340,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryCreateResponse:
         """
-        Create an entry in impersonation registry
+        Creates a display name entry for email security impersonation protection.
 
         Args:
           account_id: Account Identifier
@@ -459,7 +459,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryDeleteResponse:
         """
-        Delete an entry from impersonation registry
+        Removes a display name from impersonation protection monitoring.
 
         Args:
           account_id: Account Identifier
@@ -502,7 +502,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryEditResponse:
         """
-        Update an entry in impersonation registry
+        Updates a display name entry used for impersonation protection.
 
         Args:
           account_id: Account Identifier
@@ -550,7 +550,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImpersonationRegistryGetResponse:
         """
-        Get an entry in impersonation registry
+        Retrieves a display name entry used for impersonation protection.
 
         Args:
           account_id: Account Identifier

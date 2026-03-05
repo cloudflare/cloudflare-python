@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .phase import Phase
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 from .logging_param import LoggingParam
 
 __all__ = [
@@ -154,6 +155,53 @@ __all__ = [
     "ServeErrorRulePositionAfterPosition",
     "ServeErrorRulePositionIndexPosition",
     "ServeErrorRuleRatelimit",
+    "SetCacheControlRule",
+    "SetCacheControlRuleActionParameters",
+    "SetCacheControlRuleActionParametersImmutable",
+    "SetCacheControlRuleActionParametersImmutableSetDirective",
+    "SetCacheControlRuleActionParametersImmutableRemoveDirective",
+    "SetCacheControlRuleActionParametersMaxAge",
+    "SetCacheControlRuleActionParametersMaxAgeSetDirective",
+    "SetCacheControlRuleActionParametersMaxAgeRemoveDirective",
+    "SetCacheControlRuleActionParametersMustRevalidate",
+    "SetCacheControlRuleActionParametersMustRevalidateSetDirective",
+    "SetCacheControlRuleActionParametersMustRevalidateRemoveDirective",
+    "SetCacheControlRuleActionParametersMustUnderstand",
+    "SetCacheControlRuleActionParametersMustUnderstandSetDirective",
+    "SetCacheControlRuleActionParametersMustUnderstandRemoveDirective",
+    "SetCacheControlRuleActionParametersNoCache",
+    "SetCacheControlRuleActionParametersNoCacheSetDirective",
+    "SetCacheControlRuleActionParametersNoCacheRemoveDirective",
+    "SetCacheControlRuleActionParametersNoStore",
+    "SetCacheControlRuleActionParametersNoStoreSetDirective",
+    "SetCacheControlRuleActionParametersNoStoreRemoveDirective",
+    "SetCacheControlRuleActionParametersNoTransform",
+    "SetCacheControlRuleActionParametersNoTransformSetDirective",
+    "SetCacheControlRuleActionParametersNoTransformRemoveDirective",
+    "SetCacheControlRuleActionParametersPrivate",
+    "SetCacheControlRuleActionParametersPrivateSetDirective",
+    "SetCacheControlRuleActionParametersPrivateRemoveDirective",
+    "SetCacheControlRuleActionParametersProxyRevalidate",
+    "SetCacheControlRuleActionParametersProxyRevalidateSetDirective",
+    "SetCacheControlRuleActionParametersProxyRevalidateRemoveDirective",
+    "SetCacheControlRuleActionParametersPublic",
+    "SetCacheControlRuleActionParametersPublicSetDirective",
+    "SetCacheControlRuleActionParametersPublicRemoveDirective",
+    "SetCacheControlRuleActionParametersSMaxage",
+    "SetCacheControlRuleActionParametersSMaxageSetDirective",
+    "SetCacheControlRuleActionParametersSMaxageRemoveDirective",
+    "SetCacheControlRuleActionParametersStaleIfError",
+    "SetCacheControlRuleActionParametersStaleIfErrorSetDirective",
+    "SetCacheControlRuleActionParametersStaleIfErrorRemoveDirective",
+    "SetCacheControlRuleActionParametersStaleWhileRevalidate",
+    "SetCacheControlRuleActionParametersStaleWhileRevalidateSetDirective",
+    "SetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirective",
+    "SetCacheControlRuleExposedCredentialCheck",
+    "SetCacheControlRulePosition",
+    "SetCacheControlRulePositionBeforePosition",
+    "SetCacheControlRulePositionAfterPosition",
+    "SetCacheControlRulePositionIndexPosition",
+    "SetCacheControlRuleRatelimit",
     "SetCacheSettingsRule",
     "SetCacheSettingsRuleActionParameters",
     "SetCacheSettingsRuleActionParametersBrowserTTL",
@@ -177,6 +225,20 @@ __all__ = [
     "SetCacheSettingsRulePositionAfterPosition",
     "SetCacheSettingsRulePositionIndexPosition",
     "SetCacheSettingsRuleRatelimit",
+    "SetCacheTagsRule",
+    "SetCacheTagsRuleActionParameters",
+    "SetCacheTagsRuleActionParametersAddCacheTagsValues",
+    "SetCacheTagsRuleActionParametersAddCacheTagsExpression",
+    "SetCacheTagsRuleActionParametersRemoveCacheTagsValues",
+    "SetCacheTagsRuleActionParametersRemoveCacheTagsExpression",
+    "SetCacheTagsRuleActionParametersSetCacheTagsValues",
+    "SetCacheTagsRuleActionParametersSetCacheTagsExpression",
+    "SetCacheTagsRuleExposedCredentialCheck",
+    "SetCacheTagsRulePosition",
+    "SetCacheTagsRulePositionBeforePosition",
+    "SetCacheTagsRulePositionAfterPosition",
+    "SetCacheTagsRulePositionIndexPosition",
+    "SetCacheTagsRuleRatelimit",
     "SetConfigurationRule",
     "SetConfigurationRuleActionParameters",
     "SetConfigurationRuleActionParametersAutominify",
@@ -2586,6 +2648,561 @@ class ServeErrorRuleRatelimit(TypedDict, total=False):
     """
 
 
+class SetCacheControlRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["set_cache_control"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: SetCacheControlRuleActionParameters
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    exposed_credential_check: SetCacheControlRuleExposedCredentialCheck
+    """Configuration for exposed credential checking."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    position: SetCacheControlRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: SetCacheControlRuleRatelimit
+    """An object configuring the rule's rate limit behavior."""
+
+    ref: str
+    """The reference of the rule (the rule's ID by default)."""
+
+
+class SetCacheControlRuleActionParametersImmutableSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersImmutableRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersImmutable: TypeAlias = Union[
+    SetCacheControlRuleActionParametersImmutableSetDirective,
+    SetCacheControlRuleActionParametersImmutableRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersMaxAgeSetDirective(TypedDict, total=False):
+    """Set the directive with a duration value in seconds."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    value: Required[int]
+    """The duration value in seconds for the directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersMaxAgeRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersMaxAge: TypeAlias = Union[
+    SetCacheControlRuleActionParametersMaxAgeSetDirective, SetCacheControlRuleActionParametersMaxAgeRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersMustRevalidateSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersMustRevalidateRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersMustRevalidate: TypeAlias = Union[
+    SetCacheControlRuleActionParametersMustRevalidateSetDirective,
+    SetCacheControlRuleActionParametersMustRevalidateRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersMustUnderstandSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersMustUnderstandRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersMustUnderstand: TypeAlias = Union[
+    SetCacheControlRuleActionParametersMustUnderstandSetDirective,
+    SetCacheControlRuleActionParametersMustUnderstandRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersNoCacheSetDirective(TypedDict, total=False):
+    """Set the directive with optional qualifiers."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+    qualifiers: SequenceNotStr[str]
+    """
+    Optional list of header names to qualify the directive (e.g., for "private" or
+    "no-cache" directives).
+    """
+
+
+class SetCacheControlRuleActionParametersNoCacheRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersNoCache: TypeAlias = Union[
+    SetCacheControlRuleActionParametersNoCacheSetDirective, SetCacheControlRuleActionParametersNoCacheRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersNoStoreSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersNoStoreRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersNoStore: TypeAlias = Union[
+    SetCacheControlRuleActionParametersNoStoreSetDirective, SetCacheControlRuleActionParametersNoStoreRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersNoTransformSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersNoTransformRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersNoTransform: TypeAlias = Union[
+    SetCacheControlRuleActionParametersNoTransformSetDirective,
+    SetCacheControlRuleActionParametersNoTransformRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersPrivateSetDirective(TypedDict, total=False):
+    """Set the directive with optional qualifiers."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+    qualifiers: SequenceNotStr[str]
+    """
+    Optional list of header names to qualify the directive (e.g., for "private" or
+    "no-cache" directives).
+    """
+
+
+class SetCacheControlRuleActionParametersPrivateRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersPrivate: TypeAlias = Union[
+    SetCacheControlRuleActionParametersPrivateSetDirective, SetCacheControlRuleActionParametersPrivateRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersProxyRevalidateSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersProxyRevalidateRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersProxyRevalidate: TypeAlias = Union[
+    SetCacheControlRuleActionParametersProxyRevalidateSetDirective,
+    SetCacheControlRuleActionParametersProxyRevalidateRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersPublicSetDirective(TypedDict, total=False):
+    """Set the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersPublicRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersPublic: TypeAlias = Union[
+    SetCacheControlRuleActionParametersPublicSetDirective, SetCacheControlRuleActionParametersPublicRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersSMaxageSetDirective(TypedDict, total=False):
+    """Set the directive with a duration value in seconds."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    value: Required[int]
+    """The duration value in seconds for the directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersSMaxageRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersSMaxage: TypeAlias = Union[
+    SetCacheControlRuleActionParametersSMaxageSetDirective, SetCacheControlRuleActionParametersSMaxageRemoveDirective
+]
+
+
+class SetCacheControlRuleActionParametersStaleIfErrorSetDirective(TypedDict, total=False):
+    """Set the directive with a duration value in seconds."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    value: Required[int]
+    """The duration value in seconds for the directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersStaleIfErrorRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersStaleIfError: TypeAlias = Union[
+    SetCacheControlRuleActionParametersStaleIfErrorSetDirective,
+    SetCacheControlRuleActionParametersStaleIfErrorRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParametersStaleWhileRevalidateSetDirective(TypedDict, total=False):
+    """Set the directive with a duration value in seconds."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    value: Required[int]
+    """The duration value in seconds for the directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+class SetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirective(TypedDict, total=False):
+    """Remove the directive."""
+
+    operation: Required[Literal["set", "remove"]]
+    """The operation to perform on the cache-control directive."""
+
+    cloudflare_only: bool
+    """Whether the directive should only be applied to the Cloudflare CDN cache."""
+
+
+SetCacheControlRuleActionParametersStaleWhileRevalidate: TypeAlias = Union[
+    SetCacheControlRuleActionParametersStaleWhileRevalidateSetDirective,
+    SetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirective,
+]
+
+
+class SetCacheControlRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
+    immutable: SetCacheControlRuleActionParametersImmutable
+    """A cache-control directive configuration."""
+
+    max_age: Annotated[SetCacheControlRuleActionParametersMaxAge, PropertyInfo(alias="max-age")]
+    """
+    A cache-control directive configuration that accepts a duration value in
+    seconds.
+    """
+
+    must_revalidate: Annotated[SetCacheControlRuleActionParametersMustRevalidate, PropertyInfo(alias="must-revalidate")]
+    """A cache-control directive configuration."""
+
+    must_understand: Annotated[SetCacheControlRuleActionParametersMustUnderstand, PropertyInfo(alias="must-understand")]
+    """A cache-control directive configuration."""
+
+    no_cache: Annotated[SetCacheControlRuleActionParametersNoCache, PropertyInfo(alias="no-cache")]
+    """
+    A cache-control directive configuration that accepts optional qualifiers (header
+    names).
+    """
+
+    no_store: Annotated[SetCacheControlRuleActionParametersNoStore, PropertyInfo(alias="no-store")]
+    """A cache-control directive configuration."""
+
+    no_transform: Annotated[SetCacheControlRuleActionParametersNoTransform, PropertyInfo(alias="no-transform")]
+    """A cache-control directive configuration."""
+
+    private: SetCacheControlRuleActionParametersPrivate
+    """
+    A cache-control directive configuration that accepts optional qualifiers (header
+    names).
+    """
+
+    proxy_revalidate: Annotated[
+        SetCacheControlRuleActionParametersProxyRevalidate, PropertyInfo(alias="proxy-revalidate")
+    ]
+    """A cache-control directive configuration."""
+
+    public: SetCacheControlRuleActionParametersPublic
+    """A cache-control directive configuration."""
+
+    s_maxage: Annotated[SetCacheControlRuleActionParametersSMaxage, PropertyInfo(alias="s-maxage")]
+    """
+    A cache-control directive configuration that accepts a duration value in
+    seconds.
+    """
+
+    stale_if_error: Annotated[SetCacheControlRuleActionParametersStaleIfError, PropertyInfo(alias="stale-if-error")]
+    """
+    A cache-control directive configuration that accepts a duration value in
+    seconds.
+    """
+
+    stale_while_revalidate: Annotated[
+        SetCacheControlRuleActionParametersStaleWhileRevalidate, PropertyInfo(alias="stale-while-revalidate")
+    ]
+    """
+    A cache-control directive configuration that accepts a duration value in
+    seconds.
+    """
+
+
+class SetCacheControlRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
+    password_expression: Required[str]
+    """An expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """An expression that selects the user ID used in the credentials check."""
+
+
+class SetCacheControlRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class SetCacheControlRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class SetCacheControlRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    index: int
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+SetCacheControlRulePosition: TypeAlias = Union[
+    SetCacheControlRulePositionBeforePosition,
+    SetCacheControlRulePositionAfterPosition,
+    SetCacheControlRulePositionIndexPosition,
+]
+
+
+class SetCacheControlRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
+    """
+    Characteristics of the request on which the rate limit counter will be
+    incremented.
+    """
+
+    period: Required[int]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """An expression that defines when the rate limit counter should be incremented.
+
+    It defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Whether counting is only performed when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
+    """
+
+
 class SetCacheSettingsRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
@@ -2904,6 +3521,15 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     serve_stale: SetCacheSettingsRuleActionParametersServeStale
     """When to serve stale content from cache."""
 
+    strip_etags: bool
+    """Whether to strip ETag headers from the origin response before caching."""
+
+    strip_last_modified: bool
+    """Whether to strip Last-Modified headers from the origin response before caching."""
+
+    strip_set_cookie: bool
+    """Whether to strip Set-Cookie headers from the origin response before caching."""
+
 
 class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
     """Configuration for exposed credential checking."""
@@ -2950,6 +3576,208 @@ SetCacheSettingsRulePosition: TypeAlias = Union[
 
 
 class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
+    """
+    Characteristics of the request on which the rate limit counter will be
+    incremented.
+    """
+
+    period: Required[int]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """An expression that defines when the rate limit counter should be incremented.
+
+    It defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Whether counting is only performed when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
+    """
+
+
+class SetCacheTagsRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["set_cache_tags"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: SetCacheTagsRuleActionParameters
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    exposed_credential_check: SetCacheTagsRuleExposedCredentialCheck
+    """Configuration for exposed credential checking."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    position: SetCacheTagsRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: SetCacheTagsRuleRatelimit
+    """An object configuring the rule's rate limit behavior."""
+
+    ref: str
+    """The reference of the rule (the rule's ID by default)."""
+
+
+class SetCacheTagsRuleActionParametersAddCacheTagsValues(TypedDict, total=False):
+    """Add cache tags using a list of values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+    values: Required[SequenceNotStr[str]]
+    """A list of cache tag values."""
+
+
+class SetCacheTagsRuleActionParametersAddCacheTagsExpression(TypedDict, total=False):
+    """Add cache tags using an expression."""
+
+    expression: Required[str]
+    """An expression that evaluates to an array of cache tag values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+
+class SetCacheTagsRuleActionParametersRemoveCacheTagsValues(TypedDict, total=False):
+    """Remove cache tags using a list of values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+    values: Required[SequenceNotStr[str]]
+    """A list of cache tag values."""
+
+
+class SetCacheTagsRuleActionParametersRemoveCacheTagsExpression(TypedDict, total=False):
+    """Remove cache tags using an expression."""
+
+    expression: Required[str]
+    """An expression that evaluates to an array of cache tag values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+
+class SetCacheTagsRuleActionParametersSetCacheTagsValues(TypedDict, total=False):
+    """Set cache tags using a list of values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+    values: Required[SequenceNotStr[str]]
+    """A list of cache tag values."""
+
+
+class SetCacheTagsRuleActionParametersSetCacheTagsExpression(TypedDict, total=False):
+    """Set cache tags using an expression."""
+
+    expression: Required[str]
+    """An expression that evaluates to an array of cache tag values."""
+
+    operation: Required[Literal["add", "remove", "set"]]
+    """The operation to perform on the cache tags."""
+
+
+SetCacheTagsRuleActionParameters: TypeAlias = Union[
+    SetCacheTagsRuleActionParametersAddCacheTagsValues,
+    SetCacheTagsRuleActionParametersAddCacheTagsExpression,
+    SetCacheTagsRuleActionParametersRemoveCacheTagsValues,
+    SetCacheTagsRuleActionParametersRemoveCacheTagsExpression,
+    SetCacheTagsRuleActionParametersSetCacheTagsValues,
+    SetCacheTagsRuleActionParametersSetCacheTagsExpression,
+]
+
+
+class SetCacheTagsRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
+    password_expression: Required[str]
+    """An expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """An expression that selects the user ID used in the credentials check."""
+
+
+class SetCacheTagsRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class SetCacheTagsRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class SetCacheTagsRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    index: int
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+SetCacheTagsRulePosition: TypeAlias = Union[
+    SetCacheTagsRulePositionBeforePosition, SetCacheTagsRulePositionAfterPosition, SetCacheTagsRulePositionIndexPosition
+]
+
+
+class SetCacheTagsRuleRatelimit(TypedDict, total=False):
     """An object configuring the rule's rate limit behavior."""
 
     characteristics: Required[SequenceNotStr[str]]
@@ -3394,7 +4222,9 @@ RuleEditParams: TypeAlias = Union[
     RouteRule,
     ScoreRule,
     ServeErrorRule,
+    SetCacheControlRule,
     SetCacheSettingsRule,
+    SetCacheTagsRule,
     SetConfigurationRule,
     SkipRule,
 ]

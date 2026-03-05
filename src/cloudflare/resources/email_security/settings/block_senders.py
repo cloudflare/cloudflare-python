@@ -70,7 +70,8 @@ class BlockSendersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderCreateResponse:
         """
-        Create a blocked email sender
+        Adds a sender pattern to the email block list, preventing messages from matching
+        senders from being delivered.
 
         Args:
           account_id: Account Identifier
@@ -125,7 +126,7 @@ class BlockSendersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[BlockSenderListResponse]:
         """
-        List blocked email senders
+        Lists all blocked sender entries with their patterns and block reasons.
 
         Args:
           account_id: Account Identifier
@@ -189,7 +190,8 @@ class BlockSendersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderDeleteResponse:
         """
-        Delete a blocked email sender
+        Removes a sender from the email block list, allowing their messages to be
+        delivered normally.
 
         Args:
           account_id: Account Identifier
@@ -235,7 +237,7 @@ class BlockSendersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderEditResponse:
         """
-        Update a blocked email sender
+        Modifies a blocked sender entry, updating its pattern or block reason.
 
         Args:
           account_id: Account Identifier
@@ -286,7 +288,8 @@ class BlockSendersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderGetResponse:
         """
-        Get a blocked email sender
+        Gets information about a specific blocked sender entry, including the pattern
+        and block reason.
 
         Args:
           account_id: Account Identifier
@@ -352,7 +355,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderCreateResponse:
         """
-        Create a blocked email sender
+        Adds a sender pattern to the email block list, preventing messages from matching
+        senders from being delivered.
 
         Args:
           account_id: Account Identifier
@@ -407,7 +411,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BlockSenderListResponse, AsyncV4PagePaginationArray[BlockSenderListResponse]]:
         """
-        List blocked email senders
+        Lists all blocked sender entries with their patterns and block reasons.
 
         Args:
           account_id: Account Identifier
@@ -471,7 +475,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderDeleteResponse:
         """
-        Delete a blocked email sender
+        Removes a sender from the email block list, allowing their messages to be
+        delivered normally.
 
         Args:
           account_id: Account Identifier
@@ -517,7 +522,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderEditResponse:
         """
-        Update a blocked email sender
+        Modifies a blocked sender entry, updating its pattern or block reason.
 
         Args:
           account_id: Account Identifier
@@ -568,7 +573,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlockSenderGetResponse:
         """
-        Get a blocked email sender
+        Gets information about a specific blocked sender entry, including the pattern
+        and block reason.
 
         Args:
           account_id: Account Identifier

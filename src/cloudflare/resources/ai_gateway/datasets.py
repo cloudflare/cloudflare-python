@@ -65,7 +65,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Create a new Dataset
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -119,7 +119,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
         """
-        Update a Dataset
+        Updates an existing AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -176,7 +176,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DatasetListResponse]:
         """
-        List Datasets
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id
@@ -231,7 +231,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
         """
-        Delete a Dataset
+        Deletes an AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -276,7 +276,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Fetch a Dataset
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -344,7 +344,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Create a new Dataset
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -398,7 +398,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
         """
-        Update a Dataset
+        Updates an existing AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -455,7 +455,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatasetListResponse, AsyncV4PagePaginationArray[DatasetListResponse]]:
         """
-        List Datasets
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id
@@ -510,7 +510,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
         """
-        Delete a Dataset
+        Deletes an AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -555,7 +555,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Fetch a Dataset
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           gateway_id: gateway id

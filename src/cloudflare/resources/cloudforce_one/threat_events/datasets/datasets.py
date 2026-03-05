@@ -236,8 +236,10 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
-        """
-        Reads data for a raw event
+        """Retrieves the raw data associated with an event.
+
+        Searches across all shards in
+        the dataset.
 
         Args:
           account_id: Account ID.
@@ -480,8 +482,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
-        """
-        Reads data for a raw event
+        """Retrieves the raw data associated with an event.
+
+        Searches across all shards in
+        the dataset.
 
         Args:
           account_id: Account ID.

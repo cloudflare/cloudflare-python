@@ -38,8 +38,6 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     dlp: DLP
 
-    is_default: bool
-
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -53,6 +51,9 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     store_id: Optional[str]
 
     stripe: Optional[Stripe]
+
+    workers_ai_billing_mode: Literal["postpaid", "unified"]
+    """Controls how Workers AI inference calls routed through this gateway are billed"""
 
     zdr: bool
 
@@ -92,6 +93,8 @@ class Otel(TypedDict, total=False):
     headers: Required[Dict[str, str]]
 
     url: Required[str]
+
+    content_type: Literal["json", "protobuf"]
 
 
 class StripeUsageEvent(TypedDict, total=False):

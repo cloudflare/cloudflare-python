@@ -305,6 +305,15 @@ class ActionParameters(TypedDict, total=False):
     serve_stale: ActionParametersServeStale
     """When to serve stale content from cache."""
 
+    strip_etags: bool
+    """Whether to strip ETag headers from the origin response before caching."""
+
+    strip_last_modified: bool
+    """Whether to strip Last-Modified headers from the origin response before caching."""
+
+    strip_set_cookie: bool
+    """Whether to strip Set-Cookie headers from the origin response before caching."""
+
 
 class ExposedCredentialCheck(TypedDict, total=False):
     """Configuration for exposed credential checking."""

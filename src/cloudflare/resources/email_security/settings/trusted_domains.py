@@ -72,7 +72,8 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
-        Create a trusted email domain
+        Adds a domain to the trusted domains list for email security, reducing false
+        positive detections.
 
         Args:
           account_id: Account Identifier
@@ -107,7 +108,8 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
-        Create a trusted email domain
+        Adds a domain to the trusted domains list for email security, reducing false
+        positive detections.
 
         Args:
           account_id: Account Identifier
@@ -255,7 +257,8 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainDeleteResponse:
         """
-        Delete a trusted email domain
+        Removes a domain from the trusted domains list, subjecting it to normal security
+        scanning.
 
         Args:
           account_id: Account Identifier
@@ -302,7 +305,7 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainEditResponse:
         """
-        Update a trusted email domain
+        Modifies a trusted domain entry's configuration.
 
         Args:
           account_id: Account Identifier
@@ -360,7 +363,7 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainGetResponse:
         """
-        Get a trusted email domain
+        Gets information about a specific trusted domain entry.
 
         Args:
           account_id: Account Identifier
@@ -428,7 +431,8 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
-        Create a trusted email domain
+        Adds a domain to the trusted domains list for email security, reducing false
+        positive detections.
 
         Args:
           account_id: Account Identifier
@@ -463,7 +467,8 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
-        Create a trusted email domain
+        Adds a domain to the trusted domains list for email security, reducing false
+        positive detections.
 
         Args:
           account_id: Account Identifier
@@ -611,7 +616,8 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainDeleteResponse:
         """
-        Delete a trusted email domain
+        Removes a domain from the trusted domains list, subjecting it to normal security
+        scanning.
 
         Args:
           account_id: Account Identifier
@@ -658,7 +664,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainEditResponse:
         """
-        Update a trusted email domain
+        Modifies a trusted domain entry's configuration.
 
         Args:
           account_id: Account Identifier
@@ -716,7 +722,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainGetResponse:
         """
-        Get a trusted email domain
+        Gets information about a specific trusted domain entry.
 
         Args:
           account_id: Account Identifier

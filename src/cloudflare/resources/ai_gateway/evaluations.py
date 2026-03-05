@@ -64,7 +64,7 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
-        Create a new Evaluation
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -119,7 +119,7 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EvaluationListResponse]:
         """
-        List Evaluations
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id
@@ -174,7 +174,7 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
         """
-        Delete a Evaluation
+        Deletes an AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -219,7 +219,7 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
         """
-        Fetch a Evaluation
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -287,7 +287,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
-        Create a new Evaluation
+        Creates a new AI Gateway.
 
         Args:
           gateway_id: gateway id
@@ -342,7 +342,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EvaluationListResponse, AsyncV4PagePaginationArray[EvaluationListResponse]]:
         """
-        List Evaluations
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           gateway_id: gateway id
@@ -397,7 +397,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
         """
-        Delete a Evaluation
+        Deletes an AI Gateway dataset.
 
         Args:
           gateway_id: gateway id
@@ -442,7 +442,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
         """
-        Fetch a Evaluation
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           gateway_id: gateway id

@@ -15,6 +15,8 @@ class SubmissionListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
+    customer_status: Literal["escalated", "reviewed", "unreviewed"]
+
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now` if not provided."""
 

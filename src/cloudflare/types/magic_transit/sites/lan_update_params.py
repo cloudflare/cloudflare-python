@@ -21,6 +21,12 @@ class LANUpdateParams(TypedDict, total=False):
 
     bond_id: int
 
+    is_breakout: bool
+    """mark true to use this LAN for source-based breakout traffic"""
+
+    is_prioritized: bool
+    """mark true to use this LAN for source-based prioritized traffic"""
+
     name: str
 
     nat: NatParam

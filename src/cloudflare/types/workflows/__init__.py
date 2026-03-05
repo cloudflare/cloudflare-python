@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .instance_get_params import InstanceGetParams as InstanceGetParams
 from .version_list_params import VersionListParams as VersionListParams
 from .instance_bulk_params import InstanceBulkParams as InstanceBulkParams
 from .instance_list_params import InstanceListParams as InstanceListParams

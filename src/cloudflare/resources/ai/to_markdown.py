@@ -57,7 +57,7 @@ class ToMarkdownResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownSupportedResponse]:
         """
-        Get all converted formats supported
+        Lists all file formats supported for conversion to Markdown.
 
         Args:
           extra_headers: Send extra headers
@@ -92,7 +92,7 @@ class ToMarkdownResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownTransformResponse]:
         """
-        Convert Files into Markdown
+        Converts uploaded files into Markdown format using Workers AI.
 
         Args:
           extra_headers: Send extra headers
@@ -156,7 +156,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownSupportedResponse, AsyncSinglePage[ToMarkdownSupportedResponse]]:
         """
-        Get all converted formats supported
+        Lists all file formats supported for conversion to Markdown.
 
         Args:
           extra_headers: Send extra headers
@@ -191,7 +191,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownTransformResponse, AsyncSinglePage[ToMarkdownTransformResponse]]:
         """
-        Convert Files into Markdown
+        Converts uploaded files into Markdown format using Workers AI.
 
         Args:
           extra_headers: Send extra headers

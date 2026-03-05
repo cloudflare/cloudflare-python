@@ -11,10 +11,6 @@ __all__ = ["ProviderConfigCreateResponse"]
 class ProviderConfigCreateResponse(BaseModel):
     id: str
 
-    account_id: str
-
-    account_tag: str
-
     alias: str
 
     default_config: bool

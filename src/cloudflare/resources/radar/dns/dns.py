@@ -87,11 +87,13 @@ class DNSResource(SyncAPIResource):
     def summary_v2(
         self,
         dimension: Literal[
-            "IP_VERSION",
+            "AS",
             "CACHE_HIT",
             "DNSSEC",
             "DNSSEC_AWARE",
             "DNSSEC_E2E",
+            "IP_VERSION",
+            "LOCATION",
             "MATCHING_ANSWER",
             "PROTOCOL",
             "QUERY_TYPE",
@@ -613,11 +615,13 @@ class DNSResource(SyncAPIResource):
     def timeseries_groups_v2(
         self,
         dimension: Literal[
-            "IP_VERSION",
+            "AS",
             "CACHE_HIT",
             "DNSSEC",
             "DNSSEC_AWARE",
             "DNSSEC_E2E",
+            "IP_VERSION",
+            "LOCATION",
             "MATCHING_ANSWER",
             "PROTOCOL",
             "QUERY_TYPE",
@@ -928,11 +932,13 @@ class AsyncDNSResource(AsyncAPIResource):
     async def summary_v2(
         self,
         dimension: Literal[
-            "IP_VERSION",
+            "AS",
             "CACHE_HIT",
             "DNSSEC",
             "DNSSEC_AWARE",
             "DNSSEC_E2E",
+            "IP_VERSION",
+            "LOCATION",
             "MATCHING_ANSWER",
             "PROTOCOL",
             "QUERY_TYPE",
@@ -1454,11 +1460,13 @@ class AsyncDNSResource(AsyncAPIResource):
     async def timeseries_groups_v2(
         self,
         dimension: Literal[
-            "IP_VERSION",
+            "AS",
             "CACHE_HIT",
             "DNSSEC",
             "DNSSEC_AWARE",
             "DNSSEC_E2E",
+            "IP_VERSION",
+            "LOCATION",
             "MATCHING_ANSWER",
             "PROTOCOL",
             "QUERY_TYPE",

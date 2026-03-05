@@ -50,11 +50,11 @@ class TestAIGateway:
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
             authentication=True,
-            is_default=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            workers_ai_billing_mode="postpaid",
             zdr=True,
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
@@ -142,7 +142,6 @@ class TestAIGateway:
                 "enabled": True,
                 "profiles": ["string"],
             },
-            is_default=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
@@ -152,6 +151,7 @@ class TestAIGateway:
                     "authorization": "authorization",
                     "headers": {"foo": "string"},
                     "url": "url",
+                    "content_type": "json",
                 }
             ],
             store_id="store_id",
@@ -159,6 +159,7 @@ class TestAIGateway:
                 "authorization": "authorization",
                 "usage_events": [{"payload": "payload"}],
             },
+            workers_ai_billing_mode="postpaid",
             zdr=True,
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
@@ -403,11 +404,11 @@ class TestAsyncAIGateway:
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
             authentication=True,
-            is_default=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            workers_ai_billing_mode="postpaid",
             zdr=True,
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
@@ -495,7 +496,6 @@ class TestAsyncAIGateway:
                 "enabled": True,
                 "profiles": ["string"],
             },
-            is_default=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
@@ -505,6 +505,7 @@ class TestAsyncAIGateway:
                     "authorization": "authorization",
                     "headers": {"foo": "string"},
                     "url": "url",
+                    "content_type": "json",
                 }
             ],
             store_id="store_id",
@@ -512,6 +513,7 @@ class TestAsyncAIGateway:
                 "authorization": "authorization",
                 "usage_events": [{"payload": "payload"}],
             },
+            workers_ai_billing_mode="postpaid",
             zdr=True,
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])

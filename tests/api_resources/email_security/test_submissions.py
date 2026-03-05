@@ -30,6 +30,7 @@ class TestSubmissions:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         submission = client.email_security.submissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            customer_status="escalated",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
             original_disposition="MALICIOUS",
             outcome_disposition="MALICIOUS",
@@ -92,6 +93,7 @@ class TestAsyncSubmissions:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         submission = await async_client.email_security.submissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            customer_status="escalated",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
             original_disposition="MALICIOUS",
             outcome_disposition="MALICIOUS",

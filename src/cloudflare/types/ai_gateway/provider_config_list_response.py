@@ -11,10 +11,6 @@ __all__ = ["ProviderConfigListResponse"]
 class ProviderConfigListResponse(BaseModel):
     id: str
 
-    account_id: str
-
-    account_tag: str
-
     alias: str
 
     default_config: bool

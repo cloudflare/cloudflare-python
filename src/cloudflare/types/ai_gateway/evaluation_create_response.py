@@ -75,10 +75,6 @@ class Result(BaseModel):
 class EvaluationCreateResponse(BaseModel):
     id: str
 
-    account_id: str
-
-    account_tag: str
-
     created_at: datetime
 
     datasets: List[Dataset]

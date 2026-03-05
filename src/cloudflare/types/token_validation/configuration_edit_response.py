@@ -8,6 +8,9 @@ __all__ = ["ConfigurationEditResponse"]
 
 
 class ConfigurationEditResponse(BaseModel):
+    id: Optional[str] = None
+    """UUID."""
+
     description: Optional[str] = None
 
     title: Optional[str] = None

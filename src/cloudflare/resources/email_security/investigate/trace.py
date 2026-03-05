@@ -55,7 +55,8 @@ class TraceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TraceGetResponse:
         """
-        Get email trace
+        Gets the delivery trace for an email message, showing its path through email
+        security processing.
 
         Args:
           account_id: Account Identifier
@@ -120,7 +121,8 @@ class AsyncTraceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TraceGetResponse:
         """
-        Get email trace
+        Gets the delivery trace for an email message, showing its path through email
+        security processing.
 
         Args:
           account_id: Account Identifier

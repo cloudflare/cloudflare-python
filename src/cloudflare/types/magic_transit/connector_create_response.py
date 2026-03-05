@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -18,7 +19,15 @@ class ConnectorCreateResponse(BaseModel):
 
     activated: bool
 
+    interrupt_window_days_of_week: List[
+        Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    ]
+    """Allowed days of the week for upgrades. Default is all days."""
+
     interrupt_window_duration_hours: float
+
+    interrupt_window_embargo_dates: List[str]
+    """List of dates (YYYY-MM-DD) when upgrades are blocked."""
 
     interrupt_window_hour_of_day: float
 

@@ -61,7 +61,7 @@ class VersionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[VersionListResponse]:
         """
-        List deployed Workflow versions
+        Lists all deployed versions of a workflow.
 
         Args:
           extra_headers: Send extra headers
@@ -109,7 +109,7 @@ class VersionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
-        Get Workflow version details
+        Retrieves details for a specific deployed workflow version.
 
         Args:
           extra_headers: Send extra headers
@@ -174,7 +174,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePaginationArray[VersionListResponse]]:
         """
-        List deployed Workflow versions
+        Lists all deployed versions of a workflow.
 
         Args:
           extra_headers: Send extra headers
@@ -222,7 +222,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionGetResponse:
         """
-        Get Workflow version details
+        Retrieves details for a specific deployed workflow version.
 
         Args:
           extra_headers: Send extra headers

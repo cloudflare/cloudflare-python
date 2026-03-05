@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,11 +16,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.aisearch.instances import item_list_params
-from ....types.aisearch.instances.item_get_response import ItemGetResponse
 from ....types.aisearch.instances.item_list_response import ItemListResponse
 
 __all__ = ["ItemsResource", "AsyncItemsResource"]
@@ -102,51 +99,6 @@ class ItemsResource(SyncAPIResource):
             model=ItemListResponse,
         )
 
-    def get(
-        self,
-        item_id: str,
-        *,
-        account_id: str,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ItemGetResponse:
-        """
-        Retrieves a specific indexed item from an AI Search instance.
-
-        Args:
-          id: Use your AI Search ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        if not item_id:
-            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
-        )
-
 
 class AsyncItemsResource(AsyncAPIResource):
     @cached_property
@@ -223,51 +175,6 @@ class AsyncItemsResource(AsyncAPIResource):
             model=ItemListResponse,
         )
 
-    async def get(
-        self,
-        item_id: str,
-        *,
-        account_id: str,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ItemGetResponse:
-        """
-        Retrieves a specific indexed item from an AI Search instance.
-
-        Args:
-          id: Use your AI Search ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        if not item_id:
-            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
-        )
-
 
 class ItemsResourceWithRawResponse:
     def __init__(self, items: ItemsResource) -> None:
@@ -275,9 +182,6 @@ class ItemsResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             items.list,
-        )
-        self.get = to_raw_response_wrapper(
-            items.get,
         )
 
 
@@ -288,9 +192,6 @@ class AsyncItemsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             items.list,
         )
-        self.get = async_to_raw_response_wrapper(
-            items.get,
-        )
 
 
 class ItemsResourceWithStreamingResponse:
@@ -300,9 +201,6 @@ class ItemsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             items.list,
         )
-        self.get = to_streamed_response_wrapper(
-            items.get,
-        )
 
 
 class AsyncItemsResourceWithStreamingResponse:
@@ -311,7 +209,4 @@ class AsyncItemsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             items.list,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            items.get,
         )

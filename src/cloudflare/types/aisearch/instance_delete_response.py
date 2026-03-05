@@ -19,9 +19,11 @@ __all__ = [
     "PublicEndpointParamsRateLimit",
     "PublicEndpointParamsSearchEndpoint",
     "RetrievalOptions",
+    "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
+    "SourceParamsWebCrawlerParseOptionsContentSelector",
     "SourceParamsWebCrawlerStoreOptions",
 ]
 
@@ -77,7 +79,34 @@ class PublicEndpointParams(BaseModel):
     search_endpoint: Optional[PublicEndpointParamsSearchEndpoint] = None
 
 
+class RetrievalOptionsBoostBy(BaseModel):
+    field: str
+    """Metadata field name to boost by.
+
+    Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
+    fields support asc/desc directions; text/boolean fields support
+    exists/not_exists.
+    """
+
+    direction: Optional[Literal["asc", "desc", "exists", "not_exists"]] = None
+    """Boost direction.
+
+    'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
+    rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
+    'exists' for text/boolean fields.
+    """
+
+
 class RetrievalOptions(BaseModel):
+    boost_by: Optional[List[RetrievalOptionsBoostBy]] = None
+    """Metadata fields to boost search results by.
+
+    Each entry specifies a metadata field and an optional direction. Direction
+    defaults to 'asc' for numeric fields and 'exists' for text/boolean fields.
+    Fields must match 'timestamp' or a defined custom_metadata field.
+    """
+
     keyword_match_mode: Optional[Literal["exact_match", "fuzzy_match"]] = None
     """Controls how keyword search terms are matched.
 
@@ -86,7 +115,30 @@ class RetrievalOptions(BaseModel):
     """
 
 
+class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
+    path: str
+    """Glob pattern to match against the page URL path.
+
+    Uses standard glob syntax: \\** matches within a segment, \\**\\** crosses
+    directories.
+    """
+
+    selector: str
+    """CSS selector to extract content from pages matching the path pattern.
+
+    Supports standard CSS selectors including class, ID, element, and attribute
+    selectors.
+    """
+
+
 class SourceParamsWebCrawlerParseOptions(BaseModel):
+    content_selector: Optional[List[SourceParamsWebCrawlerParseOptionsContentSelector]] = None
+    """
+    List of path-to-selector mappings for extracting specific content from crawled
+    pages. Each entry pairs a URL glob pattern with a CSS selector. The first
+    matching path wins. Only the matched HTML fragment is stored and indexed.
+    """
+
     include_headers: Optional[Dict[str, str]] = None
 
     include_images: Optional[bool] = None
@@ -146,10 +198,6 @@ class InstanceDeleteResponse(BaseModel):
     created_at: datetime
 
     modified_at: datetime
-
-    source: str
-
-    type: Literal["r2", "web-crawler"]
 
     vectorize_name: str
 
@@ -276,8 +324,12 @@ class InstanceDeleteResponse(BaseModel):
 
     score_threshold: Optional[float] = None
 
+    source: Optional[str] = None
+
     source_params: Optional[SourceParams] = None
 
     status: Optional[str] = None
 
     token_id: Optional[str] = None
+
+    type: Optional[Literal["r2", "web-crawler"]] = None

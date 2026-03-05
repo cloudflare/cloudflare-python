@@ -298,6 +298,15 @@ class ActionParameters(BaseModel):
     serve_stale: Optional[ActionParametersServeStale] = None
     """When to serve stale content from cache."""
 
+    strip_etags: Optional[bool] = None
+    """Whether to strip ETag headers from the origin response before caching."""
+
+    strip_last_modified: Optional[bool] = None
+    """Whether to strip Last-Modified headers from the origin response before caching."""
+
+    strip_set_cookie: Optional[bool] = None
+    """Whether to strip Set-Cookie headers from the origin response before caching."""
+
 
 class ExposedCredentialCheck(BaseModel):
     """Configuration for exposed credential checking."""

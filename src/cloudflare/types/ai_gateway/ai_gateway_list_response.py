@@ -54,6 +54,8 @@ class Otel(BaseModel):
 
     url: str
 
+    content_type: Optional[Literal["json", "protobuf"]] = None
+
 
 class StripeUsageEvent(BaseModel):
     payload: str
@@ -69,10 +71,6 @@ class AIGatewayListResponse(BaseModel):
     id: str
     """gateway id"""
 
-    account_id: str
-
-    account_tag: str
-
     cache_invalidate_on_update: bool
 
     cache_ttl: Optional[int] = None
@@ -80,8 +78,6 @@ class AIGatewayListResponse(BaseModel):
     collect_logs: bool
 
     created_at: datetime
-
-    internal_id: str
 
     modified_at: datetime
 
@@ -110,5 +106,8 @@ class AIGatewayListResponse(BaseModel):
     store_id: Optional[str] = None
 
     stripe: Optional[Stripe] = None
+
+    workers_ai_billing_mode: Optional[Literal["postpaid", "unified"]] = None
+    """Controls how Workers AI inference calls routed through this gateway are billed"""
 
     zdr: Optional[bool] = None

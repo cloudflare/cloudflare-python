@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -80,7 +81,12 @@ class ConnectorsResource(SyncAPIResource):
         account_id: str,
         device: connector_create_params.Device,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         timezone: str | Omit = omit,
@@ -99,6 +105,10 @@ class ConnectorsResource(SyncAPIResource):
 
           device: Exactly one of id, serial_number, or provision_license must be provided.
 
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,7 +125,9 @@ class ConnectorsResource(SyncAPIResource):
                 {
                     "device": device,
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "timezone": timezone,
@@ -138,7 +150,12 @@ class ConnectorsResource(SyncAPIResource):
         *,
         account_id: str,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         provision_license: bool | Omit = omit,
@@ -155,6 +172,10 @@ class ConnectorsResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
 
           provision_license: When true, regenerate license key for the connector.
 
@@ -175,7 +196,9 @@ class ConnectorsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "provision_license": provision_license,
@@ -277,7 +300,12 @@ class ConnectorsResource(SyncAPIResource):
         *,
         account_id: str,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         provision_license: bool | Omit = omit,
@@ -294,6 +322,10 @@ class ConnectorsResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
 
           provision_license: When true, regenerate license key for the connector.
 
@@ -314,7 +346,9 @@ class ConnectorsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "provision_license": provision_license,
@@ -409,7 +443,12 @@ class AsyncConnectorsResource(AsyncAPIResource):
         account_id: str,
         device: connector_create_params.Device,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         timezone: str | Omit = omit,
@@ -428,6 +467,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           device: Exactly one of id, serial_number, or provision_license must be provided.
 
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -444,7 +487,9 @@ class AsyncConnectorsResource(AsyncAPIResource):
                 {
                     "device": device,
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "timezone": timezone,
@@ -467,7 +512,12 @@ class AsyncConnectorsResource(AsyncAPIResource):
         *,
         account_id: str,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         provision_license: bool | Omit = omit,
@@ -484,6 +534,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
 
           provision_license: When true, regenerate license key for the connector.
 
@@ -504,7 +558,9 @@ class AsyncConnectorsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "provision_license": provision_license,
@@ -606,7 +662,12 @@ class AsyncConnectorsResource(AsyncAPIResource):
         *,
         account_id: str,
         activated: bool | Omit = omit,
+        interrupt_window_days_of_week: List[
+            Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        ]
+        | Omit = omit,
         interrupt_window_duration_hours: float | Omit = omit,
+        interrupt_window_embargo_dates: SequenceNotStr[str] | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
         provision_license: bool | Omit = omit,
@@ -623,6 +684,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
+
+          interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
 
           provision_license: When true, regenerate license key for the connector.
 
@@ -643,7 +708,9 @@ class AsyncConnectorsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "activated": activated,
+                    "interrupt_window_days_of_week": interrupt_window_days_of_week,
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_embargo_dates": interrupt_window_embargo_dates,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
                     "provision_license": provision_license,

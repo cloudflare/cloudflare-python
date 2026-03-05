@@ -3,8 +3,6 @@
 from typing import List, Optional
 from datetime import datetime
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 
 __all__ = ["SecurityTXTGetResponse"]
@@ -27,4 +25,4 @@ class SecurityTXTGetResponse(BaseModel):
 
     policy: Optional[List[str]] = None
 
-    preferred_languages: Optional[str] = FieldInfo(alias="preferredLanguages", default=None)
+    preferred_languages: Optional[str] = None

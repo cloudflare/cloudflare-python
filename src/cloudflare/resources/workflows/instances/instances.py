@@ -37,7 +37,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workflows import instance_bulk_params, instance_list_params, instance_create_params
+from ....types.workflows import instance_get_params, instance_bulk_params, instance_list_params, instance_create_params
 from ....types.workflows.instance_get_response import InstanceGetResponse
 from ....types.workflows.instance_bulk_response import InstanceBulkResponse
 from ....types.workflows.instance_list_response import InstanceListResponse
@@ -90,7 +90,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
-        Create a new workflow instance
+        Creates a new instance of a workflow, starting its execution.
 
         Args:
           extra_headers: Send extra headers
@@ -148,7 +148,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InstanceListResponse]:
         """
-        List of workflow instances
+        Lists all instances of a workflow with their execution status.
 
         Args:
           cursor: `page` and `cursor` are mutually exclusive, use one or the other.
@@ -212,7 +212,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[InstanceBulkResponse]:
         """
-        Batch create new Workflow instances
+        Creates multiple workflow instances in a single batch operation.
 
         Args:
           extra_headers: Send extra headers
@@ -244,6 +244,8 @@ class InstancesResource(SyncAPIResource):
         *,
         account_id: str,
         workflow_name: str,
+        order: Literal["asc", "desc"] | Omit = omit,
+        simple: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,9 +254,13 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceGetResponse:
         """
-        Get logs and status from instance
+        Retrieves logs and execution status for a specific workflow instance.
 
         Args:
+          order: Step ordering: "asc" (default, oldest first) or "desc" (newest first).
+
+          simple: When true, omits step details and returns only metadata with step_count.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,6 +282,13 @@ class InstancesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "order": order,
+                        "simple": simple,
+                    },
+                    instance_get_params.InstanceGetParams,
+                ),
                 post_parser=ResultWrapper[InstanceGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[InstanceGetResponse], ResultWrapper[InstanceGetResponse]),
@@ -326,7 +339,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
-        Create a new workflow instance
+        Creates a new instance of a workflow, starting its execution.
 
         Args:
           extra_headers: Send extra headers
@@ -384,7 +397,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceListResponse, AsyncV4PagePaginationArray[InstanceListResponse]]:
         """
-        List of workflow instances
+        Lists all instances of a workflow with their execution status.
 
         Args:
           cursor: `page` and `cursor` are mutually exclusive, use one or the other.
@@ -448,7 +461,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceBulkResponse, AsyncSinglePage[InstanceBulkResponse]]:
         """
-        Batch create new Workflow instances
+        Creates multiple workflow instances in a single batch operation.
 
         Args:
           extra_headers: Send extra headers
@@ -480,6 +493,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         account_id: str,
         workflow_name: str,
+        order: Literal["asc", "desc"] | Omit = omit,
+        simple: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,9 +503,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceGetResponse:
         """
-        Get logs and status from instance
+        Retrieves logs and execution status for a specific workflow instance.
 
         Args:
+          order: Step ordering: "asc" (default, oldest first) or "desc" (newest first).
+
+          simple: When true, omits step details and returns only metadata with step_count.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -512,6 +531,13 @@ class AsyncInstancesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "order": order,
+                        "simple": simple,
+                    },
+                    instance_get_params.InstanceGetParams,
+                ),
                 post_parser=ResultWrapper[InstanceGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[InstanceGetResponse], ResultWrapper[InstanceGetResponse]),

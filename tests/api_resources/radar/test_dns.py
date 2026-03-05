@@ -25,14 +25,14 @@ class TestDNS:
     @parametrize
     def test_method_summary_v2(self, client: Cloudflare) -> None:
         dns = client.radar.dns.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
         assert_matches_type(DNSSummaryV2Response, dns, path=["response"])
 
     @parametrize
     def test_method_summary_v2_with_all_params(self, client: Cloudflare) -> None:
         dns = client.radar.dns.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
             asn=["string"],
             cache_hit=[True],
             continent=["string"],
@@ -60,7 +60,7 @@ class TestDNS:
     @parametrize
     def test_raw_response_summary_v2(self, client: Cloudflare) -> None:
         response = client.radar.dns.with_raw_response.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
 
         assert response.is_closed is True
@@ -71,7 +71,7 @@ class TestDNS:
     @parametrize
     def test_streaming_response_summary_v2(self, client: Cloudflare) -> None:
         with client.radar.dns.with_streaming_response.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,14 +136,14 @@ class TestDNS:
     @parametrize
     def test_method_timeseries_groups_v2(self, client: Cloudflare) -> None:
         dns = client.radar.dns.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
         assert_matches_type(DNSTimeseriesGroupsV2Response, dns, path=["response"])
 
     @parametrize
     def test_method_timeseries_groups_v2_with_all_params(self, client: Cloudflare) -> None:
         dns = client.radar.dns.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
             agg_interval="1h",
             asn=["string"],
             cache_hit=[True],
@@ -173,7 +173,7 @@ class TestDNS:
     @parametrize
     def test_raw_response_timeseries_groups_v2(self, client: Cloudflare) -> None:
         response = client.radar.dns.with_raw_response.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
 
         assert response.is_closed is True
@@ -184,7 +184,7 @@ class TestDNS:
     @parametrize
     def test_streaming_response_timeseries_groups_v2(self, client: Cloudflare) -> None:
         with client.radar.dns.with_streaming_response.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,14 +203,14 @@ class TestAsyncDNS:
     @parametrize
     async def test_method_summary_v2(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.radar.dns.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
         assert_matches_type(DNSSummaryV2Response, dns, path=["response"])
 
     @parametrize
     async def test_method_summary_v2_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.radar.dns.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
             asn=["string"],
             cache_hit=[True],
             continent=["string"],
@@ -238,7 +238,7 @@ class TestAsyncDNS:
     @parametrize
     async def test_raw_response_summary_v2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.dns.with_raw_response.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
 
         assert response.is_closed is True
@@ -249,7 +249,7 @@ class TestAsyncDNS:
     @parametrize
     async def test_streaming_response_summary_v2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.dns.with_streaming_response.summary_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -314,14 +314,14 @@ class TestAsyncDNS:
     @parametrize
     async def test_method_timeseries_groups_v2(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.radar.dns.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
         assert_matches_type(DNSTimeseriesGroupsV2Response, dns, path=["response"])
 
     @parametrize
     async def test_method_timeseries_groups_v2_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.radar.dns.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
             agg_interval="1h",
             asn=["string"],
             cache_hit=[True],
@@ -351,7 +351,7 @@ class TestAsyncDNS:
     @parametrize
     async def test_raw_response_timeseries_groups_v2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.dns.with_raw_response.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         )
 
         assert response.is_closed is True
@@ -362,7 +362,7 @@ class TestAsyncDNS:
     @parametrize
     async def test_streaming_response_timeseries_groups_v2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.dns.with_streaming_response.timeseries_groups_v2(
-            dimension="IP_VERSION",
+            dimension="AS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

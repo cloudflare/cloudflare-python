@@ -11,6 +11,12 @@ class ScheduleCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
+    frequency: Literal["DAILY", "WEEKLY"]
+    """The frequency of the scheduled test.
+
+    Defaults to WEEKLY for free plans, DAILY for paid plans.
+    """
+
     region: Literal[
         "asia-east1",
         "asia-northeast1",

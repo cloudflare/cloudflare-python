@@ -185,8 +185,6 @@ Element: TypeAlias = Union[
 class DynamicRoutingCreateVersionResponse(BaseModel):
     id: str
 
-    account_tag: str
-
     created_at: datetime
 
     elements: List[Element]

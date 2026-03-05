@@ -157,6 +157,8 @@ class InstanceGetResponse(BaseModel):
 
     status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
 
+    step_count: int
+
     steps: List[Step]
 
     success: Optional[bool] = None

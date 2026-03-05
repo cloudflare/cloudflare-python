@@ -225,6 +225,17 @@ class TestInstances:
         assert_matches_type(InstanceGetResponse, instance, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.workflows.instances.get(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            order="asc",
+            simple="true",
+        )
+        assert_matches_type(InstanceGetResponse, instance, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workflows.instances.with_raw_response.get(
             instance_id="x",
@@ -478,6 +489,17 @@ class TestAsyncInstances:
             instance_id="x",
             account_id="account_id",
             workflow_name="x",
+        )
+        assert_matches_type(InstanceGetResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.workflows.instances.get(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            order="asc",
+            simple="true",
         )
         assert_matches_type(InstanceGetResponse, instance, path=["response"])
 

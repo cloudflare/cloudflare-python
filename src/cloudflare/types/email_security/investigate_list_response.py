@@ -156,6 +156,8 @@ class InvestigateListResponse(BaseModel):
 
     message_id: Optional[str] = None
 
+    post_delivery_operations: Optional[List[Literal["PREVIEW", "QUARANTINE_RELEASE", "SUBMISSION", "MOVE"]]] = None
+
     postfix_id_outbound: Optional[str] = None
 
     replyto: Optional[str] = None

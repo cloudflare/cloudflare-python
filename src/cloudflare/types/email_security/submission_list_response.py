@@ -14,6 +14,8 @@ class SubmissionListResponse(BaseModel):
 
     submission_id: str
 
+    customer_status: Optional[Literal["escalated", "reviewed", "unreviewed"]] = None
+
     original_disposition: Optional[
         Literal[
             "MALICIOUS",

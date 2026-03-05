@@ -152,7 +152,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
-        Retrieve information about all operations on a zone
+        Lists all API operations tracked by API Shield for a zone with pagination.
+        Returns operation details including method, path, and feature configurations.
 
         Args:
           zone_id: Identifier.
@@ -223,8 +224,10 @@ class OperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
-        """
-        Delete an operation
+        """Removes a single API operation from API Shield endpoint management.
+
+        The
+        operation will no longer be tracked or protected by API Shield rules.
 
         Args:
           zone_id: Identifier.
@@ -307,7 +310,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
-        Delete multiple operations
+        Bulk removes multiple API operations from API Shield endpoint management in a
+        single request. Efficient for cleaning up unused endpoints.
 
         Args:
           zone_id: Identifier.
@@ -344,7 +348,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Retrieve information about an operation
+        Gets detailed information about a specific API operation in API Shield,
+        including its schema validation settings and traffic statistics.
 
         Args:
           zone_id: Identifier.
@@ -489,7 +494,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
-        Retrieve information about all operations on a zone
+        Lists all API operations tracked by API Shield for a zone with pagination.
+        Returns operation details including method, path, and feature configurations.
 
         Args:
           zone_id: Identifier.
@@ -560,8 +566,10 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
-        """
-        Delete an operation
+        """Removes a single API operation from API Shield endpoint management.
+
+        The
+        operation will no longer be tracked or protected by API Shield rules.
 
         Args:
           zone_id: Identifier.
@@ -644,7 +652,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
-        Delete multiple operations
+        Bulk removes multiple API operations from API Shield endpoint management in a
+        single request. Efficient for cleaning up unused endpoints.
 
         Args:
           zone_id: Identifier.
@@ -681,7 +690,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Retrieve information about an operation
+        Gets detailed information about a specific API operation in API Shield,
+        including its schema validation settings and traffic statistics.
 
         Args:
           zone_id: Identifier.

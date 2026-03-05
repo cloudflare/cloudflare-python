@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WorkflowUpdateParams"]
+__all__ = ["WorkflowUpdateParams", "Limits"]
 
 
 class WorkflowUpdateParams(TypedDict, total=False):
@@ -13,3 +13,9 @@ class WorkflowUpdateParams(TypedDict, total=False):
     class_name: Required[str]
 
     script_name: Required[str]
+
+    limits: Limits
+
+
+class Limits(TypedDict, total=False):
+    steps: int

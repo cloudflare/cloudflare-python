@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -152,6 +153,8 @@ class TokensResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        order_by: Literal["created_at"] | Omit = omit,
+        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -165,6 +168,10 @@ class TokensResource(SyncAPIResource):
         List tokens.
 
         Args:
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -185,6 +192,8 @@ class TokensResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -398,6 +407,8 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        order_by: Literal["created_at"] | Omit = omit,
+        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -411,6 +422,10 @@ class AsyncTokensResource(AsyncAPIResource):
         List tokens.
 
         Args:
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -431,6 +446,8 @@ class AsyncTokensResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                     },

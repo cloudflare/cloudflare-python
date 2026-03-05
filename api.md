@@ -10443,7 +10443,7 @@ Methods:
 - <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">create</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/instance_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_create_response.py">InstanceCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/instance_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_list_response.py">SyncV4PagePaginationArray[InstanceListResponse]</a></code>
 - <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances/batch">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">bulk</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/instance_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_bulk_response.py">SyncSinglePage[InstanceBulkResponse]</a></code>
-- <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">get</a>(instance_id, \*, account_id, workflow_name) -> <a href="./src/cloudflare/types/workflows/instance_get_response.py">InstanceGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">get</a>(instance_id, \*, account_id, workflow_name, \*\*<a href="src/cloudflare/types/workflows/instance_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_get_response.py">InstanceGetResponse</a></code>
 
 ### Status
 
@@ -10785,13 +10785,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.aisearch.instances import ItemListResponse, ItemGetResponse
+from cloudflare.types.aisearch.instances import ItemListResponse
 ```
 
 Methods:
 
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/items">client.aisearch.instances.items.<a href="./src/cloudflare/resources/aisearch/instances/items.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/item_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/item_list_response.py">SyncV4PagePaginationArray[ItemListResponse]</a></code>
-- <code title="get /accounts/{account_id}/ai-search/instances/{id}/items/{item_id}">client.aisearch.instances.items.<a href="./src/cloudflare/resources/aisearch/instances/items.py">get</a>(item_id, \*, account_id, id) -> <a href="./src/cloudflare/types/aisearch/instances/item_get_response.py">ItemGetResponse</a></code>
 
 ### Jobs
 
@@ -10808,7 +10807,7 @@ from cloudflare.types.aisearch.instances import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/ai-search/instances/{id}/jobs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">create</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instances/job_create_response.py">JobCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/ai-search/instances/{id}/jobs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">create</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/job_create_response.py">JobCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/job_list_response.py">SyncV4PagePaginationArray[JobListResponse]</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">get</a>(job_id, \*, account_id, id) -> <a href="./src/cloudflare/types/aisearch/instances/job_get_response.py">JobGetResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">logs</a>(job_id, \*, account_id, id, \*\*<a href="src/cloudflare/types/aisearch/instances/job_logs_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/job_logs_response.py">JobLogsResponse</a></code>

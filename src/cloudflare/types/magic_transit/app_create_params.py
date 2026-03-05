@@ -27,3 +27,9 @@ class AppCreateParams(TypedDict, total=False):
 
     (IPv6 CIDRs are currently unsupported)
     """
+
+    source_subnets: SequenceNotStr[str]
+    """IPv4 CIDRs to associate with traffic decisions.
+
+    (IPv6 CIDRs are currently unsupported)
+    """

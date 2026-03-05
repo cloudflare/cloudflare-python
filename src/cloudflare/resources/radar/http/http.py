@@ -112,6 +112,7 @@ class HTTPResource(SyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "AS",
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
@@ -119,6 +120,7 @@ class HTTPResource(SyncAPIResource):
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
             "IP_VERSION",
+            "LOCATION",
             "OS",
             "POST_QUANTUM",
             "TLS_VERSION",
@@ -382,6 +384,7 @@ class HTTPResource(SyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "AS",
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
@@ -389,6 +392,7 @@ class HTTPResource(SyncAPIResource):
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
             "IP_VERSION",
+            "LOCATION",
             "OS",
             "POST_QUANTUM",
             "TLS_VERSION",
@@ -573,6 +577,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "AS",
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
@@ -580,6 +585,7 @@ class AsyncHTTPResource(AsyncAPIResource):
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
             "IP_VERSION",
+            "LOCATION",
             "OS",
             "POST_QUANTUM",
             "TLS_VERSION",
@@ -843,6 +849,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "AS",
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
@@ -850,6 +857,7 @@ class AsyncHTTPResource(AsyncAPIResource):
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
             "IP_VERSION",
+            "LOCATION",
             "OS",
             "POST_QUANTUM",
             "TLS_VERSION",

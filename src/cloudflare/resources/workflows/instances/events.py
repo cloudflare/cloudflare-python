@@ -59,7 +59,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Send event to instance
+        Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +128,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Send event to instance
+        Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
           extra_headers: Send extra headers

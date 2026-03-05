@@ -62,8 +62,10 @@ class SchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
-        """
-        Upload a schema
+        """Uploads a new OpenAPI schema for API Shield schema validation.
+
+        The schema
+        defines expected request/response formats for API endpoints.
 
         Args:
           zone_id: Identifier.
@@ -123,7 +125,7 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[PublicSchema]:
         """
-        List all uploaded schemas
+        Lists all OpenAPI schemas uploaded to API Shield with pagination support.
 
         Args:
           zone_id: Identifier.
@@ -179,8 +181,10 @@ class SchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaDeleteResponse:
-        """
-        Delete a schema
+        """Permanently removes an uploaded OpenAPI schema from API Shield.
+
+        Operations using
+        this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -225,7 +229,8 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Edit details of a schema to enable validation
+        Modifies an existing OpenAPI schema in API Shield, updating the validation rules
+        for associated API operations.
 
         Args:
           zone_id: Identifier.
@@ -273,7 +278,8 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Get details of a schema
+        Gets the contents and metadata of a specific OpenAPI schema uploaded to API
+        Shield.
 
         Args:
           zone_id: Identifier.
@@ -343,8 +349,10 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
-        """
-        Upload a schema
+        """Uploads a new OpenAPI schema for API Shield schema validation.
+
+        The schema
+        defines expected request/response formats for API endpoints.
 
         Args:
           zone_id: Identifier.
@@ -404,7 +412,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
         """
-        List all uploaded schemas
+        Lists all OpenAPI schemas uploaded to API Shield with pagination support.
 
         Args:
           zone_id: Identifier.
@@ -460,8 +468,10 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaDeleteResponse:
-        """
-        Delete a schema
+        """Permanently removes an uploaded OpenAPI schema from API Shield.
+
+        Operations using
+        this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -506,7 +516,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Edit details of a schema to enable validation
+        Modifies an existing OpenAPI schema in API Shield, updating the validation rules
+        for associated API operations.
 
         Args:
           zone_id: Identifier.
@@ -556,7 +567,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Get details of a schema
+        Gets the contents and metadata of a specific OpenAPI schema uploaded to API
+        Shield.
 
         Args:
           zone_id: Identifier.

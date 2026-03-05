@@ -704,6 +704,13 @@ class Version(BaseModel):
     number: int
     """The integer version number, starting from one."""
 
+    urls: List[str]
+    """All routable URLs that always point to this version.
+
+    Does not include alias URLs, since aliases can be updated to point to a
+    different version.
+    """
+
     annotations: Optional[Annotations] = None
     """Metadata about the version."""
 

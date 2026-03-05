@@ -50,6 +50,7 @@ class SubmissionsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        customer_status: Literal["escalated", "reviewed", "unreviewed"] | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
@@ -103,6 +104,7 @@ class SubmissionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "customer_status": customer_status,
                         "end": end,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,
@@ -146,6 +148,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        customer_status: Literal["escalated", "reviewed", "unreviewed"] | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
@@ -199,6 +202,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "customer_status": customer_status,
                         "end": end,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,

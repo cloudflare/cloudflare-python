@@ -146,11 +146,11 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
         authentication: bool | Omit = omit,
-        is_default: bool | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -160,10 +160,12 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayCreateResponse:
         """
-        Create a new Gateway
+        Creates a new AI Gateway.
 
         Args:
           id: gateway id
+
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
 
           extra_headers: Send extra headers
 
@@ -187,11 +189,11 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
                     "authentication": authentication,
-                    "is_default": is_default,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
@@ -219,7 +221,6 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_technique: Literal["fixed", "sliding"],
         authentication: bool | Omit = omit,
         dlp: ai_gateway_update_params.DLP | Omit = omit,
-        is_default: bool | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
@@ -227,6 +228,7 @@ class AIGatewayResource(SyncAPIResource):
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -236,10 +238,12 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayUpdateResponse:
         """
-        Update a Gateway
+        Updates an existing AI Gateway dataset.
 
         Args:
           id: gateway id
+
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
 
           extra_headers: Send extra headers
 
@@ -265,7 +269,6 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_technique": rate_limiting_technique,
                     "authentication": authentication,
                     "dlp": dlp,
-                    "is_default": is_default,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
@@ -273,6 +276,7 @@ class AIGatewayResource(SyncAPIResource):
                     "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
+                    "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
@@ -302,7 +306,7 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[AIGatewayListResponse]:
         """
-        List Gateways
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           search: Search by id
@@ -350,7 +354,7 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayDeleteResponse:
         """
-        Delete a Gateway
+        Deletes an AI Gateway dataset.
 
         Args:
           id: gateway id
@@ -392,7 +396,7 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayGetResponse:
         """
-        Fetch a Gateway
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           id: gateway id
@@ -482,11 +486,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
         authentication: bool | Omit = omit,
-        is_default: bool | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -496,10 +500,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayCreateResponse:
         """
-        Create a new Gateway
+        Creates a new AI Gateway.
 
         Args:
           id: gateway id
+
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
 
           extra_headers: Send extra headers
 
@@ -523,11 +529,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
                     "authentication": authentication,
-                    "is_default": is_default,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
@@ -555,7 +561,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_technique: Literal["fixed", "sliding"],
         authentication: bool | Omit = omit,
         dlp: ai_gateway_update_params.DLP | Omit = omit,
-        is_default: bool | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
@@ -563,6 +568,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -572,10 +578,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayUpdateResponse:
         """
-        Update a Gateway
+        Updates an existing AI Gateway dataset.
 
         Args:
           id: gateway id
+
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
 
           extra_headers: Send extra headers
 
@@ -601,7 +609,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_technique": rate_limiting_technique,
                     "authentication": authentication,
                     "dlp": dlp,
-                    "is_default": is_default,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
@@ -609,6 +616,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
+                    "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
@@ -638,7 +646,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AIGatewayListResponse, AsyncV4PagePaginationArray[AIGatewayListResponse]]:
         """
-        List Gateways
+        Lists all AI Gateway evaluator types configured for the account.
 
         Args:
           search: Search by id
@@ -686,7 +694,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayDeleteResponse:
         """
-        Delete a Gateway
+        Deletes an AI Gateway dataset.
 
         Args:
           id: gateway id
@@ -728,7 +736,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIGatewayGetResponse:
         """
-        Fetch a Gateway
+        Retrieves details for a specific AI Gateway dataset.
 
         Args:
           id: gateway id

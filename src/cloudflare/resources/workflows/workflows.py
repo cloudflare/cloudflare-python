@@ -79,6 +79,7 @@ class WorkflowsResource(SyncAPIResource):
         account_id: str,
         class_name: str,
         script_name: str,
+        limits: workflow_update_params.Limits | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,7 +88,7 @@ class WorkflowsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpdateResponse:
         """
-        Create/modify Workflow
+        Creates a new workflow or updates an existing workflow definition.
 
         Args:
           extra_headers: Send extra headers
@@ -108,6 +109,7 @@ class WorkflowsResource(SyncAPIResource):
                 {
                     "class_name": class_name,
                     "script_name": script_name,
+                    "limits": limits,
                 },
                 workflow_update_params.WorkflowUpdateParams,
             ),
@@ -136,7 +138,7 @@ class WorkflowsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WorkflowListResponse]:
         """
-        List all Workflows
+        Lists all workflows configured for the account.
 
         Args:
           search: Allows filtering workflows` name.
@@ -226,7 +228,7 @@ class WorkflowsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowGetResponse:
         """
-        Get Workflow details
+        Retrieves configuration and metadata for a specific workflow.
 
         Args:
           extra_headers: Send extra headers
@@ -289,6 +291,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         account_id: str,
         class_name: str,
         script_name: str,
+        limits: workflow_update_params.Limits | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -297,7 +300,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpdateResponse:
         """
-        Create/modify Workflow
+        Creates a new workflow or updates an existing workflow definition.
 
         Args:
           extra_headers: Send extra headers
@@ -318,6 +321,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 {
                     "class_name": class_name,
                     "script_name": script_name,
+                    "limits": limits,
                 },
                 workflow_update_params.WorkflowUpdateParams,
             ),
@@ -346,7 +350,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WorkflowListResponse, AsyncV4PagePaginationArray[WorkflowListResponse]]:
         """
-        List all Workflows
+        Lists all workflows configured for the account.
 
         Args:
           search: Allows filtering workflows` name.
@@ -436,7 +440,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowGetResponse:
         """
-        Get Workflow details
+        Retrieves configuration and metadata for a specific workflow.
 
         Args:
           extra_headers: Send extra headers

@@ -52,6 +52,7 @@ class ScheduleResource(SyncAPIResource):
         url: str,
         *,
         zone_id: str,
+        frequency: Literal["DAILY", "WEEKLY"] | Omit = omit,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -91,6 +92,9 @@ class ScheduleResource(SyncAPIResource):
 
           url: A URL.
 
+          frequency: The frequency of the scheduled test. Defaults to WEEKLY for free plans, DAILY
+              for paid plans.
+
           region: A test region.
 
           extra_headers: Send extra headers
@@ -112,7 +116,13 @@ class ScheduleResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
+                query=maybe_transform(
+                    {
+                        "frequency": frequency,
+                        "region": region,
+                    },
+                    schedule_create_params.ScheduleCreateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ScheduleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScheduleCreateResponse]], ResultWrapper[ScheduleCreateResponse]),
@@ -286,6 +296,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         url: str,
         *,
         zone_id: str,
+        frequency: Literal["DAILY", "WEEKLY"] | Omit = omit,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -325,6 +336,9 @@ class AsyncScheduleResource(AsyncAPIResource):
 
           url: A URL.
 
+          frequency: The frequency of the scheduled test. Defaults to WEEKLY for free plans, DAILY
+              for paid plans.
+
           region: A test region.
 
           extra_headers: Send extra headers
@@ -346,7 +360,13 @@ class AsyncScheduleResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
+                query=await async_maybe_transform(
+                    {
+                        "frequency": frequency,
+                        "region": region,
+                    },
+                    schedule_create_params.ScheduleCreateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ScheduleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScheduleCreateResponse]], ResultWrapper[ScheduleCreateResponse]),

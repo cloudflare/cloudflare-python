@@ -69,7 +69,7 @@ class ToMarkdownResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownCreateResponse]:
         """
-        Convert Files into Markdown
+        Converts uploaded files into Markdown format using Workers AI.
 
         Args:
           extra_headers: Send extra headers
@@ -137,7 +137,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownCreateResponse, AsyncSinglePage[ToMarkdownCreateResponse]]:
         """
-        Convert Files into Markdown
+        Converts uploaded files into Markdown format using Workers AI.
 
         Args:
           extra_headers: Send extra headers

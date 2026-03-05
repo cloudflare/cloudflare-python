@@ -25,5 +25,11 @@ class AppEditParams(TypedDict, total=False):
     name: str
     """Display name for the app."""
 
+    source_subnets: SequenceNotStr[str]
+    """IPv4 CIDRs to associate with traffic decisions.
+
+    (IPv6 CIDRs are currently unsupported)
+    """
+
     type: str
     """Category of the app."""

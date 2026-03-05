@@ -25,5 +25,11 @@ class AppEditResponse(BaseModel):
     name: Optional[str] = None
     """Display name for the app."""
 
+    source_subnets: Optional[List[str]] = None
+    """IPv4 CIDRs to associate with traffic decisions.
+
+    (IPv6 CIDRs are currently unsupported)
+    """
+
     type: Optional[str] = None
     """Category of the app."""

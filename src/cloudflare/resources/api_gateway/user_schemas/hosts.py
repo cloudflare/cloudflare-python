@@ -60,8 +60,10 @@ class HostsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[HostListResponse]:
-        """
-        Retrieve schema hosts in a zone
+        """Lists all unique hosts found in uploaded OpenAPI schemas for the zone.
+
+        Useful
+        for understanding which domains have schema coverage.
 
         Args:
           zone_id: Identifier.
@@ -136,8 +138,10 @@ class AsyncHostsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[HostListResponse, AsyncV4PagePaginationArray[HostListResponse]]:
-        """
-        Retrieve schema hosts in a zone
+        """Lists all unique hosts found in uploaded OpenAPI schemas for the zone.
+
+        Useful
+        for understanding which domains have schema coverage.
 
         Args:
           zone_id: Identifier.

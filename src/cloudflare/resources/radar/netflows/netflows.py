@@ -160,7 +160,7 @@ class NetFlowsResource(SyncAPIResource):
 
     def summary_v2(
         self,
-        dimension: Literal["ADM1", "PRODUCT"],
+        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -365,7 +365,7 @@ class NetFlowsResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["ADM1", "PRODUCT"],
+        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
@@ -595,7 +595,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
 
     async def summary_v2(
         self,
-        dimension: Literal["ADM1", "PRODUCT"],
+        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -800,7 +800,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["ADM1", "PRODUCT"],
+        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,

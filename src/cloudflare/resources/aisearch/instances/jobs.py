@@ -19,7 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.aisearch.instances import job_list_params, job_logs_params
+from ....types.aisearch.instances import job_list_params, job_logs_params, job_create_params
 from ....types.aisearch.instances.job_get_response import JobGetResponse
 from ....types.aisearch.instances.job_list_response import JobListResponse
 from ....types.aisearch.instances.job_logs_response import JobLogsResponse
@@ -53,6 +53,7 @@ class JobsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,6 +81,7 @@ class JobsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            body=maybe_transform({"description": description}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -266,6 +268,7 @@ class AsyncJobsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +296,7 @@ class AsyncJobsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            body=await async_maybe_transform({"description": description}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

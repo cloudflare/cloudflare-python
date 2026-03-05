@@ -148,6 +148,8 @@ class TestTokens:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.aisearch.tokens.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            order_by="created_at",
+            order_by_direction="asc",
             page=1,
             per_page=1,
         )
@@ -410,6 +412,8 @@ class TestAsyncTokens:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.aisearch.tokens.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            order_by="created_at",
+            order_by_direction="asc",
             page=1,
             per_page=1,
         )

@@ -32,4 +32,4 @@ class SecurityTXTUpdateParams(TypedDict, total=False):
 
     policy: SequenceNotStr[str]
 
-    preferred_languages: Annotated[str, PropertyInfo(alias="preferredLanguages")]
+    preferred_languages: str

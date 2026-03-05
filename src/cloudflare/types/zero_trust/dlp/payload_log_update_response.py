@@ -10,7 +10,9 @@ __all__ = ["PayloadLogUpdateResponse"]
 
 
 class PayloadLogUpdateResponse(BaseModel):
-    masking_level: Literal["full", "partial", "clear", "default"]
+    updated_at: datetime
+
+    masking_level: Optional[Literal["full", "partial", "clear", "default"]] = None
     """Masking level for payload logs.
 
     - `full`: The entire payload is masked.
@@ -18,8 +20,6 @@ class PayloadLogUpdateResponse(BaseModel):
     - `clear`: No masking is applied to the payload content.
     - `default`: DLP uses its default masking behavior.
     """
-
-    updated_at: datetime
 
     public_key: Optional[str] = None
     """Base64-encoded public key for encrypting payload logs.

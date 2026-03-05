@@ -19,9 +19,11 @@ __all__ = [
     "PublicEndpointParamsRateLimit",
     "PublicEndpointParamsSearchEndpoint",
     "RetrievalOptions",
+    "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
+    "SourceParamsWebCrawlerParseOptionsContentSelector",
     "SourceParamsWebCrawlerStoreOptions",
 ]
 
@@ -31,10 +33,6 @@ class InstanceCreateParams(TypedDict, total=False):
 
     id: Required[str]
     """Use your AI Search ID."""
-
-    source: Required[str]
-
-    type: Required[Literal["r2", "web-crawler"]]
 
     ai_gateway_id: Optional[str]
 
@@ -71,6 +69,10 @@ class InstanceCreateParams(TypedDict, total=False):
         ],
         PropertyInfo(alias="ai_search_model"),
     ]
+
+    cache: bool
+
+    cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
 
     chunk: bool
 
@@ -142,9 +144,13 @@ class InstanceCreateParams(TypedDict, total=False):
 
     score_threshold: float
 
+    source: str
+
     source_params: Optional[SourceParams]
 
     token_id: str
+
+    type: Literal["r2", "web-crawler"]
 
 
 class CustomMetadata(TypedDict, total=False):
@@ -198,7 +204,34 @@ class PublicEndpointParams(TypedDict, total=False):
     search_endpoint: PublicEndpointParamsSearchEndpoint
 
 
+class RetrievalOptionsBoostBy(TypedDict, total=False):
+    field: Required[str]
+    """Metadata field name to boost by.
+
+    Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
+    fields support asc/desc directions; text/boolean fields support
+    exists/not_exists.
+    """
+
+    direction: Literal["asc", "desc", "exists", "not_exists"]
+    """Boost direction.
+
+    'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
+    rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
+    'exists' for text/boolean fields.
+    """
+
+
 class RetrievalOptions(TypedDict, total=False):
+    boost_by: Iterable[RetrievalOptionsBoostBy]
+    """Metadata fields to boost search results by.
+
+    Each entry specifies a metadata field and an optional direction. Direction
+    defaults to 'asc' for numeric fields and 'exists' for text/boolean fields.
+    Fields must match 'timestamp' or a defined custom_metadata field.
+    """
+
     keyword_match_mode: Literal["exact_match", "fuzzy_match"]
     """Controls how keyword search terms are matched.
 
@@ -207,7 +240,30 @@ class RetrievalOptions(TypedDict, total=False):
     """
 
 
+class SourceParamsWebCrawlerParseOptionsContentSelector(TypedDict, total=False):
+    path: Required[str]
+    """Glob pattern to match against the page URL path.
+
+    Uses standard glob syntax: \\** matches within a segment, \\**\\** crosses
+    directories.
+    """
+
+    selector: Required[str]
+    """CSS selector to extract content from pages matching the path pattern.
+
+    Supports standard CSS selectors including class, ID, element, and attribute
+    selectors.
+    """
+
+
 class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
+    content_selector: Iterable[SourceParamsWebCrawlerParseOptionsContentSelector]
+    """
+    List of path-to-selector mappings for extracting specific content from crawled
+    pages. Each entry pairs a URL glob pattern with a CSS selector. The first
+    matching path wins. Only the matched HTML fragment is stored and indexed.
+    """
+
     include_headers: Dict[str, str]
 
     include_images: bool

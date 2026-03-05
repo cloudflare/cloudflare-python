@@ -73,7 +73,8 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update global schema validation settings
+        Fully updates global schema validation settings for a zone, replacing existing
+        configuration.
 
         Args:
           zone_id: Identifier.
@@ -133,7 +134,8 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingEditResponse:
         """
-        Edit global schema validation settings
+        Partially updates global schema validation settings for a zone using PATCH
+        semantics.
 
         Args:
           zone_id: Identifier.
@@ -191,7 +193,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Get global schema validation settings
+        Retrieves the current global schema validation settings for a zone.
 
         Args:
           zone_id: Identifier.
@@ -257,7 +259,8 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update global schema validation settings
+        Fully updates global schema validation settings for a zone, replacing existing
+        configuration.
 
         Args:
           zone_id: Identifier.
@@ -317,7 +320,8 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingEditResponse:
         """
-        Edit global schema validation settings
+        Partially updates global schema validation settings for a zone using PATCH
+        semantics.
 
         Args:
           zone_id: Identifier.
@@ -375,7 +379,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Get global schema validation settings
+        Retrieves the current global schema validation settings for a zone.
 
         Args:
           zone_id: Identifier.

@@ -58,6 +58,7 @@ __all__ = [
     "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesSchemasPolish",
     "ZonesPrivacyPass",
+    "ZonesRedirectsForAITraining",
     "ZonesReplaceInsecureJS",
     "ZonesSchemasResponseBuffering",
     "ZonesSchemasRocketLoader",
@@ -508,6 +509,28 @@ class ZonesPrivacyPass(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesRedirectsForAITraining(BaseModel):
+    """
+    When enabled, Cloudflare will redirect verified AI training crawlers to canonical URLs
+    found in the HTML response, ensuring AI models train on authoritative content.
+    """
+
+    id: Literal["redirects_for_ai_training"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "on"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 class ZonesReplaceInsecureJS(BaseModel):
     """
     Automatically replace insecure JavaScript libraries with safer and faster alternatives provided under cdnjs and powered by Cloudflare. Currently supports the following libraries: Polyfill under polyfill.io.
@@ -827,6 +850,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,
+    ZonesRedirectsForAITraining,
     ZonesReplaceInsecureJS,
     ZonesSchemasResponseBuffering,
     ZonesSchemasRocketLoader,

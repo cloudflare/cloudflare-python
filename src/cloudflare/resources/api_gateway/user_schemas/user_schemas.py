@@ -166,7 +166,8 @@ class UserSchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OldPublicSchema]:
         """
-        Retrieve information about all schemas on a zone
+        Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
+        validation status and associated operations.
 
         Args:
           zone_id: Identifier.
@@ -225,8 +226,10 @@ class UserSchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
-        """
-        Delete a schema
+        """Permanently removes an uploaded OpenAPI schema from API Shield schema
+        validation.
+
+        Operations using this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -267,8 +270,10 @@ class UserSchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OldPublicSchema:
-        """
-        Enable validation for a schema
+        """Activates schema validation for an uploaded OpenAPI schema.
+
+        Requests to matching
+        endpoints will be validated against the schema definitions.
 
         Args:
           zone_id: Identifier.
@@ -319,7 +324,8 @@ class UserSchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OldPublicSchema:
         """
-        Retrieve information about a specific schema on a zone
+        Gets detailed information about a specific uploaded OpenAPI schema, including
+        its contents and validation configuration.
 
         Args:
           zone_id: Identifier.
@@ -468,7 +474,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OldPublicSchema, AsyncV4PagePaginationArray[OldPublicSchema]]:
         """
-        Retrieve information about all schemas on a zone
+        Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
+        validation status and associated operations.
 
         Args:
           zone_id: Identifier.
@@ -527,8 +534,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
-        """
-        Delete a schema
+        """Permanently removes an uploaded OpenAPI schema from API Shield schema
+        validation.
+
+        Operations using this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -569,8 +578,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OldPublicSchema:
-        """
-        Enable validation for a schema
+        """Activates schema validation for an uploaded OpenAPI schema.
+
+        Requests to matching
+        endpoints will be validated against the schema definitions.
 
         Args:
           zone_id: Identifier.
@@ -621,7 +632,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OldPublicSchema:
         """
-        Retrieve information about a specific schema on a zone
+        Gets detailed information about a specific uploaded OpenAPI schema, including
+        its contents and validation configuration.
 
         Args:
           zone_id: Identifier.

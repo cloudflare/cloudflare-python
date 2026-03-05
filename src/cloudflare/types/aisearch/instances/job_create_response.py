@@ -13,6 +13,8 @@ class JobCreateResponse(BaseModel):
 
     source: Literal["user", "schedule"]
 
+    description: Optional[str] = None
+
     end_reason: Optional[str] = None
 
     ended_at: Optional[str] = None

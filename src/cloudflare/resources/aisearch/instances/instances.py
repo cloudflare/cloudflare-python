@@ -88,8 +88,6 @@ class InstancesResource(SyncAPIResource):
         *,
         account_id: str,
         id: str,
-        source: str,
-        type: Literal["r2", "web-crawler"],
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -121,6 +119,9 @@ class InstancesResource(SyncAPIResource):
             "openai/gpt-5-nano",
             "",
         ]
+        | Omit = omit,
+        cache: bool | Omit = omit,
+        cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
@@ -178,8 +179,10 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
+        source: str | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
+        type: Literal["r2", "web-crawler"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,10 +211,10 @@ class InstancesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
-                    "source": source,
-                    "type": type,
                     "ai_gateway_id": ai_gateway_id,
                     "aisearch_model": aisearch_model,
+                    "cache": cache,
+                    "cache_threshold": cache_threshold,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
@@ -228,8 +231,10 @@ class InstancesResource(SyncAPIResource):
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
+                    "source": source,
                     "source_params": source_params,
                     "token_id": token_id,
+                    "type": type,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
@@ -451,6 +456,8 @@ class InstancesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        order_by: Literal["created_at"] | Omit = omit,
+        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -465,6 +472,10 @@ class InstancesResource(SyncAPIResource):
         List instances.
 
         Args:
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
           search: Search by id
 
           extra_headers: Send extra headers
@@ -487,6 +498,8 @@ class InstancesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,
@@ -791,8 +804,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str,
-        source: str,
-        type: Literal["r2", "web-crawler"],
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Literal[
             "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -824,6 +835,9 @@ class AsyncInstancesResource(AsyncAPIResource):
             "openai/gpt-5-nano",
             "",
         ]
+        | Omit = omit,
+        cache: bool | Omit = omit,
+        cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
@@ -881,8 +895,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
+        source: str | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
+        type: Literal["r2", "web-crawler"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -911,10 +927,10 @@ class AsyncInstancesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
-                    "source": source,
-                    "type": type,
                     "ai_gateway_id": ai_gateway_id,
                     "aisearch_model": aisearch_model,
+                    "cache": cache,
+                    "cache_threshold": cache_threshold,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
@@ -931,8 +947,10 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
+                    "source": source,
                     "source_params": source_params,
                     "token_id": token_id,
+                    "type": type,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
@@ -1154,6 +1172,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        order_by: Literal["created_at"] | Omit = omit,
+        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -1168,6 +1188,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         List instances.
 
         Args:
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
           search: Search by id
 
           extra_headers: Send extra headers
@@ -1190,6 +1214,8 @@ class AsyncInstancesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,

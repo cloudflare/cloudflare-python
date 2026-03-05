@@ -1471,72 +1471,68 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_cache_settings",
+            action="set_cache_control",
             action_parameters={
-                "additional_cacheable_ports": [8080],
-                "browser_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
+                "immutable": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "cache": True,
-                "cache_key": {
-                    "cache_by_device_type": True,
-                    "cache_deception_armor": True,
-                    "custom_key": {
-                        "cookie": {
-                            "check_presence": ["myCookie"],
-                            "include": ["myCookie"],
-                        },
-                        "header": {
-                            "check_presence": ["my-header"],
-                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
-                            "exclude_origin": True,
-                            "include": ["my-header"],
-                        },
-                        "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                        },
-                        "user": {
-                            "device_type": True,
-                            "geo": True,
-                            "lang": True,
-                        },
-                    },
-                    "ignore_query_strings_order": True,
+                "max_age": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
                 },
-                "cache_reserve": {
-                    "eligible": True,
-                    "minimum_file_size": 1024,
+                "must_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "edge_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
-                    "status_code_ttl": [
-                        {
-                            "value": 0,
-                            "status_code": 200,
-                            "status_code_range": {
-                                "from": 200,
-                                "to": 299,
-                            },
-                        }
-                    ],
+                "must_understand": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "origin_cache_control": True,
-                "origin_error_page_passthru": True,
-                "read_timeout": 900,
-                "respect_strong_etags": True,
-                "serve_stale": {"disable_stale_while_updating": True},
+                "no_cache": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "no_store": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "no_transform": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "private": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "proxy_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "public": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "s_maxage": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_if_error": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_while_revalidate": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
             },
-            description="Configure settings for how the response is cached.",
+            description="Modify the cache-control header directives in an Origin response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -1624,35 +1620,75 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_config",
+            action="set_cache_settings",
             action_parameters={
-                "automatic_https_rewrites": True,
-                "autominify": {
-                    "css": True,
-                    "html": True,
-                    "js": True,
+                "additional_cacheable_ports": [8080],
+                "browser_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
                 },
-                "bic": True,
-                "content_converter": True,
-                "disable_apps": True,
-                "disable_pay_per_crawl": True,
-                "disable_rum": True,
-                "disable_zaraz": True,
-                "email_obfuscation": True,
-                "fonts": True,
-                "hotlink_protection": True,
-                "mirage": True,
-                "opportunistic_encryption": True,
-                "polish": "off",
-                "request_body_buffering": "standard",
-                "response_body_buffering": "standard",
-                "rocket_loader": True,
-                "security_level": "off",
-                "server_side_excludes": True,
-                "ssl": "off",
-                "sxg": True,
+                "cache": True,
+                "cache_key": {
+                    "cache_by_device_type": True,
+                    "cache_deception_armor": True,
+                    "custom_key": {
+                        "cookie": {
+                            "check_presence": ["myCookie"],
+                            "include": ["myCookie"],
+                        },
+                        "header": {
+                            "check_presence": ["my-header"],
+                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
+                            "exclude_origin": True,
+                            "include": ["my-header"],
+                        },
+                        "host": {"resolved": True},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                        },
+                        "user": {
+                            "device_type": True,
+                            "geo": True,
+                            "lang": True,
+                        },
+                    },
+                    "ignore_query_strings_order": True,
+                },
+                "cache_reserve": {
+                    "eligible": True,
+                    "minimum_file_size": 1024,
+                },
+                "edge_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
+                    "status_code_ttl": [
+                        {
+                            "value": 0,
+                            "status_code": 200,
+                            "status_code_range": {
+                                "from": 200,
+                                "to": 299,
+                            },
+                        }
+                    ],
+                },
+                "origin_cache_control": True,
+                "origin_error_page_passthru": True,
+                "read_timeout": 900,
+                "respect_strong_etags": True,
+                "serve_stale": {"disable_stale_while_updating": True},
+                "strip_etags": True,
+                "strip_last_modified": True,
+                "strip_set_cookie": True,
             },
-            description="Configure settings for the request and response.",
+            description="Configure settings for how the response is cached.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -1740,16 +1776,12 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="skip",
+            action="set_cache_tags",
             action_parameters={
-                "phase": "current",
-                "phases": ["http_request_firewall_custom"],
-                "products": ["bic"],
-                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
-                "ruleset": "current",
-                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+                "operation": "add",
+                "values": ["my-cache-tag"],
             },
-            description="Skip executing rulesets, rules, phases, and other products.",
+            description="Modify the cache tags associated with the response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -1803,6 +1835,219 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_18(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_19(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_19(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="set_config",
+            action_parameters={
+                "automatic_https_rewrites": True,
+                "autominify": {
+                    "css": True,
+                    "html": True,
+                    "js": True,
+                },
+                "bic": True,
+                "content_converter": True,
+                "disable_apps": True,
+                "disable_pay_per_crawl": True,
+                "disable_rum": True,
+                "disable_zaraz": True,
+                "email_obfuscation": True,
+                "fonts": True,
+                "hotlink_protection": True,
+                "mirage": True,
+                "opportunistic_encryption": True,
+                "polish": "off",
+                "request_body_buffering": "standard",
+                "response_body_buffering": "standard",
+                "rocket_loader": True,
+                "security_level": "off",
+                "server_side_excludes": True,
+                "ssl": "off",
+                "sxg": True,
+            },
+            description="Configure settings for the request and response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_19(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_19(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_19(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_20(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_20(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="skip",
+            action_parameters={
+                "phase": "current",
+                "phases": ["http_request_firewall_custom"],
+                "products": ["bic"],
+                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
+                "ruleset": "current",
+                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+            },
+            description="Skip executing rulesets, rules, phases, and other products.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_20(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_20(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
@@ -3564,72 +3809,68 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_cache_settings",
+            action="set_cache_control",
             action_parameters={
-                "additional_cacheable_ports": [8080],
-                "browser_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
+                "immutable": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "cache": True,
-                "cache_key": {
-                    "cache_by_device_type": True,
-                    "cache_deception_armor": True,
-                    "custom_key": {
-                        "cookie": {
-                            "check_presence": ["myCookie"],
-                            "include": ["myCookie"],
-                        },
-                        "header": {
-                            "check_presence": ["my-header"],
-                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
-                            "exclude_origin": True,
-                            "include": ["my-header"],
-                        },
-                        "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                        },
-                        "user": {
-                            "device_type": True,
-                            "geo": True,
-                            "lang": True,
-                        },
-                    },
-                    "ignore_query_strings_order": True,
+                "max_age": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
                 },
-                "cache_reserve": {
-                    "eligible": True,
-                    "minimum_file_size": 1024,
+                "must_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "edge_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
-                    "status_code_ttl": [
-                        {
-                            "value": 0,
-                            "status_code": 200,
-                            "status_code_range": {
-                                "from": 200,
-                                "to": 299,
-                            },
-                        }
-                    ],
+                "must_understand": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "origin_cache_control": True,
-                "origin_error_page_passthru": True,
-                "read_timeout": 900,
-                "respect_strong_etags": True,
-                "serve_stale": {"disable_stale_while_updating": True},
+                "no_cache": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "no_store": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "no_transform": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "private": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "proxy_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "public": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "s_maxage": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_if_error": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_while_revalidate": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
             },
-            description="Configure settings for how the response is cached.",
+            description="Modify the cache-control header directives in an Origin response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -3731,35 +3972,75 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_config",
+            action="set_cache_settings",
             action_parameters={
-                "automatic_https_rewrites": True,
-                "autominify": {
-                    "css": True,
-                    "html": True,
-                    "js": True,
+                "additional_cacheable_ports": [8080],
+                "browser_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
                 },
-                "bic": True,
-                "content_converter": True,
-                "disable_apps": True,
-                "disable_pay_per_crawl": True,
-                "disable_rum": True,
-                "disable_zaraz": True,
-                "email_obfuscation": True,
-                "fonts": True,
-                "hotlink_protection": True,
-                "mirage": True,
-                "opportunistic_encryption": True,
-                "polish": "off",
-                "request_body_buffering": "standard",
-                "response_body_buffering": "standard",
-                "rocket_loader": True,
-                "security_level": "off",
-                "server_side_excludes": True,
-                "ssl": "off",
-                "sxg": True,
+                "cache": True,
+                "cache_key": {
+                    "cache_by_device_type": True,
+                    "cache_deception_armor": True,
+                    "custom_key": {
+                        "cookie": {
+                            "check_presence": ["myCookie"],
+                            "include": ["myCookie"],
+                        },
+                        "header": {
+                            "check_presence": ["my-header"],
+                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
+                            "exclude_origin": True,
+                            "include": ["my-header"],
+                        },
+                        "host": {"resolved": True},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                        },
+                        "user": {
+                            "device_type": True,
+                            "geo": True,
+                            "lang": True,
+                        },
+                    },
+                    "ignore_query_strings_order": True,
+                },
+                "cache_reserve": {
+                    "eligible": True,
+                    "minimum_file_size": 1024,
+                },
+                "edge_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
+                    "status_code_ttl": [
+                        {
+                            "value": 0,
+                            "status_code": 200,
+                            "status_code_range": {
+                                "from": 200,
+                                "to": 299,
+                            },
+                        }
+                    ],
+                },
+                "origin_cache_control": True,
+                "origin_error_page_passthru": True,
+                "read_timeout": 900,
+                "respect_strong_etags": True,
+                "serve_stale": {"disable_stale_while_updating": True},
+                "strip_etags": True,
+                "strip_last_modified": True,
+                "strip_set_cookie": True,
             },
-            description="Configure settings for the request and response.",
+            description="Configure settings for how the response is cached.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -3861,16 +4142,12 @@ class TestRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="skip",
+            action="set_cache_tags",
             action_parameters={
-                "phase": "current",
-                "phases": ["http_request_firewall_custom"],
-                "products": ["bic"],
-                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
-                "ruleset": "current",
-                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+                "operation": "add",
+                "values": ["my-cache-tag"],
             },
-            description="Skip executing rulesets, rules, phases, and other products.",
+            description="Modify the cache tags associated with the response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -3926,6 +4203,247 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_overload_19(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_with_all_params_overload_19(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="set_config",
+            action_parameters={
+                "automatic_https_rewrites": True,
+                "autominify": {
+                    "css": True,
+                    "html": True,
+                    "js": True,
+                },
+                "bic": True,
+                "content_converter": True,
+                "disable_apps": True,
+                "disable_pay_per_crawl": True,
+                "disable_rum": True,
+                "disable_zaraz": True,
+                "email_obfuscation": True,
+                "fonts": True,
+                "hotlink_protection": True,
+                "mirage": True,
+                "opportunistic_encryption": True,
+                "polish": "off",
+                "request_body_buffering": "standard",
+                "response_body_buffering": "standard",
+                "rocket_loader": True,
+                "security_level": "off",
+                "server_side_excludes": True,
+                "ssl": "off",
+                "sxg": True,
+            },
+            description="Configure settings for the request and response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_edit_overload_19(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_overload_20(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_with_all_params_overload_20(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="skip",
+            action_parameters={
+                "phase": "current",
+                "phases": ["http_request_firewall_custom"],
+                "products": ["bic"],
+                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
+                "ruleset": "current",
+                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+            },
+            description="Skip executing rulesets, rules, phases, and other products.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_edit_overload_20(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
@@ -5410,72 +5928,68 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_cache_settings",
+            action="set_cache_control",
             action_parameters={
-                "additional_cacheable_ports": [8080],
-                "browser_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
+                "immutable": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "cache": True,
-                "cache_key": {
-                    "cache_by_device_type": True,
-                    "cache_deception_armor": True,
-                    "custom_key": {
-                        "cookie": {
-                            "check_presence": ["myCookie"],
-                            "include": ["myCookie"],
-                        },
-                        "header": {
-                            "check_presence": ["my-header"],
-                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
-                            "exclude_origin": True,
-                            "include": ["my-header"],
-                        },
-                        "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                        },
-                        "user": {
-                            "device_type": True,
-                            "geo": True,
-                            "lang": True,
-                        },
-                    },
-                    "ignore_query_strings_order": True,
+                "max_age": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
                 },
-                "cache_reserve": {
-                    "eligible": True,
-                    "minimum_file_size": 1024,
+                "must_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "edge_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
-                    "status_code_ttl": [
-                        {
-                            "value": 0,
-                            "status_code": 200,
-                            "status_code_range": {
-                                "from": 200,
-                                "to": 299,
-                            },
-                        }
-                    ],
+                "must_understand": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "origin_cache_control": True,
-                "origin_error_page_passthru": True,
-                "read_timeout": 900,
-                "respect_strong_etags": True,
-                "serve_stale": {"disable_stale_while_updating": True},
+                "no_cache": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "no_store": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "no_transform": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "private": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "proxy_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "public": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "s_maxage": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_if_error": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_while_revalidate": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
             },
-            description="Configure settings for how the response is cached.",
+            description="Modify the cache-control header directives in an Origin response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -5563,35 +6077,75 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_config",
+            action="set_cache_settings",
             action_parameters={
-                "automatic_https_rewrites": True,
-                "autominify": {
-                    "css": True,
-                    "html": True,
-                    "js": True,
+                "additional_cacheable_ports": [8080],
+                "browser_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
                 },
-                "bic": True,
-                "content_converter": True,
-                "disable_apps": True,
-                "disable_pay_per_crawl": True,
-                "disable_rum": True,
-                "disable_zaraz": True,
-                "email_obfuscation": True,
-                "fonts": True,
-                "hotlink_protection": True,
-                "mirage": True,
-                "opportunistic_encryption": True,
-                "polish": "off",
-                "request_body_buffering": "standard",
-                "response_body_buffering": "standard",
-                "rocket_loader": True,
-                "security_level": "off",
-                "server_side_excludes": True,
-                "ssl": "off",
-                "sxg": True,
+                "cache": True,
+                "cache_key": {
+                    "cache_by_device_type": True,
+                    "cache_deception_armor": True,
+                    "custom_key": {
+                        "cookie": {
+                            "check_presence": ["myCookie"],
+                            "include": ["myCookie"],
+                        },
+                        "header": {
+                            "check_presence": ["my-header"],
+                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
+                            "exclude_origin": True,
+                            "include": ["my-header"],
+                        },
+                        "host": {"resolved": True},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                        },
+                        "user": {
+                            "device_type": True,
+                            "geo": True,
+                            "lang": True,
+                        },
+                    },
+                    "ignore_query_strings_order": True,
+                },
+                "cache_reserve": {
+                    "eligible": True,
+                    "minimum_file_size": 1024,
+                },
+                "edge_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
+                    "status_code_ttl": [
+                        {
+                            "value": 0,
+                            "status_code": 200,
+                            "status_code_range": {
+                                "from": 200,
+                                "to": 299,
+                            },
+                        }
+                    ],
+                },
+                "origin_cache_control": True,
+                "origin_error_page_passthru": True,
+                "read_timeout": 900,
+                "respect_strong_etags": True,
+                "serve_stale": {"disable_stale_while_updating": True},
+                "strip_etags": True,
+                "strip_last_modified": True,
+                "strip_set_cookie": True,
             },
-            description="Configure settings for the request and response.",
+            description="Configure settings for how the response is cached.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -5679,16 +6233,12 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="skip",
+            action="set_cache_tags",
             action_parameters={
-                "phase": "current",
-                "phases": ["http_request_firewall_custom"],
-                "products": ["bic"],
-                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
-                "ruleset": "current",
-                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+                "operation": "add",
+                "values": ["my-cache-tag"],
             },
-            description="Skip executing rulesets, rules, phases, and other products.",
+            description="Modify the cache tags associated with the response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -5742,6 +6292,219 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_18(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_19(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="set_config",
+            action_parameters={
+                "automatic_https_rewrites": True,
+                "autominify": {
+                    "css": True,
+                    "html": True,
+                    "js": True,
+                },
+                "bic": True,
+                "content_converter": True,
+                "disable_apps": True,
+                "disable_pay_per_crawl": True,
+                "disable_rum": True,
+                "disable_zaraz": True,
+                "email_obfuscation": True,
+                "fonts": True,
+                "hotlink_protection": True,
+                "mirage": True,
+                "opportunistic_encryption": True,
+                "polish": "off",
+                "request_body_buffering": "standard",
+                "response_body_buffering": "standard",
+                "rocket_loader": True,
+                "security_level": "off",
+                "server_side_excludes": True,
+                "ssl": "off",
+                "sxg": True,
+            },
+            description="Configure settings for the request and response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_19(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_20(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="skip",
+            action_parameters={
+                "phase": "current",
+                "phases": ["http_request_firewall_custom"],
+                "products": ["bic"],
+                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
+                "ruleset": "current",
+                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+            },
+            description="Skip executing rulesets, rules, phases, and other products.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
@@ -7503,72 +8266,68 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_cache_settings",
+            action="set_cache_control",
             action_parameters={
-                "additional_cacheable_ports": [8080],
-                "browser_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
+                "immutable": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "cache": True,
-                "cache_key": {
-                    "cache_by_device_type": True,
-                    "cache_deception_armor": True,
-                    "custom_key": {
-                        "cookie": {
-                            "check_presence": ["myCookie"],
-                            "include": ["myCookie"],
-                        },
-                        "header": {
-                            "check_presence": ["my-header"],
-                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
-                            "exclude_origin": True,
-                            "include": ["my-header"],
-                        },
-                        "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["foo"],
-                            },
-                        },
-                        "user": {
-                            "device_type": True,
-                            "geo": True,
-                            "lang": True,
-                        },
-                    },
-                    "ignore_query_strings_order": True,
+                "max_age": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
                 },
-                "cache_reserve": {
-                    "eligible": True,
-                    "minimum_file_size": 1024,
+                "must_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "edge_ttl": {
-                    "mode": "override_origin",
-                    "default": 60,
-                    "status_code_ttl": [
-                        {
-                            "value": 0,
-                            "status_code": 200,
-                            "status_code_range": {
-                                "from": 200,
-                                "to": 299,
-                            },
-                        }
-                    ],
+                "must_understand": {
+                    "operation": "set",
+                    "cloudflare_only": False,
                 },
-                "origin_cache_control": True,
-                "origin_error_page_passthru": True,
-                "read_timeout": 900,
-                "respect_strong_etags": True,
-                "serve_stale": {"disable_stale_while_updating": True},
+                "no_cache": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "no_store": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "no_transform": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "private": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                    "qualifiers": ["X-Custom-Header"],
+                },
+                "proxy_revalidate": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "public": {
+                    "operation": "set",
+                    "cloudflare_only": False,
+                },
+                "s_maxage": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_if_error": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
+                "stale_while_revalidate": {
+                    "operation": "set",
+                    "value": 3600,
+                    "cloudflare_only": False,
+                },
             },
-            description="Configure settings for how the response is cached.",
+            description="Modify the cache-control header directives in an Origin response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -7670,35 +8429,75 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="set_config",
+            action="set_cache_settings",
             action_parameters={
-                "automatic_https_rewrites": True,
-                "autominify": {
-                    "css": True,
-                    "html": True,
-                    "js": True,
+                "additional_cacheable_ports": [8080],
+                "browser_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
                 },
-                "bic": True,
-                "content_converter": True,
-                "disable_apps": True,
-                "disable_pay_per_crawl": True,
-                "disable_rum": True,
-                "disable_zaraz": True,
-                "email_obfuscation": True,
-                "fonts": True,
-                "hotlink_protection": True,
-                "mirage": True,
-                "opportunistic_encryption": True,
-                "polish": "off",
-                "request_body_buffering": "standard",
-                "response_body_buffering": "standard",
-                "rocket_loader": True,
-                "security_level": "off",
-                "server_side_excludes": True,
-                "ssl": "off",
-                "sxg": True,
+                "cache": True,
+                "cache_key": {
+                    "cache_by_device_type": True,
+                    "cache_deception_armor": True,
+                    "custom_key": {
+                        "cookie": {
+                            "check_presence": ["myCookie"],
+                            "include": ["myCookie"],
+                        },
+                        "header": {
+                            "check_presence": ["my-header"],
+                            "contains": {"my-header": ["my-header-value-1", "my-header-value-2"]},
+                            "exclude_origin": True,
+                            "include": ["my-header"],
+                        },
+                        "host": {"resolved": True},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["foo"],
+                            },
+                        },
+                        "user": {
+                            "device_type": True,
+                            "geo": True,
+                            "lang": True,
+                        },
+                    },
+                    "ignore_query_strings_order": True,
+                },
+                "cache_reserve": {
+                    "eligible": True,
+                    "minimum_file_size": 1024,
+                },
+                "edge_ttl": {
+                    "mode": "override_origin",
+                    "default": 60,
+                    "status_code_ttl": [
+                        {
+                            "value": 0,
+                            "status_code": 200,
+                            "status_code_range": {
+                                "from": 200,
+                                "to": 299,
+                            },
+                        }
+                    ],
+                },
+                "origin_cache_control": True,
+                "origin_error_page_passthru": True,
+                "read_timeout": 900,
+                "respect_strong_etags": True,
+                "serve_stale": {"disable_stale_while_updating": True},
+                "strip_etags": True,
+                "strip_last_modified": True,
+                "strip_set_cookie": True,
             },
-            description="Configure settings for the request and response.",
+            description="Configure settings for how the response is cached.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -7800,16 +8599,12 @@ class TestAsyncRules:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
             id="3a03d665bac047339bb530ecb439a90d",
-            action="skip",
+            action="set_cache_tags",
             action_parameters={
-                "phase": "current",
-                "phases": ["http_request_firewall_custom"],
-                "products": ["bic"],
-                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
-                "ruleset": "current",
-                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+                "operation": "add",
+                "values": ["my-cache-tag"],
             },
-            description="Skip executing rulesets, rules, phases, and other products.",
+            description="Modify the cache tags associated with the response.",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -7865,6 +8660,247 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="set_config",
+            action_parameters={
+                "automatic_https_rewrites": True,
+                "autominify": {
+                    "css": True,
+                    "html": True,
+                    "js": True,
+                },
+                "bic": True,
+                "content_converter": True,
+                "disable_apps": True,
+                "disable_pay_per_crawl": True,
+                "disable_rum": True,
+                "disable_zaraz": True,
+                "email_obfuscation": True,
+                "fonts": True,
+                "hotlink_protection": True,
+                "mirage": True,
+                "opportunistic_encryption": True,
+                "polish": "off",
+                "request_body_buffering": "standard",
+                "response_body_buffering": "standard",
+                "rocket_loader": True,
+                "security_level": "off",
+                "server_side_excludes": True,
+                "ssl": "off",
+                "sxg": True,
+            },
+            description="Configure settings for the request and response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="skip",
+            action_parameters={
+                "phase": "current",
+                "phases": ["http_request_firewall_custom"],
+                "products": ["bic"],
+                "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
+                "ruleset": "current",
+                "rulesets": ["2f2feab2026849078ba485f918791bdc"],
+            },
+            description="Skip executing rulesets, rules, phases, and other products.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",

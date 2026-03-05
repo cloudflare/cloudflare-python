@@ -30,12 +30,23 @@ class CustomCreateParams(TypedDict, total=False):
     keywords.
     """
 
+    data_classes: SequenceNotStr[str]
+    """Data class IDs to associate with the profile."""
+
+    data_tags: SequenceNotStr[str]
+    """Data tag IDs to associate with the profile."""
+
     description: Optional[str]
     """The description of the profile."""
 
     entries: Iterable[Entry]
 
     ocr_enabled: bool
+
+    sensitivity_levels: Iterable[SequenceNotStr[str]]
+    """
+    Sensitivity levels to associate with the profile as (group_id, level_id) tuples.
+    """
 
     shared_entries: Iterable[SharedEntry]
     """Entries from other profiles (e.g.

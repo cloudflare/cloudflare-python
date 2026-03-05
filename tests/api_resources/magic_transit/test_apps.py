@@ -47,6 +47,7 @@ class TestApps:
             type="Development",
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["192.0.2.0/24"],
+            source_subnets=["192.0.2.0/24"],
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -118,6 +119,7 @@ class TestApps:
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["1.1.1.1/32"],
             name="Cloudflare Dashboard",
+            source_subnets=["1.1.1.1/32"],
             type="Development",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -291,6 +293,7 @@ class TestApps:
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["1.1.1.1/32"],
             name="Cloudflare Dashboard",
+            source_subnets=["1.1.1.1/32"],
             type="Development",
         )
         assert_matches_type(Optional[AppEditResponse], app, path=["response"])
@@ -373,6 +376,7 @@ class TestAsyncApps:
             type="Development",
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["192.0.2.0/24"],
+            source_subnets=["192.0.2.0/24"],
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -444,6 +448,7 @@ class TestAsyncApps:
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["1.1.1.1/32"],
             name="Cloudflare Dashboard",
+            source_subnets=["1.1.1.1/32"],
             type="Development",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -617,6 +622,7 @@ class TestAsyncApps:
             hostnames=["auth.cloudflare.com"],
             ip_subnets=["1.1.1.1/32"],
             name="Cloudflare Dashboard",
+            source_subnets=["1.1.1.1/32"],
             type="Development",
         )
         assert_matches_type(Optional[AppEditResponse], app, path=["response"])

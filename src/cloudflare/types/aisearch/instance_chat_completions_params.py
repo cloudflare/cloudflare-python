@@ -14,6 +14,7 @@ __all__ = [
     "AISearchOptionsQueryRewrite",
     "AISearchOptionsReranking",
     "AISearchOptionsRetrieval",
+    "AISearchOptionsRetrievalBoostBy",
 ]
 
 
@@ -112,7 +113,34 @@ class AISearchOptionsReranking(TypedDict, total=False):
     model: Literal["@cf/baai/bge-reranker-base", ""]
 
 
+class AISearchOptionsRetrievalBoostBy(TypedDict, total=False):
+    field: Required[str]
+    """Metadata field name to boost by.
+
+    Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
+    fields support asc/desc directions; text/boolean fields support
+    exists/not_exists.
+    """
+
+    direction: Literal["asc", "desc", "exists", "not_exists"]
+    """Boost direction.
+
+    'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
+    rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
+    'exists' for text/boolean fields.
+    """
+
+
 class AISearchOptionsRetrieval(TypedDict, total=False):
+    boost_by: Iterable[AISearchOptionsRetrievalBoostBy]
+    """Metadata fields to boost search results by.
+
+    Overrides the instance-level boost_by config. Direction defaults to 'asc' for
+    numeric fields, 'exists' for text/boolean fields. Fields must match 'timestamp'
+    or a defined custom_metadata field.
+    """
+
     context_expansion: int
 
     filters: Dict[str, object]

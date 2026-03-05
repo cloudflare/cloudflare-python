@@ -61,7 +61,8 @@ class ReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ReportListResponse]:
         """
-        Get `PhishGuard` reports
+        Retrieves `PhishGuard` reports showing phishing attempts and suspicious email
+        patterns detected.
 
         Args:
           account_id: Account Identifier
@@ -138,7 +139,8 @@ class AsyncReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReportListResponse, AsyncSinglePage[ReportListResponse]]:
         """
-        Get `PhishGuard` reports
+        Retrieves `PhishGuard` reports showing phishing attempts and suspicious email
+        patterns detected.
 
         Args:
           account_id: Account Identifier

@@ -57,7 +57,7 @@ class SchemaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaGetResponse:
         """
-        Get Model Schema
+        Retrieves the input and output JSON schema definition for a Workers AI model.
 
         Args:
           model: Model Name
@@ -119,7 +119,7 @@ class AsyncSchemaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaGetResponse:
         """
-        Get Model Schema
+        Retrieves the input and output JSON schema definition for a Workers AI model.
 
         Args:
           model: Model Name

@@ -37,6 +37,8 @@ class TestCustom:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            data_classes=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            data_tags=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             description="description",
             entries=[
                 {
@@ -50,6 +52,7 @@ class TestCustom:
                 }
             ],
             ocr_enabled=True,
+            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
             shared_entries=[
                 {
                     "enabled": True,
@@ -115,6 +118,8 @@ class TestCustom:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            data_classes=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            data_tags=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             description="description",
             entries=[
                 {
@@ -129,6 +134,7 @@ class TestCustom:
                 }
             ],
             ocr_enabled=True,
+            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
             shared_entries=[
                 {
                     "enabled": True,
@@ -304,6 +310,8 @@ class TestAsyncCustom:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            data_classes=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            data_tags=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             description="description",
             entries=[
                 {
@@ -317,6 +325,7 @@ class TestAsyncCustom:
                 }
             ],
             ocr_enabled=True,
+            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
             shared_entries=[
                 {
                     "enabled": True,
@@ -382,6 +391,8 @@ class TestAsyncCustom:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            data_classes=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
+            data_tags=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             description="description",
             entries=[
                 {
@@ -396,6 +407,7 @@ class TestAsyncCustom:
                 }
             ],
             ocr_enabled=True,
+            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
             shared_entries=[
                 {
                     "enabled": True,

@@ -1,10 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["VersionListResponse"]
+__all__ = ["VersionListResponse", "Limits"]
+
+
+class Limits(BaseModel):
+    steps: Optional[int] = None
 
 
 class VersionListResponse(BaseModel):
@@ -19,3 +24,5 @@ class VersionListResponse(BaseModel):
     modified_on: datetime
 
     workflow_id: str
+
+    limits: Optional[Limits] = None

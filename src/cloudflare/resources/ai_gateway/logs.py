@@ -236,7 +236,7 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Patch Gateway Log
+        Updates metadata for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -289,7 +289,7 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogGetResponse:
         """
-        Get Gateway Log Detail
+        Retrieves detailed information for a specific AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -334,7 +334,7 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get Gateway Log Request
+        Retrieves the original request payload for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -375,7 +375,7 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get Gateway Log Response
+        Retrieves the response payload for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -610,7 +610,7 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Patch Gateway Log
+        Updates metadata for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -663,7 +663,7 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogGetResponse:
         """
-        Get Gateway Log Detail
+        Retrieves detailed information for a specific AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -708,7 +708,7 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get Gateway Log Request
+        Retrieves the original request payload for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id
@@ -749,7 +749,7 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get Gateway Log Response
+        Retrieves the response payload for an AI Gateway log entry.
 
         Args:
           gateway_id: gateway id

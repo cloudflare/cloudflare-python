@@ -186,7 +186,8 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DomainBulkDeleteResponse]:
         """
-        Unprotect multiple email domains
+        Bulk removes multiple domains from email security configuration in a single
+        request.
 
         Args:
           account_id: Account Identifier
@@ -249,7 +250,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
-        Update an email domain
+        Updates configuration for a domain in email security.
 
         Args:
           account_id: Account Identifier
@@ -307,7 +308,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
-        Get an email domain
+        Gets configuration details for a specific domain in email security.
 
         Args:
           account_id: Account Identifier
@@ -493,7 +494,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
         """
-        Unprotect multiple email domains
+        Bulk removes multiple domains from email security configuration in a single
+        request.
 
         Args:
           account_id: Account Identifier
@@ -556,7 +558,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
-        Update an email domain
+        Updates configuration for a domain in email security.
 
         Args:
           account_id: Account Identifier
@@ -614,7 +616,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
-        Get an email domain
+        Gets configuration details for a specific domain in email security.
 
         Args:
           account_id: Account Identifier

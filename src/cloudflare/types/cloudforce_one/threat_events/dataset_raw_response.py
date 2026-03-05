@@ -8,13 +8,13 @@ __all__ = ["DatasetRawResponse"]
 
 
 class DatasetRawResponse(BaseModel):
-    id: str
+    id: float
 
     account_id: float = FieldInfo(alias="accountId")
 
     created: str
 
-    data: object
+    data: str
 
     source: str
 

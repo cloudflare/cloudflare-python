@@ -57,6 +57,7 @@ class AppsResource(SyncAPIResource):
         type: str,
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -79,6 +80,9 @@ class AppsResource(SyncAPIResource):
           ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
               unsupported)
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -97,6 +101,7 @@ class AppsResource(SyncAPIResource):
                     "type": type,
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
+                    "source_subnets": source_subnets,
                 },
                 app_create_params.AppCreateParams,
             ),
@@ -118,6 +123,7 @@ class AppsResource(SyncAPIResource):
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,6 +147,9 @@ class AppsResource(SyncAPIResource):
 
           name: Display name for the app.
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           type: Category of the app.
 
           extra_headers: Send extra headers
@@ -162,6 +171,7 @@ class AppsResource(SyncAPIResource):
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
                     "name": name,
+                    "source_subnets": source_subnets,
                     "type": type,
                 },
                 app_update_params.AppUpdateParams,
@@ -264,6 +274,7 @@ class AppsResource(SyncAPIResource):
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -287,6 +298,9 @@ class AppsResource(SyncAPIResource):
 
           name: Display name for the app.
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           type: Category of the app.
 
           extra_headers: Send extra headers
@@ -308,6 +322,7 @@ class AppsResource(SyncAPIResource):
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
                     "name": name,
+                    "source_subnets": source_subnets,
                     "type": type,
                 },
                 app_edit_params.AppEditParams,
@@ -351,6 +366,7 @@ class AsyncAppsResource(AsyncAPIResource):
         type: str,
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,6 +389,9 @@ class AsyncAppsResource(AsyncAPIResource):
           ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
               unsupported)
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -391,6 +410,7 @@ class AsyncAppsResource(AsyncAPIResource):
                     "type": type,
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
+                    "source_subnets": source_subnets,
                 },
                 app_create_params.AppCreateParams,
             ),
@@ -412,6 +432,7 @@ class AsyncAppsResource(AsyncAPIResource):
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -435,6 +456,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           name: Display name for the app.
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           type: Category of the app.
 
           extra_headers: Send extra headers
@@ -456,6 +480,7 @@ class AsyncAppsResource(AsyncAPIResource):
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
                     "name": name,
+                    "source_subnets": source_subnets,
                     "type": type,
                 },
                 app_update_params.AppUpdateParams,
@@ -558,6 +583,7 @@ class AsyncAppsResource(AsyncAPIResource):
         hostnames: SequenceNotStr[str] | Omit = omit,
         ip_subnets: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
+        source_subnets: SequenceNotStr[str] | Omit = omit,
         type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -581,6 +607,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           name: Display name for the app.
 
+          source_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
+
           type: Category of the app.
 
           extra_headers: Send extra headers
@@ -602,6 +631,7 @@ class AsyncAppsResource(AsyncAPIResource):
                     "hostnames": hostnames,
                     "ip_subnets": ip_subnets,
                     "name": name,
+                    "source_subnets": source_subnets,
                     "type": type,
                 },
                 app_edit_params.AppEditParams,

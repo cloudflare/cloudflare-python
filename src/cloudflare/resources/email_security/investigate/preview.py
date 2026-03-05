@@ -58,7 +58,8 @@ class PreviewResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
         """
-        Preview for non-detection messages
+        Generates a preview of an email message for safe viewing without executing any
+        embedded content.
 
         Args:
           account_id: Account Identifier
@@ -167,7 +168,8 @@ class AsyncPreviewResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
         """
-        Preview for non-detection messages
+        Generates a preview of an email message for safe viewing without executing any
+        embedded content.
 
         Args:
           account_id: Account Identifier

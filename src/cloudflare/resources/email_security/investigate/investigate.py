@@ -142,6 +142,7 @@ class InvestigateResource(SyncAPIResource):
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
+        exact_subject: str | Omit = omit,
         final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
@@ -173,9 +174,12 @@ class InvestigateResource(SyncAPIResource):
 
           detections_only: Determines if the search results will include detections or not.
 
-          domain: The sender domains the search filters by.
+          domain: Filter by a domain found in the email: sender domain, recipient domain, or a
+              domain in a link.
 
           end: The end of the search date range. Defaults to `now` if not provided.
+
+          exact_subject: Search for messages with an exact subject match.
 
           final_disposition: The dispositions the search filters by.
 
@@ -210,8 +214,15 @@ class InvestigateResource(SyncAPIResource):
               - x_originating_ip
               - Subject
 
+          recipient: Filter by recipient. Matches either an email address or a domain.
+
+          sender: Filter by sender. Matches either an email address or a domain.
+
           start: The beginning of the search date range. Defaults to `now - 30 days` if not
               provided.
+
+          subject: Search for messages containing individual keywords in any order within the
+              subject.
 
           extra_headers: Send extra headers
 
@@ -239,6 +250,7 @@ class InvestigateResource(SyncAPIResource):
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
+                        "exact_subject": exact_subject,
                         "final_disposition": final_disposition,
                         "message_action": message_action,
                         "message_id": message_id,
@@ -270,7 +282,8 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvestigateGetResponse:
         """
-        Get message details
+        Retrieves detailed information about a specific email message, including
+        headers, metadata, and security scan results.
 
         Args:
           account_id: Account Identifier
@@ -360,6 +373,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
+        exact_subject: str | Omit = omit,
         final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
@@ -391,9 +405,12 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           detections_only: Determines if the search results will include detections or not.
 
-          domain: The sender domains the search filters by.
+          domain: Filter by a domain found in the email: sender domain, recipient domain, or a
+              domain in a link.
 
           end: The end of the search date range. Defaults to `now` if not provided.
+
+          exact_subject: Search for messages with an exact subject match.
 
           final_disposition: The dispositions the search filters by.
 
@@ -428,8 +445,15 @@ class AsyncInvestigateResource(AsyncAPIResource):
               - x_originating_ip
               - Subject
 
+          recipient: Filter by recipient. Matches either an email address or a domain.
+
+          sender: Filter by sender. Matches either an email address or a domain.
+
           start: The beginning of the search date range. Defaults to `now - 30 days` if not
               provided.
+
+          subject: Search for messages containing individual keywords in any order within the
+              subject.
 
           extra_headers: Send extra headers
 
@@ -457,6 +481,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
+                        "exact_subject": exact_subject,
                         "final_disposition": final_disposition,
                         "message_action": message_action,
                         "message_id": message_id,
@@ -488,7 +513,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvestigateGetResponse:
         """
-        Get message details
+        Retrieves detailed information about a specific email message, including
+        headers, metadata, and security scan results.
 
         Args:
           account_id: Account Identifier

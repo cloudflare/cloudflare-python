@@ -56,8 +56,10 @@ class FallthroughResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FallthroughCreateResponse:
-        """
-        Generate fallthrough WAF expression template from a set of API hosts
+        """Creates an expression template fallthrough rule for API Shield.
+
+        Used for
+        configuring default behavior when no other expression templates match.
 
         Args:
           zone_id: Identifier.
@@ -120,8 +122,10 @@ class AsyncFallthroughResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FallthroughCreateResponse:
-        """
-        Generate fallthrough WAF expression template from a set of API hosts
+        """Creates an expression template fallthrough rule for API Shield.
+
+        Used for
+        configuring default behavior when no other expression templates match.
 
         Args:
           zone_id: Identifier.

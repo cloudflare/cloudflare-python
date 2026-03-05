@@ -361,10 +361,19 @@ class CustomProfile(BaseModel):
     keywords.
     """
 
+    data_classes: Optional[List[str]] = None
+    """Data classes associated with this profile."""
+
+    data_tags: Optional[List[str]] = None
+    """Data tags associated with this profile."""
+
     description: Optional[str] = None
     """The description of the profile."""
 
     entries: Optional[List[CustomProfileEntry]] = None
+
+    sensitivity_levels: Optional[List[List[str]]] = None
+    """Sensitivity levels associated with this profile as (group_id, level_id) tuples."""
 
     shared_entries: Optional[List[CustomProfileSharedEntry]] = None
 

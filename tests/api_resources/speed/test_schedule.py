@@ -34,6 +34,7 @@ class TestSchedule:
         schedule = client.speed.schedule.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            frequency="DAILY",
             region="us-central1",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])
@@ -211,6 +212,7 @@ class TestAsyncSchedule:
         schedule = await async_client.speed.schedule.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            frequency="DAILY",
             region="us-central1",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])

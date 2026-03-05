@@ -77,7 +77,8 @@ class AllowPoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyCreateResponse:
         """
-        Create an email allow policy
+        Creates a new email allow policy that permits specific senders, domains, or
+        patterns to bypass security scanning.
 
         Args:
           account_id: Account Identifier
@@ -227,8 +228,10 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyDeleteResponse:
-        """
-        Delete an email allow policy
+        """Removes an email allow policy.
+
+        Previously allowed senders will be subject to
+        normal security scanning.
 
         Args:
           account_id: Account Identifier
@@ -278,7 +281,8 @@ class AllowPoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyEditResponse:
         """
-        Update an email allow policy
+        Updates an existing email allow policy, modifying its matching criteria or
+        scope.
 
         Args:
           account_id: Account Identifier
@@ -344,7 +348,8 @@ class AllowPoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyGetResponse:
         """
-        Get an email allow policy
+        Retrieves details for a specific email allow policy, including its matching
+        criteria and scope.
 
         Args:
           account_id: Account Identifier
@@ -417,7 +422,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyCreateResponse:
         """
-        Create an email allow policy
+        Creates a new email allow policy that permits specific senders, domains, or
+        patterns to bypass security scanning.
 
         Args:
           account_id: Account Identifier
@@ -567,8 +573,10 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyDeleteResponse:
-        """
-        Delete an email allow policy
+        """Removes an email allow policy.
+
+        Previously allowed senders will be subject to
+        normal security scanning.
 
         Args:
           account_id: Account Identifier
@@ -618,7 +626,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyEditResponse:
         """
-        Update an email allow policy
+        Updates an existing email allow policy, modifying its matching criteria or
+        scope.
 
         Args:
           account_id: Account Identifier
@@ -684,7 +693,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyGetResponse:
         """
-        Get an email allow policy
+        Retrieves details for a specific email allow policy, including its matching
+        criteria and scope.
 
         Args:
           account_id: Account Identifier

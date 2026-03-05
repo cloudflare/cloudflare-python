@@ -89,7 +89,7 @@ class TestInference:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
-            normalization="MIN0_MAX",
+            normalization="PERCENTAGE",
         )
         assert_matches_type(InferenceTimeseriesGroupsV2Response, inference, path=["response"])
 
@@ -191,7 +191,7 @@ class TestAsyncInference:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
-            normalization="MIN0_MAX",
+            normalization="PERCENTAGE",
         )
         assert_matches_type(InferenceTimeseriesGroupsV2Response, inference, path=["response"])
 
