@@ -5637,6 +5637,22 @@ Methods:
 - <code title="delete /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">delete</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_delete_response.py">Optional[DEXTestDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_get_response.py">Optional[DEXTestGetResponse]</a></code>
 
+### IPProfiles
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices import IPProfile, IPProfileDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/devices/ip-profiles">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/ip_profile_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile.py">IPProfile</a></code>
+- <code title="patch /accounts/{account_id}/devices/ip-profiles/{profile_id}">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">update</a>(profile_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/ip_profile_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile.py">IPProfile</a></code>
+- <code title="get /accounts/{account_id}/devices/ip-profiles">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/ip_profile_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile.py">SyncSinglePage[IPProfile]</a></code>
+- <code title="delete /accounts/{account_id}/devices/ip-profiles/{profile_id}">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">delete</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile_delete_response.py">IPProfileDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/devices/ip-profiles/{profile_id}">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile.py">IPProfile</a></code>
+
 ### Networks
 
 Types:
