@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIPProfiles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.create(
@@ -32,6 +33,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.create(
@@ -45,6 +47,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.ip_profiles.with_raw_response.create(
@@ -60,6 +63,7 @@ class TestIPProfiles:
         ip_profile = response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.ip_profiles.with_streaming_response.create(
@@ -77,6 +81,7 @@ class TestIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -88,6 +93,7 @@ class TestIPProfiles:
                 subnet_id="b70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.update(
@@ -96,6 +102,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.update(
@@ -110,6 +117,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.ip_profiles.with_raw_response.update(
@@ -122,6 +130,7 @@ class TestIPProfiles:
         ip_profile = response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.ip_profiles.with_streaming_response.update(
@@ -136,6 +145,7 @@ class TestIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -150,6 +160,7 @@ class TestIPProfiles:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.list(
@@ -157,6 +168,7 @@ class TestIPProfiles:
         )
         assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.list(
@@ -165,6 +177,7 @@ class TestIPProfiles:
         )
         assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.ip_profiles.with_raw_response.list(
@@ -176,6 +189,7 @@ class TestIPProfiles:
         ip_profile = response.parse()
         assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.ip_profiles.with_streaming_response.list(
@@ -189,6 +203,7 @@ class TestIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -196,6 +211,7 @@ class TestIPProfiles:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.delete(
@@ -204,6 +220,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfileDeleteResponse, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.ip_profiles.with_raw_response.delete(
@@ -216,6 +233,7 @@ class TestIPProfiles:
         ip_profile = response.parse()
         assert_matches_type(IPProfileDeleteResponse, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.ip_profiles.with_streaming_response.delete(
@@ -230,6 +248,7 @@ class TestIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -244,6 +263,7 @@ class TestIPProfiles:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.get(
@@ -252,6 +272,7 @@ class TestIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.ip_profiles.with_raw_response.get(
@@ -264,6 +285,7 @@ class TestIPProfiles:
         ip_profile = response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.ip_profiles.with_streaming_response.get(
@@ -278,6 +300,7 @@ class TestIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -298,6 +321,7 @@ class TestAsyncIPProfiles:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.create(
@@ -309,6 +333,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.create(
@@ -322,6 +347,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.ip_profiles.with_raw_response.create(
@@ -337,6 +363,7 @@ class TestAsyncIPProfiles:
         ip_profile = await response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.ip_profiles.with_streaming_response.create(
@@ -354,6 +381,7 @@ class TestAsyncIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -365,6 +393,7 @@ class TestAsyncIPProfiles:
                 subnet_id="b70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.update(
@@ -373,6 +402,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.update(
@@ -387,6 +417,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.ip_profiles.with_raw_response.update(
@@ -399,6 +430,7 @@ class TestAsyncIPProfiles:
         ip_profile = await response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.ip_profiles.with_streaming_response.update(
@@ -413,6 +445,7 @@ class TestAsyncIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -427,6 +460,7 @@ class TestAsyncIPProfiles:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.list(
@@ -434,6 +468,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.list(
@@ -442,6 +477,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.ip_profiles.with_raw_response.list(
@@ -453,6 +489,7 @@ class TestAsyncIPProfiles:
         ip_profile = await response.parse()
         assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.ip_profiles.with_streaming_response.list(
@@ -466,6 +503,7 @@ class TestAsyncIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -473,6 +511,7 @@ class TestAsyncIPProfiles:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.delete(
@@ -481,6 +520,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfileDeleteResponse, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.ip_profiles.with_raw_response.delete(
@@ -493,6 +533,7 @@ class TestAsyncIPProfiles:
         ip_profile = await response.parse()
         assert_matches_type(IPProfileDeleteResponse, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.ip_profiles.with_streaming_response.delete(
@@ -507,6 +548,7 @@ class TestAsyncIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -521,6 +563,7 @@ class TestAsyncIPProfiles:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.get(
@@ -529,6 +572,7 @@ class TestAsyncIPProfiles:
         )
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.ip_profiles.with_raw_response.get(
@@ -541,6 +585,7 @@ class TestAsyncIPProfiles:
         ip_profile = await response.parse()
         assert_matches_type(IPProfile, ip_profile, path=["response"])
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.ip_profiles.with_streaming_response.get(
@@ -555,6 +600,7 @@ class TestAsyncIPProfiles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
