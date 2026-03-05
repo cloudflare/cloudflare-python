@@ -116,6 +116,7 @@ if TYPE_CHECKING:
         content_scanning,
         custom_hostnames,
         resource_sharing,
+        resource_tagging,
         token_validation,
         browser_rendering,
         mtls_certificates,
@@ -229,6 +230,7 @@ if TYPE_CHECKING:
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
+    from .resources.resource_tagging.resource_tagging import ResourceTaggingResource, AsyncResourceTaggingResource
     from .resources.token_validation.token_validation import TokenValidationResource, AsyncTokenValidationResource
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
@@ -890,6 +892,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.resource_sharing import ResourceSharingResource
 
         return ResourceSharingResource(self)
+
+    @cached_property
+    def resource_tagging(self) -> ResourceTaggingResource:
+        from .resources.resource_tagging import ResourceTaggingResource
+
+        return ResourceTaggingResource(self)
 
     @cached_property
     def leaked_credential_checks(self) -> LeakedCredentialChecksResource:
@@ -1743,6 +1751,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncResourceSharingResource(self)
 
     @cached_property
+    def resource_tagging(self) -> AsyncResourceTaggingResource:
+        from .resources.resource_tagging import AsyncResourceTaggingResource
+
+        return AsyncResourceTaggingResource(self)
+
+    @cached_property
     def leaked_credential_checks(self) -> AsyncLeakedCredentialChecksResource:
         from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResource
 
@@ -2529,6 +2543,12 @@ class CloudflareWithRawResponse:
         return ResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
     @cached_property
+    def resource_tagging(self) -> resource_tagging.ResourceTaggingResourceWithRawResponse:
+        from .resources.resource_tagging import ResourceTaggingResourceWithRawResponse
+
+        return ResourceTaggingResourceWithRawResponse(self._client.resource_tagging)
+
+    @cached_property
     def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithRawResponse:
         from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithRawResponse
 
@@ -3150,6 +3170,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
     @cached_property
+    def resource_tagging(self) -> resource_tagging.AsyncResourceTaggingResourceWithRawResponse:
+        from .resources.resource_tagging import AsyncResourceTaggingResourceWithRawResponse
+
+        return AsyncResourceTaggingResourceWithRawResponse(self._client.resource_tagging)
+
+    @cached_property
     def leaked_credential_checks(self) -> leaked_credential_checks.AsyncLeakedCredentialChecksResourceWithRawResponse:
         from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithRawResponse
 
@@ -3769,6 +3795,12 @@ class CloudflareWithStreamedResponse:
         from .resources.resource_sharing import ResourceSharingResourceWithStreamingResponse
 
         return ResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
+
+    @cached_property
+    def resource_tagging(self) -> resource_tagging.ResourceTaggingResourceWithStreamingResponse:
+        from .resources.resource_tagging import ResourceTaggingResourceWithStreamingResponse
+
+        return ResourceTaggingResourceWithStreamingResponse(self._client.resource_tagging)
 
     @cached_property
     def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithStreamingResponse:
@@ -4398,6 +4430,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.resource_sharing import AsyncResourceSharingResourceWithStreamingResponse
 
         return AsyncResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
+
+    @cached_property
+    def resource_tagging(self) -> resource_tagging.AsyncResourceTaggingResourceWithStreamingResponse:
+        from .resources.resource_tagging import AsyncResourceTaggingResourceWithStreamingResponse
+
+        return AsyncResourceTaggingResourceWithStreamingResponse(self._client.resource_tagging)
 
     @cached_property
     def leaked_credential_checks(
