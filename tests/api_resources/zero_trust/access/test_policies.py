@@ -64,7 +64,7 @@ class TestPolicies:
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
@@ -156,7 +156,7 @@ class TestPolicies:
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
@@ -407,7 +407,7 @@ class TestAsyncPolicies:
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
@@ -499,7 +499,7 @@ class TestAsyncPolicies:
             isolation_required=False,
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",

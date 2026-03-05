@@ -64,12 +64,6 @@ class OrganizationCreateParams(TypedDict, total=False):
     mfa_config: MfaConfig
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    mfa_configuration_allowed: bool
-    """
-    Indicates if this organization can enforce multi-factor authentication (MFA)
-    requirements at the application and policy level.
-    """
-
     mfa_required_for_all_apps: bool
     """Determines whether global MFA settings apply to applications by default.
 

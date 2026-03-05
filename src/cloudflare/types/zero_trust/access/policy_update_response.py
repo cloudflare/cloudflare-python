@@ -41,8 +41,8 @@ class MfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """

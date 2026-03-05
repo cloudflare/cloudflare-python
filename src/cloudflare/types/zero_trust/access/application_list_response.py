@@ -240,8 +240,8 @@ class SelfHostedApplicationMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -339,8 +339,8 @@ class SelfHostedApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -738,8 +738,8 @@ class SaaSApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1052,8 +1052,8 @@ class BrowserSSHApplicationMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1151,8 +1151,8 @@ class BrowserSSHApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1602,8 +1602,8 @@ class BrowserVNCApplicationMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1701,8 +1701,8 @@ class BrowserVNCApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2142,8 +2142,8 @@ class AppLauncherApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2356,8 +2356,8 @@ class DeviceEnrollmentPermissionsApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2537,8 +2537,8 @@ class BrowserIsolationPermissionsApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2718,8 +2718,8 @@ class GatewayIdentityProxyEndpointApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2899,8 +2899,8 @@ class BookmarkApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3202,8 +3202,8 @@ class BrowserRDPApplicationMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3301,8 +3301,8 @@ class BrowserRDPApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3818,8 +3818,8 @@ class McpServerApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -4271,8 +4271,8 @@ class McpServerPortalApplicationPolicyMfaConfig(BaseModel):
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: Optional[bool] = None
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """

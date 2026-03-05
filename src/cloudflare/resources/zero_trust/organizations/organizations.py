@@ -76,7 +76,6 @@ class OrganizationsResource(SyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_create_params.MfaConfig | Omit = omit,
-        mfa_configuration_allowed: bool | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
@@ -122,9 +121,6 @@ class OrganizationsResource(SyncAPIResource):
               Updates may only be made via the API or Terraform for this account when enabled.
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
-
-          mfa_configuration_allowed: Indicates if this organization can enforce multi-factor authentication (MFA)
-              requirements at the application and policy level.
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
@@ -178,7 +174,6 @@ class OrganizationsResource(SyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
-                    "mfa_configuration_allowed": mfa_configuration_allowed,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
@@ -211,7 +206,6 @@ class OrganizationsResource(SyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_update_params.MfaConfig | Omit = omit,
-        mfa_configuration_allowed: bool | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
         name: str | Omit = omit,
         session_duration: str | Omit = omit,
@@ -256,9 +250,6 @@ class OrganizationsResource(SyncAPIResource):
               Updates may only be made via the API or Terraform for this account when enabled.
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
-
-          mfa_configuration_allowed: Indicates if this organization can enforce multi-factor authentication (MFA)
-              requirements at the application and policy level.
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
@@ -314,7 +305,6 @@ class OrganizationsResource(SyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
-                    "mfa_configuration_allowed": mfa_configuration_allowed,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
                     "name": name,
                     "session_duration": session_duration,
@@ -508,7 +498,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_create_params.MfaConfig | Omit = omit,
-        mfa_configuration_allowed: bool | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
@@ -554,9 +543,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
               Updates may only be made via the API or Terraform for this account when enabled.
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
-
-          mfa_configuration_allowed: Indicates if this organization can enforce multi-factor authentication (MFA)
-              requirements at the application and policy level.
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
@@ -610,7 +596,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
-                    "mfa_configuration_allowed": mfa_configuration_allowed,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
@@ -643,7 +628,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_update_params.MfaConfig | Omit = omit,
-        mfa_configuration_allowed: bool | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
         name: str | Omit = omit,
         session_duration: str | Omit = omit,
@@ -688,9 +672,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
               Updates may only be made via the API or Terraform for this account when enabled.
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
-
-          mfa_configuration_allowed: Indicates if this organization can enforce multi-factor authentication (MFA)
-              requirements at the application and policy level.
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
@@ -746,7 +727,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
-                    "mfa_configuration_allowed": mfa_configuration_allowed,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
                     "name": name,
                     "session_duration": session_duration,

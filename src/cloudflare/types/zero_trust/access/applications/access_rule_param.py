@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import List, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .ip_rule_param import IPRuleParam
 from .email_rule_param import EmailRuleParam
@@ -37,6 +37,8 @@ __all__ = [
     "AccessOIDCClaimRuleOIDC",
     "AccessLinkedAppTokenRule",
     "AccessLinkedAppTokenRuleLinkedAppToken",
+    "AccessUserRiskScoreRule",
+    "AccessUserRiskScoreRuleUserRiskScore",
 ]
 
 
@@ -115,6 +117,20 @@ class AccessLinkedAppTokenRule(TypedDict, total=False):
     linked_app_token: Required[AccessLinkedAppTokenRuleLinkedAppToken]
 
 
+class AccessUserRiskScoreRuleUserRiskScore(TypedDict, total=False):
+    user_risk_score: Required[List[Literal["low", "medium", "high", "unscored"]]]
+    """A list of risk score levels to match.
+
+    Values can be low, medium, high, or unscored.
+    """
+
+
+class AccessUserRiskScoreRule(TypedDict, total=False):
+    """Matches a user's risk score."""
+
+    user_risk_score: Required[AccessUserRiskScoreRuleUserRiskScore]
+
+
 AccessRuleParam: TypeAlias = Union[
     GroupRuleParam,
     AnyValidServiceTokenRuleParam,
@@ -140,4 +156,5 @@ AccessRuleParam: TypeAlias = Union[
     AccessOIDCClaimRule,
     ServiceTokenRuleParam,
     AccessLinkedAppTokenRule,
+    AccessUserRiskScoreRule,
 ]

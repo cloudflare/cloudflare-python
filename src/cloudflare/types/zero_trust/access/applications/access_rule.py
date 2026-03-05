@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
-from typing_extensions import TypeAlias
+from typing import List, Union
+from typing_extensions import Literal, TypeAlias
 
 from .ip_rule import IPRule
 from .email_rule import EmailRule
@@ -36,6 +36,8 @@ __all__ = [
     "AccessOIDCClaimRuleOIDC",
     "AccessLinkedAppTokenRule",
     "AccessLinkedAppTokenRuleLinkedAppToken",
+    "AccessUserRiskScoreRule",
+    "AccessUserRiskScoreRuleUserRiskScore",
 ]
 
 
@@ -114,6 +116,20 @@ class AccessLinkedAppTokenRule(BaseModel):
     linked_app_token: AccessLinkedAppTokenRuleLinkedAppToken
 
 
+class AccessUserRiskScoreRuleUserRiskScore(BaseModel):
+    user_risk_score: List[Literal["low", "medium", "high", "unscored"]]
+    """A list of risk score levels to match.
+
+    Values can be low, medium, high, or unscored.
+    """
+
+
+class AccessUserRiskScoreRule(BaseModel):
+    """Matches a user's risk score."""
+
+    user_risk_score: AccessUserRiskScoreRuleUserRiskScore
+
+
 AccessRule: TypeAlias = Union[
     GroupRule,
     AnyValidServiceTokenRule,
@@ -139,4 +155,5 @@ AccessRule: TypeAlias = Union[
     AccessOIDCClaimRule,
     ServiceTokenRule,
     AccessLinkedAppTokenRule,
+    AccessUserRiskScoreRule,
 ]

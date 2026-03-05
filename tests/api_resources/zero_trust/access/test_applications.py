@@ -103,7 +103,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -413,7 +413,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -600,7 +600,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -1298,7 +1298,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -1830,7 +1830,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -2166,7 +2166,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -2367,7 +2367,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -3163,7 +3163,7 @@ class TestApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -4008,7 +4008,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -4318,7 +4318,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -4505,7 +4505,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -5203,7 +5203,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -5735,7 +5735,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -6071,7 +6071,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -6272,7 +6272,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",
@@ -7068,7 +7068,7 @@ class TestAsyncApplications:
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             mfa_config={
                 "allowed_authenticators": ["totp", "biometrics", "security_key"],
-                "mfa_bypass": False,
+                "mfa_disabled": False,
                 "session_duration": "24h",
             },
             name="Admin Site",

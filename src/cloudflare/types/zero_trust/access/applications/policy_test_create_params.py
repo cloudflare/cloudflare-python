@@ -56,8 +56,8 @@ class PolicyUnionMember0MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """

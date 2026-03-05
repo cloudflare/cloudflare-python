@@ -80,12 +80,6 @@ class Organization(BaseModel):
     mfa_config: Optional[MfaConfig] = None
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    mfa_configuration_allowed: Optional[bool] = None
-    """
-    Indicates if this organization can enforce multi-factor authentication (MFA)
-    requirements at the application and policy level.
-    """
-
     mfa_required_for_all_apps: Optional[bool] = None
     """Determines whether global MFA settings apply to applications by default.
 

@@ -448,8 +448,8 @@ class SelfHostedApplicationMfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -560,8 +560,8 @@ class SelfHostedApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -828,8 +828,8 @@ class SaaSApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1262,8 +1262,8 @@ class BrowserSSHApplicationMfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1374,8 +1374,8 @@ class BrowserSSHApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1808,8 +1808,8 @@ class BrowserVNCApplicationMfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -1920,8 +1920,8 @@ class BrowserVNCApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2246,8 +2246,8 @@ class AppLauncherApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2410,8 +2410,8 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDic
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2576,8 +2576,8 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2MfaConfig(TypedDic
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2751,8 +2751,8 @@ class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2MfaConfig(TypedDi
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -2899,8 +2899,8 @@ class BookmarkApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3324,8 +3324,8 @@ class BrowserRDPApplicationMfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3436,8 +3436,8 @@ class BrowserRDPApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -3883,8 +3883,8 @@ class McpServerApplicationPolicyUnionMember2MfaConfig(TypedDict, total=False):
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
@@ -4336,8 +4336,8 @@ class McpServerPortalApplicationPolicyUnionMember2MfaConfig(TypedDict, total=Fal
     allowed_authenticators: List[Literal["totp", "biometrics", "security_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
-    mfa_bypass: bool
-    """Indicates whether to bypass MFA for this resource.
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
 
     This option is available at the application and policy level.
     """
