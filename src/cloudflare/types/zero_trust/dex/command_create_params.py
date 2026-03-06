@@ -49,9 +49,15 @@ class Command(TypedDict, total=False):
     """Type of command to execute on the device"""
 
     device_id: Required[str]
-    """Unique identifier for the device"""
+    """Unique identifier for the physical device"""
 
     user_email: Required[str]
     """Email tied to the device"""
 
     command_args: CommandCommandArgs
+
+    registration_id: str
+    """Unique identifier for the device registration.
+
+    Required for multi-user devices to target the correct user session.
+    """

@@ -28,6 +28,13 @@ class Device(BaseModel):
     platform: Optional[str] = None
     """Operating system"""
 
+    registration_id: Optional[str] = FieldInfo(alias="registrationId", default=None)
+    """Device registration identifier (UUID v4).
+
+    On multi-user devices, this uniquely identifies a user's registration on the
+    device.
+    """
+
     status: Optional[str] = None
     """Network status"""
 

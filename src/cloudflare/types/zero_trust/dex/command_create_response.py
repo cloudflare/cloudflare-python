@@ -18,6 +18,9 @@ class Command(BaseModel):
     device_id: Optional[str] = None
     """Identifier for the device associated with the command"""
 
+    registration_id: Optional[str] = None
+    """Unique identifier for the device registration"""
+
     status: Optional[Literal["PENDING_EXEC", "PENDING_UPLOAD", "SUCCESS", "FAILED"]] = None
     """Current status of the command"""
 

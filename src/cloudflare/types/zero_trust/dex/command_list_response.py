@@ -19,6 +19,9 @@ class Command(BaseModel):
 
     filename: Optional[str] = None
 
+    registration_id: Optional[str] = None
+    """Unique identifier for the device registration"""
+
     status: Optional[str] = None
 
     type: Optional[str] = None
