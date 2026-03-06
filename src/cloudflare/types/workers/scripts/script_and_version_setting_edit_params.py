@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
+from ...._utils import PropertyInfo
 from ..migration_step_param import MigrationStepParam
 from .consumer_script_param import ConsumerScriptParam
 from ..single_step_migration_param import SingleStepMigrationParam
@@ -13,6 +14,7 @@ from ..single_step_migration_param import SingleStepMigrationParam
 __all__ = [
     "ScriptAndVersionSettingEditParams",
     "Settings",
+    "SettingsAnnotations",
     "SettingsBinding",
     "SettingsBindingWorkersBindingKindAI",
     "SettingsBindingWorkersBindingKindAnalyticsEngine",
@@ -47,6 +49,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindSecretKey",
     "SettingsBindingWorkersBindingKindWorkflow",
     "SettingsBindingWorkersBindingKindWasmModule",
+    "SettingsBindingWorkersBindingKindVPCService",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
@@ -73,6 +76,19 @@ class ScriptAndVersionSettingEditParams(TypedDict, total=False):
     """Identifier."""
 
     settings: Settings
+
+
+class SettingsAnnotations(TypedDict, total=False):
+    """Annotations for the Worker version.
+
+    Annotations are not inherited across settings updates; omitting this field means the new version will have no annotations.
+    """
+
+    workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
+    """Human-readable message about the version."""
+
+    workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
+    """User-provided identifier for the version."""
 
 
 class SettingsBindingWorkersBindingKindAI(TypedDict, total=False):
@@ -189,6 +205,9 @@ class SettingsBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=F
 
     class_name: str
     """The exported class name of the Durable Object."""
+
+    dispatch_namespace: str
+    """The dispatch namespace the Durable Object script belongs to."""
 
     environment: str
     """The environment of the script_name to bind to."""
@@ -344,7 +363,7 @@ class SettingsBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -389,6 +408,9 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the target Worker."""
 
     environment: str
     """Optional environment if the Worker utilizes one."""
@@ -516,6 +538,17 @@ class SettingsBindingWorkersBindingKindWasmModule(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindVPCService(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service_id: Required[str]
+    """Identifier of the VPC service to bind to."""
+
+    type: Required[Literal["vpc_service"]]
+    """The kind of resource that the binding provides."""
+
+
 SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
@@ -546,6 +579,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindSecretKey,
     SettingsBindingWorkersBindingKindWorkflow,
     SettingsBindingWorkersBindingKindWasmModule,
+    SettingsBindingWorkersBindingKindVPCService,
 ]
 
 
@@ -702,6 +736,13 @@ SettingsPlacement: TypeAlias = Union[
 
 
 class Settings(TypedDict, total=False):
+    annotations: SettingsAnnotations
+    """Annotations for the Worker version.
+
+    Annotations are not inherited across settings updates; omitting this field means
+    the new version will have no annotations.
+    """
+
     bindings: Iterable[SettingsBinding]
     """List of bindings attached to a Worker.
 

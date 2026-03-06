@@ -49,6 +49,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataBindingWorkersBindingKindWorkflow",
     "MetadataBindingWorkersBindingKindWasmModule",
+    "MetadataBindingWorkersBindingKindVPCService",
     "MetadataLimits",
     "MetadataMigrations",
     "MetadataMigrationsWorkersMultipleStepMigrations",
@@ -264,6 +265,9 @@ class MetadataBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=F
     class_name: str
     """The exported class name of the Durable Object."""
 
+    dispatch_namespace: str
+    """The dispatch namespace the Durable Object script belongs to."""
+
     environment: str
     """The environment of the script_name to bind to."""
 
@@ -418,7 +422,7 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -463,6 +467,9 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the target Worker."""
 
     environment: str
     """Optional environment if the Worker utilizes one."""
@@ -590,6 +597,17 @@ class MetadataBindingWorkersBindingKindWasmModule(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindVPCService(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service_id: Required[str]
+    """Identifier of the VPC service to bind to."""
+
+    type: Required[Literal["vpc_service"]]
+    """The kind of resource that the binding provides."""
+
+
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
@@ -620,6 +638,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindSecretKey,
     MetadataBindingWorkersBindingKindWorkflow,
     MetadataBindingWorkersBindingKindWasmModule,
+    MetadataBindingWorkersBindingKindVPCService,
 ]
 
 

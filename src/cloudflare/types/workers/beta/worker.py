@@ -187,3 +187,9 @@ class Worker(BaseModel):
 
     updated_on: datetime
     """When the Worker was most recently updated."""
+
+    deployed_on: Optional[datetime] = None
+    """When the Worker's most recent deployment was created.
+
+    `null` if the Worker has never been deployed.
+    """

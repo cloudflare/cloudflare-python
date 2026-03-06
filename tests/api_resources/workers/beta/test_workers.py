@@ -176,6 +176,8 @@ class TestWorkers:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         worker = client.workers.beta.workers.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            order="asc",
+            order_by="deployed_on",
             page=1,
             per_page=1,
         )
@@ -572,6 +574,8 @@ class TestAsyncWorkers:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         worker = await async_client.workers.beta.workers.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            order="asc",
+            order_by="deployed_on",
             page=1,
             per_page=1,
         )

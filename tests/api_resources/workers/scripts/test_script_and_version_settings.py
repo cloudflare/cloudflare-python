@@ -36,6 +36,10 @@ class TestScriptAndVersionSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             settings={
+                "annotations": {
+                    "workers_message": "Fixed bug.",
+                    "workers_tag": "v1.0.1",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
@@ -205,6 +209,10 @@ class TestAsyncScriptAndVersionSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             settings={
+                "annotations": {
+                    "workers_message": "Fixed bug.",
+                    "workers_tag": "v1.0.1",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",

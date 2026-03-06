@@ -47,6 +47,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindSecretKey",
     "SettingsBindingWorkersBindingKindWorkflow",
     "SettingsBindingWorkersBindingKindWasmModule",
+    "SettingsBindingWorkersBindingKindVPCService",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
@@ -76,6 +77,11 @@ class SettingEditParams(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     settings: Settings
+    """Script and version settings for Workers for Platforms namespace scripts.
+
+    Same as script-and-version-settings-item but without annotations, which are not
+    supported for namespace scripts.
+    """
 
 
 class SettingsBindingWorkersBindingKindAI(TypedDict, total=False):
@@ -192,6 +198,9 @@ class SettingsBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=F
 
     class_name: str
     """The exported class name of the Durable Object."""
+
+    dispatch_namespace: str
+    """The dispatch namespace the Durable Object script belongs to."""
 
     environment: str
     """The environment of the script_name to bind to."""
@@ -347,7 +356,7 @@ class SettingsBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -392,6 +401,9 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the target Worker."""
 
     environment: str
     """Optional environment if the Worker utilizes one."""
@@ -519,6 +531,17 @@ class SettingsBindingWorkersBindingKindWasmModule(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindVPCService(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service_id: Required[str]
+    """Identifier of the VPC service to bind to."""
+
+    type: Required[Literal["vpc_service"]]
+    """The kind of resource that the binding provides."""
+
+
 SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
@@ -549,6 +572,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindSecretKey,
     SettingsBindingWorkersBindingKindWorkflow,
     SettingsBindingWorkersBindingKindWasmModule,
+    SettingsBindingWorkersBindingKindVPCService,
 ]
 
 
@@ -705,6 +729,11 @@ SettingsPlacement: TypeAlias = Union[
 
 
 class Settings(TypedDict, total=False):
+    """Script and version settings for Workers for Platforms namespace scripts.
+
+    Same as script-and-version-settings-item but without annotations, which are not supported for namespace scripts.
+    """
+
     bindings: Iterable[SettingsBinding]
     """List of bindings attached to a Worker.
 

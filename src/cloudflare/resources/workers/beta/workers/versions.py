@@ -247,8 +247,8 @@ class VersionsResource(SyncAPIResource):
 
           worker_id: Identifier for the Worker, which can be ID or name.
 
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          version_id: Identifier for the version, which can be a UUID, a UUID prefix (minimum length
+              8), or the literal "latest" to operate on the most recently created version.
 
           extra_headers: Send extra headers
 
@@ -294,8 +294,8 @@ class VersionsResource(SyncAPIResource):
 
           worker_id: Identifier for the Worker, which can be ID or name.
 
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          version_id: Identifier for the version, which can be a UUID, a UUID prefix (minimum length
+              8), or the literal "latest" to operate on the most recently created version.
 
           include: Whether to include the `modules` property of the version in the response, which
               contains code and sourcemap content and may add several megabytes to the
@@ -549,8 +549,8 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           worker_id: Identifier for the Worker, which can be ID or name.
 
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          version_id: Identifier for the version, which can be a UUID, a UUID prefix (minimum length
+              8), or the literal "latest" to operate on the most recently created version.
 
           extra_headers: Send extra headers
 
@@ -596,8 +596,8 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           worker_id: Identifier for the Worker, which can be ID or name.
 
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          version_id: Identifier for the version, which can be a UUID, a UUID prefix (minimum length
+              8), or the literal "latest" to operate on the most recently created version.
 
           include: Whether to include the `modules` property of the version in the response, which
               contains code and sourcemap content and may add several megabytes to the

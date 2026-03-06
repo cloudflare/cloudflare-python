@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -206,6 +207,8 @@ class WorkersResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: Literal["deployed_on", "updated_on", "created_on", "name"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -220,6 +223,10 @@ class WorkersResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          order: Sort direction.
+
+          order_by: Property to sort results by.
 
           page: Current page.
 
@@ -245,6 +252,8 @@ class WorkersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order": order,
+                        "order_by": order_by,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -585,6 +594,8 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: Literal["deployed_on", "updated_on", "created_on", "name"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -599,6 +610,10 @@ class AsyncWorkersResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          order: Sort direction.
+
+          order_by: Property to sort results by.
 
           page: Current page.
 
@@ -624,6 +639,8 @@ class AsyncWorkersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "order": order,
+                        "order_by": order_by,
                         "page": page,
                         "per_page": per_page,
                     },

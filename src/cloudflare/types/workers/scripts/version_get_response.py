@@ -45,6 +45,7 @@ __all__ = [
     "ResourcesBindingWorkersBindingKindSecretKey",
     "ResourcesBindingWorkersBindingKindWorkflow",
     "ResourcesBindingWorkersBindingKindWasmModule",
+    "ResourcesBindingWorkersBindingKindVPCService",
     "ResourcesScript",
     "ResourcesScriptNamedHandler",
     "ResourcesScriptRuntime",
@@ -167,6 +168,9 @@ class ResourcesBindingWorkersBindingKindDurableObjectNamespace(BaseModel):
 
     class_name: Optional[str] = None
     """The exported class name of the Durable Object."""
+
+    dispatch_namespace: Optional[str] = None
+    """The dispatch namespace the Durable Object script belongs to."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""
@@ -322,7 +326,7 @@ class ResourcesBindingWorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -364,6 +368,9 @@ class ResourcesBindingWorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the target Worker."""
 
     environment: Optional[str] = None
     """Optional environment if the Worker utilizes one."""
@@ -479,6 +486,17 @@ class ResourcesBindingWorkersBindingKindWasmModule(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class ResourcesBindingWorkersBindingKindVPCService(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    service_id: str
+    """Identifier of the VPC service to bind to."""
+
+    type: Literal["vpc_service"]
+    """The kind of resource that the binding provides."""
+
+
 ResourcesBinding: TypeAlias = Annotated[
     Union[
         ResourcesBindingWorkersBindingKindAI,
@@ -510,6 +528,7 @@ ResourcesBinding: TypeAlias = Annotated[
         ResourcesBindingWorkersBindingKindSecretKey,
         ResourcesBindingWorkersBindingKindWorkflow,
         ResourcesBindingWorkersBindingKindWasmModule,
+        ResourcesBindingWorkersBindingKindVPCService,
     ],
     PropertyInfo(discriminator="type"),
 ]

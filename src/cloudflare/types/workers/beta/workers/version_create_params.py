@@ -50,6 +50,7 @@ __all__ = [
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
+    "BindingWorkersBindingKindVPCService",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -314,6 +315,9 @@ class BindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=False):
     class_name: str
     """The exported class name of the Durable Object."""
 
+    dispatch_namespace: str
+    """The dispatch namespace the Durable Object script belongs to."""
+
     environment: str
     """The environment of the script_name to bind to."""
 
@@ -468,7 +472,7 @@ class BindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -513,6 +517,9 @@ class BindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    entrypoint: str
+    """Entrypoint to invoke on the target Worker."""
 
     environment: str
     """Optional environment if the Worker utilizes one."""
@@ -640,6 +647,17 @@ class BindingWorkersBindingKindWasmModule(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindVPCService(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service_id: Required[str]
+    """Identifier of the VPC service to bind to."""
+
+    type: Required[Literal["vpc_service"]]
+    """The kind of resource that the binding provides."""
+
+
 Binding: TypeAlias = Union[
     BindingWorkersBindingKindAI,
     BindingWorkersBindingKindAnalyticsEngine,
@@ -670,6 +688,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindSecretKey,
     BindingWorkersBindingKindWorkflow,
     BindingWorkersBindingKindWasmModule,
+    BindingWorkersBindingKindVPCService,
 ]
 
 

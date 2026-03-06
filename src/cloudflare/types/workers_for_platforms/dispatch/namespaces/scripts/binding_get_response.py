@@ -43,6 +43,7 @@ __all__ = [
     "WorkersBindingKindSecretKey",
     "WorkersBindingKindWorkflow",
     "WorkersBindingKindWasmModule",
+    "WorkersBindingKindVPCService",
 ]
 
 
@@ -160,6 +161,9 @@ class WorkersBindingKindDurableObjectNamespace(BaseModel):
 
     class_name: Optional[str] = None
     """The exported class name of the Durable Object."""
+
+    dispatch_namespace: Optional[str] = None
+    """The dispatch namespace the Durable Object script belongs to."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""
@@ -315,7 +319,7 @@ class WorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -357,6 +361,9 @@ class WorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the target Worker."""
 
     environment: Optional[str] = None
     """Optional environment if the Worker utilizes one."""
@@ -472,6 +479,17 @@ class WorkersBindingKindWasmModule(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class WorkersBindingKindVPCService(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    service_id: str
+    """Identifier of the VPC service to bind to."""
+
+    type: Literal["vpc_service"]
+    """The kind of resource that the binding provides."""
+
+
 BindingGetResponse: TypeAlias = Annotated[
     Union[
         WorkersBindingKindAI,
@@ -503,6 +521,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindSecretKey,
         WorkersBindingKindWorkflow,
         WorkersBindingKindWasmModule,
+        WorkersBindingKindVPCService,
     ],
     PropertyInfo(discriminator="type"),
 ]

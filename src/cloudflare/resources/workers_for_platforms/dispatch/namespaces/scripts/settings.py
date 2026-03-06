@@ -69,6 +69,10 @@ class SettingsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
+          settings: Script and version settings for Workers for Platforms namespace scripts. Same as
+              script-and-version-settings-item but without annotations, which are not
+              supported for namespace scripts.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,6 +197,10 @@ class AsyncSettingsResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
+
+          settings: Script and version settings for Workers for Platforms namespace scripts. Same as
+              script-and-version-settings-item but without annotations, which are not
+              supported for namespace scripts.
 
           extra_headers: Send extra headers
 

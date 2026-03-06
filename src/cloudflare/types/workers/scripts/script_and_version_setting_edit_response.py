@@ -12,6 +12,7 @@ from ..single_step_migration import SingleStepMigration
 
 __all__ = [
     "ScriptAndVersionSettingEditResponse",
+    "Annotations",
     "Binding",
     "BindingWorkersBindingKindAI",
     "BindingWorkersBindingKindAnalyticsEngine",
@@ -46,6 +47,7 @@ __all__ = [
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
+    "BindingWorkersBindingKindVPCService",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -65,6 +67,25 @@ __all__ = [
     "PlacementUnionMember7TargetHostname",
     "PlacementUnionMember7TargetHost",
 ]
+
+
+class Annotations(BaseModel):
+    """Annotations for the Worker version.
+
+    Annotations are not inherited across settings updates; omitting this field means the new version will have no annotations.
+    """
+
+    workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
+    """Human-readable message about the version."""
+
+    workers_tag: Optional[str] = FieldInfo(alias="workers/tag", default=None)
+    """User-provided identifier for the version."""
+
+    workers_triggered_by: Optional[str] = FieldInfo(alias="workers/triggered_by", default=None)
+    """Operation that triggered the creation of the version.
+
+    This is read-only and set by the server.
+    """
 
 
 class BindingWorkersBindingKindAI(BaseModel):
@@ -181,6 +202,9 @@ class BindingWorkersBindingKindDurableObjectNamespace(BaseModel):
 
     class_name: Optional[str] = None
     """The exported class name of the Durable Object."""
+
+    dispatch_namespace: Optional[str] = None
+    """The dispatch namespace the Durable Object script belongs to."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""
@@ -336,7 +360,7 @@ class BindingWorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -378,6 +402,9 @@ class BindingWorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
+
+    entrypoint: Optional[str] = None
+    """Entrypoint to invoke on the target Worker."""
 
     environment: Optional[str] = None
     """Optional environment if the Worker utilizes one."""
@@ -493,6 +520,17 @@ class BindingWorkersBindingKindWasmModule(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindVPCService(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    service_id: str
+    """Identifier of the VPC service to bind to."""
+
+    type: Literal["vpc_service"]
+    """The kind of resource that the binding provides."""
+
+
 Binding: TypeAlias = Annotated[
     Union[
         BindingWorkersBindingKindAI,
@@ -524,6 +562,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindSecretKey,
         BindingWorkersBindingKindWorkflow,
         BindingWorkersBindingKindWasmModule,
+        BindingWorkersBindingKindVPCService,
     ],
     PropertyInfo(discriminator="type"),
 ]
@@ -670,6 +709,13 @@ Placement: TypeAlias = Union[
 
 
 class ScriptAndVersionSettingEditResponse(BaseModel):
+    annotations: Optional[Annotations] = None
+    """Annotations for the Worker version.
+
+    Annotations are not inherited across settings updates; omitting this field means
+    the new version will have no annotations.
+    """
+
     bindings: Optional[List[Binding]] = None
     """List of bindings attached to a Worker.
 

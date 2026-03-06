@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["WorkerListParams"]
 
@@ -10,6 +10,12 @@ __all__ = ["WorkerListParams"]
 class WorkerListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
+
+    order: Literal["asc", "desc"]
+    """Sort direction."""
+
+    order_by: Literal["deployed_on", "updated_on", "created_on", "name"]
+    """Property to sort results by."""
 
     page: int
     """Current page."""
