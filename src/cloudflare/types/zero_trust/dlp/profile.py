@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ...._compat import (  # type: ignore[attr-defined]
-    PYDANTIC_V2,  # pyright: ignore[reportAttributeAccessIssue, reportUnknownVariableType]
+    PYDANTIC_V1,  # pyright: ignore[reportAttributeAccessIssue, reportUnknownVariableType]
 )
 from ...._models import BaseModel
 
@@ -532,29 +532,7 @@ Profile: TypeAlias = Union[CustomProfile, PredefinedProfile, IntegrationProfile]
 from .profiles.pattern import Pattern
 from .context_awareness import ContextAwareness
 
-if PYDANTIC_V2:
-    CustomProfile.model_rebuild()
-    CustomProfileEntryCustomEntry.model_rebuild()
-    CustomProfileEntryPredefinedEntry.model_rebuild()
-    CustomProfileEntryPredefinedEntryConfidence.model_rebuild()
-    CustomProfileEntryIntegrationEntry.model_rebuild()
-    CustomProfileEntryExactDataEntry.model_rebuild()
-    CustomProfileEntryWordListEntry.model_rebuild()
-    PredefinedProfile.model_rebuild()
-    PredefinedProfileEntryCustomEntry.model_rebuild()
-    PredefinedProfileEntryPredefinedEntry.model_rebuild()
-    PredefinedProfileEntryPredefinedEntryConfidence.model_rebuild()
-    PredefinedProfileEntryIntegrationEntry.model_rebuild()
-    PredefinedProfileEntryExactDataEntry.model_rebuild()
-    PredefinedProfileEntryWordListEntry.model_rebuild()
-    IntegrationProfile.model_rebuild()
-    IntegrationProfileEntryCustomEntry.model_rebuild()
-    IntegrationProfileEntryPredefinedEntry.model_rebuild()
-    IntegrationProfileEntryPredefinedEntryConfidence.model_rebuild()
-    IntegrationProfileEntryIntegrationEntry.model_rebuild()
-    IntegrationProfileEntryExactDataEntry.model_rebuild()
-    IntegrationProfileEntryWordListEntry.model_rebuild()
-else:
+if PYDANTIC_V1:
     CustomProfile.update_forward_refs()  # type: ignore
     CustomProfileEntryCustomEntry.update_forward_refs()  # type: ignore
     CustomProfileEntryPredefinedEntry.update_forward_refs()  # type: ignore
@@ -576,3 +554,25 @@ else:
     IntegrationProfileEntryIntegrationEntry.update_forward_refs()  # type: ignore
     IntegrationProfileEntryExactDataEntry.update_forward_refs()  # type: ignore
     IntegrationProfileEntryWordListEntry.update_forward_refs()  # type: ignore
+else:
+    CustomProfile.model_rebuild()
+    CustomProfileEntryCustomEntry.model_rebuild()
+    CustomProfileEntryPredefinedEntry.model_rebuild()
+    CustomProfileEntryPredefinedEntryConfidence.model_rebuild()
+    CustomProfileEntryIntegrationEntry.model_rebuild()
+    CustomProfileEntryExactDataEntry.model_rebuild()
+    CustomProfileEntryWordListEntry.model_rebuild()
+    PredefinedProfile.model_rebuild()
+    PredefinedProfileEntryCustomEntry.model_rebuild()
+    PredefinedProfileEntryPredefinedEntry.model_rebuild()
+    PredefinedProfileEntryPredefinedEntryConfidence.model_rebuild()
+    PredefinedProfileEntryIntegrationEntry.model_rebuild()
+    PredefinedProfileEntryExactDataEntry.model_rebuild()
+    PredefinedProfileEntryWordListEntry.model_rebuild()
+    IntegrationProfile.model_rebuild()
+    IntegrationProfileEntryCustomEntry.model_rebuild()
+    IntegrationProfileEntryPredefinedEntry.model_rebuild()
+    IntegrationProfileEntryPredefinedEntryConfidence.model_rebuild()
+    IntegrationProfileEntryIntegrationEntry.model_rebuild()
+    IntegrationProfileEntryExactDataEntry.model_rebuild()
+    IntegrationProfileEntryWordListEntry.model_rebuild()
