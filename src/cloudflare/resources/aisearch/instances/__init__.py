@@ -8,14 +8,6 @@ from .jobs import (
     JobsResourceWithStreamingResponse,
     AsyncJobsResourceWithStreamingResponse,
 )
-from .items import (
-    ItemsResource,
-    AsyncItemsResource,
-    ItemsResourceWithRawResponse,
-    AsyncItemsResourceWithRawResponse,
-    ItemsResourceWithStreamingResponse,
-    AsyncItemsResourceWithStreamingResponse,
-)
 from .instances import (
     InstancesResource,
     AsyncInstancesResource,
@@ -26,12 +18,6 @@ from .instances import (
 )
 
 __all__ = [
-    "ItemsResource",
-    "AsyncItemsResource",
-    "ItemsResourceWithRawResponse",
-    "AsyncItemsResourceWithRawResponse",
-    "ItemsResourceWithStreamingResponse",
-    "AsyncItemsResourceWithStreamingResponse",
     "JobsResource",
     "AsyncJobsResource",
     "JobsResourceWithRawResponse",

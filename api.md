@@ -10844,18 +10844,6 @@ Methods:
 - <code title="post /accounts/{account_id}/ai-search/instances/{id}/search">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">search</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_search_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_search_response.py">InstanceSearchResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/stats">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">stats</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_stats_response.py">InstanceStatsResponse</a></code>
 
-### Items
-
-Types:
-
-```python
-from cloudflare.types.aisearch.instances import ItemListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/ai-search/instances/{id}/items">client.aisearch.instances.items.<a href="./src/cloudflare/resources/aisearch/instances/items.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/item_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/item_list_response.py">SyncV4PagePaginationArray[ItemListResponse]</a></code>
-
 ### Jobs
 
 Types:

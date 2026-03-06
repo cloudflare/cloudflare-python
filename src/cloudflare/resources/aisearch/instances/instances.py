@@ -15,14 +15,6 @@ from .jobs import (
     JobsResourceWithStreamingResponse,
     AsyncJobsResourceWithStreamingResponse,
 )
-from .items import (
-    ItemsResource,
-    AsyncItemsResource,
-    ItemsResourceWithRawResponse,
-    AsyncItemsResourceWithRawResponse,
-    ItemsResourceWithStreamingResponse,
-    AsyncItemsResourceWithStreamingResponse,
-)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -56,10 +48,6 @@ __all__ = ["InstancesResource", "AsyncInstancesResource"]
 
 
 class InstancesResource(SyncAPIResource):
-    @cached_property
-    def items(self) -> ItemsResource:
-        return ItemsResource(self._client)
-
     @cached_property
     def jobs(self) -> JobsResource:
         return JobsResource(self._client)
@@ -772,10 +760,6 @@ class InstancesResource(SyncAPIResource):
 
 
 class AsyncInstancesResource(AsyncAPIResource):
-    @cached_property
-    def items(self) -> AsyncItemsResource:
-        return AsyncItemsResource(self._client)
-
     @cached_property
     def jobs(self) -> AsyncJobsResource:
         return AsyncJobsResource(self._client)
@@ -1517,10 +1501,6 @@ class InstancesResourceWithRawResponse:
         )
 
     @cached_property
-    def items(self) -> ItemsResourceWithRawResponse:
-        return ItemsResourceWithRawResponse(self._instances.items)
-
-    @cached_property
     def jobs(self) -> JobsResourceWithRawResponse:
         return JobsResourceWithRawResponse(self._instances.jobs)
 
@@ -1553,10 +1533,6 @@ class AsyncInstancesResourceWithRawResponse:
         self.stats = async_to_raw_response_wrapper(
             instances.stats,
         )
-
-    @cached_property
-    def items(self) -> AsyncItemsResourceWithRawResponse:
-        return AsyncItemsResourceWithRawResponse(self._instances.items)
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithRawResponse:
@@ -1593,10 +1569,6 @@ class InstancesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def items(self) -> ItemsResourceWithStreamingResponse:
-        return ItemsResourceWithStreamingResponse(self._instances.items)
-
-    @cached_property
     def jobs(self) -> JobsResourceWithStreamingResponse:
         return JobsResourceWithStreamingResponse(self._instances.jobs)
 
@@ -1629,10 +1601,6 @@ class AsyncInstancesResourceWithStreamingResponse:
         self.stats = async_to_streamed_response_wrapper(
             instances.stats,
         )
-
-    @cached_property
-    def items(self) -> AsyncItemsResourceWithStreamingResponse:
-        return AsyncItemsResourceWithStreamingResponse(self._instances.items)
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithStreamingResponse:

@@ -22,6 +22,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerCrawlOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
     "SourceParamsWebCrawlerStoreOptions",
@@ -115,6 +116,18 @@ class RetrievalOptions(BaseModel):
     """
 
 
+class SourceParamsWebCrawlerCrawlOptions(BaseModel):
+    depth: Optional[float] = None
+
+    include_external_links: Optional[bool] = None
+
+    include_subdomains: Optional[bool] = None
+
+    max_age: Optional[float] = None
+
+    source: Optional[Literal["all", "sitemaps", "links"]] = None
+
+
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     path: str
     """Glob pattern to match against the page URL path.
@@ -161,9 +174,11 @@ class SourceParamsWebCrawlerStoreOptions(BaseModel):
 
 
 class SourceParamsWebCrawler(BaseModel):
+    crawl_options: Optional[SourceParamsWebCrawlerCrawlOptions] = None
+
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "feed-rss"]] = None
+    parse_type: Optional[Literal["sitemap", "feed-rss", "crawl"]] = None
 
     store_options: Optional[SourceParamsWebCrawlerStoreOptions] = None
 

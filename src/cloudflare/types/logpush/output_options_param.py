@@ -71,8 +71,8 @@ class OutputOptionsParam(TypedDict, total=False):
     `sample_interval` of the data.
     """
 
-    timestamp_format: Literal["unixnano", "unix", "rfc3339"]
+    timestamp_format: Literal["unixnano", "unix", "rfc3339", "rfc3339nano"]
     """
-    String to specify the format for timestamps, such as `unixnano`, `unix`, or
-    `rfc3339`.
+    String to specify the format for timestamps, such as `unixnano`, `unix`,
+    `rfc3339` or `rfc3339nano`.
     """
