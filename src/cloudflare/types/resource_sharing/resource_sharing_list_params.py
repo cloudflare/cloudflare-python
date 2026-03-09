@@ -36,7 +36,6 @@ class ResourceSharingListParams(TypedDict, total=False):
     resource_types: List[
         Literal[
             "custom-ruleset",
-            "widget",
             "gateway-policy",
             "gateway-destination-ip",
             "gateway-block-page-settings",

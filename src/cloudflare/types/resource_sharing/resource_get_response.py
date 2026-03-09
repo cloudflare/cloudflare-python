@@ -29,7 +29,6 @@ class ResourceGetResponse(BaseModel):
 
     resource_type: Literal[
         "custom-ruleset",
-        "widget",
         "gateway-policy",
         "gateway-destination-ip",
         "gateway-block-page-settings",

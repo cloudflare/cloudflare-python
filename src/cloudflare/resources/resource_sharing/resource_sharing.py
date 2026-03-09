@@ -195,7 +195,6 @@ class ResourceSharingResource(SyncAPIResource):
         resource_types: List[
             Literal[
                 "custom-ruleset",
-                "widget",
                 "gateway-policy",
                 "gateway-destination-ip",
                 "gateway-block-page-settings",
@@ -524,7 +523,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         resource_types: List[
             Literal[
                 "custom-ruleset",
-                "widget",
                 "gateway-policy",
                 "gateway-destination-ip",
                 "gateway-block-page-settings",

@@ -60,7 +60,6 @@ class ResourcesResource(SyncAPIResource):
         resource_id: str,
         resource_type: Literal[
             "custom-ruleset",
-            "widget",
             "gateway-policy",
             "gateway-destination-ip",
             "gateway-block-page-settings",
@@ -185,7 +184,6 @@ class ResourcesResource(SyncAPIResource):
         per_page: int | Omit = omit,
         resource_type: Literal[
             "custom-ruleset",
-            "widget",
             "gateway-policy",
             "gateway-destination-ip",
             "gateway-block-page-settings",
@@ -379,7 +377,6 @@ class AsyncResourcesResource(AsyncAPIResource):
         resource_id: str,
         resource_type: Literal[
             "custom-ruleset",
-            "widget",
             "gateway-policy",
             "gateway-destination-ip",
             "gateway-block-page-settings",
@@ -504,7 +501,6 @@ class AsyncResourcesResource(AsyncAPIResource):
         per_page: int | Omit = omit,
         resource_type: Literal[
             "custom-ruleset",
-            "widget",
             "gateway-policy",
             "gateway-destination-ip",
             "gateway-block-page-settings",
