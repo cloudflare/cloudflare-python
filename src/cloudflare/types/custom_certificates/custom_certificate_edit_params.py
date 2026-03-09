@@ -25,6 +25,9 @@ class CustomCertificateEditParams(TypedDict, total=False):
     certificate: str
     """The zone's SSL certificate or certificate and the intermediate(s)."""
 
+    custom_csr_id: str
+    """The identifier for the Custom CSR that was used."""
+
     deploy: Literal["staging", "production"]
     """The environment to deploy the certificate to, defaults to production"""
 

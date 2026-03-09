@@ -28,6 +28,9 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     chain, but does not otherwise modify it.
     """
 
+    custom_csr_id: str
+    """The identifier for the Custom CSR that was used."""
+
     deploy: Literal["staging", "production"]
     """The environment to deploy the certificate to, defaults to production"""
 

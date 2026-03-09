@@ -73,6 +73,7 @@ class CustomCertificatesResource(SyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
+        custom_csr_id: str | Omit = omit,
         deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
@@ -98,6 +99,8 @@ class CustomCertificatesResource(SyncAPIResource):
               even by clients using outdated or unusual trust stores. An optimal bundle uses
               the shortest chain and newest intermediates. And the force bundle verifies the
               chain, but does not otherwise modify it.
+
+          custom_csr_id: The identifier for the Custom CSR that was used.
 
           deploy: The environment to deploy the certificate to, defaults to production
 
@@ -141,6 +144,7 @@ class CustomCertificatesResource(SyncAPIResource):
                     "certificate": certificate,
                     "private_key": private_key,
                     "bundle_method": bundle_method,
+                    "custom_csr_id": custom_csr_id,
                     "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
@@ -276,6 +280,7 @@ class CustomCertificatesResource(SyncAPIResource):
         zone_id: str,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
+        custom_csr_id: str | Omit = omit,
         deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
@@ -304,6 +309,8 @@ class CustomCertificatesResource(SyncAPIResource):
               chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
+
+          custom_csr_id: The identifier for the Custom CSR that was used.
 
           deploy: The environment to deploy the certificate to, defaults to production
 
@@ -349,6 +356,7 @@ class CustomCertificatesResource(SyncAPIResource):
                 {
                     "bundle_method": bundle_method,
                     "certificate": certificate,
+                    "custom_csr_id": custom_csr_id,
                     "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
@@ -446,6 +454,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
+        custom_csr_id: str | Omit = omit,
         deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
@@ -471,6 +480,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
               even by clients using outdated or unusual trust stores. An optimal bundle uses
               the shortest chain and newest intermediates. And the force bundle verifies the
               chain, but does not otherwise modify it.
+
+          custom_csr_id: The identifier for the Custom CSR that was used.
 
           deploy: The environment to deploy the certificate to, defaults to production
 
@@ -514,6 +525,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                     "certificate": certificate,
                     "private_key": private_key,
                     "bundle_method": bundle_method,
+                    "custom_csr_id": custom_csr_id,
                     "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,
@@ -649,6 +661,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         zone_id: str,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
+        custom_csr_id: str | Omit = omit,
         deploy: Literal["staging", "production"] | Omit = omit,
         geo_restrictions: GeoRestrictionsParam | Omit = omit,
         policy: str | Omit = omit,
@@ -677,6 +690,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
               chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
+
+          custom_csr_id: The identifier for the Custom CSR that was used.
 
           deploy: The environment to deploy the certificate to, defaults to production
 
@@ -722,6 +737,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 {
                     "bundle_method": bundle_method,
                     "certificate": certificate,
+                    "custom_csr_id": custom_csr_id,
                     "deploy": deploy,
                     "geo_restrictions": geo_restrictions,
                     "policy": policy,

@@ -27,6 +27,9 @@ class CustomCertificate(BaseModel):
     chain, but does not otherwise modify it.
     """
 
+    custom_csr_id: Optional[str] = None
+    """The identifier for the Custom CSR that was used."""
+
     expires_on: Optional[datetime] = None
     """When the certificate from the authority expires."""
 

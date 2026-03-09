@@ -88,6 +88,9 @@ class SSL(TypedDict, total=False):
     custom_certificate: str
     """If a custom uploaded certificate is used."""
 
+    custom_csr_id: str
+    """The identifier for the Custom CSR that was used."""
+
     custom_key: str
     """The key for a custom uploaded certificate."""
 
