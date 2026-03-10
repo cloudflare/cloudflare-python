@@ -9334,6 +9334,21 @@ Methods:
 - <code title="put /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_update_response.py">Optional[OriginPostQuantumEncryptionUpdateResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_get_response.py">Optional[OriginPostQuantumEncryptionGetResponse]</a></code>
 
+# GoogleTagGateway
+
+## Config
+
+Types:
+
+```python
+from cloudflare.types.google_tag_gateway import Config
+```
+
+Methods:
+
+- <code title="put /zones/{zone_id}/settings/google-tag-gateway/config">client.google_tag_gateway.config.<a href="./src/cloudflare/resources/google_tag_gateway/config.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/google_tag_gateway/config_update_params.py">params</a>) -> <a href="./src/cloudflare/types/google_tag_gateway/config.py">Optional[Config]</a></code>
+- <code title="get /zones/{zone_id}/settings/google-tag-gateway/config">client.google_tag_gateway.config.<a href="./src/cloudflare/resources/google_tag_gateway/config.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/google_tag_gateway/config.py">Optional[Config]</a></code>
+
 # Zaraz
 
 Types:
