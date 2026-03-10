@@ -30,7 +30,7 @@ __all__ = [
 
 
 class CustomMetadata(BaseModel):
-    data_type: Literal["text", "number", "boolean"]
+    data_type: Literal["text", "number", "boolean", "datetime"]
 
     field_name: str
 
@@ -85,7 +85,7 @@ class RetrievalOptionsBoostBy(BaseModel):
     """Metadata field name to boost by.
 
     Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
-    fields support asc/desc directions; text/boolean fields support
+    and datetime fields support asc/desc directions; text/boolean fields support
     exists/not_exists.
     """
 
@@ -94,8 +94,8 @@ class RetrievalOptionsBoostBy(BaseModel):
 
     'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
     rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
-    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
-    'exists' for text/boolean fields.
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric/datetime
+    fields, 'exists' for text/boolean fields.
     """
 
 
@@ -213,8 +213,6 @@ class InstanceCreateResponse(BaseModel):
     created_at: datetime
 
     modified_at: datetime
-
-    vectorize_name: str
 
     ai_gateway_id: Optional[str] = None
 

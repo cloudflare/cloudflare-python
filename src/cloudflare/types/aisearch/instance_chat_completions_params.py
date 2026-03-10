@@ -118,7 +118,7 @@ class AISearchOptionsRetrievalBoostBy(TypedDict, total=False):
     """Metadata field name to boost by.
 
     Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
-    fields support asc/desc directions; text/boolean fields support
+    and datetime fields support asc/desc directions; text/boolean fields support
     exists/not_exists.
     """
 
@@ -127,8 +127,8 @@ class AISearchOptionsRetrievalBoostBy(TypedDict, total=False):
 
     'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
     rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
-    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
-    'exists' for text/boolean fields.
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric/datetime
+    fields, 'exists' for text/boolean fields.
     """
 
 
@@ -137,8 +137,8 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
     """Metadata fields to boost search results by.
 
     Overrides the instance-level boost_by config. Direction defaults to 'asc' for
-    numeric fields, 'exists' for text/boolean fields. Fields must match 'timestamp'
-    or a defined custom_metadata field.
+    numeric/datetime fields, 'exists' for text/boolean fields. Fields must match
+    'timestamp' or a defined custom_metadata field.
     """
 
     context_expansion: int

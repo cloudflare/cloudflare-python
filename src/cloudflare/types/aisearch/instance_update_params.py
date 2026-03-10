@@ -189,7 +189,7 @@ class InstanceUpdateParams(TypedDict, total=False):
 
 
 class CustomMetadata(TypedDict, total=False):
-    data_type: Required[Literal["text", "number", "boolean"]]
+    data_type: Required[Literal["text", "number", "boolean", "datetime"]]
 
     field_name: Required[str]
 
@@ -244,7 +244,7 @@ class RetrievalOptionsBoostBy(TypedDict, total=False):
     """Metadata field name to boost by.
 
     Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
-    fields support asc/desc directions; text/boolean fields support
+    and datetime fields support asc/desc directions; text/boolean fields support
     exists/not_exists.
     """
 
@@ -253,8 +253,8 @@ class RetrievalOptionsBoostBy(TypedDict, total=False):
 
     'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
     rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
-    chunks that lack the field. Optional ��� defaults to 'asc' for numeric fields,
-    'exists' for text/boolean fields.
+    chunks that lack the field. Optional ��� defaults to 'asc' for numeric/datetime
+    fields, 'exists' for text/boolean fields.
     """
 
 
