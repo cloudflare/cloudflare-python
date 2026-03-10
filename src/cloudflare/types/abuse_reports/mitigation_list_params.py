@@ -42,6 +42,7 @@ class MitigationListParams(TypedDict, total=False):
 
     type: Literal[
         "legal_block",
+        "misleading_interstitial",
         "phishing_interstitial",
         "network_block",
         "rate_limit_cache",

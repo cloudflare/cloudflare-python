@@ -70,6 +70,7 @@ class MitigationsResource(SyncAPIResource):
         status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
         type: Literal[
             "legal_block",
+            "misleading_interstitial",
             "phishing_interstitial",
             "network_block",
             "rate_limit_cache",
@@ -230,6 +231,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
         type: Literal[
             "legal_block",
+            "misleading_interstitial",
             "phishing_interstitial",
             "network_block",
             "rate_limit_cache",

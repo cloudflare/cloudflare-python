@@ -26,6 +26,7 @@ class MitigationReviewResponse(BaseModel):
 
     type: Literal[
         "legal_block",
+        "misleading_interstitial",
         "phishing_interstitial",
         "network_block",
         "rate_limit_cache",
