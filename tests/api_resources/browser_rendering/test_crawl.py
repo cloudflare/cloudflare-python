@@ -1,0 +1,695 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import os
+from typing import Any, cast
+
+import pytest
+
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
+from cloudflare.types.browser_rendering import (
+    CrawlGetResponse,
+    CrawlDeleteResponse,
+)
+
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+
+class TestCrawl:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.create(
+            account_id="account_id",
+            url="https://example.com",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.create(
+            account_id="account_id",
+            url="https://example.com",
+            cache_ttl=86400,
+            action_timeout=120000,
+            add_script_tag=[
+                {
+                    "id": "id",
+                    "content": "content",
+                    "type": "type",
+                    "url": "url",
+                }
+            ],
+            add_style_tag=[
+                {
+                    "content": "content",
+                    "url": "url",
+                }
+            ],
+            allow_request_pattern=["string"],
+            allow_resource_types=["document"],
+            authenticate={
+                "password": "x",
+                "username": "x",
+            },
+            best_attempt=True,
+            cookies=[
+                {
+                    "name": "name",
+                    "value": "value",
+                    "domain": "domain",
+                    "expires": 0,
+                    "http_only": True,
+                    "partition_key": "partitionKey",
+                    "path": "path",
+                    "priority": "Low",
+                    "same_party": True,
+                    "same_site": "Strict",
+                    "secure": True,
+                    "source_port": 0,
+                    "source_scheme": "Unset",
+                    "url": "url",
+                }
+            ],
+            depth=1,
+            emulate_media_type="emulateMediaType",
+            formats=["html"],
+            goto_options={
+                "referer": "referer",
+                "referrer_policy": "referrerPolicy",
+                "timeout": 60000,
+                "wait_until": "load",
+            },
+            json_options={
+                "custom_ai": [
+                    {
+                        "authorization": "authorization",
+                        "model": "model",
+                    }
+                ],
+                "prompt": "prompt",
+                "response_format": {
+                    "type": "type",
+                    "json_schema": {"foo": "string"},
+                },
+            },
+            limit=1,
+            max_age=0,
+            modified_since=1,
+            options={
+                "exclude_patterns": ["x"],
+                "include_external_links": True,
+                "include_patterns": ["x"],
+                "include_subdomains": True,
+            },
+            reject_request_pattern=["string"],
+            reject_resource_types=["document"],
+            render=True,
+            set_extra_http_headers={"foo": "string"},
+            set_java_script_enabled=True,
+            source="sitemaps",
+            user_agent="userAgent",
+            viewport={
+                "height": 0,
+                "width": 0,
+                "device_scale_factor": 0,
+                "has_touch": True,
+                "is_landscape": True,
+                "is_mobile": True,
+            },
+            wait_for_selector={
+                "selector": "selector",
+                "hidden": True,
+                "timeout": 120000,
+                "visible": True,
+            },
+            wait_for_timeout=120000,
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.crawl.with_raw_response.create(
+            account_id="account_id",
+            url="https://example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = response.parse()
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+        with client.browser_rendering.crawl.with_streaming_response.create(
+            account_id="account_id",
+            url="https://example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = response.parse()
+            assert_matches_type(str, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.create(
+                account_id="",
+                url="https://example.com",
+            )
+
+    @parametrize
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+            cache_ttl=86400,
+            depth=1,
+            formats=["html"],
+            json_options={
+                "custom_ai": [
+                    {
+                        "authorization": "authorization",
+                        "model": "model",
+                    }
+                ],
+                "prompt": "prompt",
+                "response_format": {
+                    "type": "type",
+                    "json_schema": {"foo": "string"},
+                },
+            },
+            limit=1,
+            max_age=0,
+            modified_since=1,
+            options={
+                "exclude_patterns": ["x"],
+                "include_external_links": True,
+                "include_patterns": ["x"],
+                "include_subdomains": True,
+            },
+            source="sitemaps",
+            user_agent="userAgent",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.crawl.with_raw_response.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = response.parse()
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
+        with client.browser_rendering.crawl.with_streaming_response.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = response.parse()
+            assert_matches_type(str, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.create(
+                account_id="",
+                render=False,
+                url="https://example.com",
+            )
+
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.delete(
+            job_id="job_id",
+            account_id="account_id",
+        )
+        assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.crawl.with_raw_response.delete(
+            job_id="job_id",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = response.parse()
+        assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.browser_rendering.crawl.with_streaming_response.delete(
+            job_id="job_id",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = response.parse()
+            assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.delete(
+                job_id="job_id",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.delete(
+                job_id="",
+                account_id="account_id",
+            )
+
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.get(
+            job_id="x",
+            account_id="account_id",
+        )
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        crawl = client.browser_rendering.crawl.get(
+            job_id="x",
+            account_id="account_id",
+            cache_ttl=86400,
+            cursor=0,
+            limit=0,
+            status="queued",
+        )
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.crawl.with_raw_response.get(
+            job_id="x",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = response.parse()
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.browser_rendering.crawl.with_streaming_response.get(
+            job_id="x",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = response.parse()
+            assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.get(
+                job_id="x",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
+            client.browser_rendering.crawl.with_raw_response.get(
+                job_id="",
+                account_id="account_id",
+            )
+
+
+class TestAsyncCrawl:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @parametrize
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.create(
+            account_id="account_id",
+            url="https://example.com",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.create(
+            account_id="account_id",
+            url="https://example.com",
+            cache_ttl=86400,
+            action_timeout=120000,
+            add_script_tag=[
+                {
+                    "id": "id",
+                    "content": "content",
+                    "type": "type",
+                    "url": "url",
+                }
+            ],
+            add_style_tag=[
+                {
+                    "content": "content",
+                    "url": "url",
+                }
+            ],
+            allow_request_pattern=["string"],
+            allow_resource_types=["document"],
+            authenticate={
+                "password": "x",
+                "username": "x",
+            },
+            best_attempt=True,
+            cookies=[
+                {
+                    "name": "name",
+                    "value": "value",
+                    "domain": "domain",
+                    "expires": 0,
+                    "http_only": True,
+                    "partition_key": "partitionKey",
+                    "path": "path",
+                    "priority": "Low",
+                    "same_party": True,
+                    "same_site": "Strict",
+                    "secure": True,
+                    "source_port": 0,
+                    "source_scheme": "Unset",
+                    "url": "url",
+                }
+            ],
+            depth=1,
+            emulate_media_type="emulateMediaType",
+            formats=["html"],
+            goto_options={
+                "referer": "referer",
+                "referrer_policy": "referrerPolicy",
+                "timeout": 60000,
+                "wait_until": "load",
+            },
+            json_options={
+                "custom_ai": [
+                    {
+                        "authorization": "authorization",
+                        "model": "model",
+                    }
+                ],
+                "prompt": "prompt",
+                "response_format": {
+                    "type": "type",
+                    "json_schema": {"foo": "string"},
+                },
+            },
+            limit=1,
+            max_age=0,
+            modified_since=1,
+            options={
+                "exclude_patterns": ["x"],
+                "include_external_links": True,
+                "include_patterns": ["x"],
+                "include_subdomains": True,
+            },
+            reject_request_pattern=["string"],
+            reject_resource_types=["document"],
+            render=True,
+            set_extra_http_headers={"foo": "string"},
+            set_java_script_enabled=True,
+            source="sitemaps",
+            user_agent="userAgent",
+            viewport={
+                "height": 0,
+                "width": 0,
+                "device_scale_factor": 0,
+                "has_touch": True,
+                "is_landscape": True,
+                "is_mobile": True,
+            },
+            wait_for_selector={
+                "selector": "selector",
+                "hidden": True,
+                "timeout": 120000,
+                "visible": True,
+            },
+            wait_for_timeout=120000,
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.crawl.with_raw_response.create(
+            account_id="account_id",
+            url="https://example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = await response.parse()
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.crawl.with_streaming_response.create(
+            account_id="account_id",
+            url="https://example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = await response.parse()
+            assert_matches_type(str, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.create(
+                account_id="",
+                url="https://example.com",
+            )
+
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+            cache_ttl=86400,
+            depth=1,
+            formats=["html"],
+            json_options={
+                "custom_ai": [
+                    {
+                        "authorization": "authorization",
+                        "model": "model",
+                    }
+                ],
+                "prompt": "prompt",
+                "response_format": {
+                    "type": "type",
+                    "json_schema": {"foo": "string"},
+                },
+            },
+            limit=1,
+            max_age=0,
+            modified_since=1,
+            options={
+                "exclude_patterns": ["x"],
+                "include_external_links": True,
+                "include_patterns": ["x"],
+                "include_subdomains": True,
+            },
+            source="sitemaps",
+            user_agent="userAgent",
+        )
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.crawl.with_raw_response.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = await response.parse()
+        assert_matches_type(str, crawl, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.crawl.with_streaming_response.create(
+            account_id="account_id",
+            render=False,
+            url="https://example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = await response.parse()
+            assert_matches_type(str, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.create(
+                account_id="",
+                render=False,
+                url="https://example.com",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.delete(
+            job_id="job_id",
+            account_id="account_id",
+        )
+        assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.crawl.with_raw_response.delete(
+            job_id="job_id",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = await response.parse()
+        assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.crawl.with_streaming_response.delete(
+            job_id="job_id",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = await response.parse()
+            assert_matches_type(CrawlDeleteResponse, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.delete(
+                job_id="job_id",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.delete(
+                job_id="",
+                account_id="account_id",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.get(
+            job_id="x",
+            account_id="account_id",
+        )
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        crawl = await async_client.browser_rendering.crawl.get(
+            job_id="x",
+            account_id="account_id",
+            cache_ttl=86400,
+            cursor=0,
+            limit=0,
+            status="queued",
+        )
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.crawl.with_raw_response.get(
+            job_id="x",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        crawl = await response.parse()
+        assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.crawl.with_streaming_response.get(
+            job_id="x",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            crawl = await response.parse()
+            assert_matches_type(CrawlGetResponse, crawl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.get(
+                job_id="x",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
+            await async_client.browser_rendering.crawl.with_raw_response.get(
+                job_id="",
+                account_id="account_id",
+            )

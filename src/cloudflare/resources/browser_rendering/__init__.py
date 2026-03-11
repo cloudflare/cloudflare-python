@@ -16,6 +16,14 @@ from .json import (
     JsonResourceWithStreamingResponse,
     AsyncJsonResourceWithStreamingResponse,
 )
+from .crawl import (
+    CrawlResource,
+    AsyncCrawlResource,
+    CrawlResourceWithRawResponse,
+    AsyncCrawlResourceWithRawResponse,
+    CrawlResourceWithStreamingResponse,
+    AsyncCrawlResourceWithStreamingResponse,
+)
 from .links import (
     LinksResource,
     AsyncLinksResource,
@@ -122,6 +130,12 @@ __all__ = [
     "AsyncMarkdownResourceWithRawResponse",
     "MarkdownResourceWithStreamingResponse",
     "AsyncMarkdownResourceWithStreamingResponse",
+    "CrawlResource",
+    "AsyncCrawlResource",
+    "CrawlResourceWithRawResponse",
+    "AsyncCrawlResourceWithRawResponse",
+    "CrawlResourceWithStreamingResponse",
+    "AsyncCrawlResourceWithStreamingResponse",
     "BrowserRenderingResource",
     "AsyncBrowserRenderingResource",
     "BrowserRenderingResourceWithRawResponse",

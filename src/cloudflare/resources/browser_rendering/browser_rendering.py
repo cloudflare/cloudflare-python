@@ -18,6 +18,14 @@ from .json import (
     JsonResourceWithStreamingResponse,
     AsyncJsonResourceWithStreamingResponse,
 )
+from .crawl import (
+    CrawlResource,
+    AsyncCrawlResource,
+    CrawlResourceWithRawResponse,
+    AsyncCrawlResourceWithRawResponse,
+    CrawlResourceWithStreamingResponse,
+    AsyncCrawlResourceWithStreamingResponse,
+)
 from .links import (
     LinksResource,
     AsyncLinksResource,
@@ -106,6 +114,10 @@ class BrowserRenderingResource(SyncAPIResource):
         return MarkdownResource(self._client)
 
     @cached_property
+    def crawl(self) -> CrawlResource:
+        return CrawlResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> BrowserRenderingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -157,6 +169,10 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
     @cached_property
     def markdown(self) -> AsyncMarkdownResource:
         return AsyncMarkdownResource(self._client)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResource:
+        return AsyncCrawlResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBrowserRenderingResourceWithRawResponse:
@@ -214,6 +230,10 @@ class BrowserRenderingResourceWithRawResponse:
     def markdown(self) -> MarkdownResourceWithRawResponse:
         return MarkdownResourceWithRawResponse(self._browser_rendering.markdown)
 
+    @cached_property
+    def crawl(self) -> CrawlResourceWithRawResponse:
+        return CrawlResourceWithRawResponse(self._browser_rendering.crawl)
+
 
 class AsyncBrowserRenderingResourceWithRawResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -250,6 +270,10 @@ class AsyncBrowserRenderingResourceWithRawResponse:
     @cached_property
     def markdown(self) -> AsyncMarkdownResourceWithRawResponse:
         return AsyncMarkdownResourceWithRawResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResourceWithRawResponse:
+        return AsyncCrawlResourceWithRawResponse(self._browser_rendering.crawl)
 
 
 class BrowserRenderingResourceWithStreamingResponse:
@@ -288,6 +312,10 @@ class BrowserRenderingResourceWithStreamingResponse:
     def markdown(self) -> MarkdownResourceWithStreamingResponse:
         return MarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
 
+    @cached_property
+    def crawl(self) -> CrawlResourceWithStreamingResponse:
+        return CrawlResourceWithStreamingResponse(self._browser_rendering.crawl)
+
 
 class AsyncBrowserRenderingResourceWithStreamingResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -324,3 +352,7 @@ class AsyncBrowserRenderingResourceWithStreamingResponse:
     @cached_property
     def markdown(self) -> AsyncMarkdownResourceWithStreamingResponse:
         return AsyncMarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResourceWithStreamingResponse:
+        return AsyncCrawlResourceWithStreamingResponse(self._browser_rendering.crawl)

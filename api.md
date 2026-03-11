@@ -11056,6 +11056,24 @@ Methods:
 
 - <code title="post /accounts/{account_id}/browser-rendering/markdown">client.browser_rendering.markdown.<a href="./src/cloudflare/resources/browser_rendering/markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/markdown_create_response.py">str</a></code>
 
+## Crawl
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import (
+    CrawlCreateResponse,
+    CrawlDeleteResponse,
+    CrawlGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/crawl">client.browser_rendering.crawl.<a href="./src/cloudflare/resources/browser_rendering/crawl.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/crawl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/crawl_create_response.py">str</a></code>
+- <code title="delete /accounts/{account_id}/browser-rendering/crawl/{job_id}">client.browser_rendering.crawl.<a href="./src/cloudflare/resources/browser_rendering/crawl.py">delete</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/crawl_delete_response.py">CrawlDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/browser-rendering/crawl/{job_id}">client.browser_rendering.crawl.<a href="./src/cloudflare/resources/browser_rendering/crawl.py">get</a>(job_id, \*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/crawl_get_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/crawl_get_response.py">CrawlGetResponse</a></code>
+
 # CustomPages
 
 Types:
