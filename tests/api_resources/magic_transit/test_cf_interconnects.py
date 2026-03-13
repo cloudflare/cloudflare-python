@@ -49,6 +49,7 @@ class TestCfInterconnects:
             interface_address="192.0.2.0/31",
             interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
+            name="pni_ord",
             x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
@@ -288,6 +289,7 @@ class TestAsyncCfInterconnects:
             interface_address="192.0.2.0/31",
             interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
+            name="pni_ord",
             x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])

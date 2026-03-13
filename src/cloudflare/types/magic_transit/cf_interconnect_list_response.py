@@ -70,6 +70,12 @@ class Interconnect(BaseModel):
     name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
 
+    virtual_port_reservation_id: Optional[str] = None
+    """
+    An identifier that correlates this interconnect with the corresponding V2 CNI
+    interconnect resource.
+    """
+
 
 class CfInterconnectListResponse(BaseModel):
     interconnects: Optional[List[Interconnect]] = None

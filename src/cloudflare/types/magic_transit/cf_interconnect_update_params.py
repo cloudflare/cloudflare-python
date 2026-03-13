@@ -49,6 +49,9 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     The minimum value is 576.
     """
 
+    name: str
+    """The name of the interconnect. The name cannot share a name with other tunnels."""
+
     x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
 
 

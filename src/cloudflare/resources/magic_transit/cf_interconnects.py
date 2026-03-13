@@ -60,6 +60,7 @@ class CfInterconnectsResource(SyncAPIResource):
         interface_address: str | Omit = omit,
         interface_address6: str | Omit = omit,
         mtu: int | Omit = omit,
+        name: str | Omit = omit,
         x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -98,6 +99,8 @@ class CfInterconnectsResource(SyncAPIResource):
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
 
+          name: The name of the interconnect. The name cannot share a name with other tunnels.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -131,6 +134,7 @@ class CfInterconnectsResource(SyncAPIResource):
                     "interface_address": interface_address,
                     "interface_address6": interface_address6,
                     "mtu": mtu,
+                    "name": name,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,
             ),
@@ -337,6 +341,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         interface_address: str | Omit = omit,
         interface_address6: str | Omit = omit,
         mtu: int | Omit = omit,
+        name: str | Omit = omit,
         x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -375,6 +380,8 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
 
+          name: The name of the interconnect. The name cannot share a name with other tunnels.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -408,6 +415,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                     "interface_address": interface_address,
                     "interface_address6": interface_address6,
                     "mtu": mtu,
+                    "name": name,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,
             ),

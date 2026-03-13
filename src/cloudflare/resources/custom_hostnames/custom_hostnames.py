@@ -149,12 +149,57 @@ class CustomHostnamesResource(SyncAPIResource):
         *,
         zone_id: str,
         id: str | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
-        hostname: str | Omit = omit,
+        hostname: custom_hostname_list_params.Hostname | Omit = omit,
+        hostname_status: Literal[
+            "active",
+            "pending",
+            "active_redeploying",
+            "moved",
+            "pending_deletion",
+            "deleted",
+            "pending_blocked",
+            "pending_migration",
+            "pending_provisioned",
+            "test_pending",
+            "test_active",
+            "test_active_apex",
+            "test_blocked",
+            "test_failed",
+            "provisioned",
+            "blocked",
+        ]
+        | Omit = omit,
         order: Literal["ssl", "ssl_status"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         ssl: Literal[0, 1] | Omit = omit,
+        ssl_status: Literal[
+            "initializing",
+            "pending_validation",
+            "deleted",
+            "pending_issuance",
+            "pending_deployment",
+            "pending_deletion",
+            "pending_expiration",
+            "expired",
+            "active",
+            "initializing_timed_out",
+            "validation_timed_out",
+            "issuance_timed_out",
+            "deployment_timed_out",
+            "deletion_timed_out",
+            "pending_cleanup",
+            "staging_deployment",
+            "staging_active",
+            "deactivating",
+            "inactive",
+            "backup_issued",
+            "holding_deployment",
+        ]
+        | Omit = omit,
+        wildcard: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,10 +217,11 @@ class CustomHostnamesResource(SyncAPIResource):
               initial custom_hostname creation. This parameter cannot be used with the
               'hostname' parameter.
 
+          certificate_authority: Filter by the certificate authority that issued the SSL certificate.
+
           direction: Direction to order hostnames.
 
-          hostname: Fully qualified domain name to match against. This parameter cannot be used with
-              the 'id' parameter.
+          hostname_status: Filter by the hostname's activation status.
 
           order: Field to order hostnames by.
 
@@ -184,6 +230,10 @@ class CustomHostnamesResource(SyncAPIResource):
           per_page: Number of hostnames per page.
 
           ssl: Whether to filter hostnames based on if they have SSL enabled.
+
+          ssl_status: Filter by SSL certificate status.
+
+          wildcard: Filter by whether the custom hostname is a wildcard hostname.
 
           extra_headers: Send extra headers
 
@@ -206,12 +256,16 @@ class CustomHostnamesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "certificate_authority": certificate_authority,
                         "direction": direction,
                         "hostname": hostname,
+                        "hostname_status": hostname_status,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
                         "ssl": ssl,
+                        "ssl_status": ssl_status,
+                        "wildcard": wildcard,
                     },
                     custom_hostname_list_params.CustomHostnameListParams,
                 ),
@@ -483,12 +537,57 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         *,
         zone_id: str,
         id: str | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
-        hostname: str | Omit = omit,
+        hostname: custom_hostname_list_params.Hostname | Omit = omit,
+        hostname_status: Literal[
+            "active",
+            "pending",
+            "active_redeploying",
+            "moved",
+            "pending_deletion",
+            "deleted",
+            "pending_blocked",
+            "pending_migration",
+            "pending_provisioned",
+            "test_pending",
+            "test_active",
+            "test_active_apex",
+            "test_blocked",
+            "test_failed",
+            "provisioned",
+            "blocked",
+        ]
+        | Omit = omit,
         order: Literal["ssl", "ssl_status"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         ssl: Literal[0, 1] | Omit = omit,
+        ssl_status: Literal[
+            "initializing",
+            "pending_validation",
+            "deleted",
+            "pending_issuance",
+            "pending_deployment",
+            "pending_deletion",
+            "pending_expiration",
+            "expired",
+            "active",
+            "initializing_timed_out",
+            "validation_timed_out",
+            "issuance_timed_out",
+            "deployment_timed_out",
+            "deletion_timed_out",
+            "pending_cleanup",
+            "staging_deployment",
+            "staging_active",
+            "deactivating",
+            "inactive",
+            "backup_issued",
+            "holding_deployment",
+        ]
+        | Omit = omit,
+        wildcard: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -506,10 +605,11 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
               initial custom_hostname creation. This parameter cannot be used with the
               'hostname' parameter.
 
+          certificate_authority: Filter by the certificate authority that issued the SSL certificate.
+
           direction: Direction to order hostnames.
 
-          hostname: Fully qualified domain name to match against. This parameter cannot be used with
-              the 'id' parameter.
+          hostname_status: Filter by the hostname's activation status.
 
           order: Field to order hostnames by.
 
@@ -518,6 +618,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
           per_page: Number of hostnames per page.
 
           ssl: Whether to filter hostnames based on if they have SSL enabled.
+
+          ssl_status: Filter by SSL certificate status.
+
+          wildcard: Filter by whether the custom hostname is a wildcard hostname.
 
           extra_headers: Send extra headers
 
@@ -540,12 +644,16 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "certificate_authority": certificate_authority,
                         "direction": direction,
                         "hostname": hostname,
+                        "hostname_status": hostname_status,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
                         "ssl": ssl,
+                        "ssl_status": ssl_status,
+                        "wildcard": wildcard,
                     },
                     custom_hostname_list_params.CustomHostnameListParams,
                 ),
