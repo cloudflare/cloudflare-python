@@ -185,8 +185,6 @@ class Variant0(TypedDict, total=False):
     from pages, 'all' - crawl both sitemap and scraped links (default).
     """
 
-    user_agent: Annotated[str, PropertyInfo(alias="userAgent")]
-
     viewport: Variant0Viewport
     """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
 
@@ -421,8 +419,6 @@ class Variant1(TypedDict, total=False):
     'sitemaps' - only crawl URLs from sitemaps, 'links' - only crawl URLs scraped
     from pages, 'all' - crawl both sitemap and scraped links (default).
     """
-
-    user_agent: Annotated[str, PropertyInfo(alias="userAgent")]
 
 
 class Variant1JsonOptionsCustomAI(TypedDict, total=False):

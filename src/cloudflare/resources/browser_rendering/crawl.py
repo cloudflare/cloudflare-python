@@ -121,7 +121,6 @@ class CrawlResource(SyncAPIResource):
         set_extra_http_headers: Dict[str, str] | Omit = omit,
         set_java_script_enabled: bool | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         viewport: crawl_create_params.Variant0Viewport | Omit = omit,
         wait_for_selector: crawl_create_params.Variant0WaitForSelector | Omit = omit,
         wait_for_timeout: float | Omit = omit,
@@ -232,7 +231,6 @@ class CrawlResource(SyncAPIResource):
         modified_since: int | Omit = omit,
         options: crawl_create_params.Variant1Options | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,7 +361,6 @@ class CrawlResource(SyncAPIResource):
         set_extra_http_headers: Dict[str, str] | Omit = omit,
         set_java_script_enabled: bool | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         viewport: crawl_create_params.Variant0Viewport | Omit = omit,
         wait_for_selector: crawl_create_params.Variant0WaitForSelector | Omit = omit,
         wait_for_timeout: float | Omit = omit,
@@ -404,7 +401,6 @@ class CrawlResource(SyncAPIResource):
                     "set_extra_http_headers": set_extra_http_headers,
                     "set_java_script_enabled": set_java_script_enabled,
                     "source": source,
-                    "user_agent": user_agent,
                     "viewport": viewport,
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
@@ -627,7 +623,6 @@ class AsyncCrawlResource(AsyncAPIResource):
         set_extra_http_headers: Dict[str, str] | Omit = omit,
         set_java_script_enabled: bool | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         viewport: crawl_create_params.Variant0Viewport | Omit = omit,
         wait_for_selector: crawl_create_params.Variant0WaitForSelector | Omit = omit,
         wait_for_timeout: float | Omit = omit,
@@ -738,7 +733,6 @@ class AsyncCrawlResource(AsyncAPIResource):
         modified_since: int | Omit = omit,
         options: crawl_create_params.Variant1Options | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -869,7 +863,6 @@ class AsyncCrawlResource(AsyncAPIResource):
         set_extra_http_headers: Dict[str, str] | Omit = omit,
         set_java_script_enabled: bool | Omit = omit,
         source: Literal["sitemaps", "links", "all"] | Omit = omit,
-        user_agent: str | Omit = omit,
         viewport: crawl_create_params.Variant0Viewport | Omit = omit,
         wait_for_selector: crawl_create_params.Variant0WaitForSelector | Omit = omit,
         wait_for_timeout: float | Omit = omit,
@@ -910,7 +903,6 @@ class AsyncCrawlResource(AsyncAPIResource):
                     "set_extra_http_headers": set_extra_http_headers,
                     "set_java_script_enabled": set_java_script_enabled,
                     "source": source,
-                    "user_agent": user_agent,
                     "viewport": viewport,
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,

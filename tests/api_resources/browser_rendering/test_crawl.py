@@ -111,7 +111,6 @@ class TestCrawl:
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
             source="sitemaps",
-            user_agent="userAgent",
             viewport={
                 "height": 0,
                 "width": 0,
@@ -205,7 +204,6 @@ class TestCrawl:
                 "include_subdomains": True,
             },
             source="sitemaps",
-            user_agent="userAgent",
         )
         assert_matches_type(str, crawl, path=["response"])
 
@@ -451,7 +449,6 @@ class TestAsyncCrawl:
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
             source="sitemaps",
-            user_agent="userAgent",
             viewport={
                 "height": 0,
                 "width": 0,
@@ -545,7 +542,6 @@ class TestAsyncCrawl:
                 "include_subdomains": True,
             },
             source="sitemaps",
-            user_agent="userAgent",
         )
         assert_matches_type(str, crawl, path=["response"])
 
