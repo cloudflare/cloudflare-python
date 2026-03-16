@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -44,3 +44,6 @@ class PipelineGetV1Response(BaseModel):
 
     tables: List[Table]
     """List of streams and sinks used by this pipeline."""
+
+    failure_reason: Optional[str] = None
+    """Indicates the reason for the failure of the Pipeline."""
