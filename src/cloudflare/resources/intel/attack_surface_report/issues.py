@@ -84,7 +84,8 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[IssueListResponse]]:
         """
-        Retrieves Security Center Issues
+        Lists all Security Center issues for the account, showing active security
+        problems requiring attention.
 
         Args:
           account_id: Identifier.
@@ -157,7 +158,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueClassResponse]:
         """
-        Retrieves Security Center Issue Counts by Class
+        Retrieves Security Center issue counts aggregated by classification class.
 
         Args:
           account_id: Identifier.
@@ -214,8 +215,10 @@ class IssuesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IssueDismissResponse:
-        """
-        Archives Security Center Insight
+        """Deprecated endpoint for archiving Security Center insights.
+
+        Use the newer
+        archive-security-center-insight endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -265,7 +268,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueSeverityResponse]:
         """
-        Retrieves Security Center Issue Counts by Severity
+        Retrieves Security Center issue counts aggregated by severity level.
 
         Args:
           account_id: Identifier.
@@ -332,7 +335,7 @@ class IssuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueTypeResponse]:
         """
-        Retrieves Security Center Issue Counts by Type
+        Retrieves Security Center issue counts aggregated by issue type.
 
         Args:
           account_id: Identifier.
@@ -422,7 +425,8 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[IssueListResponse], AsyncV4PagePagination[Optional[IssueListResponse]]]:
         """
-        Retrieves Security Center Issues
+        Lists all Security Center issues for the account, showing active security
+        problems requiring attention.
 
         Args:
           account_id: Identifier.
@@ -495,7 +499,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueClassResponse]:
         """
-        Retrieves Security Center Issue Counts by Class
+        Retrieves Security Center issue counts aggregated by classification class.
 
         Args:
           account_id: Identifier.
@@ -552,8 +556,10 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IssueDismissResponse:
-        """
-        Archives Security Center Insight
+        """Deprecated endpoint for archiving Security Center insights.
+
+        Use the newer
+        archive-security-center-insight endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -603,7 +609,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueSeverityResponse]:
         """
-        Retrieves Security Center Issue Counts by Severity
+        Retrieves Security Center issue counts aggregated by severity level.
 
         Args:
           account_id: Identifier.
@@ -670,7 +676,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IssueTypeResponse]:
         """
-        Retrieves Security Center Issue Counts by Type
+        Retrieves Security Center issue counts aggregated by issue type.
 
         Args:
           account_id: Identifier.

@@ -68,7 +68,8 @@ class SecurityTXTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTUpdateResponse:
         """
-        Updates security.txt
+        Updates the security.txt file configuration for a zone, which provides security
+        researchers with vulnerability reporting information.
 
         Args:
           zone_id: Identifier.
@@ -116,8 +117,10 @@ class SecurityTXTResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTDeleteResponse:
-        """
-        Deletes security.txt
+        """Removes the security.txt file configuration for a zone.
+
+        The
+        /.well-known/security.txt endpoint will no longer be served.
 
         Args:
           zone_id: Identifier.
@@ -152,7 +155,8 @@ class SecurityTXTResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecurityTXTGetResponse]:
         """
-        Retrieves security.txt
+        Retrieves the current security.txt file configuration for a zone, used for
+        security vulnerability reporting.
 
         Args:
           zone_id: Identifier.
@@ -221,7 +225,8 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTUpdateResponse:
         """
-        Updates security.txt
+        Updates the security.txt file configuration for a zone, which provides security
+        researchers with vulnerability reporting information.
 
         Args:
           zone_id: Identifier.
@@ -269,8 +274,10 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecurityTXTDeleteResponse:
-        """
-        Deletes security.txt
+        """Removes the security.txt file configuration for a zone.
+
+        The
+        /.well-known/security.txt endpoint will no longer be served.
 
         Args:
           zone_id: Identifier.
@@ -305,7 +312,8 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecurityTXTGetResponse]:
         """
-        Retrieves security.txt
+        Retrieves the current security.txt file configuration for a zone, used for
+        security vulnerability reporting.
 
         Args:
           zone_id: Identifier.

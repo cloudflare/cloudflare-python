@@ -109,7 +109,8 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[InsightListResponse]]:
         """
-        Retrieves Security Center Insights
+        Lists all Security Center insights for the account or zone, showing security
+        findings and recommendations.
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -185,7 +186,8 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightDismissResponse:
         """
-        Archives Security Center Insight
+        Archives a Security Center insight for an account or zone, removing it from the
+        active insights list while preserving historical data.
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -282,7 +284,8 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[InsightListResponse], AsyncV4PagePagination[Optional[InsightListResponse]]]:
         """
-        Retrieves Security Center Insights
+        Lists all Security Center insights for the account or zone, showing security
+        findings and recommendations.
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -358,7 +361,8 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightDismissResponse:
         """
-        Archives Security Center Insight
+        Archives a Security Center insight for an account or zone, removing it from the
+        active insights list while preserving historical data.
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
