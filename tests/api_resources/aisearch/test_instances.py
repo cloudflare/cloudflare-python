@@ -439,6 +439,10 @@ class TestInstances:
                 }
             ],
             aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
                 "query_rewrite": {
                     "enabled": True,
                     "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -609,6 +613,10 @@ class TestInstances:
                 }
             ],
             aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
                 "query_rewrite": {
                     "enabled": True,
                     "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -1169,6 +1177,10 @@ class TestAsyncInstances:
                 }
             ],
             aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
                 "query_rewrite": {
                     "enabled": True,
                     "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -1339,6 +1351,10 @@ class TestAsyncInstances:
                 }
             ],
             aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
                 "query_rewrite": {
                     "enabled": True,
                     "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",

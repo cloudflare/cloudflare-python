@@ -11,6 +11,7 @@ __all__ = [
     "InstanceSearchParams",
     "Message",
     "AISearchOptions",
+    "AISearchOptionsCache",
     "AISearchOptionsQueryRewrite",
     "AISearchOptionsReranking",
     "AISearchOptionsRetrieval",
@@ -33,6 +34,12 @@ class MessageTyped(TypedDict, total=False):
 
 
 Message: TypeAlias = Union[MessageTyped, Dict[str, object]]
+
+
+class AISearchOptionsCache(TypedDict, total=False):
+    cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
+
+    enabled: bool
 
 
 class AISearchOptionsQueryRewrite(TypedDict, total=False):
@@ -131,6 +138,8 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
 
 
 class AISearchOptions(TypedDict, total=False):
+    cache: AISearchOptionsCache
+
     query_rewrite: AISearchOptionsQueryRewrite
 
     reranking: AISearchOptionsReranking

@@ -268,6 +268,7 @@ class InstanceUpdateResponse(BaseModel):
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
             "google-ai-studio/gemini-embedding-001",
+            "google-ai-studio/gemini-embedding-2-preview",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
             "",
