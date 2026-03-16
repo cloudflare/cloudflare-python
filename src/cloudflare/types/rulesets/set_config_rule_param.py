@@ -74,6 +74,12 @@ class ActionParameters(TypedDict, total=False):
     polish: Literal["off", "lossless", "lossy", "webp"]
     """The Polish level to configure."""
 
+    redirects_for_ai_training: bool
+    """
+    Whether to redirect verified AI training crawlers to canonical URLs found in the
+    HTML response.
+    """
+
     request_body_buffering: Literal["none", "standard", "full"]
     """The request body buffering mode."""
 

@@ -30,6 +30,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindImages",
     "SettingsBindingWorkersBindingKindJson",
     "SettingsBindingWorkersBindingKindKVNamespace",
+    "SettingsBindingWorkersBindingKindMedia",
     "SettingsBindingWorkersBindingKindMTLSCertificate",
     "SettingsBindingWorkersBindingKindPlainText",
     "SettingsBindingWorkersBindingKindPipelines",
@@ -275,6 +276,14 @@ class SettingsBindingWorkersBindingKindKVNamespace(TypedDict, total=False):
     """Namespace identifier tag."""
 
     type: Required[Literal["kv_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindMedia(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["media"]]
     """The kind of resource that the binding provides."""
 
 
@@ -556,6 +565,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindImages,
     SettingsBindingWorkersBindingKindJson,
     SettingsBindingWorkersBindingKindKVNamespace,
+    SettingsBindingWorkersBindingKindMedia,
     SettingsBindingWorkersBindingKindMTLSCertificate,
     SettingsBindingWorkersBindingKindPlainText,
     SettingsBindingWorkersBindingKindPipelines,

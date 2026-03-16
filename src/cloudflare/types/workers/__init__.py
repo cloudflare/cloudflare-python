@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from .domain import Domain as Domain
 from .script import Script as Script
 from .migration_step import MigrationStep as MigrationStep
 from .script_setting import ScriptSetting as ScriptSetting
 from .domain_list_params import DomainListParams as DomainListParams
 from .route_get_response import RouteGetResponse as RouteGetResponse
 from .script_list_params import ScriptListParams as ScriptListParams
+from .domain_get_response import DomainGetResponse as DomainGetResponse
 from .route_create_params import RouteCreateParams as RouteCreateParams
 from .route_list_response import RouteListResponse as RouteListResponse
 from .route_update_params import RouteUpdateParams as RouteUpdateParams
 from .script_get_response import ScriptGetResponse as ScriptGetResponse
+from .domain_list_response import DomainListResponse as DomainListResponse
 from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .migration_step_param import MigrationStepParam as MigrationStepParam
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
@@ -24,6 +25,8 @@ from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .route_update_response import RouteUpdateResponse as RouteUpdateResponse
 from .single_step_migration import SingleStepMigration as SingleStepMigration
 from .worker_metadata_param import WorkerMetadataParam as WorkerMetadataParam
+from .domain_delete_response import DomainDeleteResponse as DomainDeleteResponse
+from .domain_update_response import DomainUpdateResponse as DomainUpdateResponse
 from .script_search_response import ScriptSearchResponse as ScriptSearchResponse
 from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse

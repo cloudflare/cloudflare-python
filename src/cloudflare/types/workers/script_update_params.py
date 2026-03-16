@@ -34,6 +34,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindImages",
     "MetadataBindingWorkersBindingKindJson",
     "MetadataBindingWorkersBindingKindKVNamespace",
+    "MetadataBindingWorkersBindingKindMedia",
     "MetadataBindingWorkersBindingKindMTLSCertificate",
     "MetadataBindingWorkersBindingKindPlainText",
     "MetadataBindingWorkersBindingKindPipelines",
@@ -353,6 +354,14 @@ class MetadataBindingWorkersBindingKindKVNamespace(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindMedia(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["media"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindMTLSCertificate(TypedDict, total=False):
     certificate_id: Required[str]
     """Identifier of the certificate to bind to."""
@@ -631,6 +640,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindImages,
     MetadataBindingWorkersBindingKindJson,
     MetadataBindingWorkersBindingKindKVNamespace,
+    MetadataBindingWorkersBindingKindMedia,
     MetadataBindingWorkersBindingKindMTLSCertificate,
     MetadataBindingWorkersBindingKindPlainText,
     MetadataBindingWorkersBindingKindPipelines,

@@ -2628,15 +2628,20 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers import Domain
+from cloudflare.types.workers import (
+    DomainUpdateResponse,
+    DomainListResponse,
+    DomainDeleteResponse,
+    DomainGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain.py">Optional[Domain]</a></code>
-- <code title="get /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain.py">SyncSinglePage[Domain]</a></code>
-- <code title="delete /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">delete</a>(domain_id, \*, account_id) -> None</code>
-- <code title="get /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain.py">Optional[Domain]</a></code>
+- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_update_response.py">DomainUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_list_response.py">SyncSinglePage[DomainListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">delete</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain_delete_response.py">DomainDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain_get_response.py">DomainGetResponse</a></code>
 
 ## Subdomains
 

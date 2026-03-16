@@ -32,6 +32,7 @@ __all__ = [
     "BindingWorkersBindingKindImages",
     "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
+    "BindingWorkersBindingKindMedia",
     "BindingWorkersBindingKindMTLSCertificate",
     "BindingWorkersBindingKindPlainText",
     "BindingWorkersBindingKindPipelines",
@@ -315,6 +316,14 @@ class BindingWorkersBindingKindKVNamespace(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindMedia(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["media"]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindMTLSCertificate(BaseModel):
     certificate_id: str
     """Identifier of the certificate to bind to."""
@@ -579,6 +588,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindImages,
         BindingWorkersBindingKindJson,
         BindingWorkersBindingKindKVNamespace,
+        BindingWorkersBindingKindMedia,
         BindingWorkersBindingKindMTLSCertificate,
         BindingWorkersBindingKindPlainText,
         BindingWorkersBindingKindPipelines,

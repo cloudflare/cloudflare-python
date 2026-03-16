@@ -68,6 +68,12 @@ class ActionParameters(BaseModel):
     polish: Optional[Literal["off", "lossless", "lossy", "webp"]] = None
     """The Polish level to configure."""
 
+    redirects_for_ai_training: Optional[bool] = None
+    """
+    Whether to redirect verified AI training crawlers to canonical URLs found in the
+    HTML response.
+    """
+
     request_body_buffering: Optional[Literal["none", "standard", "full"]] = None
     """The request body buffering mode."""
 
