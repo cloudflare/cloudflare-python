@@ -72,6 +72,7 @@ class WARPConnectorResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        ha: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,6 +88,9 @@ class WARPConnectorResource(SyncAPIResource):
 
           name: A user-friendly name for a tunnel.
 
+          ha: Indicates that the tunnel will be created to be highly available. If omitted,
+              defaults to false.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -99,7 +103,13 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/warp_connector",
-            body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "ha": ha,
+                },
+                warp_connector_create_params.WARPConnectorCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,6 +381,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        ha: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -386,6 +397,9 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           name: A user-friendly name for a tunnel.
 
+          ha: Indicates that the tunnel will be created to be highly available. If omitted,
+              defaults to false.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -398,7 +412,13 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/warp_connector",
-            body=await async_maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "ha": ha,
+                },
+                warp_connector_create_params.WARPConnectorCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

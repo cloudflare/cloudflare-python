@@ -13,3 +13,9 @@ class WARPConnectorCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """A user-friendly name for a tunnel."""
+
+    ha: bool
+    """Indicates that the tunnel will be created to be highly available.
+
+    If omitted, defaults to false.
+    """

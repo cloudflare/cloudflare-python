@@ -34,6 +34,15 @@ class TestWARPConnector:
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        warp_connector = client.zero_trust.tunnels.warp_connector.create(
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            ha=True,
+        )
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.warp_connector.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -288,6 +297,15 @@ class TestAsyncWARPConnector:
         warp_connector = await async_client.zero_trust.tunnels.warp_connector.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
+        )
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.create(
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            ha=True,
         )
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
