@@ -79,6 +79,9 @@ class EmailEmailRoutingDNSQueryResponseResultInfo(BaseModel):
     total_count: Optional[float] = None
     """Total results available without any search parameters."""
 
+    total_pages: Optional[float] = None
+    """The number of total pages in the entire result set."""
+
 
 class EmailEmailRoutingDNSQueryResponse(BaseModel):
     errors: List[EmailEmailRoutingDNSQueryResponseError]
@@ -133,6 +136,9 @@ class EmailDNSSettingsResponseCollectionResultInfo(BaseModel):
 
     total_count: Optional[float] = None
     """Total results available without any search parameters."""
+
+    total_pages: Optional[float] = None
+    """The number of total pages in the entire result set."""
 
 
 class EmailDNSSettingsResponseCollection(BaseModel):
