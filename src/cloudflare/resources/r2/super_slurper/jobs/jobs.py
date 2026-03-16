@@ -79,7 +79,8 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobCreateResponse]:
         """
-        Create a job
+        Creates a new R2 Super Slurper migration job to transfer objects from a source
+        bucket (e.g. S3, GCS, R2) to R2.
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +127,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[JobListResponse]:
         """
-        List jobs
+        Lists all R2 Super Slurper migration jobs for the account with their status.
 
         Args:
           extra_headers: Send extra headers
@@ -170,8 +171,10 @@ class JobsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Abort a job
+        """Cancels a specific R2 Super Slurper migration job.
+
+        Any objects in the middle of
+        a transfer will finish, but no new objects will start transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -209,8 +212,11 @@ class JobsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Abort all jobs
+        """Cancels all running R2 Super Slurper migration jobs for the account.
+
+        Any objects
+        in the middle of a transfer will finish, but no new objects will start
+        transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -248,7 +254,8 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobGetResponse]:
         """
-        Get job details
+        Retrieves detailed status and configuration for a specific R2 Super Slurper
+        migration job.
 
         Args:
           extra_headers: Send extra headers
@@ -287,8 +294,10 @@ class JobsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Pause a job
+        """Pauses a running R2 Super Slurper migration job.
+
+        The job can be resumed later to
+        continue transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -328,7 +337,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobProgressResponse]:
         """
-        Get job progress
+        Retrieves current progress metrics for an R2 Super Slurper migration job
 
         Args:
           extra_headers: Send extra headers
@@ -368,7 +377,8 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Resume a job
+        Resumes a paused R2 Super Slurper migration job, continuing the transfer from
+        where it stopped.
 
         Args:
           extra_headers: Send extra headers
@@ -435,7 +445,8 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobCreateResponse]:
         """
-        Create a job
+        Creates a new R2 Super Slurper migration job to transfer objects from a source
+        bucket (e.g. S3, GCS, R2) to R2.
 
         Args:
           extra_headers: Send extra headers
@@ -482,7 +493,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[JobListResponse, AsyncSinglePage[JobListResponse]]:
         """
-        List jobs
+        Lists all R2 Super Slurper migration jobs for the account with their status.
 
         Args:
           extra_headers: Send extra headers
@@ -526,8 +537,10 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Abort a job
+        """Cancels a specific R2 Super Slurper migration job.
+
+        Any objects in the middle of
+        a transfer will finish, but no new objects will start transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -565,8 +578,11 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Abort all jobs
+        """Cancels all running R2 Super Slurper migration jobs for the account.
+
+        Any objects
+        in the middle of a transfer will finish, but no new objects will start
+        transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -604,7 +620,8 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobGetResponse]:
         """
-        Get job details
+        Retrieves detailed status and configuration for a specific R2 Super Slurper
+        migration job.
 
         Args:
           extra_headers: Send extra headers
@@ -643,8 +660,10 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Pause a job
+        """Pauses a running R2 Super Slurper migration job.
+
+        The job can be resumed later to
+        continue transferring.
 
         Args:
           extra_headers: Send extra headers
@@ -684,7 +703,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobProgressResponse]:
         """
-        Get job progress
+        Retrieves current progress metrics for an R2 Super Slurper migration job
 
         Args:
           extra_headers: Send extra headers
@@ -724,7 +743,8 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Resume a job
+        Resumes a paused R2 Super Slurper migration job, continuing the transfer from
+        where it stopped.
 
         Args:
           extra_headers: Send extra headers

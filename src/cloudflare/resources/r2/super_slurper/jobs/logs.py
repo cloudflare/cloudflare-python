@@ -57,7 +57,8 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LogListResponse]:
         """
-        Get job logs
+        Gets log entries for an R2 Super Slurper migration job, showing migration status
+        changes, errors, etc.
 
         Args:
           extra_headers: Send extra headers
@@ -127,7 +128,8 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LogListResponse, AsyncSinglePage[LogListResponse]]:
         """
-        Get job logs
+        Gets log entries for an R2 Super Slurper migration job, showing migration status
+        changes, errors, etc.
 
         Args:
           extra_headers: Send extra headers
