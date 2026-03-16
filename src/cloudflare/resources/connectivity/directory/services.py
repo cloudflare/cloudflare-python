@@ -66,7 +66,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create connectivity service
+        Create Workers VPC connectivity service
 
         Args:
           account_id: Account identifier
@@ -121,7 +121,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update connectivity service
+        Update Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers
@@ -173,7 +173,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ServiceListResponse]:
         """
-        List connectivity services
+        List Workers VPC connectivity services
 
         Args:
           account_id: Account identifier
@@ -225,7 +225,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete connectivity service
+        Delete Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers
@@ -262,7 +262,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceGetResponse]:
         """
-        Get connectivity service
+        Get Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers
@@ -327,7 +327,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create connectivity service
+        Create Workers VPC connectivity service
 
         Args:
           account_id: Account identifier
@@ -382,7 +382,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update connectivity service
+        Update Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers
@@ -434,7 +434,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ServiceListResponse, AsyncV4PagePaginationArray[ServiceListResponse]]:
         """
-        List connectivity services
+        List Workers VPC connectivity services
 
         Args:
           account_id: Account identifier
@@ -486,7 +486,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete connectivity service
+        Delete Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers
@@ -523,7 +523,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceGetResponse]:
         """
-        Get connectivity service
+        Get Workers VPC connectivity service
 
         Args:
           extra_headers: Send extra headers

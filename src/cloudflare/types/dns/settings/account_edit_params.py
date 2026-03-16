@@ -12,6 +12,9 @@ class AccountEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
+    enforce_dns_only: bool
+    """Whether to enforce DNS-only records for the entire account."""
+
     zone_defaults: ZoneDefaults
 
 
