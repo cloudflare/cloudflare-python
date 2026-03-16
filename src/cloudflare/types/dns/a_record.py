@@ -53,6 +53,9 @@ class ARecord(BaseModel):
     content: Optional[str] = None
     """A valid IPv4 address."""
 
+    private_routing: Optional[bool] = None
+    """Enables private network routing to the origin."""
+
     proxied: Optional[bool] = None
     """
     Whether the record is receiving the performance and security benefits of

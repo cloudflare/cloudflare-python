@@ -95,6 +95,9 @@ class ARecord(TypedDict, total=False):
     content: str
     """A valid IPv4 address."""
 
+    private_routing: bool
+    """Enables private network routing to the origin."""
+
     proxied: bool
     """
     Whether the record is receiving the performance and security benefits of
@@ -153,6 +156,9 @@ class AAAARecord(TypedDict, total=False):
 
     content: str
     """A valid IPv6 address."""
+
+    private_routing: bool
+    """Enables private network routing to the origin."""
 
     proxied: bool
     """

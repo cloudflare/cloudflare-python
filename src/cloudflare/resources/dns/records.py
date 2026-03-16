@@ -77,6 +77,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -113,6 +114,8 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -140,6 +143,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -175,6 +179,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -1433,6 +1439,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings
         | record_create_params.AAAARecordSettings
@@ -1492,6 +1499,7 @@ class RecordsResource(SyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
@@ -1524,6 +1532,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -1562,6 +1571,8 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -1590,6 +1601,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -1627,6 +1639,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -2943,6 +2957,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings
         | record_update_params.AAAARecordSettings
@@ -3004,6 +3019,7 @@ class RecordsResource(SyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
@@ -3270,6 +3286,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -3308,6 +3325,8 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -3336,6 +3355,7 @@ class RecordsResource(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -3373,6 +3393,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -4689,6 +4711,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings
         | record_edit_params.AAAARecordSettings
@@ -4750,6 +4773,7 @@ class RecordsResource(SyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
@@ -5136,6 +5160,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -5172,6 +5197,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -5199,6 +5226,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -5234,6 +5262,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -6492,6 +6522,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings
         | record_create_params.AAAARecordSettings
@@ -6551,6 +6582,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
@@ -6583,6 +6615,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -6621,6 +6654,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -6649,6 +6684,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -6686,6 +6722,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -8002,6 +8040,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings
         | record_update_params.AAAARecordSettings
@@ -8063,6 +8102,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
@@ -8329,6 +8369,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["A"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -8367,6 +8408,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
+          private_routing: Enables private network routing to the origin.
+
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
@@ -8395,6 +8438,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.AAAARecordSettings | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
@@ -8432,6 +8476,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid IPv6 address.
+
+          private_routing: Enables private network routing to the origin.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -9748,6 +9794,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["URI"],
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        private_routing: bool | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings
         | record_edit_params.AAAARecordSettings
@@ -9809,6 +9856,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "type": type,
                         "comment": comment,
                         "content": content,
+                        "private_routing": private_routing,
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,

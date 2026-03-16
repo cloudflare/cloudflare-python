@@ -54,6 +54,9 @@ class AAAARecordParam(TypedDict, total=False):
     content: str
     """A valid IPv6 address."""
 
+    private_routing: bool
+    """Enables private network routing to the origin."""
+
     proxied: bool
     """
     Whether the record is receiving the performance and security benefits of
