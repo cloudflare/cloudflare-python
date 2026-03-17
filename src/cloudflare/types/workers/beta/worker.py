@@ -9,6 +9,7 @@ __all__ = [
     "Worker",
     "Observability",
     "ObservabilityLogs",
+    "ObservabilityTraces",
     "References",
     "ReferencesDispatchNamespaceOutbound",
     "ReferencesDomain",
@@ -23,6 +24,9 @@ __all__ = [
 class ObservabilityLogs(BaseModel):
     """Log settings for the Worker."""
 
+    destinations: Optional[List[str]] = None
+    """A list of destinations where logs will be exported to."""
+
     enabled: Optional[bool] = None
     """Whether logs are enabled for the Worker."""
 
@@ -36,6 +40,25 @@ class ObservabilityLogs(BaseModel):
     are enabled for the Worker.
     """
 
+    persist: Optional[bool] = None
+    """Whether log persistence is enabled for the Worker."""
+
+
+class ObservabilityTraces(BaseModel):
+    """Trace settings for the Worker."""
+
+    destinations: Optional[List[str]] = None
+    """A list of destinations where traces will be exported to."""
+
+    enabled: Optional[bool] = None
+    """Whether traces are enabled for the Worker."""
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for traces. From 0 to 1 (1 = 100%, 0.1 = 10%)."""
+
+    persist: Optional[bool] = None
+    """Whether trace persistence is enabled for the Worker."""
+
 
 class Observability(BaseModel):
     """Observability settings for the Worker."""
@@ -48,6 +71,9 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+    traces: Optional[ObservabilityTraces] = None
+    """Trace settings for the Worker."""
 
 
 class ReferencesDispatchNamespaceOutbound(BaseModel):

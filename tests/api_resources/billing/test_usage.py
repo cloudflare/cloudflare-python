@@ -30,8 +30,6 @@ class TestUsage:
         usage = client.billing.usage.paygo(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=parse_date("2025-02-01"),
-            last_month_period_start=6,
-            last_year_period_start=2025,
             to=parse_date("2025-03-01"),
         )
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])
@@ -85,8 +83,6 @@ class TestAsyncUsage:
         usage = await async_client.billing.usage.paygo(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=parse_date("2025-02-01"),
-            last_month_period_start=6,
-            last_year_period_start=2025,
             to=parse_date("2025-03-01"),
         )
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])

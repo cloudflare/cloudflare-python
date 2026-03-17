@@ -8,7 +8,7 @@ from typing_extensions import Required, TypedDict
 from ...._types import SequenceNotStr
 from .consumer_script_param import ConsumerScriptParam
 
-__all__ = ["SettingEditParams", "Observability", "ObservabilityLogs"]
+__all__ = ["SettingEditParams", "Observability", "ObservabilityLogs", "ObservabilityTraces"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -51,6 +51,22 @@ class ObservabilityLogs(TypedDict, total=False):
     """Whether log persistence is enabled for the Worker."""
 
 
+class ObservabilityTraces(TypedDict, total=False):
+    """Trace settings for the Worker."""
+
+    destinations: SequenceNotStr[str]
+    """A list of destinations where traces will be exported to."""
+
+    enabled: bool
+    """Whether traces are enabled for the Worker."""
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for traces. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: bool
+    """Whether trace persistence is enabled for the Worker."""
+
+
 class Observability(TypedDict, total=False):
     """Observability settings for the Worker."""
 
@@ -65,3 +81,6 @@ class Observability(TypedDict, total=False):
 
     logs: Optional[ObservabilityLogs]
     """Log settings for the Worker."""
+
+    traces: Optional[ObservabilityTraces]
+    """Trace settings for the Worker."""

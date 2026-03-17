@@ -54,6 +54,7 @@ __all__ = [
     "MigrationsWorkersMultipleStepMigrations",
     "Observability",
     "ObservabilityLogs",
+    "ObservabilityTraces",
     "Placement",
     "PlacementMode",
     "PlacementRegion",
@@ -615,6 +616,22 @@ class ObservabilityLogs(BaseModel):
     """Whether log persistence is enabled for the Worker."""
 
 
+class ObservabilityTraces(BaseModel):
+    """Trace settings for the Worker."""
+
+    destinations: Optional[List[str]] = None
+    """A list of destinations where traces will be exported to."""
+
+    enabled: Optional[bool] = None
+    """Whether traces are enabled for the Worker."""
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for traces. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: Optional[bool] = None
+    """Whether trace persistence is enabled for the Worker."""
+
+
 class Observability(BaseModel):
     """Observability settings for the Worker."""
 
@@ -629,6 +646,9 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+    traces: Optional[ObservabilityTraces] = None
+    """Trace settings for the Worker."""
 
 
 class PlacementMode(BaseModel):

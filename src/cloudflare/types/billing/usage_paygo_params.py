@@ -18,19 +18,5 @@ class UsagePaygoParams(TypedDict, total=False):
     from_: Annotated[Union[str, date], PropertyInfo(alias="from", format="iso8601")]
     """Defines the start date for the usage query (e.g., 2025-02-01)."""
 
-    last_month_period_start: int
-    """Specifies the month of the billing period to query (1-12).
-
-    Must be provided together with last_year_period_start. Mutually exclusive with
-    from/to.
-    """
-
-    last_year_period_start: int
-    """Specifies the year of the billing period to query (e.g., 2025).
-
-    Must be provided together with last_month_period_start. Mutually exclusive with
-    from/to.
-    """
-
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Defines the end date for the usage query (e.g., 2025-03-01)."""

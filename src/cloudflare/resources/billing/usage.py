@@ -50,8 +50,6 @@ class UsageResource(SyncAPIResource):
         *,
         account_id: str,
         from_: Union[str, date] | Omit = omit,
-        last_month_period_start: int | Omit = omit,
-        last_year_period_start: int | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,28 +61,13 @@ class UsageResource(SyncAPIResource):
         """Returns billable usage data for PayGo (self-serve) accounts.
 
         When no query
-        parameters are provided, returns usage for the current billing period.
-
-        Supports two mutually exclusive query modes:
-
-        **Billing period mode:** Use `last_year_period_start` and
-        `last_month_period_start` to query a specific billing period.
-
-        **Date range mode:** Use `from` and `to` to query a custom date range (maximum
-        62 days).
-
-        This endpoint is currently in beta and access is restricted to select accounts.
+        parameters are provided, returns usage for the current billing period. This
+        endpoint is currently in beta and access is restricted to select accounts.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
 
           from_: Defines the start date for the usage query (e.g., 2025-02-01).
-
-          last_month_period_start: Specifies the month of the billing period to query (1-12). Must be provided
-              together with last_year_period_start. Mutually exclusive with from/to.
-
-          last_year_period_start: Specifies the year of the billing period to query (e.g., 2025). Must be provided
-              together with last_month_period_start. Mutually exclusive with from/to.
 
           to: Defines the end date for the usage query (e.g., 2025-03-01).
 
@@ -108,8 +91,6 @@ class UsageResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "from_": from_,
-                        "last_month_period_start": last_month_period_start,
-                        "last_year_period_start": last_year_period_start,
                         "to": to,
                     },
                     usage_paygo_params.UsagePaygoParams,
@@ -145,8 +126,6 @@ class AsyncUsageResource(AsyncAPIResource):
         *,
         account_id: str,
         from_: Union[str, date] | Omit = omit,
-        last_month_period_start: int | Omit = omit,
-        last_year_period_start: int | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -158,28 +137,13 @@ class AsyncUsageResource(AsyncAPIResource):
         """Returns billable usage data for PayGo (self-serve) accounts.
 
         When no query
-        parameters are provided, returns usage for the current billing period.
-
-        Supports two mutually exclusive query modes:
-
-        **Billing period mode:** Use `last_year_period_start` and
-        `last_month_period_start` to query a specific billing period.
-
-        **Date range mode:** Use `from` and `to` to query a custom date range (maximum
-        62 days).
-
-        This endpoint is currently in beta and access is restricted to select accounts.
+        parameters are provided, returns usage for the current billing period. This
+        endpoint is currently in beta and access is restricted to select accounts.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
 
           from_: Defines the start date for the usage query (e.g., 2025-02-01).
-
-          last_month_period_start: Specifies the month of the billing period to query (1-12). Must be provided
-              together with last_year_period_start. Mutually exclusive with from/to.
-
-          last_year_period_start: Specifies the year of the billing period to query (e.g., 2025). Must be provided
-              together with last_month_period_start. Mutually exclusive with from/to.
 
           to: Defines the end date for the usage query (e.g., 2025-03-01).
 
@@ -203,8 +167,6 @@ class AsyncUsageResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "from_": from_,
-                        "last_month_period_start": last_month_period_start,
-                        "last_year_period_start": last_year_period_start,
                         "to": to,
                     },
                     usage_paygo_params.UsagePaygoParams,

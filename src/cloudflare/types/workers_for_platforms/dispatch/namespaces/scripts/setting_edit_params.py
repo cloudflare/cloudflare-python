@@ -54,6 +54,7 @@ __all__ = [
     "SettingsMigrationsWorkersMultipleStepMigrations",
     "SettingsObservability",
     "SettingsObservabilityLogs",
+    "SettingsObservabilityTraces",
     "SettingsPlacement",
     "SettingsPlacementMode",
     "SettingsPlacementRegion",
@@ -633,6 +634,22 @@ class SettingsObservabilityLogs(TypedDict, total=False):
     """Whether log persistence is enabled for the Worker."""
 
 
+class SettingsObservabilityTraces(TypedDict, total=False):
+    """Trace settings for the Worker."""
+
+    destinations: SequenceNotStr[str]
+    """A list of destinations where traces will be exported to."""
+
+    enabled: bool
+    """Whether traces are enabled for the Worker."""
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for traces. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: bool
+    """Whether trace persistence is enabled for the Worker."""
+
+
 class SettingsObservability(TypedDict, total=False):
     """Observability settings for the Worker."""
 
@@ -647,6 +664,9 @@ class SettingsObservability(TypedDict, total=False):
 
     logs: Optional[SettingsObservabilityLogs]
     """Log settings for the Worker."""
+
+    traces: Optional[SettingsObservabilityTraces]
+    """Trace settings for the Worker."""
 
 
 class SettingsPlacementMode(TypedDict, total=False):

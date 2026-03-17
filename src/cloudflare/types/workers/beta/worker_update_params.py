@@ -7,7 +7,14 @@ from typing_extensions import Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["WorkerUpdateParams", "Observability", "ObservabilityLogs", "Subdomain", "TailConsumer"]
+__all__ = [
+    "WorkerUpdateParams",
+    "Observability",
+    "ObservabilityLogs",
+    "ObservabilityTraces",
+    "Subdomain",
+    "TailConsumer",
+]
 
 
 class WorkerUpdateParams(TypedDict, total=False):
@@ -36,6 +43,9 @@ class WorkerUpdateParams(TypedDict, total=False):
 class ObservabilityLogs(TypedDict, total=False):
     """Log settings for the Worker."""
 
+    destinations: SequenceNotStr[str]
+    """A list of destinations where logs will be exported to."""
+
     enabled: bool
     """Whether logs are enabled for the Worker."""
 
@@ -49,6 +59,25 @@ class ObservabilityLogs(TypedDict, total=False):
     are enabled for the Worker.
     """
 
+    persist: bool
+    """Whether log persistence is enabled for the Worker."""
+
+
+class ObservabilityTraces(TypedDict, total=False):
+    """Trace settings for the Worker."""
+
+    destinations: SequenceNotStr[str]
+    """A list of destinations where traces will be exported to."""
+
+    enabled: bool
+    """Whether traces are enabled for the Worker."""
+
+    head_sampling_rate: float
+    """The sampling rate for traces. From 0 to 1 (1 = 100%, 0.1 = 10%)."""
+
+    persist: bool
+    """Whether trace persistence is enabled for the Worker."""
+
 
 class Observability(TypedDict, total=False):
     """Observability settings for the Worker."""
@@ -61,6 +90,9 @@ class Observability(TypedDict, total=False):
 
     logs: ObservabilityLogs
     """Log settings for the Worker."""
+
+    traces: ObservabilityTraces
+    """Trace settings for the Worker."""
 
 
 class Subdomain(TypedDict, total=False):

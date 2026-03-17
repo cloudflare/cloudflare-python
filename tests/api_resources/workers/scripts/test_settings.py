@@ -41,6 +41,12 @@ class TestSettings:
                     "head_sampling_rate": 0.1,
                     "persist": True,
                 },
+                "traces": {
+                    "destinations": ["cloudflare"],
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                    "persist": True,
+                },
             },
             tags=["my-team", "my-public-api"],
             tail_consumers=[
@@ -168,6 +174,12 @@ class TestAsyncSettings:
                     "enabled": True,
                     "invocation_logs": True,
                     "destinations": ["cloudflare"],
+                    "head_sampling_rate": 0.1,
+                    "persist": True,
+                },
+                "traces": {
+                    "destinations": ["cloudflare"],
+                    "enabled": True,
                     "head_sampling_rate": 0.1,
                     "persist": True,
                 },
