@@ -73,6 +73,10 @@ class ConfigsResource(SyncAPIResource):
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -135,6 +139,10 @@ class ConfigsResource(SyncAPIResource):
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
+
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
 
           extra_headers: Send extra headers
 
@@ -283,6 +291,10 @@ class ConfigsResource(SyncAPIResource):
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -410,6 +422,10 @@ class AsyncConfigsResource(AsyncAPIResource):
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -472,6 +488,10 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
+
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
 
           extra_headers: Send extra headers
 
@@ -619,6 +639,10 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
+
+              Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
+              specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+              if you need a higher limit.
 
           extra_headers: Send extra headers
 
