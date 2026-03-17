@@ -61,8 +61,12 @@ class GeolocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GeolocationListResponse:
-        """
-        Retrieves a list of geolocations.
+        """Retrieves a list of geolocations.
+
+        Geolocation names can be localized by sending
+        an `Accept-Language` HTTP header with a BCP 47 language tag (e.g.,
+        `Accept-Language: pt-PT`). The full quality-value chain is supported (e.g.,
+        `pt-PT,pt;q=0.9,en;q=0.8`).
 
         Args:
           format: Format in which results will be returned.
@@ -120,10 +124,13 @@ class GeolocationsResource(SyncAPIResource):
     ) -> GeolocationGetResponse:
         """Retrieves the requested Geolocation information.
 
-        Args:
-          geo_id: Geolocation ID.
+        Geolocation names can be
+        localized by sending an `Accept-Language` HTTP header with a BCP 47 language tag
+        (e.g., `Accept-Language: pt-PT`). The full quality-value chain is supported
+        (e.g., `pt-PT,pt;q=0.9,en;q=0.8`).
 
-        Refer to
+        Args:
+          geo_id: Geolocation ID. Refer to
               [GeoNames](https://download.geonames.org/export/dump/readme.txt)
 
           format: Format in which results will be returned.
@@ -187,8 +194,12 @@ class AsyncGeolocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GeolocationListResponse:
-        """
-        Retrieves a list of geolocations.
+        """Retrieves a list of geolocations.
+
+        Geolocation names can be localized by sending
+        an `Accept-Language` HTTP header with a BCP 47 language tag (e.g.,
+        `Accept-Language: pt-PT`). The full quality-value chain is supported (e.g.,
+        `pt-PT,pt;q=0.9,en;q=0.8`).
 
         Args:
           format: Format in which results will be returned.
@@ -246,10 +257,13 @@ class AsyncGeolocationsResource(AsyncAPIResource):
     ) -> GeolocationGetResponse:
         """Retrieves the requested Geolocation information.
 
-        Args:
-          geo_id: Geolocation ID.
+        Geolocation names can be
+        localized by sending an `Accept-Language` HTTP header with a BCP 47 language tag
+        (e.g., `Accept-Language: pt-PT`). The full quality-value chain is supported
+        (e.g., `pt-PT,pt;q=0.9,en;q=0.8`).
 
-        Refer to
+        Args:
+          geo_id: Geolocation ID. Refer to
               [GeoNames](https://download.geonames.org/export/dump/readme.txt)
 
           format: Format in which results will be returned.
