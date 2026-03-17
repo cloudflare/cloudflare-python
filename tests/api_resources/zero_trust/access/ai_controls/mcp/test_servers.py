@@ -30,7 +30,7 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         )
         assert_matches_type(ServerCreateResponse, server, path=["response"])
@@ -41,7 +41,7 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
@@ -54,7 +54,7 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         )
 
@@ -69,7 +69,7 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         ) as response:
             assert not response.is_closed
@@ -87,7 +87,7 @@ class TestServers:
                 account_id="",
                 id="my-mcp-server",
                 auth_type="unauthenticated",
-                hostname="https://exmaple.com/mcp",
+                hostname="https://example.com/mcp",
                 name="My MCP Server",
             )
 
@@ -354,7 +354,7 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         )
         assert_matches_type(ServerCreateResponse, server, path=["response"])
@@ -365,7 +365,7 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
@@ -378,7 +378,7 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         )
 
@@ -393,7 +393,7 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-server",
             auth_type="unauthenticated",
-            hostname="https://exmaple.com/mcp",
+            hostname="https://example.com/mcp",
             name="My MCP Server",
         ) as response:
             assert not response.is_closed
@@ -411,7 +411,7 @@ class TestAsyncServers:
                 account_id="",
                 id="my-mcp-server",
                 auth_type="unauthenticated",
-                hostname="https://exmaple.com/mcp",
+                hostname="https://example.com/mcp",
                 name="My MCP Server",
             )
 

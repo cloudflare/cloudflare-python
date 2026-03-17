@@ -41,6 +41,7 @@ class TestPortals:
             id="my-mcp-portal",
             hostname="exmaple.com",
             name="My MCP Portal",
+            allow_code_mode=True,
             description="This is my custom MCP Portal",
             secure_web_gateway=False,
             servers=[
@@ -51,6 +52,7 @@ class TestPortals:
                     "updated_prompts": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -58,6 +60,7 @@ class TestPortals:
                     "updated_tools": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -120,6 +123,7 @@ class TestPortals:
         portal = client.zero_trust.access.ai_controls.mcp.portals.update(
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
+            allow_code_mode=True,
             description="This is my custom MCP Portal",
             hostname="exmaple.com",
             name="My MCP Portal",
@@ -132,6 +136,7 @@ class TestPortals:
                     "updated_prompts": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -139,6 +144,7 @@ class TestPortals:
                     "updated_tools": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -355,6 +361,7 @@ class TestAsyncPortals:
             id="my-mcp-portal",
             hostname="exmaple.com",
             name="My MCP Portal",
+            allow_code_mode=True,
             description="This is my custom MCP Portal",
             secure_web_gateway=False,
             servers=[
@@ -365,6 +372,7 @@ class TestAsyncPortals:
                     "updated_prompts": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -372,6 +380,7 @@ class TestAsyncPortals:
                     "updated_tools": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -434,6 +443,7 @@ class TestAsyncPortals:
         portal = await async_client.zero_trust.access.ai_controls.mcp.portals.update(
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
+            allow_code_mode=True,
             description="This is my custom MCP Portal",
             hostname="exmaple.com",
             name="My MCP Portal",
@@ -446,6 +456,7 @@ class TestAsyncPortals:
                     "updated_prompts": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }
@@ -453,6 +464,7 @@ class TestAsyncPortals:
                     "updated_tools": [
                         {
                             "name": "name",
+                            "alias": "my-custom-alias",
                             "description": "description",
                             "enabled": True,
                         }

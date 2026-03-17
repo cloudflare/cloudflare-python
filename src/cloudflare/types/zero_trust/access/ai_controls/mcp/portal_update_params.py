@@ -11,6 +11,9 @@ __all__ = ["PortalUpdateParams", "Server", "ServerUpdatedPrompt", "ServerUpdated
 class PortalUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
+    allow_code_mode: bool
+    """Allow remote code execution in Dynamic Workers (beta)"""
+
     description: str
 
     hostname: str
@@ -26,6 +29,8 @@ class PortalUpdateParams(TypedDict, total=False):
 class ServerUpdatedPrompt(TypedDict, total=False):
     name: Required[str]
 
+    alias: str
+
     description: str
 
     enabled: bool
@@ -33,6 +38,8 @@ class ServerUpdatedPrompt(TypedDict, total=False):
 
 class ServerUpdatedTool(TypedDict, total=False):
     name: Required[str]
+
+    alias: str
 
     description: str
 

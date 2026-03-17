@@ -18,6 +18,9 @@ class PortalCreateParams(TypedDict, total=False):
 
     name: Required[str]
 
+    allow_code_mode: bool
+    """Allow remote code execution in Dynamic Workers (beta)"""
+
     description: str
 
     secure_web_gateway: bool
@@ -29,6 +32,8 @@ class PortalCreateParams(TypedDict, total=False):
 class ServerUpdatedPrompt(TypedDict, total=False):
     name: Required[str]
 
+    alias: str
+
     description: str
 
     enabled: bool
@@ -36,6 +41,8 @@ class ServerUpdatedPrompt(TypedDict, total=False):
 
 class ServerUpdatedTool(TypedDict, total=False):
     name: Required[str]
+
+    alias: str
 
     description: str
 

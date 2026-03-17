@@ -56,6 +56,7 @@ class PortalsResource(SyncAPIResource):
         id: str,
         hostname: str,
         name: str,
+        allow_code_mode: bool | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -67,10 +68,12 @@ class PortalsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalCreateResponse:
         """
-        Create a new MCP Portal
+        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
           id: portal id
+
+          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -91,6 +94,7 @@ class PortalsResource(SyncAPIResource):
                     "id": id,
                     "hostname": hostname,
                     "name": name,
+                    "allow_code_mode": allow_code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -112,6 +116,7 @@ class PortalsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
+        allow_code_mode: bool | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -125,10 +130,12 @@ class PortalsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalUpdateResponse:
         """
-        Update a MCP Portal
+        Updates an MCP portal configuration.
 
         Args:
           id: portal id
+
+          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -148,6 +155,7 @@ class PortalsResource(SyncAPIResource):
             f"/accounts/{account_id}/access/ai-controls/mcp/portals/{id}",
             body=maybe_transform(
                 {
+                    "allow_code_mode": allow_code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,
@@ -181,7 +189,7 @@ class PortalsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[PortalListResponse]:
         """
-        List MCP Portals
+        Lists all MCP portals configured for the account.
 
         Args:
           search: Search by id, name, hostname
@@ -229,7 +237,7 @@ class PortalsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalDeleteResponse:
         """
-        Delete a MCP Portal
+        Deletes an MCP portal from the account.
 
         Args:
           id: portal id
@@ -328,6 +336,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         id: str,
         hostname: str,
         name: str,
+        allow_code_mode: bool | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -339,10 +348,12 @@ class AsyncPortalsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalCreateResponse:
         """
-        Create a new MCP Portal
+        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
           id: portal id
+
+          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -363,6 +374,7 @@ class AsyncPortalsResource(AsyncAPIResource):
                     "id": id,
                     "hostname": hostname,
                     "name": name,
+                    "allow_code_mode": allow_code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -384,6 +396,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
+        allow_code_mode: bool | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -397,10 +410,12 @@ class AsyncPortalsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalUpdateResponse:
         """
-        Update a MCP Portal
+        Updates an MCP portal configuration.
 
         Args:
           id: portal id
+
+          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -420,6 +435,7 @@ class AsyncPortalsResource(AsyncAPIResource):
             f"/accounts/{account_id}/access/ai-controls/mcp/portals/{id}",
             body=await async_maybe_transform(
                 {
+                    "allow_code_mode": allow_code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,
@@ -453,7 +469,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PortalListResponse, AsyncV4PagePaginationArray[PortalListResponse]]:
         """
-        List MCP Portals
+        Lists all MCP portals configured for the account.
 
         Args:
           search: Search by id, name, hostname
@@ -501,7 +517,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalDeleteResponse:
         """
-        Delete a MCP Portal
+        Deletes an MCP portal from the account.
 
         Args:
           id: portal id

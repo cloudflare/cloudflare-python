@@ -68,7 +68,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerCreateResponse:
         """
-        Create a new MCP Server
+        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
           id: server id
@@ -122,7 +122,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerUpdateResponse:
         """
-        Update a MCP Server
+        Updates an MCP portal configuration.
 
         Args:
           id: server id
@@ -174,7 +174,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ServerListResponse]:
         """
-        List MCP Servers
+        Lists all MCP portals configured for the account.
 
         Args:
           search: Search by id, name
@@ -222,7 +222,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerDeleteResponse:
         """
-        Delete a MCP Server
+        Deletes an MCP portal from the account.
 
         Args:
           id: server id
@@ -264,7 +264,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerReadResponse:
         """
-        Read the details of a MCP Server
+        Retrieves gateway configuration for MCP portals.
 
         Args:
           id: server id
@@ -306,7 +306,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Sync MCP Server Capabilities
+        Syncs an MCP server's tool catalog with the portal.
 
         Args:
           id: portal id
@@ -374,7 +374,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerCreateResponse:
         """
-        Create a new MCP Server
+        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
           id: server id
@@ -428,7 +428,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerUpdateResponse:
         """
-        Update a MCP Server
+        Updates an MCP portal configuration.
 
         Args:
           id: server id
@@ -480,7 +480,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ServerListResponse, AsyncV4PagePaginationArray[ServerListResponse]]:
         """
-        List MCP Servers
+        Lists all MCP portals configured for the account.
 
         Args:
           search: Search by id, name
@@ -528,7 +528,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerDeleteResponse:
         """
-        Delete a MCP Server
+        Deletes an MCP portal from the account.
 
         Args:
           id: server id
@@ -570,7 +570,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerReadResponse:
         """
-        Read the details of a MCP Server
+        Retrieves gateway configuration for MCP portals.
 
         Args:
           id: server id
@@ -612,7 +612,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Sync MCP Server Capabilities
+        Syncs an MCP server's tool catalog with the portal.
 
         Args:
           id: portal id

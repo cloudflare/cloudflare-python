@@ -16,6 +16,9 @@ class PortalDeleteResponse(BaseModel):
 
     name: str
 
+    allow_code_mode: Optional[bool] = None
+    """Allow remote code execution in Dynamic Workers (beta)"""
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
