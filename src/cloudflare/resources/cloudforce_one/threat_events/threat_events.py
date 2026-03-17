@@ -386,11 +386,11 @@ class ThreatEventsResource(SyncAPIResource):
         event_id: str,
         *,
         account_id: str,
+        dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
         category: str | Omit = omit,
         created_at: Union[str, datetime] | Omit = omit,
-        dataset_id: str | Omit = omit,
         date: Union[str, datetime] | Omit = omit,
         event: str | Omit = omit,
         indicator: str | Omit = omit,
@@ -415,6 +415,8 @@ class ThreatEventsResource(SyncAPIResource):
 
           event_id: Event UUID.
 
+          dataset_id: Dataset ID containing the event to update.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -431,11 +433,11 @@ class ThreatEventsResource(SyncAPIResource):
             f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
             body=maybe_transform(
                 {
+                    "dataset_id": dataset_id,
                     "attacker": attacker,
                     "attacker_country": attacker_country,
                     "category": category,
                     "created_at": created_at,
-                    "dataset_id": dataset_id,
                     "date": date,
                     "event": event,
                     "indicator": indicator,
@@ -769,11 +771,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         event_id: str,
         *,
         account_id: str,
+        dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
         category: str | Omit = omit,
         created_at: Union[str, datetime] | Omit = omit,
-        dataset_id: str | Omit = omit,
         date: Union[str, datetime] | Omit = omit,
         event: str | Omit = omit,
         indicator: str | Omit = omit,
@@ -798,6 +800,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           event_id: Event UUID.
 
+          dataset_id: Dataset ID containing the event to update.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -814,11 +818,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
             body=await async_maybe_transform(
                 {
+                    "dataset_id": dataset_id,
                     "attacker": attacker,
                     "attacker_country": attacker_country,
                     "category": category,
                     "created_at": created_at,
-                    "dataset_id": dataset_id,
                     "date": date,
                     "event": event,
                     "indicator": indicator,

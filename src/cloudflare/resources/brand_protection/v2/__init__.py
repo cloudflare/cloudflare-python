@@ -40,14 +40,6 @@ from .logo_matches import (
     LogoMatchesResourceWithStreamingResponse,
     AsyncLogoMatchesResourceWithStreamingResponse,
 )
-from .brand_protection import (
-    BrandProtectionResource,
-    AsyncBrandProtectionResource,
-    BrandProtectionResourceWithRawResponse,
-    AsyncBrandProtectionResourceWithRawResponse,
-    BrandProtectionResourceWithStreamingResponse,
-    AsyncBrandProtectionResourceWithStreamingResponse,
-)
 
 __all__ = [
     "QueriesResource",
@@ -80,10 +72,4 @@ __all__ = [
     "AsyncV2ResourceWithRawResponse",
     "V2ResourceWithStreamingResponse",
     "AsyncV2ResourceWithStreamingResponse",
-    "BrandProtectionResource",
-    "AsyncBrandProtectionResource",
-    "BrandProtectionResourceWithRawResponse",
-    "AsyncBrandProtectionResourceWithRawResponse",
-    "BrandProtectionResourceWithStreamingResponse",
-    "AsyncBrandProtectionResourceWithStreamingResponse",
 ]

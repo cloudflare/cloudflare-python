@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,58 +14,49 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.ai.finetunes import public_list_params
-from ....types.ai.finetunes.public_list_response import PublicListResponse
+from ...._base_client import make_request_options
+from ....types.brand_protection.v2 import query_get_params
+from ....types.brand_protection.v2.query_get_response import QueryGetResponse
 
-__all__ = ["PublicResource", "AsyncPublicResource"]
+__all__ = ["QueriesResource", "AsyncQueriesResource"]
 
 
-class PublicResource(SyncAPIResource):
+class QueriesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PublicResourceWithRawResponse:
+    def with_raw_response(self) -> QueriesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return PublicResourceWithRawResponse(self)
+        return QueriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PublicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> QueriesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return PublicResourceWithStreamingResponse(self)
+        return QueriesResourceWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         account_id: str,
-        limit: float | Omit = omit,
-        offset: float | Omit = omit,
-        order_by: str | Omit = omit,
+        id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[PublicListResponse]:
+    ) -> QueryGetResponse:
         """
-        Lists publicly available fine-tuned models that can be used with Workers AI.
+        Get all saved brand protection queries for an account
 
         Args:
-          limit: Pagination Limit
-
-          offset: Pagination Offset
-
-          order_by: Order By Column Name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -76,71 +67,55 @@ class PublicResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/finetunes/public",
-            page=SyncSinglePage[PublicListResponse],
+        return self._get(
+            f"/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                    },
-                    public_list_params.PublicListParams,
-                ),
+                query=maybe_transform({"id": id}, query_get_params.QueryGetParams),
             ),
-            model=PublicListResponse,
+            cast_to=QueryGetResponse,
         )
 
 
-class AsyncPublicResource(AsyncAPIResource):
+class AsyncQueriesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPublicResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncQueriesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPublicResourceWithRawResponse(self)
+        return AsyncQueriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPublicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncQueriesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncPublicResourceWithStreamingResponse(self)
+        return AsyncQueriesResourceWithStreamingResponse(self)
 
-    def list(
+    async def get(
         self,
         *,
         account_id: str,
-        limit: float | Omit = omit,
-        offset: float | Omit = omit,
-        order_by: str | Omit = omit,
+        id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PublicListResponse, AsyncSinglePage[PublicListResponse]]:
+    ) -> QueryGetResponse:
         """
-        Lists publicly available fine-tuned models that can be used with Workers AI.
+        Get all saved brand protection queries for an account
 
         Args:
-          limit: Pagination Limit
-
-          offset: Pagination Offset
-
-          order_by: Order By Column Name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -151,58 +126,50 @@ class AsyncPublicResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/finetunes/public",
-            page=AsyncSinglePage[PublicListResponse],
+        return await self._get(
+            f"/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "limit": limit,
-                        "offset": offset,
-                        "order_by": order_by,
-                    },
-                    public_list_params.PublicListParams,
-                ),
+                query=await async_maybe_transform({"id": id}, query_get_params.QueryGetParams),
             ),
-            model=PublicListResponse,
+            cast_to=QueryGetResponse,
         )
 
 
-class PublicResourceWithRawResponse:
-    def __init__(self, public: PublicResource) -> None:
-        self._public = public
+class QueriesResourceWithRawResponse:
+    def __init__(self, queries: QueriesResource) -> None:
+        self._queries = queries
 
-        self.list = to_raw_response_wrapper(
-            public.list,
+        self.get = to_raw_response_wrapper(
+            queries.get,
         )
 
 
-class AsyncPublicResourceWithRawResponse:
-    def __init__(self, public: AsyncPublicResource) -> None:
-        self._public = public
+class AsyncQueriesResourceWithRawResponse:
+    def __init__(self, queries: AsyncQueriesResource) -> None:
+        self._queries = queries
 
-        self.list = async_to_raw_response_wrapper(
-            public.list,
+        self.get = async_to_raw_response_wrapper(
+            queries.get,
         )
 
 
-class PublicResourceWithStreamingResponse:
-    def __init__(self, public: PublicResource) -> None:
-        self._public = public
+class QueriesResourceWithStreamingResponse:
+    def __init__(self, queries: QueriesResource) -> None:
+        self._queries = queries
 
-        self.list = to_streamed_response_wrapper(
-            public.list,
+        self.get = to_streamed_response_wrapper(
+            queries.get,
         )
 
 
-class AsyncPublicResourceWithStreamingResponse:
-    def __init__(self, public: AsyncPublicResource) -> None:
-        self._public = public
+class AsyncQueriesResourceWithStreamingResponse:
+    def __init__(self, queries: AsyncQueriesResource) -> None:
+        self._queries = queries
 
-        self.list = async_to_streamed_response_wrapper(
-            public.list,
+        self.get = async_to_streamed_response_wrapper(
+            queries.get,
         )

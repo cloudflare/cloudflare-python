@@ -72,7 +72,7 @@ class ModelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[object]:
         """
-        Model Search
+        Searches Workers AI models by name or description.
 
         Args:
           author: Filter by Author
@@ -163,7 +163,7 @@ class AsyncModelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
         """
-        Model Search
+        Searches Workers AI models by name or description.
 
         Args:
           author: Filter by Author

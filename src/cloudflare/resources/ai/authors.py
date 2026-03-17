@@ -51,7 +51,7 @@ class AuthorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[object]:
         """
-        Author Search
+        Searches Workers AI models by author or organization name.
 
         Args:
           extra_headers: Send extra headers
@@ -106,7 +106,7 @@ class AsyncAuthorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
-        Author Search
+        Searches Workers AI models by author or organization name.
 
         Args:
           extra_headers: Send extra headers

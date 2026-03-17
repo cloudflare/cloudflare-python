@@ -85,7 +85,7 @@ class FinetunesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FinetuneCreateResponse:
         """
-        Create a new Finetune
+        Creates a new fine-tuning job for a Workers AI model using custom training data.
 
         Args:
           extra_headers: Send extra headers
@@ -131,7 +131,7 @@ class FinetunesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FinetuneListResponse:
         """
-        List Finetunes
+        Lists all fine-tuning jobs created by the account, including status and metrics.
 
         Args:
           extra_headers: Send extra headers
@@ -201,7 +201,7 @@ class AsyncFinetunesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FinetuneCreateResponse:
         """
-        Create a new Finetune
+        Creates a new fine-tuning job for a Workers AI model using custom training data.
 
         Args:
           extra_headers: Send extra headers
@@ -247,7 +247,7 @@ class AsyncFinetunesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FinetuneListResponse:
         """
-        List Finetunes
+        Lists all fine-tuning jobs created by the account, including status and metrics.
 
         Args:
           extra_headers: Send extra headers

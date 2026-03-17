@@ -58,7 +58,7 @@ class AssetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssetCreateResponse:
         """
-        Upload a Finetune Asset
+        Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
           extra_headers: Send extra headers
@@ -130,7 +130,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssetCreateResponse:
         """
-        Upload a Finetune Asset
+        Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
           extra_headers: Send extra headers

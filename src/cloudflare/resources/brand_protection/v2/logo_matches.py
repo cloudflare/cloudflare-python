@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,57 +16,57 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.ai.finetunes import public_list_params
-from ....types.ai.finetunes.public_list_response import PublicListResponse
+from ...._base_client import make_request_options
+from ....types.brand_protection.v2 import logo_match_get_params
+from ....types.brand_protection.v2.logo_match_get_response import LogoMatchGetResponse
 
-__all__ = ["PublicResource", "AsyncPublicResource"]
+__all__ = ["LogoMatchesResource", "AsyncLogoMatchesResource"]
 
 
-class PublicResource(SyncAPIResource):
+class LogoMatchesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PublicResourceWithRawResponse:
+    def with_raw_response(self) -> LogoMatchesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return PublicResourceWithRawResponse(self)
+        return LogoMatchesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PublicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> LogoMatchesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return PublicResourceWithStreamingResponse(self)
+        return LogoMatchesResourceWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         account_id: str,
-        limit: float | Omit = omit,
-        offset: float | Omit = omit,
-        order_by: str | Omit = omit,
+        query_id: str,
+        download: str | Omit = omit,
+        limit: str | Omit = omit,
+        offset: str | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: Literal["tag", "date"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[PublicListResponse]:
+    ) -> LogoMatchGetResponse:
         """
-        Lists publicly available fine-tuned models that can be used with Workers AI.
+        Get paginated list of logo matches for a specific brand protection logo query
 
         Args:
-          limit: Pagination Limit
+          order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
-          offset: Pagination Offset
-
-          order_by: Order By Column Name
+          order_by: Column to sort by. Options: 'tag' or 'date'
 
           extra_headers: Send extra headers
 
@@ -76,9 +78,8 @@ class PublicResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/finetunes/public",
-            page=SyncSinglePage[PublicListResponse],
+        return self._get(
+            f"/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/matches",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -86,60 +87,64 @@ class PublicResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "query_id": query_id,
+                        "download": download,
                         "limit": limit,
                         "offset": offset,
+                        "order": order,
                         "order_by": order_by,
                     },
-                    public_list_params.PublicListParams,
+                    logo_match_get_params.LogoMatchGetParams,
                 ),
             ),
-            model=PublicListResponse,
+            cast_to=LogoMatchGetResponse,
         )
 
 
-class AsyncPublicResource(AsyncAPIResource):
+class AsyncLogoMatchesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPublicResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncLogoMatchesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPublicResourceWithRawResponse(self)
+        return AsyncLogoMatchesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPublicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncLogoMatchesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncPublicResourceWithStreamingResponse(self)
+        return AsyncLogoMatchesResourceWithStreamingResponse(self)
 
-    def list(
+    async def get(
         self,
         *,
         account_id: str,
-        limit: float | Omit = omit,
-        offset: float | Omit = omit,
-        order_by: str | Omit = omit,
+        query_id: str,
+        download: str | Omit = omit,
+        limit: str | Omit = omit,
+        offset: str | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: Literal["tag", "date"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PublicListResponse, AsyncSinglePage[PublicListResponse]]:
+    ) -> LogoMatchGetResponse:
         """
-        Lists publicly available fine-tuned models that can be used with Workers AI.
+        Get paginated list of logo matches for a specific brand protection logo query
 
         Args:
-          limit: Pagination Limit
+          order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
-          offset: Pagination Offset
-
-          order_by: Order By Column Name
+          order_by: Column to sort by. Options: 'tag' or 'date'
 
           extra_headers: Send extra headers
 
@@ -151,58 +156,60 @@ class AsyncPublicResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/finetunes/public",
-            page=AsyncSinglePage[PublicListResponse],
+        return await self._get(
+            f"/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/matches",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
+                        "query_id": query_id,
+                        "download": download,
                         "limit": limit,
                         "offset": offset,
+                        "order": order,
                         "order_by": order_by,
                     },
-                    public_list_params.PublicListParams,
+                    logo_match_get_params.LogoMatchGetParams,
                 ),
             ),
-            model=PublicListResponse,
+            cast_to=LogoMatchGetResponse,
         )
 
 
-class PublicResourceWithRawResponse:
-    def __init__(self, public: PublicResource) -> None:
-        self._public = public
+class LogoMatchesResourceWithRawResponse:
+    def __init__(self, logo_matches: LogoMatchesResource) -> None:
+        self._logo_matches = logo_matches
 
-        self.list = to_raw_response_wrapper(
-            public.list,
+        self.get = to_raw_response_wrapper(
+            logo_matches.get,
         )
 
 
-class AsyncPublicResourceWithRawResponse:
-    def __init__(self, public: AsyncPublicResource) -> None:
-        self._public = public
+class AsyncLogoMatchesResourceWithRawResponse:
+    def __init__(self, logo_matches: AsyncLogoMatchesResource) -> None:
+        self._logo_matches = logo_matches
 
-        self.list = async_to_raw_response_wrapper(
-            public.list,
+        self.get = async_to_raw_response_wrapper(
+            logo_matches.get,
         )
 
 
-class PublicResourceWithStreamingResponse:
-    def __init__(self, public: PublicResource) -> None:
-        self._public = public
+class LogoMatchesResourceWithStreamingResponse:
+    def __init__(self, logo_matches: LogoMatchesResource) -> None:
+        self._logo_matches = logo_matches
 
-        self.list = to_streamed_response_wrapper(
-            public.list,
+        self.get = to_streamed_response_wrapper(
+            logo_matches.get,
         )
 
 
-class AsyncPublicResourceWithStreamingResponse:
-    def __init__(self, public: AsyncPublicResource) -> None:
-        self._public = public
+class AsyncLogoMatchesResourceWithStreamingResponse:
+    def __init__(self, logo_matches: AsyncLogoMatchesResource) -> None:
+        self._logo_matches = logo_matches
 
-        self.list = async_to_streamed_response_wrapper(
-            public.list,
+        self.get = async_to_streamed_response_wrapper(
+            logo_matches.get,
         )

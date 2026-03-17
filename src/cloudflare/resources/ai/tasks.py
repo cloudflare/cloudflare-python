@@ -51,7 +51,7 @@ class TasksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[object]:
         """
-        Task Search
+        Searches Workers AI models by task type (e.g., text-generation, embeddings).
 
         Args:
           extra_headers: Send extra headers
@@ -106,7 +106,7 @@ class AsyncTasksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
-        Task Search
+        Searches Workers AI models by task type (e.g., text-generation, embeddings).
 
         Args:
           extra_headers: Send extra headers

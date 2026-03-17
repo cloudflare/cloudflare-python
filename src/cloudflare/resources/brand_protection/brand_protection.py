@@ -12,6 +12,14 @@ from .logos import (
     LogosResourceWithStreamingResponse,
     AsyncLogosResourceWithStreamingResponse,
 )
+from .v2.v2 import (
+    V2Resource,
+    AsyncV2Resource,
+    V2ResourceWithRawResponse,
+    AsyncV2ResourceWithRawResponse,
+    V2ResourceWithStreamingResponse,
+    AsyncV2ResourceWithStreamingResponse,
+)
 from .matches import (
     MatchesResource,
     AsyncMatchesResource,
@@ -69,6 +77,10 @@ class BrandProtectionResource(SyncAPIResource):
     @cached_property
     def logo_matches(self) -> LogoMatchesResource:
         return LogoMatchesResource(self._client)
+
+    @cached_property
+    def v2(self) -> V2Resource:
+        return V2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
@@ -173,6 +185,10 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
     @cached_property
     def logo_matches(self) -> AsyncLogoMatchesResource:
         return AsyncLogoMatchesResource(self._client)
+
+    @cached_property
+    def v2(self) -> AsyncV2Resource:
+        return AsyncV2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
@@ -288,6 +304,10 @@ class BrandProtectionResourceWithRawResponse:
     def logo_matches(self) -> LogoMatchesResourceWithRawResponse:
         return LogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
 
+    @cached_property
+    def v2(self) -> V2ResourceWithRawResponse:
+        return V2ResourceWithRawResponse(self._brand_protection.v2)
+
 
 class AsyncBrandProtectionResourceWithRawResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -315,6 +335,10 @@ class AsyncBrandProtectionResourceWithRawResponse:
     @cached_property
     def logo_matches(self) -> AsyncLogoMatchesResourceWithRawResponse:
         return AsyncLogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
+
+    @cached_property
+    def v2(self) -> AsyncV2ResourceWithRawResponse:
+        return AsyncV2ResourceWithRawResponse(self._brand_protection.v2)
 
 
 class BrandProtectionResourceWithStreamingResponse:
@@ -344,6 +368,10 @@ class BrandProtectionResourceWithStreamingResponse:
     def logo_matches(self) -> LogoMatchesResourceWithStreamingResponse:
         return LogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)
 
+    @cached_property
+    def v2(self) -> V2ResourceWithStreamingResponse:
+        return V2ResourceWithStreamingResponse(self._brand_protection.v2)
+
 
 class AsyncBrandProtectionResourceWithStreamingResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -371,3 +399,7 @@ class AsyncBrandProtectionResourceWithStreamingResponse:
     @cached_property
     def logo_matches(self) -> AsyncLogoMatchesResourceWithStreamingResponse:
         return AsyncLogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)
+
+    @cached_property
+    def v2(self) -> AsyncV2ResourceWithStreamingResponse:
+        return AsyncV2ResourceWithStreamingResponse(self._brand_protection.v2)
