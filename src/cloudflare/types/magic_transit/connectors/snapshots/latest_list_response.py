@@ -359,9 +359,15 @@ class Item(BaseModel):
     cpu_time_user_ms: Optional[float] = None
     """Time spent in user mode (milliseconds)"""
 
+    delta: Optional[float] = None
+    """Number of network operations applied during state transition"""
+
     dhcp_leases: Optional[List[ItemDHCPLease]] = None
 
     disks: Optional[List[ItemDisk]] = None
+
+    epsilon: Optional[float] = None
+    """Simulated number of network operations applied during state transition"""
 
     ha_state: Optional[str] = None
     """Name of high availability state"""
