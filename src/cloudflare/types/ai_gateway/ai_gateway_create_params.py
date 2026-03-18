@@ -24,8 +24,6 @@ class AIGatewayCreateParams(TypedDict, total=False):
 
     rate_limiting_limit: Required[Optional[int]]
 
-    rate_limiting_technique: Required[Literal["fixed", "sliding"]]
-
     authentication: bool
 
     log_management: Optional[int]
@@ -35,6 +33,8 @@ class AIGatewayCreateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    rate_limiting_technique: Optional[Literal["fixed", "sliding"]]
 
     workers_ai_billing_mode: Literal["postpaid", "unified"]
     """Controls how Workers AI inference calls routed through this gateway are billed"""

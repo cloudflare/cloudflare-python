@@ -32,8 +32,6 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     rate_limiting_limit: Required[Optional[int]]
 
-    rate_limiting_technique: Required[Literal["fixed", "sliding"]]
-
     authentication: bool
 
     dlp: DLP
@@ -47,6 +45,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     logpush_public_key: Optional[str]
 
     otel: Optional[Iterable[Otel]]
+
+    rate_limiting_technique: Optional[Literal["fixed", "sliding"]]
 
     store_id: Optional[str]
 

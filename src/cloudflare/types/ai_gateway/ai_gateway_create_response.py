@@ -85,8 +85,6 @@ class AIGatewayCreateResponse(BaseModel):
 
     rate_limiting_limit: Optional[int] = None
 
-    rate_limiting_technique: Literal["fixed", "sliding"]
-
     authentication: Optional[bool] = None
 
     dlp: Optional[DLP] = None
@@ -102,6 +100,8 @@ class AIGatewayCreateResponse(BaseModel):
     logpush_public_key: Optional[str] = None
 
     otel: Optional[List[Otel]] = None
+
+    rate_limiting_technique: Optional[Literal["fixed", "sliding"]] = None
 
     store_id: Optional[str] = None
 

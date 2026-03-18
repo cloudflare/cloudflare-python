@@ -94,8 +94,6 @@ class Filter(TypedDict, total=False):
             "event_id",
             "metadata.key",
             "metadata.value",
-            "prompts.prompt_id",
-            "prompts.version_id",
             "authentication",
             "wholesale",
             "compatibilityMode",
