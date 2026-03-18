@@ -84,6 +84,7 @@ class CrawlResource(SyncAPIResource):
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         emulate_media_type: str | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -163,6 +164,10 @@ class CrawlResource(SyncAPIResource):
 
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
+          crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
+              Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+              https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
+
           depth: Maximum number of levels deep the crawler will traverse from the starting URL.
 
           formats: Formats to return. Default is `html`.
@@ -223,6 +228,7 @@ class CrawlResource(SyncAPIResource):
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
         json_options: crawl_create_params.Variant1JsonOptions | Omit = omit,
@@ -251,6 +257,10 @@ class CrawlResource(SyncAPIResource):
           url: URL to navigate to, eg. `https://example.com`.
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
+
+          crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
+              Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+              https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
 
           depth: Maximum number of levels deep the crawler will traverse from the starting URL.
 
@@ -324,6 +334,7 @@ class CrawlResource(SyncAPIResource):
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         emulate_media_type: str | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -386,6 +397,7 @@ class CrawlResource(SyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "crawl_purposes": crawl_purposes,
                     "depth": depth,
                     "emulate_media_type": emulate_media_type,
                     "formats": formats,
@@ -586,6 +598,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         emulate_media_type: str | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -665,6 +678,10 @@ class AsyncCrawlResource(AsyncAPIResource):
 
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
+          crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
+              Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+              https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
+
           depth: Maximum number of levels deep the crawler will traverse from the starting URL.
 
           formats: Formats to return. Default is `html`.
@@ -725,6 +742,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
         json_options: crawl_create_params.Variant1JsonOptions | Omit = omit,
@@ -753,6 +771,10 @@ class AsyncCrawlResource(AsyncAPIResource):
           url: URL to navigate to, eg. `https://example.com`.
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
+
+          crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
+              Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+              https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
 
           depth: Maximum number of levels deep the crawler will traverse from the starting URL.
 
@@ -826,6 +848,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
+        crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         emulate_media_type: str | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -888,6 +911,7 @@ class AsyncCrawlResource(AsyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "crawl_purposes": crawl_purposes,
                     "depth": depth,
                     "emulate_media_type": emulate_media_type,
                     "formats": formats,

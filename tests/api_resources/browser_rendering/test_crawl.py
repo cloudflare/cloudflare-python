@@ -74,6 +74,7 @@ class TestCrawl:
                     "url": "url",
                 }
             ],
+            crawl_purposes=["search"],
             depth=1,
             emulate_media_type="emulateMediaType",
             formats=["html"],
@@ -179,6 +180,7 @@ class TestCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=86400,
+            crawl_purposes=["search"],
             depth=1,
             formats=["html"],
             json_options={
@@ -412,6 +414,7 @@ class TestAsyncCrawl:
                     "url": "url",
                 }
             ],
+            crawl_purposes=["search"],
             depth=1,
             emulate_media_type="emulateMediaType",
             formats=["html"],
@@ -517,6 +520,7 @@ class TestAsyncCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=86400,
+            crawl_purposes=["search"],
             depth=1,
             formats=["html"],
             json_options={

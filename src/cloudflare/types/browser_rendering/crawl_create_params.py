@@ -98,6 +98,13 @@ class Variant0(TypedDict, total=False):
     cookies: Iterable[Variant0Cookie]
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
 
+    crawl_purposes: Annotated[List[Literal["search", "ai-input", "ai-train"]], PropertyInfo(alias="crawlPurposes")]
+    """List of crawl purposes to respect Content-Signal directives in robots.txt.
+
+    Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+    https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
+    """
+
     depth: float
     """Maximum number of levels deep the crawler will traverse from the starting URL."""
 
@@ -380,6 +387,13 @@ class Variant1(TypedDict, total=False):
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
+
+    crawl_purposes: Annotated[List[Literal["search", "ai-input", "ai-train"]], PropertyInfo(alias="crawlPurposes")]
+    """List of crawl purposes to respect Content-Signal directives in robots.txt.
+
+    Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
+    https://contentsignals.org/. Default: ['search', 'ai-input', 'ai-train'].
+    """
 
     depth: float
     """Maximum number of levels deep the crawler will traverse from the starting URL."""
