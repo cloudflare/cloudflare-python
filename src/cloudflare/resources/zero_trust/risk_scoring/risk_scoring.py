@@ -91,7 +91,8 @@ class RiskScoringResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RiskScoringGetResponse]:
         """
-        Get risk event/score information for a specific user
+        Retrieves the detailed risk score breakdown for a specific user, including
+        contributing factors.
 
         Args:
           extra_headers: Send extra headers
@@ -131,7 +132,7 @@ class RiskScoringResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Clear the risk score for a particular user
+        Resets risk scores for specified users, clearing their accumulated risk history.
 
         Args:
           extra_headers: Send extra headers
@@ -204,7 +205,8 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RiskScoringGetResponse]:
         """
-        Get risk event/score information for a specific user
+        Retrieves the detailed risk score breakdown for a specific user, including
+        contributing factors.
 
         Args:
           extra_headers: Send extra headers
@@ -244,7 +246,7 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Clear the risk score for a particular user
+        Resets risk scores for specified users, clearing their accumulated risk history.
 
         Args:
           extra_headers: Send extra headers

@@ -54,7 +54,8 @@ class LimitsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LimitListResponse]:
         """
-        Fetch limits associated with DLP for account
+        Retrieves current DLP usage limits and quotas for the account, including dataset
+        limits and scan quotas.
 
         Args:
           extra_headers: Send extra headers
@@ -112,7 +113,8 @@ class AsyncLimitsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LimitListResponse]:
         """
-        Fetch limits associated with DLP for account
+        Retrieves current DLP usage limits and quotas for the account, including dataset
+        limits and scan quotas.
 
         Args:
           extra_headers: Send extra headers

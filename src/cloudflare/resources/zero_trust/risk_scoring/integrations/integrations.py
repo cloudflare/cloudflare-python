@@ -76,7 +76,8 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
-        Create new risk score integration.
+        Creates a new Zero Trust risk score integration, connecting external risk
+        signals to Cloudflare's risk scoring system.
 
         Args:
           tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
@@ -188,7 +189,7 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IntegrationListResponse]:
         """
-        List all risk score integrations for the account.
+        Lists all configured Zero Trust risk score integrations for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -223,7 +224,8 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a risk score integration.
+        Removes a Zero Trust risk score integration, disconnecting the external risk
+        signal source.
 
         Args:
           extra_headers: Send extra headers
@@ -330,7 +332,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
-        Create new risk score integration.
+        Creates a new Zero Trust risk score integration, connecting external risk
+        signals to Cloudflare's risk scoring system.
 
         Args:
           tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
@@ -442,7 +445,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
-        List all risk score integrations for the account.
+        Lists all configured Zero Trust risk score integrations for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -477,7 +480,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a risk score integration.
+        Removes a Zero Trust risk score integration, disconnecting the external risk
+        signal source.
 
         Args:
           extra_headers: Send extra headers

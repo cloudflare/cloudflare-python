@@ -59,8 +59,10 @@ class PayloadLogsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PayloadLogUpdateResponse]:
-        """
-        Set payload log settings
+        """Enables or disables payload logging for DLP matches.
+
+        When enabled, matched
+        content is stored for review.
 
         Args:
           masking_level: Masking level for payload logs.
@@ -125,7 +127,8 @@ class PayloadLogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PayloadLogGetResponse]:
         """
-        Get payload log settings
+        Gets the current payload logging configuration for DLP, showing whether matched
+        content is being logged.
 
         Args:
           extra_headers: Send extra headers
@@ -184,8 +187,10 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PayloadLogUpdateResponse]:
-        """
-        Set payload log settings
+        """Enables or disables payload logging for DLP matches.
+
+        When enabled, matched
+        content is stored for review.
 
         Args:
           masking_level: Masking level for payload logs.
@@ -250,7 +255,8 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PayloadLogGetResponse]:
         """
-        Get payload log settings
+        Gets the current payload logging configuration for DLP, showing whether matched
+        content is being logged.
 
         Args:
           extra_headers: Send extra headers

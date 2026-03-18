@@ -86,12 +86,13 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DatasetCreation]:
-        """Create a new dataset
+        """
+        Creates a new DLP (Data Loss Prevention) dataset for storing custom detection
+        patterns. Datasets can contain exact match data, word lists, or EDM (Exact Data
+        Match) configurations.
 
         Args:
-          case_sensitive: Only applies to custom word lists.
-
-        Determines if the words should be matched in
+          case_sensitive: Only applies to custom word lists. Determines if the words should be matched in
               a case-sensitive manner Cannot be set to false if `secret` is true or undefined
 
           description: The description of the dataset.
@@ -156,7 +157,8 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Dataset]:
         """
-        Update details about a dataset
+        Updates the configuration of an existing DLP dataset, such as its name,
+        description, or detection settings.
 
         Args:
           case_sensitive: Determines if the words should be matched in a case-sensitive manner.
@@ -211,7 +213,8 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Dataset]:
         """
-        Fetch all datasets
+        Lists all DLP datasets configured for the account, including custom word lists
+        and EDM datasets.
 
         Args:
           extra_headers: Send extra headers
@@ -355,12 +358,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DatasetCreation]:
-        """Create a new dataset
+        """
+        Creates a new DLP (Data Loss Prevention) dataset for storing custom detection
+        patterns. Datasets can contain exact match data, word lists, or EDM (Exact Data
+        Match) configurations.
 
         Args:
-          case_sensitive: Only applies to custom word lists.
-
-        Determines if the words should be matched in
+          case_sensitive: Only applies to custom word lists. Determines if the words should be matched in
               a case-sensitive manner Cannot be set to false if `secret` is true or undefined
 
           description: The description of the dataset.
@@ -425,7 +429,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Dataset]:
         """
-        Update details about a dataset
+        Updates the configuration of an existing DLP dataset, such as its name,
+        description, or detection settings.
 
         Args:
           case_sensitive: Determines if the words should be matched in a case-sensitive manner.
@@ -480,7 +485,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Dataset, AsyncSinglePage[Dataset]]:
         """
-        Fetch all datasets
+        Lists all DLP datasets configured for the account, including custom word lists
+        and EDM datasets.
 
         Args:
           extra_headers: Send extra headers

@@ -67,7 +67,8 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleCreateResponse]:
         """
-        Create email scanner rule
+        Creates a new DLP email scanning rule that defines what content patterns to
+        detect in email messages and what actions to take.
 
         Args:
           conditions: Triggered if all conditions match.
@@ -207,8 +208,10 @@ class RulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
-        """
-        Delete email scanner rule
+        """Removes a DLP email scanning rule.
+
+        The rule will no longer be applied to email
+        messages.
 
         Args:
           extra_headers: Send extra headers
@@ -247,8 +250,10 @@ class RulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleBulkEditResponse]:
-        """
-        Update email scanner rule priorities
+        """Reorders DLP email scanning rules by updating their priority values.
+
+        Higher
+        priority rules are evaluated first.
 
         Args:
           extra_headers: Send extra headers
@@ -287,7 +292,8 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleGetResponse]:
         """
-        Get an email scanner rule
+        Gets detailed configuration for a specific DLP email scanning rule, including
+        detection patterns and actions.
 
         Args:
           extra_headers: Send extra headers
@@ -352,7 +358,8 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleCreateResponse]:
         """
-        Create email scanner rule
+        Creates a new DLP email scanning rule that defines what content patterns to
+        detect in email messages and what actions to take.
 
         Args:
           conditions: Triggered if all conditions match.
@@ -492,8 +499,10 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
-        """
-        Delete email scanner rule
+        """Removes a DLP email scanning rule.
+
+        The rule will no longer be applied to email
+        messages.
 
         Args:
           extra_headers: Send extra headers
@@ -532,8 +541,10 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleBulkEditResponse]:
-        """
-        Update email scanner rule priorities
+        """Reorders DLP email scanning rules by updating their priority values.
+
+        Higher
+        priority rules are evaluated first.
 
         Args:
           extra_headers: Send extra headers
@@ -574,7 +585,8 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleGetResponse]:
         """
-        Get an email scanner rule
+        Gets detailed configuration for a specific DLP email scanning rule, including
+        detection patterns and actions.
 
         Args:
           extra_headers: Send extra headers

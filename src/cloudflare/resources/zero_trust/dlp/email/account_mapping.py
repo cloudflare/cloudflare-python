@@ -58,7 +58,8 @@ class AccountMappingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountMappingCreateResponse]:
         """
-        Create mapping
+        Creates a mapping between a Cloudflare account and an email provider for DLP
+        email scanning integration.
 
         Args:
           extra_headers: Send extra headers
@@ -98,7 +99,7 @@ class AccountMappingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountMappingGetResponse]:
         """
-        Get mapping
+        Retrieves the email provider mapping configuration for DLP email scanning.
 
         Args:
           extra_headers: Send extra headers
@@ -157,7 +158,8 @@ class AsyncAccountMappingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountMappingCreateResponse]:
         """
-        Create mapping
+        Creates a mapping between a Cloudflare account and an email provider for DLP
+        email scanning integration.
 
         Args:
           extra_headers: Send extra headers
@@ -197,7 +199,7 @@ class AsyncAccountMappingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountMappingGetResponse]:
         """
-        Get mapping
+        Retrieves the email provider mapping configuration for DLP email scanning.
 
         Args:
           extra_headers: Send extra headers

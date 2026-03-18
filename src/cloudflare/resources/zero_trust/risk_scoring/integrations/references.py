@@ -55,7 +55,7 @@ class ReferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ReferenceGetResponse]:
         """
-        Get risk score integration by reference id.
+        Retrieves a Zero Trust risk score integration using its external reference ID.
 
         Args:
           extra_headers: Send extra headers
@@ -116,7 +116,7 @@ class AsyncReferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ReferenceGetResponse]:
         """
-        Get risk score integration by reference id.
+        Retrieves a Zero Trust risk score integration using its external reference ID.
 
         Args:
           extra_headers: Send extra headers
