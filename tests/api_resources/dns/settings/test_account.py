@@ -30,7 +30,6 @@ class TestAccount:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         account = client.dns.settings.account.edit(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            enforce_dns_only=False,
             zone_defaults={
                 "flatten_all_cnames": False,
                 "foundation_dns": False,
@@ -148,7 +147,6 @@ class TestAsyncAccount:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.dns.settings.account.edit(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            enforce_dns_only=False,
             zone_defaults={
                 "flatten_all_cnames": False,
                 "foundation_dns": False,

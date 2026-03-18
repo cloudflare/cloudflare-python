@@ -61,7 +61,6 @@ class AccountResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        enforce_dns_only: bool | Omit = omit,
         zone_defaults: account_edit_params.ZoneDefaults | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -76,8 +75,6 @@ class AccountResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          enforce_dns_only: Whether to enforce DNS-only records for the entire account.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -90,13 +87,7 @@ class AccountResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
             f"/accounts/{account_id}/dns_settings",
-            body=maybe_transform(
-                {
-                    "enforce_dns_only": enforce_dns_only,
-                    "zone_defaults": zone_defaults,
-                },
-                account_edit_params.AccountEditParams,
-            ),
+            body=maybe_transform({"zone_defaults": zone_defaults}, account_edit_params.AccountEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -175,7 +166,6 @@ class AsyncAccountResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        enforce_dns_only: bool | Omit = omit,
         zone_defaults: account_edit_params.ZoneDefaults | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -190,8 +180,6 @@ class AsyncAccountResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          enforce_dns_only: Whether to enforce DNS-only records for the entire account.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,13 +192,7 @@ class AsyncAccountResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/dns_settings",
-            body=await async_maybe_transform(
-                {
-                    "enforce_dns_only": enforce_dns_only,
-                    "zone_defaults": zone_defaults,
-                },
-                account_edit_params.AccountEditParams,
-            ),
+            body=await async_maybe_transform({"zone_defaults": zone_defaults}, account_edit_params.AccountEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

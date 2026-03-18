@@ -114,9 +114,3 @@ class ZoneDefaults(BaseModel):
 
 class AccountGetResponse(BaseModel):
     zone_defaults: ZoneDefaults
-
-    enforce_dns_only: Optional[bool] = None
-    """Whether to enforce DNS-only records for the entire account.
-
-    Omitted when account settings are unavailable.
-    """
