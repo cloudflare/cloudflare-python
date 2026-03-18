@@ -36,7 +36,10 @@ class AIGatewayCreateParams(TypedDict, total=False):
 
     rate_limiting_technique: Optional[Literal["fixed", "sliding"]]
 
-    workers_ai_billing_mode: Literal["postpaid", "unified"]
-    """Controls how Workers AI inference calls routed through this gateway are billed"""
+    workers_ai_billing_mode: Literal["postpaid"]
+    """Controls how Workers AI inference calls routed through this gateway are billed.
+
+    Only 'postpaid' is currently supported.
+    """
 
     zdr: bool

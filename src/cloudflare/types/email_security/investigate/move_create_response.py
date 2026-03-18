@@ -10,10 +10,13 @@ __all__ = ["MoveCreateResponse"]
 
 class MoveCreateResponse(BaseModel):
     completed_timestamp: datetime
+    """Deprecated, use `completed_at` instead"""
 
     item_count: int
 
     success: bool
+
+    completed_at: Optional[datetime] = None
 
     destination: Optional[str] = None
 

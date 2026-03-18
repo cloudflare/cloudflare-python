@@ -154,6 +154,7 @@ class InvestigateResource(SyncAPIResource):
         sender: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
+        submissions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,6 +225,8 @@ class InvestigateResource(SyncAPIResource):
           subject: Search for messages containing individual keywords in any order within the
               subject.
 
+          submissions: Search for submissions instead of original messages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -262,6 +265,7 @@ class InvestigateResource(SyncAPIResource):
                         "sender": sender,
                         "start": start,
                         "subject": subject,
+                        "submissions": submissions,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
@@ -385,6 +389,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         sender: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
+        submissions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,6 +460,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
           subject: Search for messages containing individual keywords in any order within the
               subject.
 
+          submissions: Search for submissions instead of original messages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -493,6 +500,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "sender": sender,
                         "start": start,
                         "subject": subject,
+                        "submissions": submissions,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),

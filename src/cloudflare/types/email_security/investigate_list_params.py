@@ -97,3 +97,6 @@ class InvestigateListParams(TypedDict, total=False):
     Search for messages containing individual keywords in any order within the
     subject.
     """
+
+    submissions: bool
+    """Search for submissions instead of original messages"""

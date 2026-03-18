@@ -150,7 +150,7 @@ class AIGatewayResource(SyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -165,7 +165,8 @@ class AIGatewayResource(SyncAPIResource):
         Args:
           id: gateway id
 
-          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
+              Only 'postpaid' is currently supported.
 
           extra_headers: Send extra headers
 
@@ -228,7 +229,7 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -243,7 +244,8 @@ class AIGatewayResource(SyncAPIResource):
         Args:
           id: gateway id
 
-          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
+              Only 'postpaid' is currently supported.
 
           extra_headers: Send extra headers
 
@@ -490,7 +492,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -505,7 +507,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Args:
           id: gateway id
 
-          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
+              Only 'postpaid' is currently supported.
 
           extra_headers: Send extra headers
 
@@ -568,7 +571,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -583,7 +586,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Args:
           id: gateway id
 
-          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed
+          workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
+              Only 'postpaid' is currently supported.
 
           extra_headers: Send extra headers
 

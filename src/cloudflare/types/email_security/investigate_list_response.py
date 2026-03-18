@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -106,6 +107,7 @@ class InvestigateListResponse(BaseModel):
     properties: Properties
 
     ts: str
+    """Deprecated, use `scanned_at` instead"""
 
     alert_id: Optional[str] = None
 
@@ -162,7 +164,12 @@ class InvestigateListResponse(BaseModel):
 
     replyto: Optional[str] = None
 
+    scanned_at: Optional[datetime] = None
+
+    sent_at: Optional[datetime] = None
+
     sent_date: Optional[str] = None
+    """Deprecated, use `sent_at` instead"""
 
     subject: Optional[str] = None
 

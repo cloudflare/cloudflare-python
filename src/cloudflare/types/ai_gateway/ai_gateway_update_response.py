@@ -107,7 +107,10 @@ class AIGatewayUpdateResponse(BaseModel):
 
     stripe: Optional[Stripe] = None
 
-    workers_ai_billing_mode: Optional[Literal["postpaid", "unified"]] = None
-    """Controls how Workers AI inference calls routed through this gateway are billed"""
+    workers_ai_billing_mode: Optional[Literal["postpaid"]] = None
+    """Controls how Workers AI inference calls routed through this gateway are billed.
+
+    Only 'postpaid' is currently supported.
+    """
 
     zdr: Optional[bool] = None
