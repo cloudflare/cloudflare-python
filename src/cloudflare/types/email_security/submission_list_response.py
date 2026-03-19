@@ -16,6 +16,25 @@ class SubmissionListResponse(BaseModel):
 
     customer_status: Optional[Literal["escalated", "reviewed", "unreviewed"]] = None
 
+    escalated_as: Optional[
+        Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+    ] = None
+
+    escalated_at: Optional[datetime] = None
+
+    escalated_by: Optional[str] = None
+
     original_disposition: Optional[
         Literal[
             "MALICIOUS",
