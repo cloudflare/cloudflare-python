@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -14,6 +14,8 @@ __all__ = [
     "Parameters",
     "ParametersCalculation",
     "ParametersFilter",
+    "ParametersFilterUnionMember0",
+    "ParametersFilterWorkersObservabilityFilterLeaf",
     "ParametersGroupBy",
     "ParametersHaving",
     "ParametersNeedle",
@@ -28,7 +30,11 @@ class TelemetryQueryParams(TypedDict, total=False):
     """Unique identifier for the query to execute"""
 
     timeframe: Required[Timeframe]
-    """Time range for the query execution"""
+    """Timeframe for your query using Unix timestamps in milliseconds.
+
+    Provide from/to epoch ms; narrower timeframes provide faster responses and more
+    specific results.
+    """
 
     chart: bool
     """Whether to include timeseties data in the response"""
@@ -43,9 +49,9 @@ class TelemetryQueryParams(TypedDict, total=False):
     """
 
     granularity: float
-    """Time granularity for aggregating results (in milliseconds).
+    """This is only used when the view is calculations.
 
-    Controls the bucketing of time-series data
+    Leaving it empty lets Workers Observability detect the correct granularity.
     """
 
     ignore_series: Annotated[bool, PropertyInfo(alias="ignoreSeries")]
@@ -55,13 +61,19 @@ class TelemetryQueryParams(TypedDict, total=False):
     """
 
     limit: float
-    """Maximum number of events to return."""
+    """Use this limit to cap the number of events returned when the view is events."""
 
     offset: str
-    """Cursor for pagination to retrieve the next set of results"""
+    """Cursor pagination for event/trace/invocation views.
+
+    Pass the last item's $metadata.id as the next offset.
+    """
 
     offset_by: Annotated[float, PropertyInfo(alias="offsetBy")]
-    """Number of events to skip for pagination. Used in conjunction with offset"""
+    """Numeric offset for pattern results (top-N list).
+
+    Use with limit to page pattern groups; not used by cursor pagination.
+    """
 
     offset_direction: Annotated[str, PropertyInfo(alias="offsetDirection")]
     """Direction for offset-based pagination (e.g., 'next', 'prev')"""
@@ -69,11 +81,13 @@ class TelemetryQueryParams(TypedDict, total=False):
     parameters: Parameters
     """Optional parameters to pass to the query execution"""
 
-    pattern_type: Annotated[Literal["message", "error"], PropertyInfo(alias="patternType")]
-    """Type of pattern to search for when using pattern-based views"""
+    view: Literal["traces", "events", "calculations", "invocations", "requests", "agents"]
+    """Examples by view type.
 
-    view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"]
-    """View type for presenting the query results."""
+    Events: show errors for a worker in the last 30 minutes. Calculations: p99 of
+    wall time or count by status code. Invocations: find a specific request that
+    resulted in a 500.
+    """
 
 
 _TimeframeReservedKeywords = TypedDict(
@@ -86,7 +100,10 @@ _TimeframeReservedKeywords = TypedDict(
 
 
 class Timeframe(_TimeframeReservedKeywords, total=False):
-    """Time range for the query execution"""
+    """Timeframe for your query using Unix timestamps in milliseconds.
+
+    Provide from/to epoch ms; narrower timeframes provide faster responses and more specific results.
+    """
 
     to: Required[float]
     """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
@@ -139,12 +156,35 @@ class ParametersCalculation(TypedDict, total=False):
     alias: str
 
     key: str
+    """The key to use for the calculation.
+
+    This key must exist in the logs. Use the observability_keys response to confirm.
+    Do not guess keys.
+    """
 
     key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
 
 
-class ParametersFilter(TypedDict, total=False):
+class ParametersFilterUnionMember0(TypedDict, total=False):
+    filter_combination: Required[Annotated[Literal["and", "or", "AND", "OR"], PropertyInfo(alias="filterCombination")]]
+
+    filters: Required[Iterable[object]]
+
+    kind: Required[Literal["group"]]
+
+
+class ParametersFilterWorkersObservabilityFilterLeaf(TypedDict, total=False):
+    """
+    Filtering best practices: use observability_keys and observability_values to confirm available fields and values. If searching for errors, filter for $metadata.error exists.
+    """
+
     key: Required[str]
+    """Filter field name.
+
+    IMPORTANT: do not guess keys. Always use verified keys from previous query
+    results or the observability_keys response. Preferred keys: $metadata.service,
+    $metadata.origin, $metadata.trigger, $metadata.message, $metadata.error.
+    """
 
     operation: Required[
         Literal[
@@ -181,7 +221,20 @@ class ParametersFilter(TypedDict, total=False):
 
     type: Required[Literal["string", "number", "boolean"]]
 
+    kind: Literal["filter"]
+
     value: Union[str, float, bool]
+    """Filter comparison value.
+
+    IMPORTANT: must match actual values in your logs. Verify using previous query
+    results or the /values endpoint. Ensure value type matches the field type.
+    String comparisons are case-sensitive unless using specific operations. Regex
+    uses ClickHouse RE2 syntax (no lookaheads/lookbehinds); examples: ^5\\dd{2}$ for
+    HTTP 5xx, \bERROR\b for word boundary.
+    """
+
+
+ParametersFilter: TypeAlias = Union[ParametersFilterUnionMember0, ParametersFilterWorkersObservabilityFilterLeaf]
 
 
 class ParametersGroupBy(TypedDict, total=False):
@@ -231,7 +284,10 @@ class Parameters(TypedDict, total=False):
     """Set a Flag to describe how to combine the filters on the query."""
 
     filters: Iterable[ParametersFilter]
-    """Configure the Filters to apply to the query."""
+    """Configure the Filters to apply to the query.
+
+    Supports nested groups via kind: 'group'. Maximum nesting depth is 4.
+    """
 
     group_bys: Annotated[Iterable[ParametersGroupBy], PropertyInfo(alias="groupBys")]
     """Define how to group the results of the query."""

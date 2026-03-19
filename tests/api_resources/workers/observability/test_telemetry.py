@@ -36,10 +36,9 @@ class TestTelemetry:
             datasets=["string"],
             filters=[
                 {
-                    "key": "key",
-                    "operation": "includes",
-                    "type": "string",
-                    "value": "string",
+                    "filter_combination": "and",
+                    "filters": [{}],
+                    "kind": "group",
                 }
             ],
             from_=0,
@@ -132,10 +131,9 @@ class TestTelemetry:
                 "filter_combination": "and",
                 "filters": [
                     {
-                        "key": "key",
-                        "operation": "includes",
-                        "type": "string",
-                        "value": "string",
+                        "filter_combination": "and",
+                        "filters": [{}],
+                        "kind": "group",
                     }
                 ],
                 "group_bys": [
@@ -162,7 +160,6 @@ class TestTelemetry:
                     "order": "asc",
                 },
             },
-            pattern_type="message",
             view="traces",
         )
         assert_matches_type(TelemetryQueryResponse, telemetry, path=["response"])
@@ -240,10 +237,9 @@ class TestTelemetry:
             type="string",
             filters=[
                 {
-                    "key": "key",
-                    "operation": "includes",
-                    "type": "string",
-                    "value": "string",
+                    "filter_combination": "and",
+                    "filters": [{}],
+                    "kind": "group",
                 }
             ],
             limit=0,
@@ -327,10 +323,9 @@ class TestAsyncTelemetry:
             datasets=["string"],
             filters=[
                 {
-                    "key": "key",
-                    "operation": "includes",
-                    "type": "string",
-                    "value": "string",
+                    "filter_combination": "and",
+                    "filters": [{}],
+                    "kind": "group",
                 }
             ],
             from_=0,
@@ -423,10 +418,9 @@ class TestAsyncTelemetry:
                 "filter_combination": "and",
                 "filters": [
                     {
-                        "key": "key",
-                        "operation": "includes",
-                        "type": "string",
-                        "value": "string",
+                        "filter_combination": "and",
+                        "filters": [{}],
+                        "kind": "group",
                     }
                 ],
                 "group_bys": [
@@ -453,7 +447,6 @@ class TestAsyncTelemetry:
                     "order": "asc",
                 },
             },
-            pattern_type="message",
             view="traces",
         )
         assert_matches_type(TelemetryQueryResponse, telemetry, path=["response"])
@@ -531,10 +524,9 @@ class TestAsyncTelemetry:
             type="string",
             filters=[
                 {
-                    "key": "key",
-                    "operation": "includes",
-                    "type": "string",
-                    "value": "string",
+                    "filter_combination": "and",
+                    "filters": [{}],
+                    "kind": "group",
                 }
             ],
             limit=0,

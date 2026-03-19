@@ -70,7 +70,16 @@ class TelemetryResource(SyncAPIResource):
         List all the keys in your telemetry events.
 
         Args:
-          key_needle: Search for a specific substring in the keys.
+          datasets: Leave this empty to use the default datasets
+
+          filters: Apply filters to narrow key discovery. Supports nested groups via kind: 'group'.
+              Maximum nesting depth is 4.
+
+          key_needle: If the user suggests a key, use this to narrow down the list of keys returned.
+              Make sure matchCase is false to avoid case sensitivity issues.
+
+          limit: Advanced usage: set limit=1000+ to retrieve comprehensive key options without
+              needing additional filtering.
 
           needle: Search for a specific substring in any of the events
 
@@ -122,8 +131,7 @@ class TelemetryResource(SyncAPIResource):
         offset_by: float | Omit = omit,
         offset_direction: str | Omit = omit,
         parameters: telemetry_query_params.Parameters | Omit = omit,
-        pattern_type: Literal["message", "error"] | Omit = omit,
-        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | Omit = omit,
+        view: Literal["traces", "events", "calculations", "invocations", "requests", "agents"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,7 +145,9 @@ class TelemetryResource(SyncAPIResource):
         Args:
           query_id: Unique identifier for the query to execute
 
-          timeframe: Time range for the query execution
+          timeframe: Timeframe for your query using Unix timestamps in milliseconds. Provide from/to
+              epoch ms; narrower timeframes provide faster responses and more specific
+              results.
 
           chart: Whether to include timeseties data in the response
 
@@ -146,25 +156,27 @@ class TelemetryResource(SyncAPIResource):
           dry: Whether to perform a dry run without saving the results of the query. Useful for
               validation
 
-          granularity: Time granularity for aggregating results (in milliseconds). Controls the
-              bucketing of time-series data
+          granularity: This is only used when the view is calculations. Leaving it empty lets Workers
+              Observability detect the correct granularity.
 
           ignore_series: Whether to ignore time-series data in the results and return only aggregated
               values
 
-          limit: Maximum number of events to return.
+          limit: Use this limit to cap the number of events returned when the view is events.
 
-          offset: Cursor for pagination to retrieve the next set of results
+          offset: Cursor pagination for event/trace/invocation views. Pass the last item's
+              $metadata.id as the next offset.
 
-          offset_by: Number of events to skip for pagination. Used in conjunction with offset
+          offset_by: Numeric offset for pattern results (top-N list). Use with limit to page pattern
+              groups; not used by cursor pagination.
 
           offset_direction: Direction for offset-based pagination (e.g., 'next', 'prev')
 
           parameters: Optional parameters to pass to the query execution
 
-          pattern_type: Type of pattern to search for when using pattern-based views
-
-          view: View type for presenting the query results.
+          view: Examples by view type. Events: show errors for a worker in the last 30 minutes.
+              Calculations: p99 of wall time or count by status code. Invocations: find a
+              specific request that resulted in a 500.
 
           extra_headers: Send extra headers
 
@@ -192,7 +204,6 @@ class TelemetryResource(SyncAPIResource):
                     "offset_by": offset_by,
                     "offset_direction": offset_direction,
                     "parameters": parameters,
-                    "pattern_type": pattern_type,
                     "view": view,
                 },
                 telemetry_query_params.TelemetryQueryParams,
@@ -229,6 +240,11 @@ class TelemetryResource(SyncAPIResource):
         List unique values found in your events.
 
         Args:
+          datasets: Leave this empty to use the default datasets
+
+          filters: Apply filters before listing values. Supports nested groups via kind: 'group'.
+              Maximum nesting depth is 4.
+
           needle: Search for a specific substring in the event.
 
           extra_headers: Send extra headers
@@ -306,7 +322,16 @@ class AsyncTelemetryResource(AsyncAPIResource):
         List all the keys in your telemetry events.
 
         Args:
-          key_needle: Search for a specific substring in the keys.
+          datasets: Leave this empty to use the default datasets
+
+          filters: Apply filters to narrow key discovery. Supports nested groups via kind: 'group'.
+              Maximum nesting depth is 4.
+
+          key_needle: If the user suggests a key, use this to narrow down the list of keys returned.
+              Make sure matchCase is false to avoid case sensitivity issues.
+
+          limit: Advanced usage: set limit=1000+ to retrieve comprehensive key options without
+              needing additional filtering.
 
           needle: Search for a specific substring in any of the events
 
@@ -358,8 +383,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         offset_by: float | Omit = omit,
         offset_direction: str | Omit = omit,
         parameters: telemetry_query_params.Parameters | Omit = omit,
-        pattern_type: Literal["message", "error"] | Omit = omit,
-        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | Omit = omit,
+        view: Literal["traces", "events", "calculations", "invocations", "requests", "agents"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,7 +397,9 @@ class AsyncTelemetryResource(AsyncAPIResource):
         Args:
           query_id: Unique identifier for the query to execute
 
-          timeframe: Time range for the query execution
+          timeframe: Timeframe for your query using Unix timestamps in milliseconds. Provide from/to
+              epoch ms; narrower timeframes provide faster responses and more specific
+              results.
 
           chart: Whether to include timeseties data in the response
 
@@ -382,25 +408,27 @@ class AsyncTelemetryResource(AsyncAPIResource):
           dry: Whether to perform a dry run without saving the results of the query. Useful for
               validation
 
-          granularity: Time granularity for aggregating results (in milliseconds). Controls the
-              bucketing of time-series data
+          granularity: This is only used when the view is calculations. Leaving it empty lets Workers
+              Observability detect the correct granularity.
 
           ignore_series: Whether to ignore time-series data in the results and return only aggregated
               values
 
-          limit: Maximum number of events to return.
+          limit: Use this limit to cap the number of events returned when the view is events.
 
-          offset: Cursor for pagination to retrieve the next set of results
+          offset: Cursor pagination for event/trace/invocation views. Pass the last item's
+              $metadata.id as the next offset.
 
-          offset_by: Number of events to skip for pagination. Used in conjunction with offset
+          offset_by: Numeric offset for pattern results (top-N list). Use with limit to page pattern
+              groups; not used by cursor pagination.
 
           offset_direction: Direction for offset-based pagination (e.g., 'next', 'prev')
 
           parameters: Optional parameters to pass to the query execution
 
-          pattern_type: Type of pattern to search for when using pattern-based views
-
-          view: View type for presenting the query results.
+          view: Examples by view type. Events: show errors for a worker in the last 30 minutes.
+              Calculations: p99 of wall time or count by status code. Invocations: find a
+              specific request that resulted in a 500.
 
           extra_headers: Send extra headers
 
@@ -428,7 +456,6 @@ class AsyncTelemetryResource(AsyncAPIResource):
                     "offset_by": offset_by,
                     "offset_direction": offset_direction,
                     "parameters": parameters,
-                    "pattern_type": pattern_type,
                     "view": view,
                 },
                 telemetry_query_params.TelemetryQueryParams,
@@ -465,6 +492,11 @@ class AsyncTelemetryResource(AsyncAPIResource):
         List unique values found in your events.
 
         Args:
+          datasets: Leave this empty to use the default datasets
+
+          filters: Apply filters before listing values. Supports nested groups via kind: 'group'.
+              Maximum nesting depth is 4.
+
           needle: Search for a specific substring in the event.
 
           extra_headers: Send extra headers
