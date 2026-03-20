@@ -103,6 +103,15 @@ class AIGatewayListResponse(BaseModel):
 
     rate_limiting_technique: Optional[Literal["fixed", "sliding"]] = None
 
+    retry_backoff: Optional[Literal["constant", "linear", "exponential"]] = None
+    """Backoff strategy for retry delays"""
+
+    retry_delay: Optional[int] = None
+    """Delay between retry attempts in milliseconds (0-5000)"""
+
+    retry_max_attempts: Optional[int] = None
+    """Maximum number of retry attempts for failed requests (1-5)"""
+
     store_id: Optional[str] = None
 
     stripe: Optional[Stripe] = None

@@ -53,6 +53,9 @@ class TestAIGateway:
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
             rate_limiting_technique="fixed",
+            retry_backoff="constant",
+            retry_delay=0,
+            retry_max_attempts=1,
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )
@@ -149,6 +152,9 @@ class TestAIGateway:
                 }
             ],
             rate_limiting_technique="fixed",
+            retry_backoff="constant",
+            retry_delay=0,
+            retry_max_attempts=1,
             store_id="store_id",
             stripe={
                 "authorization": "authorization",
@@ -398,6 +404,9 @@ class TestAsyncAIGateway:
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
             rate_limiting_technique="fixed",
+            retry_backoff="constant",
+            retry_delay=0,
+            retry_max_attempts=1,
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )
@@ -494,6 +503,9 @@ class TestAsyncAIGateway:
                 }
             ],
             rate_limiting_technique="fixed",
+            retry_backoff="constant",
+            retry_delay=0,
+            retry_max_attempts=1,
             store_id="store_id",
             stripe={
                 "authorization": "authorization",

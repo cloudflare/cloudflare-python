@@ -48,6 +48,15 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     rate_limiting_technique: Optional[Literal["fixed", "sliding"]]
 
+    retry_backoff: Optional[Literal["constant", "linear", "exponential"]]
+    """Backoff strategy for retry delays"""
+
+    retry_delay: Optional[int]
+    """Delay between retry attempts in milliseconds (0-5000)"""
+
+    retry_max_attempts: Optional[int]
+    """Maximum number of retry attempts for failed requests (1-5)"""
+
     store_id: Optional[str]
 
     stripe: Optional[Stripe]

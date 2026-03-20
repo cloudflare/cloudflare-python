@@ -150,6 +150,9 @@ class AIGatewayResource(SyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
+        retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
+        retry_delay: Optional[int] | Omit = omit,
+        retry_max_attempts: Optional[int] | Omit = omit,
         workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -164,6 +167,12 @@ class AIGatewayResource(SyncAPIResource):
 
         Args:
           id: gateway id
+
+          retry_backoff: Backoff strategy for retry delays
+
+          retry_delay: Delay between retry attempts in milliseconds (0-5000)
+
+          retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               Only 'postpaid' is currently supported.
@@ -194,6 +203,9 @@ class AIGatewayResource(SyncAPIResource):
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "retry_backoff": retry_backoff,
+                    "retry_delay": retry_delay,
+                    "retry_max_attempts": retry_max_attempts,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
@@ -227,6 +239,9 @@ class AIGatewayResource(SyncAPIResource):
         logpush_public_key: Optional[str] | Omit = omit,
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
+        retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
+        retry_delay: Optional[int] | Omit = omit,
+        retry_max_attempts: Optional[int] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
@@ -243,6 +258,12 @@ class AIGatewayResource(SyncAPIResource):
 
         Args:
           id: gateway id
+
+          retry_backoff: Backoff strategy for retry delays
+
+          retry_delay: Delay between retry attempts in milliseconds (0-5000)
+
+          retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               Only 'postpaid' is currently supported.
@@ -276,6 +297,9 @@ class AIGatewayResource(SyncAPIResource):
                     "logpush_public_key": logpush_public_key,
                     "otel": otel,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "retry_backoff": retry_backoff,
+                    "retry_delay": retry_delay,
+                    "retry_max_attempts": retry_max_attempts,
                     "store_id": store_id,
                     "stripe": stripe,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
@@ -492,6 +516,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
+        retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
+        retry_delay: Optional[int] | Omit = omit,
+        retry_max_attempts: Optional[int] | Omit = omit,
         workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -506,6 +533,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
         Args:
           id: gateway id
+
+          retry_backoff: Backoff strategy for retry delays
+
+          retry_delay: Delay between retry attempts in milliseconds (0-5000)
+
+          retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               Only 'postpaid' is currently supported.
@@ -536,6 +569,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "retry_backoff": retry_backoff,
+                    "retry_delay": retry_delay,
+                    "retry_max_attempts": retry_max_attempts,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
@@ -569,6 +605,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         logpush_public_key: Optional[str] | Omit = omit,
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         rate_limiting_technique: Optional[Literal["fixed", "sliding"]] | Omit = omit,
+        retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
+        retry_delay: Optional[int] | Omit = omit,
+        retry_max_attempts: Optional[int] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
@@ -585,6 +624,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
         Args:
           id: gateway id
+
+          retry_backoff: Backoff strategy for retry delays
+
+          retry_delay: Delay between retry attempts in milliseconds (0-5000)
+
+          retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               Only 'postpaid' is currently supported.
@@ -618,6 +663,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "logpush_public_key": logpush_public_key,
                     "otel": otel,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "retry_backoff": retry_backoff,
+                    "retry_delay": retry_delay,
+                    "retry_max_attempts": retry_max_attempts,
                     "store_id": store_id,
                     "stripe": stripe,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
