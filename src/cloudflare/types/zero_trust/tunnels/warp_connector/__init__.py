@@ -3,3 +3,4 @@
 from __future__ import annotations
 
 from .token_get_response import TokenGetResponse as TokenGetResponse
+from .connection_get_response import ConnectionGetResponse as ConnectionGetResponse

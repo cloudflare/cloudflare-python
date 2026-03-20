@@ -8,6 +8,14 @@ from .token import (
     TokenResourceWithStreamingResponse,
     AsyncTokenResourceWithStreamingResponse,
 )
+from .connections import (
+    ConnectionsResource,
+    AsyncConnectionsResource,
+    ConnectionsResourceWithRawResponse,
+    AsyncConnectionsResourceWithRawResponse,
+    ConnectionsResourceWithStreamingResponse,
+    AsyncConnectionsResourceWithStreamingResponse,
+)
 from .warp_connector import (
     WARPConnectorResource,
     AsyncWARPConnectorResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncTokenResourceWithRawResponse",
     "TokenResourceWithStreamingResponse",
     "AsyncTokenResourceWithStreamingResponse",
+    "ConnectionsResource",
+    "AsyncConnectionsResource",
+    "ConnectionsResourceWithRawResponse",
+    "AsyncConnectionsResourceWithRawResponse",
+    "ConnectionsResourceWithStreamingResponse",
+    "AsyncConnectionsResourceWithStreamingResponse",
     "WARPConnectorResource",
     "AsyncWARPConnectorResource",
     "WARPConnectorResourceWithRawResponse",

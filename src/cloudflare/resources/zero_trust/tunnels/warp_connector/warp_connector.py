@@ -19,6 +19,14 @@ from .token import (
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
+from .connections import (
+    ConnectionsResource,
+    AsyncConnectionsResource,
+    ConnectionsResourceWithRawResponse,
+    AsyncConnectionsResourceWithRawResponse,
+    ConnectionsResourceWithStreamingResponse,
+    AsyncConnectionsResourceWithStreamingResponse,
+)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -47,6 +55,10 @@ class WARPConnectorResource(SyncAPIResource):
     @cached_property
     def token(self) -> TokenResource:
         return TokenResource(self._client)
+
+    @cached_property
+    def connections(self) -> ConnectionsResource:
+        return ConnectionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
@@ -356,6 +368,10 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
     @cached_property
     def token(self) -> AsyncTokenResource:
         return AsyncTokenResource(self._client)
+
+    @cached_property
+    def connections(self) -> AsyncConnectionsResource:
+        return AsyncConnectionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
@@ -685,6 +701,10 @@ class WARPConnectorResourceWithRawResponse:
     def token(self) -> TokenResourceWithRawResponse:
         return TokenResourceWithRawResponse(self._warp_connector.token)
 
+    @cached_property
+    def connections(self) -> ConnectionsResourceWithRawResponse:
+        return ConnectionsResourceWithRawResponse(self._warp_connector.connections)
+
 
 class AsyncWARPConnectorResourceWithRawResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -709,6 +729,10 @@ class AsyncWARPConnectorResourceWithRawResponse:
     @cached_property
     def token(self) -> AsyncTokenResourceWithRawResponse:
         return AsyncTokenResourceWithRawResponse(self._warp_connector.token)
+
+    @cached_property
+    def connections(self) -> AsyncConnectionsResourceWithRawResponse:
+        return AsyncConnectionsResourceWithRawResponse(self._warp_connector.connections)
 
 
 class WARPConnectorResourceWithStreamingResponse:
@@ -735,6 +759,10 @@ class WARPConnectorResourceWithStreamingResponse:
     def token(self) -> TokenResourceWithStreamingResponse:
         return TokenResourceWithStreamingResponse(self._warp_connector.token)
 
+    @cached_property
+    def connections(self) -> ConnectionsResourceWithStreamingResponse:
+        return ConnectionsResourceWithStreamingResponse(self._warp_connector.connections)
+
 
 class AsyncWARPConnectorResourceWithStreamingResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -759,3 +787,7 @@ class AsyncWARPConnectorResourceWithStreamingResponse:
     @cached_property
     def token(self) -> AsyncTokenResourceWithStreamingResponse:
         return AsyncTokenResourceWithStreamingResponse(self._warp_connector.token)
+
+    @cached_property
+    def connections(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        return AsyncConnectionsResourceWithStreamingResponse(self._warp_connector.connections)

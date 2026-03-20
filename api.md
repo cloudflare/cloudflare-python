@@ -6863,6 +6863,18 @@ Methods:
 
 - <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/token">client.zero_trust.tunnels.warp_connector.token.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/token.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/token_get_response.py">str</a></code>
 
+#### Connections
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.tunnels.warp_connector import ConnectionGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/connections">client.zero_trust.tunnels.warp_connector.connections.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/connections.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/connection_get_response.py">SyncSinglePage[ConnectionGetResponse]</a></code>
+
 ## ConnectivitySettings
 
 Types:
