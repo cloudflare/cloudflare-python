@@ -11,6 +11,7 @@ __all__ = ["SubmissionListResponse"]
 
 class SubmissionListResponse(BaseModel):
     requested_ts: datetime
+    """deprecated as of 2026-04-01, use `requested_at` instead."""
 
     submission_id: str
 
@@ -35,6 +36,8 @@ class SubmissionListResponse(BaseModel):
 
     escalated_by: Optional[str] = None
 
+    escalated_submission_id: Optional[str] = None
+
     original_disposition: Optional[
         Literal[
             "MALICIOUS",
@@ -52,6 +55,8 @@ class SubmissionListResponse(BaseModel):
 
     original_edf_hash: Optional[str] = None
 
+    original_postfix_id: Optional[str] = None
+
     outcome: Optional[str] = None
 
     outcome_disposition: Optional[
@@ -68,6 +73,8 @@ class SubmissionListResponse(BaseModel):
             "NONE",
         ]
     ] = None
+
+    requested_at: Optional[datetime] = None
 
     requested_by: Optional[str] = None
 
