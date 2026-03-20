@@ -57,7 +57,8 @@ class WhoisResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[WhoisGetResponse]:
         """
-        Get WHOIS Record
+        Retrieves WHOIS registration data for a domain, including registrant and
+        nameserver information.
 
         Args:
           account_id: Use to uniquely identify or reference the resource.
@@ -119,7 +120,8 @@ class AsyncWhoisResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[WhoisGetResponse]:
         """
-        Get WHOIS Record
+        Retrieves WHOIS registration data for a domain, including registrant and
+        nameserver information.
 
         Args:
           account_id: Use to uniquely identify or reference the resource.
