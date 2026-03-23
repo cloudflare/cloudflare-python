@@ -150,6 +150,7 @@ class CustomHostnamesResource(SyncAPIResource):
         zone_id: str,
         id: str | Omit = omit,
         certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         hostname: custom_hostname_list_params.Hostname | Omit = omit,
         hostname_status: Literal[
@@ -219,6 +220,8 @@ class CustomHostnamesResource(SyncAPIResource):
 
           certificate_authority: Filter by the certificate authority that issued the SSL certificate.
 
+          custom_origin_server: Filter by custom origin server name.
+
           direction: Direction to order hostnames.
 
           hostname_status: Filter by the hostname's activation status.
@@ -257,6 +260,7 @@ class CustomHostnamesResource(SyncAPIResource):
                     {
                         "id": id,
                         "certificate_authority": certificate_authority,
+                        "custom_origin_server": custom_origin_server,
                         "direction": direction,
                         "hostname": hostname,
                         "hostname_status": hostname_status,
@@ -538,6 +542,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         zone_id: str,
         id: str | Omit = omit,
         certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         hostname: custom_hostname_list_params.Hostname | Omit = omit,
         hostname_status: Literal[
@@ -607,6 +612,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           certificate_authority: Filter by the certificate authority that issued the SSL certificate.
 
+          custom_origin_server: Filter by custom origin server name.
+
           direction: Direction to order hostnames.
 
           hostname_status: Filter by the hostname's activation status.
@@ -645,6 +652,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
                     {
                         "id": id,
                         "certificate_authority": certificate_authority,
+                        "custom_origin_server": custom_origin_server,
                         "direction": direction,
                         "hostname": hostname,
                         "hostname_status": hostname_status,

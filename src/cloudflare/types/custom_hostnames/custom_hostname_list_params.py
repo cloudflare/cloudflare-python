@@ -21,6 +21,9 @@ class CustomHostnameListParams(TypedDict, total=False):
     certificate_authority: Literal["google", "lets_encrypt", "ssl_com"]
     """Filter by the certificate authority that issued the SSL certificate."""
 
+    custom_origin_server: str
+    """Filter by custom origin server name."""
+
     direction: Literal["asc", "desc"]
     """Direction to order hostnames."""
 
