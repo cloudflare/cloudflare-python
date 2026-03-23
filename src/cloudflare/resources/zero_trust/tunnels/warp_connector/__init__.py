@@ -8,6 +8,22 @@ from .token import (
     TokenResourceWithStreamingResponse,
     AsyncTokenResourceWithStreamingResponse,
 )
+from .failover import (
+    FailoverResource,
+    AsyncFailoverResource,
+    FailoverResourceWithRawResponse,
+    AsyncFailoverResourceWithRawResponse,
+    FailoverResourceWithStreamingResponse,
+    AsyncFailoverResourceWithStreamingResponse,
+)
+from .connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
+)
 from .connections import (
     ConnectionsResource,
     AsyncConnectionsResource,
@@ -38,6 +54,18 @@ __all__ = [
     "AsyncConnectionsResourceWithRawResponse",
     "ConnectionsResourceWithStreamingResponse",
     "AsyncConnectionsResourceWithStreamingResponse",
+    "ConnectorsResource",
+    "AsyncConnectorsResource",
+    "ConnectorsResourceWithRawResponse",
+    "AsyncConnectorsResourceWithRawResponse",
+    "ConnectorsResourceWithStreamingResponse",
+    "AsyncConnectorsResourceWithStreamingResponse",
+    "FailoverResource",
+    "AsyncFailoverResource",
+    "FailoverResourceWithRawResponse",
+    "AsyncFailoverResourceWithRawResponse",
+    "FailoverResourceWithStreamingResponse",
+    "AsyncFailoverResourceWithStreamingResponse",
     "WARPConnectorResource",
     "AsyncWARPConnectorResource",
     "WARPConnectorResourceWithRawResponse",

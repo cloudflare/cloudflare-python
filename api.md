@@ -6914,6 +6914,24 @@ Methods:
 
 - <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/connections">client.zero_trust.tunnels.warp_connector.connections.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/connections.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/connection_get_response.py">SyncSinglePage[ConnectionGetResponse]</a></code>
 
+#### Connectors
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.tunnels.warp_connector import ConnectorGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/connectors/{connector_id}">client.zero_trust.tunnels.warp_connector.connectors.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/connectors.py">get</a>(connector_id, \*, account_id, tunnel_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/connector_get_response.py">ConnectorGetResponse</a></code>
+
+#### Failover
+
+Methods:
+
+- <code title="put /accounts/{account_id}/warp_connector/{tunnel_id}/failover">client.zero_trust.tunnels.warp_connector.failover.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/failover.py">update</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector/failover_update_params.py">params</a>) -> object</code>
+
 ## ConnectivitySettings
 
 Types:
