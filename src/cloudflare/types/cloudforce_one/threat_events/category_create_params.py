@@ -20,4 +20,6 @@ class CategoryCreateParams(TypedDict, total=False):
 
     mitre_attack: Annotated[SequenceNotStr[str], PropertyInfo(alias="mitreAttack")]
 
+    mitre_capec: Annotated[SequenceNotStr[str], PropertyInfo(alias="mitreCapec")]
+
     shortname: str

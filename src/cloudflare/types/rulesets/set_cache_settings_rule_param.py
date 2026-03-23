@@ -26,6 +26,7 @@ __all__ = [
     "ActionParametersEdgeTTLStatusCodeTTL",
     "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "ActionParametersServeStale",
+    "ActionParametersSharedDictionary",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
@@ -246,6 +247,19 @@ class ActionParametersServeStale(TypedDict, total=False):
     """
 
 
+class ActionParametersSharedDictionary(TypedDict, total=False):
+    """Configuration for shared dictionary compression.
+
+    When set, Cloudflare injects Use-As-Dictionary headers on matching cacheable responses.
+    """
+
+    match_pattern: Required[str]
+    """URL pattern for the Use-As-Dictionary match field.
+
+    This pattern specifies which URLs can use this response as a dictionary.
+    """
+
+
 class ActionParameters(TypedDict, total=False):
     """The parameters configuring the rule's action."""
 
@@ -304,6 +318,13 @@ class ActionParameters(TypedDict, total=False):
 
     serve_stale: ActionParametersServeStale
     """When to serve stale content from cache."""
+
+    shared_dictionary: ActionParametersSharedDictionary
+    """Configuration for shared dictionary compression.
+
+    When set, Cloudflare injects Use-As-Dictionary headers on matching cacheable
+    responses.
+    """
 
     strip_etags: bool
     """Whether to strip ETag headers from the origin response before caching."""

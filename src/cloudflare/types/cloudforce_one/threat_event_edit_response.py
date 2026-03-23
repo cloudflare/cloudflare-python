@@ -34,6 +34,8 @@ class ThreatEventEditResponse(BaseModel):
 
     mitre_attack: List[str] = FieldInfo(alias="mitreAttack")
 
+    mitre_capec: List[str] = FieldInfo(alias="mitreCapec")
+
     num_referenced: float = FieldInfo(alias="numReferenced")
 
     num_references: float = FieldInfo(alias="numReferences")

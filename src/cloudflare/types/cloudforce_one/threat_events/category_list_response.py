@@ -19,6 +19,8 @@ class CategoryListResponseItem(BaseModel):
 
     mitre_attack: Optional[List[str]] = FieldInfo(alias="mitreAttack", default=None)
 
+    mitre_capec: Optional[List[str]] = FieldInfo(alias="mitreCapec", default=None)
+
     shortname: Optional[str] = None
 
 

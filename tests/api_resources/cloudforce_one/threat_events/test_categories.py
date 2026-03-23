@@ -41,6 +41,7 @@ class TestCategories:
             kill_chain=0,
             name="name",
             mitre_attack=["T1234"],
+            mitre_capec=["123"],
             shortname="shortname",
         )
         assert_matches_type(CategoryCreateResponse, category, path=["response"])
@@ -205,6 +206,7 @@ class TestCategories:
             account_id="account_id",
             kill_chain=0,
             mitre_attack=["T1234"],
+            mitre_capec=["123"],
             name="name",
             shortname="shortname",
         )
@@ -329,6 +331,7 @@ class TestAsyncCategories:
             kill_chain=0,
             name="name",
             mitre_attack=["T1234"],
+            mitre_capec=["123"],
             shortname="shortname",
         )
         assert_matches_type(CategoryCreateResponse, category, path=["response"])
@@ -493,6 +496,7 @@ class TestAsyncCategories:
             account_id="account_id",
             kill_chain=0,
             mitre_attack=["T1234"],
+            mitre_capec=["123"],
             name="name",
             shortname="shortname",
         )

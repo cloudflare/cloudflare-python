@@ -219,6 +219,7 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
+    "SetCacheSettingsRuleActionParametersSharedDictionary",
     "SetCacheSettingsRuleExposedCredentialCheck",
     "SetCacheSettingsRulePosition",
     "SetCacheSettingsRulePositionBeforePosition",
@@ -3462,6 +3463,19 @@ class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
     """
 
 
+class SetCacheSettingsRuleActionParametersSharedDictionary(TypedDict, total=False):
+    """Configuration for shared dictionary compression.
+
+    When set, Cloudflare injects Use-As-Dictionary headers on matching cacheable responses.
+    """
+
+    match_pattern: Required[str]
+    """URL pattern for the Use-As-Dictionary match field.
+
+    This pattern specifies which URLs can use this response as a dictionary.
+    """
+
+
 class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """The parameters configuring the rule's action."""
 
@@ -3520,6 +3534,13 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
 
     serve_stale: SetCacheSettingsRuleActionParametersServeStale
     """When to serve stale content from cache."""
+
+    shared_dictionary: SetCacheSettingsRuleActionParametersSharedDictionary
+    """Configuration for shared dictionary compression.
+
+    When set, Cloudflare injects Use-As-Dictionary headers on matching cacheable
+    responses.
+    """
 
     strip_etags: bool
     """Whether to strip ETag headers from the origin response before caching."""

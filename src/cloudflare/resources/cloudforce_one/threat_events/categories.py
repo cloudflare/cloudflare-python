@@ -52,6 +52,7 @@ class CategoriesResource(SyncAPIResource):
         kill_chain: float,
         name: str,
         mitre_attack: SequenceNotStr[str] | Omit = omit,
+        mitre_capec: SequenceNotStr[str] | Omit = omit,
         shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,6 +84,7 @@ class CategoriesResource(SyncAPIResource):
                     "kill_chain": kill_chain,
                     "name": name,
                     "mitre_attack": mitre_attack,
+                    "mitre_capec": mitre_capec,
                     "shortname": shortname,
                 },
                 category_create_params.CategoryCreateParams,
@@ -183,6 +185,7 @@ class CategoriesResource(SyncAPIResource):
         account_id: str,
         kill_chain: float | Omit = omit,
         mitre_attack: SequenceNotStr[str] | Omit = omit,
+        mitre_capec: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
         shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -218,6 +221,7 @@ class CategoriesResource(SyncAPIResource):
                 {
                     "kill_chain": kill_chain,
                     "mitre_attack": mitre_attack,
+                    "mitre_capec": mitre_capec,
                     "name": name,
                     "shortname": shortname,
                 },
@@ -297,6 +301,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         kill_chain: float,
         name: str,
         mitre_attack: SequenceNotStr[str] | Omit = omit,
+        mitre_capec: SequenceNotStr[str] | Omit = omit,
         shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -328,6 +333,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
                     "kill_chain": kill_chain,
                     "name": name,
                     "mitre_attack": mitre_attack,
+                    "mitre_capec": mitre_capec,
                     "shortname": shortname,
                 },
                 category_create_params.CategoryCreateParams,
@@ -430,6 +436,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         account_id: str,
         kill_chain: float | Omit = omit,
         mitre_attack: SequenceNotStr[str] | Omit = omit,
+        mitre_capec: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
         shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -465,6 +472,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
                 {
                     "kill_chain": kill_chain,
                     "mitre_attack": mitre_attack,
+                    "mitre_capec": mitre_capec,
                     "name": name,
                     "shortname": shortname,
                 },

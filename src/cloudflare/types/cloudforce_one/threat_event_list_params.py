@@ -49,7 +49,22 @@ class ThreatEventListParams(TypedDict, total=False):
 
 class Search(TypedDict, total=False):
     field: str
+    """Event field to search on.
+
+    Allowed: attacker, attackerCountry, category, createdAt, date, event, indicator,
+    indicatorType, killChain, mitreAttack, tags, targetCountry, targetIndustry, tlp,
+    uuid.
+    """
 
     op: Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]
+    """Search operator.
+
+    Use 'in' for bulk lookup of up to 100 values at once, e.g. {field:'tags',
+    op:'in', value:['malware','apt']}.
+    """
 
     value: Union[str, float, SequenceNotStr[Union[str, float]]]
+    """Search value.
+
+    String or number for most operators. Array for 'in' operator (max 100 items).
+    """
