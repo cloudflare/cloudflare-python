@@ -50,15 +50,25 @@ class AccessRequestsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        allowed_op: Literal["eq", "neq"] | Omit = omit,
+        app_type_op: Literal["eq", "neq"] | Omit = omit,
+        app_uid_op: Literal["eq", "neq"] | Omit = omit,
+        country_code_op: Literal["eq", "neq"] | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
         email: str | Omit = omit,
         email_exact: bool | Omit = omit,
+        email_op: Literal["eq", "neq"] | Omit = omit,
+        fields: str | Omit = omit,
+        idp_op: Literal["eq", "neq"] | Omit = omit,
         limit: int | Omit = omit,
+        non_identity_op: Literal["eq", "neq"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        rayid_op: Literal["eq", "neq"] | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         user_id: str | Omit = omit,
+        user_id_op: Literal["eq", "neq"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,6 +82,14 @@ class AccessRequestsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          allowed_op: Operator for the `allowed` filter.
+
+          app_type_op: Operator for the `app_type` filter.
+
+          app_uid_op: Operator for the `app_uid` filter.
+
+          country_code_op: Operator for the `country_code` filter.
+
           direction: The chronological sorting order for the logs.
 
           email: Filter by user email. Defaults to substring matching. To force exact matching,
@@ -81,17 +99,30 @@ class AccessRequestsResource(SyncAPIResource):
 
           email_exact: When true, `email` is matched exactly instead of substring matching.
 
+          email_op: Operator for the `email` filter.
+
+          fields: Comma-separated list of fields to include in the response. When omitted, all
+              fields are returned.
+
+          idp_op: Operator for the `idp` filter.
+
           limit: The maximum number of log entries to retrieve.
+
+          non_identity_op: Operator for the `non_identity` filter.
 
           page: Page number of results.
 
           per_page: Number of results per page.
+
+          rayid_op: Operator for the `ray_id` filter.
 
           since: The earliest event timestamp to query.
 
           until: The latest event timestamp to query.
 
           user_id: Filter by user UUID.
+
+          user_id_op: Operator for the `user_id` filter.
 
           extra_headers: Send extra headers
 
@@ -112,15 +143,25 @@ class AccessRequestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "allowed_op": allowed_op,
+                        "app_type_op": app_type_op,
+                        "app_uid_op": app_uid_op,
+                        "country_code_op": country_code_op,
                         "direction": direction,
                         "email": email,
                         "email_exact": email_exact,
+                        "email_op": email_op,
+                        "fields": fields,
+                        "idp_op": idp_op,
                         "limit": limit,
+                        "non_identity_op": non_identity_op,
                         "page": page,
                         "per_page": per_page,
+                        "rayid_op": rayid_op,
                         "since": since,
                         "until": until,
                         "user_id": user_id,
+                        "user_id_op": user_id_op,
                     },
                     access_request_list_params.AccessRequestListParams,
                 ),
@@ -154,15 +195,25 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        allowed_op: Literal["eq", "neq"] | Omit = omit,
+        app_type_op: Literal["eq", "neq"] | Omit = omit,
+        app_uid_op: Literal["eq", "neq"] | Omit = omit,
+        country_code_op: Literal["eq", "neq"] | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
         email: str | Omit = omit,
         email_exact: bool | Omit = omit,
+        email_op: Literal["eq", "neq"] | Omit = omit,
+        fields: str | Omit = omit,
+        idp_op: Literal["eq", "neq"] | Omit = omit,
         limit: int | Omit = omit,
+        non_identity_op: Literal["eq", "neq"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        rayid_op: Literal["eq", "neq"] | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         user_id: str | Omit = omit,
+        user_id_op: Literal["eq", "neq"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,6 +227,14 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          allowed_op: Operator for the `allowed` filter.
+
+          app_type_op: Operator for the `app_type` filter.
+
+          app_uid_op: Operator for the `app_uid` filter.
+
+          country_code_op: Operator for the `country_code` filter.
+
           direction: The chronological sorting order for the logs.
 
           email: Filter by user email. Defaults to substring matching. To force exact matching,
@@ -185,17 +244,30 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           email_exact: When true, `email` is matched exactly instead of substring matching.
 
+          email_op: Operator for the `email` filter.
+
+          fields: Comma-separated list of fields to include in the response. When omitted, all
+              fields are returned.
+
+          idp_op: Operator for the `idp` filter.
+
           limit: The maximum number of log entries to retrieve.
+
+          non_identity_op: Operator for the `non_identity` filter.
 
           page: Page number of results.
 
           per_page: Number of results per page.
+
+          rayid_op: Operator for the `ray_id` filter.
 
           since: The earliest event timestamp to query.
 
           until: The latest event timestamp to query.
 
           user_id: Filter by user UUID.
+
+          user_id_op: Operator for the `user_id` filter.
 
           extra_headers: Send extra headers
 
@@ -216,15 +288,25 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "allowed_op": allowed_op,
+                        "app_type_op": app_type_op,
+                        "app_uid_op": app_uid_op,
+                        "country_code_op": country_code_op,
                         "direction": direction,
                         "email": email,
                         "email_exact": email_exact,
+                        "email_op": email_op,
+                        "fields": fields,
+                        "idp_op": idp_op,
                         "limit": limit,
+                        "non_identity_op": non_identity_op,
                         "page": page,
                         "per_page": per_page,
+                        "rayid_op": rayid_op,
                         "since": since,
                         "until": until,
                         "user_id": user_id,
+                        "user_id_op": user_id_op,
                     },
                     access_request_list_params.AccessRequestListParams,
                 ),

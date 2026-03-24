@@ -29,15 +29,25 @@ class TestAccessRequests:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         access_request = client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_op="eq",
+            app_type_op="eq",
+            app_uid_op="eq",
+            country_code_op="eq",
             direction="desc",
             email="user@example.com",
             email_exact=True,
+            email_op="eq",
+            fields="fields",
+            idp_op="eq",
             limit=0,
+            non_identity_op="eq",
             page=0,
             per_page=0,
+            rayid_op="eq",
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
             user_id="f757c5c3-c1b2-50f7-9126-150a099b6f7e",
+            user_id_op="eq",
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 
@@ -89,15 +99,25 @@ class TestAsyncAccessRequests:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_request = await async_client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_op="eq",
+            app_type_op="eq",
+            app_uid_op="eq",
+            country_code_op="eq",
             direction="desc",
             email="user@example.com",
             email_exact=True,
+            email_op="eq",
+            fields="fields",
+            idp_op="eq",
             limit=0,
+            non_identity_op="eq",
             page=0,
             per_page=0,
+            rayid_op="eq",
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
             user_id="f757c5c3-c1b2-50f7-9126-150a099b6f7e",
+            user_id_op="eq",
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 
