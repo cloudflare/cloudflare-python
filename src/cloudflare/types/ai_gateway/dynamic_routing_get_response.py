@@ -45,8 +45,6 @@ class Deployment(BaseModel):
 
     version_id: str
 
-    comment: Optional[str] = None
-
 
 class ElementUnionMember0OutputsNext(BaseModel):
     element_id: str = FieldInfo(alias="elementId")
@@ -202,8 +200,6 @@ class Version(BaseModel):
     data: str
 
     version_id: str
-
-    comment: Optional[str] = None
 
 
 class DynamicRoutingGetResponse(BaseModel):

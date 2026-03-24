@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -16,8 +16,6 @@ class DataVersion(BaseModel):
     data: str
 
     version_id: str
-
-    comment: Optional[str] = None
 
 
 class Data(BaseModel):

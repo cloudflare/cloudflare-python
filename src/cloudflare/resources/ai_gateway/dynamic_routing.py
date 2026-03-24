@@ -233,7 +233,6 @@ class DynamicRoutingResource(SyncAPIResource):
         *,
         account_id: str,
         gateway_id: str,
-        comment: str,
         version_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -263,10 +262,7 @@ class DynamicRoutingResource(SyncAPIResource):
         return self._post(
             f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
             body=maybe_transform(
-                {
-                    "comment": comment,
-                    "version_id": version_id,
-                },
+                {"version_id": version_id},
                 dynamic_routing_create_deployment_params.DynamicRoutingCreateDeploymentParams,
             ),
             options=make_request_options(
@@ -287,7 +283,6 @@ class DynamicRoutingResource(SyncAPIResource):
         *,
         account_id: str,
         gateway_id: str,
-        comment: str,
         elements: Iterable[dynamic_routing_create_version_params.Element],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -317,11 +312,7 @@ class DynamicRoutingResource(SyncAPIResource):
         return self._post(
             f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
             body=maybe_transform(
-                {
-                    "comment": comment,
-                    "elements": elements,
-                },
-                dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams,
+                {"elements": elements}, dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -696,7 +687,6 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         *,
         account_id: str,
         gateway_id: str,
-        comment: str,
         version_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -726,10 +716,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         return await self._post(
             f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
             body=await async_maybe_transform(
-                {
-                    "comment": comment,
-                    "version_id": version_id,
-                },
+                {"version_id": version_id},
                 dynamic_routing_create_deployment_params.DynamicRoutingCreateDeploymentParams,
             ),
             options=make_request_options(
@@ -750,7 +737,6 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         *,
         account_id: str,
         gateway_id: str,
-        comment: str,
         elements: Iterable[dynamic_routing_create_version_params.Element],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -780,11 +766,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         return await self._post(
             f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
             body=await async_maybe_transform(
-                {
-                    "comment": comment,
-                    "elements": elements,
-                },
-                dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams,
+                {"elements": elements}, dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -46,8 +46,6 @@ class RouteDeployment(BaseModel):
 
     version_id: str
 
-    comment: Optional[str] = None
-
 
 class RouteElementUnionMember0OutputsNext(BaseModel):
     element_id: str = FieldInfo(alias="elementId")
@@ -203,8 +201,6 @@ class RouteVersion(BaseModel):
     data: str
 
     version_id: str
-
-    comment: Optional[str] = None
 
 
 class Route(BaseModel):

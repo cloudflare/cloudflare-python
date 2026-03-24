@@ -296,7 +296,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         )
         assert_matches_type(DynamicRoutingCreateDeploymentResponse, dynamic_routing, path=["response"])
@@ -307,7 +306,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         )
 
@@ -322,7 +320,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         ) as response:
             assert not response.is_closed
@@ -340,7 +337,6 @@ class TestDynamicRouting:
                 id="54442216",
                 account_id="",
                 gateway_id="54442216",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -349,7 +345,6 @@ class TestDynamicRouting:
                 id="54442216",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -358,7 +353,6 @@ class TestDynamicRouting:
                 id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="54442216",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -368,7 +362,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -385,7 +378,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -406,7 +398,6 @@ class TestDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -430,7 +421,6 @@ class TestDynamicRouting:
                 id="54442216",
                 account_id="",
                 gateway_id="54442216",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",
@@ -445,7 +435,6 @@ class TestDynamicRouting:
                 id="54442216",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",
@@ -460,7 +449,6 @@ class TestDynamicRouting:
                 id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="54442216",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",
@@ -998,7 +986,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         )
         assert_matches_type(DynamicRoutingCreateDeploymentResponse, dynamic_routing, path=["response"])
@@ -1009,7 +996,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         )
 
@@ -1024,7 +1010,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Deployment Comment",
             version_id="54442216",
         ) as response:
             assert not response.is_closed
@@ -1042,7 +1027,6 @@ class TestAsyncDynamicRouting:
                 id="54442216",
                 account_id="",
                 gateway_id="54442216",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -1051,7 +1035,6 @@ class TestAsyncDynamicRouting:
                 id="54442216",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -1060,7 +1043,6 @@ class TestAsyncDynamicRouting:
                 id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="54442216",
-                comment="Route Deployment Comment",
                 version_id="54442216",
             )
 
@@ -1070,7 +1052,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -1087,7 +1068,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -1108,7 +1088,6 @@ class TestAsyncDynamicRouting:
             id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             gateway_id="54442216",
-            comment="Route Version Comment",
             elements=[
                 {
                     "id": "id",
@@ -1132,7 +1111,6 @@ class TestAsyncDynamicRouting:
                 id="54442216",
                 account_id="",
                 gateway_id="54442216",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",
@@ -1147,7 +1125,6 @@ class TestAsyncDynamicRouting:
                 id="54442216",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",
@@ -1162,7 +1139,6 @@ class TestAsyncDynamicRouting:
                 id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
                 gateway_id="54442216",
-                comment="Route Version Comment",
                 elements=[
                     {
                         "id": "id",

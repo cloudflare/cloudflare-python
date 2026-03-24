@@ -47,8 +47,6 @@ class DataRouteDeployment(BaseModel):
 
     version_id: str
 
-    comment: Optional[str] = None
-
 
 class DataRouteElementUnionMember0OutputsNext(BaseModel):
     element_id: str = FieldInfo(alias="elementId")
@@ -204,8 +202,6 @@ class DataRouteVersion(BaseModel):
     data: str
 
     version_id: str
-
-    comment: Optional[str] = None
 
 
 class DataRoute(BaseModel):

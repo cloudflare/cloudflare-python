@@ -12,6 +12,4 @@ class DynamicRoutingCreateDeploymentParams(TypedDict, total=False):
 
     gateway_id: Required[str]
 
-    comment: Required[str]
-
     version_id: Required[str]

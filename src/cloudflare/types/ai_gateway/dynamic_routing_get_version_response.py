@@ -200,5 +200,3 @@ class DynamicRoutingGetVersionResponse(BaseModel):
     name: str
 
     version_id: str
-
-    comment: Optional[str] = None

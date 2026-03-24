@@ -40,8 +40,6 @@ class DynamicRoutingCreateVersionParams(TypedDict, total=False):
 
     gateway_id: Required[str]
 
-    comment: Required[str]
-
     elements: Required[Iterable[Element]]
 
 
