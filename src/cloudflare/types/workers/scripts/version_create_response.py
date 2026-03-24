@@ -13,6 +13,8 @@ __all__ = [
     "Resources",
     "ResourcesBinding",
     "ResourcesBindingWorkersBindingKindAI",
+    "ResourcesBindingWorkersBindingKindAISearch",
+    "ResourcesBindingWorkersBindingKindAISearchNamespace",
     "ResourcesBindingWorkersBindingKindAnalyticsEngine",
     "ResourcesBindingWorkersBindingKindAssets",
     "ResourcesBindingWorkersBindingKindBrowser",
@@ -60,6 +62,45 @@ class ResourcesBindingWorkersBindingKindAI(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["ai"]
+    """The kind of resource that the binding provides."""
+
+
+class ResourcesBindingWorkersBindingKindAISearch(BaseModel):
+    instance_name: str
+    """The user-chosen instance name.
+
+    Must exist at deploy time. The worker can search, chat, update, and manage
+    items/jobs on this instance.
+    """
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["ai_search"]
+    """The kind of resource that the binding provides."""
+
+    namespace: Optional[str] = None
+    """The namespace the instance belongs to.
+
+    Defaults to "default" if omitted. Customers who don't use namespaces can simply
+    omit this field.
+    """
+
+
+class ResourcesBindingWorkersBindingKindAISearchNamespace(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace: str
+    """The user-chosen namespace name.
+
+    Must exist before deploy -- Wrangler handles auto-creation on deploy failure (R2
+    bucket pattern). The "default" namespace is auto-created by config-api for new
+    accounts. Grants full access (CRUD + search + chat) to all instances within the
+    namespace.
+    """
+
+    type: Literal["ai_search_namespace"]
     """The kind of resource that the binding provides."""
 
 
@@ -509,6 +550,8 @@ class ResourcesBindingWorkersBindingKindVPCService(BaseModel):
 ResourcesBinding: TypeAlias = Annotated[
     Union[
         ResourcesBindingWorkersBindingKindAI,
+        ResourcesBindingWorkersBindingKindAISearch,
+        ResourcesBindingWorkersBindingKindAISearchNamespace,
         ResourcesBindingWorkersBindingKindAnalyticsEngine,
         ResourcesBindingWorkersBindingKindAssets,
         ResourcesBindingWorkersBindingKindBrowser,

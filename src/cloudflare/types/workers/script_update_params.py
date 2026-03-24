@@ -19,6 +19,8 @@ __all__ = [
     "MetadataAssetsConfig",
     "MetadataBinding",
     "MetadataBindingWorkersBindingKindAI",
+    "MetadataBindingWorkersBindingKindAISearch",
+    "MetadataBindingWorkersBindingKindAISearchNamespace",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
@@ -166,6 +168,45 @@ class MetadataBindingWorkersBindingKindAI(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["ai"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindAISearch(TypedDict, total=False):
+    instance_name: Required[str]
+    """The user-chosen instance name.
+
+    Must exist at deploy time. The worker can search, chat, update, and manage
+    items/jobs on this instance.
+    """
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["ai_search"]]
+    """The kind of resource that the binding provides."""
+
+    namespace: str
+    """The namespace the instance belongs to.
+
+    Defaults to "default" if omitted. Customers who don't use namespaces can simply
+    omit this field.
+    """
+
+
+class MetadataBindingWorkersBindingKindAISearchNamespace(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The user-chosen namespace name.
+
+    Must exist before deploy -- Wrangler handles auto-creation on deploy failure (R2
+    bucket pattern). The "default" namespace is auto-created by config-api for new
+    accounts. Grants full access (CRUD + search + chat) to all instances within the
+    namespace.
+    """
+
+    type: Required[Literal["ai_search_namespace"]]
     """The kind of resource that the binding provides."""
 
 
@@ -629,6 +670,8 @@ class MetadataBindingWorkersBindingKindVPCService(TypedDict, total=False):
 
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
+    MetadataBindingWorkersBindingKindAISearch,
+    MetadataBindingWorkersBindingKindAISearchNamespace,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
