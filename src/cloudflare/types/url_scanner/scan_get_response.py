@@ -47,6 +47,7 @@ __all__ = [
     "MetaProcessorsWappaData",
     "MetaProcessorsWappaDataCategory",
     "MetaProcessorsWappaDataConfidence",
+    "MetaProcessorsPhishingV2",
     "MetaProcessorsRobotsTXT",
     "MetaProcessorsRobotsTXTData",
     "MetaProcessorsRobotsTXTDataRules",
@@ -503,6 +504,10 @@ class MetaProcessorsWappa(BaseModel):
     data: List[MetaProcessorsWappaData]
 
 
+class MetaProcessorsPhishingV2(BaseModel):
+    data: List[str]
+
+
 class MetaProcessorsRobotsTXTDataRulesapi_emptyContentSignal(BaseModel):
     ai_input: Optional[str] = FieldInfo(alias="ai-input", default=None)
 
@@ -607,6 +612,8 @@ class MetaProcessors(BaseModel):
     radar_rank: MetaProcessorsRadarRank = FieldInfo(alias="radarRank")
 
     wappa: MetaProcessorsWappa
+
+    phishing_v2: Optional[MetaProcessorsPhishingV2] = None
 
     robots_txt: Optional[MetaProcessorsRobotsTXT] = FieldInfo(alias="robotsTxt", default=None)
 
