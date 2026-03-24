@@ -12,6 +12,14 @@ from .schemas import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .labels.labels import (
+    LabelsResource,
+    AsyncLabelsResource,
+    LabelsResourceWithRawResponse,
+    AsyncLabelsResourceWithRawResponse,
+    LabelsResourceWithStreamingResponse,
+    AsyncLabelsResourceWithStreamingResponse,
+)
 from .configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -74,6 +82,10 @@ class APIGatewayResource(SyncAPIResource):
         return DiscoveryResource(self._client)
 
     @cached_property
+    def labels(self) -> LabelsResource:
+        return LabelsResource(self._client)
+
+    @cached_property
     def operations(self) -> OperationsResource:
         return OperationsResource(self._client)
 
@@ -121,6 +133,10 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
     @cached_property
     def discovery(self) -> AsyncDiscoveryResource:
         return AsyncDiscoveryResource(self._client)
+
+    @cached_property
+    def labels(self) -> AsyncLabelsResource:
+        return AsyncLabelsResource(self._client)
 
     @cached_property
     def operations(self) -> AsyncOperationsResource:
@@ -175,6 +191,10 @@ class APIGatewayResourceWithRawResponse:
         return DiscoveryResourceWithRawResponse(self._api_gateway.discovery)
 
     @cached_property
+    def labels(self) -> LabelsResourceWithRawResponse:
+        return LabelsResourceWithRawResponse(self._api_gateway.labels)
+
+    @cached_property
     def operations(self) -> OperationsResourceWithRawResponse:
         return OperationsResourceWithRawResponse(self._api_gateway.operations)
 
@@ -206,6 +226,10 @@ class AsyncAPIGatewayResourceWithRawResponse:
     @cached_property
     def discovery(self) -> AsyncDiscoveryResourceWithRawResponse:
         return AsyncDiscoveryResourceWithRawResponse(self._api_gateway.discovery)
+
+    @cached_property
+    def labels(self) -> AsyncLabelsResourceWithRawResponse:
+        return AsyncLabelsResourceWithRawResponse(self._api_gateway.labels)
 
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithRawResponse:
@@ -241,6 +265,10 @@ class APIGatewayResourceWithStreamingResponse:
         return DiscoveryResourceWithStreamingResponse(self._api_gateway.discovery)
 
     @cached_property
+    def labels(self) -> LabelsResourceWithStreamingResponse:
+        return LabelsResourceWithStreamingResponse(self._api_gateway.labels)
+
+    @cached_property
     def operations(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self._api_gateway.operations)
 
@@ -272,6 +300,10 @@ class AsyncAPIGatewayResourceWithStreamingResponse:
     @cached_property
     def discovery(self) -> AsyncDiscoveryResourceWithStreamingResponse:
         return AsyncDiscoveryResourceWithStreamingResponse(self._api_gateway.discovery)
+
+    @cached_property
+    def labels(self) -> AsyncLabelsResourceWithStreamingResponse:
+        return AsyncLabelsResourceWithStreamingResponse(self._api_gateway.labels)
 
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithStreamingResponse:

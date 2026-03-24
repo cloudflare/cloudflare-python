@@ -5,9 +5,11 @@ from __future__ import annotations
 from .message import Message as Message
 from .settings import Settings as Settings
 from .configuration import Configuration as Configuration
+from .label_list_params import LabelListParams as LabelListParams
 from .old_public_schema import OldPublicSchema as OldPublicSchema
 from .schema_list_params import SchemaListParams as SchemaListParams
 from .discovery_operation import DiscoveryOperation as DiscoveryOperation
+from .label_list_response import LabelListResponse as LabelListResponse
 from .operation_get_params import OperationGetParams as OperationGetParams
 from .schema_list_response import SchemaListResponse as SchemaListResponse
 from .operation_list_params import OperationListParams as OperationListParams

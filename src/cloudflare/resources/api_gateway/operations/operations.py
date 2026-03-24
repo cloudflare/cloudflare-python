@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .labels import (
+    LabelsResource,
+    AsyncLabelsResource,
+    LabelsResourceWithRawResponse,
+    AsyncLabelsResourceWithRawResponse,
+    LabelsResourceWithStreamingResponse,
+    AsyncLabelsResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -45,6 +53,10 @@ __all__ = ["OperationsResource", "AsyncOperationsResource"]
 
 
 class OperationsResource(SyncAPIResource):
+    @cached_property
+    def labels(self) -> LabelsResource:
+        return LabelsResource(self._client)
+
     @cached_property
     def schema_validation(self) -> SchemaValidationResource:
         return SchemaValidationResource(self._client)
@@ -387,6 +399,10 @@ class OperationsResource(SyncAPIResource):
 
 
 class AsyncOperationsResource(AsyncAPIResource):
+    @cached_property
+    def labels(self) -> AsyncLabelsResource:
+        return AsyncLabelsResource(self._client)
+
     @cached_property
     def schema_validation(self) -> AsyncSchemaValidationResource:
         return AsyncSchemaValidationResource(self._client)
@@ -752,6 +768,10 @@ class OperationsResourceWithRawResponse:
         )
 
     @cached_property
+    def labels(self) -> LabelsResourceWithRawResponse:
+        return LabelsResourceWithRawResponse(self._operations.labels)
+
+    @cached_property
     def schema_validation(self) -> SchemaValidationResourceWithRawResponse:
         return SchemaValidationResourceWithRawResponse(self._operations.schema_validation)
 
@@ -778,6 +798,10 @@ class AsyncOperationsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             operations.get,
         )
+
+    @cached_property
+    def labels(self) -> AsyncLabelsResourceWithRawResponse:
+        return AsyncLabelsResourceWithRawResponse(self._operations.labels)
 
     @cached_property
     def schema_validation(self) -> AsyncSchemaValidationResourceWithRawResponse:
@@ -808,6 +832,10 @@ class OperationsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def labels(self) -> LabelsResourceWithStreamingResponse:
+        return LabelsResourceWithStreamingResponse(self._operations.labels)
+
+    @cached_property
     def schema_validation(self) -> SchemaValidationResourceWithStreamingResponse:
         return SchemaValidationResourceWithStreamingResponse(self._operations.schema_validation)
 
@@ -834,6 +862,10 @@ class AsyncOperationsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             operations.get,
         )
+
+    @cached_property
+    def labels(self) -> AsyncLabelsResourceWithStreamingResponse:
+        return AsyncLabelsResourceWithStreamingResponse(self._operations.labels)
 
     @cached_property
     def schema_validation(self) -> AsyncSchemaValidationResourceWithStreamingResponse:
