@@ -40,7 +40,7 @@ class InvestigateListParams(TypedDict, total=False):
     final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
     """The dispositions the search filters by."""
 
-    message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"]
+    message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED", "SUBMITTED"]
     """The message actions the search filters by."""
 
     message_id: str
