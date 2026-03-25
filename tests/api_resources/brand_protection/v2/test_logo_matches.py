@@ -34,7 +34,7 @@ class TestLogoMatches:
             limit="limit",
             offset="offset",
             order="asc",
-            order_by="tag",
+            order_by="matchedAt",
         )
         assert_matches_type(LogoMatchGetResponse, logo_match, path=["response"])
 
@@ -95,7 +95,7 @@ class TestAsyncLogoMatches:
             limit="limit",
             offset="offset",
             order="asc",
-            order_by="tag",
+            order_by="matchedAt",
         )
         assert_matches_type(LogoMatchGetResponse, logo_match, path=["response"])
 
