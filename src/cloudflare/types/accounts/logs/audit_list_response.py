@@ -55,10 +55,10 @@ class Actor(BaseModel):
     """The IP address of the request that performed the action."""
 
     token_id: Optional[str] = None
-    """Filters by the API token ID when the actor context is an api_token."""
+    """The API token ID when the actor context is an api_token or oauth."""
 
     token_name: Optional[str] = None
-    """Filters by the API token name when the actor context is an api_token."""
+    """The API token name when the actor context is an api_token or oauth."""
 
     type: Optional[Literal["account", "cloudflare_admin", "system", "user"]] = None
     """The type of actor."""

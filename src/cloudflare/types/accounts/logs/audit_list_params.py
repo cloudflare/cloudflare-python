@@ -354,7 +354,7 @@ class ResourceProduct(_ResourceProductReservedKeywords, total=False):
 _ResourceScopeReservedKeywords = TypedDict(
     "_ResourceScopeReservedKeywords",
     {
-        "not": List[Literal["accounts", "user", "zones"]],
+        "not": List[Literal["accounts", "user", "zones", "memberships"]],
     },
     total=False,
 )
