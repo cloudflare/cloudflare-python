@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -16,6 +17,8 @@ class ChunkItem(BaseModel):
 
 
 class ChunkScoringDetails(BaseModel):
+    fusion_method: Optional[Literal["rrf", "max"]] = None
+
     keyword_rank: Optional[float] = None
 
     keyword_score: Optional[float] = None

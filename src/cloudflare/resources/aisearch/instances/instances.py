@@ -77,35 +77,37 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        aisearch_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         cache: bool | Omit = omit,
@@ -115,55 +117,60 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
-        embedding_model: Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
+        embedding_model: Optional[
+            Literal[
+                "@cf/qwen/qwen3-embedding-0.6b",
+                "@cf/baai/bge-m3",
+                "@cf/baai/bge-large-en-v1.5",
+                "@cf/google/embeddinggemma-300m",
+                "google-ai-studio/gemini-embedding-001",
+                "google-ai-studio/gemini-embedding-2-preview",
+                "openai/text-embedding-3-small",
+                "openai/text-embedding-3-large",
+                "",
+            ]
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
+        indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
         retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        rewrite_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
@@ -179,11 +186,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """
-        Create a new instances.
+        """Create a new instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -211,6 +219,7 @@ class InstancesResource(SyncAPIResource):
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
+                    "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "public_endpoint_params": public_endpoint_params,
@@ -243,35 +252,37 @@ class InstancesResource(SyncAPIResource):
         *,
         account_id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        aisearch_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         cache: bool | Omit = omit,
@@ -281,91 +292,98 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
-        embedding_model: Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
+        embedding_model: Optional[
+            Literal[
+                "@cf/qwen/qwen3-embedding-0.6b",
+                "@cf/baai/bge-m3",
+                "@cf/baai/bge-large-en-v1.5",
+                "@cf/google/embeddinggemma-300m",
+                "google-ai-studio/gemini-embedding-001",
+                "google-ai-studio/gemini-embedding-2-preview",
+                "openai/text-embedding-3-small",
+                "openai/text-embedding-3-large",
+                "",
+            ]
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
+        indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
         retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        rewrite_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
-        summarization_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        summarization_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
@@ -379,11 +397,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """
-        Update instances.
+        """Update instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -412,6 +431,7 @@ class InstancesResource(SyncAPIResource):
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
+                    "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,
@@ -446,6 +466,7 @@ class InstancesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        namespace: Optional[str] | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -488,6 +509,7 @@ class InstancesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "namespace": namespace,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -512,11 +534,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
-        """
-        Delete instances.
+        """Delete instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -593,7 +616,7 @@ class InstancesResource(SyncAPIResource):
         content as context for generating responses.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -636,11 +659,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
-        """
-        Read instances.
+        """Read instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -685,7 +709,7 @@ class InstancesResource(SyncAPIResource):
         indexed content.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -734,7 +758,7 @@ class InstancesResource(SyncAPIResource):
         Retrieves usage statistics for AI Search instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -791,35 +815,37 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        aisearch_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         cache: bool | Omit = omit,
@@ -829,55 +855,60 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
-        embedding_model: Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
+        embedding_model: Optional[
+            Literal[
+                "@cf/qwen/qwen3-embedding-0.6b",
+                "@cf/baai/bge-m3",
+                "@cf/baai/bge-large-en-v1.5",
+                "@cf/google/embeddinggemma-300m",
+                "google-ai-studio/gemini-embedding-001",
+                "google-ai-studio/gemini-embedding-2-preview",
+                "openai/text-embedding-3-small",
+                "openai/text-embedding-3-large",
+                "",
+            ]
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
+        indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
         retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        rewrite_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
@@ -893,11 +924,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """
-        Create a new instances.
+        """Create a new instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -925,6 +957,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
+                    "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "public_endpoint_params": public_endpoint_params,
@@ -957,35 +990,37 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         account_id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        aisearch_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         cache: bool | Omit = omit,
@@ -995,91 +1030,98 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
-        embedding_model: Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
+        embedding_model: Optional[
+            Literal[
+                "@cf/qwen/qwen3-embedding-0.6b",
+                "@cf/baai/bge-m3",
+                "@cf/baai/bge-large-en-v1.5",
+                "@cf/google/embeddinggemma-300m",
+                "google-ai-studio/gemini-embedding-001",
+                "google-ai-studio/gemini-embedding-2-preview",
+                "openai/text-embedding-3-small",
+                "openai/text-embedding-3-large",
+                "",
+            ]
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
+        indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
+        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
         retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        rewrite_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
-        summarization_model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
+        summarization_model: Optional[
+            Literal[
+                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                "@cf/zai-org/glm-4.7-flash",
+                "@cf/meta/llama-3.1-8b-instruct-fast",
+                "@cf/meta/llama-3.1-8b-instruct-fp8",
+                "@cf/meta/llama-4-scout-17b-16e-instruct",
+                "@cf/qwen/qwen3-30b-a3b-fp8",
+                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                "@cf/moonshotai/kimi-k2-instruct",
+                "@cf/google/gemma-3-12b-it",
+                "anthropic/claude-3-7-sonnet",
+                "anthropic/claude-sonnet-4",
+                "anthropic/claude-opus-4",
+                "anthropic/claude-3-5-haiku",
+                "cerebras/qwen-3-235b-a22b-instruct",
+                "cerebras/qwen-3-235b-a22b-thinking",
+                "cerebras/llama-3.3-70b",
+                "cerebras/llama-4-maverick-17b-128e-instruct",
+                "cerebras/llama-4-scout-17b-16e-instruct",
+                "cerebras/gpt-oss-120b",
+                "google-ai-studio/gemini-2.5-flash",
+                "google-ai-studio/gemini-2.5-pro",
+                "grok/grok-4",
+                "groq/llama-3.3-70b-versatile",
+                "groq/llama-3.1-8b-instant",
+                "openai/gpt-5",
+                "openai/gpt-5-mini",
+                "openai/gpt-5-nano",
+                "",
+            ]
         ]
         | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
@@ -1093,11 +1135,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """
-        Update instances.
+        """Update instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -1126,6 +1169,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
                     "hybrid_search_enabled": hybrid_search_enabled,
+                    "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,
@@ -1160,6 +1204,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        namespace: Optional[str] | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -1202,6 +1247,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "namespace": namespace,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -1226,11 +1272,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
-        """
-        Delete instances.
+        """Delete instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -1307,7 +1354,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         content as context for generating responses.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -1350,11 +1397,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
-        """
-        Read instances.
+        """Read instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID.
+
+        Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -1399,7 +1447,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         indexed content.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -1448,7 +1496,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         Retrieves usage statistics for AI Search instances.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 

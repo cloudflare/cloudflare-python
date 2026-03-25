@@ -56,6 +56,7 @@ class TestInstances:
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
             hybrid_search_enabled=True,
+            indexing_options={"keyword_tokenizer": "porter"},
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
@@ -195,6 +196,7 @@ class TestInstances:
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
             hybrid_search_enabled=True,
+            indexing_options={"keyword_tokenizer": "porter"},
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
@@ -326,6 +328,7 @@ class TestInstances:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         instance = client.aisearch.instances.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="x",
             order_by="created_at",
             order_by_direction="asc",
             page=1,
@@ -794,6 +797,7 @@ class TestAsyncInstances:
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
             hybrid_search_enabled=True,
+            indexing_options={"keyword_tokenizer": "porter"},
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
@@ -933,6 +937,7 @@ class TestAsyncInstances:
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
             hybrid_search_enabled=True,
+            indexing_options={"keyword_tokenizer": "porter"},
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
@@ -1064,6 +1069,7 @@ class TestAsyncInstances:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.instances.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="x",
             order_by="created_at",
             order_by_direction="asc",
             page=1,

@@ -65,7 +65,7 @@ class JobsResource(SyncAPIResource):
         Creates a new indexing job for an AI Search instance.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -110,7 +110,7 @@ class JobsResource(SyncAPIResource):
         Lists indexing jobs for an AI Search instance.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -160,7 +160,7 @@ class JobsResource(SyncAPIResource):
         Retrieves details for a specific AI Search indexing job.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -207,7 +207,7 @@ class JobsResource(SyncAPIResource):
         Lists log entries for an AI Search indexing job.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -280,7 +280,7 @@ class AsyncJobsResource(AsyncAPIResource):
         Creates a new indexing job for an AI Search instance.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -325,7 +325,7 @@ class AsyncJobsResource(AsyncAPIResource):
         Lists indexing jobs for an AI Search instance.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -375,7 +375,7 @@ class AsyncJobsResource(AsyncAPIResource):
         Retrieves details for a specific AI Search indexing job.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 
@@ -422,7 +422,7 @@ class AsyncJobsResource(AsyncAPIResource):
         Lists log entries for an AI Search indexing job.
 
         Args:
-          id: Use your AI Search ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           extra_headers: Send extra headers
 

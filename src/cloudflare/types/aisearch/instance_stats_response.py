@@ -19,6 +19,8 @@ class InstanceStatsResponse(BaseModel):
 
     last_activity: Optional[datetime] = None
 
+    outdated: Optional[int] = None
+
     queued: Optional[int] = None
 
     running: Optional[int] = None

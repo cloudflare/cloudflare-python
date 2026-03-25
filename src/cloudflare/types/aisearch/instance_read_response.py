@@ -12,6 +12,7 @@ from ..r2.buckets.provider import Provider
 __all__ = [
     "InstanceReadResponse",
     "CustomMetadata",
+    "IndexingOptions",
     "Metadata",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
@@ -33,6 +34,17 @@ class CustomMetadata(BaseModel):
     data_type: Literal["text", "number", "boolean", "datetime"]
 
     field_name: str
+
+
+class IndexingOptions(BaseModel):
+    keyword_tokenizer: Optional[Literal["porter", "trigram"]] = None
+    """Tokenizer used for keyword search indexing.
+
+    porter provides word-level tokenization with Porter stemming (good for natural
+    language queries). trigram enables character-level substring matching (good for
+    partial matches, code, identifiers). Changing this triggers a full re-index.
+    Defaults to porter.
+    """
 
 
 class Metadata(BaseModel):
@@ -208,7 +220,7 @@ class SourceParams(BaseModel):
 
 class InstanceReadResponse(BaseModel):
     id: str
-    """Use your AI Search ID."""
+    """AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores."""
 
     created_at: datetime
 
@@ -281,6 +293,8 @@ class InstanceReadResponse(BaseModel):
 
     hybrid_search_enabled: Optional[bool] = None
 
+    indexing_options: Optional[IndexingOptions] = None
+
     last_activity: Optional[datetime] = None
 
     max_num_results: Optional[int] = None
@@ -288,6 +302,8 @@ class InstanceReadResponse(BaseModel):
     metadata: Optional[Metadata] = None
 
     modified_by: Optional[str] = None
+
+    namespace: Optional[str] = None
 
     paused: Optional[bool] = None
 
