@@ -7,7 +7,7 @@ __all__ = ["SnapshotCreateResponse"]
 
 class SnapshotCreateResponse(BaseModel):
     content: str
-    """HTML content"""
+    """HTML content."""
 
     screenshot: str
-    """Base64 encoded image"""
+    """Base64 encoded image."""

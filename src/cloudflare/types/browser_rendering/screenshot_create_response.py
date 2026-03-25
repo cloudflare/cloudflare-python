@@ -9,14 +9,14 @@ __all__ = ["ScreenshotCreateResponse", "Error"]
 
 class Error(BaseModel):
     code: float
-    """Error code"""
+    """Error code."""
 
     message: str
-    """Error Message"""
+    """Error message."""
 
 
 class ScreenshotCreateResponse(BaseModel):
     success: bool
-    """Response status"""
+    """Response status."""
 
     errors: Optional[List[Error]] = None

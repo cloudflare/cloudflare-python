@@ -201,6 +201,7 @@ class Variant0Authenticate(TypedDict, total=False):
 
 class Variant0Cookie(TypedDict, total=False):
     name: Required[str]
+    """Cookie name."""
 
     value: Required[str]
 
@@ -237,7 +238,7 @@ class Variant0CustomAI(TypedDict, total=False):
     """AI model to use for the request.
 
     Must be formed as `<provider>/<model_name>`, e.g.
-    `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`
+    `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`.
     """
 
 
@@ -265,7 +266,7 @@ class Variant0ResponseFormat(TypedDict, total=False):
     json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
     """Schema for the response format.
 
-    More information here: https://developers.cloudflare.com/workers-ai/json-mode/
+    More information here: https://developers.cloudflare.com/workers-ai/json-mode/.
     """
 
 
@@ -465,6 +466,7 @@ class Variant1Authenticate(TypedDict, total=False):
 
 class Variant1Cookie(TypedDict, total=False):
     name: Required[str]
+    """Cookie name."""
 
     value: Required[str]
 
@@ -501,7 +503,7 @@ class Variant1CustomAI(TypedDict, total=False):
     """AI model to use for the request.
 
     Must be formed as `<provider>/<model_name>`, e.g.
-    `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`
+    `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`.
     """
 
 
@@ -529,7 +531,7 @@ class Variant1ResponseFormat(TypedDict, total=False):
     json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
     """Schema for the response format.
 
-    More information here: https://developers.cloudflare.com/workers-ai/json-mode/
+    More information here: https://developers.cloudflare.com/workers-ai/json-mode/.
     """
 
 

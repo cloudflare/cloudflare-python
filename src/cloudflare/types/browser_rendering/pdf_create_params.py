@@ -193,6 +193,7 @@ class Variant0Authenticate(TypedDict, total=False):
 
 class Variant0Cookie(TypedDict, total=False):
     name: Required[str]
+    """Cookie name."""
 
     value: Required[str]
 
@@ -491,6 +492,7 @@ class Variant1Authenticate(TypedDict, total=False):
 
 class Variant1Cookie(TypedDict, total=False):
     name: Required[str]
+    """Cookie name."""
 
     value: Required[str]
 

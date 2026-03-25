@@ -107,11 +107,6 @@ class RunQueryParametersCalculation(BaseModel):
     alias: Optional[str] = None
 
     key: Optional[str] = None
-    """The key to use for the calculation.
-
-    This key must exist in the logs. Use the observability_keys response to confirm.
-    Do not guess keys.
-    """
 
     key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
 
@@ -239,7 +234,7 @@ class RunQueryParameters(BaseModel):
     filters: Optional[List[RunQueryParametersFilter]] = None
     """Configure the Filters to apply to the query.
 
-    Supports nested groups via kind: 'group'. Maximum nesting depth is 4.
+    Supports nested groups via kind: 'group'.
     """
 
     group_bys: Optional[List[RunQueryParametersGroupBy]] = FieldInfo(alias="groupBys", default=None)
@@ -260,29 +255,24 @@ class RunQueryParameters(BaseModel):
 
 class RunQuery(BaseModel):
     id: str
-    """ID of the query"""
+
+    adhoc: bool
+    """If the query wasn't explcitly saved"""
 
     created: str
 
+    created_by: str = FieldInfo(alias="createdBy")
+
     description: Optional[str] = None
 
-    environment_id: str = FieldInfo(alias="environmentId")
-    """ID of your environment"""
-
-    generated: Optional[bool] = None
-    """Flag for alerts automatically created"""
-
-    name: Optional[str] = None
+    name: str
     """Query name"""
 
     parameters: RunQueryParameters
 
     updated: str
 
-    user_id: str = FieldInfo(alias="userId")
-
-    workspace_id: str = FieldInfo(alias="workspaceId")
-    """ID of your workspace"""
+    updated_by: str = FieldInfo(alias="updatedBy")
 
 
 class RunTimeframe(BaseModel):
@@ -565,7 +555,7 @@ class EventsEventWorkersUnionMember0ScriptVersion(BaseModel):
 
 class EventsEventWorkersUnionMember0(BaseModel):
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
+        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
     ] = FieldInfo(alias="eventType")
 
     request_id: str = FieldInfo(alias="requestId")
@@ -609,7 +599,7 @@ class EventsEventWorkersUnionMember1(BaseModel):
     cpu_time_ms: float = FieldInfo(alias="cpuTimeMs")
 
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
+        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
     ] = FieldInfo(alias="eventType")
 
     outcome: str
@@ -792,7 +782,7 @@ class InvocationWorkersUnionMember0ScriptVersion(BaseModel):
 
 class InvocationWorkersUnionMember0(BaseModel):
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
+        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
     ] = FieldInfo(alias="eventType")
 
     request_id: str = FieldInfo(alias="requestId")
@@ -836,7 +826,7 @@ class InvocationWorkersUnionMember1(BaseModel):
     cpu_time_ms: float = FieldInfo(alias="cpuTimeMs")
 
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
+        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
     ] = FieldInfo(alias="eventType")
 
     outcome: str

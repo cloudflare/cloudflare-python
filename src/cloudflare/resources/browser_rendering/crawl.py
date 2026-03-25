@@ -449,7 +449,7 @@ class CrawlResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          job_id: The ID of the crawl job to cancel
+          job_id: The ID of the crawl job to cancel.
 
           extra_headers: Send extra headers
 
@@ -963,7 +963,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          job_id: The ID of the crawl job to cancel
+          job_id: The ID of the crawl job to cancel.
 
           extra_headers: Send extra headers
 

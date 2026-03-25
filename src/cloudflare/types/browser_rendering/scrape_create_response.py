@@ -15,39 +15,39 @@ __all__ = [
 
 class ScrapeCreateResponseItemResultsAttribute(BaseModel):
     name: str
-    """Attribute name"""
+    """Attribute name."""
 
     value: str
-    """Attribute value"""
+    """Attribute value."""
 
 
 class ScrapeCreateResponseItemResults(BaseModel):
     attributes: List[ScrapeCreateResponseItemResultsAttribute]
 
     height: float
-    """Element height"""
+    """Element height."""
 
     html: str
-    """Html content"""
+    """HTML content."""
 
     left: float
-    """Element left"""
+    """Element left."""
 
     text: str
-    """Text content"""
+    """Text content."""
 
     top: float
-    """Element top"""
+    """Element top."""
 
     width: float
-    """Element width"""
+    """Element width."""
 
 
 class ScrapeCreateResponseItem(BaseModel):
     results: ScrapeCreateResponseItemResults
 
     selector: str
-    """Selector"""
+    """Selector."""
 
 
 ScrapeCreateResponse: TypeAlias = List[ScrapeCreateResponseItem]

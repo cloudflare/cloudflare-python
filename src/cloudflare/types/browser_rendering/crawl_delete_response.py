@@ -7,7 +7,7 @@ __all__ = ["CrawlDeleteResponse"]
 
 class CrawlDeleteResponse(BaseModel):
     job_id: str
-    """The ID of the cancelled job"""
+    """The ID of the cancelled job."""
 
     message: str
-    """Cancellation confirmation message"""
+    """Cancellation confirmation message."""
