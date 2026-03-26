@@ -175,10 +175,10 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source: str | Omit = omit,
+        source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
-        type: Literal["r2", "web-crawler"] | Omit = omit,
+        type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -913,10 +913,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
-        source: str | Omit = omit,
+        source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
         token_id: str | Omit = omit,
-        type: Literal["r2", "web-crawler"] | Omit = omit,
+        type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -155,13 +155,13 @@ class InstanceCreateParams(TypedDict, total=False):
 
     score_threshold: float
 
-    source: str
+    source: Optional[str]
 
     source_params: Optional[SourceParams]
 
     token_id: str
 
-    type: Literal["r2", "web-crawler"]
+    type: Optional[Literal["r2", "web-crawler"]]
 
 
 class CustomMetadata(TypedDict, total=False):
@@ -254,11 +254,13 @@ class RetrievalOptions(TypedDict, total=False):
     Fields must match 'timestamp' or a defined custom_metadata field.
     """
 
-    keyword_match_mode: Literal["exact_match", "fuzzy_match"]
-    """Controls how keyword search terms are matched.
+    keyword_match_mode: Literal["and", "or"]
+    """Controls which documents are candidates for BM25 scoring.
 
-    exact_match requires all terms to appear (AND); fuzzy_match returns results
-    containing any term (OR). Defaults to exact_match.
+    'and' restricts candidates to documents containing all query terms; 'or'
+    includes any document containing at least one term, ranked by BM25 relevance.
+    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
+    and map to 'and' and 'or' respectively.
     """
 
 

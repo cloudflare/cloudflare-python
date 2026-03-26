@@ -120,11 +120,13 @@ class RetrievalOptions(BaseModel):
     Fields must match 'timestamp' or a defined custom_metadata field.
     """
 
-    keyword_match_mode: Optional[Literal["exact_match", "fuzzy_match"]] = None
-    """Controls how keyword search terms are matched.
+    keyword_match_mode: Optional[Literal["and", "or"]] = None
+    """Controls which documents are candidates for BM25 scoring.
 
-    exact_match requires all terms to appear (AND); fuzzy_match returns results
-    containing any term (OR). Defaults to exact_match.
+    'and' restricts candidates to documents containing all query terms; 'or'
+    includes any document containing at least one term, ranked by BM25 relevance.
+    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
+    and map to 'and' and 'or' respectively.
     """
 
 
@@ -288,6 +290,8 @@ class InstanceUpdateResponse(BaseModel):
     ] = None
 
     enable: Optional[bool] = None
+
+    engine_version: Optional[float] = None
 
     fusion_method: Optional[Literal["max", "rrf"]] = None
 
