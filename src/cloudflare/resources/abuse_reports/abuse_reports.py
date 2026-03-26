@@ -631,6 +631,7 @@ class AbuseReportsResource(SyncAPIResource):
         urls: str,
         comments: str | Omit = omit,
         company: str | Omit = omit,
+        reg_who_request: abuse_report_create_params.AbuseReportsRegistrarWhoisReportRegWhoRequest | Omit = omit,
         reported_country: str | Omit = omit,
         reported_user_agent: str | Omit = omit,
         tele: str | Omit = omit,
@@ -670,6 +671,8 @@ class AbuseReportsResource(SyncAPIResource):
 
           company: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
+
+          reg_who_request: ICANN-mandated fields for registrar WHOIS data disclosure requests.
 
           reported_country: Text containing 2 characters
 
@@ -884,6 +887,7 @@ class AbuseReportsResource(SyncAPIResource):
         ports_protocols: str | Omit = omit,
         source_ips: str | Omit = omit,
         ncmec_notification: Literal["send", "send-anon"] | Omit = omit,
+        reg_who_request: abuse_report_create_params.AbuseReportsRegistrarWhoisReportRegWhoRequest | Omit = omit,
         ncsei_subject_representation: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -929,6 +933,7 @@ class AbuseReportsResource(SyncAPIResource):
                     "ports_protocols": ports_protocols,
                     "source_ips": source_ips,
                     "ncmec_notification": ncmec_notification,
+                    "reg_who_request": reg_who_request,
                     "ncsei_subject_representation": ncsei_subject_representation,
                 },
                 abuse_report_create_params.AbuseReportCreateParams,
@@ -1657,6 +1662,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         urls: str,
         comments: str | Omit = omit,
         company: str | Omit = omit,
+        reg_who_request: abuse_report_create_params.AbuseReportsRegistrarWhoisReportRegWhoRequest | Omit = omit,
         reported_country: str | Omit = omit,
         reported_user_agent: str | Omit = omit,
         tele: str | Omit = omit,
@@ -1696,6 +1702,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
           company: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
+
+          reg_who_request: ICANN-mandated fields for registrar WHOIS data disclosure requests.
 
           reported_country: Text containing 2 characters
 
@@ -1910,6 +1918,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ports_protocols: str | Omit = omit,
         source_ips: str | Omit = omit,
         ncmec_notification: Literal["send", "send-anon"] | Omit = omit,
+        reg_who_request: abuse_report_create_params.AbuseReportsRegistrarWhoisReportRegWhoRequest | Omit = omit,
         ncsei_subject_representation: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1955,6 +1964,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
                     "ports_protocols": ports_protocols,
                     "source_ips": source_ips,
                     "ncmec_notification": ncmec_notification,
+                    "reg_who_request": reg_who_request,
                     "ncsei_subject_representation": ncsei_subject_representation,
                 },
                 abuse_report_create_params.AbuseReportCreateParams,
