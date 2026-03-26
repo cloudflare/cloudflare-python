@@ -54,6 +54,7 @@ __all__ = [
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
     "BindingWorkersBindingKindVPCService",
+    "BindingWorkersBindingKindVPCNetwork",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -708,6 +709,23 @@ class BindingWorkersBindingKindVPCService(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["vpc_network"]]
+    """The kind of resource that the binding provides."""
+
+    network_id: str
+    """Identifier of the network to bind to.
+
+    Only "cf1:network" is currently supported. Mutually exclusive with tunnel_id.
+    """
+
+    tunnel_id: str
+    """UUID of the Cloudflare Tunnel to bind to. Mutually exclusive with network_id."""
+
+
 Binding: TypeAlias = Union[
     BindingWorkersBindingKindAI,
     BindingWorkersBindingKindAISearch,
@@ -742,6 +760,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindWorkflow,
     BindingWorkersBindingKindWasmModule,
     BindingWorkersBindingKindVPCService,
+    BindingWorkersBindingKindVPCNetwork,
 ]
 
 

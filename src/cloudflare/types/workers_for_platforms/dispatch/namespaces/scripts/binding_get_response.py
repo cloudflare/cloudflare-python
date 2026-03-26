@@ -47,6 +47,7 @@ __all__ = [
     "WorkersBindingKindWorkflow",
     "WorkersBindingKindWasmModule",
     "WorkersBindingKindVPCService",
+    "WorkersBindingKindVPCNetwork",
 ]
 
 
@@ -540,6 +541,23 @@ class WorkersBindingKindVPCService(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class WorkersBindingKindVPCNetwork(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["vpc_network"]
+    """The kind of resource that the binding provides."""
+
+    network_id: Optional[str] = None
+    """Identifier of the network to bind to.
+
+    Only "cf1:network" is currently supported. Mutually exclusive with tunnel_id.
+    """
+
+    tunnel_id: Optional[str] = None
+    """UUID of the Cloudflare Tunnel to bind to. Mutually exclusive with network_id."""
+
+
 BindingGetResponse: TypeAlias = Annotated[
     Union[
         WorkersBindingKindAI,
@@ -575,6 +593,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindWorkflow,
         WorkersBindingKindWasmModule,
         WorkersBindingKindVPCService,
+        WorkersBindingKindVPCNetwork,
     ],
     PropertyInfo(discriminator="type"),
 ]
