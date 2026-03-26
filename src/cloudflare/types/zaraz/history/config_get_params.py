@@ -13,4 +13,4 @@ class ConfigGetParams(TypedDict, total=False):
     """Identifier."""
 
     ids: Required[Iterable[int]]
-    """Comma separated list of Zaraz configuration IDs"""
+    """Comma separated list of Zaraz configuration IDs."""

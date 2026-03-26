@@ -14,4 +14,4 @@ class ZarazUpdateParams(TypedDict, total=False):
     """Identifier."""
 
     workflow: Required[Workflow]
-    """Zaraz workflow"""
+    """Zaraz workflow."""

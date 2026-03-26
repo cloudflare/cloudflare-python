@@ -11,16 +11,18 @@ __all__ = ["HistoryListResponse"]
 
 class HistoryListResponse(BaseModel):
     id: int
-    """ID of the configuration"""
+    """ID of the configuration."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
-    """Date and time the configuration was created"""
+    """Date and time the configuration was created."""
 
     description: str
-    """Configuration description provided by the user who published this configuration"""
+    """
+    Configuration description provided by the user who published this configuration.
+    """
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
-    """Date and time the configuration was last updated"""
+    """Date and time the configuration was last updated."""
 
     user_id: str = FieldInfo(alias="userId")
-    """Alpha-numeric ID of the account user who published the configuration"""
+    """Alpha-numeric ID of the account user who published the configuration."""

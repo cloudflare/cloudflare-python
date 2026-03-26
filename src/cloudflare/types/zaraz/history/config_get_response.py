@@ -14,19 +14,19 @@ __all__ = ["ConfigGetResponse", "ConfigGetResponseItem"]
 
 class ConfigGetResponseItem(BaseModel):
     id: int
-    """ID of the configuration"""
+    """ID of the configuration."""
 
     config: Configuration
-    """Zaraz configuration"""
+    """Zaraz configuration."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
-    """Date and time the configuration was created"""
+    """Date and time the configuration was created."""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
-    """Date and time the configuration was last updated"""
+    """Date and time the configuration was last updated."""
 
     user_id: str = FieldInfo(alias="userId")
-    """Alpha-numeric ID of the account user who published the configuration"""
+    """Alpha-numeric ID of the account user who published the configuration."""
 
 
 ConfigGetResponse: TypeAlias = Dict[str, ConfigGetResponseItem]

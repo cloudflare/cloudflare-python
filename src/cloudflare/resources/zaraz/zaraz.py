@@ -134,7 +134,7 @@ class ZarazResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          workflow: Zaraz workflow
+          workflow: Zaraz workflow.
 
           extra_headers: Send extra headers
 
@@ -224,7 +224,7 @@ class AsyncZarazResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          workflow: Zaraz workflow
+          workflow: Zaraz workflow.
 
           extra_headers: Send extra headers
 

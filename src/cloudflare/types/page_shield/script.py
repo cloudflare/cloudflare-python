@@ -28,7 +28,10 @@ class Script(BaseModel):
     """The cryptomining score of the JavaScript content."""
 
     dataflow_score: Optional[int] = None
-    """The dataflow score of the JavaScript content."""
+    """The dataflow score of the JavaScript content.
+
+    This field has been deprecated in favour of js_integrity_score.
+    """
 
     domain_reported_malicious: Optional[bool] = None
 
@@ -54,7 +57,10 @@ class Script(BaseModel):
     """The malware score of the JavaScript content."""
 
     obfuscation_score: Optional[int] = None
-    """The obfuscation score of the JavaScript content."""
+    """The obfuscation score of the JavaScript content.
+
+    This field has been deprecated in favour of js_integrity_score.
+    """
 
     page_urls: Optional[List[str]] = None
 

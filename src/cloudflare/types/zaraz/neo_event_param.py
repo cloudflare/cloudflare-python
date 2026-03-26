@@ -12,13 +12,13 @@ __all__ = ["NeoEventParam"]
 
 class NeoEventParam(TypedDict, total=False):
     action_type: Required[Annotated[str, PropertyInfo(alias="actionType")]]
-    """Tool event type"""
+    """Tool event type."""
 
     blocking_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockingTriggers")]]
-    """List of blocking triggers IDs"""
+    """List of blocking triggers IDs."""
 
     data: Required[object]
-    """Event payload"""
+    """Event payload."""
 
     firing_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="firingTriggers")]]
-    """List of firing triggers IDs"""
+    """List of firing triggers IDs."""

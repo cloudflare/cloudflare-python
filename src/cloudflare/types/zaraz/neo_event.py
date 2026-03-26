@@ -11,13 +11,13 @@ __all__ = ["NeoEvent"]
 
 class NeoEvent(BaseModel):
     action_type: str = FieldInfo(alias="actionType")
-    """Tool event type"""
+    """Tool event type."""
 
     blocking_triggers: List[str] = FieldInfo(alias="blockingTriggers")
-    """List of blocking triggers IDs"""
+    """List of blocking triggers IDs."""
 
     data: object
-    """Event payload"""
+    """Event payload."""
 
     firing_triggers: List[str] = FieldInfo(alias="firingTriggers")
-    """List of firing triggers IDs"""
+    """List of firing triggers IDs."""

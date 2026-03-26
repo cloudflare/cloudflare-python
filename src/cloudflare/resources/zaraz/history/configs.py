@@ -62,7 +62,7 @@ class ConfigsResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ids: Comma separated list of Zaraz configuration IDs
+          ids: Comma separated list of Zaraz configuration IDs.
 
           extra_headers: Send extra headers
 
@@ -126,7 +126,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ids: Comma separated list of Zaraz configuration IDs
+          ids: Comma separated list of Zaraz configuration IDs.
 
           extra_headers: Send extra headers
 
