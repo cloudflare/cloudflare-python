@@ -67,9 +67,10 @@ class URIRecord(BaseModel):
     """Components of a URI record."""
 
     priority: Optional[float] = None
-    """Required for MX, SRV and URI records; unused by other record types.
-
-    Records with lower priorities are preferred.
+    """
+    Required for MX and URI records; ignored for other record types (but may still
+    be returned by the API). Records with lower priorities are preferred. This field
+    is to be deprecated in favor of the priority field within the data map.
     """
 
     proxied: Optional[bool] = None

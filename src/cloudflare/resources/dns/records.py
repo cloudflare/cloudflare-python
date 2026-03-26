@@ -309,8 +309,9 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -1389,8 +1390,9 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -1775,8 +1777,9 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -2906,8 +2909,9 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -3529,8 +3533,9 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -4660,8 +4665,9 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -5392,8 +5398,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -6472,8 +6479,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -6858,8 +6866,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -7989,8 +7998,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -8612,8 +8622,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -9743,8 +9754,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
+          priority: Required for MX and URI records; ignored for other record types (but may still
+              be returned by the API). Records with lower priorities are preferred. This field
+              is to be deprecated in favor of the priority field within the data map.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
