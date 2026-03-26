@@ -49,9 +49,6 @@ class DHCPLease(BaseModel):
     mac_address: str
     """MAC Address of the device the IP Address was leased to"""
 
-    connector_id: Optional[str] = None
-    """Connector identifier"""
-
 
 class Disk(BaseModel):
     """Snapshot Disk"""
@@ -98,9 +95,6 @@ class Disk(BaseModel):
     writes_merged: float
     """Writes merged"""
 
-    connector_id: Optional[str] = None
-    """Connector identifier"""
-
     discards: Optional[float] = None
     """Discards completed successfully"""
 
@@ -129,9 +123,6 @@ class InterfaceIPAddress(BaseModel):
     ip_address: str
     """IP address of the network interface"""
 
-    connector_id: Optional[str] = None
-    """Connector identifier"""
-
 
 class Interface(BaseModel):
     """Snapshot Interface"""
@@ -141,9 +132,6 @@ class Interface(BaseModel):
 
     operstate: str
     """UP/DOWN state of the network interface"""
-
-    connector_id: Optional[str] = None
-    """Connector identifier"""
 
     ip_addresses: Optional[List[InterfaceIPAddress]] = None
 
@@ -168,9 +156,6 @@ class Mount(BaseModel):
 
     available_bytes: Optional[float] = None
     """Available disk size (bytes)"""
-
-    connector_id: Optional[str] = None
-    """Connector identifier"""
 
     is_read_only: Optional[bool] = None
     """Determines whether the disk is read-only"""
@@ -236,18 +221,12 @@ class Netdev(BaseModel):
     sent_packets: float
     """Total packets transmitted"""
 
-    connector_id: Optional[str] = None
-    """Connector identifier"""
-
 
 class Thermal(BaseModel):
     """Snapshot Thermal"""
 
     label: str
     """Sensor identifier for the component"""
-
-    connector_id: Optional[str] = None
-    """Connector identifier"""
 
     critical_celcius: Optional[float] = None
     """Critical failure temperature of the component (degrees Celsius)"""
@@ -276,9 +255,6 @@ class Tunnel(BaseModel):
 
     tunnel_id: str
     """Tunnel identifier"""
-
-    connector_id: Optional[str] = None
-    """Connector identifier"""
 
     probed_mtu: Optional[float] = None
     """MTU as measured between the two ends of the tunnel"""

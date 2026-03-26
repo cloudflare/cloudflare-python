@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
+from typing import Union, Optional
 from typing_extensions import Literal, Annotated, TypeAlias
 
 from ...._utils import PropertyInfo
@@ -144,3 +144,6 @@ class EventGetResponse(BaseModel):
 
     t: float
     """Time the Event was recorded (seconds since the Unix epoch)"""
+
+    v: Optional[str] = None
+    """Version"""
