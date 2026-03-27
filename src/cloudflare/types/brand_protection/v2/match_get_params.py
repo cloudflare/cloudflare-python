@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["MatchGetParams"]
@@ -12,7 +13,15 @@ __all__ = ["MatchGetParams"]
 class MatchGetParams(TypedDict, total=False):
     account_id: Required[str]
 
-    query_id: Required[str]
+    query_id: Required[SequenceNotStr[str]]
+    """Query ID or comma-separated list of Query IDs.
+
+    When multiple IDs are provided, matches are deduplicated across queries and each
+    match includes matched_queries and match_ids arrays.
+    """
+
+    domain_search: str
+    """Filter matches by domain name (substring match)"""
 
     include_dismissed: str
 

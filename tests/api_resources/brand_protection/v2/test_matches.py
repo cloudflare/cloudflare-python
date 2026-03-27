@@ -21,7 +21,7 @@ class TestMatches:
     def test_method_get(self, client: Cloudflare) -> None:
         match = client.brand_protection.v2.matches.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         )
         assert_matches_type(MatchGetResponse, match, path=["response"])
 
@@ -29,7 +29,8 @@ class TestMatches:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         match = client.brand_protection.v2.matches.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
+            domain_search="domain_search",
             include_dismissed="include_dismissed",
             include_domain_id="include_domain_id",
             limit="limit",
@@ -43,7 +44,7 @@ class TestMatches:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.brand_protection.v2.matches.with_raw_response.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         )
 
         assert response.is_closed is True
@@ -55,7 +56,7 @@ class TestMatches:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.brand_protection.v2.matches.with_streaming_response.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,7 +71,7 @@ class TestMatches:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.brand_protection.v2.matches.with_raw_response.get(
                 account_id="",
-                query_id="x",
+                query_id=["string"],
             )
 
 
@@ -83,7 +84,7 @@ class TestAsyncMatches:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         match = await async_client.brand_protection.v2.matches.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         )
         assert_matches_type(MatchGetResponse, match, path=["response"])
 
@@ -91,7 +92,8 @@ class TestAsyncMatches:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         match = await async_client.brand_protection.v2.matches.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
+            domain_search="domain_search",
             include_dismissed="include_dismissed",
             include_domain_id="include_domain_id",
             limit="limit",
@@ -105,7 +107,7 @@ class TestAsyncMatches:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.brand_protection.v2.matches.with_raw_response.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         )
 
         assert response.is_closed is True
@@ -117,7 +119,7 @@ class TestAsyncMatches:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.brand_protection.v2.matches.with_streaming_response.get(
             account_id="x",
-            query_id="x",
+            query_id=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,5 +134,5 @@ class TestAsyncMatches:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.brand_protection.v2.matches.with_raw_response.get(
                 account_id="",
-                query_id="x",
+                query_id=["string"],
             )

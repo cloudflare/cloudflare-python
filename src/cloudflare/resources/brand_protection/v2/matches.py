@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -47,7 +47,8 @@ class MatchesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        query_id: str,
+        query_id: SequenceNotStr[str],
+        domain_search: str | Omit = omit,
         include_dismissed: str | Omit = omit,
         include_domain_id: str | Omit = omit,
         limit: str | Omit = omit,
@@ -62,9 +63,17 @@ class MatchesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchGetResponse:
         """
-        Get paginated list of domain matches for a specific brand protection query
+        Get paginated list of domain matches for one or more brand protection queries.
+        When multiple query_ids are provided (comma-separated), matches are deduplicated
+        across queries and each match includes a matched_queries array.
 
         Args:
+          query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
+              matches are deduplicated across queries and each match includes matched_queries
+              and match_ids arrays.
+
+          domain_search: Filter matches by domain name (substring match)
+
           order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
           order_by: Column to sort by. Options: 'domain' or 'first_seen'
@@ -89,6 +98,7 @@ class MatchesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "query_id": query_id,
+                        "domain_search": domain_search,
                         "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,
@@ -127,7 +137,8 @@ class AsyncMatchesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        query_id: str,
+        query_id: SequenceNotStr[str],
+        domain_search: str | Omit = omit,
         include_dismissed: str | Omit = omit,
         include_domain_id: str | Omit = omit,
         limit: str | Omit = omit,
@@ -142,9 +153,17 @@ class AsyncMatchesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchGetResponse:
         """
-        Get paginated list of domain matches for a specific brand protection query
+        Get paginated list of domain matches for one or more brand protection queries.
+        When multiple query_ids are provided (comma-separated), matches are deduplicated
+        across queries and each match includes a matched_queries array.
 
         Args:
+          query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
+              matches are deduplicated across queries and each match includes matched_queries
+              and match_ids arrays.
+
+          domain_search: Filter matches by domain name (substring match)
+
           order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
           order_by: Column to sort by. Options: 'domain' or 'first_seen'
@@ -169,6 +188,7 @@ class AsyncMatchesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "query_id": query_id,
+                        "domain_search": domain_search,
                         "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,

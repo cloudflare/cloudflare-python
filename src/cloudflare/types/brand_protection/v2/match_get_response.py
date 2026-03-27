@@ -26,6 +26,18 @@ class Match(BaseModel):
 
     source: Optional[str] = None
 
+    match_ids: Optional[List[int]] = None
+    """All underlying match row IDs for this domain.
+
+    Only present when multiple query_ids are requested.
+    """
+
+    matched_queries: Optional[List[int]] = None
+    """List of query IDs that produced this match.
+
+    Only present when multiple query_ids are requested.
+    """
+
 
 class MatchGetResponse(BaseModel):
     matches: List[Match]
