@@ -580,6 +580,9 @@ class SnapshotGetResponse(BaseModel):
 
     netdevs: Optional[List[Netdev]] = None
 
+    platform: Optional[str] = None
+    """Platform identifier"""
+
     snmp_icmp_in_addr_mask_reps: Optional[float] = None
     """Number of ICMP Address Mask Reply messages received"""
 
