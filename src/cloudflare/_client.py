@@ -168,7 +168,6 @@ if TYPE_CHECKING:
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
     from .resources.zaraz.zaraz import ZarazResource, AsyncZarazResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
-    from .resources.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.queues.queues import QueuesResource, AsyncQueuesResource
@@ -207,6 +206,7 @@ if TYPE_CHECKING:
     from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
     from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
     from .resources.connectivity.connectivity import ConnectivityResource, AsyncConnectivityResource
+    from .resources.custom_pages.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.realtime_kit.realtime_kit import RealtimeKitResource, AsyncRealtimeKitResource

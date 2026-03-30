@@ -7,28 +7,40 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncSinglePage, AsyncSinglePage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.custom_pages import custom_page_update_params
-from ..types.custom_pages.custom_page_get_response import CustomPageGetResponse
-from ..types.custom_pages.custom_page_list_response import CustomPageListResponse
-from ..types.custom_pages.custom_page_update_response import CustomPageUpdateResponse
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.custom_pages import custom_page_update_params
+from ...types.custom_pages.custom_page_get_response import CustomPageGetResponse
+from ...types.custom_pages.custom_page_list_response import CustomPageListResponse
+from ...types.custom_pages.custom_page_update_response import CustomPageUpdateResponse
 
 __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 
 
 class CustomPagesResource(SyncAPIResource):
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> CustomPagesResourceWithRawResponse:
         """
@@ -248,6 +260,10 @@ class CustomPagesResource(SyncAPIResource):
 
 
 class AsyncCustomPagesResource(AsyncAPIResource):
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomPagesResourceWithRawResponse:
         """
@@ -480,6 +496,10 @@ class CustomPagesResourceWithRawResponse:
             custom_pages.get,
         )
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._custom_pages.assets)
+
 
 class AsyncCustomPagesResourceWithRawResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
@@ -494,6 +514,10 @@ class AsyncCustomPagesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             custom_pages.get,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._custom_pages.assets)
 
 
 class CustomPagesResourceWithStreamingResponse:
@@ -510,6 +534,10 @@ class CustomPagesResourceWithStreamingResponse:
             custom_pages.get,
         )
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._custom_pages.assets)
+
 
 class AsyncCustomPagesResourceWithStreamingResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
@@ -524,3 +552,7 @@ class AsyncCustomPagesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             custom_pages.get,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._custom_pages.assets)
