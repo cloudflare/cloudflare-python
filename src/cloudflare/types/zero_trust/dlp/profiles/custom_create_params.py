@@ -9,7 +9,14 @@ from ....._types import SequenceNotStr
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
-__all__ = ["CustomCreateParams", "Entry", "EntryDLPNewCustomEntry", "EntryDLPNewWordListEntry", "SharedEntry"]
+__all__ = [
+    "CustomCreateParams",
+    "Entry",
+    "EntryDLPNewCustomEntry",
+    "EntryDLPNewWordListEntry",
+    "SensitivityLevel",
+    "SharedEntry",
+]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -43,10 +50,8 @@ class CustomCreateParams(TypedDict, total=False):
 
     ocr_enabled: bool
 
-    sensitivity_levels: Iterable[SequenceNotStr[str]]
-    """
-    Sensitivity levels to associate with the profile as (group_id, level_id) tuples.
-    """
+    sensitivity_levels: Iterable[SensitivityLevel]
+    """Sensitivity levels to associate with the profile."""
 
     shared_entries: Iterable[SharedEntry]
     """Entries from other profiles (e.g.
@@ -75,6 +80,16 @@ class EntryDLPNewWordListEntry(TypedDict, total=False):
 
 
 Entry: TypeAlias = Union[EntryDLPNewCustomEntry, EntryDLPNewWordListEntry]
+
+
+class SensitivityLevel(TypedDict, total=False):
+    """
+    A reference pairing a sensitivity group with a specific level within that group.
+    """
+
+    group_id: Required[str]
+
+    level_id: Required[str]
 
 
 class SharedEntry(TypedDict, total=False):

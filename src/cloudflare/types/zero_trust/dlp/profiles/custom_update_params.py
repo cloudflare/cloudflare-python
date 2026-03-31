@@ -9,7 +9,14 @@ from ....._types import SequenceNotStr
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
-__all__ = ["CustomUpdateParams", "Entry", "EntryDLPNewCustomEntryWithID", "EntryDLPNewCustomEntry", "SharedEntry"]
+__all__ = [
+    "CustomUpdateParams",
+    "Entry",
+    "EntryDLPNewCustomEntryWithID",
+    "EntryDLPNewCustomEntry",
+    "SensitivityLevel",
+    "SharedEntry",
+]
 
 
 class CustomUpdateParams(TypedDict, total=False):
@@ -52,7 +59,7 @@ class CustomUpdateParams(TypedDict, total=False):
 
     ocr_enabled: bool
 
-    sensitivity_levels: Optional[Iterable[SequenceNotStr[str]]]
+    sensitivity_levels: Optional[Iterable[SensitivityLevel]]
     """Sensitivity levels to associate with the profile.
 
     If omitted, existing associations are unchanged.
@@ -85,6 +92,16 @@ class EntryDLPNewCustomEntry(TypedDict, total=False):
 
 
 Entry: TypeAlias = Union[EntryDLPNewCustomEntryWithID, EntryDLPNewCustomEntry]
+
+
+class SensitivityLevel(TypedDict, total=False):
+    """
+    A reference pairing a sensitivity group with a specific level within that group.
+    """
+
+    group_id: Required[str]
+
+    level_id: Required[str]
 
 
 class SharedEntry(TypedDict, total=False):

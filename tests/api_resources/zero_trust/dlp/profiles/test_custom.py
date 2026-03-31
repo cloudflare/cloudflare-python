@@ -52,7 +52,12 @@ class TestCustom:
                 }
             ],
             ocr_enabled=True,
-            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
+            sensitivity_levels=[
+                {
+                    "group_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "level_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
             shared_entries=[
                 {
                     "enabled": True,
@@ -134,7 +139,12 @@ class TestCustom:
                 }
             ],
             ocr_enabled=True,
-            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
+            sensitivity_levels=[
+                {
+                    "group_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "level_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
             shared_entries=[
                 {
                     "enabled": True,
@@ -325,7 +335,12 @@ class TestAsyncCustom:
                 }
             ],
             ocr_enabled=True,
-            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
+            sensitivity_levels=[
+                {
+                    "group_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "level_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
             shared_entries=[
                 {
                     "enabled": True,
@@ -407,7 +422,12 @@ class TestAsyncCustom:
                 }
             ],
             ocr_enabled=True,
-            sensitivity_levels=[["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"]],
+            sensitivity_levels=[
+                {
+                    "group_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "level_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
             shared_entries=[
                 {
                     "enabled": True,

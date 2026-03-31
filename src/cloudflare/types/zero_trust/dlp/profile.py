@@ -20,6 +20,7 @@ __all__ = [
     "CustomProfileEntryExactDataEntry",
     "CustomProfileEntryDocumentFingerprintEntry",
     "CustomProfileEntryWordListEntry",
+    "CustomProfileSensitivityLevel",
     "CustomProfileSharedEntry",
     "CustomProfileSharedEntryCustomEntry",
     "CustomProfileSharedEntryPredefinedEntry",
@@ -194,6 +195,16 @@ CustomProfileEntry: TypeAlias = Union[
     CustomProfileEntryDocumentFingerprintEntry,
     CustomProfileEntryWordListEntry,
 ]
+
+
+class CustomProfileSensitivityLevel(BaseModel):
+    """
+    A reference pairing a sensitivity group with a specific level within that group.
+    """
+
+    group_id: str
+
+    level_id: str
 
 
 class CustomProfileSharedEntryCustomEntry(BaseModel):
@@ -372,8 +383,8 @@ class CustomProfile(BaseModel):
 
     entries: Optional[List[CustomProfileEntry]] = None
 
-    sensitivity_levels: Optional[List[List[str]]] = None
-    """Sensitivity levels associated with this profile as (group_id, level_id) tuples."""
+    sensitivity_levels: Optional[List[CustomProfileSensitivityLevel]] = None
+    """Sensitivity levels associated with this profile."""
 
     shared_entries: Optional[List[CustomProfileSharedEntry]] = None
 

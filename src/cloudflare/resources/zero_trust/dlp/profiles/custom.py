@@ -59,7 +59,7 @@ class CustomResource(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         entries: Iterable[custom_create_params.Entry] | Omit = omit,
         ocr_enabled: bool | Omit = omit,
-        sensitivity_levels: Iterable[SequenceNotStr[str]] | Omit = omit,
+        sensitivity_levels: Iterable[custom_create_params.SensitivityLevel] | Omit = omit,
         shared_entries: Iterable[custom_create_params.SharedEntry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,7 +83,7 @@ class CustomResource(SyncAPIResource):
 
           description: The description of the profile.
 
-          sensitivity_levels: Sensitivity levels to associate with the profile as (group_id, level_id) tuples.
+          sensitivity_levels: Sensitivity levels to associate with the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -147,7 +147,7 @@ class CustomResource(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         entries: Optional[Iterable[custom_update_params.Entry]] | Omit = omit,
         ocr_enabled: bool | Omit = omit,
-        sensitivity_levels: Optional[Iterable[SequenceNotStr[str]]] | Omit = omit,
+        sensitivity_levels: Optional[Iterable[custom_update_params.SensitivityLevel]] | Omit = omit,
         shared_entries: Iterable[custom_update_params.SharedEntry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -345,7 +345,7 @@ class AsyncCustomResource(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         entries: Iterable[custom_create_params.Entry] | Omit = omit,
         ocr_enabled: bool | Omit = omit,
-        sensitivity_levels: Iterable[SequenceNotStr[str]] | Omit = omit,
+        sensitivity_levels: Iterable[custom_create_params.SensitivityLevel] | Omit = omit,
         shared_entries: Iterable[custom_create_params.SharedEntry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,7 +369,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           description: The description of the profile.
 
-          sensitivity_levels: Sensitivity levels to associate with the profile as (group_id, level_id) tuples.
+          sensitivity_levels: Sensitivity levels to associate with the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -433,7 +433,7 @@ class AsyncCustomResource(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         entries: Optional[Iterable[custom_update_params.Entry]] | Omit = omit,
         ocr_enabled: bool | Omit = omit,
-        sensitivity_levels: Optional[Iterable[SequenceNotStr[str]]] | Omit = omit,
+        sensitivity_levels: Optional[Iterable[custom_update_params.SensitivityLevel]] | Omit = omit,
         shared_entries: Iterable[custom_update_params.SharedEntry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
