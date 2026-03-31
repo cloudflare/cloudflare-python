@@ -12,6 +12,7 @@ from ..r2.buckets.provider import Provider
 __all__ = [
     "InstanceDeleteResponse",
     "CustomMetadata",
+    "IndexMethod",
     "IndexingOptions",
     "Metadata",
     "PublicEndpointParams",
@@ -34,6 +35,19 @@ class CustomMetadata(BaseModel):
     data_type: Literal["text", "number", "boolean", "datetime"]
 
     field_name: str
+
+
+class IndexMethod(BaseModel):
+    """Controls which storage backends are used during indexing.
+
+    Defaults to vector-only.
+    """
+
+    keyword: bool
+    """Enable keyword (BM25) storage backend."""
+
+    vector: bool
+    """Enable vector (embedding) storage backend."""
 
 
 class IndexingOptions(BaseModel):
@@ -296,6 +310,13 @@ class InstanceDeleteResponse(BaseModel):
     fusion_method: Optional[Literal["max", "rrf"]] = None
 
     hybrid_search_enabled: Optional[bool] = None
+    """Deprecated — use index_method instead."""
+
+    index_method: Optional[IndexMethod] = None
+    """Controls which storage backends are used during indexing.
+
+    Defaults to vector-only.
+    """
 
     indexing_options: Optional[IndexingOptions] = None
 

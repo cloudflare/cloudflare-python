@@ -132,7 +132,7 @@ class InstancesResource(SyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
-        hybrid_search_enabled: bool | Omit = omit,
+        index_method: instance_create_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
@@ -193,6 +193,9 @@ class InstancesResource(SyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          index_method: Controls which storage backends are used during indexing. Defaults to
+              vector-only.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,7 +221,7 @@ class InstancesResource(SyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
-                    "hybrid_search_enabled": hybrid_search_enabled,
+                    "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -307,7 +310,7 @@ class InstancesResource(SyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
-        hybrid_search_enabled: bool | Omit = omit,
+        index_method: instance_update_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
@@ -404,6 +407,9 @@ class InstancesResource(SyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          index_method: Controls which storage backends are used during indexing. Defaults to
+              vector-only.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -430,7 +436,7 @@ class InstancesResource(SyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
-                    "hybrid_search_enabled": hybrid_search_enabled,
+                    "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -870,7 +876,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
-        hybrid_search_enabled: bool | Omit = omit,
+        index_method: instance_create_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
@@ -931,6 +937,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          index_method: Controls which storage backends are used during indexing. Defaults to
+              vector-only.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -956,7 +965,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
-                    "hybrid_search_enabled": hybrid_search_enabled,
+                    "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
@@ -1045,7 +1054,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
-        hybrid_search_enabled: bool | Omit = omit,
+        index_method: instance_update_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
@@ -1142,6 +1151,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          index_method: Controls which storage backends are used during indexing. Defaults to
+              vector-only.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1168,7 +1180,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
-                    "hybrid_search_enabled": hybrid_search_enabled,
+                    "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
                     "metadata": metadata,

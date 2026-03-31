@@ -12,6 +12,7 @@ from ..r2.buckets.provider import Provider
 __all__ = [
     "InstanceUpdateParams",
     "CustomMetadata",
+    "IndexMethod",
     "IndexingOptions",
     "Metadata",
     "PublicEndpointParams",
@@ -99,7 +100,11 @@ class InstanceUpdateParams(TypedDict, total=False):
 
     fusion_method: Literal["max", "rrf"]
 
-    hybrid_search_enabled: bool
+    index_method: IndexMethod
+    """Controls which storage backends are used during indexing.
+
+    Defaults to vector-only.
+    """
 
     indexing_options: Optional[IndexingOptions]
 
@@ -204,6 +209,19 @@ class CustomMetadata(TypedDict, total=False):
     data_type: Required[Literal["text", "number", "boolean", "datetime"]]
 
     field_name: Required[str]
+
+
+class IndexMethod(TypedDict, total=False):
+    """Controls which storage backends are used during indexing.
+
+    Defaults to vector-only.
+    """
+
+    keyword: Required[bool]
+    """Enable keyword (BM25) storage backend."""
+
+    vector: Required[bool]
+    """Enable vector (embedding) storage backend."""
 
 
 class IndexingOptions(TypedDict, total=False):

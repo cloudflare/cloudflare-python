@@ -55,7 +55,7 @@ class PermissionGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PermissionGroupListResponse]:
         """
-        Find all available permission groups for API Tokens
+        Find all available permission groups for API Tokens.
 
         Args:
           name: Filter by the name of the permission group. The value must be URL-encoded.
@@ -123,7 +123,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PermissionGroupListResponse, AsyncSinglePage[PermissionGroupListResponse]]:
         """
-        Find all available permission groups for API Tokens
+        Find all available permission groups for API Tokens.
 
         Args:
           name: Filter by the name of the permission group. The value must be URL-encoded.
