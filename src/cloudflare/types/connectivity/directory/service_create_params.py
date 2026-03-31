@@ -9,75 +9,205 @@ from ...._types import SequenceNotStr
 
 __all__ = [
     "ServiceCreateParams",
-    "Host",
-    "HostInfraIPv4Host",
-    "HostInfraIPv4HostNetwork",
-    "HostInfraIPv6Host",
-    "HostInfraIPv6HostNetwork",
-    "HostInfraDualStackHost",
-    "HostInfraDualStackHostNetwork",
-    "HostInfraHostnameHost",
-    "HostInfraHostnameHostResolverNetwork",
+    "InfraHTTPServiceConfig",
+    "InfraHTTPServiceConfigHost",
+    "InfraHTTPServiceConfigHostInfraIPv4Host",
+    "InfraHTTPServiceConfigHostInfraIPv4HostNetwork",
+    "InfraHTTPServiceConfigHostInfraIPv6Host",
+    "InfraHTTPServiceConfigHostInfraIPv6HostNetwork",
+    "InfraHTTPServiceConfigHostInfraDualStackHost",
+    "InfraHTTPServiceConfigHostInfraDualStackHostNetwork",
+    "InfraHTTPServiceConfigHostInfraHostnameHost",
+    "InfraHTTPServiceConfigHostInfraHostnameHostResolverNetwork",
+    "InfraHTTPServiceConfigTLSSettings",
+    "InfraTCPServiceConfig",
+    "InfraTCPServiceConfigHost",
+    "InfraTCPServiceConfigHostInfraIPv4Host",
+    "InfraTCPServiceConfigHostInfraIPv4HostNetwork",
+    "InfraTCPServiceConfigHostInfraIPv6Host",
+    "InfraTCPServiceConfigHostInfraIPv6HostNetwork",
+    "InfraTCPServiceConfigHostInfraDualStackHost",
+    "InfraTCPServiceConfigHostInfraDualStackHostNetwork",
+    "InfraTCPServiceConfigHostInfraHostnameHost",
+    "InfraTCPServiceConfigHostInfraHostnameHostResolverNetwork",
+    "InfraTCPServiceConfigTLSSettings",
 ]
 
 
-class ServiceCreateParams(TypedDict, total=False):
+class InfraHTTPServiceConfig(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier"""
 
-    host: Required[Host]
+    host: Required[InfraHTTPServiceConfigHost]
 
     name: Required[str]
 
-    type: Required[Literal["http"]]
+    type: Required[Literal["tcp", "http"]]
 
     http_port: Optional[int]
 
     https_port: Optional[int]
 
+    tls_settings: Optional[InfraHTTPServiceConfigTLSSettings]
+    """TLS settings for a connectivity service.
 
-class HostInfraIPv4HostNetwork(TypedDict, total=False):
+    If omitted, the default mode (`verify_full`) is used.
+    """
+
+
+class InfraHTTPServiceConfigHostInfraIPv4HostNetwork(TypedDict, total=False):
     tunnel_id: Required[str]
 
 
-class HostInfraIPv4Host(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraIPv4Host(TypedDict, total=False):
     ipv4: Required[str]
 
-    network: Required[HostInfraIPv4HostNetwork]
+    network: Required[InfraHTTPServiceConfigHostInfraIPv4HostNetwork]
 
 
-class HostInfraIPv6HostNetwork(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraIPv6HostNetwork(TypedDict, total=False):
     tunnel_id: Required[str]
 
 
-class HostInfraIPv6Host(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraIPv6Host(TypedDict, total=False):
     ipv6: Required[str]
 
-    network: Required[HostInfraIPv6HostNetwork]
+    network: Required[InfraHTTPServiceConfigHostInfraIPv6HostNetwork]
 
 
-class HostInfraDualStackHostNetwork(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraDualStackHostNetwork(TypedDict, total=False):
     tunnel_id: Required[str]
 
 
-class HostInfraDualStackHost(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraDualStackHost(TypedDict, total=False):
     ipv4: Required[str]
 
     ipv6: Required[str]
 
-    network: Required[HostInfraDualStackHostNetwork]
+    network: Required[InfraHTTPServiceConfigHostInfraDualStackHostNetwork]
 
 
-class HostInfraHostnameHostResolverNetwork(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraHostnameHostResolverNetwork(TypedDict, total=False):
     tunnel_id: Required[str]
 
     resolver_ips: Optional[SequenceNotStr[str]]
 
 
-class HostInfraHostnameHost(TypedDict, total=False):
+class InfraHTTPServiceConfigHostInfraHostnameHost(TypedDict, total=False):
     hostname: Required[str]
 
-    resolver_network: Required[HostInfraHostnameHostResolverNetwork]
+    resolver_network: Required[InfraHTTPServiceConfigHostInfraHostnameHostResolverNetwork]
 
 
-Host: TypeAlias = Union[HostInfraIPv4Host, HostInfraIPv6Host, HostInfraDualStackHost, HostInfraHostnameHost]
+InfraHTTPServiceConfigHost: TypeAlias = Union[
+    InfraHTTPServiceConfigHostInfraIPv4Host,
+    InfraHTTPServiceConfigHostInfraIPv6Host,
+    InfraHTTPServiceConfigHostInfraDualStackHost,
+    InfraHTTPServiceConfigHostInfraHostnameHost,
+]
+
+
+class InfraHTTPServiceConfigTLSSettings(TypedDict, total=False):
+    """TLS settings for a connectivity service.
+
+    If omitted, the default mode (`verify_full`) is used.
+    """
+
+    cert_verification_mode: Required[str]
+    """TLS certificate verification mode for the connection to the origin.
+
+    - `"verify_full"` — verify certificate chain and hostname (default)
+    - `"verify_ca"` — verify certificate chain only, skip hostname check
+    - `"disabled"` — do not verify the server certificate at all
+    """
+
+
+class InfraTCPServiceConfig(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier"""
+
+    host: Required[InfraTCPServiceConfigHost]
+
+    name: Required[str]
+
+    type: Required[Literal["tcp", "http"]]
+
+    app_protocol: Optional[Literal["postgresql", "mysql"]]
+
+    tcp_port: Optional[int]
+
+    tls_settings: Optional[InfraTCPServiceConfigTLSSettings]
+    """TLS settings for a connectivity service.
+
+    If omitted, the default mode (`verify_full`) is used.
+    """
+
+
+class InfraTCPServiceConfigHostInfraIPv4HostNetwork(TypedDict, total=False):
+    tunnel_id: Required[str]
+
+
+class InfraTCPServiceConfigHostInfraIPv4Host(TypedDict, total=False):
+    ipv4: Required[str]
+
+    network: Required[InfraTCPServiceConfigHostInfraIPv4HostNetwork]
+
+
+class InfraTCPServiceConfigHostInfraIPv6HostNetwork(TypedDict, total=False):
+    tunnel_id: Required[str]
+
+
+class InfraTCPServiceConfigHostInfraIPv6Host(TypedDict, total=False):
+    ipv6: Required[str]
+
+    network: Required[InfraTCPServiceConfigHostInfraIPv6HostNetwork]
+
+
+class InfraTCPServiceConfigHostInfraDualStackHostNetwork(TypedDict, total=False):
+    tunnel_id: Required[str]
+
+
+class InfraTCPServiceConfigHostInfraDualStackHost(TypedDict, total=False):
+    ipv4: Required[str]
+
+    ipv6: Required[str]
+
+    network: Required[InfraTCPServiceConfigHostInfraDualStackHostNetwork]
+
+
+class InfraTCPServiceConfigHostInfraHostnameHostResolverNetwork(TypedDict, total=False):
+    tunnel_id: Required[str]
+
+    resolver_ips: Optional[SequenceNotStr[str]]
+
+
+class InfraTCPServiceConfigHostInfraHostnameHost(TypedDict, total=False):
+    hostname: Required[str]
+
+    resolver_network: Required[InfraTCPServiceConfigHostInfraHostnameHostResolverNetwork]
+
+
+InfraTCPServiceConfigHost: TypeAlias = Union[
+    InfraTCPServiceConfigHostInfraIPv4Host,
+    InfraTCPServiceConfigHostInfraIPv6Host,
+    InfraTCPServiceConfigHostInfraDualStackHost,
+    InfraTCPServiceConfigHostInfraHostnameHost,
+]
+
+
+class InfraTCPServiceConfigTLSSettings(TypedDict, total=False):
+    """TLS settings for a connectivity service.
+
+    If omitted, the default mode (`verify_full`) is used.
+    """
+
+    cert_verification_mode: Required[str]
+    """TLS certificate verification mode for the connection to the origin.
+
+    - `"verify_full"` — verify certificate chain and hostname (default)
+    - `"verify_ca"` — verify certificate chain only, skip hostname check
+    - `"disabled"` — do not verify the server certificate at all
+    """
+
+
+ServiceCreateParams: TypeAlias = Union[InfraHTTPServiceConfig, InfraTCPServiceConfig]

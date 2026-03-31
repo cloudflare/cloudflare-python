@@ -18,4 +18,4 @@ class ServiceListParams(TypedDict, total=False):
     per_page: int
     """Max amount of entries returned per page"""
 
-    type: Optional[Literal["http"]]
+    type: Optional[Literal["tcp", "http"]]

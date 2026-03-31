@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
+from typing import Any, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -49,15 +49,17 @@ class ServicesResource(SyncAPIResource):
         """
         return ServicesResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         account_id: str,
-        host: service_create_params.Host,
+        host: service_create_params.InfraHTTPServiceConfigHost,
         name: str,
-        type: Literal["http"],
+        type: Literal["tcp", "http"],
         http_port: Optional[int] | Omit = omit,
         https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraHTTPServiceConfigTLSSettings] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +73,10 @@ class ServicesResource(SyncAPIResource):
         Args:
           account_id: Account identifier
 
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,40 +85,112 @@ class ServicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str,
+        host: service_create_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraTCPServiceConfigTLSSettings] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceCreateResponse]:
+        """
+        Create Workers VPC connectivity service
+
+        Args:
+          account_id: Account identifier
+
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "host", "name", "type"])
+    def create(
+        self,
+        *,
+        account_id: str,
+        host: service_create_params.InfraHTTPServiceConfigHost | service_create_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        http_port: Optional[int] | Omit = omit,
+        https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraHTTPServiceConfigTLSSettings]
+        | Optional[service_create_params.InfraTCPServiceConfigTLSSettings]
+        | Omit = omit,
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/connectivity/directory/services",
-            body=maybe_transform(
-                {
-                    "host": host,
-                    "name": name,
-                    "type": type,
-                    "http_port": http_port,
-                    "https_port": https_port,
-                },
-                service_create_params.ServiceCreateParams,
+        return cast(
+            Optional[ServiceCreateResponse],
+            self._post(
+                f"/accounts/{account_id}/connectivity/directory/services",
+                body=maybe_transform(
+                    {
+                        "host": host,
+                        "name": name,
+                        "type": type,
+                        "http_port": http_port,
+                        "https_port": https_port,
+                        "tls_settings": tls_settings,
+                        "app_protocol": app_protocol,
+                        "tcp_port": tcp_port,
+                    },
+                    service_create_params.ServiceCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ServiceCreateResponse]], ResultWrapper[ServiceCreateResponse]),
         )
 
+    @overload
     def update(
         self,
         service_id: str,
         *,
         account_id: str,
-        host: service_update_params.Host,
+        host: service_update_params.InfraHTTPServiceConfigHost,
         name: str,
-        type: Literal["http"],
+        type: Literal["tcp", "http"],
         http_port: Optional[int] | Omit = omit,
         https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraHTTPServiceConfigTLSSettings] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,6 +202,10 @@ class ServicesResource(SyncAPIResource):
         Update Workers VPC connectivity service
 
         Args:
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,30 +214,100 @@ class ServicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        service_id: str,
+        *,
+        account_id: str,
+        host: service_update_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraTCPServiceConfigTLSSettings] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceUpdateResponse]:
+        """
+        Update Workers VPC connectivity service
+
+        Args:
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "host", "name", "type"])
+    def update(
+        self,
+        service_id: str,
+        *,
+        account_id: str,
+        host: service_update_params.InfraHTTPServiceConfigHost | service_update_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        http_port: Optional[int] | Omit = omit,
+        https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraHTTPServiceConfigTLSSettings]
+        | Optional[service_update_params.InfraTCPServiceConfigTLSSettings]
+        | Omit = omit,
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
-            body=maybe_transform(
-                {
-                    "host": host,
-                    "name": name,
-                    "type": type,
-                    "http_port": http_port,
-                    "https_port": https_port,
-                },
-                service_update_params.ServiceUpdateParams,
+        return cast(
+            Optional[ServiceUpdateResponse],
+            self._put(
+                f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
+                body=maybe_transform(
+                    {
+                        "host": host,
+                        "name": name,
+                        "type": type,
+                        "http_port": http_port,
+                        "https_port": https_port,
+                        "tls_settings": tls_settings,
+                        "app_protocol": app_protocol,
+                        "tcp_port": tcp_port,
+                    },
+                    service_update_params.ServiceUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ServiceUpdateResponse]], ResultWrapper[ServiceUpdateResponse]),
         )
 
     def list(
@@ -164,7 +316,7 @@ class ServicesResource(SyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
-        type: Optional[Literal["http"]] | Omit = omit,
+        type: Optional[Literal["tcp", "http"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,7 +361,7 @@ class ServicesResource(SyncAPIResource):
                     service_list_params.ServiceListParams,
                 ),
             ),
-            model=ServiceListResponse,
+            model=cast(Any, ServiceListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -277,16 +429,21 @@ class ServicesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+        return cast(
+            Optional[ServiceGetResponse],
+            self._get(
+                f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[ServiceGetResponse]], ResultWrapper[ServiceGetResponse]),
         )
 
 
@@ -310,15 +467,17 @@ class AsyncServicesResource(AsyncAPIResource):
         """
         return AsyncServicesResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         account_id: str,
-        host: service_create_params.Host,
+        host: service_create_params.InfraHTTPServiceConfigHost,
         name: str,
-        type: Literal["http"],
+        type: Literal["tcp", "http"],
         http_port: Optional[int] | Omit = omit,
         https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraHTTPServiceConfigTLSSettings] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,6 +491,10 @@ class AsyncServicesResource(AsyncAPIResource):
         Args:
           account_id: Account identifier
 
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -340,40 +503,112 @@ class AsyncServicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str,
+        host: service_create_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraTCPServiceConfigTLSSettings] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceCreateResponse]:
+        """
+        Create Workers VPC connectivity service
+
+        Args:
+          account_id: Account identifier
+
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "host", "name", "type"])
+    async def create(
+        self,
+        *,
+        account_id: str,
+        host: service_create_params.InfraHTTPServiceConfigHost | service_create_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        http_port: Optional[int] | Omit = omit,
+        https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_create_params.InfraHTTPServiceConfigTLSSettings]
+        | Optional[service_create_params.InfraTCPServiceConfigTLSSettings]
+        | Omit = omit,
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/connectivity/directory/services",
-            body=await async_maybe_transform(
-                {
-                    "host": host,
-                    "name": name,
-                    "type": type,
-                    "http_port": http_port,
-                    "https_port": https_port,
-                },
-                service_create_params.ServiceCreateParams,
+        return cast(
+            Optional[ServiceCreateResponse],
+            await self._post(
+                f"/accounts/{account_id}/connectivity/directory/services",
+                body=await async_maybe_transform(
+                    {
+                        "host": host,
+                        "name": name,
+                        "type": type,
+                        "http_port": http_port,
+                        "https_port": https_port,
+                        "tls_settings": tls_settings,
+                        "app_protocol": app_protocol,
+                        "tcp_port": tcp_port,
+                    },
+                    service_create_params.ServiceCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ServiceCreateResponse]], ResultWrapper[ServiceCreateResponse]),
         )
 
+    @overload
     async def update(
         self,
         service_id: str,
         *,
         account_id: str,
-        host: service_update_params.Host,
+        host: service_update_params.InfraHTTPServiceConfigHost,
         name: str,
-        type: Literal["http"],
+        type: Literal["tcp", "http"],
         http_port: Optional[int] | Omit = omit,
         https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraHTTPServiceConfigTLSSettings] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -385,6 +620,10 @@ class AsyncServicesResource(AsyncAPIResource):
         Update Workers VPC connectivity service
 
         Args:
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -393,30 +632,100 @@ class AsyncServicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        service_id: str,
+        *,
+        account_id: str,
+        host: service_update_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraTCPServiceConfigTLSSettings] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceUpdateResponse]:
+        """
+        Update Workers VPC connectivity service
+
+        Args:
+          tls_settings: TLS settings for a connectivity service.
+
+              If omitted, the default mode (`verify_full`) is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "host", "name", "type"])
+    async def update(
+        self,
+        service_id: str,
+        *,
+        account_id: str,
+        host: service_update_params.InfraHTTPServiceConfigHost | service_update_params.InfraTCPServiceConfigHost,
+        name: str,
+        type: Literal["tcp", "http"],
+        http_port: Optional[int] | Omit = omit,
+        https_port: Optional[int] | Omit = omit,
+        tls_settings: Optional[service_update_params.InfraHTTPServiceConfigTLSSettings]
+        | Optional[service_update_params.InfraTCPServiceConfigTLSSettings]
+        | Omit = omit,
+        app_protocol: Optional[Literal["postgresql", "mysql"]] | Omit = omit,
+        tcp_port: Optional[int] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ServiceUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
-            body=await async_maybe_transform(
-                {
-                    "host": host,
-                    "name": name,
-                    "type": type,
-                    "http_port": http_port,
-                    "https_port": https_port,
-                },
-                service_update_params.ServiceUpdateParams,
+        return cast(
+            Optional[ServiceUpdateResponse],
+            await self._put(
+                f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
+                body=await async_maybe_transform(
+                    {
+                        "host": host,
+                        "name": name,
+                        "type": type,
+                        "http_port": http_port,
+                        "https_port": https_port,
+                        "tls_settings": tls_settings,
+                        "app_protocol": app_protocol,
+                        "tcp_port": tcp_port,
+                    },
+                    service_update_params.ServiceUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ServiceUpdateResponse]], ResultWrapper[ServiceUpdateResponse]),
         )
 
     def list(
@@ -425,7 +734,7 @@ class AsyncServicesResource(AsyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
-        type: Optional[Literal["http"]] | Omit = omit,
+        type: Optional[Literal["tcp", "http"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -470,7 +779,7 @@ class AsyncServicesResource(AsyncAPIResource):
                     service_list_params.ServiceListParams,
                 ),
             ),
-            model=ServiceListResponse,
+            model=cast(Any, ServiceListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -538,16 +847,21 @@ class AsyncServicesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+        return cast(
+            Optional[ServiceGetResponse],
+            await self._get(
+                f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ServiceGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[ServiceGetResponse]], ResultWrapper[ServiceGetResponse]),
         )
 
 
