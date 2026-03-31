@@ -845,6 +845,13 @@ class Version(BaseModel):
     the name of the module that exports a `fetch` handler).
     """
 
+    migration_tag: Optional[str] = None
+    """Durable Object migration tag.
+
+    Set when the version is deployed. Omitted if the version has not been deployed
+    or the Worker does not use Durable Objects.
+    """
+
     migrations: Optional[Migrations] = None
     """Migrations for Durable Objects associated with the version.
 

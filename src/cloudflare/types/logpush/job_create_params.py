@@ -45,6 +45,7 @@ class JobCreateParams(TypedDict, total=False):
             "http_requests",
             "ipsec_logs",
             "magic_ids_detections",
+            "mcp_portal_logs",
             "nel_reports",
             "network_analytics_logs",
             "page_shield_events",
