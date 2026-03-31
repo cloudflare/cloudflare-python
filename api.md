@@ -428,6 +428,30 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">edit</a>(setting_id, \*, zone_id, \*\*<a href="src/cloudflare/types/zones/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/setting_edit_response.py">Optional[SettingEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_get_response.py">Optional[SettingGetResponse]</a></code>
 
+## Environments
+
+Types:
+
+```python
+from cloudflare.types.zones import (
+    EnvironmentCreateResponse,
+    EnvironmentUpdateResponse,
+    EnvironmentListResponse,
+    EnvironmentDeleteResponse,
+    EnvironmentEditResponse,
+    EnvironmentRollbackResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/environments">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/environment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/environment_create_response.py">EnvironmentCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/environments">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/environment_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/environment_update_response.py">EnvironmentUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/environments">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/environment_list_response.py">EnvironmentListResponse</a></code>
+- <code title="delete /zones/{zone_id}/environments/{environment_id}">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">delete</a>(environment_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/environment_delete_response.py">EnvironmentDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/environments">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/environment_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/environment_edit_response.py">EnvironmentEditResponse</a></code>
+- <code title="post /zones/{zone_id}/environments/{environment_id}/rollback">client.zones.environments.<a href="./src/cloudflare/resources/zones/environments.py">rollback</a>(environment_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/environment_rollback_response.py">EnvironmentRollbackResponse</a></code>
+
 ## CustomNameservers
 
 Types:

@@ -51,6 +51,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .environments import (
+    EnvironmentsResource,
+    AsyncEnvironmentsResource,
+    EnvironmentsResourceWithRawResponse,
+    AsyncEnvironmentsResourceWithRawResponse,
+    EnvironmentsResourceWithStreamingResponse,
+    AsyncEnvironmentsResourceWithStreamingResponse,
+)
 from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
 from .subscriptions import (
     SubscriptionsResource,
@@ -92,6 +100,10 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def settings(self) -> SettingsResource:
         return SettingsResource(self._client)
+
+    @cached_property
+    def environments(self) -> EnvironmentsResource:
+        return EnvironmentsResource(self._client)
 
     @cached_property
     def custom_nameservers(self) -> CustomNameserversResource:
@@ -416,6 +428,10 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def settings(self) -> AsyncSettingsResource:
         return AsyncSettingsResource(self._client)
+
+    @cached_property
+    def environments(self) -> AsyncEnvironmentsResource:
+        return AsyncEnvironmentsResource(self._client)
 
     @cached_property
     def custom_nameservers(self) -> AsyncCustomNameserversResource:
@@ -761,6 +777,10 @@ class ZonesResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._zones.settings)
 
     @cached_property
+    def environments(self) -> EnvironmentsResourceWithRawResponse:
+        return EnvironmentsResourceWithRawResponse(self._zones.environments)
+
+    @cached_property
     def custom_nameservers(self) -> CustomNameserversResourceWithRawResponse:
         return CustomNameserversResourceWithRawResponse(self._zones.custom_nameservers)
 
@@ -808,6 +828,10 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._zones.settings)
+
+    @cached_property
+    def environments(self) -> AsyncEnvironmentsResourceWithRawResponse:
+        return AsyncEnvironmentsResourceWithRawResponse(self._zones.environments)
 
     @cached_property
     def custom_nameservers(self) -> AsyncCustomNameserversResourceWithRawResponse:
@@ -859,6 +883,10 @@ class ZonesResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._zones.settings)
 
     @cached_property
+    def environments(self) -> EnvironmentsResourceWithStreamingResponse:
+        return EnvironmentsResourceWithStreamingResponse(self._zones.environments)
+
+    @cached_property
     def custom_nameservers(self) -> CustomNameserversResourceWithStreamingResponse:
         return CustomNameserversResourceWithStreamingResponse(self._zones.custom_nameservers)
 
@@ -906,6 +934,10 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self._zones.settings)
+
+    @cached_property
+    def environments(self) -> AsyncEnvironmentsResourceWithStreamingResponse:
+        return AsyncEnvironmentsResourceWithStreamingResponse(self._zones.environments)
 
     @cached_property
     def custom_nameservers(self) -> AsyncCustomNameserversResourceWithStreamingResponse:
