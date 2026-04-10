@@ -13,10 +13,10 @@ __all__ = ["DownloadGetResponse", "Audio", "Default"]
 class Audio(BaseModel):
     """The audio-only download. Only present if this download type has been created."""
 
-    percent_complete: Optional[float] = FieldInfo(alias="percentComplete", default=None)
+    percent_complete: float = FieldInfo(alias="percentComplete")
     """Indicates the progress as a percentage between 0 and 100."""
 
-    status: Optional[Literal["ready", "inprogress", "error"]] = None
+    status: Literal["ready", "inprogress", "error"]
     """The status of a generated download."""
 
     url: Optional[str] = None
@@ -29,10 +29,10 @@ class Default(BaseModel):
     Only present if this download type has been created.
     """
 
-    percent_complete: Optional[float] = FieldInfo(alias="percentComplete", default=None)
+    percent_complete: float = FieldInfo(alias="percentComplete")
     """Indicates the progress as a percentage between 0 and 100."""
 
-    status: Optional[Literal["ready", "inprogress", "error"]] = None
+    status: Literal["ready", "inprogress", "error"]
     """The status of a generated download."""
 
     url: Optional[str] = None

@@ -231,14 +231,17 @@ class Variant0Cookie(TypedDict, total=False):
 
 
 class Variant0CustomAI(TypedDict, total=False):
-    authorization: Required[str]
-    """Authorization token for the AI model: `Bearer <token>`."""
-
     model: Required[str]
     """AI model to use for the request.
 
     Must be formed as `<provider>/<model_name>`, e.g.
     `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`.
+    """
+
+    authorization: str
+    """Authorization token for the AI model: `Bearer <token>`.
+
+    Not needed for workers-ai models.
     """
 
 
@@ -266,7 +269,7 @@ class Variant0ResponseFormat(TypedDict, total=False):
     json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
     """Schema for the response format.
 
-    More information here: https://developers.cloudflare.com/workers-ai/json-mode/.
+    More information here: https://developers.cloudflare.com/workers-ai/json-mode/
     """
 
 
@@ -496,14 +499,17 @@ class Variant1Cookie(TypedDict, total=False):
 
 
 class Variant1CustomAI(TypedDict, total=False):
-    authorization: Required[str]
-    """Authorization token for the AI model: `Bearer <token>`."""
-
     model: Required[str]
     """AI model to use for the request.
 
     Must be formed as `<provider>/<model_name>`, e.g.
     `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`.
+    """
+
+    authorization: str
+    """Authorization token for the AI model: `Bearer <token>`.
+
+    Not needed for workers-ai models.
     """
 
 
@@ -531,7 +537,7 @@ class Variant1ResponseFormat(TypedDict, total=False):
     json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
     """Schema for the response format.
 
-    More information here: https://developers.cloudflare.com/workers-ai/json-mode/.
+    More information here: https://developers.cloudflare.com/workers-ai/json-mode/
     """
 
 

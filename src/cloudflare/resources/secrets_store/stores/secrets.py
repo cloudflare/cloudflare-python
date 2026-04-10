@@ -30,9 +30,7 @@ from ....types.secrets_store.stores.secret_get_response import SecretGetResponse
 from ....types.secrets_store.stores.secret_edit_response import SecretEditResponse
 from ....types.secrets_store.stores.secret_list_response import SecretListResponse
 from ....types.secrets_store.stores.secret_create_response import SecretCreateResponse
-from ....types.secrets_store.stores.secret_delete_response import SecretDeleteResponse
 from ....types.secrets_store.stores.secret_duplicate_response import SecretDuplicateResponse
-from ....types.secrets_store.stores.secret_bulk_delete_response import SecretBulkDeleteResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
@@ -186,7 +184,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[SecretDeleteResponse]:
+    ) -> object:
         """
         Deletes a single secret
 
@@ -218,9 +216,9 @@ class SecretsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecretDeleteResponse]], ResultWrapper[SecretDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def bulk_delete(
@@ -234,7 +232,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[SecretBulkDeleteResponse]:
+    ) -> object:
         """
         Deletes one or more secrets
 
@@ -255,14 +253,16 @@ class SecretsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
-        return self._get_api_list(
+        return self._delete(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
-            page=SyncSinglePage[SecretBulkDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            model=SecretBulkDeleteResponse,
-            method="delete",
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def duplicate(
@@ -339,6 +339,7 @@ class SecretsResource(SyncAPIResource):
         store_id: str,
         comment: str | Omit = omit,
         scopes: SequenceNotStr[str] | Omit = omit,
+        value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,6 +361,9 @@ class SecretsResource(SyncAPIResource):
 
           scopes: The list of services that can use this secret.
 
+          value: The value of the secret. Note that this is 'write only' - no API reponse will
+              provide this value, it is only used to create/modify secrets.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -380,6 +384,7 @@ class SecretsResource(SyncAPIResource):
                 {
                     "comment": comment,
                     "scopes": scopes,
+                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),
@@ -592,7 +597,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[SecretDeleteResponse]:
+    ) -> object:
         """
         Deletes a single secret
 
@@ -624,12 +629,12 @@ class AsyncSecretsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecretDeleteResponse]], ResultWrapper[SecretDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def bulk_delete(
+    async def bulk_delete(
         self,
         store_id: str,
         *,
@@ -640,7 +645,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SecretBulkDeleteResponse, AsyncSinglePage[SecretBulkDeleteResponse]]:
+    ) -> object:
         """
         Deletes one or more secrets
 
@@ -661,14 +666,16 @@ class AsyncSecretsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
-        return self._get_api_list(
+        return await self._delete(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
-            page=AsyncSinglePage[SecretBulkDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            model=SecretBulkDeleteResponse,
-            method="delete",
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def duplicate(
@@ -745,6 +752,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         store_id: str,
         comment: str | Omit = omit,
         scopes: SequenceNotStr[str] | Omit = omit,
+        value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -766,6 +774,9 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           scopes: The list of services that can use this secret.
 
+          value: The value of the secret. Note that this is 'write only' - no API reponse will
+              provide this value, it is only used to create/modify secrets.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -786,6 +797,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                 {
                     "comment": comment,
                     "scopes": scopes,
+                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),

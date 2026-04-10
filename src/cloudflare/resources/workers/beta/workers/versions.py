@@ -58,6 +58,7 @@ class VersionsResource(SyncAPIResource):
         bindings: Iterable[version_create_params.Binding] | Omit = omit,
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
+        containers: Iterable[version_create_params.Container] | Omit = omit,
         limits: version_create_params.Limits | Omit = omit,
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
@@ -102,6 +103,9 @@ class VersionsResource(SyncAPIResource):
           compatibility_flags: Flags that enable or disable certain features in the Workers runtime. Used to
               enable upcoming features or opt in or out of specific changes not included in a
               `compatibility_date`.
+
+          containers: List of containers attached to a Worker. Containers can only be attached to
+              Durable Object classes of this Worker script.
 
           limits: Resource limits enforced at runtime.
 
@@ -149,6 +153,7 @@ class VersionsResource(SyncAPIResource):
                     "bindings": bindings,
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
+                    "containers": containers,
                     "limits": limits,
                     "main_module": main_module,
                     "migrations": migrations,
@@ -360,6 +365,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         bindings: Iterable[version_create_params.Binding] | Omit = omit,
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
+        containers: Iterable[version_create_params.Container] | Omit = omit,
         limits: version_create_params.Limits | Omit = omit,
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
@@ -404,6 +410,9 @@ class AsyncVersionsResource(AsyncAPIResource):
           compatibility_flags: Flags that enable or disable certain features in the Workers runtime. Used to
               enable upcoming features or opt in or out of specific changes not included in a
               `compatibility_date`.
+
+          containers: List of containers attached to a Worker. Containers can only be attached to
+              Durable Object classes of this Worker script.
 
           limits: Resource limits enforced at runtime.
 
@@ -451,6 +460,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "bindings": bindings,
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
+                    "containers": containers,
                     "limits": limits,
                     "main_module": main_module,
                     "migrations": migrations,

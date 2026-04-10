@@ -9,7 +9,7 @@ __all__ = ["SubdomainGetResponse"]
 
 
 class SubdomainGetResponse(BaseModel):
-    email_sending_enabled: bool
+    enabled: bool
     """Whether Email Sending is enabled on this subdomain."""
 
     name: str
@@ -21,18 +21,11 @@ class SubdomainGetResponse(BaseModel):
     created: Optional[datetime] = None
     """The date and time the destination address has been created."""
 
-    email_sending_dkim_selector: Optional[str] = None
+    dkim_selector: Optional[str] = None
     """The DKIM selector used for email signing."""
-
-    email_sending_return_path_domain: Optional[str] = None
-    """The return-path domain used for bounce handling."""
-
-    enabled: Optional[bool] = None
-    """Whether Email Routing (receiving) is enabled on this subdomain.
-
-    Read-only; included for informational purposes since both services share the
-    subdomain row.
-    """
 
     modified: Optional[datetime] = None
     """The date and time the destination address was last modified."""
+
+    return_path_domain: Optional[str] = None
+    """The return-path domain used for bounce handling."""

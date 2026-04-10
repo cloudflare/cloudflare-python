@@ -26,6 +26,15 @@ class TestPreview:
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        preview = client.email_security.investigate.preview.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            postfix_id="4Njp3P0STMz2c02Q",
+            submission=True,
+        )
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.preview.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -118,6 +127,15 @@ class TestAsyncPreview:
         preview = await async_client.email_security.investigate.preview.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             postfix_id="4Njp3P0STMz2c02Q",
+        )
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        preview = await async_client.email_security.investigate.preview.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            postfix_id="4Njp3P0STMz2c02Q",
+            submission=True,
         )
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 

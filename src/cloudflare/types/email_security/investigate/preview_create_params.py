@@ -13,3 +13,9 @@ class PreviewCreateParams(TypedDict, total=False):
 
     postfix_id: Required[str]
     """The identifier of the message."""
+
+    submission: bool
+    """When true, search the submissions datastore only.
+
+    When false or omitted, search the regular datastore only.
+    """

@@ -625,7 +625,7 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
     """
 
     reg_who_request: AbuseReportsRegistrarWhoisReportRegWhoRequest
-    """ICANN-mandated fields for registrar WHOIS data disclosure requests."""
+    """RDP-mandated fields for registrar WHOIS data disclosure requests."""
 
     reported_country: str
     """Text containing 2 characters"""
@@ -645,46 +645,59 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
 
 
 class AbuseReportsRegistrarWhoisReportRegWhoRequest(TypedDict, total=False):
-    """ICANN-mandated fields for registrar WHOIS data disclosure requests."""
+    """RDP-mandated fields for registrar WHOIS data disclosure requests."""
 
-    reg_who_authorization_statement: str
-    """Optional authorization statement or power of attorney per ICANN 10.2.1.3."""
+    reg_who_good_faith_affirmation: Required[bool]
+    """Affirmation that the request is made in good faith per RDP 10.2.4.
 
-    reg_who_good_faith_affirmation: bool
-    """Affirmation that the request is made in good faith per ICANN 10.2.4."""
+    Must be true.
+    """
 
-    reg_who_lawful_processing_agreement: bool
-    """Agreement to process data lawfully per ICANN 10.2.5."""
+    reg_who_lawful_processing_agreement: Required[bool]
+    """Agreement to process data lawfully per RDP 10.2.5. Must be true."""
 
-    reg_who_legal_basis: str
-    """Legal rights and rationale for the request per ICANN 10.2.3."""
+    reg_who_legal_basis: Required[str]
+    """Legal rights and rationale for the request per RDP 10.2.3.
 
-    reg_who_request_type: Literal["disclosure", "invalid_whois"]
-    """The type of WHOIS data request per ICANN procedure."""
+    Required for all WHOIS requests.
+    """
 
-    reg_who_requested_data_elements: List[
-        Literal[
-            "registrant_name",
-            "registrant_organization",
-            "registrant_email",
-            "registrant_phone",
-            "registrant_address",
-            "admin_name",
-            "admin_organization",
-            "admin_email",
-            "admin_phone",
-            "admin_address",
-            "tech_name",
-            "tech_organization",
-            "tech_email",
-            "tech_phone",
-            "tech_address",
+    reg_who_request_type: Required[Literal["disclosure", "invalid_whois"]]
+    """The type of WHOIS data request per RDP procedure."""
+
+    reg_who_requested_data_elements: Required[
+        List[
+            Literal[
+                "registrant_name",
+                "registrant_organization",
+                "registrant_email",
+                "registrant_phone",
+                "registrant_address",
+                "registrant_address_country",
+                "registrant_address_postal_code",
+                "admin_name",
+                "admin_organization",
+                "admin_email",
+                "admin_phone",
+                "admin_address",
+                "tech_name",
+                "tech_organization",
+                "tech_email",
+                "tech_phone",
+                "tech_address",
+            ]
         ]
     ]
-    """The specific WHOIS data elements being requested per ICANN 10.2.2."""
+    """The specific WHOIS data elements being requested per RDP 10.2.2.
+
+    Required for all WHOIS requests.
+    """
+
+    reg_who_authorization_statement: str
+    """Optional authorization statement or power of attorney per RDP 10.2.1.3."""
 
     reg_who_requestor_type: Literal["government", "corporation", "individual"]
-    """The nature of the requestor per ICANN 10.2.1.2."""
+    """The nature of the requestor per RDP 10.2.1.2."""
 
 
 class AbuseReportsNcseiReport(TypedDict, total=False):

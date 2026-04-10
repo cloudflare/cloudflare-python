@@ -72,6 +72,7 @@ class EmbedResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/stream/{identifier}/embed",
             options=make_request_options(
@@ -135,6 +136,7 @@ class AsyncEmbedResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/stream/{identifier}/embed",
             options=make_request_options(

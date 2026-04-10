@@ -50,12 +50,12 @@ class WatermarksResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        file: str,
         name: str | Omit = omit,
         opacity: float | Omit = omit,
         padding: float | Omit = omit,
         position: str | Omit = omit,
         scale: float | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,8 +69,6 @@ class WatermarksResource(SyncAPIResource):
 
         Args:
           account_id: The account identifier tag.
-
-          file: The image file to upload.
 
           name: A short description of the watermark profile.
 
@@ -91,6 +89,8 @@ class WatermarksResource(SyncAPIResource):
               will adapt to horizontal and vertical videos automatically. `0.0` indicates no
               scaling (use the size of the image as-is), and `1.0 `fills the entire video.
 
+          url: URL of the watermark image to copy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -101,20 +101,16 @@ class WatermarksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/stream/watermarks",
             body=maybe_transform(
                 {
-                    "file": file,
                     "name": name,
                     "opacity": opacity,
                     "padding": padding,
                     "position": position,
                     "scale": scale,
+                    "url": url,
                 },
                 watermark_create_params.WatermarkCreateParams,
             ),
@@ -277,12 +273,12 @@ class AsyncWatermarksResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        file: str,
         name: str | Omit = omit,
         opacity: float | Omit = omit,
         padding: float | Omit = omit,
         position: str | Omit = omit,
         scale: float | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -296,8 +292,6 @@ class AsyncWatermarksResource(AsyncAPIResource):
 
         Args:
           account_id: The account identifier tag.
-
-          file: The image file to upload.
 
           name: A short description of the watermark profile.
 
@@ -318,6 +312,8 @@ class AsyncWatermarksResource(AsyncAPIResource):
               will adapt to horizontal and vertical videos automatically. `0.0` indicates no
               scaling (use the size of the image as-is), and `1.0 `fills the entire video.
 
+          url: URL of the watermark image to copy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -328,20 +324,16 @@ class AsyncWatermarksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/stream/watermarks",
             body=await async_maybe_transform(
                 {
-                    "file": file,
                     "name": name,
                     "opacity": opacity,
                     "padding": padding,
                     "position": position,
                     "scale": scale,
+                    "url": url,
                 },
                 watermark_create_params.WatermarkCreateParams,
             ),

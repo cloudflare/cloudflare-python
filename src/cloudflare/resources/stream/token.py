@@ -53,6 +53,7 @@ class TokenResource(SyncAPIResource):
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
         exp: int | Omit = omit,
+        flags: token_create_params.Flags | Omit = omit,
         nbf: int | Omit = omit,
         pem: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -87,6 +88,8 @@ class TokenResource(SyncAPIResource):
               accepted. The maximum time specification is 24 hours from issuing time. If this
               field is not set, the default is one hour after issuing.
 
+          flags: Optional flags for the signed token.
+
           nbf: The optional unix epoch timestamp that specifies the time before a the token is
               not accepted. If this field is not set, the default is one hour before issuing.
 
@@ -113,6 +116,7 @@ class TokenResource(SyncAPIResource):
                     "access_rules": access_rules,
                     "downloadable": downloadable,
                     "exp": exp,
+                    "flags": flags,
                     "nbf": nbf,
                     "pem": pem,
                 },
@@ -158,6 +162,7 @@ class AsyncTokenResource(AsyncAPIResource):
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
         exp: int | Omit = omit,
+        flags: token_create_params.Flags | Omit = omit,
         nbf: int | Omit = omit,
         pem: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,6 +197,8 @@ class AsyncTokenResource(AsyncAPIResource):
               accepted. The maximum time specification is 24 hours from issuing time. If this
               field is not set, the default is one hour after issuing.
 
+          flags: Optional flags for the signed token.
+
           nbf: The optional unix epoch timestamp that specifies the time before a the token is
               not accepted. If this field is not set, the default is one hour before issuing.
 
@@ -218,6 +225,7 @@ class AsyncTokenResource(AsyncAPIResource):
                     "access_rules": access_rules,
                     "downloadable": downloadable,
                     "exp": exp,
+                    "flags": flags,
                     "nbf": nbf,
                     "pem": pem,
                 },

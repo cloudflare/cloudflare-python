@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -29,3 +29,6 @@ class SecretDuplicateResponse(BaseModel):
 
     comment: Optional[str] = None
     """Freeform text describing the secret"""
+
+    scopes: Optional[List[str]] = None
+    """The list of services that can use this secret."""

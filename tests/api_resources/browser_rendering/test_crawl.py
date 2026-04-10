@@ -87,8 +87,8 @@ class TestCrawl:
             json_options={
                 "custom_ai": [
                     {
-                        "authorization": "authorization",
                         "model": "model",
+                        "authorization": "authorization",
                     }
                 ],
                 "prompt": "prompt",
@@ -186,8 +186,8 @@ class TestCrawl:
             json_options={
                 "custom_ai": [
                     {
-                        "authorization": "authorization",
                         "model": "model",
+                        "authorization": "authorization",
                     }
                 ],
                 "prompt": "prompt",
@@ -427,8 +427,8 @@ class TestAsyncCrawl:
             json_options={
                 "custom_ai": [
                     {
-                        "authorization": "authorization",
                         "model": "model",
+                        "authorization": "authorization",
                     }
                 ],
                 "prompt": "prompt",
@@ -526,8 +526,8 @@ class TestAsyncCrawl:
             json_options={
                 "custom_ai": [
                     {
-                        "authorization": "authorization",
                         "model": "model",
+                        "authorization": "authorization",
                     }
                 ],
                 "prompt": "prompt",

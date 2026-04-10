@@ -39,6 +39,7 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,
@@ -131,6 +132,7 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,
@@ -404,6 +406,7 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,
@@ -526,6 +529,7 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,
@@ -618,6 +622,7 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,
@@ -891,6 +896,7 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
+                    "flatten_cname": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "port": 0,

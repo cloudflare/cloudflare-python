@@ -23,5 +23,8 @@ class LogoMatchGetParams(TypedDict, total=False):
     order: Literal["asc", "desc"]
     """Sort order. Options: 'asc' (ascending) or 'desc' (descending)"""
 
-    order_by: Annotated[Literal["matchedAt", "domain", "similarityScore"], PropertyInfo(alias="orderBy")]
-    """Column to sort by. Options: 'matchedAt', 'domain', or 'similarityScore'"""
+    order_by: Annotated[Literal["matchedAt", "domain", "similarityScore", "registrar"], PropertyInfo(alias="orderBy")]
+    """Column to sort by.
+
+    Options: 'matchedAt', 'domain', 'similarityScore', or 'registrar'
+    """

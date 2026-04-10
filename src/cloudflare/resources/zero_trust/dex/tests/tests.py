@@ -68,6 +68,7 @@ class TestsResource(SyncAPIResource):
         kind: Literal["http", "traceroute"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
+        registration_id: str | Omit = omit,
         test_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,6 +92,9 @@ class TestsResource(SyncAPIResource):
           page: Page number of paginated results
 
           per_page: Number of items per page
+
+          registration_id: Optionally filter results to a specific device registration. Must be used in
+              combination with a single deviceId.
 
           test_name: Optionally filter results by test name
 
@@ -119,6 +123,7 @@ class TestsResource(SyncAPIResource):
                         "kind": kind,
                         "page": page,
                         "per_page": per_page,
+                        "registration_id": registration_id,
                         "test_name": test_name,
                     },
                     test_list_params.TestListParams,
@@ -161,6 +166,7 @@ class AsyncTestsResource(AsyncAPIResource):
         kind: Literal["http", "traceroute"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
+        registration_id: str | Omit = omit,
         test_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -184,6 +190,9 @@ class AsyncTestsResource(AsyncAPIResource):
           page: Page number of paginated results
 
           per_page: Number of items per page
+
+          registration_id: Optionally filter results to a specific device registration. Must be used in
+              combination with a single deviceId.
 
           test_name: Optionally filter results by test name
 
@@ -212,6 +221,7 @@ class AsyncTestsResource(AsyncAPIResource):
                         "kind": kind,
                         "page": page,
                         "per_page": per_page,
+                        "registration_id": registration_id,
                         "test_name": test_name,
                     },
                     test_list_params.TestListParams,

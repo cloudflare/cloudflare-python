@@ -33,6 +33,9 @@ class WARPChangeEventGetResponseItemDigitalExperienceMonitoringWARPToggleChangeE
     hostname: Optional[str] = None
     """The hostname of the machine the event is from"""
 
+    registration_id: Optional[str] = None
+    """API Resource UUID tag."""
+
     serial_number: Optional[str] = None
     """The serial number of the machine the event is from"""
 
@@ -81,6 +84,9 @@ class WARPChangeEventGetResponseItemDigitalExperienceMonitoringWARPConfigChangeE
 
     hostname: Optional[str] = None
     """The hostname of the machine the event is from"""
+
+    registration_id: Optional[str] = None
+    """API Resource UUID tag."""
 
     serial_number: Optional[str] = None
     """The serial number of the machine the event is from"""

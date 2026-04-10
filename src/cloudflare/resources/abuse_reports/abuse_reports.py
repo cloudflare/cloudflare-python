@@ -672,7 +672,7 @@ class AbuseReportsResource(SyncAPIResource):
           company: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          reg_who_request: ICANN-mandated fields for registrar WHOIS data disclosure requests.
+          reg_who_request: RDP-mandated fields for registrar WHOIS data disclosure requests.
 
           reported_country: Text containing 2 characters
 
@@ -1703,7 +1703,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
           company: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          reg_who_request: ICANN-mandated fields for registrar WHOIS data disclosure requests.
+          reg_who_request: RDP-mandated fields for registrar WHOIS data disclosure requests.
 
           reported_country: Text containing 2 characters
 

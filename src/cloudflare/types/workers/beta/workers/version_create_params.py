@@ -50,11 +50,13 @@ __all__ = [
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
+    "BindingWorkersBindingKindFlagship",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
     "BindingWorkersBindingKindVPCService",
     "BindingWorkersBindingKindVPCNetwork",
+    "Container",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -119,6 +121,12 @@ class VersionCreateParams(TypedDict, total=False):
     included in a `compatibility_date`.
     """
 
+    containers: Iterable[Container]
+    """List of containers attached to a Worker.
+
+    Containers can only be attached to Durable Object classes of this Worker script.
+    """
+
     limits: Limits
     """Resource limits enforced at runtime."""
 
@@ -162,10 +170,10 @@ class Annotations(TypedDict, total=False):
     """Metadata about the version."""
 
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
-    """Human-readable message about the version."""
+    """Human-readable message about the version. Truncated to 1000 bytes if longer."""
 
     workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
-    """User-provided identifier for the version."""
+    """User-provided identifier for the version. Maximum 100 bytes."""
 
 
 class AssetsConfig(TypedDict, total=False):
@@ -279,7 +287,7 @@ class BindingWorkersBindingKindBrowser(TypedDict, total=False):
 
 
 class BindingWorkersBindingKindD1(TypedDict, total=False):
-    id: Required[str]
+    database_id: Required[str]
     """Identifier of the D1 database to bind to."""
 
     name: Required[str]
@@ -287,6 +295,9 @@ class BindingWorkersBindingKindD1(TypedDict, total=False):
 
     type: Required[Literal["d1"]]
     """The kind of resource that the binding provides."""
+
+    id: str
+    """Identifier of the D1 database to bind to."""
 
 
 class BindingWorkersBindingKindDataBlob(TypedDict, total=False):
@@ -623,6 +634,17 @@ class BindingWorkersBindingKindSecretsStoreSecret(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindFlagship(TypedDict, total=False):
+    app_id: Required[str]
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["flagship"]]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindSecretKey(TypedDict, total=False):
     algorithm: Required[object]
     """Algorithm-specific key parameters.
@@ -756,6 +778,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindVectorize,
     BindingWorkersBindingKindVersionMetadata,
     BindingWorkersBindingKindSecretsStoreSecret,
+    BindingWorkersBindingKindFlagship,
     BindingWorkersBindingKindSecretKey,
     BindingWorkersBindingKindWorkflow,
     BindingWorkersBindingKindWasmModule,
@@ -764,11 +787,21 @@ Binding: TypeAlias = Union[
 ]
 
 
+class Container(TypedDict, total=False):
+    """Container configuration for a Worker."""
+
+    class_name: Required[str]
+    """Select which Durable Object class should get this container attached."""
+
+
 class Limits(TypedDict, total=False):
     """Resource limits enforced at runtime."""
 
-    cpu_ms: Required[int]
+    cpu_ms: int
     """CPU time limit in milliseconds."""
+
+    subrequests: int
+    """Subrequest limit per request."""
 
 
 class MigrationsWorkersMultipleStepMigrations(TypedDict, total=False):

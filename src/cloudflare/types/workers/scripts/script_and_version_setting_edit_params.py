@@ -49,6 +49,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindVectorize",
     "SettingsBindingWorkersBindingKindVersionMetadata",
     "SettingsBindingWorkersBindingKindSecretsStoreSecret",
+    "SettingsBindingWorkersBindingKindFlagship",
     "SettingsBindingWorkersBindingKindSecretKey",
     "SettingsBindingWorkersBindingKindWorkflow",
     "SettingsBindingWorkersBindingKindWasmModule",
@@ -90,10 +91,10 @@ class SettingsAnnotations(TypedDict, total=False):
     """
 
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
-    """Human-readable message about the version."""
+    """Human-readable message about the version. Truncated to 1000 bytes if longer."""
 
     workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
-    """User-provided identifier for the version."""
+    """User-provided identifier for the version. Maximum 100 bytes."""
 
 
 class SettingsBindingWorkersBindingKindAI(TypedDict, total=False):
@@ -171,7 +172,7 @@ class SettingsBindingWorkersBindingKindBrowser(TypedDict, total=False):
 
 
 class SettingsBindingWorkersBindingKindD1(TypedDict, total=False):
-    id: Required[str]
+    database_id: Required[str]
     """Identifier of the D1 database to bind to."""
 
     name: Required[str]
@@ -179,6 +180,9 @@ class SettingsBindingWorkersBindingKindD1(TypedDict, total=False):
 
     type: Required[Literal["d1"]]
     """The kind of resource that the binding provides."""
+
+    id: str
+    """Identifier of the D1 database to bind to."""
 
 
 class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
@@ -515,6 +519,17 @@ class SettingsBindingWorkersBindingKindSecretsStoreSecret(TypedDict, total=False
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindFlagship(TypedDict, total=False):
+    app_id: Required[str]
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["flagship"]]
+    """The kind of resource that the binding provides."""
+
+
 class SettingsBindingWorkersBindingKindSecretKey(TypedDict, total=False):
     algorithm: Required[object]
     """Algorithm-specific key parameters.
@@ -648,6 +663,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindVectorize,
     SettingsBindingWorkersBindingKindVersionMetadata,
     SettingsBindingWorkersBindingKindSecretsStoreSecret,
+    SettingsBindingWorkersBindingKindFlagship,
     SettingsBindingWorkersBindingKindSecretKey,
     SettingsBindingWorkersBindingKindWorkflow,
     SettingsBindingWorkersBindingKindWasmModule,
@@ -661,6 +677,9 @@ class SettingsLimits(TypedDict, total=False):
 
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
+
+    subrequests: int
+    """The number of subrequests this Worker can make per request."""
 
 
 class SettingsMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):

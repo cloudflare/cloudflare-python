@@ -15,6 +15,7 @@ __all__ = [
     "OriginHyperdriveHyperdriveDatabase",
     "OriginHyperdriveInternetOrigin",
     "OriginHyperdriveOverAccessOrigin",
+    "OriginHyperdriveVPCServiceOrigin",
 ]
 
 
@@ -25,6 +26,10 @@ class ConfigEditParams(TypedDict, total=False):
     caching: Caching
 
     mtls: MTLS
+    """mTLS configuration for the origin connection.
+
+    Cannot be used with VPC Service origins; TLS must be managed on the VPC Service.
+    """
 
     name: str
     """The name of the Hyperdrive configuration.
@@ -33,6 +38,11 @@ class ConfigEditParams(TypedDict, total=False):
     """
 
     origin: Origin
+    """Connect to a database through a Workers VPC Service.
+
+    TLS settings (mTLS, sslmode) cannot be configured on the Hyperdrive when using a
+    VPC Service origin; TLS must be managed on the VPC Service itself.
+    """
 
     origin_connection_limit: int
     """
@@ -71,6 +81,11 @@ Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHype
 
 
 class MTLS(TypedDict, total=False):
+    """mTLS configuration for the origin connection.
+
+    Cannot be used with VPC Service origins; TLS must be managed on the VPC Service.
+    """
+
     ca_certificate_id: str
     """Define CA certificate ID obtained after uploading CA cert."""
 
@@ -126,6 +141,23 @@ class OriginHyperdriveOverAccessOrigin(TypedDict, total=False):
     """Defines the host (hostname or IP) of your origin database."""
 
 
+class OriginHyperdriveVPCServiceOrigin(TypedDict, total=False):
+    """Connect to a database through a Workers VPC Service.
+
+    TLS settings (mTLS, sslmode) cannot be configured on the Hyperdrive when using a VPC Service origin; TLS must be managed on the VPC Service itself.
+    """
+
+    service_id: Required[str]
+    """The identifier of the Workers VPC Service to connect through.
+
+    Hyperdrive will egress through the specified VPC Service to reach the origin
+    database.
+    """
+
+
 Origin: TypeAlias = Union[
-    OriginHyperdriveHyperdriveDatabase, OriginHyperdriveInternetOrigin, OriginHyperdriveOverAccessOrigin
+    OriginHyperdriveHyperdriveDatabase,
+    OriginHyperdriveInternetOrigin,
+    OriginHyperdriveOverAccessOrigin,
+    OriginHyperdriveVPCServiceOrigin,
 ]

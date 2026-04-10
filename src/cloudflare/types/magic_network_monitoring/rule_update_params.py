@@ -13,11 +13,11 @@ __all__ = ["RuleUpdateParams"]
 class RuleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    duration: Required[Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"]]
+    automatic_advertisement: Required[Optional[bool]]
     """
-    The amount of time that the rule threshold must be exceeded to send an alert
-    notification. The final value must be equivalent to one of the following 8
-    values ["1m","5m","10m","15m","20m","30m","45m","60m"].
+    Toggle on if you would like Cloudflare to automatically advertise the IP
+    Prefixes within the rule via Magic Transit when the rule is triggered. Only
+    available for users of Magic Transit.
     """
 
     name: Required[str]
@@ -28,21 +28,23 @@ class RuleUpdateParams(TypedDict, total=False):
     characters.
     """
 
-    id: str
-    """The id of the rule. Must be unique."""
+    prefixes: Required[SequenceNotStr[str]]
 
-    automatic_advertisement: Optional[bool]
-    """
-    Toggle on if you would like Cloudflare to automatically advertise the IP
-    Prefixes within the rule via Magic Transit when the rule is triggered. Only
-    available for users of Magic Transit.
-    """
+    type: Required[Literal["threshold", "zscore", "advanced_ddos"]]
+    """MNM rule type."""
 
-    bandwidth: float
+    bandwidth_threshold: float
     """The number of bits per second for the rule.
 
     When this value is exceeded for the set duration, an alert notification is sent.
     Minimum of 1 and no maximum.
+    """
+
+    duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"]
+    """
+    The amount of time that the rule threshold must be exceeded to send an alert
+    notification. The final value must be equivalent to one of the following 8
+    values ["1m","5m","10m","15m","20m","30m","45m","60m"].
     """
 
     packet_threshold: float
@@ -52,4 +54,14 @@ class RuleUpdateParams(TypedDict, total=False):
     Minimum of 1 and no maximum.
     """
 
-    prefixes: SequenceNotStr[str]
+    prefix_match: Optional[Literal["exact", "subnet", "supernet"]]
+    """
+    Prefix match type to be applied for a prefix auto advertisement when using an
+    advanced_ddos rule.
+    """
+
+    zscore_sensitivity: Optional[Literal["low", "medium", "high"]]
+    """Level of sensitivity set for zscore rules."""
+
+    zscore_target: Optional[Literal["bits", "packets"]]
+    """Target of the zscore rule analysis."""

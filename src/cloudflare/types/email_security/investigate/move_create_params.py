@@ -14,3 +14,9 @@ class MoveCreateParams(TypedDict, total=False):
     destination: Required[
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
+
+    submission: bool
+    """When true, search the submissions datastore only.
+
+    When false or omitted, search the regular datastore only.
+    """

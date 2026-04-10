@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ServerCreateParams"]
+__all__ = ["ServerCreateParams", "UpdatedPrompt", "UpdatedTool"]
 
 
 class ServerCreateParams(TypedDict, total=False):
@@ -23,3 +23,27 @@ class ServerCreateParams(TypedDict, total=False):
     auth_credentials: str
 
     description: Optional[str]
+
+    updated_prompts: Iterable[UpdatedPrompt]
+
+    updated_tools: Iterable[UpdatedTool]
+
+
+class UpdatedPrompt(TypedDict, total=False):
+    name: Required[str]
+
+    alias: str
+
+    description: str
+
+    enabled: bool
+
+
+class UpdatedTool(TypedDict, total=False):
+    name: Required[str]
+
+    alias: str
+
+    description: str
+
+    enabled: bool

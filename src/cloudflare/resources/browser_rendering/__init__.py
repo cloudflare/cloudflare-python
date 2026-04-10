@@ -48,6 +48,14 @@ from .content import (
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
 )
+from .devtools import (
+    DevtoolsResource,
+    AsyncDevtoolsResource,
+    DevtoolsResourceWithRawResponse,
+    AsyncDevtoolsResourceWithRawResponse,
+    DevtoolsResourceWithStreamingResponse,
+    AsyncDevtoolsResourceWithStreamingResponse,
+)
 from .markdown import (
     MarkdownResource,
     AsyncMarkdownResource,
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncCrawlResourceWithRawResponse",
     "CrawlResourceWithStreamingResponse",
     "AsyncCrawlResourceWithStreamingResponse",
+    "DevtoolsResource",
+    "AsyncDevtoolsResource",
+    "DevtoolsResourceWithRawResponse",
+    "AsyncDevtoolsResourceWithRawResponse",
+    "DevtoolsResourceWithStreamingResponse",
+    "AsyncDevtoolsResourceWithStreamingResponse",
     "BrowserRenderingResource",
     "AsyncBrowserRenderingResource",
     "BrowserRenderingResourceWithRawResponse",

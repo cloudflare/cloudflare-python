@@ -66,7 +66,10 @@ class TestScripts:
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
-                "limits": {"cpu_ms": 50},
+                "limits": {
+                    "cpu_ms": 50,
+                    "subrequests": 1000,
+                },
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
@@ -420,7 +423,10 @@ class TestAsyncScripts:
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
-                "limits": {"cpu_ms": 50},
+                "limits": {
+                    "cpu_ms": 50,
+                    "subrequests": 1000,
+                },
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {

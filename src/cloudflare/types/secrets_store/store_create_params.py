@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["StoreCreateParams", "Body"]
+__all__ = ["StoreCreateParams"]
 
 
 class StoreCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
-    body: Required[Iterable[Body]]
-
-
-class Body(TypedDict, total=False):
     name: Required[str]
     """The name of the store"""

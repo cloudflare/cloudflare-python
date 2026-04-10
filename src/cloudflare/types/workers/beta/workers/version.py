@@ -49,11 +49,13 @@ __all__ = [
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
+    "BindingWorkersBindingKindFlagship",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
     "BindingWorkersBindingKindVPCService",
     "BindingWorkersBindingKindVPCNetwork",
+    "Container",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -78,10 +80,10 @@ class Annotations(BaseModel):
     """Metadata about the version."""
 
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
-    """Human-readable message about the version."""
+    """Human-readable message about the version. Truncated to 1000 bytes if longer."""
 
     workers_tag: Optional[str] = FieldInfo(alias="workers/tag", default=None)
-    """User-provided identifier for the version."""
+    """User-provided identifier for the version. Maximum 100 bytes."""
 
     workers_triggered_by: Optional[str] = FieldInfo(alias="workers/triggered_by", default=None)
     """Operation that triggered the creation of the version."""
@@ -200,7 +202,7 @@ class BindingWorkersBindingKindBrowser(BaseModel):
 
 
 class BindingWorkersBindingKindD1(BaseModel):
-    id: str
+    database_id: str
     """Identifier of the D1 database to bind to."""
 
     name: str
@@ -208,6 +210,9 @@ class BindingWorkersBindingKindD1(BaseModel):
 
     type: Literal["d1"]
     """The kind of resource that the binding provides."""
+
+    id: Optional[str] = None
+    """Identifier of the D1 database to bind to."""
 
 
 class BindingWorkersBindingKindDataBlob(BaseModel):
@@ -541,6 +546,17 @@ class BindingWorkersBindingKindSecretsStoreSecret(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindFlagship(BaseModel):
+    app_id: str
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["flagship"]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindSecretKey(BaseModel):
     algorithm: object
     """Algorithm-specific key parameters.
@@ -663,6 +679,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindVectorize,
         BindingWorkersBindingKindVersionMetadata,
         BindingWorkersBindingKindSecretsStoreSecret,
+        BindingWorkersBindingKindFlagship,
         BindingWorkersBindingKindSecretKey,
         BindingWorkersBindingKindWorkflow,
         BindingWorkersBindingKindWasmModule,
@@ -673,11 +690,21 @@ Binding: TypeAlias = Annotated[
 ]
 
 
+class Container(BaseModel):
+    """Container configuration for a Worker."""
+
+    class_name: str
+    """Select which Durable Object class should get this container attached."""
+
+
 class Limits(BaseModel):
     """Resource limits enforced at runtime."""
 
-    cpu_ms: int
+    cpu_ms: Optional[int] = None
     """CPU time limit in milliseconds."""
+
+    subrequests: Optional[int] = None
+    """Subrequest limit per request."""
 
 
 class MigrationsWorkersMultipleStepMigrations(BaseModel):
@@ -834,6 +861,12 @@ class Version(BaseModel):
 
     Used to enable upcoming features or opt in or out of specific changes not
     included in a `compatibility_date`.
+    """
+
+    containers: Optional[List[Container]] = None
+    """List of containers attached to a Worker.
+
+    Containers can only be attached to Durable Object classes of this Worker script.
     """
 
     limits: Optional[Limits] = None

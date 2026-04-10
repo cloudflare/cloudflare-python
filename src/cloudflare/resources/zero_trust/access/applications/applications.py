@@ -234,7 +234,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -328,7 +329,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
@@ -476,7 +478,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -650,7 +653,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -774,7 +778,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -839,7 +844,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -902,7 +908,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -972,7 +979,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1026,7 +1034,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1198,7 +1207,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -1330,7 +1340,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1445,7 +1456,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1765,7 +1777,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -1862,7 +1875,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
@@ -2013,7 +2027,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -2190,7 +2205,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -2317,7 +2333,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2385,7 +2402,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2451,7 +2469,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2524,7 +2543,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2581,7 +2601,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2759,7 +2780,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -2894,7 +2916,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3012,7 +3035,8 @@ class ApplicationsResource(SyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3638,7 +3662,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -3732,7 +3757,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
@@ -3880,7 +3906,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -4054,7 +4081,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -4178,7 +4206,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4243,7 +4272,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4306,7 +4336,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4376,7 +4407,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4430,7 +4462,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -4602,7 +4635,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -4734,7 +4768,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -4849,7 +4884,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -5169,7 +5205,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -5266,7 +5303,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
@@ -5417,7 +5455,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -5594,7 +5633,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -5721,7 +5761,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -5789,7 +5830,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -5855,7 +5897,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -5928,7 +5971,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -5985,7 +6029,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -6163,7 +6208,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
               name. This works as an alternative to the (CF-Access-Client-Id,
@@ -6298,7 +6344,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -6416,7 +6463,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
+              exclusive to the application. Reusable and inline policies are mutually
+              exclusive.
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.

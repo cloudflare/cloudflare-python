@@ -47,6 +47,7 @@ __all__ = [
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
+    "BindingWorkersBindingKindFlagship",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
     "BindingWorkersBindingKindWasmModule",
@@ -81,10 +82,10 @@ class Annotations(BaseModel):
     """
 
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
-    """Human-readable message about the version."""
+    """Human-readable message about the version. Truncated to 1000 bytes if longer."""
 
     workers_tag: Optional[str] = FieldInfo(alias="workers/tag", default=None)
-    """User-provided identifier for the version."""
+    """User-provided identifier for the version. Maximum 100 bytes."""
 
     workers_triggered_by: Optional[str] = FieldInfo(alias="workers/triggered_by", default=None)
     """Operation that triggered the creation of the version.
@@ -168,7 +169,7 @@ class BindingWorkersBindingKindBrowser(BaseModel):
 
 
 class BindingWorkersBindingKindD1(BaseModel):
-    id: str
+    database_id: str
     """Identifier of the D1 database to bind to."""
 
     name: str
@@ -176,6 +177,9 @@ class BindingWorkersBindingKindD1(BaseModel):
 
     type: Literal["d1"]
     """The kind of resource that the binding provides."""
+
+    id: Optional[str] = None
+    """Identifier of the D1 database to bind to."""
 
 
 class BindingWorkersBindingKindDataBlob(BaseModel):
@@ -509,6 +513,17 @@ class BindingWorkersBindingKindSecretsStoreSecret(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindFlagship(BaseModel):
+    app_id: str
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["flagship"]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindSecretKey(BaseModel):
     algorithm: object
     """Algorithm-specific key parameters.
@@ -631,6 +646,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindVectorize,
         BindingWorkersBindingKindVersionMetadata,
         BindingWorkersBindingKindSecretsStoreSecret,
+        BindingWorkersBindingKindFlagship,
         BindingWorkersBindingKindSecretKey,
         BindingWorkersBindingKindWorkflow,
         BindingWorkersBindingKindWasmModule,
@@ -646,6 +662,9 @@ class Limits(BaseModel):
 
     cpu_ms: Optional[int] = None
     """The amount of CPU time this Worker can use in milliseconds."""
+
+    subrequests: Optional[int] = None
+    """The number of subrequests this Worker can make per request."""
 
 
 class MigrationsWorkersMultipleStepMigrations(BaseModel):

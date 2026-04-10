@@ -6,7 +6,27 @@ from typing_extensions import Literal
 
 from ......_models import BaseModel
 
-__all__ = ["ServerCreateResponse"]
+__all__ = ["ServerCreateResponse", "UpdatedPrompt", "UpdatedTool"]
+
+
+class UpdatedPrompt(BaseModel):
+    name: str
+
+    alias: Optional[str] = None
+
+    description: Optional[str] = None
+
+    enabled: Optional[bool] = None
+
+
+class UpdatedTool(BaseModel):
+    name: str
+
+    alias: Optional[str] = None
+
+    description: Optional[str] = None
+
+    enabled: Optional[bool] = None
 
 
 class ServerCreateResponse(BaseModel):
@@ -40,3 +60,7 @@ class ServerCreateResponse(BaseModel):
     modified_by: Optional[str] = None
 
     status: Optional[str] = None
+
+    updated_prompts: Optional[List[UpdatedPrompt]] = None
+
+    updated_tools: Optional[List[UpdatedTool]] = None

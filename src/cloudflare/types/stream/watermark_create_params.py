@@ -11,9 +11,6 @@ class WatermarkCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 
-    file: Required[str]
-    """The image file to upload."""
-
     name: str
     """A short description of the watermark profile."""
 
@@ -46,3 +43,6 @@ class WatermarkCreateParams(TypedDict, total=False):
     indicates no scaling (use the size of the image as-is), and `1.0 `fills the
     entire video.
     """
+
+    url: str
+    """URL of the watermark image to copy."""

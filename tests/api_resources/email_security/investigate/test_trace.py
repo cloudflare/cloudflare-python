@@ -26,6 +26,15 @@ class TestTrace:
         assert_matches_type(TraceGetResponse, trace, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        trace = client.email_security.investigate.trace.get(
+            postfix_id="4Njp3P0STMz2c02Q",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            submission=True,
+        )
+        assert_matches_type(TraceGetResponse, trace, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.trace.with_raw_response.get(
             postfix_id="4Njp3P0STMz2c02Q",
@@ -76,6 +85,15 @@ class TestAsyncTrace:
         trace = await async_client.email_security.investigate.trace.get(
             postfix_id="4Njp3P0STMz2c02Q",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(TraceGetResponse, trace, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        trace = await async_client.email_security.investigate.trace.get(
+            postfix_id="4Njp3P0STMz2c02Q",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            submission=True,
         )
         assert_matches_type(TraceGetResponse, trace, path=["response"])
 

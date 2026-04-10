@@ -17,10 +17,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.stream import audio_track_copy_params, audio_track_edit_params
 from ...types.stream.audio import Audio
+from ...types.stream.audio_track_get_response import AudioTrackGetResponse
 from ...types.stream.audio_track_delete_response import AudioTrackDeleteResponse
 
 __all__ = ["AudioTracksResource", "AsyncAudioTracksResource"]
@@ -234,7 +234,7 @@ class AudioTracksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Audio]:
+    ) -> Optional[AudioTrackGetResponse]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -257,13 +257,16 @@ class AudioTracksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/stream/{identifier}/audio",
-            page=SyncSinglePage[Audio],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
             ),
-            model=Audio,
+            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )
 
 
@@ -464,7 +467,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
-    def get(
+    async def get(
         self,
         identifier: str,
         *,
@@ -475,7 +478,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Audio, AsyncSinglePage[Audio]]:
+    ) -> Optional[AudioTrackGetResponse]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -498,13 +501,16 @@ class AsyncAudioTracksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/stream/{identifier}/audio",
-            page=AsyncSinglePage[Audio],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
             ),
-            model=Audio,
+            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )
 
 

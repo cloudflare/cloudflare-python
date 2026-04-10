@@ -41,6 +41,8 @@ class TestWebCrawlers:
             industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             vertical=["string"],
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
@@ -90,6 +92,8 @@ class TestWebCrawlers:
             industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             vertical=["string"],
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])
@@ -144,6 +148,8 @@ class TestAsyncWebCrawlers:
             industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             vertical=["string"],
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
@@ -193,6 +199,8 @@ class TestAsyncWebCrawlers:
             industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             vertical=["string"],
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])

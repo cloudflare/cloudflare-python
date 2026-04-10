@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -16,7 +16,7 @@ from .secrets import (
     AsyncSecretsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -26,12 +26,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.secrets_store import store_list_params, store_create_params
 from ....types.secrets_store.store_list_response import StoreListResponse
 from ....types.secrets_store.store_create_response import StoreCreateResponse
-from ....types.secrets_store.store_delete_response import StoreDeleteResponse
 
 __all__ = ["StoresResource", "AsyncStoresResource"]
 
@@ -64,19 +63,21 @@ class StoresResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[store_create_params.Body],
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[StoreCreateResponse]:
+    ) -> Optional[StoreCreateResponse]:
         """
         Creates a store in the account
 
         Args:
           account_id: Account Identifier
+
+          name: The name of the store
 
           extra_headers: Send extra headers
 
@@ -88,15 +89,17 @@ class StoresResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._post(
             f"/accounts/{account_id}/secrets_store/stores",
-            page=SyncSinglePage[StoreCreateResponse],
-            body=maybe_transform(body, Iterable[store_create_params.Body]),
+            body=maybe_transform({"name": name}, store_create_params.StoreCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[StoreCreateResponse]]._unwrapper,
             ),
-            model=StoreCreateResponse,
-            method="post",
+            cast_to=cast(Type[Optional[StoreCreateResponse]], ResultWrapper[StoreCreateResponse]),
         )
 
     def list(
@@ -170,7 +173,7 @@ class StoresResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[StoreDeleteResponse]:
+    ) -> object:
         """
         Deletes a single store
 
@@ -198,9 +201,9 @@ class StoresResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[StoreDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[StoreDeleteResponse]], ResultWrapper[StoreDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -228,23 +231,25 @@ class AsyncStoresResource(AsyncAPIResource):
         """
         return AsyncStoresResourceWithStreamingResponse(self)
 
-    def create(
+    async def create(
         self,
         *,
         account_id: str,
-        body: Iterable[store_create_params.Body],
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[StoreCreateResponse, AsyncSinglePage[StoreCreateResponse]]:
+    ) -> Optional[StoreCreateResponse]:
         """
         Creates a store in the account
 
         Args:
           account_id: Account Identifier
+
+          name: The name of the store
 
           extra_headers: Send extra headers
 
@@ -256,15 +261,17 @@ class AsyncStoresResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._post(
             f"/accounts/{account_id}/secrets_store/stores",
-            page=AsyncSinglePage[StoreCreateResponse],
-            body=maybe_transform(body, Iterable[store_create_params.Body]),
+            body=await async_maybe_transform({"name": name}, store_create_params.StoreCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[StoreCreateResponse]]._unwrapper,
             ),
-            model=StoreCreateResponse,
-            method="post",
+            cast_to=cast(Type[Optional[StoreCreateResponse]], ResultWrapper[StoreCreateResponse]),
         )
 
     def list(
@@ -338,7 +345,7 @@ class AsyncStoresResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[StoreDeleteResponse]:
+    ) -> object:
         """
         Deletes a single store
 
@@ -366,9 +373,9 @@ class AsyncStoresResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[StoreDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[StoreDeleteResponse]], ResultWrapper[StoreDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

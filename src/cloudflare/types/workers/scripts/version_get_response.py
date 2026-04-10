@@ -45,6 +45,7 @@ __all__ = [
     "ResourcesBindingWorkersBindingKindVectorize",
     "ResourcesBindingWorkersBindingKindVersionMetadata",
     "ResourcesBindingWorkersBindingKindSecretsStoreSecret",
+    "ResourcesBindingWorkersBindingKindFlagship",
     "ResourcesBindingWorkersBindingKindSecretKey",
     "ResourcesBindingWorkersBindingKindWorkflow",
     "ResourcesBindingWorkersBindingKindWasmModule",
@@ -133,7 +134,7 @@ class ResourcesBindingWorkersBindingKindBrowser(BaseModel):
 
 
 class ResourcesBindingWorkersBindingKindD1(BaseModel):
-    id: str
+    database_id: str
     """Identifier of the D1 database to bind to."""
 
     name: str
@@ -141,6 +142,9 @@ class ResourcesBindingWorkersBindingKindD1(BaseModel):
 
     type: Literal["d1"]
     """The kind of resource that the binding provides."""
+
+    id: Optional[str] = None
+    """Identifier of the D1 database to bind to."""
 
 
 class ResourcesBindingWorkersBindingKindDataBlob(BaseModel):
@@ -474,6 +478,17 @@ class ResourcesBindingWorkersBindingKindSecretsStoreSecret(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class ResourcesBindingWorkersBindingKindFlagship(BaseModel):
+    app_id: str
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["flagship"]
+    """The kind of resource that the binding provides."""
+
+
 class ResourcesBindingWorkersBindingKindSecretKey(BaseModel):
     algorithm: object
     """Algorithm-specific key parameters.
@@ -596,6 +611,7 @@ ResourcesBinding: TypeAlias = Annotated[
         ResourcesBindingWorkersBindingKindVectorize,
         ResourcesBindingWorkersBindingKindVersionMetadata,
         ResourcesBindingWorkersBindingKindSecretsStoreSecret,
+        ResourcesBindingWorkersBindingKindFlagship,
         ResourcesBindingWorkersBindingKindSecretKey,
         ResourcesBindingWorkersBindingKindWorkflow,
         ResourcesBindingWorkersBindingKindWasmModule,

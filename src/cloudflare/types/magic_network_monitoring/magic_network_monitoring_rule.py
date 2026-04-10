@@ -9,6 +9,9 @@ __all__ = ["MagicNetworkMonitoringRule"]
 
 
 class MagicNetworkMonitoringRule(BaseModel):
+    id: str
+    """The id of the rule. Must be unique."""
+
     automatic_advertisement: Optional[bool] = None
     """
     Toggle on if you would like Cloudflare to automatically advertise the IP
@@ -28,9 +31,6 @@ class MagicNetworkMonitoringRule(BaseModel):
 
     type: Literal["threshold", "zscore", "advanced_ddos"]
     """MNM rule type."""
-
-    id: Optional[str] = None
-    """The id of the rule. Must be unique."""
 
     bandwidth_threshold: Optional[float] = None
     """The number of bits per second for the rule.

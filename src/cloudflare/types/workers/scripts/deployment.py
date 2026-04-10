@@ -19,7 +19,7 @@ class Version(BaseModel):
 
 class Annotations(BaseModel):
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
-    """Human-readable message about the deployment. Truncated to 100 bytes."""
+    """Human-readable message about the deployment. Truncated to 1000 bytes if longer."""
 
     workers_triggered_by: Optional[str] = FieldInfo(alias="workers/triggered_by", default=None)
     """Operation that triggered the creation of the deployment."""

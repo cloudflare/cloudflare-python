@@ -54,7 +54,7 @@ class MatchesResource(SyncAPIResource):
         limit: str | Omit = omit,
         offset: str | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
-        order_by: Literal["domain", "first_seen"] | Omit = omit,
+        order_by: Literal["domain", "first_seen", "registrar"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,7 +76,7 @@ class MatchesResource(SyncAPIResource):
 
           order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
-          order_by: Column to sort by. Options: 'domain' or 'first_seen'
+          order_by: Column to sort by. Options: 'domain', 'first_seen', or 'registrar'
 
           extra_headers: Send extra headers
 
@@ -144,7 +144,7 @@ class AsyncMatchesResource(AsyncAPIResource):
         limit: str | Omit = omit,
         offset: str | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
-        order_by: Literal["domain", "first_seen"] | Omit = omit,
+        order_by: Literal["domain", "first_seen", "registrar"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,7 +166,7 @@ class AsyncMatchesResource(AsyncAPIResource):
 
           order: Sort order. Options: 'asc' (ascending) or 'desc' (descending)
 
-          order_by: Column to sort by. Options: 'domain' or 'first_seen'
+          order_by: Column to sort by. Options: 'domain', 'first_seen', or 'registrar'
 
           extra_headers: Send extra headers
 

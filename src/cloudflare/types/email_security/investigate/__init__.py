@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .move_bulk_params import MoveBulkParams as MoveBulkParams
 from .raw_get_response import RawGetResponse as RawGetResponse
+from .trace_get_params import TraceGetParams as TraceGetParams
 from .move_bulk_response import MoveBulkResponse as MoveBulkResponse
 from .move_create_params import MoveCreateParams as MoveCreateParams
 from .trace_get_response import TraceGetResponse as TraceGetResponse

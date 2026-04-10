@@ -364,7 +364,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> object:
         """
         Delete Pipeline in Account.
 
@@ -385,13 +385,16 @@ class PipelinesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     @typing_extensions.deprecated("Use get_v1 instead. This endpoint will be removed in the future.")
@@ -885,7 +888,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> object:
         """
         Delete Pipeline in Account.
 
@@ -906,13 +909,16 @@ class AsyncPipelinesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     @typing_extensions.deprecated("Use get_v1 instead. This endpoint will be removed in the future.")

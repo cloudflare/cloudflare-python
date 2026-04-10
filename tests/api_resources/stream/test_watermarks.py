@@ -23,7 +23,6 @@ class TestWatermarks:
     def test_method_create(self, client: Cloudflare) -> None:
         watermark = client.stream.watermarks.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         )
         assert_matches_type(Optional[Watermark], watermark, path=["response"])
 
@@ -32,12 +31,12 @@ class TestWatermarks:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         watermark = client.stream.watermarks.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
             name="Marketing Videos",
             opacity=0.75,
             padding=0.1,
             position="center",
             scale=0.1,
+            url="https://example.com",
         )
         assert_matches_type(Optional[Watermark], watermark, path=["response"])
 
@@ -46,7 +45,6 @@ class TestWatermarks:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.watermarks.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         )
 
         assert response.is_closed is True
@@ -59,7 +57,6 @@ class TestWatermarks:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.watermarks.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +72,6 @@ class TestWatermarks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.watermarks.with_raw_response.create(
                 account_id="",
-                file="@/Users/rchen/Downloads/watermark.png",
             )
 
     @parametrize
@@ -223,7 +219,6 @@ class TestAsyncWatermarks:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         watermark = await async_client.stream.watermarks.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         )
         assert_matches_type(Optional[Watermark], watermark, path=["response"])
 
@@ -232,12 +227,12 @@ class TestAsyncWatermarks:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         watermark = await async_client.stream.watermarks.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
             name="Marketing Videos",
             opacity=0.75,
             padding=0.1,
             position="center",
             scale=0.1,
+            url="https://example.com",
         )
         assert_matches_type(Optional[Watermark], watermark, path=["response"])
 
@@ -246,7 +241,6 @@ class TestAsyncWatermarks:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.watermarks.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         )
 
         assert response.is_closed is True
@@ -259,7 +253,6 @@ class TestAsyncWatermarks:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.watermarks.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file="@/Users/rchen/Downloads/watermark.png",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -275,7 +268,6 @@ class TestAsyncWatermarks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.watermarks.with_raw_response.create(
                 account_id="",
-                file="@/Users/rchen/Downloads/watermark.png",
             )
 
     @parametrize

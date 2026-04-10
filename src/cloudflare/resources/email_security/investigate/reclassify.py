@@ -50,6 +50,7 @@ class ReclassifyResource(SyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
+        submission: bool | Omit = omit,
         eml_content: str | Omit = omit,
         escalated_submission_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -67,6 +68,9 @@ class ReclassifyResource(SyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           eml_content: Base64 encoded content of the EML file
 
@@ -97,6 +101,7 @@ class ReclassifyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"submission": submission}, reclassify_create_params.ReclassifyCreateParams),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -129,6 +134,7 @@ class AsyncReclassifyResource(AsyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
+        submission: bool | Omit = omit,
         eml_content: str | Omit = omit,
         escalated_submission_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -146,6 +152,9 @@ class AsyncReclassifyResource(AsyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           eml_content: Base64 encoded content of the EML file
 
@@ -176,6 +185,9 @@ class AsyncReclassifyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"submission": submission}, reclassify_create_params.ReclassifyCreateParams
+                ),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),

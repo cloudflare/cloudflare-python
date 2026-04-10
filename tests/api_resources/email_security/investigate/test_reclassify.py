@@ -31,6 +31,7 @@ class TestReclassify:
             postfix_id="4Njp3P0STMz2c02Q",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_disposition="NONE",
+            submission=True,
             eml_content="eml_content",
             escalated_submission_id="escalated_submission_id",
         )
@@ -101,6 +102,7 @@ class TestAsyncReclassify:
             postfix_id="4Njp3P0STMz2c02Q",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_disposition="NONE",
+            submission=True,
             eml_content="eml_content",
             escalated_submission_id="escalated_submission_id",
         )

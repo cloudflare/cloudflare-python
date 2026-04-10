@@ -70,6 +70,9 @@ class ConfigsResource(SyncAPIResource):
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
 
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
+
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
@@ -136,6 +139,9 @@ class ConfigsResource(SyncAPIResource):
 
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
+
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
@@ -285,8 +291,15 @@ class ConfigsResource(SyncAPIResource):
 
           hyperdrive_id: Define configurations using a unique string identifier.
 
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
+
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
+
+          origin: Connect to a database through a Workers VPC Service. TLS settings (mTLS,
+              sslmode) cannot be configured on the Hyperdrive when using a VPC Service origin;
+              TLS must be managed on the VPC Service itself.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
@@ -419,6 +432,9 @@ class AsyncConfigsResource(AsyncAPIResource):
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
 
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
+
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
@@ -485,6 +501,9 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
+
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
@@ -634,8 +653,15 @@ class AsyncConfigsResource(AsyncAPIResource):
 
           hyperdrive_id: Define configurations using a unique string identifier.
 
+          mtls: mTLS configuration for the origin connection. Cannot be used with VPC Service
+              origins; TLS must be managed on the VPC Service.
+
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
+
+          origin: Connect to a database through a Workers VPC Service. TLS settings (mTLS,
+              sslmode) cannot be configured on the Hyperdrive when using a VPC Service origin;
+              TLS must be managed on the VPC Service itself.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.

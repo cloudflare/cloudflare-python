@@ -62,7 +62,15 @@ class BotsResource(SyncAPIResource):
 
     def summary_v2(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         content_type: List[
@@ -96,6 +104,11 @@ class BotsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -147,6 +160,12 @@ class BotsResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -182,6 +201,8 @@ class BotsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -228,6 +249,11 @@ class BotsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -280,6 +306,12 @@ class BotsResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -314,6 +346,8 @@ class BotsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -326,7 +360,15 @@ class BotsResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
@@ -362,6 +404,11 @@ class BotsResource(SyncAPIResource):
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -420,6 +467,12 @@ class BotsResource(SyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -457,6 +510,8 @@ class BotsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -494,7 +549,15 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def summary_v2(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         content_type: List[
@@ -528,6 +591,11 @@ class AsyncBotsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -579,6 +647,12 @@ class AsyncBotsResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -614,6 +688,8 @@ class AsyncBotsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -660,6 +736,11 @@ class AsyncBotsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -712,6 +793,12 @@ class AsyncBotsResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -746,6 +833,8 @@ class AsyncBotsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -758,7 +847,15 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
@@ -794,6 +891,11 @@ class AsyncBotsResource(AsyncAPIResource):
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -852,6 +954,12 @@ class AsyncBotsResource(AsyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -889,6 +997,8 @@ class AsyncBotsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },

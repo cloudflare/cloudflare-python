@@ -48,6 +48,8 @@ class InstanceUpdateParams(TypedDict, total=False):
                 "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
                 "@cf/moonshotai/kimi-k2-instruct",
                 "@cf/google/gemma-3-12b-it",
+                "@cf/google/gemma-4-26b-a4b-it",
+                "@cf/moonshotai/kimi-k2.5",
                 "anthropic/claude-3-7-sonnet",
                 "anthropic/claude-sonnet-4",
                 "anthropic/claude-opus-4",
@@ -133,6 +135,8 @@ class InstanceUpdateParams(TypedDict, total=False):
             "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
             "@cf/moonshotai/kimi-k2-instruct",
             "@cf/google/gemma-3-12b-it",
+            "@cf/google/gemma-4-26b-a4b-it",
+            "@cf/moonshotai/kimi-k2.5",
             "anthropic/claude-3-7-sonnet",
             "anthropic/claude-sonnet-4",
             "anthropic/claude-opus-4",
@@ -174,6 +178,8 @@ class InstanceUpdateParams(TypedDict, total=False):
             "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
             "@cf/moonshotai/kimi-k2-instruct",
             "@cf/google/gemma-3-12b-it",
+            "@cf/google/gemma-4-26b-a4b-it",
+            "@cf/moonshotai/kimi-k2.5",
             "anthropic/claude-3-7-sonnet",
             "anthropic/claude-sonnet-4",
             "anthropic/claude-opus-4",
@@ -195,6 +201,13 @@ class InstanceUpdateParams(TypedDict, total=False):
             "",
         ]
     ]
+
+    sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400]
+    """Interval between automatic syncs, in seconds.
+
+    Allowed values: 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400
+    (24h).
+    """
 
     system_prompt_aisearch: Annotated[Optional[str], PropertyInfo(alias="system_prompt_ai_search")]
 

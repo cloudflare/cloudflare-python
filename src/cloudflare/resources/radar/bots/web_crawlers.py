@@ -49,7 +49,16 @@ class WebCrawlersResource(SyncAPIResource):
 
     def summary(
         self,
-        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal[
+            "CLIENT_TYPE",
+            "USER_AGENT",
+            "REFERER",
+            "CRAWL_REFER_RATIO",
+            "VERTICAL",
+            "INDUSTRY",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         bot_operator: SequenceNotStr[str] | Omit = omit,
         client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
@@ -60,6 +69,11 @@ class WebCrawlersResource(SyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -97,6 +111,12 @@ class WebCrawlersResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -127,6 +147,8 @@ class WebCrawlersResource(SyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "vertical": vertical,
                     },
                     web_crawler_summary_params.WebCrawlerSummaryParams,
@@ -138,7 +160,16 @@ class WebCrawlersResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal[
+            "CLIENT_TYPE",
+            "USER_AGENT",
+            "REFERER",
+            "CRAWL_REFER_RATIO",
+            "VERTICAL",
+            "INDUSTRY",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         bot_operator: SequenceNotStr[str] | Omit = omit,
@@ -150,6 +181,11 @@ class WebCrawlersResource(SyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -191,6 +227,12 @@ class WebCrawlersResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -222,6 +264,8 @@ class WebCrawlersResource(SyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "vertical": vertical,
                     },
                     web_crawler_timeseries_groups_params.WebCrawlerTimeseriesGroupsParams,
@@ -254,7 +298,16 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def summary(
         self,
-        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal[
+            "CLIENT_TYPE",
+            "USER_AGENT",
+            "REFERER",
+            "CRAWL_REFER_RATIO",
+            "VERTICAL",
+            "INDUSTRY",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         bot_operator: SequenceNotStr[str] | Omit = omit,
         client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
@@ -265,6 +318,11 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -302,6 +360,12 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -332,6 +396,8 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "vertical": vertical,
                     },
                     web_crawler_summary_params.WebCrawlerSummaryParams,
@@ -343,7 +409,16 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal[
+            "CLIENT_TYPE",
+            "USER_AGENT",
+            "REFERER",
+            "CRAWL_REFER_RATIO",
+            "VERTICAL",
+            "INDUSTRY",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         bot_operator: SequenceNotStr[str] | Omit = omit,
@@ -355,6 +430,11 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,6 +476,12 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
@@ -427,6 +513,8 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "vertical": vertical,
                     },
                     web_crawler_timeseries_groups_params.WebCrawlerTimeseriesGroupsParams,

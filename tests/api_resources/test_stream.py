@@ -24,7 +24,6 @@ class TestStream:
     def test_method_create(self, client: Cloudflare) -> None:
         stream = client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         )
@@ -35,7 +34,6 @@ class TestStream:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         stream = client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
             direct_user=True,
@@ -49,7 +47,6 @@ class TestStream:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         )
@@ -64,7 +61,6 @@ class TestStream:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         ) as response:
@@ -82,7 +78,6 @@ class TestStream:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.with_raw_response.create(
                 account_id="",
-                body={},
                 tus_resumable="1.0.0",
                 upload_length=0,
             )
@@ -98,10 +93,16 @@ class TestStream:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         stream = client.stream.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="ea95132c15732412d22c1476fa83f27a",
+            after=parse_datetime("2019-12-27T18:11:19.117Z"),
             asc=True,
+            before=parse_datetime("2019-12-27T18:11:19.117Z"),
             creator="creator-id_abcde12345",
             end=parse_datetime("2014-01-02T02:20:00Z"),
             include_counts=True,
+            limit=1,
+            live_input_id="live_input_id",
+            name="name",
             search="puppy.mp4",
             start=parse_datetime("2014-01-02T02:20:00Z"),
             status="inprogress",
@@ -206,9 +207,16 @@ class TestStream:
             creator="creator-id_abcde12345",
             max_duration_seconds=1,
             meta={"name": "video12345.mp4"},
+            public_details={
+                "channel_link": "channel_link",
+                "logo": "logo",
+                "share_link": "share_link",
+                "title": "title",
+            },
             require_signed_urls=True,
             scheduled_deletion=parse_datetime("2014-01-02T02:20:00Z"),
             thumbnail_timestamp_pct=0.529241,
+            uid="ea95132c15732412d22c1476fa83f27a",
             upload_expiry=parse_datetime("2014-01-02T02:20:00Z"),
         )
         assert_matches_type(Optional[Video], stream, path=["response"])
@@ -312,7 +320,6 @@ class TestAsyncStream:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         stream = await async_client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         )
@@ -323,7 +330,6 @@ class TestAsyncStream:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         stream = await async_client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
             direct_user=True,
@@ -337,7 +343,6 @@ class TestAsyncStream:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         )
@@ -352,7 +357,6 @@ class TestAsyncStream:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
             tus_resumable="1.0.0",
             upload_length=0,
         ) as response:
@@ -370,7 +374,6 @@ class TestAsyncStream:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.with_raw_response.create(
                 account_id="",
-                body={},
                 tus_resumable="1.0.0",
                 upload_length=0,
             )
@@ -386,10 +389,16 @@ class TestAsyncStream:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         stream = await async_client.stream.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="ea95132c15732412d22c1476fa83f27a",
+            after=parse_datetime("2019-12-27T18:11:19.117Z"),
             asc=True,
+            before=parse_datetime("2019-12-27T18:11:19.117Z"),
             creator="creator-id_abcde12345",
             end=parse_datetime("2014-01-02T02:20:00Z"),
             include_counts=True,
+            limit=1,
+            live_input_id="live_input_id",
+            name="name",
             search="puppy.mp4",
             start=parse_datetime("2014-01-02T02:20:00Z"),
             status="inprogress",
@@ -494,9 +503,16 @@ class TestAsyncStream:
             creator="creator-id_abcde12345",
             max_duration_seconds=1,
             meta={"name": "video12345.mp4"},
+            public_details={
+                "channel_link": "channel_link",
+                "logo": "logo",
+                "share_link": "share_link",
+                "title": "title",
+            },
             require_signed_urls=True,
             scheduled_deletion=parse_datetime("2014-01-02T02:20:00Z"),
             thumbnail_timestamp_pct=0.529241,
+            uid="ea95132c15732412d22c1476fa83f27a",
             upload_expiry=parse_datetime("2014-01-02T02:20:00Z"),
         )
         assert_matches_type(Optional[Video], stream, path=["response"])

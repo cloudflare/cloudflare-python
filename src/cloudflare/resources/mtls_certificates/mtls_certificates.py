@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -27,7 +28,7 @@ from .associations import (
     AsyncAssociationsResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.mtls_certificates import mtls_certificate_create_params
+from ...types.mtls_certificates import mtls_certificate_list_params, mtls_certificate_create_params
 from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
 from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
 
@@ -126,6 +127,7 @@ class MTLSCertificatesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        type: List[Literal["custom", "gateway_managed", "access_managed"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,6 +144,8 @@ class MTLSCertificatesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          type: Filters results by certificate type. Multiple types can be comma-separated.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,7 +160,11 @@ class MTLSCertificatesResource(SyncAPIResource):
             f"/accounts/{account_id}/mtls_certificates",
             page=SyncSinglePage[MTLSCertificate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"type": type}, mtls_certificate_list_params.MTLSCertificateListParams),
             ),
             model=MTLSCertificate,
         )
@@ -350,6 +358,7 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        type: List[Literal["custom", "gateway_managed", "access_managed"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,6 +375,8 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          type: Filters results by certificate type. Multiple types can be comma-separated.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -380,7 +391,11 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
             f"/accounts/{account_id}/mtls_certificates",
             page=AsyncSinglePage[MTLSCertificate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"type": type}, mtls_certificate_list_params.MTLSCertificateListParams),
             ),
             model=MTLSCertificate,
         )

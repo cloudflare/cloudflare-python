@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -34,19 +36,31 @@ class ClipCreateParams(TypedDict, total=False):
     creator: str
     """A user-defined identifier for the media creator."""
 
-    max_duration_seconds: Annotated[int, PropertyInfo(alias="maxDurationSeconds")]
-    """The maximum duration in seconds for a video upload.
+    input: str
+    """A video's URL. Preferred over 'url'."""
 
-    Can be set for a video that is not yet uploaded to limit its duration. Uploads
-    that exceed the specified duration will fail during processing. A value of `-1`
-    means the value is unknown.
+    meta: object
     """
+    A user modifiable key-value store used to reference other systems of record for
+    managing videos.
+    """
+
+    name: str
+    """A name for the video."""
 
     require_signed_urls: Annotated[bool, PropertyInfo(alias="requireSignedURLs")]
     """Indicates whether the video can be a accessed using the UID.
 
     When set to `true`, a signed token must be generated with a signing key to view
     the video.
+    """
+
+    scheduled_deletion: Annotated[Union[str, datetime], PropertyInfo(alias="scheduledDeletion", format="iso8601")]
+    """Indicates the date and time at which the video will be deleted.
+
+    Omit the field to indicate no change, or include with a `null` value to remove
+    an existing scheduled deletion. If specified, must be at least 30 days from
+    upload time.
     """
 
     thumbnail_timestamp_pct: Annotated[float, PropertyInfo(alias="thumbnailTimestampPct")]
@@ -56,6 +70,9 @@ class ClipCreateParams(TypedDict, total=False):
     divide the desired timestamp by the total duration of the video. If this value
     is not set, the default thumbnail image is taken from 0s of the video.
     """
+
+    url: str
+    """A video's URL (legacy field, use 'input' instead)."""
 
     watermark: Watermark
 

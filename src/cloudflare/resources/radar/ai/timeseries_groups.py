@@ -60,7 +60,15 @@ class TimeseriesGroupsResource(SyncAPIResource):
     )
     def summary(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         content_type: List[
@@ -94,6 +102,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -145,6 +158,12 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -180,6 +199,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -229,6 +250,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -281,6 +307,12 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -315,6 +347,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -330,7 +364,15 @@ class TimeseriesGroupsResource(SyncAPIResource):
     )
     def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
@@ -366,6 +408,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -424,6 +471,12 @@ class TimeseriesGroupsResource(SyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -461,6 +514,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -594,7 +649,15 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     )
     async def summary(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         asn: SequenceNotStr[str] | Omit = omit,
         content_type: List[
@@ -628,6 +691,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -679,6 +747,12 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -714,6 +788,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -763,6 +839,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -815,6 +896,12 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -849,6 +936,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },
@@ -864,7 +953,15 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     )
     async def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL", "CONTENT_TYPE"],
+        dimension: Literal[
+            "USER_AGENT",
+            "CRAWL_PURPOSE",
+            "INDUSTRY",
+            "VERTICAL",
+            "CONTENT_TYPE",
+            "RESPONSE_STATUS",
+            "RESPONSE_STATUS_CATEGORY",
+        ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
@@ -900,6 +997,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        response_status: SequenceNotStr[str] | Omit = omit,
+        response_status_category: List[
+            Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
+        ]
+        | Omit = omit,
         user_agent: SequenceNotStr[str] | Omit = omit,
         vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -958,6 +1060,12 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
+          response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
+              [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+              are accepted.
+
+          response_status_category: Filters results by HTTP response status code category.
+
           user_agent: Filters results by user agent.
 
           vertical: Filters results by vertical.
@@ -995,6 +1103,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                         "normalization": normalization,
+                        "response_status": response_status,
+                        "response_status_category": response_status_category,
                         "user_agent": user_agent,
                         "vertical": vertical,
                     },

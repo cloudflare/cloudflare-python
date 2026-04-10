@@ -13,8 +13,6 @@ class StreamCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 
-    body: Required[object]
-
     tus_resumable: Required[Annotated[Literal["1.0.0"], PropertyInfo(alias="Tus-Resumable")]]
     """Specifies the TUS protocol version.
 

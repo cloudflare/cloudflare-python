@@ -15,9 +15,7 @@ from cloudflare.types.secrets_store.stores import (
     SecretEditResponse,
     SecretListResponse,
     SecretCreateResponse,
-    SecretDeleteResponse,
     SecretDuplicateResponse,
-    SecretBulkDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -183,7 +181,7 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -196,7 +194,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -209,7 +207,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+            assert_matches_type(object, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +240,7 @@ class TestSecrets:
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -254,7 +252,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -266,7 +264,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+            assert_matches_type(object, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -392,6 +390,7 @@ class TestSecrets:
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             comment="info about my secret",
             scopes=["workers", "ai_gateway", "dex", "access"],
+            value="api-token-secret-123",
         )
         assert_matches_type(Optional[SecretEditResponse], secret, path=["response"])
 
@@ -672,7 +671,7 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -685,7 +684,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -698,7 +697,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(Optional[SecretDeleteResponse], secret, path=["response"])
+            assert_matches_type(object, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -731,7 +730,7 @@ class TestAsyncSecrets:
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -743,7 +742,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(AsyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+        assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -755,7 +754,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(AsyncSinglePage[SecretBulkDeleteResponse], secret, path=["response"])
+            assert_matches_type(object, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -881,6 +880,7 @@ class TestAsyncSecrets:
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             comment="info about my secret",
             scopes=["workers", "ai_gateway", "dex", "access"],
+            value="api-token-secret-123",
         )
         assert_matches_type(Optional[SecretEditResponse], secret, path=["response"])
 

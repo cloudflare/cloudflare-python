@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -20,6 +21,9 @@ class VersionListResponse(BaseModel):
     created_on: datetime
 
     has_dag: bool
+
+    language: Literal["javascript", "python"]
+    """The programming language of the workflow implementation"""
 
     modified_on: datetime
 

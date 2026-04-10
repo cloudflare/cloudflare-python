@@ -65,7 +65,8 @@ class CatchAllsResource(SyncAPIResource):
     ) -> Optional[CatchAllUpdateResponse]:
         """
         Enable or disable catch-all routing rule, or change action to forward to
-        specific destination address.
+        specific destination address. Forward actions require all destination addresses
+        to be verified.
 
         Args:
           zone_id: Identifier.
@@ -186,7 +187,8 @@ class AsyncCatchAllsResource(AsyncAPIResource):
     ) -> Optional[CatchAllUpdateResponse]:
         """
         Enable or disable catch-all routing rule, or change action to forward to
-        specific destination address.
+        specific destination address. Forward actions require all destination addresses
+        to be verified.
 
         Args:
           zone_id: Identifier.

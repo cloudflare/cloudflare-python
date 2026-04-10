@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -16,6 +17,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.investigate import move_bulk_params, move_create_params
@@ -53,13 +55,14 @@ class MoveResource(SyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[MoveCreateResponse]:
+    ) -> MoveCreateResponse:
         """
         Moves a single email message to a different folder or changes its quarantine
         status.
@@ -68,6 +71,9 @@ class MoveResource(SyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -81,15 +87,18 @@ class MoveResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return self._get_api_list(
+        return self._post(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
-            page=SyncSinglePage[MoveCreateResponse],
             body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"submission": submission}, move_create_params.MoveCreateParams),
+                post_parser=ResultWrapper[MoveCreateResponse]._unwrapper,
             ),
-            model=MoveCreateResponse,
-            method="post",
+            cast_to=cast(Type[MoveCreateResponse], ResultWrapper[MoveCreateResponse]),
         )
 
     def bulk(
@@ -167,7 +176,7 @@ class AsyncMoveResource(AsyncAPIResource):
         """
         return AsyncMoveResourceWithStreamingResponse(self)
 
-    def create(
+    async def create(
         self,
         postfix_id: str,
         *,
@@ -175,13 +184,14 @@ class AsyncMoveResource(AsyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MoveCreateResponse, AsyncSinglePage[MoveCreateResponse]]:
+    ) -> MoveCreateResponse:
         """
         Moves a single email message to a different folder or changes its quarantine
         status.
@@ -190,6 +200,9 @@ class AsyncMoveResource(AsyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -203,15 +216,18 @@ class AsyncMoveResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return self._get_api_list(
+        return await self._post(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
-            page=AsyncSinglePage[MoveCreateResponse],
-            body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
+            body=await async_maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"submission": submission}, move_create_params.MoveCreateParams),
+                post_parser=ResultWrapper[MoveCreateResponse]._unwrapper,
             ),
-            model=MoveCreateResponse,
-            method="post",
+            cast_to=cast(Type[MoveCreateResponse], ResultWrapper[MoveCreateResponse]),
         )
 
     def bulk(

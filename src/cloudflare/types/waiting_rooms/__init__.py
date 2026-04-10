@@ -26,7 +26,6 @@ from .additional_routes_param import AdditionalRoutesParam as AdditionalRoutesPa
 from .cookie_attributes_param import CookieAttributesParam as CookieAttributesParam
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
 from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
-from .waiting_room_list_params import WaitingRoomListParams as WaitingRoomListParams
 from .waiting_room_create_params import WaitingRoomCreateParams as WaitingRoomCreateParams
 from .waiting_room_update_params import WaitingRoomUpdateParams as WaitingRoomUpdateParams
 from .waiting_room_delete_response import WaitingRoomDeleteResponse as WaitingRoomDeleteResponse

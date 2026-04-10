@@ -51,6 +51,8 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )
@@ -107,6 +109,8 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )
@@ -163,6 +167,8 @@ class TestTimeseriesGroups:
                 location=["string"],
                 name=["main_series"],
                 normalization="PERCENTAGE",
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )
@@ -274,6 +280,8 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )
@@ -330,6 +338,8 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )
@@ -386,6 +396,8 @@ class TestAsyncTimeseriesGroups:
                 location=["string"],
                 name=["main_series"],
                 normalization="PERCENTAGE",
+                response_status=["string"],
+                response_status_category=["INFORMATIONAL"],
                 user_agent=["string"],
                 vertical=["string"],
             )

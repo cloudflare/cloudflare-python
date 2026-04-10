@@ -39,12 +39,6 @@ class OutputOptionsParam(TypedDict, total=False):
     specify all the fields names you are interested in.
     """
 
-    merge_subrequests: Optional[bool]
-    """If set to true, subrequests will be merged into the parent request.
-
-    Only supported for the `http_requests` dataset.
-    """
-
     output_type: Literal["ndjson", "csv"]
     """Specifies the output type, such as `ndjson` or `csv`.
 

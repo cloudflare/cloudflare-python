@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, Optional
 
 from pydantic import Field as FieldInfo
 
@@ -16,4 +16,5 @@ class MessageAckResponse(BaseModel):
     retry_count: Optional[float] = FieldInfo(alias="retryCount", default=None)
     """The number of messages that were succesfully retried."""
 
-    warnings: Optional[List[str]] = None
+    warnings: Optional[Dict[str, str]] = None
+    """Map of lease IDs to warning messages encountered during acknowledgement."""

@@ -62,12 +62,16 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
+        automatic_advertisement: Optional[bool],
         name: str,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -81,23 +85,32 @@ class RulesResource(SyncAPIResource):
         single rule per API request.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
+          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
+              Prefixes within the rule via Magic Transit when the rule is triggered. Only
+              available for users of Magic Transit.
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
               the rule name. Max 256 characters.
 
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
+          type: MNM rule type.
 
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          duration: The amount of time that the rule threshold must be exceeded to send an alert
+              notification. The final value must be equivalent to one of the following 8
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -113,12 +126,16 @@ class RulesResource(SyncAPIResource):
             f"/accounts/{account_id}/mnm/rules",
             body=maybe_transform(
                 {
-                    "duration": duration,
-                    "name": name,
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
+                    "name": name,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_create_params.RuleCreateParams,
             ),
@@ -136,13 +153,16 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
+        automatic_advertisement: Optional[bool],
         name: str,
-        id: str | Omit = omit,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,25 +174,32 @@ class RulesResource(SyncAPIResource):
         Update network monitoring rules for account.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
+          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
+              Prefixes within the rule via Magic Transit when the rule is triggered. Only
+              available for users of Magic Transit.
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
               the rule name. Max 256 characters.
 
-          id: The id of the rule. Must be unique.
+          type: MNM rule type.
 
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          duration: The amount of time that the rule threshold must be exceeded to send an alert
+              notification. The final value must be equivalent to one of the following 8
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -188,13 +215,16 @@ class RulesResource(SyncAPIResource):
             f"/accounts/{account_id}/mnm/rules",
             body=maybe_transform(
                 {
-                    "duration": duration,
-                    "name": name,
-                    "id": id,
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
+                    "name": name,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_update_params.RuleUpdateParams,
             ),
@@ -289,12 +319,16 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        automatic_advertisement: Optional[bool],
+        name: str,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
-        name: str | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,19 +346,28 @@ class RulesResource(SyncAPIResource):
               Prefixes within the rule via Magic Transit when the rule is triggered. Only
               available for users of Magic Transit.
 
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
+              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
+              the rule name. Max 256 characters.
+
+          type: MNM rule type.
+
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
 
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
               values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -343,11 +386,15 @@ class RulesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "duration": duration,
                     "name": name,
-                    "packet_threshold": packet_threshold,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_edit_params.RuleEditParams,
             ),
@@ -432,12 +479,16 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
+        automatic_advertisement: Optional[bool],
         name: str,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -451,23 +502,32 @@ class AsyncRulesResource(AsyncAPIResource):
         single rule per API request.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
+          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
+              Prefixes within the rule via Magic Transit when the rule is triggered. Only
+              available for users of Magic Transit.
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
               the rule name. Max 256 characters.
 
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
+          type: MNM rule type.
 
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          duration: The amount of time that the rule threshold must be exceeded to send an alert
+              notification. The final value must be equivalent to one of the following 8
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -483,12 +543,16 @@ class AsyncRulesResource(AsyncAPIResource):
             f"/accounts/{account_id}/mnm/rules",
             body=await async_maybe_transform(
                 {
-                    "duration": duration,
-                    "name": name,
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
+                    "name": name,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_create_params.RuleCreateParams,
             ),
@@ -506,13 +570,16 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
+        automatic_advertisement: Optional[bool],
         name: str,
-        id: str | Omit = omit,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -524,25 +591,32 @@ class AsyncRulesResource(AsyncAPIResource):
         Update network monitoring rules for account.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
+          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
+              Prefixes within the rule via Magic Transit when the rule is triggered. Only
+              available for users of Magic Transit.
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
               the rule name. Max 256 characters.
 
-          id: The id of the rule. Must be unique.
+          type: MNM rule type.
 
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          duration: The amount of time that the rule threshold must be exceeded to send an alert
+              notification. The final value must be equivalent to one of the following 8
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -558,13 +632,16 @@ class AsyncRulesResource(AsyncAPIResource):
             f"/accounts/{account_id}/mnm/rules",
             body=await async_maybe_transform(
                 {
-                    "duration": duration,
-                    "name": name,
-                    "id": id,
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
+                    "name": name,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_update_params.RuleUpdateParams,
             ),
@@ -659,12 +736,16 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | Omit = omit,
-        bandwidth: float | Omit = omit,
+        automatic_advertisement: Optional[bool],
+        name: str,
+        prefixes: SequenceNotStr[str],
+        type: Literal["threshold", "zscore", "advanced_ddos"],
+        bandwidth_threshold: float | Omit = omit,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
-        name: str | Omit = omit,
         packet_threshold: float | Omit = omit,
-        prefixes: SequenceNotStr[str] | Omit = omit,
+        prefix_match: Optional[Literal["exact", "subnet", "supernet"]] | Omit = omit,
+        zscore_sensitivity: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        zscore_target: Optional[Literal["bits", "packets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -682,19 +763,28 @@ class AsyncRulesResource(AsyncAPIResource):
               Prefixes within the rule via Magic Transit when the rule is triggered. Only
               available for users of Magic Transit.
 
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
+          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
+              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
+              the rule name. Max 256 characters.
+
+          type: MNM rule type.
+
+          bandwidth_threshold: The number of bits per second for the rule. When this value is exceeded for the
               set duration, an alert notification is sent. Minimum of 1 and no maximum.
 
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
               values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
           packet_threshold: The number of packets per second for the rule. When this value is exceeded for
               the set duration, an alert notification is sent. Minimum of 1 and no maximum.
+
+          prefix_match: Prefix match type to be applied for a prefix auto advertisement when using an
+              advanced_ddos rule.
+
+          zscore_sensitivity: Level of sensitivity set for zscore rules.
+
+          zscore_target: Target of the zscore rule analysis.
 
           extra_headers: Send extra headers
 
@@ -713,11 +803,15 @@ class AsyncRulesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "duration": duration,
                     "name": name,
-                    "packet_threshold": packet_threshold,
                     "prefixes": prefixes,
+                    "type": type,
+                    "bandwidth_threshold": bandwidth_threshold,
+                    "duration": duration,
+                    "packet_threshold": packet_threshold,
+                    "prefix_match": prefix_match,
+                    "zscore_sensitivity": zscore_sensitivity,
+                    "zscore_target": zscore_target,
                 },
                 rule_edit_params.RuleEditParams,
             ),

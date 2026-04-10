@@ -219,7 +219,7 @@ class TestStreams:
             stream_id="033e105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
@@ -228,7 +228,7 @@ class TestStreams:
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
             force="force",
         )
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -240,7 +240,7 @@ class TestStreams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = response.parse()
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -252,7 +252,7 @@ class TestStreams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = response.parse()
-            assert stream is None
+            assert_matches_type(object, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -520,7 +520,7 @@ class TestAsyncStreams:
             stream_id="033e105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -529,7 +529,7 @@ class TestAsyncStreams:
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
             force="force",
         )
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -541,7 +541,7 @@ class TestAsyncStreams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = await response.parse()
-        assert stream is None
+        assert_matches_type(object, stream, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -553,7 +553,7 @@ class TestAsyncStreams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = await response.parse()
-            assert stream is None
+            assert_matches_type(object, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

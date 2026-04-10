@@ -34,5 +34,11 @@ class TestListParams(TypedDict, total=False):
     per_page: float
     """Number of items per page"""
 
+    registration_id: str
+    """Optionally filter results to a specific device registration.
+
+    Must be used in combination with a single deviceId.
+    """
+
     test_name: Annotated[str, PropertyInfo(alias="testName")]
     """Optionally filter results by test name"""

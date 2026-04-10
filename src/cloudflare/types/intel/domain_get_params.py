@@ -12,3 +12,6 @@ class DomainGetParams(TypedDict, total=False):
     """Identifier."""
 
     domain: str
+
+    skip_dns: bool
+    """Skip DNS resolution lookups for faster response."""

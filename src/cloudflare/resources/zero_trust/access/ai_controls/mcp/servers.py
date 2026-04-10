@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,6 +60,8 @@ class ServersResource(SyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
+        updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,6 +95,8 @@ class ServersResource(SyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "updated_prompts": updated_prompts,
+                    "updated_tools": updated_tools,
                 },
                 server_create_params.ServerCreateParams,
             ),
@@ -114,6 +118,8 @@ class ServersResource(SyncAPIResource):
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
+        updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,6 +152,8 @@ class ServersResource(SyncAPIResource):
                     "auth_credentials": auth_credentials,
                     "description": description,
                     "name": name,
+                    "updated_prompts": updated_prompts,
+                    "updated_tools": updated_tools,
                 },
                 server_update_params.ServerUpdateParams,
             ),
@@ -366,6 +374,8 @@ class AsyncServersResource(AsyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
+        updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,6 +409,8 @@ class AsyncServersResource(AsyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "updated_prompts": updated_prompts,
+                    "updated_tools": updated_tools,
                 },
                 server_create_params.ServerCreateParams,
             ),
@@ -420,6 +432,8 @@ class AsyncServersResource(AsyncAPIResource):
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
+        updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,6 +466,8 @@ class AsyncServersResource(AsyncAPIResource):
                     "auth_credentials": auth_credentials,
                     "description": description,
                     "name": name,
+                    "updated_prompts": updated_prompts,
+                    "updated_tools": updated_tools,
                 },
                 server_update_params.ServerUpdateParams,
             ),

@@ -45,6 +45,22 @@ class TestServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            updated_prompts=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
+            updated_tools=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ServerCreateResponse, server, path=["response"])
 
@@ -107,6 +123,22 @@ class TestServers:
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
             name="My MCP Server",
+            updated_prompts=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
+            updated_tools=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ServerUpdateResponse, server, path=["response"])
 
@@ -369,6 +401,22 @@ class TestAsyncServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            updated_prompts=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
+            updated_tools=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ServerCreateResponse, server, path=["response"])
 
@@ -431,6 +479,22 @@ class TestAsyncServers:
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
             name="My MCP Server",
+            updated_prompts=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
+            updated_tools=[
+                {
+                    "name": "name",
+                    "alias": "my-custom-alias",
+                    "description": "description",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ServerUpdateResponse, server, path=["response"])
 

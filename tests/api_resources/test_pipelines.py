@@ -471,7 +471,7 @@ class TestPipelines:
             pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert pipeline is None
+        assert_matches_type(object, pipeline, path=["response"])
 
     @parametrize
     def test_raw_response_delete_v1(self, client: Cloudflare) -> None:
@@ -483,7 +483,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert pipeline is None
+        assert_matches_type(object, pipeline, path=["response"])
 
     @parametrize
     def test_streaming_response_delete_v1(self, client: Cloudflare) -> None:
@@ -495,7 +495,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert pipeline is None
+            assert_matches_type(object, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1151,7 +1151,7 @@ class TestAsyncPipelines:
             pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert pipeline is None
+        assert_matches_type(object, pipeline, path=["response"])
 
     @parametrize
     async def test_raw_response_delete_v1(self, async_client: AsyncCloudflare) -> None:
@@ -1163,7 +1163,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert pipeline is None
+        assert_matches_type(object, pipeline, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete_v1(self, async_client: AsyncCloudflare) -> None:
@@ -1175,7 +1175,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert pipeline is None
+            assert_matches_type(object, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

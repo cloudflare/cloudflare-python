@@ -63,6 +63,8 @@ class DefaultGetResponse(BaseModel):
     include: Optional[List[SplitTunnelInclude]] = None
     """List of routes included in the WARP client's tunnel."""
 
+    policy_id: Optional[str] = None
+
     register_interface_ip_with_dns: Optional[bool] = None
     """
     Determines if the operating system will register WARP's local interface IP with

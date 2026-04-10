@@ -49,7 +49,10 @@ class TestScriptAndVersionSettings:
                 ],
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
-                "limits": {"cpu_ms": 50},
+                "limits": {
+                    "cpu_ms": 50,
+                    "subrequests": 1000,
+                },
                 "logpush": False,
                 "migrations": {
                     "deleted_classes": ["string"],
@@ -228,7 +231,10 @@ class TestAsyncScriptAndVersionSettings:
                 ],
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
-                "limits": {"cpu_ms": 50},
+                "limits": {
+                    "cpu_ms": 50,
+                    "subrequests": 1000,
+                },
                 "logpush": False,
                 "migrations": {
                     "deleted_classes": ["string"],

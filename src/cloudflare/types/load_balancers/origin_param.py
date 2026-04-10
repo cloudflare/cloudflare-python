@@ -25,6 +25,15 @@ class OriginParam(TypedDict, total=False):
     The origin will only be disabled for the current pool.
     """
 
+    flatten_cname: bool
+    """
+    Whether to flatten CNAME records for this origin, resolving them to A/AAAA
+    records before returning to the client. When true (the default), the director
+    resolves CNAME addresses to their underlying A/AAAA records. When false, the
+    origin address is returned as a raw CNAME record without resolution. This
+    setting mirrors the DNS API record flatten_cname setting.
+    """
+
     header: HeaderParam
     """The request header is used to pass additional information with an HTTP request.
 

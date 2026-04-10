@@ -10,7 +10,7 @@ from ..._models import BaseModel
 from .watermark import Watermark
 from .allowed_origins import AllowedOrigins
 
-__all__ = ["Video", "Input", "Playback", "Status"]
+__all__ = ["Video", "Input", "Playback", "PublicDetails", "Status"]
 
 
 class Input(BaseModel):
@@ -35,6 +35,22 @@ class Playback(BaseModel):
 
     hls: Optional[str] = None
     """The HLS manifest for the video."""
+
+
+class PublicDetails(BaseModel):
+    """
+    Public details for the video including title, share link, channel link, and logo.
+    """
+
+    channel_link: Optional[str] = None
+
+    logo: Optional[str] = None
+
+    media_id: Optional[int] = None
+
+    share_link: Optional[str] = None
+
+    title: Optional[str] = None
 
 
 class Status(BaseModel):
@@ -73,6 +89,9 @@ class Video(BaseModel):
     Empty arrays allow the video to be viewed on any origin.
     """
 
+    clipped_from: Optional[str] = FieldInfo(alias="clippedFrom", default=None)
+    """The unique identifier of the source video this video was clipped from."""
+
     created: Optional[datetime] = None
     """The date and time the media item was created."""
 
@@ -99,6 +118,9 @@ class Video(BaseModel):
     means the value is unknown.
     """
 
+    max_size_bytes: Optional[int] = FieldInfo(alias="maxSizeBytes", default=None)
+    """The maximum size in bytes for the video upload."""
+
     meta: Optional[object] = None
     """
     A user modifiable key-value store used to reference other systems of record for
@@ -112,6 +134,12 @@ class Video(BaseModel):
 
     preview: Optional[str] = None
     """The video's preview page URI. This field is omitted until encoding is complete."""
+
+    public_details: Optional[PublicDetails] = FieldInfo(alias="publicDetails", default=None)
+    """
+    Public details for the video including title, share link, channel link, and
+    logo.
+    """
 
     ready_to_stream: Optional[bool] = FieldInfo(alias="readyToStream", default=None)
     """Indicates whether the video is playable.

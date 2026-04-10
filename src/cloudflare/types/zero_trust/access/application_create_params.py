@@ -320,7 +320,8 @@ class SelfHostedApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     read_service_tokens_from_header: str
@@ -765,7 +766,8 @@ class SaaSApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     saas_app: SaaSApplicationSaaSApp
@@ -1134,7 +1136,8 @@ class BrowserSSHApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     read_service_tokens_from_header: str
@@ -1680,7 +1683,8 @@ class BrowserVNCApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     read_service_tokens_from_header: str
@@ -2163,7 +2167,8 @@ class AppLauncherApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     session_duration: str
@@ -2357,7 +2362,8 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     session_duration: str
@@ -2523,7 +2529,8 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     session_duration: str
@@ -2698,7 +2705,8 @@ class GatewayIdentityProxyEndpointApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     session_duration: str
@@ -2844,7 +2852,8 @@ class BookmarkApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     tags: SequenceNotStr[str]
@@ -3182,7 +3191,8 @@ class BrowserRDPApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     read_service_tokens_from_header: str
@@ -3696,7 +3706,8 @@ class McpServerApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     same_site_cookie_attribute: str
@@ -4149,7 +4160,8 @@ class McpServerPortalApplication(TypedDict, total=False):
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
-    exclusive to the application.
+    exclusive to the application. Reusable and inline policies are mutually
+    exclusive.
     """
 
     same_site_cookie_attribute: str

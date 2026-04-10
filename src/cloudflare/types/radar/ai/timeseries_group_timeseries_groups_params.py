@@ -109,6 +109,20 @@ class TimeseriesGroupTimeseriesGroupsParams(TypedDict, total=False):
     [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
     """
 
+    response_status: Annotated[SequenceNotStr[str], PropertyInfo(alias="responseStatus")]
+    """Filters results by HTTP response status code (e.g.
+
+    200, 403, 404). Only
+    [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+    are accepted.
+    """
+
+    response_status_category: Annotated[
+        List[Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]],
+        PropertyInfo(alias="responseStatusCategory"),
+    ]
+    """Filters results by HTTP response status code category."""
+
     user_agent: Annotated[SequenceNotStr[str], PropertyInfo(alias="userAgent")]
     """Filters results by user agent."""
 

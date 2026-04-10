@@ -20,6 +20,8 @@ class Match(BaseModel):
 
     public_scans: Optional[MatchPublicScans] = None
 
+    registrar: Optional[str] = None
+
     scan_status: str
 
     scan_submission_id: Optional[int] = None

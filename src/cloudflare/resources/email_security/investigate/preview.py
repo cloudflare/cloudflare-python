@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,6 +50,7 @@ class PreviewResource(SyncAPIResource):
         *,
         account_id: str,
         postfix_id: str,
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,6 +66,9 @@ class PreviewResource(SyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -84,6 +88,7 @@ class PreviewResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"submission": submission}, preview_create_params.PreviewCreateParams),
                 post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
@@ -160,6 +165,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         *,
         account_id: str,
         postfix_id: str,
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +181,9 @@ class AsyncPreviewResource(AsyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -194,6 +203,9 @@ class AsyncPreviewResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"submission": submission}, preview_create_params.PreviewCreateParams
+                ),
                 post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),

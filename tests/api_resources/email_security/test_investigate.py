@@ -11,7 +11,10 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.email_security import InvestigateGetResponse, InvestigateListResponse
+from cloudflare.types.email_security import (
+    InvestigateGetResponse,
+    InvestigateListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -88,6 +91,15 @@ class TestInvestigate:
         investigate = client.email_security.investigate.get(
             postfix_id="4Njp3P0STMz2c02Q",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(InvestigateGetResponse, investigate, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        investigate = client.email_security.investigate.get(
+            postfix_id="4Njp3P0STMz2c02Q",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            submission=True,
         )
         assert_matches_type(InvestigateGetResponse, investigate, path=["response"])
 
@@ -206,6 +218,15 @@ class TestAsyncInvestigate:
         investigate = await async_client.email_security.investigate.get(
             postfix_id="4Njp3P0STMz2c02Q",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(InvestigateGetResponse, investigate, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        investigate = await async_client.email_security.investigate.get(
+            postfix_id="4Njp3P0STMz2c02Q",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            submission=True,
         )
         assert_matches_type(InvestigateGetResponse, investigate, path=["response"])
 

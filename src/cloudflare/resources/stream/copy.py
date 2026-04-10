@@ -50,13 +50,15 @@ class CopyResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
+        input: str | Omit = omit,
         meta: object | Omit = omit,
+        name: str | Omit = omit,
         require_signed_urls: bool | Omit = omit,
         scheduled_deletion: Union[str, datetime] | Omit = omit,
         thumbnail_timestamp_pct: float | Omit = omit,
+        url: str | Omit = omit,
         watermark: copy_create_params.Watermark | Omit = omit,
         upload_creator: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -72,18 +74,21 @@ class CopyResource(SyncAPIResource):
         Args:
           account_id: The account identifier tag.
 
-          url: A video's URL. The server must be publicly routable and support `HTTP HEAD`
-              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
-              requests with a `content-range` header that includes the size of the file.
-
           allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
               an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
               viewed on any origin.
 
           creator: A user-defined identifier for the media creator.
 
+          input: A video's URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file. This
+              is the preferred field over `url`.
+
           meta: A user modifiable key-value store used to reference other systems of record for
               managing videos.
+
+          name: A video's name. Used for legacy compatibility.
 
           require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
               a signed token must be generated with a signing key to view the video.
@@ -96,6 +101,11 @@ class CopyResource(SyncAPIResource):
               video's duration. To convert from a second-wise timestamp to a percentage,
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
+
+          url: A video's URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file. This
+              field is deprecated in favor of `input`.
 
           upload_creator: A user-defined identifier for the media creator.
 
@@ -114,13 +124,15 @@ class CopyResource(SyncAPIResource):
             f"/accounts/{account_id}/stream/copy",
             body=maybe_transform(
                 {
-                    "url": url,
                     "allowed_origins": allowed_origins,
                     "creator": creator,
+                    "input": input,
                     "meta": meta,
+                    "name": name,
                     "require_signed_urls": require_signed_urls,
                     "scheduled_deletion": scheduled_deletion,
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "url": url,
                     "watermark": watermark,
                 },
                 copy_create_params.CopyCreateParams,
@@ -160,13 +172,15 @@ class AsyncCopyResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
+        input: str | Omit = omit,
         meta: object | Omit = omit,
+        name: str | Omit = omit,
         require_signed_urls: bool | Omit = omit,
         scheduled_deletion: Union[str, datetime] | Omit = omit,
         thumbnail_timestamp_pct: float | Omit = omit,
+        url: str | Omit = omit,
         watermark: copy_create_params.Watermark | Omit = omit,
         upload_creator: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,18 +196,21 @@ class AsyncCopyResource(AsyncAPIResource):
         Args:
           account_id: The account identifier tag.
 
-          url: A video's URL. The server must be publicly routable and support `HTTP HEAD`
-              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
-              requests with a `content-range` header that includes the size of the file.
-
           allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
               an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
               viewed on any origin.
 
           creator: A user-defined identifier for the media creator.
 
+          input: A video's URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file. This
+              is the preferred field over `url`.
+
           meta: A user modifiable key-value store used to reference other systems of record for
               managing videos.
+
+          name: A video's name. Used for legacy compatibility.
 
           require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
               a signed token must be generated with a signing key to view the video.
@@ -206,6 +223,11 @@ class AsyncCopyResource(AsyncAPIResource):
               video's duration. To convert from a second-wise timestamp to a percentage,
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
+
+          url: A video's URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file. This
+              field is deprecated in favor of `input`.
 
           upload_creator: A user-defined identifier for the media creator.
 
@@ -224,13 +246,15 @@ class AsyncCopyResource(AsyncAPIResource):
             f"/accounts/{account_id}/stream/copy",
             body=await async_maybe_transform(
                 {
-                    "url": url,
                     "allowed_origins": allowed_origins,
                     "creator": creator,
+                    "input": input,
                     "meta": meta,
+                    "name": name,
                     "require_signed_urls": require_signed_urls,
                     "scheduled_deletion": scheduled_deletion,
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "url": url,
                     "watermark": watermark,
                 },
                 copy_create_params.CopyCreateParams,

@@ -49,6 +49,9 @@ class ResultInfo(BaseModel):
     total_count: Optional[float] = None
     """Total results available without any search parameters."""
 
+    total_pages: Optional[float] = None
+    """The number of total pages in the entire result set."""
+
 
 class IPDeleteResponse(BaseModel):
     errors: List[Error]

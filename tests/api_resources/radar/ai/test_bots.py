@@ -45,6 +45,8 @@ class TestBots:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )
@@ -95,6 +97,8 @@ class TestBots:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )
@@ -145,6 +149,8 @@ class TestBots:
             location=["string"],
             name=["main_series"],
             normalization="PERCENTAGE",
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )
@@ -203,6 +209,8 @@ class TestAsyncBots:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )
@@ -253,6 +261,8 @@ class TestAsyncBots:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )
@@ -303,6 +313,8 @@ class TestAsyncBots:
             location=["string"],
             name=["main_series"],
             normalization="PERCENTAGE",
+            response_status=["string"],
+            response_status_category=["INFORMATIONAL"],
             user_agent=["string"],
             vertical=["string"],
         )

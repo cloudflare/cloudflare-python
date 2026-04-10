@@ -49,7 +49,7 @@ from .release import (
     AsyncReleaseResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .detections import (
     DetectionsResource,
@@ -77,7 +77,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security import investigate_list_params
+from ....types.email_security import investigate_get_params, investigate_list_params
 from ....types.email_security.investigate_get_response import InvestigateGetResponse
 from ....types.email_security.investigate_list_response import InvestigateListResponse
 
@@ -278,6 +278,7 @@ class InvestigateResource(SyncAPIResource):
         postfix_id: str,
         *,
         account_id: str,
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +294,9 @@ class InvestigateResource(SyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -313,6 +317,7 @@ class InvestigateResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"submission": submission}, investigate_get_params.InvestigateGetParams),
                 post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),
@@ -513,6 +518,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         postfix_id: str,
         *,
         account_id: str,
+        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -528,6 +534,9 @@ class AsyncInvestigateResource(AsyncAPIResource):
           account_id: Account Identifier
 
           postfix_id: The identifier of the message.
+
+          submission: When true, search the submissions datastore only. When false or omitted, search
+              the regular datastore only.
 
           extra_headers: Send extra headers
 
@@ -548,6 +557,9 @@ class AsyncInvestigateResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"submission": submission}, investigate_get_params.InvestigateGetParams
+                ),
                 post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),

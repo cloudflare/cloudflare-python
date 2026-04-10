@@ -49,6 +49,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
     "MetadataBindingWorkersBindingKindSecretsStoreSecret",
+    "MetadataBindingWorkersBindingKindFlagship",
     "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataBindingWorkersBindingKindWorkflow",
     "MetadataBindingWorkersBindingKindWasmModule",
@@ -230,7 +231,7 @@ class MetadataBindingWorkersBindingKindBrowser(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
-    id: Required[str]
+    database_id: Required[str]
     """Identifier of the D1 database to bind to."""
 
     name: Required[str]
@@ -238,6 +239,9 @@ class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
 
     type: Required[Literal["d1"]]
     """The kind of resource that the binding provides."""
+
+    id: str
+    """Identifier of the D1 database to bind to."""
 
 
 class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
@@ -574,6 +578,17 @@ class MetadataBindingWorkersBindingKindSecretsStoreSecret(TypedDict, total=False
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindFlagship(TypedDict, total=False):
+    app_id: Required[str]
+    """ID of the Flagship app to bind to for feature flag evaluation."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["flagship"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindSecretKey(TypedDict, total=False):
     algorithm: Required[object]
     """Algorithm-specific key parameters.
@@ -707,6 +722,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
     MetadataBindingWorkersBindingKindSecretsStoreSecret,
+    MetadataBindingWorkersBindingKindFlagship,
     MetadataBindingWorkersBindingKindSecretKey,
     MetadataBindingWorkersBindingKindWorkflow,
     MetadataBindingWorkersBindingKindWasmModule,
@@ -720,6 +736,9 @@ class MetadataLimits(TypedDict, total=False):
 
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
+
+    subrequests: int
+    """The number of subrequests this Worker can make per request."""
 
 
 class MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):

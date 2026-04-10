@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -221,7 +221,7 @@ class StreamsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> object:
         """
         Delete Stream in Account.
 
@@ -244,7 +244,6 @@ class StreamsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
             options=make_request_options(
@@ -253,8 +252,9 @@ class StreamsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, stream_delete_params.StreamDeleteParams),
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -495,7 +495,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> object:
         """
         Delete Stream in Account.
 
@@ -518,7 +518,6 @@ class AsyncStreamsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
             options=make_request_options(
@@ -527,8 +526,9 @@ class AsyncStreamsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, stream_delete_params.StreamDeleteParams),
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

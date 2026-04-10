@@ -43,7 +43,7 @@ class TestVersions:
                 "annotations": {
                     "workers_alias": "staging",
                     "workers_message": "Fixed worker code.",
-                    "workers_tag": "workers/tag",
+                    "workers_tag": "any-identifier-from-external-system",
                 },
                 "bindings": [
                     {
@@ -255,7 +255,7 @@ class TestAsyncVersions:
                 "annotations": {
                     "workers_alias": "staging",
                     "workers_message": "Fixed worker code.",
-                    "workers_tag": "workers/tag",
+                    "workers_tag": "any-identifier-from-external-system",
                 },
                 "bindings": [
                     {

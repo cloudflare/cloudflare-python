@@ -92,6 +92,7 @@ class InvestigateGetResponse(BaseModel):
     id: str
 
     action_log: object
+    """Deprecated: use `/investigate/{id}/action_log` instead."""
 
     client_recipients: List[str]
 
@@ -149,6 +150,7 @@ class InvestigateGetResponse(BaseModel):
     ] = None
 
     findings: Optional[List[Finding]] = None
+    """Deprecated."""
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 

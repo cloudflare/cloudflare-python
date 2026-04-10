@@ -73,8 +73,8 @@ class TestJson:
             ],
             custom_ai=[
                 {
-                    "authorization": "authorization",
                     "model": "model",
+                    "authorization": "authorization",
                 }
             ],
             emulate_media_type="emulateMediaType",
@@ -202,8 +202,8 @@ class TestJson:
             ],
             custom_ai=[
                 {
-                    "authorization": "authorization",
                     "model": "model",
+                    "authorization": "authorization",
                 }
             ],
             emulate_media_type="emulateMediaType",
@@ -337,8 +337,8 @@ class TestAsyncJson:
             ],
             custom_ai=[
                 {
-                    "authorization": "authorization",
                     "model": "model",
+                    "authorization": "authorization",
                 }
             ],
             emulate_media_type="emulateMediaType",
@@ -466,8 +466,8 @@ class TestAsyncJson:
             ],
             custom_ai=[
                 {
-                    "authorization": "authorization",
                     "model": "model",
+                    "authorization": "authorization",
                 }
             ],
             emulate_media_type="emulateMediaType",

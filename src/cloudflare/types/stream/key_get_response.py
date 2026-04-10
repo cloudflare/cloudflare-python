@@ -14,3 +14,6 @@ class KeyGetResponse(BaseModel):
 
     created: Optional[datetime] = None
     """The date and time a signing key was created."""
+
+    key_id: Optional[str] = None
+    """The unique identifier for the signing key."""

@@ -7,15 +7,49 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["DownloadCreateResponse"]
+__all__ = ["DownloadCreateResponse", "Audio", "Default"]
 
 
-class DownloadCreateResponse(BaseModel):
-    percent_complete: Optional[float] = FieldInfo(alias="percentComplete", default=None)
+class Audio(BaseModel):
+    """The audio-only download. Only present if this download type has been created."""
+
+    percent_complete: float = FieldInfo(alias="percentComplete")
     """Indicates the progress as a percentage between 0 and 100."""
 
-    status: Optional[Literal["ready", "inprogress", "error"]] = None
+    status: Literal["ready", "inprogress", "error"]
     """The status of a generated download."""
 
     url: Optional[str] = None
     """The URL to access the generated download."""
+
+
+class Default(BaseModel):
+    """The default video download.
+
+    Only present if this download type has been created.
+    """
+
+    percent_complete: float = FieldInfo(alias="percentComplete")
+    """Indicates the progress as a percentage between 0 and 100."""
+
+    status: Literal["ready", "inprogress", "error"]
+    """The status of a generated download."""
+
+    url: Optional[str] = None
+    """The URL to access the generated download."""
+
+
+class DownloadCreateResponse(BaseModel):
+    """An object with download type keys.
+
+    Each key is optional and only present if that download type has been created.
+    """
+
+    audio: Optional[Audio] = None
+    """The audio-only download. Only present if this download type has been created."""
+
+    default: Optional[Default] = None
+    """The default video download.
+
+    Only present if this download type has been created.
+    """

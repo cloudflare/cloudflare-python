@@ -11,6 +11,7 @@ __all__ = [
     "Origin",
     "OriginPublicDatabase",
     "OriginAccessProtectedDatabaseBehindCloudflareTunnel",
+    "OriginDatabaseReachableThroughAWorkersVPC",
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
@@ -58,7 +59,27 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
     """Set the user of your origin database."""
 
 
-Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
+class OriginDatabaseReachableThroughAWorkersVPC(BaseModel):
+    database: str
+    """Set the name of your origin database."""
+
+    scheme: Literal["postgres", "postgresql", "mysql"]
+    """Specifies the URL scheme used to connect to your origin database."""
+
+    service_id: str
+    """The identifier of the Workers VPC Service to connect through.
+
+    Hyperdrive will egress through the specified VPC Service to reach the origin
+    database.
+    """
+
+    user: str
+    """Set the user of your origin database."""
+
+
+Origin: TypeAlias = Union[
+    OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel, OriginDatabaseReachableThroughAWorkersVPC
+]
 
 
 class CachingHyperdriveHyperdriveCachingCommon(BaseModel):
@@ -87,6 +108,11 @@ Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHype
 
 
 class MTLS(BaseModel):
+    """mTLS configuration for the origin connection.
+
+    Cannot be used with VPC Service origins; TLS must be managed on the VPC Service.
+    """
+
     ca_certificate_id: Optional[str] = None
     """Define CA certificate ID obtained after uploading CA cert."""
 
@@ -118,6 +144,10 @@ class Hyperdrive(BaseModel):
     """Defines the last modified time of the Hyperdrive configuration."""
 
     mtls: Optional[MTLS] = None
+    """mTLS configuration for the origin connection.
+
+    Cannot be used with VPC Service origins; TLS must be managed on the VPC Service.
+    """
 
     origin_connection_limit: Optional[int] = None
     """

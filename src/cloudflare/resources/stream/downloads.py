@@ -7,7 +7,6 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -18,7 +17,6 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.stream import download_create_params
 from ...types.stream.download_get_response import DownloadGetResponse
 from ...types.stream.download_create_response import DownloadCreateResponse
 from ...types.stream.download_delete_response import DownloadDeleteResponse
@@ -51,7 +49,6 @@ class DownloadsResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,7 +81,6 @@ class DownloadsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            body=maybe_transform(body, download_create_params.DownloadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -211,7 +207,6 @@ class AsyncDownloadsResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,7 +239,6 @@ class AsyncDownloadsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            body=await async_maybe_transform(body, download_create_params.DownloadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

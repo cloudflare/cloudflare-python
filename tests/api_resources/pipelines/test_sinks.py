@@ -176,7 +176,7 @@ class TestSinks:
             sink_id="0223105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
@@ -185,7 +185,7 @@ class TestSinks:
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
             force="force",
         )
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -197,7 +197,7 @@ class TestSinks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sink = response.parse()
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -209,7 +209,7 @@ class TestSinks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sink = response.parse()
-            assert sink is None
+            assert_matches_type(object, sink, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -435,7 +435,7 @@ class TestAsyncSinks:
             sink_id="0223105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
         )
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -444,7 +444,7 @@ class TestAsyncSinks:
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
             force="force",
         )
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -456,7 +456,7 @@ class TestAsyncSinks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sink = await response.parse()
-        assert sink is None
+        assert_matches_type(object, sink, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -468,7 +468,7 @@ class TestAsyncSinks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sink = await response.parse()
-            assert sink is None
+            assert_matches_type(object, sink, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

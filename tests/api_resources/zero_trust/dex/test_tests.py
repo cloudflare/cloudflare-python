@@ -34,6 +34,7 @@ class TestTests:
             kind="http",
             page=1,
             per_page=1,
+            registration_id="registration_id",
             test_name="testName",
         )
         assert_matches_type(SyncV4PagePagination[Optional[Tests]], test, path=["response"])
@@ -91,6 +92,7 @@ class TestAsyncTests:
             kind="http",
             page=1,
             per_page=1,
+            registration_id="registration_id",
             test_name="testName",
         )
         assert_matches_type(AsyncV4PagePagination[Optional[Tests]], test, path=["response"])

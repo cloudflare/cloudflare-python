@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -32,6 +33,9 @@ class MTLSCertificateCreateResponse(BaseModel):
 
     signature: Optional[str] = None
     """The type of hash used for the certificate."""
+
+    type: Optional[Literal["custom", "gateway_managed", "access_managed"]] = None
+    """The type of the certificate, indicating how it was created and who manages it."""
 
     updated_at: Optional[datetime] = None
     """This is the time the certificate was updated."""

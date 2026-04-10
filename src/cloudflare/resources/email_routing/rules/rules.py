@@ -79,7 +79,8 @@ class RulesResource(SyncAPIResource):
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
-        email (like forwarding it to a specific destination address).
+        email (like forwarding it to a specific destination address). Forward actions
+        require all destination addresses to be verified.
 
         Args:
           zone_id: Identifier.
@@ -143,8 +144,10 @@ class RulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
-        """
-        Update actions and matches, or enable/disable specific routing rules.
+        """Update actions and matches, or enable/disable specific routing rules.
+
+        Forward
+        actions require all destination addresses to be verified.
 
         Args:
           zone_id: Identifier.
@@ -383,7 +386,8 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
-        email (like forwarding it to a specific destination address).
+        email (like forwarding it to a specific destination address). Forward actions
+        require all destination addresses to be verified.
 
         Args:
           zone_id: Identifier.
@@ -447,8 +451,10 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EmailRoutingRule]:
-        """
-        Update actions and matches, or enable/disable specific routing rules.
+        """Update actions and matches, or enable/disable specific routing rules.
+
+        Forward
+        actions require all destination addresses to be verified.
 
         Args:
           zone_id: Identifier.

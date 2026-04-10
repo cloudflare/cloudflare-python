@@ -34,5 +34,5 @@ class MatchGetParams(TypedDict, total=False):
     order: Literal["asc", "desc"]
     """Sort order. Options: 'asc' (ascending) or 'desc' (descending)"""
 
-    order_by: Annotated[Literal["domain", "first_seen"], PropertyInfo(alias="orderBy")]
-    """Column to sort by. Options: 'domain' or 'first_seen'"""
+    order_by: Annotated[Literal["domain", "first_seen", "registrar"], PropertyInfo(alias="orderBy")]
+    """Column to sort by. Options: 'domain', 'first_seen', or 'registrar'"""

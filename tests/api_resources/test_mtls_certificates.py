@@ -86,6 +86,14 @@ class TestMTLSCertificates:
         assert_matches_type(SyncSinglePage[MTLSCertificate], mtls_certificate, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        mtls_certificate = client.mtls_certificates.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type=["custom"],
+        )
+        assert_matches_type(SyncSinglePage[MTLSCertificate], mtls_certificate, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.mtls_certificates.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -279,6 +287,14 @@ class TestAsyncMTLSCertificates:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         mtls_certificate = await async_client.mtls_certificates.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[MTLSCertificate], mtls_certificate, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        mtls_certificate = await async_client.mtls_certificates.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            type=["custom"],
         )
         assert_matches_type(AsyncSinglePage[MTLSCertificate], mtls_certificate, path=["response"])
 

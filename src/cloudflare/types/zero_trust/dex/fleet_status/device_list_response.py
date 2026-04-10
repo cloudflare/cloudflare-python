@@ -263,6 +263,13 @@ class DeviceListResponse(BaseModel):
 
     ram_used_pct_by_app: Optional[List[List[RamUsedPctByApp]]] = FieldInfo(alias="ramUsedPctByApp", default=None)
 
+    registration_id: Optional[str] = FieldInfo(alias="registrationId", default=None)
+    """Device registration identifier (UUID v4).
+
+    On multi-user devices, this uniquely identifies a user's registration on the
+    device.
+    """
+
     switch_locked: Optional[bool] = FieldInfo(alias="switchLocked", default=None)
 
     wifi_strength_dbm: Optional[int] = FieldInfo(alias="wifiStrengthDbm", default=None)
