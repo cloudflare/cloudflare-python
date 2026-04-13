@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -45,6 +46,9 @@ class DomainsResource(SyncAPIResource):
         """
         return DomainsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     def update(
         self,
         domain_name: str,
@@ -107,6 +111,9 @@ class DomainsResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     def list(
         self,
         *,
@@ -143,6 +150,9 @@ class DomainsResource(SyncAPIResource):
             model=Domain,
         )
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     def get(
         self,
         domain_name: str,
@@ -208,6 +218,9 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         return AsyncDomainsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     async def update(
         self,
         domain_name: str,
@@ -270,6 +283,9 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     def list(
         self,
         *,
@@ -306,6 +322,9 @@ class AsyncDomainsResource(AsyncAPIResource):
             model=Domain,
         )
 
+    @typing_extensions.deprecated(
+        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+    )
     async def get(
         self,
         domain_name: str,
@@ -355,14 +374,20 @@ class DomainsResourceWithRawResponse:
     def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
-        self.update = to_raw_response_wrapper(
-            domains.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                domains.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            domains.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                domains.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            domains.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                domains.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -370,14 +395,20 @@ class AsyncDomainsResourceWithRawResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
-        self.update = async_to_raw_response_wrapper(
-            domains.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                domains.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            domains.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                domains.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            domains.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                domains.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -385,14 +416,20 @@ class DomainsResourceWithStreamingResponse:
     def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
-        self.update = to_streamed_response_wrapper(
-            domains.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                domains.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            domains.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                domains.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            domains.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                domains.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -400,12 +437,18 @@ class AsyncDomainsResourceWithStreamingResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
-        self.update = async_to_streamed_response_wrapper(
-            domains.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                domains.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            domains.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                domains.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            domains.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                domains.get,  # pyright: ignore[reportDeprecated],
+            )
         )
