@@ -248,7 +248,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ListItem]:
         """
-        List Requests
+        Lists Cloudforce One intelligence requests with filtering and pagination.
 
         Args:
           account_id: Identifier.
@@ -321,7 +321,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestDeleteResponse:
         """
-        Delete a Request
+        Deletes a Cloudforce One intelligence request and all associated data.
 
         Args:
           account_id: Identifier.
@@ -360,7 +360,8 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RequestConstants]:
         """
-        Get Request Priority, Status, and TLP constants
+        Retrieves constant values used in Cloudforce One requests, including valid
+        statuses and types.
 
         Args:
           account_id: Identifier.
@@ -400,7 +401,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Get a Request
+        Retrieves details for a specific Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -443,7 +444,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
-        Get Request Quota
+        Retrieves quota usage for Cloudforce One standard requests.
 
         Args:
           account_id: Identifier.
@@ -482,7 +483,7 @@ class RequestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[RequestTypesResponse]:
         """
-        Get Request Types
+        Lists available request types for Cloudforce One intelligence requests.
 
         Args:
           account_id: Identifier.
@@ -699,7 +700,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ListItem, AsyncSinglePage[ListItem]]:
         """
-        List Requests
+        Lists Cloudforce One intelligence requests with filtering and pagination.
 
         Args:
           account_id: Identifier.
@@ -772,7 +773,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestDeleteResponse:
         """
-        Delete a Request
+        Deletes a Cloudforce One intelligence request and all associated data.
 
         Args:
           account_id: Identifier.
@@ -811,7 +812,8 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RequestConstants]:
         """
-        Get Request Priority, Status, and TLP constants
+        Retrieves constant values used in Cloudforce One requests, including valid
+        statuses and types.
 
         Args:
           account_id: Identifier.
@@ -851,7 +853,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Get a Request
+        Retrieves details for a specific Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -894,7 +896,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
-        Get Request Quota
+        Retrieves quota usage for Cloudforce One standard requests.
 
         Args:
           account_id: Identifier.
@@ -933,7 +935,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RequestTypesResponse, AsyncSinglePage[RequestTypesResponse]]:
         """
-        Get Request Types
+        Lists available request types for Cloudforce One intelligence requests.
 
         Args:
           account_id: Identifier.

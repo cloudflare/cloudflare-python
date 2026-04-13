@@ -65,7 +65,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Priority]:
         """
-        Create a New Priority Intelligence Requirement
+        Creates a new priority intelligence request in Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -126,7 +126,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Update a Priority Intelligence Requirement
+        Updates a priority intelligence request in Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -187,7 +187,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PriorityDeleteResponse:
         """
-        Delete a Priority Intelligence Requirement
+        Deletes a priority intelligence request from Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -227,7 +227,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Get a Priority Intelligence Requirement
+        Retrieves a specific priority intelligence request from Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -270,7 +270,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
-        Get Priority Intelligence Requirement Quota
+        Retrieves quota usage for Cloudforce One priority requests.
 
         Args:
           account_id: Identifier.
@@ -334,7 +334,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Priority]:
         """
-        Create a New Priority Intelligence Requirement
+        Creates a new priority intelligence request in Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -395,7 +395,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Update a Priority Intelligence Requirement
+        Updates a priority intelligence request in Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -456,7 +456,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PriorityDeleteResponse:
         """
-        Delete a Priority Intelligence Requirement
+        Deletes a priority intelligence request from Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -496,7 +496,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
-        Get a Priority Intelligence Requirement
+        Retrieves a specific priority intelligence request from Cloudforce One.
 
         Args:
           account_id: Identifier.
@@ -539,7 +539,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
-        Get Priority Intelligence Requirement Quota
+        Retrieves quota usage for Cloudforce One priority requests.
 
         Args:
           account_id: Identifier.

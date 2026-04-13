@@ -63,7 +63,7 @@ class AssetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AssetCreateResponse]:
         """
-        List Request Assets
+        Lists assets attached to a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -118,7 +118,7 @@ class AssetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AssetUpdateResponse]:
         """
-        Update a Request Asset
+        Updates an asset in a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -170,7 +170,7 @@ class AssetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssetDeleteResponse:
         """
-        Delete a Request Asset
+        Removes an asset from a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -215,7 +215,7 @@ class AssetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AssetGetResponse]:
         """
-        Get a Request Asset
+        Retrieves an asset attached to a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -283,7 +283,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AssetCreateResponse, AsyncSinglePage[AssetCreateResponse]]:
         """
-        List Request Assets
+        Lists assets attached to a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -338,7 +338,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AssetUpdateResponse]:
         """
-        Update a Request Asset
+        Updates an asset in a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -390,7 +390,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssetDeleteResponse:
         """
-        Delete a Request Asset
+        Removes an asset from a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.
@@ -435,7 +435,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AssetGetResponse, AsyncSinglePage[AssetGetResponse]]:
         """
-        Get a Request Asset
+        Retrieves an asset attached to a Cloudforce One intelligence request.
 
         Args:
           account_id: Identifier.

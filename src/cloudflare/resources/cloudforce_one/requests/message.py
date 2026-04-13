@@ -62,7 +62,7 @@ class MessageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
-        Create a New Request Message
+        Adds a message to a Cloudforce One intelligence request conversation.
 
         Args:
           account_id: Identifier.
@@ -111,7 +111,7 @@ class MessageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
-        Update a Request Message
+        Updates a message in a Cloudforce One intelligence request thread.
 
         Args:
           account_id: Identifier.
@@ -159,7 +159,7 @@ class MessageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageDeleteResponse:
         """
-        Delete a Request Message
+        Removes a message from a Cloudforce One intelligence request thread.
 
         Args:
           account_id: Identifier.
@@ -205,7 +205,7 @@ class MessageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Message]:
         """
-        List Request Messages
+        Lists messages in a Cloudforce One intelligence request conversation.
 
         Args:
           account_id: Identifier.
@@ -292,7 +292,7 @@ class AsyncMessageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
-        Create a New Request Message
+        Adds a message to a Cloudforce One intelligence request conversation.
 
         Args:
           account_id: Identifier.
@@ -341,7 +341,7 @@ class AsyncMessageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
-        Update a Request Message
+        Updates a message in a Cloudforce One intelligence request thread.
 
         Args:
           account_id: Identifier.
@@ -389,7 +389,7 @@ class AsyncMessageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageDeleteResponse:
         """
-        Delete a Request Message
+        Removes a message from a Cloudforce One intelligence request thread.
 
         Args:
           account_id: Identifier.
@@ -435,7 +435,7 @@ class AsyncMessageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Message, AsyncSinglePage[Message]]:
         """
-        List Request Messages
+        Lists messages in a Cloudforce One intelligence request conversation.
 
         Args:
           account_id: Identifier.
