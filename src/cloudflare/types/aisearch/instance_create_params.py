@@ -15,6 +15,7 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
+    "MetadataSearchForAgents",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -104,6 +105,9 @@ class InstanceCreateParams(TypedDict, total=False):
     ]
 
     fusion_method: Literal["max", "rrf"]
+
+    hybrid_search_enabled: bool
+    """Deprecated — use index_method instead."""
 
     index_method: IndexMethod
     """Controls which storage backends are used during indexing.
@@ -210,8 +214,18 @@ class IndexingOptions(TypedDict, total=False):
     """
 
 
+class MetadataSearchForAgents(TypedDict, total=False):
+    hostname: Required[str]
+
+    zone_id: Required[str]
+
+    zone_name: Required[str]
+
+
 class Metadata(TypedDict, total=False):
     created_from_aisearch_wizard: bool
+
+    search_for_agents: MetadataSearchForAgents
 
     worker_domain: str
 
@@ -288,8 +302,7 @@ class RetrievalOptions(TypedDict, total=False):
 
     'and' restricts candidates to documents containing all query terms; 'or'
     includes any document containing at least one term, ranked by BM25 relevance.
-    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
-    and map to 'and' and 'or' respectively.
+    Defaults to 'and'.
     """
 
 

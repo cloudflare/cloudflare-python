@@ -55,6 +55,7 @@ class TestInstances:
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
+            hybrid_search_enabled=True,
             index_method={
                 "keyword": True,
                 "vector": True,
@@ -63,6 +64,11 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -207,6 +213,11 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
@@ -603,12 +614,6 @@ class TestInstances:
         instance = client.aisearch.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -617,12 +622,6 @@ class TestInstances:
         instance = client.aisearch.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
             aisearch_options={
                 "cache": {
                     "cache_threshold": "super_strict_match",
@@ -655,6 +654,13 @@ class TestInstances:
                     "return_on_failure": True,
                 },
             },
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            query="x",
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -663,12 +669,6 @@ class TestInstances:
         response = client.aisearch.instances.with_raw_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -681,12 +681,6 @@ class TestInstances:
         with client.aisearch.instances.with_streaming_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -702,24 +696,12 @@ class TestInstances:
             client.aisearch.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="",
-                messages=[
-                    {
-                        "content": "content",
-                        "role": "system",
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.instances.with_raw_response.search(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                messages=[
-                    {
-                        "content": "content",
-                        "role": "system",
-                    }
-                ],
             )
 
     @parametrize
@@ -804,6 +786,7 @@ class TestAsyncInstances:
             ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             fusion_method="max",
+            hybrid_search_enabled=True,
             index_method={
                 "keyword": True,
                 "vector": True,
@@ -812,6 +795,11 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -956,6 +944,11 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
@@ -1352,12 +1345,6 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -1366,12 +1353,6 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
             aisearch_options={
                 "cache": {
                     "cache_threshold": "super_strict_match",
@@ -1404,6 +1385,13 @@ class TestAsyncInstances:
                     "return_on_failure": True,
                 },
             },
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            query="x",
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -1412,12 +1400,6 @@ class TestAsyncInstances:
         response = await async_client.aisearch.instances.with_raw_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -1430,12 +1412,6 @@ class TestAsyncInstances:
         async with async_client.aisearch.instances.with_streaming_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            messages=[
-                {
-                    "content": "content",
-                    "role": "system",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1451,24 +1427,12 @@ class TestAsyncInstances:
             await async_client.aisearch.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="",
-                messages=[
-                    {
-                        "content": "content",
-                        "role": "system",
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.instances.with_raw_response.search(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                messages=[
-                    {
-                        "content": "content",
-                        "role": "system",
-                    }
-                ],
             )
 
     @parametrize

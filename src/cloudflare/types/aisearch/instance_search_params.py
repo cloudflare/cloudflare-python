@@ -9,31 +9,28 @@ from ..._utils import PropertyInfo
 
 __all__ = [
     "InstanceSearchParams",
-    "Message",
     "AISearchOptions",
     "AISearchOptionsCache",
     "AISearchOptionsQueryRewrite",
     "AISearchOptionsReranking",
     "AISearchOptionsRetrieval",
     "AISearchOptionsRetrievalBoostBy",
+    "Message",
 ]
 
 
 class InstanceSearchParams(TypedDict, total=False):
     account_id: Required[str]
 
-    messages: Required[Iterable[Message]]
-
     aisearch_options: Annotated[AISearchOptions, PropertyInfo(alias="ai_search_options")]
 
+    messages: Iterable[Message]
 
-class MessageTyped(TypedDict, total=False):
-    content: Required[Optional[str]]
+    query: str
+    """A simple text query string.
 
-    role: Required[Literal["system", "developer", "user", "assistant", "tool"]]
-
-
-Message: TypeAlias = Union[MessageTyped, Dict[str, object]]
+    Alternative to 'messages' — provide either this or 'messages', not both.
+    """
 
 
 class AISearchOptionsCache(TypedDict, total=False):
@@ -128,8 +125,7 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
 
     'and' restricts candidates to documents containing all query terms; 'or'
     includes any document containing at least one term, ranked by BM25 relevance.
-    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
-    and map to 'and' and 'or' respectively.
+    Defaults to 'and'.
     """
 
     match_threshold: float
@@ -149,3 +145,12 @@ class AISearchOptions(TypedDict, total=False):
     reranking: AISearchOptionsReranking
 
     retrieval: AISearchOptionsRetrieval
+
+
+class MessageTyped(TypedDict, total=False):
+    content: Required[Optional[str]]
+
+    role: Required[Literal["system", "developer", "user", "assistant", "tool"]]
+
+
+Message: TypeAlias = Union[MessageTyped, Dict[str, object]]

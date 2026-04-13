@@ -134,6 +134,7 @@ class InstancesResource(SyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         index_method: instance_create_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
@@ -198,6 +199,8 @@ class InstancesResource(SyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          hybrid_search_enabled: Deprecated — use index_method instead.
+
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -229,6 +232,7 @@ class InstancesResource(SyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
@@ -723,8 +727,9 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        messages: Iterable[instance_search_params.Message],
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
+        messages: Iterable[instance_search_params.Message] | Omit = omit,
+        query: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -738,6 +743,9 @@ class InstancesResource(SyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          query: A simple text query string. Alternative to 'messages' — provide either this or
+              'messages', not both.
 
           extra_headers: Send extra headers
 
@@ -755,8 +763,9 @@ class InstancesResource(SyncAPIResource):
             f"/accounts/{account_id}/ai-search/instances/{id}/search",
             body=maybe_transform(
                 {
-                    "messages": messages,
                     "aisearch_options": aisearch_options,
+                    "messages": messages,
+                    "query": query,
                 },
                 instance_search_params.InstanceSearchParams,
             ),
@@ -900,6 +909,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         ]
         | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         index_method: instance_create_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_create_params.IndexingOptions] | Omit = omit,
         max_num_results: int | Omit = omit,
@@ -964,6 +974,8 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          hybrid_search_enabled: Deprecated — use index_method instead.
+
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -995,6 +1007,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "fusion_method": fusion_method,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "index_method": index_method,
                     "indexing_options": indexing_options,
                     "max_num_results": max_num_results,
@@ -1489,8 +1502,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        messages: Iterable[instance_search_params.Message],
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
+        messages: Iterable[instance_search_params.Message] | Omit = omit,
+        query: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1504,6 +1518,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          query: A simple text query string. Alternative to 'messages' — provide either this or
+              'messages', not both.
 
           extra_headers: Send extra headers
 
@@ -1521,8 +1538,9 @@ class AsyncInstancesResource(AsyncAPIResource):
             f"/accounts/{account_id}/ai-search/instances/{id}/search",
             body=await async_maybe_transform(
                 {
-                    "messages": messages,
                     "aisearch_options": aisearch_options,
+                    "messages": messages,
+                    "query": query,
                 },
                 instance_search_params.InstanceSearchParams,
             ),

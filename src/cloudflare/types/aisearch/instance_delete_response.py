@@ -15,6 +15,7 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
+    "MetadataSearchForAgents",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -61,8 +62,18 @@ class IndexingOptions(BaseModel):
     """
 
 
+class MetadataSearchForAgents(BaseModel):
+    hostname: str
+
+    zone_id: str
+
+    zone_name: str
+
+
 class Metadata(BaseModel):
     created_from_aisearch_wizard: Optional[bool] = None
+
+    search_for_agents: Optional[MetadataSearchForAgents] = None
 
     worker_domain: Optional[str] = None
 
@@ -139,8 +150,7 @@ class RetrievalOptions(BaseModel):
 
     'and' restricts candidates to documents containing all query terms; 'or'
     includes any document containing at least one term, ranked by BM25 relevance.
-    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
-    and map to 'and' and 'or' respectively.
+    Defaults to 'and'.
     """
 
 

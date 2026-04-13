@@ -163,8 +163,7 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
 
     'and' restricts candidates to documents containing all query terms; 'or'
     includes any document containing at least one term, ranked by BM25 relevance.
-    Defaults to 'and'. Legacy values 'exact_match' and 'fuzzy_match' are accepted
-    and map to 'and' and 'or' respectively.
+    Defaults to 'and'.
     """
 
     match_threshold: float
