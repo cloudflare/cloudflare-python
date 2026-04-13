@@ -79,7 +79,7 @@ class EmailSendingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendResponse:
         """
-        Send an email using the builder.
+        Send an email
 
         Args:
           account_id: Identifier of the account.
@@ -156,7 +156,7 @@ class EmailSendingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendRawResponse:
         """
-        Send a raw MIME email message.
+        Send a raw MIME email
 
         Args:
           account_id: Identifier of the account.
@@ -247,7 +247,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendResponse:
         """
-        Send an email using the builder.
+        Send an email
 
         Args:
           account_id: Identifier of the account.
@@ -324,7 +324,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendRawResponse:
         """
-        Send a raw MIME email message.
+        Send a raw MIME email
 
         Args:
           account_id: Identifier of the account.

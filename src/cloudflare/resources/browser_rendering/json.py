@@ -124,11 +124,10 @@ class JsonResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JsonCreateResponse:
-        """Use AI to extract structured JSON from a webpage.
+        """Gets json from a webpage from a provided URL or HTML.
 
-        Provide a `prompt` describing
-        what to extract, or a `response_format` with a JSON schema for typed output.
-        Supports both URL and raw HTML input.
+        Pass `prompt` or `schema`
+        in the body. Control page loading with `gotoOptions` and `waitFor*` options.
 
         Args:
           account_id: Account ID.
@@ -266,11 +265,10 @@ class JsonResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JsonCreateResponse:
-        """Use AI to extract structured JSON from a webpage.
+        """Gets json from a webpage from a provided URL or HTML.
 
-        Provide a `prompt` describing
-        what to extract, or a `response_format` with a JSON schema for typed output.
-        Supports both URL and raw HTML input.
+        Pass `prompt` or `schema`
+        in the body. Control page loading with `gotoOptions` and `waitFor*` options.
 
         Args:
           account_id: Account ID.
@@ -563,11 +561,10 @@ class AsyncJsonResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JsonCreateResponse:
-        """Use AI to extract structured JSON from a webpage.
+        """Gets json from a webpage from a provided URL or HTML.
 
-        Provide a `prompt` describing
-        what to extract, or a `response_format` with a JSON schema for typed output.
-        Supports both URL and raw HTML input.
+        Pass `prompt` or `schema`
+        in the body. Control page loading with `gotoOptions` and `waitFor*` options.
 
         Args:
           account_id: Account ID.
@@ -705,11 +702,10 @@ class AsyncJsonResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JsonCreateResponse:
-        """Use AI to extract structured JSON from a webpage.
+        """Gets json from a webpage from a provided URL or HTML.
 
-        Provide a `prompt` describing
-        what to extract, or a `response_format` with a JSON schema for typed output.
-        Supports both URL and raw HTML input.
+        Pass `prompt` or `schema`
+        in the body. Control page loading with `gotoOptions` and `waitFor*` options.
 
         Args:
           account_id: Account ID.
