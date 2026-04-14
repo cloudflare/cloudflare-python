@@ -151,16 +151,15 @@ class InstancesResource(SyncAPIResource):
         Lists all instances of a workflow with their execution status.
 
         Args:
-          cursor: `page` and `cursor` are mutually exclusive, use one or the other.
+          cursor: Opaque token for cursor-based pagination. Mutually exclusive with `page`.
 
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
 
-          direction: should only be used when `cursor` is used, defines a new direction for the
-              cursor
+          direction: Defines the direction for cursor-based pagination.
 
-          page: `page` and `cursor` are mutually exclusive, use one or the other.
+          page: Deprecated: use `cursor` for pagination instead.
 
           extra_headers: Send extra headers
 
@@ -400,16 +399,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         Lists all instances of a workflow with their execution status.
 
         Args:
-          cursor: `page` and `cursor` are mutually exclusive, use one or the other.
+          cursor: Opaque token for cursor-based pagination. Mutually exclusive with `page`.
 
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
 
-          direction: should only be used when `cursor` is used, defines a new direction for the
-              cursor
+          direction: Defines the direction for cursor-based pagination.
 
-          page: `page` and `cursor` are mutually exclusive, use one or the other.
+          page: Deprecated: use `cursor` for pagination instead.
 
           extra_headers: Send extra headers
 

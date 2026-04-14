@@ -15,7 +15,7 @@ class InstanceListParams(TypedDict, total=False):
     account_id: Required[str]
 
     cursor: str
-    """`page` and `cursor` are mutually exclusive, use one or the other."""
+    """Opaque token for cursor-based pagination. Mutually exclusive with `page`."""
 
     date_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Accepts ISO 8601 with no timezone offsets and in UTC."""
@@ -24,13 +24,10 @@ class InstanceListParams(TypedDict, total=False):
     """Accepts ISO 8601 with no timezone offsets and in UTC."""
 
     direction: Literal["asc", "desc"]
-    """
-    should only be used when `cursor` is used, defines a new direction for the
-    cursor
-    """
+    """Defines the direction for cursor-based pagination."""
 
     page: float
-    """`page` and `cursor` are mutually exclusive, use one or the other."""
+    """Deprecated: use `cursor` for pagination instead."""
 
     per_page: float
 
