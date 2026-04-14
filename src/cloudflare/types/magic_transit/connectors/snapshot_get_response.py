@@ -157,6 +157,9 @@ class Mount(BaseModel):
     available_bytes: Optional[float] = None
     """Available disk size (bytes)"""
 
+    available_inodes: Optional[float] = None
+    """Available inodes on filesystem"""
+
     is_read_only: Optional[bool] = None
     """Determines whether the disk is read-only"""
 
@@ -165,6 +168,9 @@ class Mount(BaseModel):
 
     total_bytes: Optional[float] = None
     """Total disk size (bytes)"""
+
+    total_inodes: Optional[float] = None
+    """Total inodes on filesystem"""
 
 
 class Netdev(BaseModel):
