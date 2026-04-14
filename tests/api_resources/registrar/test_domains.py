@@ -24,7 +24,7 @@ class TestDomains:
     def test_method_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = client.registrar.domains.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -34,7 +34,7 @@ class TestDomains:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = client.registrar.domains.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 auto_renew=True,
                 locked=False,
@@ -47,7 +47,7 @@ class TestDomains:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.registrar.domains.with_raw_response.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -60,7 +60,7 @@ class TestDomains:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.registrar.domains.with_streaming_response.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -76,7 +76,7 @@ class TestDomains:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 client.registrar.domains.with_raw_response.update(
-                    domain_name="cloudflare.com",
+                    domain_name="example.com",
                     account_id="",
                 )
 
@@ -133,7 +133,7 @@ class TestDomains:
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = client.registrar.domains.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -143,7 +143,7 @@ class TestDomains:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.registrar.domains.with_raw_response.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -156,7 +156,7 @@ class TestDomains:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.registrar.domains.with_streaming_response.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -172,7 +172,7 @@ class TestDomains:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 client.registrar.domains.with_raw_response.get(
-                    domain_name="cloudflare.com",
+                    domain_name="example.com",
                     account_id="",
                 )
 
@@ -192,7 +192,7 @@ class TestAsyncDomains:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = await async_client.registrar.domains.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -202,7 +202,7 @@ class TestAsyncDomains:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = await async_client.registrar.domains.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 auto_renew=True,
                 locked=False,
@@ -215,7 +215,7 @@ class TestAsyncDomains:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.registrar.domains.with_raw_response.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -228,7 +228,7 @@ class TestAsyncDomains:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.registrar.domains.with_streaming_response.update(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -244,7 +244,7 @@ class TestAsyncDomains:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 await async_client.registrar.domains.with_raw_response.update(
-                    domain_name="cloudflare.com",
+                    domain_name="example.com",
                     account_id="",
                 )
 
@@ -301,7 +301,7 @@ class TestAsyncDomains:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             domain = await async_client.registrar.domains.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -311,7 +311,7 @@ class TestAsyncDomains:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.registrar.domains.with_raw_response.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -324,7 +324,7 @@ class TestAsyncDomains:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.registrar.domains.with_streaming_response.get(
-                domain_name="cloudflare.com",
+                domain_name="example.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -340,7 +340,7 @@ class TestAsyncDomains:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 await async_client.registrar.domains.with_raw_response.get(
-                    domain_name="cloudflare.com",
+                    domain_name="example.com",
                     account_id="",
                 )
 

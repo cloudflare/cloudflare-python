@@ -70,7 +70,10 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          domain_name: Domain name.
+          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
+              `mybrand.app`). The domain name uniquely identifies a registration — the same
+              domain cannot be registered twice, making it a natural idempotency key for
+              registration requests.
 
           auto_renew: Auto-renew controls whether subscription is automatically renewed upon domain
               expiration.
@@ -171,7 +174,10 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          domain_name: Domain name.
+          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
+              `mybrand.app`). The domain name uniquely identifies a registration — the same
+              domain cannot be registered twice, making it a natural idempotency key for
+              registration requests.
 
           extra_headers: Send extra headers
 
@@ -242,7 +248,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          domain_name: Domain name.
+          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
+              `mybrand.app`). The domain name uniquely identifies a registration — the same
+              domain cannot be registered twice, making it a natural idempotency key for
+              registration requests.
 
           auto_renew: Auto-renew controls whether subscription is automatically renewed upon domain
               expiration.
@@ -343,7 +352,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          domain_name: Domain name.
+          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
+              `mybrand.app`). The domain name uniquely identifies a registration — the same
+              domain cannot be registered twice, making it a natural idempotency key for
+              registration requests.
 
           extra_headers: Send extra headers
 

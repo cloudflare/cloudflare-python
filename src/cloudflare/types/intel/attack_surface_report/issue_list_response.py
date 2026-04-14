@@ -22,6 +22,12 @@ class Issue(BaseModel):
 
     dismissed: Optional[bool] = None
 
+    has_extended_context: Optional[bool] = None
+    """
+    Indicates whether the insight has a large payload that requires fetching via the
+    context endpoint.
+    """
+
     issue_class: Optional[str] = None
 
     issue_type: Optional[IssueType] = None
@@ -36,9 +42,18 @@ class Issue(BaseModel):
 
     since: Optional[datetime] = None
 
+    status: Optional[Literal["active", "resolved"]] = None
+    """The current status of the insight."""
+
     subject: Optional[str] = None
 
     timestamp: Optional[datetime] = None
+
+    user_classification: Optional[Literal["false_positive", "accept_risk", "other"]] = None
+    """User-defined classification for the insight.
+
+    Can be 'false_positive', 'accept_risk', 'other', or null.
+    """
 
 
 class IssueListResponse(BaseModel):
