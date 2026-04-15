@@ -7998,6 +7998,18 @@ Methods:
 
 # Radar
 
+## AgentReadiness
+
+Types:
+
+```python
+from cloudflare.types.radar import AgentReadinessSummaryResponse
+```
+
+Methods:
+
+- <code title="get /radar/agent_readiness/summary/{dimension}">client.radar.agent_readiness.<a href="./src/cloudflare/resources/radar/agent_readiness.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/agent_readiness_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/agent_readiness_summary_response.py">AgentReadinessSummaryResponse</a></code>
+
 ## AI
 
 ### ToMarkdown
@@ -8108,6 +8120,22 @@ Methods:
 - <code title="get /radar/ai/bots/timeseries">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_timeseries_response.py">TimeseriesGroupTimeseriesResponse</a></code>
 - <code title="get /radar/ai/bots/timeseries_groups/{dimension}">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_response.py">TimeseriesGroupTimeseriesGroupsResponse</a></code>
 - <code title="get /radar/ai/bots/timeseries_groups/user_agent">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">user_agent</a>(\*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_user_agent_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_user_agent_response.py">TimeseriesGroupUserAgentResponse</a></code>
+
+### MarkdownForAgents
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import (
+    MarkdownForAgentSummaryResponse,
+    MarkdownForAgentTimeseriesResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/ai/markdown_for_agents/summary">client.radar.ai.markdown_for_agents.<a href="./src/cloudflare/resources/radar/ai/markdown_for_agents.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/ai/markdown_for_agent_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/markdown_for_agent_summary_response.py">MarkdownForAgentSummaryResponse</a></code>
+- <code title="get /radar/ai/markdown_for_agents/timeseries">client.radar.ai.markdown_for_agents.<a href="./src/cloudflare/resources/radar/ai/markdown_for_agents.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ai/markdown_for_agent_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/markdown_for_agent_timeseries_response.py">MarkdownForAgentTimeseriesResponse</a></code>
 
 ## CT
 

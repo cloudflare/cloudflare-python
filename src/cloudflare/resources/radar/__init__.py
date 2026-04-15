@@ -168,6 +168,14 @@ from .verified_bots import (
     VerifiedBotsResourceWithStreamingResponse,
     AsyncVerifiedBotsResourceWithStreamingResponse,
 )
+from .agent_readiness import (
+    AgentReadinessResource,
+    AsyncAgentReadinessResource,
+    AgentReadinessResourceWithRawResponse,
+    AsyncAgentReadinessResourceWithRawResponse,
+    AgentReadinessResourceWithStreamingResponse,
+    AsyncAgentReadinessResourceWithStreamingResponse,
+)
 from .traffic_anomalies import (
     TrafficAnomaliesResource,
     AsyncTrafficAnomaliesResource,
@@ -194,6 +202,12 @@ from .tcp_resets_timeouts import (
 )
 
 __all__ = [
+    "AgentReadinessResource",
+    "AsyncAgentReadinessResource",
+    "AgentReadinessResourceWithRawResponse",
+    "AsyncAgentReadinessResourceWithRawResponse",
+    "AgentReadinessResourceWithStreamingResponse",
+    "AsyncAgentReadinessResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

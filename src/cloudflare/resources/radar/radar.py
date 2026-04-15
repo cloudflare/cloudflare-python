@@ -92,6 +92,14 @@ from .geolocations import (
     GeolocationsResourceWithStreamingResponse,
     AsyncGeolocationsResourceWithStreamingResponse,
 )
+from .agent_readiness import (
+    AgentReadinessResource,
+    AsyncAgentReadinessResource,
+    AgentReadinessResourceWithRawResponse,
+    AsyncAgentReadinessResourceWithRawResponse,
+    AgentReadinessResourceWithStreamingResponse,
+    AsyncAgentReadinessResourceWithStreamingResponse,
+)
 from .attacks.attacks import (
     AttacksResource,
     AsyncAttacksResource,
@@ -193,6 +201,10 @@ __all__ = ["RadarResource", "AsyncRadarResource"]
 
 
 class RadarResource(SyncAPIResource):
+    @cached_property
+    def agent_readiness(self) -> AgentReadinessResource:
+        return AgentReadinessResource(self._client)
+
     @cached_property
     def ai(self) -> AIResource:
         return AIResource(self._client)
@@ -306,6 +318,10 @@ class RadarResource(SyncAPIResource):
 
 
 class AsyncRadarResource(AsyncAPIResource):
+    @cached_property
+    def agent_readiness(self) -> AsyncAgentReadinessResource:
+        return AsyncAgentReadinessResource(self._client)
+
     @cached_property
     def ai(self) -> AsyncAIResource:
         return AsyncAIResource(self._client)
@@ -423,6 +439,10 @@ class RadarResourceWithRawResponse:
         self._radar = radar
 
     @cached_property
+    def agent_readiness(self) -> AgentReadinessResourceWithRawResponse:
+        return AgentReadinessResourceWithRawResponse(self._radar.agent_readiness)
+
+    @cached_property
     def ai(self) -> AIResourceWithRawResponse:
         return AIResourceWithRawResponse(self._radar.ai)
 
@@ -518,6 +538,10 @@ class RadarResourceWithRawResponse:
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
+
+    @cached_property
+    def agent_readiness(self) -> AsyncAgentReadinessResourceWithRawResponse:
+        return AsyncAgentReadinessResourceWithRawResponse(self._radar.agent_readiness)
 
     @cached_property
     def ai(self) -> AsyncAIResourceWithRawResponse:
@@ -617,6 +641,10 @@ class RadarResourceWithStreamingResponse:
         self._radar = radar
 
     @cached_property
+    def agent_readiness(self) -> AgentReadinessResourceWithStreamingResponse:
+        return AgentReadinessResourceWithStreamingResponse(self._radar.agent_readiness)
+
+    @cached_property
     def ai(self) -> AIResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._radar.ai)
 
@@ -712,6 +740,10 @@ class RadarResourceWithStreamingResponse:
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
+
+    @cached_property
+    def agent_readiness(self) -> AsyncAgentReadinessResourceWithStreamingResponse:
+        return AsyncAgentReadinessResourceWithStreamingResponse(self._radar.agent_readiness)
 
     @cached_property
     def ai(self) -> AsyncAIResourceWithStreamingResponse:
