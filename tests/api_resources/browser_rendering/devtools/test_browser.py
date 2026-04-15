@@ -119,6 +119,7 @@ class TestBrowser:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_method_connect(self, client: Cloudflare) -> None:
         browser = client.browser_rendering.devtools.browser.connect(
@@ -127,6 +128,7 @@ class TestBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_method_connect_with_all_params(self, client: Cloudflare) -> None:
         browser = client.browser_rendering.devtools.browser.connect(
@@ -138,6 +140,7 @@ class TestBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_raw_response_connect(self, client: Cloudflare) -> None:
         response = client.browser_rendering.devtools.browser.with_raw_response.connect(
@@ -150,6 +153,7 @@ class TestBrowser:
         browser = response.parse()
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_streaming_response_connect(self, client: Cloudflare) -> None:
         with client.browser_rendering.devtools.browser.with_streaming_response.connect(
@@ -164,6 +168,7 @@ class TestBrowser:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_path_params_connect(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -178,6 +183,7 @@ class TestBrowser:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_method_launch(self, client: Cloudflare) -> None:
         browser = client.browser_rendering.devtools.browser.launch(
@@ -185,6 +191,7 @@ class TestBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_method_launch_with_all_params(self, client: Cloudflare) -> None:
         browser = client.browser_rendering.devtools.browser.launch(
@@ -195,6 +202,7 @@ class TestBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_raw_response_launch(self, client: Cloudflare) -> None:
         response = client.browser_rendering.devtools.browser.with_raw_response.launch(
@@ -206,6 +214,7 @@ class TestBrowser:
         browser = response.parse()
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_streaming_response_launch(self, client: Cloudflare) -> None:
         with client.browser_rendering.devtools.browser.with_streaming_response.launch(
@@ -219,6 +228,7 @@ class TestBrowser:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     def test_path_params_launch(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -425,6 +435,7 @@ class TestAsyncBrowser:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_method_connect(self, async_client: AsyncCloudflare) -> None:
         browser = await async_client.browser_rendering.devtools.browser.connect(
@@ -433,6 +444,7 @@ class TestAsyncBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_method_connect_with_all_params(self, async_client: AsyncCloudflare) -> None:
         browser = await async_client.browser_rendering.devtools.browser.connect(
@@ -444,6 +456,7 @@ class TestAsyncBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_raw_response_connect(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.devtools.browser.with_raw_response.connect(
@@ -456,6 +469,7 @@ class TestAsyncBrowser:
         browser = await response.parse()
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_streaming_response_connect(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.devtools.browser.with_streaming_response.connect(
@@ -470,6 +484,7 @@ class TestAsyncBrowser:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_path_params_connect(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -484,6 +499,7 @@ class TestAsyncBrowser:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_method_launch(self, async_client: AsyncCloudflare) -> None:
         browser = await async_client.browser_rendering.devtools.browser.launch(
@@ -491,6 +507,7 @@ class TestAsyncBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_method_launch_with_all_params(self, async_client: AsyncCloudflare) -> None:
         browser = await async_client.browser_rendering.devtools.browser.launch(
@@ -501,6 +518,7 @@ class TestAsyncBrowser:
         )
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_raw_response_launch(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.devtools.browser.with_raw_response.launch(
@@ -512,6 +530,7 @@ class TestAsyncBrowser:
         browser = await response.parse()
         assert browser is None
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_streaming_response_launch(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.devtools.browser.with_streaming_response.launch(
@@ -525,6 +544,7 @@ class TestAsyncBrowser:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
     async def test_path_params_launch(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

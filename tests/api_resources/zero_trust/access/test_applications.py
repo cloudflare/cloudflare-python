@@ -1128,6 +1128,11 @@ class TestApplications:
                         }
                     },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "mfa_config": {
+                        "allowed_authenticators": ["ssh_piv_key"],
+                        "mfa_disabled": False,
+                        "session_duration": "24h",
+                    },
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
@@ -2973,6 +2978,11 @@ class TestApplications:
                         }
                     },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "mfa_config": {
+                        "allowed_authenticators": ["ssh_piv_key"],
+                        "mfa_disabled": False,
+                        "session_duration": "24h",
+                    },
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
@@ -5033,6 +5043,11 @@ class TestAsyncApplications:
                         }
                     },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "mfa_config": {
+                        "allowed_authenticators": ["ssh_piv_key"],
+                        "mfa_disabled": False,
+                        "session_duration": "24h",
+                    },
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
@@ -6878,6 +6893,11 @@ class TestAsyncApplications:
                         }
                     },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "mfa_config": {
+                        "allowed_authenticators": ["ssh_piv_key"],
+                        "mfa_disabled": False,
+                        "session_duration": "24h",
+                    },
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],

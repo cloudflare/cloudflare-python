@@ -118,6 +118,7 @@ __all__ = [
     "InfrastructureApplicationPolicy",
     "InfrastructureApplicationPolicyConnectionRules",
     "InfrastructureApplicationPolicyConnectionRulesSSH",
+    "InfrastructureApplicationPolicyMfaConfig",
     "BrowserRDPApplication",
     "BrowserRDPApplicationTargetCriterion",
     "BrowserRDPApplicationDestination",
@@ -3062,6 +3063,31 @@ class InfrastructureApplicationPolicyConnectionRules(BaseModel):
     """
 
 
+class InfrastructureApplicationPolicyMfaConfig(BaseModel):
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure applications.
+    """
+
+    allowed_authenticators: Optional[List[Literal["ssh_piv_key"]]] = None
+    """Lists the MFA methods that users can authenticate with.
+
+    For infrastructure applications, only `ssh_piv_key` is supported.
+    """
+
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: Optional[str] = None
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples: `5m` or `24h`.
+    """
+
+
 class InfrastructureApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
@@ -3090,6 +3116,12 @@ class InfrastructureApplicationPolicy(BaseModel):
     """Rules evaluated with an OR logical operator.
 
     A user needs to meet only one of the Include rules.
+    """
+
+    mfa_config: Optional[InfrastructureApplicationPolicyMfaConfig] = None
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure
+    applications.
     """
 
     name: Optional[str] = None
