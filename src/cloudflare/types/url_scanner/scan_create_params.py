@@ -16,6 +16,9 @@ class ScanCreateParams(TypedDict, total=False):
 
     url: Required[str]
 
+    agent_readiness: Annotated[bool, PropertyInfo(alias="agentReadiness")]
+    """Enable agent readiness checks."""
+
     country: Literal[
         "AF",
         "AL",

@@ -61,6 +61,7 @@ class ScansResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
+        agent_readiness: bool | Omit = omit,
         country: Literal[
             "AF",
             "AL",
@@ -279,6 +280,8 @@ class ScansResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          agent_readiness: Enable agent readiness checks.
+
           country: Country to geo egress from
 
           custom_headers: Set custom headers.
@@ -306,6 +309,7 @@ class ScansResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "url": url,
+                    "agent_readiness": agent_readiness,
                     "country": country,
                     "customagent": customagent,
                     "custom_headers": custom_headers,
@@ -621,6 +625,7 @@ class AsyncScansResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
+        agent_readiness: bool | Omit = omit,
         country: Literal[
             "AF",
             "AL",
@@ -839,6 +844,8 @@ class AsyncScansResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          agent_readiness: Enable agent readiness checks.
+
           country: Country to geo egress from
 
           custom_headers: Set custom headers.
@@ -866,6 +873,7 @@ class AsyncScansResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "url": url,
+                    "agent_readiness": agent_readiness,
                     "country": country,
                     "customagent": customagent,
                     "custom_headers": custom_headers,

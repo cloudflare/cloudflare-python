@@ -21,6 +21,9 @@ class ScanBulkCreateParams(TypedDict, total=False):
 class Body(TypedDict, total=False):
     url: Required[str]
 
+    agent_readiness: Annotated[bool, PropertyInfo(alias="agentReadiness")]
+    """Enable agent readiness checks."""
+
     customagent: str
 
     custom_headers: Annotated[Dict[str, str], PropertyInfo(alias="customHeaders")]
