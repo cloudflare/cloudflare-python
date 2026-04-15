@@ -7123,6 +7123,21 @@ Methods:
 - <code title="put /accounts/{account_id}/dlp/payload_log">client.zero_trust.dlp.payload_logs.<a href="./src/cloudflare/resources/zero_trust/dlp/payload_logs.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/payload_log_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/payload_log_update_response.py">Optional[PayloadLogUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/dlp/payload_log">client.zero_trust.dlp.payload_logs.<a href="./src/cloudflare/resources/zero_trust/dlp/payload_logs.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/payload_log_get_response.py">Optional[PayloadLogGetResponse]</a></code>
 
+### Settings
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import DLPSettings
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/dlp/settings">client.zero_trust.dlp.settings.<a href="./src/cloudflare/resources/zero_trust/dlp/settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/dlp_settings.py">Optional[DLPSettings]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/settings">client.zero_trust.dlp.settings.<a href="./src/cloudflare/resources/zero_trust/dlp/settings.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/dlp_settings.py">Optional[DLPSettings]</a></code>
+- <code title="patch /accounts/{account_id}/dlp/settings">client.zero_trust.dlp.settings.<a href="./src/cloudflare/resources/zero_trust/dlp/settings.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/dlp_settings.py">Optional[DLPSettings]</a></code>
+- <code title="get /accounts/{account_id}/dlp/settings">client.zero_trust.dlp.settings.<a href="./src/cloudflare/resources/zero_trust/dlp/settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/dlp_settings.py">Optional[DLPSettings]</a></code>
+
 ### Email
 
 #### AccountMapping
