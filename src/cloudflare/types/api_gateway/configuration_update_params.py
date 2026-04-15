@@ -14,7 +14,7 @@ __all__ = [
 
 
 class ConfigurationUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     auth_id_characteristics: Required[Iterable[AuthIDCharacteristic]]

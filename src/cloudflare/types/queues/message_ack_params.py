@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["MessageAckParams", "Ack", "Retry"]
 
 
 class MessageAckParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     acks: Iterable[Ack]

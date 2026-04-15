@@ -10,7 +10,7 @@ __all__ = ["LabelBulkCreateParams", "Selector", "SelectorInclude", "Managed", "U
 
 
 class LabelBulkCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     selector: Required[Selector]

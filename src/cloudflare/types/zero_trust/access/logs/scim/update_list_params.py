@@ -13,7 +13,7 @@ __all__ = ["UpdateListParams"]
 
 
 class UpdateListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     idp_id: Required[SequenceNotStr[str]]

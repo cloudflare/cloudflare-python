@@ -9,7 +9,7 @@ __all__ = ["EventUpdateParams"]
 
 
 class EventUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     waiting_room_id: Required[str]

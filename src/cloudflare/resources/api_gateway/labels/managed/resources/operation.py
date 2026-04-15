@@ -48,7 +48,7 @@ class OperationResource(SyncAPIResource):
         self,
         name: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         selector: operation_update_params.Selector,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -75,6 +75,8 @@ class OperationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not name:
@@ -117,7 +119,7 @@ class AsyncOperationResource(AsyncAPIResource):
         self,
         name: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         selector: operation_update_params.Selector,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -144,6 +146,8 @@ class AsyncOperationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not name:

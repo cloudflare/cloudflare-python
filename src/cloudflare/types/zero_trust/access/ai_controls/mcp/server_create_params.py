@@ -9,7 +9,7 @@ __all__ = ["ServerCreateParams", "UpdatedPrompt", "UpdatedTool"]
 
 
 class ServerCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     id: Required[str]
     """server id"""

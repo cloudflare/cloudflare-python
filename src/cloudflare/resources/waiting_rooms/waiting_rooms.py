@@ -115,7 +115,7 @@ class WaitingRoomsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -473,6 +473,8 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -517,7 +519,7 @@ class WaitingRoomsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -875,6 +877,8 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -921,7 +925,7 @@ class WaitingRoomsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -943,6 +947,8 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -963,7 +969,7 @@ class WaitingRoomsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -1321,6 +1327,8 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -1367,7 +1375,7 @@ class WaitingRoomsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1389,6 +1397,8 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -1449,7 +1459,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -1807,6 +1817,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -1851,7 +1863,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -2209,6 +2221,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -2255,7 +2269,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2277,6 +2291,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -2297,7 +2313,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         host: str,
         name: str,
         new_users_per_minute: int,
@@ -2655,6 +2671,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -2701,7 +2719,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2723,6 +2741,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:

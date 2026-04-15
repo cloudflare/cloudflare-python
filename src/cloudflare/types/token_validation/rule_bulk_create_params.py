@@ -11,7 +11,7 @@ __all__ = ["RuleBulkCreateParams", "Body", "BodySelector", "BodySelectorExclude"
 
 
 class RuleBulkCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     body: Required[Iterable[Body]]

@@ -24,7 +24,7 @@ __all__ = [
 
 
 class MeetingCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     ai_config: AIConfig

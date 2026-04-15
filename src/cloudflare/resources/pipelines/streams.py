@@ -51,7 +51,7 @@ class StreamsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         format: stream_create_params.Format | Omit = omit,
         http: stream_create_params.HTTP | Omit = omit,
@@ -80,6 +80,8 @@ class StreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -108,7 +110,7 @@ class StreamsResource(SyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         http: stream_update_params.HTTP | Omit = omit,
         worker_binding: stream_update_params.WorkerBinding | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,6 +136,8 @@ class StreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
@@ -160,7 +164,7 @@ class StreamsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -187,6 +191,8 @@ class StreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -213,7 +219,7 @@ class StreamsResource(SyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -240,6 +246,8 @@ class StreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
@@ -261,7 +269,7 @@ class StreamsResource(SyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,6 +293,8 @@ class StreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
@@ -325,7 +335,7 @@ class AsyncStreamsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         format: stream_create_params.Format | Omit = omit,
         http: stream_create_params.HTTP | Omit = omit,
@@ -354,6 +364,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -382,7 +394,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         http: stream_update_params.HTTP | Omit = omit,
         worker_binding: stream_update_params.WorkerBinding | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -408,6 +420,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
@@ -434,7 +448,7 @@ class AsyncStreamsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -461,6 +475,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -487,7 +503,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -514,6 +530,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:
@@ -535,7 +553,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         stream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,6 +577,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not stream_id:

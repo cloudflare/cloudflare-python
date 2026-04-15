@@ -10,7 +10,7 @@ __all__ = ["WARPChangeEventGetParams"]
 
 
 class WARPChangeEventGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start time for the query in ISO (RFC3339 - ISO 8601) format"""

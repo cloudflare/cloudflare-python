@@ -12,7 +12,7 @@ __all__ = ["SettingEditParams", "Observability", "ObservabilityLogs", "Observabi
 
 
 class SettingEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     logpush: bool

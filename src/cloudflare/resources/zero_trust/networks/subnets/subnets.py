@@ -71,7 +71,7 @@ class SubnetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_family: Literal["v4", "v6"] | Omit = omit,
         comment: str | Omit = omit,
         existed_at: str | Omit = omit,
@@ -130,6 +130,8 @@ class SubnetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -192,7 +194,7 @@ class AsyncSubnetsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_family: Literal["v4", "v6"] | Omit = omit,
         comment: str | Omit = omit,
         existed_at: str | Omit = omit,
@@ -251,6 +253,8 @@ class AsyncSubnetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

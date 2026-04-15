@@ -50,7 +50,7 @@ class AccountTagsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -113,7 +113,7 @@ class AccountTagsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -168,13 +168,11 @@ class AccountTagsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "resource_id", "resource_type", "worker_id"], ["account_id", "resource_id", "resource_type"]
-    )
+    @required_args(["resource_id", "resource_type", "worker_id"], ["resource_id", "resource_type"])
     def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -229,6 +227,8 @@ class AccountTagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountTagUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
@@ -261,7 +261,7 @@ class AccountTagsResource(SyncAPIResource):
     def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -284,6 +284,8 @@ class AccountTagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -299,7 +301,7 @@ class AccountTagsResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -351,6 +353,8 @@ class AccountTagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -403,7 +407,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -466,7 +470,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -521,13 +525,11 @@ class AsyncAccountTagsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "resource_id", "resource_type", "worker_id"], ["account_id", "resource_id", "resource_type"]
-    )
+    @required_args(["resource_id", "resource_type", "worker_id"], ["resource_id", "resource_type"])
     async def update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -582,6 +584,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AccountTagUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
@@ -614,7 +618,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -637,6 +641,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -652,7 +658,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resource_id: str,
         resource_type: Literal[
             "access_application",
@@ -704,6 +710,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(

@@ -15,7 +15,7 @@ __all__ = ["TokenCreateParams", "Condition", "ConditionRequestIP"]
 
 
 class TokenCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     name: Required[str]

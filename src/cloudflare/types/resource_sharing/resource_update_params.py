@@ -8,7 +8,7 @@ __all__ = ["ResourceUpdateParams"]
 
 
 class ResourceUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier."""
 
     share_id: Required[str]

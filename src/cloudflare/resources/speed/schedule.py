@@ -51,7 +51,7 @@ class ScheduleResource(SyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         frequency: Literal["DAILY", "WEEKLY"] | Omit = omit,
         region: Literal[
             "asia-east1",
@@ -105,6 +105,8 @@ class ScheduleResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
@@ -132,7 +134,7 @@ class ScheduleResource(SyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -182,6 +184,8 @@ class ScheduleResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
@@ -203,7 +207,7 @@ class ScheduleResource(SyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -253,6 +257,8 @@ class ScheduleResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
@@ -295,7 +301,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         frequency: Literal["DAILY", "WEEKLY"] | Omit = omit,
         region: Literal[
             "asia-east1",
@@ -349,6 +355,8 @@ class AsyncScheduleResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
@@ -376,7 +384,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -426,6 +434,8 @@ class AsyncScheduleResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
@@ -447,7 +457,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         self,
         url: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         region: Literal[
             "asia-east1",
             "asia-northeast1",
@@ -497,6 +507,8 @@ class AsyncScheduleResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:

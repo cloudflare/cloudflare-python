@@ -24,7 +24,7 @@ __all__ = [
 
 
 class JobCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     overwrite: bool
 

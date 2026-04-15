@@ -10,7 +10,7 @@ __all__ = ["TotalTLSUpdateParams"]
 
 
 class TotalTLSUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     enabled: Required[bool]

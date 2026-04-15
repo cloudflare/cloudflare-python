@@ -8,7 +8,7 @@ __all__ = ["ServiceBindingCreateParams"]
 
 
 class ServiceBindingCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of a Cloudflare account."""
 
     cidr: Required[str]

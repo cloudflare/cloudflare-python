@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ...._types import SequenceNotStr
 
@@ -10,7 +10,7 @@ __all__ = ["OperationListParams"]
 
 
 class OperationListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     diff: bool

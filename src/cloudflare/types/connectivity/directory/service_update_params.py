@@ -35,7 +35,7 @@ __all__ = [
 
 
 class InfraHTTPServiceConfig(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     host: Required[InfraHTTPServiceConfigHost]
 
@@ -122,7 +122,7 @@ class InfraHTTPServiceConfigTLSSettings(TypedDict, total=False):
 
 
 class InfraTCPServiceConfig(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     host: Required[InfraTCPServiceConfigHost]
 

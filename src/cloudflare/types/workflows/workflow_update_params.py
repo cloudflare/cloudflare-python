@@ -8,7 +8,7 @@ __all__ = ["WorkflowUpdateParams", "Limits"]
 
 
 class WorkflowUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     class_name: Required[str]
 

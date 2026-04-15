@@ -55,8 +55,8 @@ class GroupsResource(SyncAPIResource):
         *,
         include: Iterable[AccessRuleParam],
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         is_default: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -96,6 +96,10 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -136,8 +140,8 @@ class GroupsResource(SyncAPIResource):
         *,
         include: Iterable[AccessRuleParam],
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         is_default: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -181,6 +185,10 @@ class GroupsResource(SyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -218,8 +226,8 @@ class GroupsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -255,6 +263,10 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -292,8 +304,8 @@ class GroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,6 +333,10 @@ class GroupsResource(SyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -349,8 +365,8 @@ class GroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -378,6 +394,10 @@ class GroupsResource(SyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -428,8 +448,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         *,
         include: Iterable[AccessRuleParam],
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         is_default: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -469,6 +489,10 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -509,8 +533,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         *,
         include: Iterable[AccessRuleParam],
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         is_default: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -554,6 +578,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -591,8 +619,8 @@ class AsyncGroupsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -628,6 +656,10 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -665,8 +697,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -694,6 +726,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -722,8 +758,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -751,6 +787,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

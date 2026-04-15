@@ -48,7 +48,7 @@ class TemporaryCredentialsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
@@ -89,6 +89,8 @@ class TemporaryCredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -138,7 +140,7 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
@@ -179,6 +181,8 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

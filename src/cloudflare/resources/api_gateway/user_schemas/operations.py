@@ -53,7 +53,7 @@ class OperationsResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         endpoint: str | Omit = omit,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
@@ -103,6 +103,8 @@ class OperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -159,7 +161,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         endpoint: str | Omit = omit,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
@@ -209,6 +211,8 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:

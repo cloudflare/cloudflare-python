@@ -19,7 +19,7 @@ __all__ = [
 
 
 class ConfigUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Define configurations using a unique string identifier."""
 
     name: Required[str]

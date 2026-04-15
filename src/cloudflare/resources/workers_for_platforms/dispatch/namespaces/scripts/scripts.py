@@ -132,7 +132,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
         bindings_inherit: Literal["strict"] | Omit = omit,
@@ -179,6 +179,8 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -216,7 +218,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -250,6 +252,8 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -273,7 +277,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -300,6 +304,8 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -367,7 +373,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
         bindings_inherit: Literal["strict"] | Omit = omit,
@@ -414,6 +420,8 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -453,7 +461,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -487,6 +495,8 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -510,7 +520,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -537,6 +547,8 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:

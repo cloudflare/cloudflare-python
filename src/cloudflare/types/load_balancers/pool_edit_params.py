@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .check_region import CheckRegion
 from .origin_param import OriginParam
@@ -15,7 +15,7 @@ __all__ = ["PoolEditParams"]
 
 
 class PoolEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     check_regions: Optional[List[CheckRegion]]

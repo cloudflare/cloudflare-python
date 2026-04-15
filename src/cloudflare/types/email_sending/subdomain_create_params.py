@@ -8,7 +8,7 @@ __all__ = ["SubdomainCreateParams"]
 
 
 class SubdomainCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]

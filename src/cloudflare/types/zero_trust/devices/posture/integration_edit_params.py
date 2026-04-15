@@ -20,7 +20,7 @@ __all__ = [
 
 
 class IntegrationEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     config: Config
     """The configuration object containing third-party integration information."""

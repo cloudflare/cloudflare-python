@@ -10,7 +10,7 @@ __all__ = ["MoveBulkParams"]
 
 
 class MoveBulkParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     destination: Required[

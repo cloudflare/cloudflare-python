@@ -8,7 +8,7 @@ __all__ = ["URLNormalizationUpdateParams"]
 
 
 class URLNormalizationUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """The unique ID of the zone."""
 
     scope: Required[Literal["incoming", "both", "none"]]

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["MiscategorizationCreateParams"]
 
 
 class MiscategorizationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     content_adds: Iterable[int]

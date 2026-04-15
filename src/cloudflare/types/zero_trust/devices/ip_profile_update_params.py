@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["IPProfileUpdateParams"]
 
 
 class IPProfileUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     description: str
     """An optional description of the Device IP profile."""

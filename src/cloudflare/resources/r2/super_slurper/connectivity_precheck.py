@@ -52,7 +52,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
     def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
         vendor: Literal["s3"],
@@ -85,7 +85,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
     def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
         vendor: Literal["gcs"],
@@ -116,7 +116,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
     def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
@@ -144,11 +144,11 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "bucket", "secret", "vendor"])
+    @required_args(["bucket", "secret", "vendor"])
     def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
@@ -166,6 +166,8 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
@@ -198,7 +200,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
     def target(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_target_params.Secret,
         vendor: Provider,
@@ -222,6 +224,8 @@ class ConnectivityPrecheckResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
@@ -272,7 +276,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
     async def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret,
         vendor: Literal["s3"],
@@ -305,7 +309,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
     async def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret,
         vendor: Literal["gcs"],
@@ -336,7 +340,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
     async def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
@@ -364,11 +368,11 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "bucket", "secret", "vendor"])
+    @required_args(["bucket", "secret", "vendor"])
     async def source(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
@@ -386,6 +390,8 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConnectivityPrecheckSourceResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
@@ -418,7 +424,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
     async def target(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         secret: connectivity_precheck_target_params.Secret,
         vendor: Provider,
@@ -442,6 +448,8 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(

@@ -15,7 +15,7 @@ __all__ = [
 
 
 class CredentialUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     keys: Required[Iterable[Key]]

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,7 +10,7 @@ __all__ = ["CrawlGetParams"]
 
 
 class CrawlGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]

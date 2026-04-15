@@ -49,7 +49,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -74,6 +74,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -93,7 +95,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -118,6 +120,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -137,7 +141,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,6 +166,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -182,7 +188,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
@@ -222,6 +228,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -252,7 +260,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,6 +282,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -312,7 +322,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -337,6 +347,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -356,7 +368,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -381,6 +393,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -400,7 +414,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,6 +439,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -445,7 +461,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
@@ -485,6 +501,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -515,7 +533,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -537,6 +555,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:

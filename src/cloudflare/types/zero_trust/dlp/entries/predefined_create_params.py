@@ -9,7 +9,7 @@ __all__ = ["PredefinedCreateParams"]
 
 
 class PredefinedCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     enabled: Required[bool]
 

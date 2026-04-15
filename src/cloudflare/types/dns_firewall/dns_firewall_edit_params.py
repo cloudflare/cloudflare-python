@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 from .upstream_ips import UpstreamIPs
@@ -13,7 +13,7 @@ __all__ = ["DNSFirewallEditParams"]
 
 
 class DNSFirewallEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     attack_mitigation: Optional[AttackMitigationParam]

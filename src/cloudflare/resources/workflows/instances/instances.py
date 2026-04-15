@@ -78,7 +78,7 @@ class InstancesResource(SyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
         params: object | Omit = omit,
@@ -101,6 +101,8 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -129,7 +131,7 @@ class InstancesResource(SyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
@@ -169,6 +171,8 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -201,7 +205,7 @@ class InstancesResource(SyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[instance_bulk_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -222,6 +226,8 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -241,7 +247,7 @@ class InstancesResource(SyncAPIResource):
         self,
         instance_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         order: Literal["asc", "desc"] | Omit = omit,
         simple: Literal["true", "false"] | Omit = omit,
@@ -268,6 +274,8 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -326,7 +334,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
         params: object | Omit = omit,
@@ -349,6 +357,8 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -377,7 +387,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
@@ -417,6 +427,8 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -449,7 +461,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[instance_bulk_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -470,6 +482,8 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -489,7 +503,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         instance_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         order: Literal["asc", "desc"] | Omit = omit,
         simple: Literal["true", "false"] | Omit = omit,
@@ -516,6 +530,8 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:

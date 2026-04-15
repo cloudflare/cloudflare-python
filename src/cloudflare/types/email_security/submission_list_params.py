@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,7 +12,7 @@ __all__ = ["SubmissionListParams"]
 
 
 class SubmissionListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     customer_status: Literal["escalated", "reviewed", "unreviewed"]

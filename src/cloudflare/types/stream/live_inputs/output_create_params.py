@@ -10,7 +10,7 @@ __all__ = ["OutputCreateParams"]
 
 
 class OutputCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     stream_key: Required[Annotated[str, PropertyInfo(alias="streamKey")]]

@@ -49,7 +49,7 @@ class OutputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         stream_key: str,
         url: str,
         enabled: bool | Omit = omit,
@@ -88,6 +88,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -118,7 +120,7 @@ class OutputsResource(SyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -152,6 +154,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -177,7 +181,7 @@ class OutputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,6 +205,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -220,7 +226,7 @@ class OutputsResource(SyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -247,6 +253,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -289,7 +297,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         stream_key: str,
         url: str,
         enabled: bool | Omit = omit,
@@ -328,6 +336,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -358,7 +368,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -392,6 +402,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -417,7 +429,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,6 +453,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -460,7 +474,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -487,6 +501,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:

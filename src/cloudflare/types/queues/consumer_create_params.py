@@ -15,7 +15,7 @@ __all__ = [
 
 
 class MqWorkerConsumerRequest(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     script_name: Required[str]
@@ -55,7 +55,7 @@ class MqWorkerConsumerRequestSettings(TypedDict, total=False):
 
 
 class MqHTTPConsumerRequest(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     type: Required[Literal["http_pull"]]

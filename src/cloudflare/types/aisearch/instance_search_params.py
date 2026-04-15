@@ -20,7 +20,7 @@ __all__ = [
 
 
 class InstanceSearchParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     aisearch_options: Annotated[AISearchOptions, PropertyInfo(alias="ai_search_options")]
 

@@ -45,7 +45,7 @@ class AnalyticsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_date: str | Omit = omit,
         start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,6 +77,8 @@ class AnalyticsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -124,7 +126,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_date: str | Omit = omit,
         start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -156,6 +158,8 @@ class AsyncAnalyticsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:

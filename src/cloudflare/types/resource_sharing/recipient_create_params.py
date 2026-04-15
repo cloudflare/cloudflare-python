@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,7 +10,7 @@ __all__ = ["RecipientCreateParams"]
 
 
 class RecipientCreateParams(TypedDict, total=False):
-    path_account_id: Required[Annotated[str, PropertyInfo(alias="account_id")]]
+    path_account_id: Annotated[str, PropertyInfo(alias="account_id")]
     """Account identifier."""
 
     body_account_id: Annotated[str, PropertyInfo(alias="account_id")]

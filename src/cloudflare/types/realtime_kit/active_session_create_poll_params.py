@@ -10,7 +10,7 @@ __all__ = ["ActiveSessionCreatePollParams"]
 
 
 class ActiveSessionCreatePollParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     app_id: Required[str]

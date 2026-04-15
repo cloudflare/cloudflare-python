@@ -83,7 +83,7 @@ class OnRampsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE"],
         dynamic_routing: bool,
         install_routes_in_cloud: bool,
@@ -125,6 +125,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -165,7 +167,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
         description: str | Omit = omit,
@@ -194,6 +196,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -227,7 +231,7 @@ class OnRampsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         desc: bool | Omit = omit,
         order_by: str | Omit = omit,
         status: bool | Omit = omit,
@@ -253,6 +257,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -280,7 +286,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destroy: bool | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,6 +308,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -329,7 +337,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -349,6 +357,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -365,7 +375,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
         description: str | Omit = omit,
@@ -394,6 +404,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -428,7 +440,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -448,6 +460,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -465,7 +479,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         planned_resources: bool | Omit = omit,
         post_apply_resources: bool | Omit = omit,
         status: bool | Omit = omit,
@@ -489,6 +503,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -518,7 +534,7 @@ class OnRampsResource(SyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,6 +554,8 @@ class OnRampsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -578,7 +596,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE"],
         dynamic_routing: bool,
         install_routes_in_cloud: bool,
@@ -620,6 +638,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -660,7 +680,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
         description: str | Omit = omit,
@@ -689,6 +709,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -722,7 +744,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         desc: bool | Omit = omit,
         order_by: str | Omit = omit,
         status: bool | Omit = omit,
@@ -748,6 +770,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -775,7 +799,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destroy: bool | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -797,6 +821,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -824,7 +850,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -844,6 +870,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -860,7 +888,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
         description: str | Omit = omit,
@@ -889,6 +917,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -923,7 +953,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -943,6 +973,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -960,7 +992,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         planned_resources: bool | Omit = omit,
         post_apply_resources: bool | Omit = omit,
         status: bool | Omit = omit,
@@ -984,6 +1016,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:
@@ -1013,7 +1047,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         onramp_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1033,6 +1067,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not onramp_id:

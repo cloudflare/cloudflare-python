@@ -62,7 +62,7 @@ class WorkersResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         logpush: bool | Omit = omit,
         observability: worker_create_params.Observability | Omit = omit,
@@ -102,6 +102,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -131,7 +133,7 @@ class WorkersResource(SyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         logpush: bool | Omit = omit,
         observability: worker_update_params.Observability | Omit = omit,
@@ -176,6 +178,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -206,7 +210,7 @@ class WorkersResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: Literal["deployed_on", "updated_on", "created_on", "name"] | Omit = omit,
         page: int | Omit = omit,
@@ -240,6 +244,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -267,7 +273,7 @@ class WorkersResource(SyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,6 +297,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -307,7 +315,7 @@ class WorkersResource(SyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         logpush: bool,
         name: str,
         observability: worker_edit_params.Observability,
@@ -350,6 +358,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -381,7 +391,7 @@ class WorkersResource(SyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -405,6 +415,8 @@ class WorkersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -449,7 +461,7 @@ class AsyncWorkersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         logpush: bool | Omit = omit,
         observability: worker_create_params.Observability | Omit = omit,
@@ -489,6 +501,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -518,7 +532,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         logpush: bool | Omit = omit,
         observability: worker_update_params.Observability | Omit = omit,
@@ -563,6 +577,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -593,7 +609,7 @@ class AsyncWorkersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: Literal["deployed_on", "updated_on", "created_on", "name"] | Omit = omit,
         page: int | Omit = omit,
@@ -627,6 +643,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -654,7 +672,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -678,6 +696,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -694,7 +714,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         logpush: bool,
         name: str,
         observability: worker_edit_params.Observability,
@@ -737,6 +757,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
@@ -768,7 +790,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         worker_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -792,6 +814,8 @@ class AsyncWorkersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:

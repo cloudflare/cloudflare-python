@@ -53,7 +53,7 @@ class NetworksResource(SyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tunnel_id: str,
         comment: str | Omit = omit,
         virtual_network_id: str | Omit = omit,
@@ -88,6 +88,8 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:
@@ -119,7 +121,7 @@ class NetworksResource(SyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"] | Omit = omit,
         tunnel_id: str | Omit = omit,
         virtual_network_id: str | Omit = omit,
@@ -159,6 +161,8 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:
@@ -190,7 +194,7 @@ class NetworksResource(SyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,6 +220,8 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:
@@ -260,7 +266,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tunnel_id: str,
         comment: str | Omit = omit,
         virtual_network_id: str | Omit = omit,
@@ -295,6 +301,8 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:
@@ -326,7 +334,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"] | Omit = omit,
         tunnel_id: str | Omit = omit,
         virtual_network_id: str | Omit = omit,
@@ -366,6 +374,8 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:
@@ -397,7 +407,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         ip_network_encoded: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,6 +433,8 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ip_network_encoded:

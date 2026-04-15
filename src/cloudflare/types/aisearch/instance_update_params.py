@@ -33,7 +33,7 @@ __all__ = [
 
 
 class InstanceUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     ai_gateway_id: Optional[str]
 

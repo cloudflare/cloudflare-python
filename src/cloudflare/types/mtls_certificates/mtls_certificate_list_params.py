@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["MTLSCertificateListParams"]
 
 
 class MTLSCertificateListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     type: List[Literal["custom", "gateway_managed", "access_managed"]]

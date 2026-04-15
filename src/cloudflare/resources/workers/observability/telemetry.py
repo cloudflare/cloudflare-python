@@ -51,7 +51,7 @@ class TelemetryResource(SyncAPIResource):
     def keys(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
         from_: float | Omit = omit,
@@ -91,6 +91,8 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -118,7 +120,7 @@ class TelemetryResource(SyncAPIResource):
     def query(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
         chart: bool | Omit = omit,
@@ -186,6 +188,8 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -221,7 +225,7 @@ class TelemetryResource(SyncAPIResource):
     def values(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
@@ -255,6 +259,8 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -303,7 +309,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     def keys(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
         from_: float | Omit = omit,
@@ -343,6 +349,8 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -370,7 +378,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     async def query(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
         chart: bool | Omit = omit,
@@ -438,6 +446,8 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -473,7 +483,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     def values(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
@@ -507,6 +517,8 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

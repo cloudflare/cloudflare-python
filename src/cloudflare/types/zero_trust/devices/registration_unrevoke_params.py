@@ -10,7 +10,7 @@ __all__ = ["RegistrationUnrevokeParams"]
 
 
 class RegistrationUnrevokeParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     id: Required[SequenceNotStr[str]]
     """A list of registration IDs to unrevoke."""

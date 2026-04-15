@@ -22,7 +22,7 @@ __all__ = [
 
 
 class PipelineCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Specifies the public ID of the account."""
 
     destination: Required[Destination]

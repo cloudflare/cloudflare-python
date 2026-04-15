@@ -11,7 +11,7 @@ __all__ = ["IndexInsertParams"]
 
 
 class IndexInsertParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     body: Required[FileTypes]

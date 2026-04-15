@@ -10,7 +10,7 @@ __all__ = ["WANUpdateParams"]
 
 
 class WANUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     site_id: Required[str]

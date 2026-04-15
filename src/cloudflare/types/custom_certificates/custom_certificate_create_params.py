@@ -11,7 +11,7 @@ __all__ = ["CustomCertificateCreateParams"]
 
 
 class CustomCertificateCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     certificate: Required[str]

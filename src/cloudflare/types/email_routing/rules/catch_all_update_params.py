@@ -12,7 +12,7 @@ __all__ = ["CatchAllUpdateParams"]
 
 
 class CatchAllUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     actions: Required[Iterable[CatchAllActionParam]]

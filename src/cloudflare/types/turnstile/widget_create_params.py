@@ -11,7 +11,7 @@ __all__ = ["WidgetCreateParams"]
 
 
 class WidgetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     domains: Required[SequenceNotStr[WidgetDomain]]

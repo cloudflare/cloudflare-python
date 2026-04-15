@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
@@ -11,7 +11,7 @@ __all__ = ["AttackerListParams"]
 
 
 class AttackerListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]

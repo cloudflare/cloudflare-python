@@ -9,7 +9,7 @@ __all__ = ["TargetBulkUpdateParams", "Body", "BodyIP", "BodyIPIPV4", "BodyIPIPV6
 
 
 class TargetBulkUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier"""
 
     body: Required[Iterable[Body]]

@@ -11,7 +11,7 @@ __all__ = ["FilterCreateParams"]
 
 
 class FilterCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier."""
 
     body: Required[Iterable[FirewallFilterParam]]

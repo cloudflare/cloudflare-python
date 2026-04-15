@@ -62,7 +62,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[dynamic_routing_create_params.Element],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,6 +84,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -111,7 +113,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,6 +135,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -152,7 +156,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,6 +176,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -188,7 +194,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -209,6 +215,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -231,7 +239,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         version_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -253,6 +261,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -281,7 +291,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         elements: Iterable[dynamic_routing_create_version_params.Element],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -303,6 +313,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -328,7 +340,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -349,6 +361,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -371,7 +385,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         version_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -393,6 +407,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -417,7 +433,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -438,6 +454,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -456,7 +474,7 @@ class DynamicRoutingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -477,6 +495,8 @@ class DynamicRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -516,7 +536,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[dynamic_routing_create_params.Element],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -538,6 +558,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -565,7 +587,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -587,6 +609,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -606,7 +630,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -626,6 +650,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -642,7 +668,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -663,6 +689,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -685,7 +713,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         version_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -707,6 +735,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -735,7 +765,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         elements: Iterable[dynamic_routing_create_version_params.Element],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -757,6 +787,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -782,7 +814,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -803,6 +835,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -825,7 +859,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         version_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -847,6 +881,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -871,7 +907,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -892,6 +928,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -910,7 +948,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -931,6 +969,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:

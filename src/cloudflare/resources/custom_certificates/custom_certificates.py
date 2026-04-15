@@ -69,7 +69,7 @@ class CustomCertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
@@ -135,6 +135,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -165,7 +167,7 @@ class CustomCertificatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         match: Literal["any", "all"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -202,6 +204,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -229,7 +233,7 @@ class CustomCertificatesResource(SyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,6 +257,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:
@@ -277,7 +283,7 @@ class CustomCertificatesResource(SyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
         custom_csr_id: str | Omit = omit,
@@ -344,6 +350,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:
@@ -378,7 +386,7 @@ class CustomCertificatesResource(SyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -404,6 +412,8 @@ class CustomCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:
@@ -450,7 +460,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         private_key: str,
         bundle_method: BundleMethod | Omit = omit,
@@ -516,6 +526,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -546,7 +558,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         match: Literal["any", "all"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -583,6 +595,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -610,7 +624,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -634,6 +648,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:
@@ -658,7 +674,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         bundle_method: BundleMethod | Omit = omit,
         certificate: str | Omit = omit,
         custom_csr_id: str | Omit = omit,
@@ -725,6 +741,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:
@@ -759,7 +777,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         self,
         custom_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -785,6 +803,8 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_certificate_id:

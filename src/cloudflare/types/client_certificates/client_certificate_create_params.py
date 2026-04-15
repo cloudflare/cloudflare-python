@@ -8,7 +8,7 @@ __all__ = ["ClientCertificateCreateParams"]
 
 
 class ClientCertificateCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     csr: Required[str]

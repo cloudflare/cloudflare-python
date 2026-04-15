@@ -81,7 +81,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -111,6 +111,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -131,7 +133,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         livestream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -158,6 +160,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -176,7 +180,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_time: Union[str, datetime] | Omit = omit,
         exclude_meetings: bool | Omit = omit,
         page_no: int | Omit = omit,
@@ -225,6 +229,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -256,7 +262,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_time: Union[str, datetime] | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -286,6 +292,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -312,7 +320,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         livestream_session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -340,6 +348,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -360,7 +370,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         livestream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         page_no: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -392,6 +402,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -420,7 +432,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -445,6 +457,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -463,7 +477,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_date: str | Omit = omit,
         start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -495,6 +509,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -521,7 +537,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         name: Optional[str] | Omit = omit,
         video_config: livestream_start_livestreaming_a_meeting_params.VideoConfig | Omit = omit,
@@ -550,6 +566,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -575,7 +593,7 @@ class LivestreamsResource(SyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -601,6 +619,8 @@ class LivestreamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -640,7 +660,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -670,6 +690,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -690,7 +712,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         livestream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -717,6 +739,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -735,7 +759,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_time: Union[str, datetime] | Omit = omit,
         exclude_meetings: bool | Omit = omit,
         page_no: int | Omit = omit,
@@ -784,6 +808,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -815,7 +841,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_time: Union[str, datetime] | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -845,6 +871,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -871,7 +899,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         livestream_session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -899,6 +927,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -919,7 +949,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         livestream_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         page_no: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -951,6 +981,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -979,7 +1011,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1004,6 +1036,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -1022,7 +1056,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end_date: str | Omit = omit,
         start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1054,6 +1088,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -1080,7 +1116,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         name: Optional[str] | Omit = omit,
         video_config: livestream_start_livestreaming_a_meeting_params.VideoConfig | Omit = omit,
@@ -1109,6 +1145,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -1134,7 +1172,7 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         self,
         meeting_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1160,6 +1198,8 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:

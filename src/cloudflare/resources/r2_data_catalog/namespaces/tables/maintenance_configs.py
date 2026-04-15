@@ -51,7 +51,7 @@ class MaintenanceConfigsResource(SyncAPIResource):
         self,
         table_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         namespace: str,
         compaction: maintenance_config_update_params.Compaction | Omit = omit,
@@ -85,6 +85,8 @@ class MaintenanceConfigsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -118,7 +120,7 @@ class MaintenanceConfigsResource(SyncAPIResource):
         self,
         table_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -145,6 +147,8 @@ class MaintenanceConfigsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -190,7 +194,7 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         self,
         table_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         namespace: str,
         compaction: maintenance_config_update_params.Compaction | Omit = omit,
@@ -224,6 +228,8 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -257,7 +263,7 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         self,
         table_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -284,6 +290,8 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:

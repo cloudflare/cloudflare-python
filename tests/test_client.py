@@ -486,6 +486,36 @@ class TestCloudflare:
 
         client.close()
 
+    def test_account_id_client_params(self, client: Cloudflare) -> None:
+        # Test with base client (no custom params)
+        with pytest.raises(ValueError, match="Missing account_id argument;"):
+            client.accounts.update(id="023e105f4ecef8ad9ca31a8372d0c353", name="Demo Account", type="standard")
+
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            account_id="f037e56e89293a057740de681ac9accp",
+        )
+        with client as c2:
+            c2.accounts.update(id="023e105f4ecef8ad9ca31a8372d0c353", name="Demo Account", type="standard")
+
+    def test_zone_id_client_params(self, client: Cloudflare) -> None:
+        # Test with base client (no custom params)
+        with pytest.raises(ValueError, match="Missing zone_id argument;"):
+            client.zones.delete()
+
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            zone_id="f037e56e89293a057740de681ac9accp",
+        )
+        with client as c2:
+            c2.zones.delete()
+
     def test_request_extra_json(self, client: Cloudflare) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -1468,6 +1498,38 @@ class TestAsyncCloudflare:
         assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
         await client.close()
+
+    async def test_account_id_client_params(self, async_client: AsyncCloudflare) -> None:
+        # Test with base client (no custom params)
+        with pytest.raises(ValueError, match="Missing account_id argument;"):
+            await async_client.accounts.update(
+                id="023e105f4ecef8ad9ca31a8372d0c353", name="Demo Account", type="standard"
+            )
+
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            account_id="f037e56e89293a057740de681ac9accp",
+        )
+        async with client as c2:
+            await c2.accounts.update(id="023e105f4ecef8ad9ca31a8372d0c353", name="Demo Account", type="standard")
+
+    async def test_zone_id_client_params(self, async_client: AsyncCloudflare) -> None:
+        # Test with base client (no custom params)
+        with pytest.raises(ValueError, match="Missing zone_id argument;"):
+            await async_client.zones.delete()
+
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            zone_id="f037e56e89293a057740de681ac9accp",
+        )
+        async with client as c2:
+            await c2.zones.delete()
 
     def test_request_extra_json(self, client: Cloudflare) -> None:
         request = client._build_request(

@@ -8,7 +8,7 @@ __all__ = ["SmartRoutingEditParams"]
 
 
 class SmartRoutingEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Specifies the zone associated with the API call."""
 
     value: Required[Literal["on", "off"]]

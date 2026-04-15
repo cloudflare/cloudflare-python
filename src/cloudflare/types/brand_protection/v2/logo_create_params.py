@@ -8,7 +8,7 @@ __all__ = ["LogoCreateParams"]
 
 
 class LogoCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     image_data: Required[str]
     """Base64 encoded image data.

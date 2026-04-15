@@ -60,7 +60,7 @@ class EmailSendingResource(SyncAPIResource):
     def send(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: email_sending_send_params.From,
         subject: str,
         to: Union[str, SequenceNotStr[str]],
@@ -112,6 +112,8 @@ class EmailSendingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -144,7 +146,7 @@ class EmailSendingResource(SyncAPIResource):
     def send_raw(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         mime_message: str,
         recipients: SequenceNotStr[str],
@@ -178,6 +180,8 @@ class EmailSendingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -228,7 +232,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
     async def send(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: email_sending_send_params.From,
         subject: str,
         to: Union[str, SequenceNotStr[str]],
@@ -280,6 +284,8 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -312,7 +318,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
     async def send_raw(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         mime_message: str,
         recipients: SequenceNotStr[str],
@@ -346,6 +352,8 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["MessagePushParams", "MqQueueMessageText", "MqQueueMessageJson"]
 
 
 class MqQueueMessageText(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     body: str
@@ -24,7 +24,7 @@ class MqQueueMessageText(TypedDict, total=False):
 
 
 class MqQueueMessageJson(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     body: object

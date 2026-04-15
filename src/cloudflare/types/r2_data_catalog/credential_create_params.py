@@ -8,7 +8,7 @@ __all__ = ["CredentialCreateParams"]
 
 
 class CredentialCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Use this to identify the account."""
 
     token: Required[str]

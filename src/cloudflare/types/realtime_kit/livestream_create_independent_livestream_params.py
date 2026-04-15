@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["LivestreamCreateIndependentLivestreamParams"]
 
 
 class LivestreamCreateIndependentLivestreamParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     name: Optional[str]

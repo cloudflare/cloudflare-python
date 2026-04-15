@@ -10,7 +10,7 @@ __all__ = ["StreamUpdateParams", "HTTP", "HTTPCORS", "WorkerBinding"]
 
 
 class StreamUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Specifies the public ID of the account."""
 
     http: HTTP

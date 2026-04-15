@@ -10,7 +10,7 @@ __all__ = ["StreamCreateParams"]
 
 
 class StreamCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     tus_resumable: Required[Annotated[Literal["1.0.0"], PropertyInfo(alias="Tus-Resumable")]]

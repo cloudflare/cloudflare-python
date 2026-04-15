@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InstanceListParams"]
 
 
 class InstanceListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     namespace: Optional[str]
 

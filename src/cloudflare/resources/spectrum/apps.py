@@ -58,7 +58,7 @@ class AppsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
@@ -135,7 +135,7 @@ class AppsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         origin_direct: SequenceNotStr[str] | Omit = omit,
@@ -171,11 +171,11 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
+    @required_args(["dns", "protocol", "traffic_type"], ["dns", "protocol"])
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"] | Omit = omit,
@@ -194,6 +194,8 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -234,7 +236,7 @@ class AppsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
@@ -314,7 +316,7 @@ class AppsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         origin_direct: SequenceNotStr[str] | Omit = omit,
@@ -352,12 +354,12 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
+    @required_args(["dns", "protocol", "traffic_type"], ["dns", "protocol"])
     def update(
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"] | Omit = omit,
@@ -376,6 +378,8 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:
@@ -416,7 +420,7 @@ class AppsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
         page: float | Omit = omit,
@@ -452,6 +456,8 @@ class AppsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -479,7 +485,7 @@ class AppsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -503,6 +509,8 @@ class AppsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:
@@ -523,7 +531,7 @@ class AppsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -547,6 +555,8 @@ class AppsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:
@@ -593,7 +603,7 @@ class AsyncAppsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
@@ -670,7 +680,7 @@ class AsyncAppsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         origin_direct: SequenceNotStr[str] | Omit = omit,
@@ -706,11 +716,11 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
+    @required_args(["dns", "protocol", "traffic_type"], ["dns", "protocol"])
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"] | Omit = omit,
@@ -729,6 +739,8 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -769,7 +781,7 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
@@ -849,7 +861,7 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         origin_direct: SequenceNotStr[str] | Omit = omit,
@@ -887,12 +899,12 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
+    @required_args(["dns", "protocol", "traffic_type"], ["dns", "protocol"])
     async def update(
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"] | Omit = omit,
@@ -911,6 +923,8 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:
@@ -951,7 +965,7 @@ class AsyncAppsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
         page: float | Omit = omit,
@@ -987,6 +1001,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -1014,7 +1030,7 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1038,6 +1054,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:
@@ -1058,7 +1076,7 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1082,6 +1100,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not app_id:

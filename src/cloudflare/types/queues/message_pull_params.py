@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["MessagePullParams"]
 
 
 class MessagePullParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     batch_size: float

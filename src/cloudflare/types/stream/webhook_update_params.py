@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,7 +10,7 @@ __all__ = ["WebhookUpdateParams"]
 
 
 class WebhookUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     body_notification_url_1: Annotated[str, PropertyInfo(alias="notification_url")]

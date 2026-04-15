@@ -9,7 +9,7 @@ __all__ = ["PrioritizeUpdateParams", "Certificate"]
 
 
 class PrioritizeUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     certificates: Required[Iterable[Certificate]]

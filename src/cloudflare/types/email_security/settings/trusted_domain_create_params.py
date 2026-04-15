@@ -9,7 +9,7 @@ __all__ = ["TrustedDomainCreateParams", "EmailSecurityCreateTrustedDomain", "Var
 
 
 class EmailSecurityCreateTrustedDomain(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     is_recent: Required[bool]
@@ -32,7 +32,7 @@ class EmailSecurityCreateTrustedDomain(TypedDict, total=False):
 
 
 class Variant1(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     body: Required[Iterable[Variant1Body]]

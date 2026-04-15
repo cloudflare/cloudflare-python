@@ -8,7 +8,7 @@ __all__ = ["CloudIntegrationCreateParams"]
 
 
 class CloudIntegrationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     cloud_type: Required[Literal["AWS", "AZURE", "GOOGLE", "CLOUDFLARE"]]
 

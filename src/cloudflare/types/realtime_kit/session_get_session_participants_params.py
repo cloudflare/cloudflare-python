@@ -8,7 +8,7 @@ __all__ = ["SessionGetSessionParticipantsParams"]
 
 
 class SessionGetSessionParticipantsParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     app_id: Required[str]

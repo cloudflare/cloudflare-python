@@ -53,7 +53,7 @@ __all__ = [
 
 
 class ProjectEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     build_config: BuildConfig

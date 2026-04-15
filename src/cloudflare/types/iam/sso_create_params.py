@@ -8,7 +8,7 @@ __all__ = ["SSOCreateParams"]
 
 
 class SSOCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     email_domain: Required[str]

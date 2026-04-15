@@ -47,7 +47,7 @@ class ConfigResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         enabled: bool,
         endpoint: str,
         hide_original_ip: bool,
@@ -87,6 +87,8 @@ class ConfigResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
@@ -114,7 +116,7 @@ class ConfigResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -136,6 +138,8 @@ class ConfigResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
@@ -174,7 +178,7 @@ class AsyncConfigResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         enabled: bool,
         endpoint: str,
         hide_original_ip: bool,
@@ -214,6 +218,8 @@ class AsyncConfigResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
@@ -241,7 +247,7 @@ class AsyncConfigResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -263,6 +269,8 @@ class AsyncConfigResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(

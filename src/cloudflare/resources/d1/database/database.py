@@ -75,7 +75,7 @@ class DatabaseResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
@@ -108,6 +108,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -134,7 +136,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         read_replication: database_update_params.ReadReplication,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -161,6 +163,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -181,7 +185,7 @@ class DatabaseResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -212,6 +216,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -238,7 +244,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +268,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -282,7 +290,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         read_replication: database_edit_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,6 +317,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -330,7 +340,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         output_format: Literal["polling"],
         current_bookmark: str | Omit = omit,
         dump_options: database_export_params.DumpOptions | Omit = omit,
@@ -366,6 +376,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -394,7 +406,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -418,6 +430,8 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -439,7 +453,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["init"],
         etag: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -480,7 +494,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["ingest"],
         etag: str,
         filename: str,
@@ -523,7 +537,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["poll"],
         current_bookmark: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -557,16 +571,12 @@ class DatabaseResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "action", "etag"],
-        ["account_id", "action", "etag", "filename"],
-        ["account_id", "action", "current_bookmark"],
-    )
+    @required_args(["action", "etag"], ["action", "etag", "filename"], ["action", "current_bookmark"])
     def import_(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["init"] | Literal["ingest"] | Literal["poll"],
         etag: str | Omit = omit,
         filename: str | Omit = omit,
@@ -578,6 +588,8 @@ class DatabaseResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -608,7 +620,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str,
         params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -644,7 +656,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch: Iterable[database_query_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -671,12 +683,12 @@ class DatabaseResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id", "batch"])
+    @required_args(["sql"], ["batch"])
     def query(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str | Omit = omit,
         params: SequenceNotStr[str] | Omit = omit,
         batch: Iterable[database_query_params.MultipleQueriesBatch] | Omit = omit,
@@ -687,6 +699,8 @@ class DatabaseResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[QueryResult]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -714,7 +728,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str,
         params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -752,7 +766,7 @@ class DatabaseResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch: Iterable[database_raw_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -781,12 +795,12 @@ class DatabaseResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id", "batch"])
+    @required_args(["sql"], ["batch"])
     def raw(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str | Omit = omit,
         params: SequenceNotStr[str] | Omit = omit,
         batch: Iterable[database_raw_params.MultipleQueriesBatch] | Omit = omit,
@@ -797,6 +811,8 @@ class DatabaseResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DatabaseRawResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -847,7 +863,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
@@ -880,6 +896,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -906,7 +924,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         read_replication: database_update_params.ReadReplication,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -933,6 +951,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -955,7 +975,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -986,6 +1006,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -1012,7 +1034,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1036,6 +1058,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1056,7 +1080,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         read_replication: database_edit_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1083,6 +1107,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1106,7 +1132,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         output_format: Literal["polling"],
         current_bookmark: str | Omit = omit,
         dump_options: database_export_params.DumpOptions | Omit = omit,
@@ -1142,6 +1168,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1170,7 +1198,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1194,6 +1222,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1215,7 +1245,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["init"],
         etag: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1256,7 +1286,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["ingest"],
         etag: str,
         filename: str,
@@ -1299,7 +1329,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["poll"],
         current_bookmark: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1333,16 +1363,12 @@ class AsyncDatabaseResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "action", "etag"],
-        ["account_id", "action", "etag", "filename"],
-        ["account_id", "action", "current_bookmark"],
-    )
+    @required_args(["action", "etag"], ["action", "etag", "filename"], ["action", "current_bookmark"])
     async def import_(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal["init"] | Literal["ingest"] | Literal["poll"],
         etag: str | Omit = omit,
         filename: str | Omit = omit,
@@ -1354,6 +1380,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1384,7 +1412,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str,
         params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1420,7 +1448,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch: Iterable[database_query_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1447,12 +1475,12 @@ class AsyncDatabaseResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id", "batch"])
+    @required_args(["sql"], ["batch"])
     def query(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str | Omit = omit,
         params: SequenceNotStr[str] | Omit = omit,
         batch: Iterable[database_query_params.MultipleQueriesBatch] | Omit = omit,
@@ -1463,6 +1491,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[QueryResult, AsyncSinglePage[QueryResult]]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1490,7 +1520,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str,
         params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1528,7 +1558,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch: Iterable[database_raw_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1557,12 +1587,12 @@ class AsyncDatabaseResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id", "batch"])
+    @required_args(["sql"], ["batch"])
     def raw(
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         sql: str | Omit = omit,
         params: SequenceNotStr[str] | Omit = omit,
         batch: Iterable[database_raw_params.MultipleQueriesBatch] | Omit = omit,
@@ -1573,6 +1603,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatabaseRawResponse, AsyncSinglePage[DatabaseRawResponse]]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:

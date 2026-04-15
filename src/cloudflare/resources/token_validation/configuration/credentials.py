@@ -47,7 +47,7 @@ class CredentialsResource(SyncAPIResource):
         self,
         config_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         keys: Iterable[credential_update_params.Key],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -72,6 +72,8 @@ class CredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not config_id:
@@ -110,7 +112,7 @@ class AsyncCredentialsResource(AsyncAPIResource):
         self,
         config_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         keys: Iterable[credential_update_params.Key],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -135,6 +137,8 @@ class AsyncCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not config_id:

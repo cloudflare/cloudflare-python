@@ -11,7 +11,7 @@ __all__ = ["ValueUpdateParams"]
 
 
 class ValueUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     namespace_id: Required[str]

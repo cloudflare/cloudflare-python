@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .kind import Kind
 from ..._types import SequenceNotStr
@@ -12,7 +12,7 @@ __all__ = ["AddressMapCreateParams", "Membership"]
 
 
 class AddressMapCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of a Cloudflare account."""
 
     description: Optional[str]

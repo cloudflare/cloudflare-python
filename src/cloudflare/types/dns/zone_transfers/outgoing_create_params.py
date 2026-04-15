@@ -10,7 +10,7 @@ __all__ = ["OutgoingCreateParams"]
 
 
 class OutgoingCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     name: Required[str]
     """Zone name."""

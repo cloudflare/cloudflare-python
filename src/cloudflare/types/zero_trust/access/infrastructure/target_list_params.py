@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
@@ -13,7 +13,7 @@ __all__ = ["TargetListParams"]
 
 
 class TargetListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier"""
 
     created_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]

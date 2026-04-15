@@ -8,7 +8,7 @@ __all__ = ["OriginTLSClientAuthCreateParams"]
 
 
 class OriginTLSClientAuthCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     certificate: Required[str]

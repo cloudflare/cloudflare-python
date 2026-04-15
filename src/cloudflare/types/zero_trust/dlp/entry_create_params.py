@@ -11,7 +11,7 @@ __all__ = ["EntryCreateParams"]
 
 
 class EntryCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     enabled: Required[bool]
 

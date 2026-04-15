@@ -11,7 +11,7 @@ __all__ = ["RuleCreateParams", "Selector", "SelectorExclude", "SelectorInclude"]
 
 
 class RuleCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     action: Required[Literal["log", "block"]]

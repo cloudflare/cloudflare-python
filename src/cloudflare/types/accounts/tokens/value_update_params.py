@@ -8,7 +8,7 @@ __all__ = ["ValueUpdateParams"]
 
 
 class ValueUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     body: Required[object]

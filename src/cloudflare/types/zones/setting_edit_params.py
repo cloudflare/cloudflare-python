@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
@@ -21,7 +21,7 @@ __all__ = [
 
 
 class Variant0(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier"""
 
     enabled: bool
@@ -29,7 +29,7 @@ class Variant0(TypedDict, total=False):
 
 
 class Variant1(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier"""
 
     value: Variant1Value

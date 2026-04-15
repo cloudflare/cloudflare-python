@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..custom_hostnames.bundle_method import BundleMethod
 
@@ -10,7 +10,7 @@ __all__ = ["AnalyzeCreateParams"]
 
 
 class AnalyzeCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     bundle_method: BundleMethod

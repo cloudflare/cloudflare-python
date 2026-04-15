@@ -67,8 +67,8 @@ class OrganizationsResource(SyncAPIResource):
         *,
         auth_domain: str,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         deny_unmatched_requests: bool | Omit = omit,
@@ -152,6 +152,10 @@ class OrganizationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -199,8 +203,8 @@ class OrganizationsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         auth_domain: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -287,6 +291,10 @@ class OrganizationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -335,8 +343,8 @@ class OrganizationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,6 +368,10 @@ class OrganizationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -388,8 +400,8 @@ class OrganizationsResource(SyncAPIResource):
         self,
         *,
         email: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         query_devices: bool | Omit = omit,
         body_devices: bool | Omit = omit,
         user_uid: str | Omit = omit,
@@ -429,6 +441,10 @@ class OrganizationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -497,8 +513,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         *,
         auth_domain: str,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         deny_unmatched_requests: bool | Omit = omit,
@@ -582,6 +598,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -629,8 +649,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         auth_domain: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -717,6 +737,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -765,8 +789,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -790,6 +814,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -818,8 +846,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         self,
         *,
         email: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         query_devices: bool | Omit = omit,
         body_devices: bool | Omit = omit,
         user_uid: str | Omit = omit,
@@ -859,6 +887,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

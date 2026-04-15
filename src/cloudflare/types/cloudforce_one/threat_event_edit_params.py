@@ -12,7 +12,7 @@ __all__ = ["ThreatEventEditParams", "Raw"]
 
 
 class ThreatEventEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     dataset_id: Required[Annotated[str, PropertyInfo(alias="datasetId")]]

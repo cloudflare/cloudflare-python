@@ -8,7 +8,7 @@ __all__ = ["KeyUpdateParams"]
 
 
 class KeyUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     key_rotation_interval_days: Required[float]

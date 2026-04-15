@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -11,7 +11,7 @@ __all__ = ["SchemaListParams"]
 
 
 class SchemaListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]]

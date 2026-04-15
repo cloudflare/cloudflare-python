@@ -21,7 +21,7 @@ __all__ = [
 
 
 class R2SlurperS3SourceSchema(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     bucket: Required[str]
 
@@ -45,7 +45,7 @@ class R2SlurperS3SourceSchemaSecret(TypedDict, total=False):
 
 
 class R2SlurperGcsSourceSchema(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     bucket: Required[str]
 
@@ -65,7 +65,7 @@ class R2SlurperGcsSourceSchemaSecret(TypedDict, total=False):
 
 
 class R2SlurperR2SourceSchema(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     bucket: Required[str]
 

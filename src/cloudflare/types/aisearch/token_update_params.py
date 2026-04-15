@@ -8,7 +8,7 @@ __all__ = ["TokenUpdateParams"]
 
 
 class TokenUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     cf_api_id: Required[str]
 

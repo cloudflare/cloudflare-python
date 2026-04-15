@@ -33,7 +33,7 @@ __all__ = [
 
 
 class InstanceCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     id: Required[str]
     """AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores."""

@@ -8,7 +8,7 @@ __all__ = ["MoveCreateParams"]
 
 
 class MoveCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     destination: Required[

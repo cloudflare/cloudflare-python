@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -11,7 +11,7 @@ __all__ = ["ResourceExportParams"]
 
 
 class ResourceExportParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     desc: bool
 

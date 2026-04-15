@@ -9,7 +9,7 @@ __all__ = ["SilenceCreateParams", "Body"]
 
 
 class SilenceCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account id"""
 
     body: Required[Iterable[Body]]

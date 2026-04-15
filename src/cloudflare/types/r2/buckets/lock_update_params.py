@@ -19,7 +19,7 @@ __all__ = [
 
 
 class LockUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     rules: Iterable[Rule]

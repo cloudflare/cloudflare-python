@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .nat_param import NatParam
 from .routed_subnet_param import RoutedSubnetParam
@@ -13,7 +13,7 @@ __all__ = ["LANCreateParams"]
 
 
 class LANCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     bond_id: int

@@ -11,7 +11,7 @@ __all__ = ["DatabaseRawParams", "D1SingleQuery", "MultipleQueries", "MultipleQue
 
 
 class D1SingleQuery(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     sql: Required[str]
@@ -25,7 +25,7 @@ class D1SingleQuery(TypedDict, total=False):
 
 
 class MultipleQueries(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     batch: Required[Iterable[MultipleQueriesBatch]]

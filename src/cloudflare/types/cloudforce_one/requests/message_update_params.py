@@ -8,7 +8,7 @@ __all__ = ["MessageUpdateParams"]
 
 
 class MessageUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     request_id: Required[str]

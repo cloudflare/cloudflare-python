@@ -14,7 +14,7 @@ __all__ = ["ClipCreateParams", "Watermark"]
 
 
 class ClipCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     clipped_from_video_uid: Required[Annotated[str, PropertyInfo(alias="clippedFromVideoUID")]]

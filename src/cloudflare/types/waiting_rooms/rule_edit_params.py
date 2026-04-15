@@ -9,7 +9,7 @@ __all__ = ["RuleEditParams", "Position", "PositionIndex", "PositionBefore", "Pos
 
 
 class RuleEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     waiting_room_id: Required[str]

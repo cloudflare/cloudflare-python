@@ -10,7 +10,7 @@ __all__ = ["EvaluationCreateParams"]
 
 
 class EvaluationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     dataset_ids: Required[SequenceNotStr[str]]
 

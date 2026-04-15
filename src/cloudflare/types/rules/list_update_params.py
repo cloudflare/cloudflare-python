@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ListUpdateParams"]
 
 
 class ListUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID for this resource."""
 
     description: str

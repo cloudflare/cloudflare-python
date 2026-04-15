@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["MaintenanceConfigUpdateParams", "Compaction", "SnapshotExpiration"]
 
 
 class MaintenanceConfigUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Use this to identify the account."""
 
     compaction: Compaction

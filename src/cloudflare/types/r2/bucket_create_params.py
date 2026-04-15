@@ -10,7 +10,7 @@ __all__ = ["BucketCreateParams"]
 
 
 class BucketCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     name: Required[str]

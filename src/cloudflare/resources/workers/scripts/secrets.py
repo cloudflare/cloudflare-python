@@ -53,7 +53,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         text: str,
         type: Literal["secret_text"],
@@ -93,7 +93,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         algorithm: object,
         format: Literal["raw", "pkcs8", "spki", "jwk"],
         name: str,
@@ -147,14 +147,12 @@ class SecretsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "name", "text", "type"], ["account_id", "algorithm", "format", "name", "type", "usages"]
-    )
+    @required_args(["name", "text", "type"], ["algorithm", "format", "name", "type", "usages"])
     def update(
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         text: str | Omit = omit,
         type: Literal["secret_text"] | Literal["secret_key"],
@@ -171,6 +169,8 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -209,7 +209,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,6 +233,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -250,7 +252,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         url_encoded: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -280,6 +282,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -303,7 +307,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         url_encoded: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -333,6 +337,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -383,7 +389,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         text: str,
         type: Literal["secret_text"],
@@ -423,7 +429,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         algorithm: object,
         format: Literal["raw", "pkcs8", "spki", "jwk"],
         name: str,
@@ -477,14 +483,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "name", "text", "type"], ["account_id", "algorithm", "format", "name", "type", "usages"]
-    )
+    @required_args(["name", "text", "type"], ["algorithm", "format", "name", "type", "usages"])
     async def update(
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         text: str | Omit = omit,
         type: Literal["secret_text"] | Literal["secret_key"],
@@ -501,6 +505,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SecretUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -539,7 +545,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,6 +569,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -580,7 +588,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         url_encoded: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -610,6 +618,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -635,7 +645,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         url_encoded: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -665,6 +675,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:

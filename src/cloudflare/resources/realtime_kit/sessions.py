@@ -66,7 +66,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,6 +91,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -110,7 +112,7 @@ class SessionsResource(SyncAPIResource):
         self,
         peer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
         | Omit = omit,
@@ -141,6 +143,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -166,7 +170,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -191,6 +195,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -209,7 +215,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         include_breakout_rooms: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -237,6 +243,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -262,7 +270,7 @@ class SessionsResource(SyncAPIResource):
         self,
         participant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         session_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
@@ -297,6 +305,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -327,7 +337,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         include_peer_events: bool | Omit = omit,
         page_no: float | Omit = omit,
@@ -371,6 +381,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -404,7 +416,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -430,6 +442,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -448,7 +462,7 @@ class SessionsResource(SyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,6 +487,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -491,7 +507,7 @@ class SessionsResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         associated_id: str | Omit = omit,
         end_time: Union[str, datetime] | Omit = omit,
         page_no: float | Omit = omit,
@@ -540,6 +556,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -595,7 +613,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -620,6 +638,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -639,7 +659,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         peer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
         | Omit = omit,
@@ -670,6 +690,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -695,7 +717,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -720,6 +742,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -738,7 +762,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         include_breakout_rooms: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -766,6 +790,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -791,7 +817,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         participant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         session_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
@@ -826,6 +852,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -856,7 +884,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         include_peer_events: bool | Omit = omit,
         page_no: float | Omit = omit,
@@ -900,6 +928,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -933,7 +963,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -959,6 +989,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -977,7 +1009,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         session_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         app_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1002,6 +1034,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
@@ -1020,7 +1054,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         associated_id: str | Omit = omit,
         end_time: Union[str, datetime] | Omit = omit,
         page_no: float | Omit = omit,
@@ -1069,6 +1103,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:

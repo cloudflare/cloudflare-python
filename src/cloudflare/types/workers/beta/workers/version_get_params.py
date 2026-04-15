@@ -8,7 +8,7 @@ __all__ = ["VersionGetParams"]
 
 
 class VersionGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     worker_id: Required[str]

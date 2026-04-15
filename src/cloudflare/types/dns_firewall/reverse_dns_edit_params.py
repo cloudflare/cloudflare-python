@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ReverseDNSEditParams"]
 
 
 class ReverseDNSEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     ptr: Dict[str, str]

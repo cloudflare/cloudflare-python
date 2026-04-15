@@ -9,7 +9,7 @@ __all__ = ["PayloadCreateParams", "Body"]
 
 
 class PayloadCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier."""
 
     body: Required[Iterable[Body]]

@@ -133,7 +133,7 @@ class BucketsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
@@ -167,6 +167,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -196,7 +198,7 @@ class BucketsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         name_contains: str | Omit = omit,
@@ -241,6 +243,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -274,7 +278,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,6 +305,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -325,7 +331,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         storage_class: Literal["Standard", "InfrequentAccess"],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -355,6 +361,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -384,7 +392,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -411,6 +419,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -483,7 +493,7 @@ class AsyncBucketsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
@@ -517,6 +527,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -546,7 +558,7 @@ class AsyncBucketsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         name_contains: str | Omit = omit,
@@ -591,6 +603,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -624,7 +638,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -651,6 +665,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -675,7 +691,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         storage_class: Literal["Standard", "InfrequentAccess"],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -705,6 +721,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -734,7 +752,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -761,6 +779,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:

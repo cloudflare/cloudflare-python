@@ -15,7 +15,7 @@ __all__ = [
 
 
 class ResourceTaggingSetTagsRequestZoneLevelBase(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Zone ID is required only for zone-level resources"""
 
     resource_id: Required[str]
@@ -40,7 +40,7 @@ class ResourceTaggingSetTagsRequestZoneLevelBase(TypedDict, total=False):
 
 
 class ResourceTaggingSetTagsRequestZoneLevelAccessApplicationPolicy(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Zone ID is required only for zone-level resources"""
 
     access_application_id: Required[str]
