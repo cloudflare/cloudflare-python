@@ -18,8 +18,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.registrar import registration_edit_params, registration_create_params
+from ...pagination import SyncCursorPagination, AsyncCursorPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.registrar import registration_edit_params, registration_list_params, registration_create_params
 from ...types.registrar.registration import Registration
 from ...types.registrar.workflow_status import WorkflowStatus
 
@@ -191,6 +192,74 @@ class RegistrationsResource(SyncAPIResource):
                 post_parser=ResultWrapper[WorkflowStatus]._unwrapper,
             ),
             cast_to=cast(Type[WorkflowStatus], ResultWrapper[WorkflowStatus]),
+        )
+
+    def list(
+        self,
+        *,
+        account_id: str,
+        cursor: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        per_page: int | Omit = omit,
+        sort_by: Literal["registry_created_at", "registry_expires_at", "name"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPagination[Registration]:
+        """
+        Returns a paginated list of domain registrations owned by the account.
+
+        This endpoint uses cursor-based pagination. Results are ordered by registration
+        date by default. To fetch the next page, pass the `cursor` value from the
+        `result_info` object in the response as the `cursor` query parameter in your
+        next request. An empty `cursor` string indicates there are no more pages.
+
+        Args:
+          account_id: Identifier
+
+          cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
+              fetch the next page of results. Omit (or pass an empty string) for the first
+              page.
+
+          direction: Sort direction for results. Defaults to ascending order.
+
+          per_page: Number of items to return per page.
+
+          sort_by: Column to sort results by. Defaults to registration date (`registry_created_at`)
+              when omitted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/registrar/registrations",
+            page=SyncCursorPagination[Registration],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "direction": direction,
+                        "per_page": per_page,
+                        "sort_by": sort_by,
+                    },
+                    registration_list_params.RegistrationListParams,
+                ),
+            ),
+            model=Registration,
         )
 
     def edit(
@@ -483,6 +552,74 @@ class AsyncRegistrationsResource(AsyncAPIResource):
             cast_to=cast(Type[WorkflowStatus], ResultWrapper[WorkflowStatus]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str,
+        cursor: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        per_page: int | Omit = omit,
+        sort_by: Literal["registry_created_at", "registry_expires_at", "name"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Registration, AsyncCursorPagination[Registration]]:
+        """
+        Returns a paginated list of domain registrations owned by the account.
+
+        This endpoint uses cursor-based pagination. Results are ordered by registration
+        date by default. To fetch the next page, pass the `cursor` value from the
+        `result_info` object in the response as the `cursor` query parameter in your
+        next request. An empty `cursor` string indicates there are no more pages.
+
+        Args:
+          account_id: Identifier
+
+          cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
+              fetch the next page of results. Omit (or pass an empty string) for the first
+              page.
+
+          direction: Sort direction for results. Defaults to ascending order.
+
+          per_page: Number of items to return per page.
+
+          sort_by: Column to sort results by. Defaults to registration date (`registry_created_at`)
+              when omitted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/registrar/registrations",
+            page=AsyncCursorPagination[Registration],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "direction": direction,
+                        "per_page": per_page,
+                        "sort_by": sort_by,
+                    },
+                    registration_list_params.RegistrationListParams,
+                ),
+            ),
+            model=Registration,
+        )
+
     async def edit(
         self,
         domain_name: str,
@@ -615,6 +752,9 @@ class RegistrationsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             registrations.create,
         )
+        self.list = to_raw_response_wrapper(
+            registrations.list,
+        )
         self.edit = to_raw_response_wrapper(
             registrations.edit,
         )
@@ -629,6 +769,9 @@ class AsyncRegistrationsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             registrations.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            registrations.list,
         )
         self.edit = async_to_raw_response_wrapper(
             registrations.edit,
@@ -645,6 +788,9 @@ class RegistrationsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             registrations.create,
         )
+        self.list = to_streamed_response_wrapper(
+            registrations.list,
+        )
         self.edit = to_streamed_response_wrapper(
             registrations.edit,
         )
@@ -659,6 +805,9 @@ class AsyncRegistrationsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             registrations.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            registrations.list,
         )
         self.edit = async_to_streamed_response_wrapper(
             registrations.edit,

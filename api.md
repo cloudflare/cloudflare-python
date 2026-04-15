@@ -4852,6 +4852,7 @@ Methods:
 Methods:
 
 - <code title="post /accounts/{account_id}/registrar/registrations">client.registrar.registrations.<a href="./src/cloudflare/resources/registrar/registrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar/registration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/workflow_status.py">WorkflowStatus</a></code>
+- <code title="get /accounts/{account_id}/registrar/registrations">client.registrar.registrations.<a href="./src/cloudflare/resources/registrar/registrations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar/registration_list_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/registration.py">SyncCursorPagination[Registration]</a></code>
 - <code title="patch /accounts/{account_id}/registrar/registrations/{domain_name}">client.registrar.registrations.<a href="./src/cloudflare/resources/registrar/registrations.py">edit</a>(domain_name, \*, account_id, \*\*<a href="src/cloudflare/types/registrar/registration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/workflow_status.py">WorkflowStatus</a></code>
 - <code title="get /accounts/{account_id}/registrar/registrations/{domain_name}">client.registrar.registrations.<a href="./src/cloudflare/resources/registrar/registrations.py">get</a>(domain_name, \*, account_id) -> <a href="./src/cloudflare/types/registrar/registration.py">Registration</a></code>
 
