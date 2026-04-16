@@ -161,6 +161,16 @@ class TestDeployments:
         assert_matches_type(object, deployment, path=["response"])
 
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        deployment = client.pages.projects.deployments.delete(
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+            force=True,
+        )
+        assert_matches_type(object, deployment, path=["response"])
+
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.delete(
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -536,6 +546,16 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+        )
+        assert_matches_type(object, deployment, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        deployment = await async_client.pages.projects.deployments.delete(
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+            force=True,
         )
         assert_matches_type(object, deployment, path=["response"])
 

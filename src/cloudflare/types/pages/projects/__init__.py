@@ -9,3 +9,4 @@ from .domain_list_response import DomainListResponse as DomainListResponse
 from .deployment_list_params import DeploymentListParams as DeploymentListParams
 from .domain_create_response import DomainCreateResponse as DomainCreateResponse
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
+from .deployment_delete_params import DeploymentDeleteParams as DeploymentDeleteParams

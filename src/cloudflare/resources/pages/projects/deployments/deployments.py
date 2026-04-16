@@ -28,7 +28,7 @@ from .history.history import (
     AsyncHistoryResourceWithStreamingResponse,
 )
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.pages.projects import deployment_list_params, deployment_create_params
+from .....types.pages.projects import deployment_list_params, deployment_create_params, deployment_delete_params
 from .....types.pages.deployment import Deployment
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
@@ -261,6 +261,7 @@ class DeploymentsResource(SyncAPIResource):
         *,
         account_id: str | None = None,
         project_name: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,6 +278,9 @@ class DeploymentsResource(SyncAPIResource):
           project_name: Name of the project.
 
           deployment_id: Identifier.
+
+          force: Allow deletion of aliased non-production deployments when a normal delete would
+              be rejected.
 
           extra_headers: Send extra headers
 
@@ -306,6 +310,7 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"force": force}, deployment_delete_params.DeploymentDeleteParams),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -709,6 +714,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         *,
         account_id: str | None = None,
         project_name: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -725,6 +731,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           project_name: Name of the project.
 
           deployment_id: Identifier.
+
+          force: Allow deletion of aliased non-production deployments when a normal delete would
+              be rejected.
 
           extra_headers: Send extra headers
 
@@ -754,6 +763,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"force": force}, deployment_delete_params.DeploymentDeleteParams),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
