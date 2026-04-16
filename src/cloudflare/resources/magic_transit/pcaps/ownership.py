@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +78,7 @@ class OwnershipResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pcaps/ownership",
+            path_template("/accounts/{account_id}/pcaps/ownership", account_id=account_id),
             body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -126,7 +126,11 @@ class OwnershipResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ownership_id` but received {ownership_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/pcaps/ownership/{ownership_id}",
+            path_template(
+                "/accounts/{account_id}/pcaps/ownership/{ownership_id}",
+                account_id=account_id,
+                ownership_id=ownership_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -163,7 +167,7 @@ class OwnershipResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps/ownership",
+            path_template("/accounts/{account_id}/pcaps/ownership", account_id=account_id),
             page=SyncSinglePage[Ownership],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -207,7 +211,7 @@ class OwnershipResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pcaps/ownership/validate",
+            path_template("/accounts/{account_id}/pcaps/ownership/validate", account_id=account_id),
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -279,7 +283,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pcaps/ownership",
+            path_template("/accounts/{account_id}/pcaps/ownership", account_id=account_id),
             body=await async_maybe_transform(
                 {"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams
             ),
@@ -329,7 +333,11 @@ class AsyncOwnershipResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ownership_id` but received {ownership_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/pcaps/ownership/{ownership_id}",
+            path_template(
+                "/accounts/{account_id}/pcaps/ownership/{ownership_id}",
+                account_id=account_id,
+                ownership_id=ownership_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -366,7 +374,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps/ownership",
+            path_template("/accounts/{account_id}/pcaps/ownership", account_id=account_id),
             page=AsyncSinglePage[Ownership],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -410,7 +418,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pcaps/ownership/validate",
+            path_template("/accounts/{account_id}/pcaps/ownership/validate", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "destination_conf": destination_conf,

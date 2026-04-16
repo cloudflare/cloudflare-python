@@ -7,6 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -79,7 +80,9 @@ class ActiveSessionsResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/users/{user_id}/active_sessions",
+            path_template(
+                "/accounts/{account_id}/access/users/{user_id}/active_sessions", account_id=account_id, user_id=user_id
+            ),
             page=SyncSinglePage[ActiveSessionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -125,7 +128,12 @@ class ActiveSessionsResource(SyncAPIResource):
         if not nonce:
             raise ValueError(f"Expected a non-empty value for `nonce` but received {nonce!r}")
         return self._get(
-            f"/accounts/{account_id}/access/users/{user_id}/active_sessions/{nonce}",
+            path_template(
+                "/accounts/{account_id}/access/users/{user_id}/active_sessions/{nonce}",
+                account_id=account_id,
+                user_id=user_id,
+                nonce=nonce,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +200,9 @@ class AsyncActiveSessionsResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/users/{user_id}/active_sessions",
+            path_template(
+                "/accounts/{account_id}/access/users/{user_id}/active_sessions", account_id=account_id, user_id=user_id
+            ),
             page=AsyncSinglePage[ActiveSessionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -238,7 +248,12 @@ class AsyncActiveSessionsResource(AsyncAPIResource):
         if not nonce:
             raise ValueError(f"Expected a non-empty value for `nonce` but received {nonce!r}")
         return await self._get(
-            f"/accounts/{account_id}/access/users/{user_id}/active_sessions/{nonce}",
+            path_template(
+                "/accounts/{account_id}/access/users/{user_id}/active_sessions/{nonce}",
+                account_id=account_id,
+                user_id=user_id,
+                nonce=nonce,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -94,7 +94,12 @@ class ActiveSessionResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/poll",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/poll",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=maybe_transform(
                 {
                     "options": options,
@@ -148,7 +153,12 @@ class ActiveSessionResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -193,7 +203,12 @@ class ActiveSessionResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick-all",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick-all",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -241,7 +256,12 @@ class ActiveSessionResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=maybe_transform(
                 {
                     "custom_participant_ids": custom_participant_ids,
@@ -326,7 +346,12 @@ class AsyncActiveSessionResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/poll",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/poll",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "options": options,
@@ -380,7 +405,12 @@ class AsyncActiveSessionResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -425,7 +455,12 @@ class AsyncActiveSessionResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick-all",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick-all",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -473,7 +508,12 @@ class AsyncActiveSessionResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-session/kick",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "custom_participant_ids": custom_participant_ids,

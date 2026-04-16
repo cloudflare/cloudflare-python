@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -103,7 +103,12 @@ class SettingsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_iframe": allow_iframe,
@@ -177,7 +182,12 @@ class SettingsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._patch(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_iframe": allow_iframe,
@@ -272,7 +282,12 @@ class AsyncSettingsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_iframe": allow_iframe,
@@ -346,7 +361,12 @@ class AsyncSettingsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._patch(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/settings",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_iframe": allow_iframe,

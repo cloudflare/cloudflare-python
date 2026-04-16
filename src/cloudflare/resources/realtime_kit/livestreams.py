@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -118,7 +118,9 @@ class LivestreamsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
+            ),
             body=maybe_transform(
                 {"name": name},
                 livestream_create_independent_livestream_params.LivestreamCreateIndependentLivestreamParams,
@@ -169,7 +171,12 @@ class LivestreamsResource(SyncAPIResource):
         if not livestream_id:
             raise ValueError(f"Expected a non-empty value for `livestream_id` but received {livestream_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}/active-livestream-session",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}/active-livestream-session",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_id=livestream_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -236,7 +243,9 @@ class LivestreamsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -299,7 +308,11 @@ class LivestreamsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/overall",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/overall",
+                account_id=account_id,
+                app_id=app_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -359,7 +372,12 @@ class LivestreamsResource(SyncAPIResource):
                 f"Expected a non-empty value for `livestream_session_id` but received {livestream_session_id!r}"
             )
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/sessions/{livestream_session_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/sessions/{livestream_session_id}",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_session_id=livestream_session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -411,7 +429,12 @@ class LivestreamsResource(SyncAPIResource):
         if not livestream_id:
             raise ValueError(f"Expected a non-empty value for `livestream_id` but received {livestream_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_id=livestream_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +489,12 @@ class LivestreamsResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -516,7 +544,9 @@ class LivestreamsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -575,7 +605,12 @@ class LivestreamsResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/livestreams",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -628,7 +663,12 @@ class LivestreamsResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream/stop",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream/stop",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -697,7 +737,9 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
+            ),
             body=await async_maybe_transform(
                 {"name": name},
                 livestream_create_independent_livestream_params.LivestreamCreateIndependentLivestreamParams,
@@ -748,7 +790,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not livestream_id:
             raise ValueError(f"Expected a non-empty value for `livestream_id` but received {livestream_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}/active-livestream-session",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}/active-livestream-session",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_id=livestream_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -815,7 +862,9 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -878,7 +927,11 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/overall",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/overall",
+                account_id=account_id,
+                app_id=app_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -938,7 +991,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `livestream_session_id` but received {livestream_session_id!r}"
             )
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/sessions/{livestream_session_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/sessions/{livestream_session_id}",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_session_id=livestream_session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -990,7 +1048,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not livestream_id:
             raise ValueError(f"Expected a non-empty value for `livestream_id` but received {livestream_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}",
+                account_id=account_id,
+                app_id=app_id,
+                livestream_id=livestream_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1045,7 +1108,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1095,7 +1163,9 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1154,7 +1224,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/livestreams",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/livestreams",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -1207,7 +1282,12 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream/stop",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}/active-livestream/stop",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -86,7 +86,7 @@ class IPsResource(SyncAPIResource):
         if not ip:
             raise ValueError(f"Expected a non-empty value for `ip` but received {ip!r}")
         return self._get(
-            f"/accounts/{account_id}/teamnet/routes/ip/{ip}",
+            path_template("/accounts/{account_id}/teamnet/routes/ip/{ip}", account_id=account_id, ip=ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +167,7 @@ class AsyncIPsResource(AsyncAPIResource):
         if not ip:
             raise ValueError(f"Expected a non-empty value for `ip` but received {ip!r}")
         return await self._get(
-            f"/accounts/{account_id}/teamnet/routes/ip/{ip}",
+            path_template("/accounts/{account_id}/teamnet/routes/ip/{ip}", account_id=account_id, ip=ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

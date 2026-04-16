@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -81,7 +81,7 @@ class KeysResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/keys",
+            path_template("/accounts/{account_id}/stream/keys", account_id=account_id),
             body=maybe_transform(body, key_create_params.KeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -128,7 +128,9 @@ class KeysResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._delete(
-            f"/accounts/{account_id}/stream/keys/{identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/keys/{identifier}", account_id=account_id, identifier=identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +171,7 @@ class KeysResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/keys",
+            path_template("/accounts/{account_id}/stream/keys", account_id=account_id),
             page=SyncSinglePage[KeyGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -232,7 +234,7 @@ class AsyncKeysResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/keys",
+            path_template("/accounts/{account_id}/stream/keys", account_id=account_id),
             body=await async_maybe_transform(body, key_create_params.KeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -279,7 +281,9 @@ class AsyncKeysResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._delete(
-            f"/accounts/{account_id}/stream/keys/{identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/keys/{identifier}", account_id=account_id, identifier=identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -320,7 +324,7 @@ class AsyncKeysResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/keys",
+            path_template("/accounts/{account_id}/stream/keys", account_id=account_id),
             page=AsyncSinglePage[KeyGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

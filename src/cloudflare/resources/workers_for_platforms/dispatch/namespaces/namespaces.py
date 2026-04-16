@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -92,7 +92,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/dispatch/namespaces",
+            path_template("/accounts/{account_id}/workers/dispatch/namespaces", account_id=account_id),
             body=maybe_transform({"name": name}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -134,7 +134,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces",
+            path_template("/accounts/{account_id}/workers/dispatch/namespaces", account_id=account_id),
             page=SyncSinglePage[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -177,7 +177,11 @@ class NamespacesResource(SyncAPIResource):
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -223,7 +227,11 @@ class NamespacesResource(SyncAPIResource):
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -292,7 +300,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/dispatch/namespaces",
+            path_template("/accounts/{account_id}/workers/dispatch/namespaces", account_id=account_id),
             body=await async_maybe_transform({"name": name}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -334,7 +342,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces",
+            path_template("/accounts/{account_id}/workers/dispatch/namespaces", account_id=account_id),
             page=AsyncSinglePage[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -377,7 +385,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -423,7 +435,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

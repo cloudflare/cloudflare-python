@@ -16,7 +16,7 @@ from .fields import (
     AsyncFieldsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -144,7 +144,7 @@ class ReceivedResource(SyncAPIResource):
         return cast(
             ReceivedGetResponse,
             self._get(
-                f"/zones/{zone_id}/logs/received",
+                path_template("/zones/{zone_id}/logs/received", zone_id=zone_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -281,7 +281,7 @@ class AsyncReceivedResource(AsyncAPIResource):
         return cast(
             ReceivedGetResponse,
             await self._get(
-                f"/zones/{zone_id}/logs/received",
+                path_template("/zones/{zone_id}/logs/received", zone_id=zone_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

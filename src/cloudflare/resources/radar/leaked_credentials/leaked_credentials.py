@@ -17,7 +17,7 @@ from .summary import (
     AsyncSummaryResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -145,7 +145,7 @@ class LeakedCredentialsResource(SyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            f"/radar/leaked_credential_checks/summary/{dimension}",
+            path_template("/radar/leaked_credential_checks/summary/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,7 +267,7 @@ class LeakedCredentialsResource(SyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            f"/radar/leaked_credential_checks/timeseries_groups/{dimension}",
+            path_template("/radar/leaked_credential_checks/timeseries_groups/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,7 +403,7 @@ class AsyncLeakedCredentialsResource(AsyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            f"/radar/leaked_credential_checks/summary/{dimension}",
+            path_template("/radar/leaked_credential_checks/summary/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -525,7 +525,7 @@ class AsyncLeakedCredentialsResource(AsyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            f"/radar/leaked_credential_checks/timeseries_groups/{dimension}",
+            path_template("/radar/leaked_credential_checks/timeseries_groups/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

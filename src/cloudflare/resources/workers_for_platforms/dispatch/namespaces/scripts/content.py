@@ -19,6 +19,7 @@ from ......_types import (
 )
 from ......_utils import (
     extract_files,
+    path_template,
     maybe_transform,
     strip_not_given,
     deepcopy_minimal,
@@ -143,7 +144,12 @@ class ContentResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             body=maybe_transform(body, content_update_params.ContentUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -198,7 +204,12 @@ class ContentResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         extra_headers = {"Accept": "string", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -300,7 +311,12 @@ class AsyncContentResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform(body, content_update_params.ContentUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -355,7 +371,12 @@ class AsyncContentResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         extra_headers = {"Accept": "string", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

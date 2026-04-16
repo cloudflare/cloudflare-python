@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -108,7 +108,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/token_validation/rules",
+            path_template("/zones/{zone_id}/token_validation/rules", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -188,7 +188,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules",
+            path_template("/zones/{zone_id}/token_validation/rules", zone_id=zone_id),
             page=SyncV4PagePaginationArray[TokenValidationRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -248,7 +248,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -292,7 +292,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules/bulk",
+            path_template("/zones/{zone_id}/token_validation/rules/bulk", zone_id=zone_id),
             page=SyncSinglePage[TokenValidationRule],
             body=maybe_transform(body, Iterable[rule_bulk_create_params.Body]),
             options=make_request_options(
@@ -339,7 +339,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules/bulk",
+            path_template("/zones/{zone_id}/token_validation/rules/bulk", zone_id=zone_id),
             page=SyncSinglePage[TokenValidationRule],
             body=maybe_transform(body, Iterable[rule_bulk_edit_params.Body]),
             options=make_request_options(
@@ -413,7 +413,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -471,7 +471,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -559,7 +559,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/token_validation/rules",
+            path_template("/zones/{zone_id}/token_validation/rules", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -639,7 +639,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules",
+            path_template("/zones/{zone_id}/token_validation/rules", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[TokenValidationRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -699,7 +699,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -743,7 +743,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules/bulk",
+            path_template("/zones/{zone_id}/token_validation/rules/bulk", zone_id=zone_id),
             page=AsyncSinglePage[TokenValidationRule],
             body=maybe_transform(body, Iterable[rule_bulk_create_params.Body]),
             options=make_request_options(
@@ -790,7 +790,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/token_validation/rules/bulk",
+            path_template("/zones/{zone_id}/token_validation/rules/bulk", zone_id=zone_id),
             page=AsyncSinglePage[TokenValidationRule],
             body=maybe_transform(body, Iterable[rule_bulk_edit_params.Body]),
             options=make_request_options(
@@ -864,7 +864,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -922,7 +922,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/token_validation/rules/{rule_id}",
+            path_template("/zones/{zone_id}/token_validation/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -73,7 +74,7 @@ class PlansResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/available_plans",
+            path_template("/zones/{zone_id}/available_plans", zone_id=zone_id),
             page=SyncSinglePage[AvailableRatePlan],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -116,7 +117,9 @@ class PlansResource(SyncAPIResource):
         if not plan_identifier:
             raise ValueError(f"Expected a non-empty value for `plan_identifier` but received {plan_identifier!r}")
         return self._get(
-            f"/zones/{zone_id}/available_plans/{plan_identifier}",
+            path_template(
+                "/zones/{zone_id}/available_plans/{plan_identifier}", zone_id=zone_id, plan_identifier=plan_identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +181,7 @@ class AsyncPlansResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/available_plans",
+            path_template("/zones/{zone_id}/available_plans", zone_id=zone_id),
             page=AsyncSinglePage[AvailableRatePlan],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -221,7 +224,9 @@ class AsyncPlansResource(AsyncAPIResource):
         if not plan_identifier:
             raise ValueError(f"Expected a non-empty value for `plan_identifier` but received {plan_identifier!r}")
         return await self._get(
-            f"/zones/{zone_id}/available_plans/{plan_identifier}",
+            path_template(
+                "/zones/{zone_id}/available_plans/{plan_identifier}", zone_id=zone_id, plan_identifier=plan_identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

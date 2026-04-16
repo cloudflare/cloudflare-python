@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -101,7 +101,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces",
+            path_template("/accounts/{account_id}/ai-search/namespaces", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -154,7 +154,7 @@ class NamespacesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             body=maybe_transform({"description": description}, namespace_update_params.NamespaceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -204,7 +204,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces",
+            path_template("/accounts/{account_id}/ai-search/namespaces", account_id=account_id),
             page=SyncV4PagePaginationArray[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -254,7 +254,7 @@ class NamespacesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -333,7 +333,9 @@ class NamespacesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/chat/completions", account_id=account_id, name=name
+            ),
             body=maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -380,7 +382,7 @@ class NamespacesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -429,7 +431,9 @@ class NamespacesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/search",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/search", account_id=account_id, name=name
+            ),
             body=maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -505,7 +509,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces",
+            path_template("/accounts/{account_id}/ai-search/namespaces", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -558,7 +562,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             body=await async_maybe_transform(
                 {"description": description}, namespace_update_params.NamespaceUpdateParams
             ),
@@ -610,7 +614,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces",
+            path_template("/accounts/{account_id}/ai-search/namespaces", account_id=account_id),
             page=AsyncV4PagePaginationArray[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -660,7 +664,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -739,7 +743,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/chat/completions", account_id=account_id, name=name
+            ),
             body=await async_maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -786,7 +792,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}",
+            path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -835,7 +841,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/search",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/search", account_id=account_id, name=name
+            ),
             body=await async_maybe_transform(
                 {
                     "aisearch_options": aisearch_options,

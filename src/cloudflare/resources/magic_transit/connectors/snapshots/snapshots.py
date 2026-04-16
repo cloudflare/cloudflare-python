@@ -15,7 +15,7 @@ from .latest import (
     AsyncLatestResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -94,7 +94,11 @@ class SnapshotsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -148,7 +152,12 @@ class SnapshotsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}",
+                account_id=account_id,
+                connector_id=connector_id,
+                snapshot_t=snapshot_t,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -221,7 +230,11 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,7 +288,12 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}",
+                account_id=account_id,
+                connector_id=connector_id,
+                snapshot_t=snapshot_t,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

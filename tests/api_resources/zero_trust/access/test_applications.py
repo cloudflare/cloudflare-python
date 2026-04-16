@@ -122,12 +122,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -230,12 +225,7 @@ class TestApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -432,12 +422,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -619,12 +604,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -744,12 +724,7 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -818,12 +793,7 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -891,12 +861,7 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -966,12 +931,7 @@ class TestApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             domain="abcd123456.proxy.cloudflare-gateway.com",
             name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -1036,12 +996,7 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             tags=["engineers"],
             type="bookmark",
         )
@@ -1119,7 +1074,7 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "include": [{"certificate": {}}],
                     "name": "Allow devs",
                     "connection_rules": {
                         "ssh": {
@@ -1127,13 +1082,13 @@ class TestApplications:
                             "allow_email_alias": True,
                         }
                     },
-                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "exclude": [{"certificate": {}}],
                     "mfa_config": {
                         "allowed_authenticators": ["ssh_piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
-                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"certificate": {}}],
                 }
             ],
         )
@@ -1322,12 +1277,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -1516,12 +1466,7 @@ class TestApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1674,12 +1619,7 @@ class TestApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1854,12 +1794,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -1976,12 +1911,7 @@ class TestApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -2190,12 +2120,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -2391,12 +2316,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -2530,12 +2450,7 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -2617,12 +2532,7 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2703,12 +2613,7 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2791,12 +2696,7 @@ class TestApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             domain="abcd123456.proxy.cloudflare-gateway.com",
             name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2874,12 +2774,7 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             tags=["engineers"],
             type="bookmark",
         )
@@ -2969,7 +2864,7 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "include": [{"certificate": {}}],
                     "name": "Allow devs",
                     "connection_rules": {
                         "ssh": {
@@ -2977,13 +2872,13 @@ class TestApplications:
                             "allow_email_alias": True,
                         }
                     },
-                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "exclude": [{"certificate": {}}],
                     "mfa_config": {
                         "allowed_authenticators": ["ssh_piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
-                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"certificate": {}}],
                 }
             ],
         )
@@ -3192,12 +3087,7 @@ class TestApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -3407,12 +3297,7 @@ class TestApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3578,12 +3463,7 @@ class TestApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4037,12 +3917,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -4145,12 +4020,7 @@ class TestAsyncApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -4347,12 +4217,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -4534,12 +4399,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -4659,12 +4519,7 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -4733,12 +4588,7 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4806,12 +4656,7 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4881,12 +4726,7 @@ class TestAsyncApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             domain="abcd123456.proxy.cloudflare-gateway.com",
             name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4951,12 +4791,7 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             tags=["engineers"],
             type="bookmark",
         )
@@ -5034,7 +4869,7 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "include": [{"certificate": {}}],
                     "name": "Allow devs",
                     "connection_rules": {
                         "ssh": {
@@ -5042,13 +4877,13 @@ class TestAsyncApplications:
                             "allow_email_alias": True,
                         }
                     },
-                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "exclude": [{"certificate": {}}],
                     "mfa_config": {
                         "allowed_authenticators": ["ssh_piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
-                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"certificate": {}}],
                 }
             ],
         )
@@ -5237,12 +5072,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -5431,12 +5261,7 @@ class TestAsyncApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5589,12 +5414,7 @@ class TestAsyncApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5769,12 +5589,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -5891,12 +5706,7 @@ class TestAsyncApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -6105,12 +5915,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -6306,12 +6111,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -6445,12 +6245,7 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -6532,12 +6327,7 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -6618,12 +6408,7 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -6706,12 +6491,7 @@ class TestAsyncApplications:
             custom_pages=["699d98642c564d2e855e9661899b7252"],
             domain="abcd123456.proxy.cloudflare-gateway.com",
             name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -6789,12 +6569,7 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             tags=["engineers"],
             type="bookmark",
         )
@@ -6884,7 +6659,7 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "include": [{"certificate": {}}],
                     "name": "Allow devs",
                     "connection_rules": {
                         "ssh": {
@@ -6892,13 +6667,13 @@ class TestAsyncApplications:
                             "allow_email_alias": True,
                         }
                     },
-                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "exclude": [{"certificate": {}}],
                     "mfa_config": {
                         "allowed_authenticators": ["ssh_piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
-                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"certificate": {}}],
                 }
             ],
         )
@@ -7107,12 +6882,7 @@ class TestAsyncApplications:
             },
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
@@ -7322,12 +7092,7 @@ class TestAsyncApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -7493,12 +7258,7 @@ class TestAsyncApplications:
                 },
             },
             options_preflight_bypass=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
+            policies=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",

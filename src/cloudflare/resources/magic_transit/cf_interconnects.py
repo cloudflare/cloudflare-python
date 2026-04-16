@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -126,7 +126,11 @@ class CfInterconnectsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+                account_id=account_id,
+                cf_interconnect_id=cf_interconnect_id,
+            ),
             body=maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
@@ -191,7 +195,7 @@ class CfInterconnectsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects",
+            path_template("/accounts/{account_id}/magic/cf_interconnects", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +251,7 @@ class CfInterconnectsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects",
+            path_template("/accounts/{account_id}/magic/cf_interconnects", account_id=account_id),
             body=maybe_transform(body, cf_interconnect_bulk_update_params.CfInterconnectBulkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -305,7 +309,11 @@ class CfInterconnectsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+                account_id=account_id,
+                cf_interconnect_id=cf_interconnect_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,7 +423,11 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+                account_id=account_id,
+                cf_interconnect_id=cf_interconnect_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
@@ -480,7 +492,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects",
+            path_template("/accounts/{account_id}/magic/cf_interconnects", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -536,7 +548,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects",
+            path_template("/accounts/{account_id}/magic/cf_interconnects", account_id=account_id),
             body=await async_maybe_transform(body, cf_interconnect_bulk_update_params.CfInterconnectBulkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -594,7 +606,11 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
+                account_id=account_id,
+                cf_interconnect_id=cf_interconnect_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

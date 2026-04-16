@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -110,7 +110,11 @@ class LogsResource(SyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             page=SyncV4PagePaginationArray[LogListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -204,7 +208,11 @@ class LogsResource(SyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +270,12 @@ class LogsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "feedback": feedback,
@@ -317,7 +330,12 @@ class LogsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -364,7 +382,12 @@ class LogsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -407,7 +430,12 @@ class LogsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -496,7 +524,11 @@ class AsyncLogsResource(AsyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             page=AsyncV4PagePaginationArray[LogListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -590,7 +622,11 @@ class AsyncLogsResource(AsyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -648,7 +684,12 @@ class AsyncLogsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "feedback": feedback,
@@ -703,7 +744,12 @@ class AsyncLogsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -750,7 +796,12 @@ class AsyncLogsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -793,7 +844,12 @@ class AsyncLogsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

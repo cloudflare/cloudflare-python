@@ -17,7 +17,7 @@ from .download import (
     AsyncDownloadResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .ownership import (
     OwnershipResource,
     AsyncOwnershipResource,
@@ -209,7 +209,7 @@ class PCAPsResource(SyncAPIResource):
         return cast(
             PCAPCreateResponse,
             self._post(
-                f"/accounts/{account_id}/pcaps",
+                path_template("/accounts/{account_id}/pcaps", account_id=account_id),
                 body=maybe_transform(
                     {
                         "packet_limit": packet_limit,
@@ -267,7 +267,7 @@ class PCAPsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps",
+            path_template("/accounts/{account_id}/pcaps", account_id=account_id),
             page=SyncSinglePage[PCAPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -312,7 +312,7 @@ class PCAPsResource(SyncAPIResource):
         return cast(
             PCAPGetResponse,
             self._get(
-                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                path_template("/accounts/{account_id}/pcaps/{pcap_id}", account_id=account_id, pcap_id=pcap_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -362,7 +362,7 @@ class PCAPsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/pcaps/{pcap_id}/stop",
+            path_template("/accounts/{account_id}/pcaps/{pcap_id}/stop", account_id=account_id, pcap_id=pcap_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -533,7 +533,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         return cast(
             PCAPCreateResponse,
             await self._post(
-                f"/accounts/{account_id}/pcaps",
+                path_template("/accounts/{account_id}/pcaps", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "packet_limit": packet_limit,
@@ -591,7 +591,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps",
+            path_template("/accounts/{account_id}/pcaps", account_id=account_id),
             page=AsyncSinglePage[PCAPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -636,7 +636,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         return cast(
             PCAPGetResponse,
             await self._get(
-                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                path_template("/accounts/{account_id}/pcaps/{pcap_id}", account_id=account_id, pcap_id=pcap_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -686,7 +686,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/pcaps/{pcap_id}/stop",
+            path_template("/accounts/{account_id}/pcaps/{pcap_id}/stop", account_id=account_id, pcap_id=pcap_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

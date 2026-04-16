@@ -682,7 +682,7 @@ class TestItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         )
         assert_matches_type(ItemUploadResponse, item, path=["response"])
 
@@ -693,7 +693,7 @@ class TestItems:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
             file={
-                "file": b"raw file contents",
+                "file": b"Example data",
                 "metadata": "metadata",
                 "wait_for_completion": True,
             },
@@ -706,7 +706,7 @@ class TestItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         )
 
         assert response.is_closed is True
@@ -720,7 +720,7 @@ class TestItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -737,7 +737,7 @@ class TestItems:
                 id="my-ai-search",
                 account_id="",
                 name="my-namespace",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
@@ -745,7 +745,7 @@ class TestItems:
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 name="",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -753,7 +753,7 @@ class TestItems:
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 name="my-namespace",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )
 
 
@@ -1409,7 +1409,7 @@ class TestAsyncItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         )
         assert_matches_type(ItemUploadResponse, item, path=["response"])
 
@@ -1420,7 +1420,7 @@ class TestAsyncItems:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
             file={
-                "file": b"raw file contents",
+                "file": b"Example data",
                 "metadata": "metadata",
                 "wait_for_completion": True,
             },
@@ -1433,7 +1433,7 @@ class TestAsyncItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         )
 
         assert response.is_closed is True
@@ -1447,7 +1447,7 @@ class TestAsyncItems:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="my-namespace",
-            file={"file": b"raw file contents"},
+            file={"file": b"Example data"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1464,7 +1464,7 @@ class TestAsyncItems:
                 id="my-ai-search",
                 account_id="",
                 name="my-namespace",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
@@ -1472,7 +1472,7 @@ class TestAsyncItems:
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 name="",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1480,5 +1480,5 @@ class TestAsyncItems:
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 name="my-namespace",
-                file={"file": b"raw file contents"},
+                file={"file": b"Example data"},
             )

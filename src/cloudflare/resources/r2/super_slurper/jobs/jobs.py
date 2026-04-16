@@ -15,7 +15,7 @@ from .logs import (
     AsyncLogsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -96,7 +96,7 @@ class JobsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/slurper/jobs",
+            path_template("/accounts/{account_id}/slurper/jobs", account_id=account_id),
             body=maybe_transform(
                 {
                     "overwrite": overwrite,
@@ -145,7 +145,7 @@ class JobsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/slurper/jobs",
+            path_template("/accounts/{account_id}/slurper/jobs", account_id=account_id),
             page=SyncSinglePage[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -196,7 +196,7 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/abort",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/abort", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -238,7 +238,7 @@ class JobsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
-            f"/accounts/{account_id}/slurper/jobs/abortAll",
+            path_template("/accounts/{account_id}/slurper/jobs/abortAll", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -281,7 +281,7 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +325,7 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/pause",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/pause", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -367,7 +367,9 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/progress",
+            path_template(
+                "/accounts/{account_id}/slurper/jobs/{job_id}/progress", account_id=account_id, job_id=job_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -410,7 +412,7 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/resume",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/resume", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -478,7 +480,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/slurper/jobs",
+            path_template("/accounts/{account_id}/slurper/jobs", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "overwrite": overwrite,
@@ -527,7 +529,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/slurper/jobs",
+            path_template("/accounts/{account_id}/slurper/jobs", account_id=account_id),
             page=AsyncSinglePage[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -578,7 +580,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/abort",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/abort", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -620,7 +622,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/slurper/jobs/abortAll",
+            path_template("/accounts/{account_id}/slurper/jobs/abortAll", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -663,7 +665,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -707,7 +709,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/pause",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/pause", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,7 +751,9 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/progress",
+            path_template(
+                "/accounts/{account_id}/slurper/jobs/{job_id}/progress", account_id=account_id, job_id=job_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -792,7 +796,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/slurper/jobs/{job_id}/resume",
+            path_template("/accounts/{account_id}/slurper/jobs/{job_id}/resume", account_id=account_id, job_id=job_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

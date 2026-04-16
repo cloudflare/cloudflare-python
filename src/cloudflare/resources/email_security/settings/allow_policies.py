@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -107,7 +107,7 @@ class AllowPoliciesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             body=maybe_transform(
                 {
                     "is_acceptable_sender": is_acceptable_sender,
@@ -190,7 +190,7 @@ class AllowPoliciesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             page=SyncV4PagePaginationArray[AllowPolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -255,7 +255,11 @@ class AllowPoliciesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -319,7 +323,11 @@ class AllowPoliciesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             body=maybe_transform(
                 {
                     "comments": comments,
@@ -377,7 +385,11 @@ class AllowPoliciesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,7 +474,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "is_acceptable_sender": is_acceptable_sender,
@@ -545,7 +557,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             page=AsyncV4PagePaginationArray[AllowPolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -610,7 +622,11 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -674,7 +690,11 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "comments": comments,
@@ -732,7 +752,11 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

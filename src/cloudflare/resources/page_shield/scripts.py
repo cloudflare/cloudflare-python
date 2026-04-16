@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -138,7 +138,7 @@ class ScriptsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/page_shield/scripts",
+            path_template("/zones/{zone_id}/page_shield/scripts", zone_id=zone_id),
             page=SyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -202,7 +202,7 @@ class ScriptsResource(SyncAPIResource):
         if not script_id:
             raise ValueError(f"Expected a non-empty value for `script_id` but received {script_id!r}")
         return self._get(
-            f"/zones/{zone_id}/page_shield/scripts/{script_id}",
+            path_template("/zones/{zone_id}/page_shield/scripts/{script_id}", zone_id=zone_id, script_id=script_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +325,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/page_shield/scripts",
+            path_template("/zones/{zone_id}/page_shield/scripts", zone_id=zone_id),
             page=AsyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -389,7 +389,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         if not script_id:
             raise ValueError(f"Expected a non-empty value for `script_id` but received {script_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/page_shield/scripts/{script_id}",
+            path_template("/zones/{zone_id}/page_shield/scripts/{script_id}", zone_id=zone_id, script_id=script_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

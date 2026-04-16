@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -99,7 +99,11 @@ class OperationsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._put(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=maybe_transform(
                 {"mitigation_action": mitigation_action}, operation_update_params.OperationUpdateParams
             ),
@@ -149,7 +153,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/schema_validation/settings/operations",
+            path_template("/zones/{zone_id}/schema_validation/settings/operations", zone_id=zone_id),
             page=SyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -203,7 +207,11 @@ class OperationsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -246,7 +254,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/schema_validation/settings/operations",
+            path_template("/zones/{zone_id}/schema_validation/settings/operations", zone_id=zone_id),
             body=maybe_transform(body, operation_bulk_edit_params.OperationBulkEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -294,7 +302,11 @@ class OperationsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._get(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,7 +383,11 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=await async_maybe_transform(
                 {"mitigation_action": mitigation_action}, operation_update_params.OperationUpdateParams
             ),
@@ -421,7 +437,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/schema_validation/settings/operations",
+            path_template("/zones/{zone_id}/schema_validation/settings/operations", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -475,7 +491,11 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,7 +538,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/schema_validation/settings/operations",
+            path_template("/zones/{zone_id}/schema_validation/settings/operations", zone_id=zone_id),
             body=await async_maybe_transform(body, operation_bulk_edit_params.OperationBulkEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -566,7 +586,11 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

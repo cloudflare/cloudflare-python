@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -86,7 +86,9 @@ class ConnectionsResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections", account_id=account_id, tunnel_id=tunnel_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -133,7 +135,9 @@ class ConnectionsResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections", account_id=account_id, tunnel_id=tunnel_id
+            ),
             page=SyncSinglePage[Client],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -203,7 +207,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections", account_id=account_id, tunnel_id=tunnel_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,7 +258,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections", account_id=account_id, tunnel_id=tunnel_id
+            ),
             page=AsyncSinglePage[Client],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

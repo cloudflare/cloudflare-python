@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -82,7 +82,7 @@ class SettingsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             body=maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass},
                 setting_update_params.SettingUpdateParams,
@@ -132,7 +132,7 @@ class SettingsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             body=maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass}, setting_edit_params.SettingEditParams
             ),
@@ -177,7 +177,7 @@ class SettingsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +245,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass},
                 setting_update_params.SettingUpdateParams,
@@ -295,7 +295,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass}, setting_edit_params.SettingEditParams
             ),
@@ -340,7 +340,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/waiting_rooms/settings",
+            path_template("/zones/{zone_id}/waiting_rooms/settings", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

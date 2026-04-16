@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class SFUResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/calls/apps",
+            path_template("/accounts/{account_id}/calls/apps", account_id=account_id),
             body=maybe_transform({"name": name}, sfu_create_params.SFUCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -134,7 +134,7 @@ class SFUResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._put(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             body=maybe_transform({"name": name}, sfu_update_params.SFUUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -176,7 +176,7 @@ class SFUResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/apps",
+            path_template("/accounts/{account_id}/calls/apps", account_id=account_id),
             page=SyncSinglePage[SFUListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -219,7 +219,7 @@ class SFUResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +265,7 @@ class SFUResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,7 +332,7 @@ class AsyncSFUResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/calls/apps",
+            path_template("/accounts/{account_id}/calls/apps", account_id=account_id),
             body=await async_maybe_transform({"name": name}, sfu_create_params.SFUCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -382,7 +382,7 @@ class AsyncSFUResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             body=await async_maybe_transform({"name": name}, sfu_update_params.SFUUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -424,7 +424,7 @@ class AsyncSFUResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/apps",
+            path_template("/accounts/{account_id}/calls/apps", account_id=account_id),
             page=AsyncSinglePage[SFUListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -467,7 +467,7 @@ class AsyncSFUResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -513,7 +513,7 @@ class AsyncSFUResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            path_template("/accounts/{account_id}/calls/apps/{app_id}", account_id=account_id, app_id=app_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

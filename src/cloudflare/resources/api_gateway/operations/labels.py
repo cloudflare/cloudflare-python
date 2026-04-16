@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -96,7 +96,11 @@ class LabelsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._post(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=maybe_transform(
                 {
                     "managed": managed,
@@ -157,7 +161,11 @@ class LabelsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._put(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=maybe_transform(
                 {
                     "managed": managed,
@@ -210,7 +218,11 @@ class LabelsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -256,7 +268,7 @@ class LabelsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=SyncSinglePage[LabelBulkCreateResponse],
             body=maybe_transform(
                 {
@@ -303,7 +315,7 @@ class LabelsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=SyncSinglePage[LabelBulkDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -351,7 +363,7 @@ class LabelsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=SyncSinglePage[LabelBulkUpdateResponse],
             body=maybe_transform(
                 {
@@ -430,7 +442,11 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "managed": managed,
@@ -491,7 +507,11 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "managed": managed,
@@ -544,7 +564,11 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}/labels",
+                zone_id=zone_id,
+                operation_id=operation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -590,7 +614,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=AsyncSinglePage[LabelBulkCreateResponse],
             body=maybe_transform(
                 {
@@ -637,7 +661,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=AsyncSinglePage[LabelBulkDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -685,7 +709,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations/labels",
+            path_template("/zones/{zone_id}/api_gateway/operations/labels", zone_id=zone_id),
             page=AsyncSinglePage[LabelBulkUpdateResponse],
             body=maybe_transform(
                 {

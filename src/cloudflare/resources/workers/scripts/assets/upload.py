@@ -7,7 +7,7 @@ from typing import Dict, Type, Optional, cast
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -86,7 +86,11 @@ class UploadResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/assets-upload-session",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/assets-upload-session",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=maybe_transform({"manifest": manifest}, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -161,7 +165,11 @@ class AsyncUploadResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/assets-upload-session",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/assets-upload-session",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform({"manifest": manifest}, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

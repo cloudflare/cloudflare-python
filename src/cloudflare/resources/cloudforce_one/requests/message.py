@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,7 +86,11 @@ class MessageResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             body=maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -137,7 +141,12 @@ class MessageResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._put(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             body=maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -185,7 +194,12 @@ class MessageResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -245,7 +259,11 @@ class MessageResource(SyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             page=SyncSinglePage[Message],
             body=maybe_transform(
                 {
@@ -324,7 +342,11 @@ class AsyncMessageResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             body=await async_maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -375,7 +397,12 @@ class AsyncMessageResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             body=await async_maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -423,7 +450,12 @@ class AsyncMessageResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -483,7 +515,11 @@ class AsyncMessageResource(AsyncAPIResource):
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             page=AsyncSinglePage[Message],
             body=maybe_transform(
                 {

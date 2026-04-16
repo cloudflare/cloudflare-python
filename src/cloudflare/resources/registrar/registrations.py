@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -192,7 +192,7 @@ class RegistrationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"Prefer": prefer}), **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/registrar/registrations",
+            path_template("/accounts/{account_id}/registrar/registrations", account_id=account_id),
             body=maybe_transform(
                 {
                     "domain_name": domain_name,
@@ -263,7 +263,7 @@ class RegistrationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/registrar/registrations",
+            path_template("/accounts/{account_id}/registrar/registrations", account_id=account_id),
             page=SyncCursorPagination[Registration],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -343,7 +343,11 @@ class RegistrationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             body=maybe_transform({"auto_renew": auto_renew}, registration_edit_params.RegistrationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -398,7 +402,11 @@ class RegistrationsResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._get(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -575,7 +583,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"Prefer": prefer}), **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/registrar/registrations",
+            path_template("/accounts/{account_id}/registrar/registrations", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "domain_name": domain_name,
@@ -646,7 +654,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/registrar/registrations",
+            path_template("/accounts/{account_id}/registrar/registrations", account_id=account_id),
             page=AsyncCursorPagination[Registration],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -726,7 +734,11 @@ class AsyncRegistrationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             body=await async_maybe_transform(
                 {"auto_renew": auto_renew}, registration_edit_params.RegistrationEditParams
             ),
@@ -783,7 +795,11 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -131,7 +131,7 @@ class OnRampsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps",
+            path_template("/accounts/{account_id}/magic/cloud/onramps", account_id=account_id),
             body=maybe_transform(
                 {
                     "cloud_type": cloud_type,
@@ -203,7 +203,9 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             body=maybe_transform(
                 {
                     "attached_hubs": attached_hubs,
@@ -262,7 +264,7 @@ class OnRampsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/cloud/onramps",
+            path_template("/accounts/{account_id}/magic/cloud/onramps", account_id=account_id),
             page=SyncSinglePage[OnRampListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -315,7 +317,9 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -364,7 +368,11 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/apply",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/apply",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -411,7 +419,9 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             body=maybe_transform(
                 {
                     "attached_hubs": attached_hubs,
@@ -468,7 +478,11 @@ class OnRampsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/export",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/export",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -510,7 +524,9 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -561,7 +577,11 @@ class OnRampsResource(SyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/plan",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/plan",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -644,7 +664,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps",
+            path_template("/accounts/{account_id}/magic/cloud/onramps", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "cloud_type": cloud_type,
@@ -716,7 +736,9 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             body=await async_maybe_transform(
                 {
                     "attached_hubs": attached_hubs,
@@ -775,7 +797,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/cloud/onramps",
+            path_template("/accounts/{account_id}/magic/cloud/onramps", account_id=account_id),
             page=AsyncSinglePage[OnRampListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -828,7 +850,9 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -877,7 +901,11 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/apply",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/apply",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -924,7 +952,9 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             body=await async_maybe_transform(
                 {
                     "attached_hubs": attached_hubs,
@@ -981,7 +1011,11 @@ class AsyncOnRampsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/export",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/export",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1023,7 +1057,9 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}", account_id=account_id, onramp_id=onramp_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1074,7 +1110,11 @@ class AsyncOnRampsResource(AsyncAPIResource):
         if not onramp_id:
             raise ValueError(f"Expected a non-empty value for `onramp_id` but received {onramp_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/plan",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/onramps/{onramp_id}/plan",
+                account_id=account_id,
+                onramp_id=onramp_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

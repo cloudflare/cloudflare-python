@@ -15,7 +15,7 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -113,7 +113,11 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "certificate": certificate,
@@ -188,7 +192,12 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -257,7 +266,11 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[Certificate],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -325,7 +338,12 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -386,7 +404,12 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -476,7 +499,11 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "certificate": certificate,
@@ -551,7 +578,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -620,7 +652,11 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[Certificate],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -688,7 +724,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,7 +790,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+                certificate_id=certificate_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

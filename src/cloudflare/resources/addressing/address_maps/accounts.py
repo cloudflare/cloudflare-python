@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +78,11 @@ class AccountsResource(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             body=maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -121,7 +125,11 @@ class AccountsResource(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -185,7 +193,11 @@ class AsyncAccountsResource(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -228,7 +240,11 @@ class AsyncAccountsResource(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

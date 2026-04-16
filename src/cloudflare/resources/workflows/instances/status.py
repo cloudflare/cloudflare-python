@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -83,7 +83,12 @@ class StatusResource(SyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/status",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/status",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+            ),
             body=maybe_transform({"status": status}, status_edit_params.StatusEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -154,7 +159,12 @@ class AsyncStatusResource(AsyncAPIResource):
         if not instance_id:
             raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/status",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/status",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+            ),
             body=await async_maybe_transform({"status": status}, status_edit_params.StatusEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,

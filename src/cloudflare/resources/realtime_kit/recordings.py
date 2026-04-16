@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -94,7 +94,12 @@ class RecordingsResource(SyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/active-recording/{meeting_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/active-recording/{meeting_id}",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -139,7 +144,12 @@ class RecordingsResource(SyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+                account_id=account_id,
+                app_id=app_id,
+                recording_id=recording_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -211,7 +221,9 @@ class RecordingsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,7 +285,12 @@ class RecordingsResource(SyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return self._put(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+                account_id=account_id,
+                app_id=app_id,
+                recording_id=recording_id,
+            ),
             body=maybe_transform(
                 {"action": action}, recording_pause_resume_stop_recording_params.RecordingPauseResumeStopRecordingParams
             ),
@@ -355,7 +372,9 @@ class RecordingsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings", account_id=account_id, app_id=app_id
+            ),
             body=maybe_transform(
                 {
                     "allow_multiple_recordings": allow_multiple_recordings,
@@ -425,7 +444,9 @@ class RecordingsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/track",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/track", account_id=account_id, app_id=app_id
+            ),
             body=maybe_transform(
                 {
                     "layers": layers,
@@ -499,7 +520,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not meeting_id:
             raise ValueError(f"Expected a non-empty value for `meeting_id` but received {meeting_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/active-recording/{meeting_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/active-recording/{meeting_id}",
+                account_id=account_id,
+                app_id=app_id,
+                meeting_id=meeting_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -544,7 +570,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+                account_id=account_id,
+                app_id=app_id,
+                recording_id=recording_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -616,7 +647,9 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -678,7 +711,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}",
+                account_id=account_id,
+                app_id=app_id,
+                recording_id=recording_id,
+            ),
             body=await async_maybe_transform(
                 {"action": action}, recording_pause_resume_stop_recording_params.RecordingPauseResumeStopRecordingParams
             ),
@@ -760,7 +798,9 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings", account_id=account_id, app_id=app_id
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_multiple_recordings": allow_multiple_recordings,
@@ -830,7 +870,9 @@ class AsyncRecordingsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/recordings/track",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/recordings/track", account_id=account_id, app_id=app_id
+            ),
             body=await async_maybe_transform(
                 {
                     "layers": layers,

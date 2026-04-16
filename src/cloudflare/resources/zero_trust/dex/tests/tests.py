@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -111,7 +111,7 @@ class TestsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests/overview",
+            path_template("/accounts/{account_id}/dex/tests/overview", account_id=account_id),
             page=SyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -211,7 +211,7 @@ class AsyncTestsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests/overview",
+            path_template("/accounts/{account_id}/dex/tests/overview", account_id=account_id),
             page=AsyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,

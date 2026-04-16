@@ -33,7 +33,7 @@ class TestLogos:
             match_type="match_type",
             tag="tag",
             threshold=0,
-            image=b"raw file contents",
+            image=b"Example data",
         )
         assert_matches_type(LogoCreateResponse, logo, path=["response"])
 
@@ -145,7 +145,7 @@ class TestAsyncLogos:
             match_type="match_type",
             tag="tag",
             threshold=0,
-            image=b"raw file contents",
+            image=b"Example data",
         )
         assert_matches_type(LogoCreateResponse, logo, path=["response"])
 

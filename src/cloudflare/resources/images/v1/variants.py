@@ -7,7 +7,7 @@ from typing import Any, Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,7 +86,7 @@ class VariantsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -135,7 +135,7 @@ class VariantsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,7 +181,11 @@ class VariantsResource(SyncAPIResource):
         return cast(
             VariantDeleteResponse,
             self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+                path_template(
+                    "/accounts/{account_id}/images/v1/variants/{variant_id}",
+                    account_id=account_id,
+                    variant_id=variant_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -235,7 +239,9 @@ class VariantsResource(SyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             body=maybe_transform(
                 {
                     "options": options,
@@ -286,7 +292,9 @@ class VariantsResource(SyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -356,7 +364,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -405,7 +413,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -451,7 +459,11 @@ class AsyncVariantsResource(AsyncAPIResource):
         return cast(
             VariantDeleteResponse,
             await self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+                path_template(
+                    "/accounts/{account_id}/images/v1/variants/{variant_id}",
+                    account_id=account_id,
+                    variant_id=variant_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -505,7 +517,9 @@ class AsyncVariantsResource(AsyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             body=await async_maybe_transform(
                 {
                     "options": options,
@@ -556,7 +570,9 @@ class AsyncVariantsResource(AsyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

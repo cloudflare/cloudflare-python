@@ -24,7 +24,7 @@ from .items import (
     AsyncItemsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -235,7 +235,9 @@ class InstancesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+            ),
             body=maybe_transform(
                 {
                     "id": id,
@@ -468,7 +470,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "ai_gateway_id": ai_gateway_id,
@@ -557,7 +564,9 @@ class InstancesResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+            ),
             page=SyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -616,7 +625,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -700,7 +714,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -753,7 +772,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -807,7 +831,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -862,7 +891,12 @@ class InstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1054,7 +1088,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+            ),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -1287,7 +1323,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "ai_gateway_id": ai_gateway_id,
@@ -1376,7 +1417,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+            ),
             page=AsyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1435,7 +1478,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1519,7 +1567,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "messages": messages,
@@ -1572,7 +1625,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1626,7 +1684,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -1681,7 +1744,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

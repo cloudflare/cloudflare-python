@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .prioritize import (
     PrioritizeResource,
@@ -140,7 +140,7 @@ class CustomCertificatesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/custom_certificates",
+            path_template("/zones/{zone_id}/custom_certificates", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "certificate": certificate,
@@ -209,7 +209,7 @@ class CustomCertificatesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/custom_certificates",
+            path_template("/zones/{zone_id}/custom_certificates", zone_id=zone_id),
             page=SyncV4PagePaginationArray[CustomCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -266,7 +266,11 @@ class CustomCertificatesResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return self._delete(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -359,7 +363,11 @@ class CustomCertificatesResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return self._patch(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             body=maybe_transform(
                 {
                     "bundle_method": bundle_method,
@@ -421,7 +429,11 @@ class CustomCertificatesResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return self._get(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -531,7 +543,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/custom_certificates",
+            path_template("/zones/{zone_id}/custom_certificates", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "certificate": certificate,
@@ -600,7 +612,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/custom_certificates",
+            path_template("/zones/{zone_id}/custom_certificates", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[CustomCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -657,7 +669,11 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return await self._delete(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -750,7 +766,11 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return await self._patch(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "bundle_method": bundle_method,
@@ -812,7 +832,11 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return await self._get(
-            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            path_template(
+                "/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+                zone_id=zone_id,
+                custom_certificate_id=custom_certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

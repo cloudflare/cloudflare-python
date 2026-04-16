@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -82,7 +82,7 @@ class JobsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/jobs", account_id=account_id, id=id),
             body=maybe_transform({"description": description}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -129,7 +129,7 @@ class JobsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/jobs", account_id=account_id, id=id),
             page=SyncV4PagePaginationArray[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -183,7 +183,12 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}",
+                account_id=account_id,
+                id=id,
+                job_id=job_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,7 +237,12 @@ class JobsResource(SyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs",
+                account_id=account_id,
+                id=id,
+                job_id=job_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -305,7 +315,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/jobs", account_id=account_id, id=id),
             body=await async_maybe_transform({"description": description}, job_create_params.JobCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -352,7 +362,7 @@ class AsyncJobsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/jobs", account_id=account_id, id=id),
             page=AsyncV4PagePaginationArray[JobListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -406,7 +416,12 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}",
+                account_id=account_id,
+                id=id,
+                job_id=job_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -455,7 +470,12 @@ class AsyncJobsResource(AsyncAPIResource):
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs",
+                account_id=account_id,
+                id=id,
+                job_id=job_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

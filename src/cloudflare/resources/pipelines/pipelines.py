@@ -24,7 +24,7 @@ from .streams import (
     AsyncStreamsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -122,7 +122,7 @@ class PipelinesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pipelines",
+            path_template("/accounts/{account_id}/pipelines", account_id=account_id),
             body=maybe_transform(
                 {
                     "destination": destination,
@@ -184,7 +184,9 @@ class PipelinesResource(SyncAPIResource):
         if not pipeline_name:
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         return self._put(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             body=maybe_transform(
                 {
                     "destination": destination,
@@ -245,7 +247,7 @@ class PipelinesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/pipelines",
+            path_template("/accounts/{account_id}/pipelines", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -302,7 +304,9 @@ class PipelinesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -345,7 +349,7 @@ class PipelinesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pipelines/v1/pipelines",
+            path_template("/accounts/{account_id}/pipelines/v1/pipelines", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -398,7 +402,11 @@ class PipelinesResource(SyncAPIResource):
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+                account_id=account_id,
+                pipeline_id=pipeline_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -447,7 +455,9 @@ class PipelinesResource(SyncAPIResource):
         if not pipeline_name:
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         return self._get(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -493,7 +503,11 @@ class PipelinesResource(SyncAPIResource):
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
         return self._get(
-            f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+                account_id=account_id,
+                pipeline_id=pipeline_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -536,7 +550,7 @@ class PipelinesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pipelines/v1/pipelines",
+            path_template("/accounts/{account_id}/pipelines/v1/pipelines", account_id=account_id),
             page=SyncV4PagePaginationArray[PipelineListV1Response],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -587,7 +601,7 @@ class PipelinesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pipelines/v1/validate_sql",
+            path_template("/accounts/{account_id}/pipelines/v1/validate_sql", account_id=account_id),
             body=maybe_transform({"sql": sql}, pipeline_validate_sql_params.PipelineValidateSqlParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -666,7 +680,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pipelines",
+            path_template("/accounts/{account_id}/pipelines", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "destination": destination,
@@ -728,7 +742,9 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not pipeline_name:
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         return await self._put(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             body=await async_maybe_transform(
                 {
                     "destination": destination,
@@ -789,7 +805,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/pipelines",
+            path_template("/accounts/{account_id}/pipelines", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -846,7 +862,9 @@ class AsyncPipelinesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -889,7 +907,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pipelines/v1/pipelines",
+            path_template("/accounts/{account_id}/pipelines/v1/pipelines", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -942,7 +960,11 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+                account_id=account_id,
+                pipeline_id=pipeline_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -991,7 +1013,9 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not pipeline_name:
             raise ValueError(f"Expected a non-empty value for `pipeline_name` but received {pipeline_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/pipelines/{pipeline_name}",
+            path_template(
+                "/accounts/{account_id}/pipelines/{pipeline_name}", account_id=account_id, pipeline_name=pipeline_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1037,7 +1061,11 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not pipeline_id:
             raise ValueError(f"Expected a non-empty value for `pipeline_id` but received {pipeline_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+                account_id=account_id,
+                pipeline_id=pipeline_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1080,7 +1108,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pipelines/v1/pipelines",
+            path_template("/accounts/{account_id}/pipelines/v1/pipelines", account_id=account_id),
             page=AsyncV4PagePaginationArray[PipelineListV1Response],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1131,7 +1159,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pipelines/v1/validate_sql",
+            path_template("/accounts/{account_id}/pipelines/v1/validate_sql", account_id=account_id),
             body=await async_maybe_transform({"sql": sql}, pipeline_validate_sql_params.PipelineValidateSqlParams),
             options=make_request_options(
                 extra_headers=extra_headers,

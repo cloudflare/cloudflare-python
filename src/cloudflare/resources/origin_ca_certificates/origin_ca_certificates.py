@@ -1,0 +1,569 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Type, Optional, cast
+
+import httpx
+
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.ssl import RequestValidity
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.ssl.request_validity import RequestValidity
+from ...types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
+from ...types.shared.certificate_request_type import CertificateRequestType
+from ...types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
+from ...types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
+
+__all__ = ["OriginCACertificatesResource", "AsyncOriginCACertificatesResource"]
+
+
+class OriginCACertificatesResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> OriginCACertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return OriginCACertificatesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> OriginCACertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return OriginCACertificatesResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        csr: str,
+        hostnames: SequenceNotStr[str],
+        request_type: CertificateRequestType,
+        requested_validity: RequestValidity | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificate]:
+        """Create an Origin CA certificate.
+
+        You can use an Origin CA Key as your User
+        Service Key or an API token when calling this endpoint ([see above](#requests)).
+
+        Args:
+          csr: The Certificate Signing Request (CSR). Must be newline-encoded.
+
+          hostnames: Array of hostnames or wildcard names bound to the certificate. Hostnames must be
+              fully qualified domain names (FQDNs) belonging to zones on your account (e.g.,
+              `example.com` or `sub.example.com`). Wildcards are supported only as a `*.`
+              prefix for a single level (e.g., `*.example.com`). Double wildcards
+              (`*.*.example.com`) and interior wildcards (`foo.*.example.com`) are not
+              allowed. The wildcard suffix must be a multi-label domain (`*.example.com` is
+              valid, but `*.com` is not). Unicode/IDN hostnames are accepted and automatically
+              converted to punycode.
+
+          request_type: Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
+              or "keyless-certificate" (for Keyless SSL servers).
+
+          requested_validity: The number of days for which the certificate should be valid.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/certificates",
+            body=maybe_transform(
+                {
+                    "csr": csr,
+                    "hostnames": hostnames,
+                    "request_type": request_type,
+                    "requested_validity": requested_validity,
+                },
+                origin_ca_certificate_create_params.OriginCACertificateCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
+        )
+
+    def list(
+        self,
+        *,
+        zone_id: str,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[OriginCACertificate]:
+        """List all existing Origin CA certificates for a given zone.
+
+        You can use an Origin
+        CA Key as your User Service Key or an API token when calling this endpoint
+        ([see above](#requests)).
+
+        Args:
+          zone_id: Identifier.
+
+          limit: Limit to the number of records returned.
+
+          offset: Offset the results
+
+          page: Page number of paginated results.
+
+          per_page: Number of records per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/certificates",
+            page=SyncV4PagePaginationArray[OriginCACertificate],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "zone_id": zone_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_ca_certificate_list_params.OriginCACertificateListParams,
+                ),
+            ),
+            model=OriginCACertificate,
+        )
+
+    def delete(
+        self,
+        certificate_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificateDeleteResponse]:
+        """Revoke an existing Origin CA certificate by its serial number.
+
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
+
+        Args:
+          certificate_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return self._delete(
+            path_template("/certificates/{certificate_id}", certificate_id=certificate_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[OriginCACertificateDeleteResponse]], ResultWrapper[OriginCACertificateDeleteResponse]
+            ),
+        )
+
+    def get(
+        self,
+        certificate_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificate]:
+        """Get an existing Origin CA certificate by its serial number.
+
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
+
+        Args:
+          certificate_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return self._get(
+            path_template("/certificates/{certificate_id}", certificate_id=certificate_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
+        )
+
+
+class AsyncOriginCACertificatesResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncOriginCACertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncOriginCACertificatesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncOriginCACertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncOriginCACertificatesResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        csr: str,
+        hostnames: SequenceNotStr[str],
+        request_type: CertificateRequestType,
+        requested_validity: RequestValidity | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificate]:
+        """Create an Origin CA certificate.
+
+        You can use an Origin CA Key as your User
+        Service Key or an API token when calling this endpoint ([see above](#requests)).
+
+        Args:
+          csr: The Certificate Signing Request (CSR). Must be newline-encoded.
+
+          hostnames: Array of hostnames or wildcard names bound to the certificate. Hostnames must be
+              fully qualified domain names (FQDNs) belonging to zones on your account (e.g.,
+              `example.com` or `sub.example.com`). Wildcards are supported only as a `*.`
+              prefix for a single level (e.g., `*.example.com`). Double wildcards
+              (`*.*.example.com`) and interior wildcards (`foo.*.example.com`) are not
+              allowed. The wildcard suffix must be a multi-label domain (`*.example.com` is
+              valid, but `*.com` is not). Unicode/IDN hostnames are accepted and automatically
+              converted to punycode.
+
+          request_type: Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
+              or "keyless-certificate" (for Keyless SSL servers).
+
+          requested_validity: The number of days for which the certificate should be valid.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/certificates",
+            body=await async_maybe_transform(
+                {
+                    "csr": csr,
+                    "hostnames": hostnames,
+                    "request_type": request_type,
+                    "requested_validity": requested_validity,
+                },
+                origin_ca_certificate_create_params.OriginCACertificateCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
+        )
+
+    def list(
+        self,
+        *,
+        zone_id: str,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[OriginCACertificate, AsyncV4PagePaginationArray[OriginCACertificate]]:
+        """List all existing Origin CA certificates for a given zone.
+
+        You can use an Origin
+        CA Key as your User Service Key or an API token when calling this endpoint
+        ([see above](#requests)).
+
+        Args:
+          zone_id: Identifier.
+
+          limit: Limit to the number of records returned.
+
+          offset: Offset the results
+
+          page: Page number of paginated results.
+
+          per_page: Number of records per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/certificates",
+            page=AsyncV4PagePaginationArray[OriginCACertificate],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "zone_id": zone_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_ca_certificate_list_params.OriginCACertificateListParams,
+                ),
+            ),
+            model=OriginCACertificate,
+        )
+
+    async def delete(
+        self,
+        certificate_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificateDeleteResponse]:
+        """Revoke an existing Origin CA certificate by its serial number.
+
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
+
+        Args:
+          certificate_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return await self._delete(
+            path_template("/certificates/{certificate_id}", certificate_id=certificate_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[OriginCACertificateDeleteResponse]], ResultWrapper[OriginCACertificateDeleteResponse]
+            ),
+        )
+
+    async def get(
+        self,
+        certificate_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[OriginCACertificate]:
+        """Get an existing Origin CA certificate by its serial number.
+
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
+
+        Args:
+          certificate_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return await self._get(
+            path_template("/certificates/{certificate_id}", certificate_id=certificate_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
+        )
+
+
+class OriginCACertificatesResourceWithRawResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificatesResource) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
+
+        self.create = to_raw_response_wrapper(
+            origin_ca_certificates.create,
+        )
+        self.list = to_raw_response_wrapper(
+            origin_ca_certificates.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            origin_ca_certificates.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            origin_ca_certificates.get,
+        )
+
+
+class AsyncOriginCACertificatesResourceWithRawResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificatesResource) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
+
+        self.create = async_to_raw_response_wrapper(
+            origin_ca_certificates.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            origin_ca_certificates.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            origin_ca_certificates.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            origin_ca_certificates.get,
+        )
+
+
+class OriginCACertificatesResourceWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificatesResource) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
+
+        self.create = to_streamed_response_wrapper(
+            origin_ca_certificates.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            origin_ca_certificates.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            origin_ca_certificates.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            origin_ca_certificates.get,
+        )
+
+
+class AsyncOriginCACertificatesResourceWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificatesResource) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
+
+        self.create = async_to_streamed_response_wrapper(
+            origin_ca_certificates.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            origin_ca_certificates.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            origin_ca_certificates.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            origin_ca_certificates.get,
+        )

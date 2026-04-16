@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -88,7 +88,9 @@ class LocksResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/lock",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/lock", account_id=account_id, bucket_name=bucket_name
+            ),
             body=maybe_transform({"rules": rules}, lock_update_params.LockUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -142,7 +144,9 @@ class LocksResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/lock",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/lock", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,7 +221,9 @@ class AsyncLocksResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/lock",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/lock", account_id=account_id, bucket_name=bucket_name
+            ),
             body=await async_maybe_transform({"rules": rules}, lock_update_params.LockUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -271,7 +277,9 @@ class AsyncLocksResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/lock",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/lock", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

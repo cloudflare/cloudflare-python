@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -79,7 +79,11 @@ class FallbackDomainsResource(SyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             page=SyncSinglePage[FallbackDomain],
             body=maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
@@ -122,7 +126,11 @@ class FallbackDomainsResource(SyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             page=SyncSinglePage[FallbackDomain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -186,7 +194,11 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             page=AsyncSinglePage[FallbackDomain],
             body=maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
@@ -229,7 +241,11 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             page=AsyncSinglePage[FallbackDomain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

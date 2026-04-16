@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -83,7 +83,11 @@ class ConfigurationsResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._put(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+                account_id=account_id,
+                tunnel_id=tunnel_id,
+            ),
             body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -130,7 +134,11 @@ class ConfigurationsResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+                account_id=account_id,
+                tunnel_id=tunnel_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,7 +208,11 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+                account_id=account_id,
+                tunnel_id=tunnel_id,
+            ),
             body=await async_maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -247,7 +259,11 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+                account_id=account_id,
+                tunnel_id=tunnel_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -112,7 +112,7 @@ class ScheduleResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._post(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +191,7 @@ class ScheduleResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._delete(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -264,7 +264,7 @@ class ScheduleResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._get(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +362,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._post(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,7 +441,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._delete(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -514,7 +514,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._get(
-            f"/zones/{zone_id}/speed_api/schedule/{url}",
+            path_template("/zones/{zone_id}/speed_api/schedule/{url}", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

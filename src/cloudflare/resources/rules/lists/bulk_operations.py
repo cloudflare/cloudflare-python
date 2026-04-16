@@ -7,6 +7,7 @@ from typing import Any, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -83,7 +84,11 @@ class BulkOperationsResource(SyncAPIResource):
         return cast(
             BulkOperationGetResponse,
             self._get(
-                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                path_template(
+                    "/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                    account_id=account_id,
+                    operation_id=operation_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -159,7 +164,11 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         return cast(
             BulkOperationGetResponse,
             await self._get(
-                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                path_template(
+                    "/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                    account_id=account_id,
+                    operation_id=operation_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

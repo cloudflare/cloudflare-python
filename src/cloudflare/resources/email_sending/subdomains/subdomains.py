@@ -15,7 +15,7 @@ from .dns import (
     AsyncDNSResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -95,7 +95,7 @@ class SubdomainsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/email/sending/subdomains",
+            path_template("/zones/{zone_id}/email/sending/subdomains", zone_id=zone_id),
             body=maybe_transform({"name": name}, subdomain_create_params.SubdomainCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -137,7 +137,7 @@ class SubdomainsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/email/sending/subdomains",
+            path_template("/zones/{zone_id}/email/sending/subdomains", zone_id=zone_id),
             page=SyncSinglePage[SubdomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -182,7 +182,9 @@ class SubdomainsResource(SyncAPIResource):
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -224,7 +226,9 @@ class SubdomainsResource(SyncAPIResource):
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return self._get(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,7 +299,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/email/sending/subdomains",
+            path_template("/zones/{zone_id}/email/sending/subdomains", zone_id=zone_id),
             body=await async_maybe_transform({"name": name}, subdomain_create_params.SubdomainCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -337,7 +341,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/email/sending/subdomains",
+            path_template("/zones/{zone_id}/email/sending/subdomains", zone_id=zone_id),
             page=AsyncSinglePage[SubdomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -382,7 +386,9 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -424,7 +430,9 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -15,7 +15,7 @@ from .doh import (
     AsyncDOHResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -169,7 +169,11 @@ class OrganizationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "auth_domain": auth_domain,
@@ -308,7 +312,11 @@ class OrganizationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -385,7 +393,11 @@ class OrganizationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -458,7 +470,11 @@ class OrganizationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "email": email,
@@ -615,7 +631,11 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "auth_domain": auth_domain,
@@ -754,7 +774,11 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -831,7 +855,11 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -904,7 +932,11 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "email": email,

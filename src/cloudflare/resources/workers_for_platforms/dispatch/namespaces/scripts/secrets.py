@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import required_args, maybe_transform, async_maybe_transform
+from ......_utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -194,7 +194,12 @@ class SecretsResource(SyncAPIResource):
         return cast(
             SecretUpdateResponse,
             self._put(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -261,7 +266,12 @@ class SecretsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=SyncSinglePage[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -317,7 +327,13 @@ class SecretsResource(SyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+                secret_name=secret_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -380,7 +396,13 @@ class SecretsResource(SyncAPIResource):
         return cast(
             SecretGetResponse,
             self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    secret_name=secret_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -558,7 +580,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         return cast(
             SecretUpdateResponse,
             await self._put(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -625,7 +652,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=AsyncSinglePage[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -681,7 +713,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+                secret_name=secret_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -746,7 +784,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         return cast(
             SecretGetResponse,
             await self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    secret_name=secret_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

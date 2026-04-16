@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -80,7 +80,7 @@ class CategoriesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/create",
+            path_template("/accounts/{account_id}/cloudforce-one/events/categories/create", account_id=account_id),
             body=maybe_transform(
                 {
                     "kill_chain": kill_chain,
@@ -131,7 +131,7 @@ class CategoriesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/categories",
+            path_template("/accounts/{account_id}/cloudforce-one/events/categories", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +177,11 @@ class CategoriesResource(SyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -224,7 +228,11 @@ class CategoriesResource(SyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             body=maybe_transform(
                 {
                     "kill_chain": kill_chain,
@@ -276,7 +284,11 @@ class CategoriesResource(SyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -339,7 +351,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/create",
+            path_template("/accounts/{account_id}/cloudforce-one/events/categories/create", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "kill_chain": kill_chain,
@@ -390,7 +402,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/categories",
+            path_template("/accounts/{account_id}/cloudforce-one/events/categories", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -438,7 +450,11 @@ class AsyncCategoriesResource(AsyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -485,7 +501,11 @@ class AsyncCategoriesResource(AsyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "kill_chain": kill_chain,
@@ -537,7 +557,11 @@ class AsyncCategoriesResource(AsyncAPIResource):
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/categories/{category_id}",
+                account_id=account_id,
+                category_id=category_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -99,7 +99,7 @@ class WARPResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/zerotrust/subnets/warp",
+            path_template("/accounts/{account_id}/zerotrust/subnets/warp", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -156,7 +156,9 @@ class WARPResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -221,7 +223,9 @@ class WARPResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -276,7 +280,9 @@ class WARPResource(SyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._get(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +368,7 @@ class AsyncWARPResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/zerotrust/subnets/warp",
+            path_template("/accounts/{account_id}/zerotrust/subnets/warp", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -419,7 +425,9 @@ class AsyncWARPResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,7 +492,9 @@ class AsyncWARPResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             body=await async_maybe_transform(
                 {
                     "comment": comment,
@@ -539,7 +549,9 @@ class AsyncWARPResource(AsyncAPIResource):
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -101,7 +101,12 @@ class SessionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -152,7 +157,12 @@ class SessionsResource(SyncAPIResource):
         if not peer_id:
             raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/peer-report/{peer_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/peer-report/{peer_id}",
+                account_id=account_id,
+                app_id=app_id,
+                peer_id=peer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -204,7 +214,12 @@ class SessionsResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/chat",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/chat",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -252,7 +267,12 @@ class SessionsResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -316,7 +336,13 @@ class SessionsResource(SyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants/{participant_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants/{participant_id}",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+                participant_id=participant_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -390,7 +416,12 @@ class SessionsResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -451,7 +482,12 @@ class SessionsResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -496,7 +532,12 @@ class SessionsResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -563,7 +604,9 @@ class SessionsResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -648,7 +691,12 @@ class AsyncSessionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -699,7 +747,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not peer_id:
             raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/peer-report/{peer_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/peer-report/{peer_id}",
+                account_id=account_id,
+                app_id=app_id,
+                peer_id=peer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -751,7 +804,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/chat",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/chat",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -799,7 +857,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -863,7 +926,13 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants/{participant_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants/{participant_id}",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+                participant_id=participant_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -937,7 +1006,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -998,7 +1072,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1043,7 +1122,12 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript",
+                account_id=account_id,
+                app_id=app_id,
+                session_id=session_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1110,7 +1194,9 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/sessions",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/sessions", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -97,7 +97,11 @@ class OutputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._post(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=maybe_transform(
                 {
                     "stream_key": stream_key,
@@ -165,7 +169,12 @@ class OutputsResource(SyncAPIResource):
         if not output_identifier:
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         return self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             body=maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -214,7 +223,11 @@ class OutputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             page=SyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -265,7 +278,12 @@ class OutputsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -345,7 +363,11 @@ class AsyncOutputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return await self._post(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "stream_key": stream_key,
@@ -413,7 +435,12 @@ class AsyncOutputsResource(AsyncAPIResource):
         if not output_identifier:
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         return await self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             body=await async_maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -462,7 +489,11 @@ class AsyncOutputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             page=AsyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -513,7 +544,12 @@ class AsyncOutputsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

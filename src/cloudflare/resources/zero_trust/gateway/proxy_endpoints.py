@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -132,7 +132,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             self._post(
-                f"/accounts/{account_id}/gateway/proxy_endpoints",
+                path_template("/accounts/{account_id}/gateway/proxy_endpoints", account_id=account_id),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -181,7 +181,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
+            path_template("/accounts/{account_id}/gateway/proxy_endpoints", account_id=account_id),
             page=SyncSinglePage[ProxyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -220,7 +220,11 @@ class ProxyEndpointsResource(SyncAPIResource):
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                account_id=account_id,
+                proxy_endpoint_id=proxy_endpoint_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -270,7 +274,11 @@ class ProxyEndpointsResource(SyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             self._patch(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                path_template(
+                    "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                    account_id=account_id,
+                    proxy_endpoint_id=proxy_endpoint_id,
+                ),
                 body=maybe_transform(
                     {
                         "ips": ips,
@@ -324,7 +332,11 @@ class ProxyEndpointsResource(SyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             self._get(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                path_template(
+                    "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                    account_id=account_id,
+                    proxy_endpoint_id=proxy_endpoint_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -444,7 +456,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             await self._post(
-                f"/accounts/{account_id}/gateway/proxy_endpoints",
+                path_template("/accounts/{account_id}/gateway/proxy_endpoints", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -493,7 +505,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
+            path_template("/accounts/{account_id}/gateway/proxy_endpoints", account_id=account_id),
             page=AsyncSinglePage[ProxyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -532,7 +544,11 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                account_id=account_id,
+                proxy_endpoint_id=proxy_endpoint_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -582,7 +598,11 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             await self._patch(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                path_template(
+                    "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                    account_id=account_id,
+                    proxy_endpoint_id=proxy_endpoint_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "ips": ips,
@@ -636,7 +656,11 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         return cast(
             Optional[ProxyEndpoint],
             await self._get(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                path_template(
+                    "/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                    account_id=account_id,
+                    proxy_endpoint_id=proxy_endpoint_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

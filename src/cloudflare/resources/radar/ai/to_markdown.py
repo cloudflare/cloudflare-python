@@ -16,7 +16,7 @@ from ...._types import (
     SequenceNotStr,
     not_given,
 )
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,7 @@ class ToMarkdownResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown",
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=SyncSinglePage[ToMarkdownCreateResponse],
             body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
             files=extracted_files,
@@ -161,7 +161,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown",
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=AsyncSinglePage[ToMarkdownCreateResponse],
             body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
             files=extracted_files,

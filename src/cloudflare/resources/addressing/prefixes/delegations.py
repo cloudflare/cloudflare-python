@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +87,11 @@ class DelegationsResource(SyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=maybe_transform(
                 {
                     "cidr": cidr,
@@ -140,7 +144,11 @@ class DelegationsResource(SyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             page=SyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -188,7 +196,12 @@ class DelegationsResource(SyncAPIResource):
         if not delegation_id:
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                delegation_id=delegation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -261,7 +274,11 @@ class AsyncDelegationsResource(AsyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "cidr": cidr,
@@ -314,7 +331,11 @@ class AsyncDelegationsResource(AsyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             page=AsyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -362,7 +383,12 @@ class AsyncDelegationsResource(AsyncAPIResource):
         if not delegation_id:
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                delegation_id=delegation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

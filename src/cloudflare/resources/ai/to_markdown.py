@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import extract_files, maybe_transform, deepcopy_minimal
+from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal
 from ..._compat import cached_property
 from ...types.ai import to_markdown_transform_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -73,7 +73,7 @@ class ToMarkdownResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown/supported",
+            path_template("/accounts/{account_id}/ai/tomarkdown/supported", account_id=account_id),
             page=SyncSinglePage[ToMarkdownSupportedResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -116,7 +116,7 @@ class ToMarkdownResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown",
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=SyncSinglePage[ToMarkdownTransformResponse],
             body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
             files=files,
@@ -176,7 +176,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown/supported",
+            path_template("/accounts/{account_id}/ai/tomarkdown/supported", account_id=account_id),
             page=AsyncSinglePage[ToMarkdownSupportedResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -219,7 +219,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown",
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=AsyncSinglePage[ToMarkdownTransformResponse],
             body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
             files=files,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ....._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ....._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -171,7 +171,11 @@ class DeploymentsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             body=maybe_transform(body, deployment_create_params.DeploymentCreateParams),
             files=files,
             options=make_request_options(
@@ -228,7 +232,11 @@ class DeploymentsResource(SyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             page=SyncV4PagePaginationArray[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -287,7 +295,12 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -338,7 +351,12 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._get(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -389,7 +407,12 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,7 +465,12 @@ class DeploymentsResource(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -591,7 +619,11 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             body=await async_maybe_transform(body, deployment_create_params.DeploymentCreateParams),
             files=files,
             options=make_request_options(
@@ -648,7 +680,11 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             page=AsyncV4PagePaginationArray[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -707,7 +743,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -758,7 +799,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -809,7 +855,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -862,7 +913,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+                account_id=account_id,
+                project_name=project_name,
+                deployment_id=deployment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

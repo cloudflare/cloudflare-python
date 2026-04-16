@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +87,11 @@ class AssetsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
+            path_template(
+                "/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
+                account_id=account_id,
+                finetune_id=finetune_id,
+            ),
             body=maybe_transform(body, asset_create_params.AssetCreateParams),
             files=files,
             options=make_request_options(
@@ -161,7 +165,11 @@ class AsyncAssetsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
+            path_template(
+                "/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
+                account_id=account_id,
+                finetune_id=finetune_id,
+            ),
             body=await async_maybe_transform(body, asset_create_params.AssetCreateParams),
             files=files,
             options=make_request_options(

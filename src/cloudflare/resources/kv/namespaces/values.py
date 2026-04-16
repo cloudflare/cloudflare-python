@@ -7,7 +7,7 @@ from typing import Type, Union, Mapping, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -126,7 +126,12 @@ class ValuesResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             body=maybe_transform(body, value_update_params.ValueUpdateParams),
             files=files,
             options=make_request_options(
@@ -189,7 +194,12 @@ class ValuesResource(SyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +257,12 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -348,7 +363,12 @@ class AsyncValuesResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             body=await async_maybe_transform(body, value_update_params.ValueUpdateParams),
             files=files,
             options=make_request_options(
@@ -411,7 +431,12 @@ class AsyncValuesResource(AsyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -469,7 +494,12 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

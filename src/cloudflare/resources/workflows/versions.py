@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -79,7 +79,11 @@ class VersionsResource(SyncAPIResource):
         if not workflow_name:
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions",
+                account_id=account_id,
+                workflow_name=workflow_name,
+            ),
             page=SyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -131,7 +135,12 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +205,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not workflow_name:
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions",
+                account_id=account_id,
+                workflow_name=workflow_name,
+            ),
             page=AsyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -248,7 +261,12 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -73,7 +74,9 @@ class ItemsResource(SyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/lists/{list_id}/items",
+            path_template(
+                "/accounts/{account_id}/gateway/lists/{list_id}/items", account_id=account_id, list_id=list_id
+            ),
             page=SyncSinglePage[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -135,7 +138,9 @@ class AsyncItemsResource(AsyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/lists/{list_id}/items",
+            path_template(
+                "/accounts/{account_id}/gateway/lists/{list_id}/items", account_id=account_id, list_id=list_id
+            ),
             page=AsyncSinglePage[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

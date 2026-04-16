@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -99,7 +99,11 @@ class KeysResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             page=SyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -157,7 +161,11 @@ class KeysResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -219,7 +227,11 @@ class KeysResource(SyncAPIResource):
         return cast(
             Optional[KeyBulkGetResponse],
             self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                path_template(
+                    "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                    account_id=account_id,
+                    namespace_id=namespace_id,
+                ),
                 body=maybe_transform(
                     {
                         "keys": keys,
@@ -284,7 +296,11 @@ class KeysResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=maybe_transform(body, Iterable[key_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -366,7 +382,11 @@ class AsyncKeysResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             page=AsyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -424,7 +444,11 @@ class AsyncKeysResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=await async_maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -486,7 +510,11 @@ class AsyncKeysResource(AsyncAPIResource):
         return cast(
             Optional[KeyBulkGetResponse],
             await self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                path_template(
+                    "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                    account_id=account_id,
+                    namespace_id=namespace_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "keys": keys,
@@ -551,7 +579,11 @@ class AsyncKeysResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=await async_maybe_transform(body, Iterable[key_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,

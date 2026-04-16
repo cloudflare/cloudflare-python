@@ -24,7 +24,7 @@ from .rules import (
     AsyncRulesResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -50,6 +50,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .events.events import (
     EventsResource,
     AsyncEventsResource,
@@ -58,9 +59,10 @@ from .events.events import (
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waiting_rooms import (
     waiting_room_edit_params,
+    waiting_room_list_params,
     waiting_room_create_params,
     waiting_room_update_params,
 )
@@ -478,7 +480,7 @@ class WaitingRoomsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/waiting_rooms",
+            path_template("/zones/{zone_id}/waiting_rooms", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "host": host,
@@ -884,7 +886,9 @@ class WaitingRoomsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             body=maybe_transform(
                 {
                     "host": host,
@@ -921,6 +925,79 @@ class WaitingRoomsResource(SyncAPIResource):
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str | None = None,
+        zone_id: str | None = None,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[WaitingRoom]:
+        """
+        Lists waiting rooms for account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/waiting_rooms",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=SyncV4PagePaginationArray[WaitingRoom],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
+            ),
+            model=WaitingRoom,
+        )
+
     def delete(
         self,
         waiting_room_id: str,
@@ -954,7 +1031,9 @@ class WaitingRoomsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1334,7 +1413,9 @@ class WaitingRoomsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             body=maybe_transform(
                 {
                     "host": host,
@@ -1404,7 +1485,9 @@ class WaitingRoomsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1822,7 +1905,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/waiting_rooms",
+            path_template("/zones/{zone_id}/waiting_rooms", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -2228,7 +2311,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -2265,6 +2350,79 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str | None = None,
+        zone_id: str | None = None,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
+        """
+        Lists waiting rooms for account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/waiting_rooms",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=AsyncV4PagePaginationArray[WaitingRoom],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
+            ),
+            model=WaitingRoom,
+        )
+
     async def delete(
         self,
         waiting_room_id: str,
@@ -2298,7 +2456,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2678,7 +2838,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -2748,7 +2910,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}", zone_id=zone_id, waiting_room_id=waiting_room_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2769,6 +2933,9 @@ class WaitingRoomsResourceWithRawResponse:
         )
         self.update = to_raw_response_wrapper(
             waiting_rooms.update,
+        )
+        self.list = to_raw_response_wrapper(
+            waiting_rooms.list,
         )
         self.delete = to_raw_response_wrapper(
             waiting_rooms.delete,
@@ -2811,6 +2978,9 @@ class AsyncWaitingRoomsResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             waiting_rooms.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            waiting_rooms.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             waiting_rooms.delete,
         )
@@ -2852,6 +3022,9 @@ class WaitingRoomsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             waiting_rooms.update,
         )
+        self.list = to_streamed_response_wrapper(
+            waiting_rooms.list,
+        )
         self.delete = to_streamed_response_wrapper(
             waiting_rooms.delete,
         )
@@ -2892,6 +3065,9 @@ class AsyncWaitingRoomsResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             waiting_rooms.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            waiting_rooms.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             waiting_rooms.delete,

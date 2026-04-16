@@ -40,7 +40,7 @@ from .variants import (
     AsyncVariantsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -163,7 +163,7 @@ class V1Resource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             body=maybe_transform(body, v1_create_params.V1CreateParams),
             files=files,
             options=make_request_options(
@@ -219,7 +219,7 @@ class V1Resource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             page=SyncV4PagePagination[V1ListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -277,7 +277,7 @@ class V1Resource(SyncAPIResource):
         return cast(
             V1DeleteResponse,
             self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
+                path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -340,7 +340,7 @@ class V1Resource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             body=maybe_transform(
                 {
                     "creator": creator,
@@ -394,7 +394,7 @@ class V1Resource(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +509,7 @@ class AsyncV1Resource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             body=await async_maybe_transform(body, v1_create_params.V1CreateParams),
             files=files,
             options=make_request_options(
@@ -565,7 +565,7 @@ class AsyncV1Resource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             page=AsyncV4PagePagination[V1ListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -623,7 +623,7 @@ class AsyncV1Resource(AsyncAPIResource):
         return cast(
             V1DeleteResponse,
             await self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
+                path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -686,7 +686,7 @@ class AsyncV1Resource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             body=await async_maybe_transform(
                 {
                     "creator": creator,
@@ -740,7 +740,7 @@ class AsyncV1Resource(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

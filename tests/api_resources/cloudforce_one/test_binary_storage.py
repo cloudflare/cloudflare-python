@@ -22,7 +22,7 @@ class TestBinaryStorage:
     def test_method_create(self, client: Cloudflare) -> None:
         binary_storage = client.cloudforce_one.binary_storage.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         )
         assert_matches_type(BinaryStorageCreateResponse, binary_storage, path=["response"])
 
@@ -31,7 +31,7 @@ class TestBinaryStorage:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.binary_storage.with_raw_response.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestBinaryStorage:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.binary_storage.with_streaming_response.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,7 +60,7 @@ class TestBinaryStorage:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.binary_storage.with_raw_response.create(
                 account_id="",
-                file=b"raw file contents",
+                file=b"Example data",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
@@ -126,7 +126,7 @@ class TestAsyncBinaryStorage:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         binary_storage = await async_client.cloudforce_one.binary_storage.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         )
         assert_matches_type(BinaryStorageCreateResponse, binary_storage, path=["response"])
 
@@ -135,7 +135,7 @@ class TestAsyncBinaryStorage:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.binary_storage.with_raw_response.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         )
 
         assert response.is_closed is True
@@ -148,7 +148,7 @@ class TestAsyncBinaryStorage:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.binary_storage.with_streaming_response.create(
             account_id="account_id",
-            file=b"raw file contents",
+            file=b"Example data",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -164,7 +164,7 @@ class TestAsyncBinaryStorage:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.binary_storage.with_raw_response.create(
                 account_id="",
-                file=b"raw file contents",
+                file=b"Example data",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")

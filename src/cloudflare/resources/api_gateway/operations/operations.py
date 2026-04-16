@@ -16,7 +16,7 @@ from .labels import (
     AsyncLabelsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -127,7 +127,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/api_gateway/operations/item",
+            path_template("/zones/{zone_id}/api_gateway/operations/item", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "endpoint": endpoint,
@@ -204,7 +204,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             page=SyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -265,7 +265,9 @@ class OperationsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}", zone_id=zone_id, operation_id=operation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -308,7 +310,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             page=SyncSinglePage[OperationBulkCreateResponse],
             body=maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
             options=make_request_options(
@@ -349,7 +351,7 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -397,7 +399,9 @@ class OperationsResource(SyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._get(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}", zone_id=zone_id, operation_id=operation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -485,7 +489,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/api_gateway/operations/item",
+            path_template("/zones/{zone_id}/api_gateway/operations/item", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "endpoint": endpoint,
@@ -562,7 +566,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -623,7 +627,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}", zone_id=zone_id, operation_id=operation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -666,7 +672,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             page=AsyncSinglePage[OperationBulkCreateResponse],
             body=maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
             options=make_request_options(
@@ -707,7 +713,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/api_gateway/operations",
+            path_template("/zones/{zone_id}/api_gateway/operations", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -755,7 +761,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/operations/{operation_id}", zone_id=zone_id, operation_id=operation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -95,7 +95,11 @@ class OwnershipResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -160,7 +164,11 @@ class OwnershipResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -249,7 +257,11 @@ class AsyncOwnershipResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams
             ),
@@ -316,7 +328,11 @@ class AsyncOwnershipResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "destination_conf": destination_conf,

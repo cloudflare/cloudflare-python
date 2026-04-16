@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -118,7 +118,7 @@ class RegistrationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             page=SyncCursorPagination[RegistrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -177,7 +177,11 @@ class RegistrationsResource(SyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +223,7 @@ class RegistrationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -266,7 +270,11 @@ class RegistrationsResource(SyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -309,7 +317,7 @@ class RegistrationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/registrations/revoke",
+            path_template("/accounts/{account_id}/devices/registrations/revoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -352,7 +360,7 @@ class RegistrationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/registrations/unrevoke",
+            path_template("/accounts/{account_id}/devices/registrations/unrevoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -450,7 +458,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             page=AsyncCursorPagination[RegistrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -509,7 +517,11 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -551,7 +563,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -600,7 +612,11 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -643,7 +659,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/registrations/revoke",
+            path_template("/accounts/{account_id}/devices/registrations/revoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -686,7 +702,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/registrations/unrevoke",
+            path_template("/accounts/{account_id}/devices/registrations/unrevoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

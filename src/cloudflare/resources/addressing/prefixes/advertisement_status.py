@@ -8,7 +8,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -89,7 +89,11 @@ class AdvertisementStatusResource(SyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=maybe_transform(
                 {"advertised": advertised}, advertisement_status_edit_params.AdvertisementStatusEditParams
             ),
@@ -144,7 +148,11 @@ class AdvertisementStatusResource(SyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +227,11 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=await async_maybe_transform(
                 {"advertised": advertised}, advertisement_status_edit_params.AdvertisementStatusEditParams
             ),
@@ -274,7 +286,11 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

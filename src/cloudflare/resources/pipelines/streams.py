@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,7 @@ class StreamsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pipelines/v1/streams",
+            path_template("/accounts/{account_id}/pipelines/v1/streams", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -143,7 +143,9 @@ class StreamsResource(SyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             body=maybe_transform(
                 {
                     "http": http,
@@ -196,7 +198,7 @@ class StreamsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pipelines/v1/streams",
+            path_template("/accounts/{account_id}/pipelines/v1/streams", account_id=account_id),
             page=SyncV4PagePaginationArray[StreamListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -253,7 +255,9 @@ class StreamsResource(SyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -300,7 +304,9 @@ class StreamsResource(SyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return self._get(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -369,7 +375,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pipelines/v1/streams",
+            path_template("/accounts/{account_id}/pipelines/v1/streams", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -427,7 +433,9 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             body=await async_maybe_transform(
                 {
                     "http": http,
@@ -480,7 +488,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pipelines/v1/streams",
+            path_template("/accounts/{account_id}/pipelines/v1/streams", account_id=account_id),
             page=AsyncV4PagePaginationArray[StreamListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -537,7 +545,9 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -584,7 +594,9 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not stream_id:
             raise ValueError(f"Expected a non-empty value for `stream_id` but received {stream_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/pipelines/v1/streams/{stream_id}",
+            path_template(
+                "/accounts/{account_id}/pipelines/v1/streams/{stream_id}", account_id=account_id, stream_id=stream_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

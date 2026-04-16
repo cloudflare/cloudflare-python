@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -889,7 +889,9 @@ class AbuseReportsResource(SyncAPIResource):
         if not report_param:
             raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
         return self._post(
-            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_param}", account_id=account_id, report_param=report_param
+            ),
             body=maybe_transform(
                 {
                     "act": act,
@@ -991,7 +993,7 @@ class AbuseReportsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports",
+            path_template("/accounts/{account_id}/abuse-reports", account_id=account_id),
             page=SyncV4PagePagination[Optional[AbuseReportListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1047,7 +1049,9 @@ class AbuseReportsResource(SyncAPIResource):
         if not report_param:
             raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
         return self._get(
-            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_param}", account_id=account_id, report_param=report_param
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1912,7 +1916,9 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         if not report_param:
             raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
         return await self._post(
-            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_param}", account_id=account_id, report_param=report_param
+            ),
             body=await async_maybe_transform(
                 {
                     "act": act,
@@ -2014,7 +2020,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports",
+            path_template("/accounts/{account_id}/abuse-reports", account_id=account_id),
             page=AsyncV4PagePagination[Optional[AbuseReportListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -2070,7 +2076,9 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         if not report_param:
             raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
         return await self._get(
-            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_param}", account_id=account_id, report_param=report_param
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

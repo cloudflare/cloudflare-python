@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -91,7 +91,7 @@ class PermissionGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/permission_groups",
+            path_template("/accounts/{account_id}/iam/permission_groups", account_id=account_id),
             page=SyncV4PagePaginationArray[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -149,7 +149,11 @@ class PermissionGroupsResource(SyncAPIResource):
                 f"Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}"
             )
         return self._get(
-            f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
+                account_id=account_id,
+                permission_group_id=permission_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +230,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/permission_groups",
+            path_template("/accounts/{account_id}/iam/permission_groups", account_id=account_id),
             page=AsyncV4PagePaginationArray[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -284,7 +288,11 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}"
             )
         return await self._get(
-            f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
+                account_id=account_id,
+                permission_group_id=permission_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

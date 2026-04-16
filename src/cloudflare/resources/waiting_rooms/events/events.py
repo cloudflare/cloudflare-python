@@ -16,7 +16,7 @@ from .details import (
     AsyncDetailsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -165,7 +165,11 @@ class EventsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             body=maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -299,7 +303,12 @@ class EventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._put(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             body=maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -369,7 +378,11 @@ class EventsResource(SyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=SyncV4PagePaginationArray[Event],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -423,7 +436,12 @@ class EventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -537,7 +555,12 @@ class EventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             body=maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -604,7 +627,12 @@ class EventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -746,7 +774,11 @@ class AsyncEventsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -880,7 +912,12 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -950,7 +987,11 @@ class AsyncEventsResource(AsyncAPIResource):
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=AsyncV4PagePaginationArray[Event],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1004,7 +1045,12 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1118,7 +1164,12 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
@@ -1185,7 +1236,12 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

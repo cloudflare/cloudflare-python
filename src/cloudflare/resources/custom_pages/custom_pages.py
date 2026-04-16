@@ -16,7 +16,7 @@ from .assets import (
     AsyncAssetsResourceWithStreamingResponse,
 )
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -127,7 +127,12 @@ class CustomPagesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+                identifier=identifier,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "state": state,
@@ -190,7 +195,11 @@ class CustomPagesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncSinglePage[CustomPageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -259,7 +268,12 @@ class CustomPagesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+                identifier=identifier,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +376,12 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+                identifier=identifier,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "state": state,
@@ -425,7 +444,11 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncSinglePage[CustomPageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -494,7 +517,12 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+                identifier=identifier,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

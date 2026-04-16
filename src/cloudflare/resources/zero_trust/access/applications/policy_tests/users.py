@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -86,7 +86,11 @@ class UsersResource(SyncAPIResource):
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             page=SyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -168,7 +172,11 @@ class AsyncUsersResource(AsyncAPIResource):
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             page=AsyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -70,7 +71,7 @@ class RegionsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/regional_hostnames/regions",
+            path_template("/accounts/{account_id}/addressing/regional_hostnames/regions", account_id=account_id),
             page=SyncSinglePage[RegionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -129,7 +130,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/regional_hostnames/regions",
+            path_template("/accounts/{account_id}/addressing/regional_hostnames/regions", account_id=account_id),
             page=AsyncSinglePage[RegionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

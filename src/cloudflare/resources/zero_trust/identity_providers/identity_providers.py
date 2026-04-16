@@ -8,7 +8,7 @@ from typing_extensions import overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .scim.scim import (
     SCIMResource,
     AsyncSCIMResource,
@@ -786,7 +786,11 @@ class IdentityProvidersResource(SyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=maybe_transform(
                     {
                         "config": config,
@@ -1574,7 +1578,12 @@ class IdentityProvidersResource(SyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                    identity_provider_id=identity_provider_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=maybe_transform(
                     {
                         "config": config,
@@ -1652,7 +1661,11 @@ class IdentityProvidersResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[IdentityProviderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1725,7 +1738,12 @@ class IdentityProvidersResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                identity_provider_id=identity_provider_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1790,7 +1808,12 @@ class IdentityProvidersResource(SyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                    identity_provider_id=identity_provider_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -2547,7 +2570,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "config": config,
@@ -3335,7 +3362,12 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             await self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                    identity_provider_id=identity_provider_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "config": config,
@@ -3413,7 +3445,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[IdentityProviderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -3486,7 +3522,12 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                identity_provider_id=identity_provider_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3551,7 +3592,12 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+                    identity_provider_id=identity_provider_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

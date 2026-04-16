@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -103,7 +103,9 @@ class ResourcesResource(SyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._post(
-            f"/accounts/{account_id}/shares/{share_id}/resources",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources", account_id=account_id, share_id=share_id
+            ),
             body=maybe_transform(
                 {
                     "meta": meta,
@@ -167,7 +169,12 @@ class ResourcesResource(SyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return self._put(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             body=maybe_transform({"meta": meta}, resource_update_params.ResourceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -233,7 +240,9 @@ class ResourcesResource(SyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares/{share_id}/resources",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources", account_id=account_id, share_id=share_id
+            ),
             page=SyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -294,7 +303,12 @@ class ResourcesResource(SyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -345,7 +359,12 @@ class ResourcesResource(SyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return self._get(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -430,7 +449,9 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/shares/{share_id}/resources",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources", account_id=account_id, share_id=share_id
+            ),
             body=await async_maybe_transform(
                 {
                     "meta": meta,
@@ -494,7 +515,12 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             body=await async_maybe_transform({"meta": meta}, resource_update_params.ResourceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -560,7 +586,9 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares/{share_id}/resources",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources", account_id=account_id, share_id=share_id
+            ),
             page=AsyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -621,7 +649,12 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -672,7 +705,12 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/shares/{share_id}/resources/{resource_id}",
+                account_id=account_id,
+                share_id=share_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

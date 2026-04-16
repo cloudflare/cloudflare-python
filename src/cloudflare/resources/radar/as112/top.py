@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -108,7 +108,7 @@ class TopResource(SyncAPIResource):
         if not dnssec:
             raise ValueError(f"Expected a non-empty value for `dnssec` but received {dnssec!r}")
         return self._get(
-            f"/radar/as112/top/locations/dnssec/{dnssec}",
+            path_template("/radar/as112/top/locations/dnssec/{dnssec}", dnssec=dnssec),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +191,7 @@ class TopResource(SyncAPIResource):
         if not edns:
             raise ValueError(f"Expected a non-empty value for `edns` but received {edns!r}")
         return self._get(
-            f"/radar/as112/top/locations/edns/{edns}",
+            path_template("/radar/as112/top/locations/edns/{edns}", edns=edns),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,7 +273,7 @@ class TopResource(SyncAPIResource):
         if not ip_version:
             raise ValueError(f"Expected a non-empty value for `ip_version` but received {ip_version!r}")
         return self._get(
-            f"/radar/as112/top/locations/ip_version/{ip_version}",
+            path_template("/radar/as112/top/locations/ip_version/{ip_version}", ip_version=ip_version),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -454,7 +454,7 @@ class AsyncTopResource(AsyncAPIResource):
         if not dnssec:
             raise ValueError(f"Expected a non-empty value for `dnssec` but received {dnssec!r}")
         return await self._get(
-            f"/radar/as112/top/locations/dnssec/{dnssec}",
+            path_template("/radar/as112/top/locations/dnssec/{dnssec}", dnssec=dnssec),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -537,7 +537,7 @@ class AsyncTopResource(AsyncAPIResource):
         if not edns:
             raise ValueError(f"Expected a non-empty value for `edns` but received {edns!r}")
         return await self._get(
-            f"/radar/as112/top/locations/edns/{edns}",
+            path_template("/radar/as112/top/locations/edns/{edns}", edns=edns),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -619,7 +619,7 @@ class AsyncTopResource(AsyncAPIResource):
         if not ip_version:
             raise ValueError(f"Expected a non-empty value for `ip_version` but received {ip_version!r}")
         return await self._get(
-            f"/radar/as112/top/locations/ip_version/{ip_version}",
+            path_template("/radar/as112/top/locations/ip_version/{ip_version}", ip_version=ip_version),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -134,7 +134,7 @@ class WidgetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/challenges/widgets",
+            path_template("/accounts/{account_id}/challenges/widgets", account_id=account_id),
             body=maybe_transform(
                 {
                     "domains": domains,
@@ -229,7 +229,9 @@ class WidgetsResource(SyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return self._put(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             body=maybe_transform(
                 {
                     "domains": domains,
@@ -308,7 +310,7 @@ class WidgetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/challenges/widgets",
+            path_template("/accounts/{account_id}/challenges/widgets", account_id=account_id),
             page=SyncV4PagePaginationArray[WidgetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -364,7 +366,9 @@ class WidgetsResource(SyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return self._delete(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -410,7 +414,9 @@ class WidgetsResource(SyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return self._get(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -465,7 +471,11 @@ class WidgetsResource(SyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return self._post(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret",
+                account_id=account_id,
+                sitekey=sitekey,
+            ),
             body=maybe_transform(
                 {"invalidate_immediately": invalidate_immediately}, widget_rotate_secret_params.WidgetRotateSecretParams
             ),
@@ -581,7 +591,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/challenges/widgets",
+            path_template("/accounts/{account_id}/challenges/widgets", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "domains": domains,
@@ -676,7 +686,9 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._put(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             body=await async_maybe_transform(
                 {
                     "domains": domains,
@@ -755,7 +767,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/challenges/widgets",
+            path_template("/accounts/{account_id}/challenges/widgets", account_id=account_id),
             page=AsyncV4PagePaginationArray[WidgetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -811,7 +823,9 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._delete(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -857,7 +871,9 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._get(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}", account_id=account_id, sitekey=sitekey
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -912,7 +928,11 @@ class AsyncWidgetsResource(AsyncAPIResource):
         if not sitekey:
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._post(
-            f"/accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret",
+            path_template(
+                "/accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret",
+                account_id=account_id,
+                sitekey=sitekey,
+            ),
             body=await async_maybe_transform(
                 {"invalidate_immediately": invalidate_immediately}, widget_rotate_secret_params.WidgetRotateSecretParams
             ),

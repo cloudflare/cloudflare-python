@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -77,7 +77,7 @@ class PayloadsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads",
+            path_template("/zones/{zone_id}/content-upload-scan/payloads", zone_id=zone_id),
             page=SyncSinglePage[PayloadCreateResponse],
             body=maybe_transform(body, Iterable[payload_create_params.Body]),
             options=make_request_options(
@@ -117,7 +117,7 @@ class PayloadsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads",
+            path_template("/zones/{zone_id}/content-upload-scan/payloads", zone_id=zone_id),
             page=SyncSinglePage[PayloadListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -160,7 +160,11 @@ class PayloadsResource(SyncAPIResource):
         if not expression_id:
             raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+            path_template(
+                "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+                zone_id=zone_id,
+                expression_id=expression_id,
+            ),
             page=SyncSinglePage[PayloadDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -221,7 +225,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads",
+            path_template("/zones/{zone_id}/content-upload-scan/payloads", zone_id=zone_id),
             page=AsyncSinglePage[PayloadCreateResponse],
             body=maybe_transform(body, Iterable[payload_create_params.Body]),
             options=make_request_options(
@@ -261,7 +265,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads",
+            path_template("/zones/{zone_id}/content-upload-scan/payloads", zone_id=zone_id),
             page=AsyncSinglePage[PayloadListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -304,7 +308,11 @@ class AsyncPayloadsResource(AsyncAPIResource):
         if not expression_id:
             raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+            path_template(
+                "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+                zone_id=zone_id,
+                expression_id=expression_id,
+            ),
             page=AsyncSinglePage[PayloadDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

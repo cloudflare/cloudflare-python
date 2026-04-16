@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -185,7 +185,7 @@ class ZoneTagsResource(SyncAPIResource):
         return cast(
             Optional[ZoneTagUpdateResponse],
             self._put(
-                f"/zones/{zone_id}/tags",
+                path_template("/zones/{zone_id}/tags", zone_id=zone_id),
                 body=maybe_transform(
                     {
                         "resource_id": resource_id,
@@ -241,7 +241,7 @@ class ZoneTagsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
         return self._delete(
-            f"/zones/{zone_id}/tags",
+            path_template("/zones/{zone_id}/tags", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -298,7 +298,7 @@ class ZoneTagsResource(SyncAPIResource):
         return cast(
             Optional[ZoneTagGetResponse],
             self._get(
-                f"/zones/{zone_id}/tags",
+                path_template("/zones/{zone_id}/tags", zone_id=zone_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -480,7 +480,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         return cast(
             Optional[ZoneTagUpdateResponse],
             await self._put(
-                f"/zones/{zone_id}/tags",
+                path_template("/zones/{zone_id}/tags", zone_id=zone_id),
                 body=await async_maybe_transform(
                     {
                         "resource_id": resource_id,
@@ -536,7 +536,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
         return await self._delete(
-            f"/zones/{zone_id}/tags",
+            path_template("/zones/{zone_id}/tags", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -593,7 +593,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         return cast(
             Optional[ZoneTagGetResponse],
             await self._get(
-                f"/zones/{zone_id}/tags",
+                path_template("/zones/{zone_id}/tags", zone_id=zone_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

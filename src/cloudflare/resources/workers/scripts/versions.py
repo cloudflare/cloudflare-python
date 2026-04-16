@@ -18,7 +18,7 @@ from ...._types import (
     omit,
     not_given,
 )
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -124,7 +124,11 @@ class VersionsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=maybe_transform(body, version_create_params.VersionCreateParams),
             files=extracted_files,
             options=make_request_options(
@@ -185,7 +189,11 @@ class VersionsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             page=SyncV4PagePagination[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -242,7 +250,12 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}",
+                account_id=account_id,
+                script_name=script_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -340,7 +353,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform(body, version_create_params.VersionCreateParams),
             files=extracted_files,
             options=make_request_options(
@@ -401,7 +418,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             page=AsyncV4PagePagination[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -458,7 +479,12 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}",
+                account_id=account_id,
+                script_name=script_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

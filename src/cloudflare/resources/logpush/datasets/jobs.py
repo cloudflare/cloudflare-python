@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -45,40 +46,38 @@ class JobsResource(SyncAPIResource):
 
     def get(
         self,
-        dataset_id: Optional[
-            Literal[
-                "access_requests",
-                "audit_logs",
-                "audit_logs_v2",
-                "biso_user_actions",
-                "casb_findings",
-                "device_posture_results",
-                "dex_application_tests",
-                "dex_device_state_events",
-                "dlp_forensic_copies",
-                "dns_firewall_logs",
-                "dns_logs",
-                "email_security_alerts",
-                "firewall_events",
-                "gateway_dns",
-                "gateway_http",
-                "gateway_network",
-                "http_requests",
-                "ipsec_logs",
-                "magic_ids_detections",
-                "mcp_portal_logs",
-                "nel_reports",
-                "network_analytics_logs",
-                "page_shield_events",
-                "sinkhole_http_logs",
-                "spectrum_events",
-                "ssh_logs",
-                "warp_config_changes",
-                "warp_toggle_changes",
-                "workers_trace_events",
-                "zaraz_events",
-                "zero_trust_network_sessions",
-            ]
+        dataset_id: Literal[
+            "access_requests",
+            "audit_logs",
+            "audit_logs_v2",
+            "biso_user_actions",
+            "casb_findings",
+            "device_posture_results",
+            "dex_application_tests",
+            "dex_device_state_events",
+            "dlp_forensic_copies",
+            "dns_firewall_logs",
+            "dns_logs",
+            "email_security_alerts",
+            "firewall_events",
+            "gateway_dns",
+            "gateway_http",
+            "gateway_network",
+            "http_requests",
+            "ipsec_logs",
+            "magic_ids_detections",
+            "mcp_portal_logs",
+            "nel_reports",
+            "network_analytics_logs",
+            "page_shield_events",
+            "sinkhole_http_logs",
+            "spectrum_events",
+            "ssh_logs",
+            "warp_config_changes",
+            "warp_toggle_changes",
+            "workers_trace_events",
+            "zaraz_events",
+            "zero_trust_network_sessions",
         ],
         *,
         account_id: str | None = None,
@@ -128,7 +127,12 @@ class JobsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+                dataset_id=dataset_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncSinglePage[Optional[LogpushJob]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -159,40 +163,38 @@ class AsyncJobsResource(AsyncAPIResource):
 
     def get(
         self,
-        dataset_id: Optional[
-            Literal[
-                "access_requests",
-                "audit_logs",
-                "audit_logs_v2",
-                "biso_user_actions",
-                "casb_findings",
-                "device_posture_results",
-                "dex_application_tests",
-                "dex_device_state_events",
-                "dlp_forensic_copies",
-                "dns_firewall_logs",
-                "dns_logs",
-                "email_security_alerts",
-                "firewall_events",
-                "gateway_dns",
-                "gateway_http",
-                "gateway_network",
-                "http_requests",
-                "ipsec_logs",
-                "magic_ids_detections",
-                "mcp_portal_logs",
-                "nel_reports",
-                "network_analytics_logs",
-                "page_shield_events",
-                "sinkhole_http_logs",
-                "spectrum_events",
-                "ssh_logs",
-                "warp_config_changes",
-                "warp_toggle_changes",
-                "workers_trace_events",
-                "zaraz_events",
-                "zero_trust_network_sessions",
-            ]
+        dataset_id: Literal[
+            "access_requests",
+            "audit_logs",
+            "audit_logs_v2",
+            "biso_user_actions",
+            "casb_findings",
+            "device_posture_results",
+            "dex_application_tests",
+            "dex_device_state_events",
+            "dlp_forensic_copies",
+            "dns_firewall_logs",
+            "dns_logs",
+            "email_security_alerts",
+            "firewall_events",
+            "gateway_dns",
+            "gateway_http",
+            "gateway_network",
+            "http_requests",
+            "ipsec_logs",
+            "magic_ids_detections",
+            "mcp_portal_logs",
+            "nel_reports",
+            "network_analytics_logs",
+            "page_shield_events",
+            "sinkhole_http_logs",
+            "spectrum_events",
+            "ssh_logs",
+            "warp_config_changes",
+            "warp_toggle_changes",
+            "workers_trace_events",
+            "zaraz_events",
+            "zero_trust_network_sessions",
         ],
         *,
         account_id: str | None = None,
@@ -242,7 +244,12 @@ class AsyncJobsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+                dataset_id=dataset_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncSinglePage[Optional[LogpushJob]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

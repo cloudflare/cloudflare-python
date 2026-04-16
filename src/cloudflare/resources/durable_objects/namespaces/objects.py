@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,7 +86,9 @@ class ObjectsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
+            path_template(
+                "/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects", account_id=account_id, id=id
+            ),
             page=SyncCursorPaginationAfter[DurableObject],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -169,7 +171,9 @@ class AsyncObjectsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
+            path_template(
+                "/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects", account_id=account_id, id=id
+            ),
             page=AsyncCursorPaginationAfter[DurableObject],
             options=make_request_options(
                 extra_headers=extra_headers,

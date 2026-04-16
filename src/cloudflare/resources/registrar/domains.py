@@ -8,7 +8,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -97,7 +97,9 @@ class DomainsResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._put(
-            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/domains/{domain_name}", account_id=account_id, domain_name=domain_name
+            ),
             body=maybe_transform(
                 {
                     "auto_renew": auto_renew,
@@ -149,7 +151,7 @@ class DomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/registrar/domains",
+            path_template("/accounts/{account_id}/registrar/domains", account_id=account_id),
             page=SyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -198,7 +200,9 @@ class DomainsResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._get(
-            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/domains/{domain_name}", account_id=account_id, domain_name=domain_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -281,7 +285,9 @@ class AsyncDomainsResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._put(
-            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/domains/{domain_name}", account_id=account_id, domain_name=domain_name
+            ),
             body=await async_maybe_transform(
                 {
                     "auto_renew": auto_renew,
@@ -333,7 +339,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/registrar/domains",
+            path_template("/accounts/{account_id}/registrar/domains", account_id=account_id),
             page=AsyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -382,7 +388,9 @@ class AsyncDomainsResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            path_template(
+                "/accounts/{account_id}/registrar/domains/{domain_name}", account_id=account_id, domain_name=domain_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

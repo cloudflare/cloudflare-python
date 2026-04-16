@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -81,7 +81,11 @@ class EventTagsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create",
+                account_id=account_id,
+                event_id=event_id,
+            ),
             body=maybe_transform({"tags": tags}, event_tag_create_params.EventTagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -128,7 +132,11 @@ class EventTagsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}",
+                account_id=account_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +204,11 @@ class AsyncEventTagsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create",
+                account_id=account_id,
+                event_id=event_id,
+            ),
             body=await async_maybe_transform({"tags": tags}, event_tag_create_params.EventTagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -243,7 +255,11 @@ class AsyncEventTagsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}",
+                account_id=account_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

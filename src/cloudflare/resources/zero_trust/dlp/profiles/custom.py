@@ -7,7 +7,7 @@ from typing import Any, Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -103,7 +103,7 @@ class CustomResource(SyncAPIResource):
         return cast(
             Optional[Profile],
             self._post(
-                f"/accounts/{account_id}/dlp/profiles/custom",
+                path_template("/accounts/{account_id}/dlp/profiles/custom", account_id=account_id),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -198,7 +198,11 @@ class CustomResource(SyncAPIResource):
         return cast(
             Optional[Profile],
             self._put(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -260,7 +264,9 @@ class CustomResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/profiles/custom/{profile_id}", account_id=account_id, profile_id=profile_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -304,7 +310,11 @@ class CustomResource(SyncAPIResource):
         return cast(
             Optional[Profile],
             self._get(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -397,7 +407,7 @@ class AsyncCustomResource(AsyncAPIResource):
         return cast(
             Optional[Profile],
             await self._post(
-                f"/accounts/{account_id}/dlp/profiles/custom",
+                path_template("/accounts/{account_id}/dlp/profiles/custom", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -492,7 +502,11 @@ class AsyncCustomResource(AsyncAPIResource):
         return cast(
             Optional[Profile],
             await self._put(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -554,7 +568,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/profiles/custom/{profile_id}", account_id=account_id, profile_id=profile_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -598,7 +614,11 @@ class AsyncCustomResource(AsyncAPIResource):
         return cast(
             Optional[Profile],
             await self._get(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

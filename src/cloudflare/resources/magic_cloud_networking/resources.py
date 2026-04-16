@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -165,7 +165,7 @@ class ResourcesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/cloud/resources",
+            path_template("/accounts/{account_id}/magic/cloud/resources", account_id=account_id),
             page=SyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -295,7 +295,7 @@ class ResourcesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/magic/cloud/resources/export",
+            path_template("/accounts/{account_id}/magic/cloud/resources/export", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,7 +351,11 @@ class ResourcesResource(SyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/cloud/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/resources/{resource_id}",
+                account_id=account_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -392,7 +396,7 @@ class ResourcesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/cloud/resources/policy-preview",
+            path_template("/accounts/{account_id}/magic/cloud/resources/policy-preview", account_id=account_id),
             body=maybe_transform({"policy": policy}, resource_policy_preview_params.ResourcePolicyPreviewParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -529,7 +533,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/cloud/resources",
+            path_template("/accounts/{account_id}/magic/cloud/resources", account_id=account_id),
             page=AsyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -659,7 +663,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/magic/cloud/resources/export",
+            path_template("/accounts/{account_id}/magic/cloud/resources/export", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -715,7 +719,11 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not resource_id:
             raise ValueError(f"Expected a non-empty value for `resource_id` but received {resource_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/cloud/resources/{resource_id}",
+            path_template(
+                "/accounts/{account_id}/magic/cloud/resources/{resource_id}",
+                account_id=account_id,
+                resource_id=resource_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -756,7 +764,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/cloud/resources/policy-preview",
+            path_template("/accounts/{account_id}/magic/cloud/resources/policy-preview", account_id=account_id),
             body=await async_maybe_transform(
                 {"policy": policy}, resource_policy_preview_params.ResourcePolicyPreviewParams
             ),

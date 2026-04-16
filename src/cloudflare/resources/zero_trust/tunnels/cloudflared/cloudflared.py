@@ -17,7 +17,7 @@ from .token import (
     AsyncTokenResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from .connectors import (
     ConnectorsResource,
     AsyncConnectorsResource,
@@ -149,7 +149,7 @@ class CloudflaredResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cfd_tunnel",
+            path_template("/accounts/{account_id}/cfd_tunnel", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -228,7 +228,7 @@ class CloudflaredResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cfd_tunnel",
+            path_template("/accounts/{account_id}/cfd_tunnel", account_id=account_id),
             page=SyncV4PagePaginationArray[CloudflareTunnel],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -290,7 +290,7 @@ class CloudflaredResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,7 +343,7 @@ class CloudflaredResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -396,7 +396,7 @@ class CloudflaredResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -490,7 +490,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cfd_tunnel",
+            path_template("/accounts/{account_id}/cfd_tunnel", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -569,7 +569,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cfd_tunnel",
+            path_template("/accounts/{account_id}/cfd_tunnel", account_id=account_id),
             page=AsyncV4PagePaginationArray[CloudflareTunnel],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -631,7 +631,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -684,7 +684,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -737,7 +737,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            path_template("/accounts/{account_id}/cfd_tunnel/{tunnel_id}", account_id=account_id, tunnel_id=tunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

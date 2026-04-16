@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from .user.user import (
     UserResource,
     AsyncUserResource,
@@ -120,7 +120,7 @@ class LabelsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/labels",
+            path_template("/zones/{zone_id}/api_gateway/labels", zone_id=zone_id),
             page=SyncV4PagePaginationArray[LabelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -224,7 +224,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/labels",
+            path_template("/zones/{zone_id}/api_gateway/labels", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[LabelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

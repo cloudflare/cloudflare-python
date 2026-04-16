@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -81,7 +81,7 @@ class HostnamesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
+            path_template("/zones/{zone_id}/origin_tls_client_auth/hostnames", zone_id=zone_id),
             page=SyncSinglePage[HostnameUpdateResponse],
             body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
@@ -128,7 +128,9 @@ class HostnamesResource(SyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +197,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
+            path_template("/zones/{zone_id}/origin_tls_client_auth/hostnames", zone_id=zone_id),
             page=AsyncSinglePage[HostnameUpdateResponse],
             body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
@@ -242,7 +244,9 @@ class AsyncHostnamesResource(AsyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

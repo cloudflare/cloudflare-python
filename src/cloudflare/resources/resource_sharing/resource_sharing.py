@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .resources import (
     ResourcesResource,
@@ -115,7 +115,7 @@ class ResourceSharingResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -173,7 +173,7 @@ class ResourceSharingResource(SyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._put(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             body=maybe_transform({"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -254,7 +254,7 @@ class ResourceSharingResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             page=SyncV4PagePaginationArray[ResourceSharingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -316,7 +316,7 @@ class ResourceSharingResource(SyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -368,7 +368,7 @@ class ResourceSharingResource(SyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._get(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -451,7 +451,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -509,7 +509,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             body=await async_maybe_transform(
                 {"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams
             ),
@@ -592,7 +592,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             page=AsyncV4PagePaginationArray[ResourceSharingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -654,7 +654,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -706,7 +706,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

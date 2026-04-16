@@ -41,6 +41,7 @@ from .unrevoke import (
     AsyncUnrevokeResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from .dex_tests import (
     DEXTestsResource,
     AsyncDEXTestsResource,
@@ -231,7 +232,7 @@ class DevicesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices",
+            path_template("/accounts/{account_id}/devices", account_id=account_id),
             page=SyncSinglePage[Device],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -282,7 +283,7 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/{device_id}",
+            path_template("/accounts/{account_id}/devices/{device_id}", account_id=account_id, device_id=device_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,7 +404,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices",
+            path_template("/accounts/{account_id}/devices", account_id=account_id),
             page=AsyncSinglePage[Device],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -454,7 +455,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/{device_id}",
+            path_template("/accounts/{account_id}/devices/{device_id}", account_id=account_id, device_id=device_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

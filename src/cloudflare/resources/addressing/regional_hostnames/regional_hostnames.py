@@ -15,7 +15,7 @@ from .regions import (
     AsyncRegionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -105,7 +105,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/addressing/regional_hostnames",
+            path_template("/zones/{zone_id}/addressing/regional_hostnames", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "hostname": hostname,
@@ -154,7 +154,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/addressing/regional_hostnames",
+            path_template("/zones/{zone_id}/addressing/regional_hostnames", zone_id=zone_id),
             page=SyncSinglePage[RegionalHostnameListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -198,7 +198,9 @@ class RegionalHostnamesResource(SyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return self._delete(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -246,7 +248,9 @@ class RegionalHostnamesResource(SyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return self._patch(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             body=maybe_transform({"region_key": region_key}, regional_hostname_edit_params.RegionalHostnameEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -294,7 +298,9 @@ class RegionalHostnamesResource(SyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return self._get(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -374,7 +380,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/addressing/regional_hostnames",
+            path_template("/zones/{zone_id}/addressing/regional_hostnames", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
@@ -423,7 +429,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/addressing/regional_hostnames",
+            path_template("/zones/{zone_id}/addressing/regional_hostnames", zone_id=zone_id),
             page=AsyncSinglePage[RegionalHostnameListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -467,7 +473,9 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._delete(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -515,7 +523,9 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._patch(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             body=await async_maybe_transform(
                 {"region_key": region_key}, regional_hostname_edit_params.RegionalHostnameEditParams
             ),
@@ -565,7 +575,9 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._get(
-            f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/addressing/regional_hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

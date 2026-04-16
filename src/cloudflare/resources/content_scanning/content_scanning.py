@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .payloads import (
     PayloadsResource,
     AsyncPayloadsResource,
@@ -104,7 +104,7 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             body=maybe_transform({"value": value}, content_scanning_create_params.ContentScanningCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -149,7 +149,7 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             body=maybe_transform({"value": value}, content_scanning_update_params.ContentScanningUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -191,7 +191,7 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/content-upload-scan/disable",
+            path_template("/zones/{zone_id}/content-upload-scan/disable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,7 +232,7 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/content-upload-scan/enable",
+            path_template("/zones/{zone_id}/content-upload-scan/enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,7 +273,7 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -346,7 +346,7 @@ class AsyncContentScanningResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"value": value}, content_scanning_create_params.ContentScanningCreateParams
             ),
@@ -393,7 +393,7 @@ class AsyncContentScanningResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"value": value}, content_scanning_update_params.ContentScanningUpdateParams
             ),
@@ -437,7 +437,7 @@ class AsyncContentScanningResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/content-upload-scan/disable",
+            path_template("/zones/{zone_id}/content-upload-scan/disable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -478,7 +478,7 @@ class AsyncContentScanningResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/content-upload-scan/enable",
+            path_template("/zones/{zone_id}/content-upload-scan/enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -519,7 +519,7 @@ class AsyncContentScanningResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/content-upload-scan/settings",
+            path_template("/zones/{zone_id}/content-upload-scan/settings", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

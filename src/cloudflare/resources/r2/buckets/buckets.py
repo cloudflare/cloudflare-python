@@ -40,7 +40,7 @@ from .metrics import (
     AsyncMetricsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .lifecycle import (
     LifecycleResource,
     AsyncLifecycleResource,
@@ -176,7 +176,7 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -252,7 +252,7 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -316,7 +316,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -377,7 +379,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -430,7 +434,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -536,7 +542,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -612,7 +618,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -676,7 +682,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -737,7 +745,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -790,7 +800,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

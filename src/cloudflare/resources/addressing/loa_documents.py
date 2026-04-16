@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -89,7 +89,7 @@ class LOADocumentsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/addressing/loa_documents",
+            path_template("/accounts/{account_id}/addressing/loa_documents", account_id=account_id),
             body=maybe_transform({"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -103,7 +103,7 @@ class LOADocumentsResource(SyncAPIResource):
 
     def get(
         self,
-        loa_document_id: Optional[str],
+        loa_document_id: str,
         *,
         account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -137,7 +137,11 @@ class LOADocumentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `loa_document_id` but received {loa_document_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
+            path_template(
+                "/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
+                account_id=account_id,
+                loa_document_id=loa_document_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -202,7 +206,7 @@ class AsyncLOADocumentsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/addressing/loa_documents",
+            path_template("/accounts/{account_id}/addressing/loa_documents", account_id=account_id),
             body=await async_maybe_transform(
                 {"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams
             ),
@@ -218,7 +222,7 @@ class AsyncLOADocumentsResource(AsyncAPIResource):
 
     async def get(
         self,
-        loa_document_id: Optional[str],
+        loa_document_id: str,
         *,
         account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -252,7 +256,11 @@ class AsyncLOADocumentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `loa_document_id` but received {loa_document_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
+            path_template(
+                "/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
+                account_id=account_id,
+                loa_document_id=loa_document_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -7,7 +7,7 @@ from typing import Any, Iterable, cast
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -73,7 +73,7 @@ class ExcludesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/exclude",
+            path_template("/accounts/{account_id}/devices/policy/exclude", account_id=account_id),
             page=SyncSinglePage[SplitTunnelExclude],
             body=maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
@@ -111,7 +111,7 @@ class ExcludesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/exclude",
+            path_template("/accounts/{account_id}/devices/policy/exclude", account_id=account_id),
             page=SyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -169,7 +169,7 @@ class AsyncExcludesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/exclude",
+            path_template("/accounts/{account_id}/devices/policy/exclude", account_id=account_id),
             page=AsyncSinglePage[SplitTunnelExclude],
             body=maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
@@ -207,7 +207,7 @@ class AsyncExcludesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/exclude",
+            path_template("/accounts/{account_id}/devices/policy/exclude", account_id=account_id),
             page=AsyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

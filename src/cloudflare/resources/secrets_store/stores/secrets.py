@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,11 @@ class SecretsResource(SyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             page=SyncSinglePage[SecretCreateResponse],
             body=maybe_transform(body, Iterable[secret_create_params.Body]),
             options=make_request_options(
@@ -154,7 +158,11 @@ class SecretsResource(SyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             page=SyncV4PagePaginationArray[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -216,7 +224,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +275,11 @@ class SecretsResource(SyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -322,7 +339,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._post(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -391,7 +413,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -450,7 +477,12 @@ class SecretsResource(SyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._get(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,7 +550,11 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             page=AsyncSinglePage[SecretCreateResponse],
             body=maybe_transform(body, Iterable[secret_create_params.Body]),
             options=make_request_options(
@@ -581,7 +617,11 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             page=AsyncV4PagePaginationArray[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -643,7 +683,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -689,7 +734,11 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not store_id:
             raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
+                account_id=account_id,
+                store_id=store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,7 +798,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -818,7 +872,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "comment": comment,
@@ -877,7 +936,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_id:
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
+                account_id=account_id,
+                store_id=store_id,
+                secret_id=secret_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

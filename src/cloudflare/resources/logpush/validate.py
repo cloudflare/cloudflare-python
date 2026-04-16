@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -96,7 +96,11 @@ class ValidateResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
             ),
@@ -160,7 +164,11 @@ class ValidateResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {"destination_conf": destination_conf},
                 validate_destination_exists_params.ValidateDestinationExistsParams,
@@ -229,7 +237,11 @@ class ValidateResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform({"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -312,7 +324,11 @@ class AsyncValidateResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
             ),
@@ -376,7 +392,11 @@ class AsyncValidateResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {"destination_conf": destination_conf},
                 validate_destination_exists_params.ValidateDestinationExistsParams,
@@ -445,7 +465,11 @@ class AsyncValidateResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams
             ),

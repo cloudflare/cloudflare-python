@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -122,7 +122,11 @@ class MitigationsResource(SyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=SyncV4PagePagination[Optional[MitigationListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -180,7 +184,11 @@ class MitigationsResource(SyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=SyncSinglePage[MitigationReviewResponse],
             body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
             options=make_request_options(
@@ -287,7 +295,11 @@ class AsyncMitigationsResource(AsyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=AsyncV4PagePagination[Optional[MitigationListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -345,7 +357,11 @@ class AsyncMitigationsResource(AsyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=AsyncSinglePage[MitigationReviewResponse],
             body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
             options=make_request_options(

@@ -7,7 +7,7 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -96,7 +96,7 @@ class AppsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/apps",
+            path_template("/accounts/{account_id}/magic/apps", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -169,7 +169,11 @@ class AppsResource(SyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             body=maybe_transform(
                 {
                     "hostnames": hostnames,
@@ -220,7 +224,7 @@ class AppsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/apps",
+            path_template("/accounts/{account_id}/magic/apps", account_id=account_id),
             page=SyncSinglePage[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -263,7 +267,11 @@ class AppsResource(SyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -326,7 +334,11 @@ class AppsResource(SyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             body=maybe_transform(
                 {
                     "hostnames": hostnames,
@@ -415,7 +427,7 @@ class AsyncAppsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/apps",
+            path_template("/accounts/{account_id}/magic/apps", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -488,7 +500,11 @@ class AsyncAppsResource(AsyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "hostnames": hostnames,
@@ -539,7 +555,7 @@ class AsyncAppsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/apps",
+            path_template("/accounts/{account_id}/magic/apps", account_id=account_id),
             page=AsyncSinglePage[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -582,7 +598,11 @@ class AsyncAppsResource(AsyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -645,7 +665,11 @@ class AsyncAppsResource(AsyncAPIResource):
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/apps/{account_app_id}",
+            path_template(
+                "/accounts/{account_id}/magic/apps/{account_app_id}",
+                account_id=account_id,
+                account_app_id=account_app_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "hostnames": hostnames,

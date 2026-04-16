@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -149,7 +149,7 @@ class TrustedDomainsResource(SyncAPIResource):
         return cast(
             TrustedDomainCreateResponse,
             self._post(
-                f"/accounts/{account_id}/email-security/settings/trusted_domains",
+                path_template("/accounts/{account_id}/email-security/settings/trusted_domains", account_id=account_id),
                 body=maybe_transform(
                     {
                         "is_recent": is_recent,
@@ -224,7 +224,7 @@ class TrustedDomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains",
+            path_template("/accounts/{account_id}/email-security/settings/trusted_domains", account_id=account_id),
             page=SyncV4PagePaginationArray[TrustedDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -282,7 +282,11 @@ class TrustedDomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -337,7 +341,11 @@ class TrustedDomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             body=maybe_transform(
                 {
                     "comments": comments,
@@ -391,7 +399,11 @@ class TrustedDomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,7 +530,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         return cast(
             TrustedDomainCreateResponse,
             await self._post(
-                f"/accounts/{account_id}/email-security/settings/trusted_domains",
+                path_template("/accounts/{account_id}/email-security/settings/trusted_domains", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "is_recent": is_recent,
@@ -593,7 +605,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains",
+            path_template("/accounts/{account_id}/email-security/settings/trusted_domains", account_id=account_id),
             page=AsyncV4PagePaginationArray[TrustedDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -651,7 +663,11 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -706,7 +722,11 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "comments": comments,
@@ -760,7 +780,11 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}",
+                account_id=account_id,
+                trusted_domain_id=trusted_domain_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

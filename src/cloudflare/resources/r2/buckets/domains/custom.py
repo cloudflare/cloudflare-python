@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ....._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -109,7 +109,11 @@ class CustomResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             body=maybe_transform(
                 {
                     "domain": domain,
@@ -188,7 +192,12 @@ class CustomResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             body=maybe_transform(
                 {
                     "ciphers": ciphers,
@@ -249,7 +258,11 @@ class CustomResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +320,12 @@ class CustomResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -365,7 +383,12 @@ class CustomResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -457,7 +480,11 @@ class AsyncCustomResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "domain": domain,
@@ -536,7 +563,12 @@ class AsyncCustomResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             body=await async_maybe_transform(
                 {
                     "ciphers": ciphers,
@@ -597,7 +629,11 @@ class AsyncCustomResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -655,7 +691,12 @@ class AsyncCustomResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -713,7 +754,12 @@ class AsyncCustomResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                domain=domain,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

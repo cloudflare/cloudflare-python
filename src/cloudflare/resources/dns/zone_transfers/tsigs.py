@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -83,7 +83,7 @@ class TSIGsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/secondary_dns/tsigs",
+            path_template("/accounts/{account_id}/secondary_dns/tsigs", account_id=account_id),
             body=maybe_transform(
                 {
                     "algo": algo,
@@ -142,7 +142,9 @@ class TSIGsResource(SyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._put(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             body=maybe_transform(
                 {
                     "algo": algo,
@@ -189,7 +191,7 @@ class TSIGsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secondary_dns/tsigs",
+            path_template("/accounts/{account_id}/secondary_dns/tsigs", account_id=account_id),
             page=SyncSinglePage[TSIG],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -228,7 +230,9 @@ class TSIGsResource(SyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -270,7 +274,9 @@ class TSIGsResource(SyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._get(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -339,7 +345,7 @@ class AsyncTSIGsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/secondary_dns/tsigs",
+            path_template("/accounts/{account_id}/secondary_dns/tsigs", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "algo": algo,
@@ -398,7 +404,9 @@ class AsyncTSIGsResource(AsyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             body=await async_maybe_transform(
                 {
                     "algo": algo,
@@ -445,7 +453,7 @@ class AsyncTSIGsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/secondary_dns/tsigs",
+            path_template("/accounts/{account_id}/secondary_dns/tsigs", account_id=account_id),
             page=AsyncSinglePage[TSIG],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -484,7 +492,9 @@ class AsyncTSIGsResource(AsyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -526,7 +536,9 @@ class AsyncTSIGsResource(AsyncAPIResource):
         if not tsig_id:
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            path_template(
+                "/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}", account_id=account_id, tsig_id=tsig_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

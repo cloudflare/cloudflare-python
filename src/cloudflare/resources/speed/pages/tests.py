@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -110,7 +110,7 @@ class TestsResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._post(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             body=maybe_transform({"region": region}, test_create_params.TestCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -185,7 +185,7 @@ class TestsResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             page=SyncV4PagePaginationArray[Test],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -267,7 +267,7 @@ class TestsResource(SyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._delete(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -317,7 +317,9 @@ class TestsResource(SyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return self._get(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}",
+            path_template(
+                "/zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}", zone_id=zone_id, url=url, test_id=test_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -410,7 +412,7 @@ class AsyncTestsResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._post(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             body=await async_maybe_transform({"region": region}, test_create_params.TestCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -485,7 +487,7 @@ class AsyncTestsResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             page=AsyncV4PagePaginationArray[Test],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -567,7 +569,7 @@ class AsyncTestsResource(AsyncAPIResource):
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._delete(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            path_template("/zones/{zone_id}/speed_api/pages/{url}/tests", zone_id=zone_id, url=url),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -617,7 +619,9 @@ class AsyncTestsResource(AsyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}",
+            path_template(
+                "/zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}", zone_id=zone_id, url=url, test_id=test_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

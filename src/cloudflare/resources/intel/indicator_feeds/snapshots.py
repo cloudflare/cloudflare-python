@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -84,7 +84,11 @@ class SnapshotsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+                account_id=account_id,
+                feed_id=feed_id,
+            ),
             body=maybe_transform({"source": source}, snapshot_update_params.SnapshotUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -157,7 +161,11 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+                account_id=account_id,
+                feed_id=feed_id,
+            ),
             body=await async_maybe_transform({"source": source}, snapshot_update_params.SnapshotUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

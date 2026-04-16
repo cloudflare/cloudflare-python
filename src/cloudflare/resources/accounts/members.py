@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -147,7 +147,7 @@ class MembersResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/members",
+            path_template("/accounts/{account_id}/members", account_id=account_id),
             body=maybe_transform(
                 {
                     "email": email,
@@ -256,7 +256,7 @@ class MembersResource(SyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._put(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             body=maybe_transform(
                 {
                     "roles": roles,
@@ -319,7 +319,7 @@ class MembersResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/members",
+            path_template("/accounts/{account_id}/members", account_id=account_id),
             page=SyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -375,7 +375,7 @@ class MembersResource(SyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -421,7 +421,7 @@ class MembersResource(SyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._get(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -552,7 +552,7 @@ class AsyncMembersResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/members",
+            path_template("/accounts/{account_id}/members", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "email": email,
@@ -661,7 +661,7 @@ class AsyncMembersResource(AsyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             body=await async_maybe_transform(
                 {
                     "roles": roles,
@@ -724,7 +724,7 @@ class AsyncMembersResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/members",
+            path_template("/accounts/{account_id}/members", account_id=account_id),
             page=AsyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -780,7 +780,7 @@ class AsyncMembersResource(AsyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -826,7 +826,7 @@ class AsyncMembersResource(AsyncAPIResource):
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/members/{member_id}",
+            path_template("/accounts/{account_id}/members/{member_id}", account_id=account_id, member_id=member_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

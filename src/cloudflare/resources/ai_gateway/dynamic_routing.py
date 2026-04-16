@@ -7,7 +7,7 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -91,7 +91,11 @@ class DynamicRoutingResource(SyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             body=maybe_transform(
                 {
                     "elements": elements,
@@ -144,7 +148,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=maybe_transform({"name": name}, dynamic_routing_update_params.DynamicRoutingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -183,7 +192,11 @@ class DynamicRoutingResource(SyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -224,7 +237,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -270,7 +288,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=maybe_transform(
                 {"version_id": version_id},
                 dynamic_routing_create_deployment_params.DynamicRoutingCreateDeploymentParams,
@@ -322,7 +345,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=maybe_transform(
                 {"elements": elements}, dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams
             ),
@@ -370,7 +398,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -418,7 +451,13 @@ class DynamicRoutingResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions/{version_id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -463,7 +502,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -504,7 +548,12 @@ class DynamicRoutingResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -565,7 +614,11 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "elements": elements,
@@ -618,7 +671,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=await async_maybe_transform({"name": name}, dynamic_routing_update_params.DynamicRoutingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -657,7 +715,11 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not gateway_id:
             raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes",
+                account_id=account_id,
+                gateway_id=gateway_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -698,7 +760,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -744,7 +811,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {"version_id": version_id},
                 dynamic_routing_create_deployment_params.DynamicRoutingCreateDeploymentParams,
@@ -796,7 +868,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {"elements": elements}, dynamic_routing_create_version_params.DynamicRoutingCreateVersionParams
             ),
@@ -844,7 +921,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -892,7 +974,13 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions/{version_id}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -937,7 +1025,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -978,7 +1071,12 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

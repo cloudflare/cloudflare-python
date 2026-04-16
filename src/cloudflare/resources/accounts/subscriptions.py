@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/subscriptions",
+            path_template("/accounts/{account_id}/subscriptions", account_id=account_id),
             body=maybe_transform(
                 {
                     "frequency": frequency,
@@ -145,7 +145,11 @@ class SubscriptionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return self._put(
-            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            path_template(
+                "/accounts/{account_id}/subscriptions/{subscription_identifier}",
+                account_id=account_id,
+                subscription_identifier=subscription_identifier,
+            ),
             body=maybe_transform(
                 {
                     "frequency": frequency,
@@ -200,7 +204,11 @@ class SubscriptionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return self._delete(
-            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            path_template(
+                "/accounts/{account_id}/subscriptions/{subscription_identifier}",
+                account_id=account_id,
+                subscription_identifier=subscription_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -241,7 +249,7 @@ class SubscriptionsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/subscriptions",
+            path_template("/accounts/{account_id}/subscriptions", account_id=account_id),
             page=SyncSinglePage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -306,7 +314,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/subscriptions",
+            path_template("/accounts/{account_id}/subscriptions", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "frequency": frequency,
@@ -367,7 +375,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return await self._put(
-            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            path_template(
+                "/accounts/{account_id}/subscriptions/{subscription_identifier}",
+                account_id=account_id,
+                subscription_identifier=subscription_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "frequency": frequency,
@@ -422,7 +434,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return await self._delete(
-            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            path_template(
+                "/accounts/{account_id}/subscriptions/{subscription_identifier}",
+                account_id=account_id,
+                subscription_identifier=subscription_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -463,7 +479,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/subscriptions",
+            path_template("/accounts/{account_id}/subscriptions", account_id=account_id),
             page=AsyncSinglePage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -8,7 +8,7 @@ from typing_extensions import overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -137,7 +137,7 @@ class SettingsResource(SyncAPIResource):
         return cast(
             Optional[SettingEditResponse],
             self._patch(
-                f"/zones/{zone_id}/settings/{setting_id}",
+                path_template("/zones/{zone_id}/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
                 body=maybe_transform(
                     {
                         "enabled": enabled,
@@ -195,7 +195,7 @@ class SettingsResource(SyncAPIResource):
         return cast(
             Optional[SettingGetResponse],
             self._get(
-                f"/zones/{zone_id}/settings/{setting_id}",
+                path_template("/zones/{zone_id}/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -321,7 +321,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         return cast(
             Optional[SettingEditResponse],
             await self._patch(
-                f"/zones/{zone_id}/settings/{setting_id}",
+                path_template("/zones/{zone_id}/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
                 body=await async_maybe_transform(
                     {
                         "enabled": enabled,
@@ -379,7 +379,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         return cast(
             Optional[SettingGetResponse],
             await self._get(
-                f"/zones/{zone_id}/settings/{setting_id}",
+                path_template("/zones/{zone_id}/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

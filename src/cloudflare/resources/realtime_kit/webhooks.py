@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -112,7 +112,9 @@ class WebhooksResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks", account_id=account_id, app_id=app_id
+            ),
             body=maybe_transform(
                 {
                     "events": events,
@@ -166,7 +168,12 @@ class WebhooksResource(SyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,7 +241,12 @@ class WebhooksResource(SyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             body=maybe_transform(
                 {
                     "enabled": enabled,
@@ -288,7 +300,12 @@ class WebhooksResource(SyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -330,7 +347,9 @@ class WebhooksResource(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -399,7 +418,12 @@ class WebhooksResource(SyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._put(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             body=maybe_transform(
                 {
                     "events": events,
@@ -495,7 +519,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks", account_id=account_id, app_id=app_id
+            ),
             body=await async_maybe_transform(
                 {
                     "events": events,
@@ -549,7 +575,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -617,7 +648,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
@@ -671,7 +707,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -713,7 +754,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks", account_id=account_id, app_id=app_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -782,7 +825,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/webhooks/{webhook_id}",
+                account_id=account_id,
+                app_id=app_id,
+                webhook_id=webhook_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "events": events,

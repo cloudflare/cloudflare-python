@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -139,7 +139,7 @@ class BotClassResource(SyncAPIResource):
         if not bot_class:
             raise ValueError(f"Expected a non-empty value for `bot_class` but received {bot_class!r}")
         return self._get(
-            f"/radar/http/top/ases/bot_class/{bot_class}",
+            path_template("/radar/http/top/ases/bot_class/{bot_class}", bot_class=bot_class),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,7 +286,7 @@ class AsyncBotClassResource(AsyncAPIResource):
         if not bot_class:
             raise ValueError(f"Expected a non-empty value for `bot_class` but received {bot_class!r}")
         return await self._get(
-            f"/radar/http/top/ases/bot_class/{bot_class}",
+            path_template("/radar/http/top/ases/bot_class/{bot_class}", bot_class=bot_class),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

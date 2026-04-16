@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ....._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -124,7 +124,12 @@ class ItemsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             page=SyncV4PagePaginationArray[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -186,7 +191,13 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +250,13 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -297,7 +314,12 @@ class ItemsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=maybe_transform(
                 {
                     "key": key,
@@ -356,7 +378,13 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -402,7 +430,13 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -454,7 +488,13 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -513,7 +553,13 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             body=maybe_transform({"next_action": next_action}, item_sync_params.ItemSyncParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -569,7 +615,12 @@ class ItemsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=maybe_transform(body, item_upload_params.ItemUploadParams),
             files=files,
             options=make_request_options(
@@ -659,7 +710,12 @@ class AsyncItemsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             page=AsyncV4PagePaginationArray[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -721,7 +777,13 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -774,7 +836,13 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -832,7 +900,12 @@ class AsyncItemsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {
                     "key": key,
@@ -891,7 +964,13 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -937,7 +1016,13 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -989,7 +1074,13 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1048,7 +1139,13 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                account_id=account_id,
+                name=name,
+                id=id,
+                item_id=item_id,
+            ),
             body=await async_maybe_transform({"next_action": next_action}, item_sync_params.ItemSyncParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1104,7 +1201,12 @@ class AsyncItemsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                account_id=account_id,
+                name=name,
+                id=id,
+            ),
             body=await async_maybe_transform(body, item_upload_params.ItemUploadParams),
             files=files,
             options=make_request_options(

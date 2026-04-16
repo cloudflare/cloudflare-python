@@ -24,7 +24,7 @@ from .authors import (
     AsyncAuthorsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import ai_run_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -980,7 +980,9 @@ class AIResource(SyncAPIResource):
         return cast(
             Optional[AIRunResponse],
             self._post(
-                f"/accounts/{account_id}/ai/run/{model_name}",
+                path_template(
+                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
+                ),
                 body=maybe_transform(
                     {
                         "text": text,
@@ -1948,7 +1950,9 @@ class AsyncAIResource(AsyncAPIResource):
         return cast(
             Optional[AIRunResponse],
             await self._post(
-                f"/accounts/{account_id}/ai/run/{model_name}",
+                path_template(
+                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
+                ),
                 body=await async_maybe_transform(
                     {
                         "text": text,

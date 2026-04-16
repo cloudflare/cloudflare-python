@@ -29,7 +29,7 @@ class TestUserSchemas:
         with pytest.warns(DeprecationWarning):
             user_schema = client.api_gateway.user_schemas.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             )
 
@@ -40,7 +40,7 @@ class TestUserSchemas:
         with pytest.warns(DeprecationWarning):
             user_schema = client.api_gateway.user_schemas.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
                 name="petstore schema",
                 validation_enabled="true",
@@ -53,7 +53,7 @@ class TestUserSchemas:
         with pytest.warns(DeprecationWarning):
             response = client.api_gateway.user_schemas.with_raw_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             )
 
@@ -67,7 +67,7 @@ class TestUserSchemas:
         with pytest.warns(DeprecationWarning):
             with client.api_gateway.user_schemas.with_streaming_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             ) as response:
                 assert not response.is_closed
@@ -84,7 +84,7 @@ class TestUserSchemas:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.api_gateway.user_schemas.with_raw_response.create(
                     zone_id="",
-                    file=b"raw file contents",
+                    file=b"Example data",
                     kind="openapi_v3",
                 )
 
@@ -336,7 +336,7 @@ class TestAsyncUserSchemas:
         with pytest.warns(DeprecationWarning):
             user_schema = await async_client.api_gateway.user_schemas.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             )
 
@@ -347,7 +347,7 @@ class TestAsyncUserSchemas:
         with pytest.warns(DeprecationWarning):
             user_schema = await async_client.api_gateway.user_schemas.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
                 name="petstore schema",
                 validation_enabled="true",
@@ -360,7 +360,7 @@ class TestAsyncUserSchemas:
         with pytest.warns(DeprecationWarning):
             response = await async_client.api_gateway.user_schemas.with_raw_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             )
 
@@ -374,7 +374,7 @@ class TestAsyncUserSchemas:
         with pytest.warns(DeprecationWarning):
             async with async_client.api_gateway.user_schemas.with_streaming_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                file=b"raw file contents",
+                file=b"Example data",
                 kind="openapi_v3",
             ) as response:
                 assert not response.is_closed
@@ -391,7 +391,7 @@ class TestAsyncUserSchemas:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.api_gateway.user_schemas.with_raw_response.create(
                     zone_id="",
-                    file=b"raw file contents",
+                    file=b"Example data",
                     kind="openapi_v3",
                 )
 

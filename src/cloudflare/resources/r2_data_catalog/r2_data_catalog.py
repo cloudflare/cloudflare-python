@@ -7,6 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -112,7 +113,7 @@ class R2DataCatalogResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/r2-catalog",
+            path_template("/accounts/{account_id}/r2-catalog", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -161,7 +162,11 @@ class R2DataCatalogResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/disable",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/disable",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -206,7 +211,9 @@ class R2DataCatalogResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/enable",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/enable", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -253,7 +260,9 @@ class R2DataCatalogResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -329,7 +338,7 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/r2-catalog",
+            path_template("/accounts/{account_id}/r2-catalog", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -378,7 +387,11 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/disable",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/disable",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -423,7 +436,9 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/enable",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/enable", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -470,7 +485,9 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

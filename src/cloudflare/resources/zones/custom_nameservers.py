@@ -7,7 +7,7 @@ import typing_extensions
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -91,7 +91,7 @@ class CustomNameserversResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/custom_ns",
+            path_template("/zones/{zone_id}/custom_ns", zone_id=zone_id),
             page=SyncSinglePage[CustomNameserverUpdateResponse],
             body=maybe_transform(
                 {
@@ -143,7 +143,7 @@ class CustomNameserversResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/custom_ns",
+            path_template("/zones/{zone_id}/custom_ns", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -217,7 +217,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/custom_ns",
+            path_template("/zones/{zone_id}/custom_ns", zone_id=zone_id),
             page=AsyncSinglePage[CustomNameserverUpdateResponse],
             body=maybe_transform(
                 {
@@ -269,7 +269,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/custom_ns",
+            path_template("/zones/{zone_id}/custom_ns", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

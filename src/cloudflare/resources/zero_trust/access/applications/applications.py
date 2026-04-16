@@ -32,7 +32,7 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -1607,7 +1607,11 @@ class ApplicationsResource(SyncAPIResource):
         return cast(
             Optional[ApplicationCreateResponse],
             self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=maybe_transform(
                     {
                         "domain": domain,
@@ -3193,7 +3197,12 @@ class ApplicationsResource(SyncAPIResource):
         return cast(
             Optional[ApplicationUpdateResponse],
             self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=maybe_transform(
                     {
                         "domain": domain,
@@ -3320,7 +3329,11 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -3394,7 +3407,12 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3457,7 +3475,12 @@ class ApplicationsResource(SyncAPIResource):
         return cast(
             Optional[ApplicationGetResponse],
             self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -3521,7 +3544,12 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -5059,7 +5087,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return cast(
             Optional[ApplicationCreateResponse],
             await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "domain": domain,
@@ -6645,7 +6677,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return cast(
             Optional[ApplicationUpdateResponse],
             await self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "domain": domain,
@@ -6772,7 +6809,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -6846,7 +6887,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -6909,7 +6955,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return cast(
             Optional[ApplicationGetResponse],
             await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -6973,7 +7024,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

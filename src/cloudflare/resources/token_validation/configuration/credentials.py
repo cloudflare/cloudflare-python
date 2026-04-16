@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -79,7 +79,9 @@ class CredentialsResource(SyncAPIResource):
         if not config_id:
             raise ValueError(f"Expected a non-empty value for `config_id` but received {config_id!r}")
         return self._put(
-            f"/zones/{zone_id}/token_validation/config/{config_id}/credentials",
+            path_template(
+                "/zones/{zone_id}/token_validation/config/{config_id}/credentials", zone_id=zone_id, config_id=config_id
+            ),
             body=maybe_transform({"keys": keys}, credential_update_params.CredentialUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -144,7 +146,9 @@ class AsyncCredentialsResource(AsyncAPIResource):
         if not config_id:
             raise ValueError(f"Expected a non-empty value for `config_id` but received {config_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/token_validation/config/{config_id}/credentials",
+            path_template(
+                "/zones/{zone_id}/token_validation/config/{config_id}/credentials", zone_id=zone_id, config_id=config_id
+            ),
             body=await async_maybe_transform({"keys": keys}, credential_update_params.CredentialUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

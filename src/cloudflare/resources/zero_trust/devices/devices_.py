@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -115,7 +115,7 @@ class DevicesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
+            path_template("/accounts/{account_id}/devices/physical-devices", account_id=account_id),
             page=SyncCursorPagination[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -173,7 +173,11 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +223,11 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +270,11 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +374,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
+            path_template("/accounts/{account_id}/devices/physical-devices", account_id=account_id),
             page=AsyncCursorPagination[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -420,7 +432,11 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +482,11 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +529,11 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

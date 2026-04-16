@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -111,7 +111,9 @@ class TokenResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}/token",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/token", account_id=account_id, identifier=identifier
+            ),
             body=maybe_transform(
                 {
                     "id": id,
@@ -222,7 +224,9 @@ class AsyncTokenResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}/token",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/token", account_id=account_id, identifier=identifier
+            ),
             body=await async_maybe_transform(
                 {
                     "id": id,

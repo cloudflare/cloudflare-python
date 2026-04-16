@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NoneType, NotGiven, FileTypes, not_given
-from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -82,7 +82,7 @@ class BinaryStorageResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/binary",
+            path_template("/accounts/{account_id}/cloudforce-one/binary", account_id=account_id),
             body=maybe_transform(body, binary_storage_create_params.BinaryStorageCreateParams),
             files=files,
             options=make_request_options(
@@ -127,7 +127,7 @@ class BinaryStorageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hash` but received {hash!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/binary/{hash}",
+            path_template("/accounts/{account_id}/cloudforce-one/binary/{hash}", account_id=account_id, hash=hash),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -194,7 +194,7 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/binary",
+            path_template("/accounts/{account_id}/cloudforce-one/binary", account_id=account_id),
             body=await async_maybe_transform(body, binary_storage_create_params.BinaryStorageCreateParams),
             files=files,
             options=make_request_options(
@@ -239,7 +239,7 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hash` but received {hash!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/binary/{hash}",
+            path_template("/accounts/{account_id}/cloudforce-one/binary/{hash}", account_id=account_id, hash=hash),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

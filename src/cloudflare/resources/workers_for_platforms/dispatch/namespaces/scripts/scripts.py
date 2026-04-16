@@ -58,7 +58,7 @@ from ......_types import (
     omit,
     not_given,
 )
-from ......_utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ......_utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ......_compat import cached_property
 from .asset_upload import (
     AssetUploadResource,
@@ -200,7 +200,12 @@ class ScriptsResource(SyncAPIResource):
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             body=maybe_transform(body, script_update_params.ScriptUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -261,7 +266,12 @@ class ScriptsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -313,7 +323,12 @@ class ScriptsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,7 +456,12 @@ class AsyncScriptsResource(AsyncAPIResource):
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform(body, script_update_params.ScriptUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -504,7 +524,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -556,7 +581,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

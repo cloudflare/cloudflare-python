@@ -15,7 +15,7 @@ from .members import (
     AsyncMembersResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -97,7 +97,7 @@ class UserGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/iam/user_groups",
+            path_template("/accounts/{account_id}/iam/user_groups", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -156,7 +156,11 @@ class UserGroupsResource(SyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return self._put(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -223,7 +227,7 @@ class UserGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/user_groups",
+            path_template("/accounts/{account_id}/iam/user_groups", account_id=account_id),
             page=SyncV4PagePaginationArray[UserGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -280,7 +284,11 @@ class UserGroupsResource(SyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -326,7 +334,11 @@ class UserGroupsResource(SyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return self._get(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -398,7 +410,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/iam/user_groups",
+            path_template("/accounts/{account_id}/iam/user_groups", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -457,7 +469,11 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -524,7 +540,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/user_groups",
+            path_template("/accounts/{account_id}/iam/user_groups", account_id=account_id),
             page=AsyncV4PagePaginationArray[UserGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -581,7 +597,11 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -627,7 +647,11 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/iam/user_groups/{user_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

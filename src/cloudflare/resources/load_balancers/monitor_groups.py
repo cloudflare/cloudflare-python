@@ -7,7 +7,7 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,7 @@ class MonitorGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/load_balancers/monitor_groups",
+            path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -147,7 +147,11 @@ class MonitorGroupsResource(SyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return self._put(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             body=maybe_transform(
                 {
                     "id": id,
@@ -196,7 +200,7 @@ class MonitorGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/monitor_groups",
+            path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             page=SyncSinglePage[MonitorGroup],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -237,7 +241,11 @@ class MonitorGroupsResource(SyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -291,7 +299,11 @@ class MonitorGroupsResource(SyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             body=maybe_transform(
                 {
                     "id": id,
@@ -343,7 +355,11 @@ class MonitorGroupsResource(SyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return self._get(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,7 +431,7 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/load_balancers/monitor_groups",
+            path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -477,7 +493,11 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -526,7 +546,7 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/monitor_groups",
+            path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             page=AsyncSinglePage[MonitorGroup],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -567,7 +587,11 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -621,7 +645,11 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -673,7 +701,11 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         if not monitor_group_id:
             raise ValueError(f"Expected a non-empty value for `monitor_group_id` but received {monitor_group_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}",
+                account_id=account_id,
+                monitor_group_id=monitor_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

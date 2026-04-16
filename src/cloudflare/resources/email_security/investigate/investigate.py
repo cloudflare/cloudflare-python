@@ -49,7 +49,7 @@ from .release import (
     AsyncReleaseResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .detections import (
     DetectionsResource,
@@ -240,7 +240,7 @@ class InvestigateResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate",
+            path_template("/accounts/{account_id}/email-security/investigate", account_id=account_id),
             page=SyncV4PagePaginationArray[InvestigateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -315,7 +315,11 @@ class InvestigateResource(SyncAPIResource):
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,7 +488,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate",
+            path_template("/accounts/{account_id}/email-security/investigate", account_id=account_id),
             page=AsyncV4PagePaginationArray[InvestigateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -559,7 +563,11 @@ class AsyncInvestigateResource(AsyncAPIResource):
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

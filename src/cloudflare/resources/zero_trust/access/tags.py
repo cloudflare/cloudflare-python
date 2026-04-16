@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -79,7 +79,7 @@ class TagsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/access/tags",
+            path_template("/accounts/{account_id}/access/tags", account_id=account_id),
             body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -129,7 +129,7 @@ class TagsResource(SyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return self._put(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             body=maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -177,7 +177,7 @@ class TagsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/tags",
+            path_template("/accounts/{account_id}/access/tags", account_id=account_id),
             page=SyncV4PagePaginationArray[Tag],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -230,7 +230,7 @@ class TagsResource(SyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +276,7 @@ class TagsResource(SyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return self._get(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,7 +341,7 @@ class AsyncTagsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/access/tags",
+            path_template("/accounts/{account_id}/access/tags", account_id=account_id),
             body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -391,7 +391,7 @@ class AsyncTagsResource(AsyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._put(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             body=await async_maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -439,7 +439,7 @@ class AsyncTagsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/tags",
+            path_template("/accounts/{account_id}/access/tags", account_id=account_id),
             page=AsyncV4PagePaginationArray[Tag],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -492,7 +492,7 @@ class AsyncTagsResource(AsyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -538,7 +538,7 @@ class AsyncTagsResource(AsyncAPIResource):
         if not tag_name:
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/access/tags/{tag_name}",
+            path_template("/accounts/{account_id}/access/tags/{tag_name}", account_id=account_id, tag_name=tag_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

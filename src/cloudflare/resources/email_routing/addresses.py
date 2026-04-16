@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -81,7 +81,7 @@ class AddressesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/email/routing/addresses",
+            path_template("/accounts/{account_id}/email/routing/addresses", account_id=account_id),
             body=maybe_transform({"email": email}, address_create_params.AddressCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -135,7 +135,7 @@ class AddressesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email/routing/addresses",
+            path_template("/accounts/{account_id}/email/routing/addresses", account_id=account_id),
             page=SyncV4PagePaginationArray[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -192,7 +192,11 @@ class AddressesResource(SyncAPIResource):
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return self._delete(
-            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -240,7 +244,11 @@ class AddressesResource(SyncAPIResource):
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return self._get(
-            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +315,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/email/routing/addresses",
+            path_template("/accounts/{account_id}/email/routing/addresses", account_id=account_id),
             body=await async_maybe_transform({"email": email}, address_create_params.AddressCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -361,7 +369,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email/routing/addresses",
+            path_template("/accounts/{account_id}/email/routing/addresses", account_id=account_id),
             page=AsyncV4PagePaginationArray[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -418,7 +426,11 @@ class AsyncAddressesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return await self._delete(
-            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +478,11 @@ class AsyncAddressesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return await self._get(
-            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

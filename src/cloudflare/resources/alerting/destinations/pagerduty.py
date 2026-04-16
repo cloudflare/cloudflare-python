@@ -7,6 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -76,7 +77,7 @@ class PagerdutyResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -117,7 +118,7 @@ class PagerdutyResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -154,7 +155,7 @@ class PagerdutyResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty", account_id=account_id),
             page=SyncSinglePage[Pagerduty],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -197,7 +198,11 @@ class PagerdutyResource(SyncAPIResource):
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._get(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
+                account_id=account_id,
+                token_id=token_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -259,7 +264,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -300,7 +305,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -337,7 +342,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            path_template("/accounts/{account_id}/alerting/v3/destinations/pagerduty", account_id=account_id),
             page=AsyncSinglePage[Pagerduty],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -380,7 +385,11 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
+                account_id=account_id,
+                token_id=token_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

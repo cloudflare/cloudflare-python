@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -88,7 +88,12 @@ class AudioTracksResource(SyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return self._delete(
-            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+                account_id=account_id,
+                identifier=identifier,
+                audio_identifier=audio_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -143,7 +148,9 @@ class AudioTracksResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/copy", account_id=account_id, identifier=identifier
+            ),
             body=maybe_transform(
                 {
                     "label": label,
@@ -211,7 +218,12 @@ class AudioTracksResource(SyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return self._patch(
-            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+                account_id=account_id,
+                identifier=identifier,
+                audio_identifier=audio_identifier,
+            ),
             body=maybe_transform(
                 {
                     "default": default,
@@ -266,7 +278,9 @@ class AudioTracksResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
-            f"/accounts/{account_id}/stream/{identifier}/audio",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio", account_id=account_id, identifier=identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -340,7 +354,12 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return await self._delete(
-            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+                account_id=account_id,
+                identifier=identifier,
+                audio_identifier=audio_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,7 +414,9 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/copy", account_id=account_id, identifier=identifier
+            ),
             body=await async_maybe_transform(
                 {
                     "label": label,
@@ -463,7 +484,12 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return await self._patch(
-            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+                account_id=account_id,
+                identifier=identifier,
+                audio_identifier=audio_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "default": default,
@@ -518,7 +544,9 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
-            f"/accounts/{account_id}/stream/{identifier}/audio",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/audio", account_id=account_id, identifier=identifier
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

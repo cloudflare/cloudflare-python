@@ -10,7 +10,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -96,7 +96,7 @@ class TargetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             body=maybe_transform(
                 {
                     "hostname": hostname,
@@ -157,7 +157,9 @@ class TargetsResource(SyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return self._put(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             body=maybe_transform(
                 {
                     "hostname": hostname,
@@ -274,7 +276,7 @@ class TargetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             page=SyncV4PagePaginationArray[TargetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -346,7 +348,9 @@ class TargetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,7 +389,7 @@ class TargetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -426,7 +430,7 @@ class TargetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch_delete", account_id=account_id),
             body=maybe_transform({"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -465,7 +469,7 @@ class TargetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             page=SyncSinglePage[TargetBulkUpdateResponse],
             body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
@@ -510,7 +514,9 @@ class TargetsResource(SyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return self._get(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -580,7 +586,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
@@ -641,7 +647,9 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
@@ -758,7 +766,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             page=AsyncV4PagePaginationArray[TargetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -830,7 +838,9 @@ class AsyncTargetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -869,7 +879,7 @@ class AsyncTargetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -910,7 +920,7 @@ class AsyncTargetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch_delete", account_id=account_id),
             body=await async_maybe_transform(
                 {"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params
             ),
@@ -951,7 +961,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             page=AsyncSinglePage[TargetBulkUpdateResponse],
             body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
@@ -996,7 +1006,9 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

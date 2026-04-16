@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,9 @@ class MessagesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/ack",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/ack", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "acks": acks,
@@ -142,7 +144,9 @@ class MessagesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/batch", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "delay_seconds": delay_seconds,
@@ -202,7 +206,9 @@ class MessagesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/pull", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -316,7 +322,9 @@ class MessagesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "body": body,
@@ -393,7 +401,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/ack",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/ack", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "acks": acks,
@@ -450,7 +460,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/batch", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "delay_seconds": delay_seconds,
@@ -510,7 +522,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/pull", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -624,7 +638,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "body": body,

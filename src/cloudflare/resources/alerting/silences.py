@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +80,7 @@ class SilencesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             body=maybe_transform(body, Iterable[silence_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -119,7 +119,7 @@ class SilencesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             page=SyncSinglePage[SilenceUpdateResponse],
             body=maybe_transform(body, Iterable[silence_update_params.Body]),
             options=make_request_options(
@@ -159,7 +159,7 @@ class SilencesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             page=SyncSinglePage[SilenceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -202,7 +202,9 @@ class SilencesResource(SyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/silences/{silence_id}", account_id=account_id, silence_id=silence_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -244,7 +246,9 @@ class SilencesResource(SyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return self._get(
-            f"/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/silences/{silence_id}", account_id=account_id, silence_id=silence_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +311,7 @@ class AsyncSilencesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             body=await async_maybe_transform(body, Iterable[silence_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -346,7 +350,7 @@ class AsyncSilencesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             page=AsyncSinglePage[SilenceUpdateResponse],
             body=maybe_transform(body, Iterable[silence_update_params.Body]),
             options=make_request_options(
@@ -386,7 +390,7 @@ class AsyncSilencesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/alerting/v3/silences",
+            path_template("/accounts/{account_id}/alerting/v3/silences", account_id=account_id),
             page=AsyncSinglePage[SilenceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -429,7 +433,9 @@ class AsyncSilencesResource(AsyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/silences/{silence_id}", account_id=account_id, silence_id=silence_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -471,7 +477,9 @@ class AsyncSilencesResource(AsyncAPIResource):
         if not silence_id:
             raise ValueError(f"Expected a non-empty value for `silence_id` but received {silence_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+            path_template(
+                "/accounts/{account_id}/alerting/v3/silences/{silence_id}", account_id=account_id, silence_id=silence_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -83,7 +83,7 @@ class SettingsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             body=maybe_transform(
                 {
                     "ai_context_analysis": ai_context_analysis,
@@ -130,7 +130,7 @@ class SettingsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -180,7 +180,7 @@ class SettingsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             body=maybe_transform(
                 {
                     "ai_context_analysis": ai_context_analysis,
@@ -227,7 +227,7 @@ class SettingsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -298,7 +298,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "ai_context_analysis": ai_context_analysis,
@@ -345,7 +345,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,7 +395,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "ai_context_analysis": ai_context_analysis,
@@ -442,7 +442,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/dlp/settings",
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

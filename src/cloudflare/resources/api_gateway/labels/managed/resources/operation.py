@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -82,7 +82,9 @@ class OperationResource(SyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._put(
-            f"/zones/{zone_id}/api_gateway/labels/managed/{name}/resources/operation",
+            path_template(
+                "/zones/{zone_id}/api_gateway/labels/managed/{name}/resources/operation", zone_id=zone_id, name=name
+            ),
             body=maybe_transform({"selector": selector}, operation_update_params.OperationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -153,7 +155,9 @@ class AsyncOperationResource(AsyncAPIResource):
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._put(
-            f"/zones/{zone_id}/api_gateway/labels/managed/{name}/resources/operation",
+            path_template(
+                "/zones/{zone_id}/api_gateway/labels/managed/{name}/resources/operation", zone_id=zone_id, name=name
+            ),
             body=await async_maybe_transform({"selector": selector}, operation_update_params.OperationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -24,7 +24,7 @@ from .plans import (
     AsyncPlansResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -309,7 +309,7 @@ class ZonesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -365,7 +365,7 @@ class ZonesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "paused": paused,
@@ -414,7 +414,7 @@ class ZonesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -643,7 +643,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -699,7 +699,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "paused": paused,
@@ -748,7 +748,7 @@ class AsyncZonesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}",
+            path_template("/zones/{zone_id}", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -122,7 +122,7 @@ class ConnectorsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             body=maybe_transform(
                 {
                     "device": device,
@@ -196,7 +196,11 @@ class ConnectorsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=maybe_transform(
                 {
                     "activated": activated,
@@ -250,7 +254,7 @@ class ConnectorsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=SyncSinglePage[ConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -291,7 +295,11 @@ class ConnectorsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -352,7 +360,11 @@ class ConnectorsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=maybe_transform(
                 {
                     "activated": activated,
@@ -409,7 +421,11 @@ class ConnectorsResource(SyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -496,7 +512,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "device": device,
@@ -570,7 +586,11 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "activated": activated,
@@ -624,7 +644,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=AsyncSinglePage[ConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -665,7 +685,11 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -726,7 +750,11 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "activated": activated,
@@ -783,7 +811,11 @@ class AsyncConnectorsResource(AsyncAPIResource):
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

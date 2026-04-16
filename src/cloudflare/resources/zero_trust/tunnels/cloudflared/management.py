@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -83,7 +83,9 @@ class ManagementResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management", account_id=account_id, tunnel_id=tunnel_id
+            ),
             body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -154,7 +156,9 @@ class AsyncManagementResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+            path_template(
+                "/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management", account_id=account_id, tunnel_id=tunnel_id
+            ),
             body=await async_maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

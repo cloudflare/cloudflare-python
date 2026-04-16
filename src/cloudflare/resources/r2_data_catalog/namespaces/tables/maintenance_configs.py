@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -96,7 +96,13 @@ class MaintenanceConfigsResource(SyncAPIResource):
         if not table_name:
             raise ValueError(f"Expected a non-empty value for `table_name` but received {table_name!r}")
         return self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+                table_name=table_name,
+            ),
             body=maybe_transform(
                 {
                     "compaction": compaction,
@@ -158,7 +164,13 @@ class MaintenanceConfigsResource(SyncAPIResource):
         if not table_name:
             raise ValueError(f"Expected a non-empty value for `table_name` but received {table_name!r}")
         return self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+                table_name=table_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +251,13 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         if not table_name:
             raise ValueError(f"Expected a non-empty value for `table_name` but received {table_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+                table_name=table_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "compaction": compaction,
@@ -301,7 +319,13 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         if not table_name:
             raise ValueError(f"Expected a non-empty value for `table_name` but received {table_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+                table_name=table_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

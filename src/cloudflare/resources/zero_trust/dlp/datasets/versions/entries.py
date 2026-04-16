@@ -18,6 +18,7 @@ from ......_types import (
     AsyncBinaryTypes,
     not_given,
 )
+from ......_utils import path_template
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -92,7 +93,13 @@ class EntriesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+                entry_id=entry_id,
+            ),
             content=read_file_content(dataset_version_entry)
             if isinstance(dataset_version_entry, os.PathLike)
             else dataset_version_entry,
@@ -166,7 +173,13 @@ class AsyncEntriesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+                entry_id=entry_id,
+            ),
             content=await async_read_file_content(dataset_version_entry)
             if isinstance(dataset_version_entry, os.PathLike)
             else dataset_version_entry,

@@ -7,7 +7,7 @@ from typing import List, Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -102,7 +102,7 @@ class ACLsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/acls", account_id=account_id, site_id=site_id),
             body=maybe_transform(
                 {
                     "lan_1": lan_1,
@@ -185,7 +185,12 @@ class ACLsResource(SyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             body=maybe_transform(
                 {
                     "description": description,
@@ -243,7 +248,7 @@ class ACLsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/acls", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[ACL],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -291,7 +296,12 @@ class ACLsResource(SyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +372,12 @@ class ACLsResource(SyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             body=maybe_transform(
                 {
                     "description": description,
@@ -425,7 +440,12 @@ class ACLsResource(SyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -512,7 +532,7 @@ class AsyncACLsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/acls", account_id=account_id, site_id=site_id),
             body=await async_maybe_transform(
                 {
                     "lan_1": lan_1,
@@ -595,7 +615,12 @@ class AsyncACLsResource(AsyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -653,7 +678,7 @@ class AsyncACLsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/acls", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[ACL],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -701,7 +726,12 @@ class AsyncACLsResource(AsyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -772,7 +802,12 @@ class AsyncACLsResource(AsyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -835,7 +870,12 @@ class AsyncACLsResource(AsyncAPIResource):
         if not acl_id:
             raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
+                account_id=account_id,
+                site_id=site_id,
+                acl_id=acl_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

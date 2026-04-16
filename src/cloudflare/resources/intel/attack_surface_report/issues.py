@@ -8,7 +8,7 @@ from typing import List, Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -107,7 +107,7 @@ class IssuesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues", account_id=account_id),
             page=SyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,7 +178,7 @@ class IssuesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/class",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/class", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -242,7 +242,11 @@ class IssuesResource(SyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return self._put(
-            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            path_template(
+                "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+                account_id=account_id,
+                issue_id=issue_id,
+            ),
             body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -292,7 +296,7 @@ class IssuesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/severity",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/severity", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -361,7 +365,7 @@ class IssuesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/type",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/type", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -458,7 +462,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues", account_id=account_id),
             page=AsyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -529,7 +533,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/class",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/class", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -593,7 +597,11 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            path_template(
+                "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+                account_id=account_id,
+                issue_id=issue_id,
+            ),
             body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -643,7 +651,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/severity",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/severity", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -712,7 +720,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/intel/attack-surface-report/issues/type",
+            path_template("/accounts/{account_id}/intel/attack-surface-report/issues/type", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

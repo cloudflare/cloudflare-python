@@ -17,7 +17,7 @@ from .hosts import (
     AsyncHostsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from .operations import (
     OperationsResource,
@@ -136,7 +136,7 @@ class UserSchemasResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/zones/{zone_id}/api_gateway/user_schemas",
+            path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
             body=maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
             files=files,
             options=make_request_options(
@@ -195,7 +195,7 @@ class UserSchemasResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/user_schemas",
+            path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
             page=SyncV4PagePaginationArray[OldPublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -253,7 +253,9 @@ class UserSchemasResource(SyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,7 +303,9 @@ class UserSchemasResource(SyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             body=maybe_transform(
                 {"validation_enabled": validation_enabled}, user_schema_edit_params.UserSchemaEditParams
             ),
@@ -355,7 +359,9 @@ class UserSchemasResource(SyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._get(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -454,7 +460,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/zones/{zone_id}/api_gateway/user_schemas",
+            path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
             body=await async_maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
             files=files,
             options=make_request_options(
@@ -513,7 +519,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/user_schemas",
+            path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[OldPublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -571,7 +577,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -619,7 +627,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             body=await async_maybe_transform(
                 {"validation_enabled": validation_enabled}, user_schema_edit_params.UserSchemaEditParams
             ),
@@ -673,7 +683,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}", zone_id=zone_id, schema_id=schema_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

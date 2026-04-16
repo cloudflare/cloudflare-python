@@ -16,7 +16,7 @@ from .quota import (
     AsyncQuotaResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -115,7 +115,7 @@ class CertificatePacksResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/ssl/certificate_packs/order",
+            path_template("/zones/{zone_id}/ssl/certificate_packs/order", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "certificate_authority": certificate_authority,
@@ -179,7 +179,7 @@ class CertificatePacksResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/ssl/certificate_packs",
+            path_template("/zones/{zone_id}/ssl/certificate_packs", zone_id=zone_id),
             page=SyncV4PagePaginationArray[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -236,7 +236,11 @@ class CertificatePacksResource(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return self._delete(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -290,7 +294,11 @@ class CertificatePacksResource(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return self._patch(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             body=maybe_transform(
                 {"cloudflare_branding": cloudflare_branding}, certificate_pack_edit_params.CertificatePackEditParams
             ),
@@ -341,7 +349,11 @@ class CertificatePacksResource(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return self._get(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -429,7 +441,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/ssl/certificate_packs/order",
+            path_template("/zones/{zone_id}/ssl/certificate_packs/order", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "certificate_authority": certificate_authority,
@@ -493,7 +505,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/ssl/certificate_packs",
+            path_template("/zones/{zone_id}/ssl/certificate_packs", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -550,7 +562,11 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return await self._delete(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -604,7 +620,11 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return await self._patch(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             body=await async_maybe_transform(
                 {"cloudflare_branding": cloudflare_branding}, certificate_pack_edit_params.CertificatePackEditParams
             ),
@@ -655,7 +675,11 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return await self._get(
-            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

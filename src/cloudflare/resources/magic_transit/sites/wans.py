@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,7 @@ class WANsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[WAN],
             body=maybe_transform(
                 {
@@ -160,7 +160,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -216,7 +221,7 @@ class WANsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[WAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -264,7 +269,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +335,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -386,7 +401,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -463,7 +483,7 @@ class AsyncWANsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[WAN],
             body=maybe_transform(
                 {
@@ -532,7 +552,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -588,7 +613,7 @@ class AsyncWANsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[WAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -636,7 +661,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -697,7 +727,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -758,7 +793,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

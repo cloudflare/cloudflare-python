@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -82,7 +82,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +131,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,7 +178,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +245,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -294,7 +294,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams
             ),
@@ -343,7 +343,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

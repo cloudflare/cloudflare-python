@@ -8,7 +8,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -91,7 +91,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(
                 {
@@ -150,7 +150,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -221,7 +221,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -281,7 +281,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +325,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -368,7 +368,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
@@ -412,7 +412,7 @@ class RulesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
@@ -460,7 +460,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             page=SyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -507,7 +507,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -577,7 +577,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(
                 {
@@ -636,7 +636,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -707,7 +707,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -767,7 +767,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -811,7 +811,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -854,7 +854,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
@@ -898,7 +898,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
@@ -946,7 +946,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -993,7 +993,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

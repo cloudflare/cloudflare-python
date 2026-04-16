@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -75,7 +75,7 @@ class ReleaseResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate/release",
+            path_template("/accounts/{account_id}/email-security/investigate/release", account_id=account_id),
             page=SyncSinglePage[ReleaseBulkResponse],
             body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
@@ -140,7 +140,7 @@ class AsyncReleaseResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate/release",
+            path_template("/accounts/{account_id}/email-security/investigate/release", account_id=account_id),
             page=AsyncSinglePage[ReleaseBulkResponse],
             body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(

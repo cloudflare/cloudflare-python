@@ -24,7 +24,7 @@ from .values import (
     AsyncValuesResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from .zone_tags import (
     ZoneTagsResource,
@@ -180,7 +180,7 @@ class ResourceTaggingResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tags/resources",
+            path_template("/accounts/{account_id}/tags/resources", account_id=account_id),
             page=SyncCursorPaginationAfter[ResourceTaggingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -325,7 +325,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tags/resources",
+            path_template("/accounts/{account_id}/tags/resources", account_id=account_id),
             page=AsyncCursorPaginationAfter[ResourceTaggingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -81,7 +81,13 @@ class EventsResource(SyncAPIResource):
         if not event_type:
             raise ValueError(f"Expected a non-empty value for `event_type` but received {event_type!r}")
         return self._post(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+                event_type=event_type,
+            ),
             body=maybe_transform(body, event_create_params.EventCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -152,7 +158,13 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_type:
             raise ValueError(f"Expected a non-empty value for `event_type` but received {event_type!r}")
         return await self._post(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+                event_type=event_type,
+            ),
             body=await async_maybe_transform(body, event_create_params.EventCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

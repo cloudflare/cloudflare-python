@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -145,7 +145,11 @@ class PreviewsResource(SyncAPIResource):
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._post(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -298,7 +302,11 @@ class AsyncPreviewsResource(AsyncAPIResource):
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_insecure": allow_insecure,

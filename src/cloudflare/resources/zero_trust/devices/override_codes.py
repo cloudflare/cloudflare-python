@@ -8,6 +8,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,7 +87,9 @@ class OverrideCodesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/{device_id}/override_codes",
+            path_template(
+                "/accounts/{account_id}/devices/{device_id}/override_codes", account_id=account_id, device_id=device_id
+            ),
             page=SyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -127,7 +130,11 @@ class OverrideCodesResource(SyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +208,9 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/{device_id}/override_codes",
+            path_template(
+                "/accounts/{account_id}/devices/{device_id}/override_codes", account_id=account_id, device_id=device_id
+            ),
             page=AsyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -242,7 +251,11 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -113,7 +113,7 @@ class ValuesResource(SyncAPIResource):
         if not tag_key:
             raise ValueError(f"Expected a non-empty value for `tag_key` but received {tag_key!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tags/values/{tag_key}",
+            path_template("/accounts/{account_id}/tags/values/{tag_key}", account_id=account_id, tag_key=tag_key),
             page=SyncCursorPaginationAfter[ValueListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -221,7 +221,7 @@ class AsyncValuesResource(AsyncAPIResource):
         if not tag_key:
             raise ValueError(f"Expected a non-empty value for `tag_key` but received {tag_key!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tags/values/{tag_key}",
+            path_template("/accounts/{account_id}/tags/values/{tag_key}", account_id=account_id, tag_key=tag_key),
             page=AsyncCursorPaginationAfter[ValueListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

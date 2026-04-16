@@ -7,6 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -94,7 +95,12 @@ class UserPolicyChecksResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,7 +182,12 @@ class AsyncUserPolicyChecksResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

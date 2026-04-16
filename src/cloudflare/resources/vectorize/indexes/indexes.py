@@ -18,7 +18,7 @@ from ...._types import (
     omit,
     not_given,
 )
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -120,7 +120,7 @@ class IndexesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes",
+            path_template("/accounts/{account_id}/vectorize/v2/indexes", account_id=account_id),
             body=maybe_transform(
                 {
                     "config": config,
@@ -169,7 +169,7 @@ class IndexesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/vectorize/v2/indexes",
+            path_template("/accounts/{account_id}/vectorize/v2/indexes", account_id=account_id),
             page=SyncSinglePage[CreateIndex],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -212,7 +212,11 @@ class IndexesResource(SyncAPIResource):
         return cast(
             Optional[IndexDeleteResponse],
             self._delete(
-                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+                path_template(
+                    "/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+                    account_id=account_id,
+                    index_name=index_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -262,7 +266,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -307,7 +315,9 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}", account_id=account_id, index_name=index_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,7 +364,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -399,7 +413,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -450,7 +468,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -504,7 +526,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -571,7 +597,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform(
                 {
                     "vector": vector,
@@ -632,7 +662,11 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -709,7 +743,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes",
+            path_template("/accounts/{account_id}/vectorize/v2/indexes", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "config": config,
@@ -758,7 +792,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/vectorize/v2/indexes",
+            path_template("/accounts/{account_id}/vectorize/v2/indexes", account_id=account_id),
             page=AsyncSinglePage[CreateIndex],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -801,7 +835,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         return cast(
             Optional[IndexDeleteResponse],
             await self._delete(
-                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+                path_template(
+                    "/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+                    account_id=account_id,
+                    index_name=index_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -851,7 +889,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -896,7 +938,9 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}", account_id=account_id, index_name=index_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -943,7 +987,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -988,7 +1036,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1039,7 +1091,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1093,7 +1149,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1160,7 +1220,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "vector": vector,
@@ -1221,7 +1285,11 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,

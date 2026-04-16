@@ -18,7 +18,7 @@ from .top import (
     AsyncTopResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -234,7 +234,7 @@ class NetFlowsResource(SyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            f"/radar/netflows/summary/{dimension}",
+            path_template("/radar/netflows/summary/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -448,7 +448,7 @@ class NetFlowsResource(SyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            f"/radar/netflows/timeseries_groups/{dimension}",
+            path_template("/radar/netflows/timeseries_groups/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -669,7 +669,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            f"/radar/netflows/summary/{dimension}",
+            path_template("/radar/netflows/summary/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -883,7 +883,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
         if not dimension:
             raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            f"/radar/netflows/timeseries_groups/{dimension}",
+            path_template("/radar/netflows/timeseries_groups/{dimension}", dimension=dimension),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

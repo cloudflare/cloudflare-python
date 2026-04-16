@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,7 @@ class VirtualNetworksResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            path_template("/accounts/{account_id}/teamnet/virtual_networks", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -159,7 +159,7 @@ class VirtualNetworksResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            path_template("/accounts/{account_id}/teamnet/virtual_networks", account_id=account_id),
             page=SyncSinglePage[VirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -215,7 +215,11 @@ class VirtualNetworksResource(SyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -270,7 +274,11 @@ class VirtualNetworksResource(SyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -324,7 +332,11 @@ class VirtualNetworksResource(SyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return self._get(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -398,7 +410,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            path_template("/accounts/{account_id}/teamnet/virtual_networks", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -466,7 +478,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            path_template("/accounts/{account_id}/teamnet/virtual_networks", account_id=account_id),
             page=AsyncSinglePage[VirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -522,7 +534,11 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -577,7 +593,11 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "comment": comment,
@@ -631,7 +651,11 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            path_template(
+                "/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                account_id=account_id,
+                virtual_network_id=virtual_network_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

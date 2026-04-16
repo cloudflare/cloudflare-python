@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -98,7 +98,7 @@ class LocationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/gateway/locations",
+            path_template("/accounts/{account_id}/gateway/locations", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -175,7 +175,9 @@ class LocationsResource(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._put(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -225,7 +227,7 @@ class LocationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/locations",
+            path_template("/accounts/{account_id}/gateway/locations", account_id=account_id),
             page=SyncSinglePage[Location],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -264,7 +266,9 @@ class LocationsResource(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -306,7 +310,9 @@ class LocationsResource(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._get(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -390,7 +396,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/gateway/locations",
+            path_template("/accounts/{account_id}/gateway/locations", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -467,7 +473,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -517,7 +525,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/locations",
+            path_template("/accounts/{account_id}/gateway/locations", account_id=account_id),
             page=AsyncSinglePage[Location],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -556,7 +564,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -598,7 +608,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/locations/{location_id}", account_id=account_id, location_id=location_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

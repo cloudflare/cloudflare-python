@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -146,7 +146,9 @@ class HealthResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._post(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/preview",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}/preview", account_id=account_id, pool_id=pool_id
+            ),
             body=maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -211,7 +213,9 @@ class HealthResource(SyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._get(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}/health", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,7 +347,9 @@ class AsyncHealthResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/preview",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}/preview", account_id=account_id, pool_id=pool_id
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -408,7 +414,9 @@ class AsyncHealthResource(AsyncAPIResource):
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}/health", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

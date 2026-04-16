@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -88,7 +88,11 @@ class SubdomainResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=maybe_transform(
                 {
                     "enabled": enabled,
@@ -141,7 +145,11 @@ class SubdomainResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,7 +195,11 @@ class SubdomainResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -261,7 +273,11 @@ class AsyncSubdomainResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
@@ -314,7 +330,11 @@ class AsyncSubdomainResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -360,7 +380,11 @@ class AsyncSubdomainResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

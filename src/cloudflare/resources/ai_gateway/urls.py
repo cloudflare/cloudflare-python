@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -78,7 +79,12 @@ class URLsResource(SyncAPIResource):
         if not provider:
             raise ValueError(f"Expected a non-empty value for `provider` but received {provider!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/url/{provider}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/url/{provider}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                provider=provider,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +152,12 @@ class AsyncURLsResource(AsyncAPIResource):
         if not provider:
             raise ValueError(f"Expected a non-empty value for `provider` but received {provider!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/url/{provider}",
+            path_template(
+                "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/url/{provider}",
+                account_id=account_id,
+                gateway_id=gateway_id,
+                provider=provider,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

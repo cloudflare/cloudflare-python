@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -307,7 +307,7 @@ class ScansResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/urlscanner/v2/scan",
+            path_template("/accounts/{account_id}/urlscanner/v2/scan", account_id=account_id),
             body=maybe_transform(
                 {
                     "url": url,
@@ -371,7 +371,7 @@ class ScansResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/search",
+            path_template("/accounts/{account_id}/urlscanner/v2/search", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -425,7 +425,7 @@ class ScansResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            path_template("/accounts/{account_id}/urlscanner/v2/bulk", account_id=account_id),
             body=maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -470,7 +470,7 @@ class ScansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/dom/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -512,7 +512,9 @@ class ScansResource(SyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/result/{scan_id}", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -556,7 +558,7 @@ class ScansResource(SyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/har/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -602,7 +604,9 @@ class ScansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -885,7 +889,7 @@ class AsyncScansResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/urlscanner/v2/scan",
+            path_template("/accounts/{account_id}/urlscanner/v2/scan", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "url": url,
@@ -949,7 +953,7 @@ class AsyncScansResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/search",
+            path_template("/accounts/{account_id}/urlscanner/v2/search", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1003,7 +1007,7 @@ class AsyncScansResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            path_template("/accounts/{account_id}/urlscanner/v2/bulk", account_id=account_id),
             body=await async_maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1048,7 +1052,7 @@ class AsyncScansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/dom/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1090,7 +1094,9 @@ class AsyncScansResource(AsyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/result/{scan_id}", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1134,7 +1140,7 @@ class AsyncScansResource(AsyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/har/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1180,7 +1186,9 @@ class AsyncScansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

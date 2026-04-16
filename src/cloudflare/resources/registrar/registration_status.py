@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -120,7 +121,11 @@ class RegistrationStatusResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._get(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}/registration-status",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}/registration-status",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,7 +235,11 @@ class AsyncRegistrationStatusResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/registrar/registrations/{domain_name}/registration-status",
+            path_template(
+                "/accounts/{account_id}/registrar/registrations/{domain_name}/registration-status",
+                account_id=account_id,
+                domain_name=domain_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

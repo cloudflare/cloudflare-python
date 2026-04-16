@@ -7,7 +7,7 @@ from typing import Dict, Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -86,7 +86,7 @@ class RulesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -145,7 +145,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -194,7 +194,7 @@ class RulesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             page=SyncSinglePage[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -235,7 +235,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -277,7 +277,7 @@ class RulesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             body=maybe_transform({"new_priorities": new_priorities}, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -321,7 +321,7 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -389,7 +389,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -448,7 +448,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -497,7 +497,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             page=AsyncSinglePage[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -538,7 +538,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -580,7 +580,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/dlp/email/rules",
+            path_template("/accounts/{account_id}/dlp/email/rules", account_id=account_id),
             body=await async_maybe_transform(
                 {"new_priorities": new_priorities}, rule_bulk_edit_params.RuleBulkEditParams
             ),
@@ -626,7 +626,7 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/dlp/email/rules/{rule_id}",
+            path_template("/accounts/{account_id}/dlp/email/rules/{rule_id}", account_id=account_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

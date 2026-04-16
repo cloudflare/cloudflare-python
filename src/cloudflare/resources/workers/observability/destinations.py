@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -85,7 +85,7 @@ class DestinationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             body=maybe_transform(
                 {
                     "configuration": configuration,
@@ -138,7 +138,9 @@ class DestinationsResource(SyncAPIResource):
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._patch(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             body=maybe_transform(
                 {
                     "configuration": configuration,
@@ -188,7 +190,7 @@ class DestinationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             page=SyncSinglePage[DestinationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -239,7 +241,9 @@ class DestinationsResource(SyncAPIResource):
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -303,7 +307,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "configuration": configuration,
@@ -356,7 +360,9 @@ class AsyncDestinationsResource(AsyncAPIResource):
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._patch(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             body=await async_maybe_transform(
                 {
                     "configuration": configuration,
@@ -406,7 +412,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             page=AsyncSinglePage[DestinationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -457,7 +463,9 @@ class AsyncDestinationsResource(AsyncAPIResource):
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

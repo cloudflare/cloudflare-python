@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,7 @@ class ResourceGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/iam/resource_groups",
+            path_template("/accounts/{account_id}/iam/resource_groups", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -144,7 +144,11 @@ class ResourceGroupsResource(SyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return self._put(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -198,7 +202,7 @@ class ResourceGroupsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/resource_groups",
+            path_template("/accounts/{account_id}/iam/resource_groups", account_id=account_id),
             page=SyncSinglePage[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -251,7 +255,11 @@ class ResourceGroupsResource(SyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -297,7 +305,11 @@ class ResourceGroupsResource(SyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return self._get(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -365,7 +377,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/iam/resource_groups",
+            path_template("/accounts/{account_id}/iam/resource_groups", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -424,7 +436,11 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -478,7 +494,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/iam/resource_groups",
+            path_template("/accounts/{account_id}/iam/resource_groups", account_id=account_id),
             page=AsyncSinglePage[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -531,7 +547,11 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -577,7 +597,11 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         if not resource_group_id:
             raise ValueError(f"Expected a non-empty value for `resource_group_id` but received {resource_group_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+            path_template(
+                "/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
+                account_id=account_id,
+                resource_group_id=resource_group_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -33,8 +33,16 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .attackers import (
     AttackersResource,
     AsyncAttackersResource,
@@ -83,14 +91,6 @@ from .indicator_types import (
     AsyncIndicatorTypesResourceWithRawResponse,
     IndicatorTypesResourceWithStreamingResponse,
     AsyncIndicatorTypesResourceWithStreamingResponse,
-)
-from .datasets.datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
 )
 from .target_industries import (
     TargetIndustriesResource,
@@ -227,7 +227,7 @@ class ThreatEventsResource(SyncAPIResource):
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return self._post(
-            f"/accounts/{path_account_id}/cloudforce-one/events/create",
+            path_template("/accounts/{path_account_id}/cloudforce-one/events/create", path_account_id=path_account_id),
             body=maybe_transform(
                 {
                     "category": category,
@@ -308,7 +308,7 @@ class ThreatEventsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            path_template("/accounts/{account_id}/cloudforce-one/events", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -372,7 +372,7 @@ class ThreatEventsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/create/bulk",
+            path_template("/accounts/{account_id}/cloudforce-one/events/create/bulk", account_id=account_id),
             body=maybe_transform(
                 {
                     "data": data,
@@ -438,7 +438,9 @@ class ThreatEventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             body=maybe_transform(
                 {
                     "dataset_id": dataset_id,
@@ -502,7 +504,9 @@ class ThreatEventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -622,7 +626,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return await self._post(
-            f"/accounts/{path_account_id}/cloudforce-one/events/create",
+            path_template("/accounts/{path_account_id}/cloudforce-one/events/create", path_account_id=path_account_id),
             body=await async_maybe_transform(
                 {
                     "category": category,
@@ -703,7 +707,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            path_template("/accounts/{account_id}/cloudforce-one/events", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -767,7 +771,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/create/bulk",
+            path_template("/accounts/{account_id}/cloudforce-one/events/create/bulk", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "data": data,
@@ -833,7 +837,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             body=await async_maybe_transform(
                 {
                     "dataset_id": dataset_id,
@@ -897,7 +903,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

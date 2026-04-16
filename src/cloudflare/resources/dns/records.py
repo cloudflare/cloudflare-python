@@ -9,7 +9,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -1495,7 +1495,7 @@ class RecordsResource(SyncAPIResource):
         return cast(
             Optional[RecordResponse],
             self._post(
-                f"/zones/{zone_id}/dns_records",
+                path_template("/zones/{zone_id}/dns_records", zone_id=zone_id),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -3019,7 +3019,9 @@ class RecordsResource(SyncAPIResource):
         return cast(
             Optional[RecordResponse],
             self._put(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -3144,7 +3146,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/dns_records",
+            path_template("/zones/{zone_id}/dns_records", zone_id=zone_id),
             page=SyncV4PagePaginationArray[RecordResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -3208,7 +3210,7 @@ class RecordsResource(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
+            path_template("/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3269,7 +3271,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/dns_records/batch",
+            path_template("/zones/{zone_id}/dns_records/batch", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "deletes": deletes,
@@ -4783,7 +4785,9 @@ class RecordsResource(SyncAPIResource):
         return cast(
             Optional[RecordResponse],
             self._patch(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -4850,7 +4854,7 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
-            f"/zones/{zone_id}/dns_records/export",
+            path_template("/zones/{zone_id}/dns_records/export", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -4894,7 +4898,9 @@ class RecordsResource(SyncAPIResource):
         return cast(
             Optional[RecordResponse],
             self._get(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -4961,7 +4967,7 @@ class RecordsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/zones/{zone_id}/dns_records/import",
+            path_template("/zones/{zone_id}/dns_records/import", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "file": file,
@@ -5014,7 +5020,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/dns_records/scan",
+            path_template("/zones/{zone_id}/dns_records/scan", zone_id=zone_id),
             body=maybe_transform(body, record_scan_params.RecordScanParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -5059,7 +5065,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/dns_records/scan/review",
+            path_template("/zones/{zone_id}/dns_records/scan/review", zone_id=zone_id),
             page=SyncSinglePage[RecordResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -5102,7 +5108,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/dns_records/scan/review",
+            path_template("/zones/{zone_id}/dns_records/scan/review", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "accepts": accepts,
@@ -5154,7 +5160,7 @@ class RecordsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/dns_records/scan/trigger",
+            path_template("/zones/{zone_id}/dns_records/scan/trigger", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -6610,7 +6616,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         return cast(
             Optional[RecordResponse],
             await self._post(
-                f"/zones/{zone_id}/dns_records",
+                path_template("/zones/{zone_id}/dns_records", zone_id=zone_id),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -8134,7 +8140,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         return cast(
             Optional[RecordResponse],
             await self._put(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -8259,7 +8267,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/dns_records",
+            path_template("/zones/{zone_id}/dns_records", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[RecordResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -8323,7 +8331,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
+            path_template("/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -8384,7 +8392,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/dns_records/batch",
+            path_template("/zones/{zone_id}/dns_records/batch", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "deletes": deletes,
@@ -9898,7 +9906,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         return cast(
             Optional[RecordResponse],
             await self._patch(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -9965,7 +9975,7 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
-            f"/zones/{zone_id}/dns_records/export",
+            path_template("/zones/{zone_id}/dns_records/export", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -10009,7 +10019,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         return cast(
             Optional[RecordResponse],
             await self._get(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                path_template(
+                    "/zones/{zone_id}/dns_records/{dns_record_id}", zone_id=zone_id, dns_record_id=dns_record_id
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -10076,7 +10088,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/zones/{zone_id}/dns_records/import",
+            path_template("/zones/{zone_id}/dns_records/import", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "file": file,
@@ -10129,7 +10141,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/dns_records/scan",
+            path_template("/zones/{zone_id}/dns_records/scan", zone_id=zone_id),
             body=await async_maybe_transform(body, record_scan_params.RecordScanParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -10174,7 +10186,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/dns_records/scan/review",
+            path_template("/zones/{zone_id}/dns_records/scan/review", zone_id=zone_id),
             page=AsyncSinglePage[RecordResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -10217,7 +10229,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/dns_records/scan/review",
+            path_template("/zones/{zone_id}/dns_records/scan/review", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "accepts": accepts,
@@ -10269,7 +10281,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/dns_records/scan/trigger",
+            path_template("/zones/{zone_id}/dns_records/scan/trigger", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -7,7 +7,7 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -112,7 +112,7 @@ class LANsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/lans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[LAN],
             body=maybe_transform(
                 {
@@ -195,7 +195,12 @@ class LANsResource(SyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
@@ -255,7 +260,7 @@ class LANsResource(SyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/lans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[LAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -303,7 +308,12 @@ class LANsResource(SyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -373,7 +383,12 @@ class LANsResource(SyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
@@ -438,7 +453,12 @@ class LANsResource(SyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -530,7 +550,7 @@ class AsyncLANsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/lans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[LAN],
             body=maybe_transform(
                 {
@@ -613,7 +633,12 @@ class AsyncLANsResource(AsyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
@@ -673,7 +698,7 @@ class AsyncLANsResource(AsyncAPIResource):
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/lans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[LAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -721,7 +746,12 @@ class AsyncLANsResource(AsyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -791,7 +821,12 @@ class AsyncLANsResource(AsyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
@@ -856,7 +891,12 @@ class AsyncLANsResource(AsyncAPIResource):
         if not lan_id:
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                lan_id=lan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

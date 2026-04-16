@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -108,7 +108,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/intel/indicator-feeds",
+            path_template("/accounts/{account_id}/intel/indicator-feeds", account_id=account_id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -174,7 +174,9 @@ class IndicatorFeedsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}", account_id=account_id, feed_id=feed_id
+            ),
             body=maybe_transform(
                 {
                     "description": description,
@@ -225,7 +227,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/intel/indicator-feeds",
+            path_template("/accounts/{account_id}/intel/indicator-feeds", account_id=account_id),
             page=SyncSinglePage[IndicatorFeedListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -267,7 +269,9 @@ class IndicatorFeedsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data", account_id=account_id, feed_id=feed_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -307,7 +311,9 @@ class IndicatorFeedsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}", account_id=account_id, feed_id=feed_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -383,7 +389,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/intel/indicator-feeds",
+            path_template("/accounts/{account_id}/intel/indicator-feeds", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -449,7 +455,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}", account_id=account_id, feed_id=feed_id
+            ),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -500,7 +508,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/intel/indicator-feeds",
+            path_template("/accounts/{account_id}/intel/indicator-feeds", account_id=account_id),
             page=AsyncSinglePage[IndicatorFeedListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -542,7 +550,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data", account_id=account_id, feed_id=feed_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -582,7 +592,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+            path_template(
+                "/accounts/{account_id}/intel/indicator-feeds/{feed_id}", account_id=account_id, feed_id=feed_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

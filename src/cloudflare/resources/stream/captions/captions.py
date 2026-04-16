@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +88,9 @@ class CaptionsResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/{identifier}/captions",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions", account_id=account_id, identifier=identifier
+            ),
             page=SyncSinglePage[Caption],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -155,7 +158,9 @@ class AsyncCaptionsResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/{identifier}/captions",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions", account_id=account_id, identifier=identifier
+            ),
             page=AsyncSinglePage[Caption],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

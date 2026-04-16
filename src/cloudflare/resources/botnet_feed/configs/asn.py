@@ -7,6 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -74,7 +75,9 @@ class ASNResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/botnet_feed/configs/asn/{asn_id}",
+            path_template(
+                "/accounts/{account_id}/botnet_feed/configs/asn/{asn_id}", account_id=account_id, asn_id=asn_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,7 +118,7 @@ class ASNResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/botnet_feed/configs/asn",
+            path_template("/accounts/{account_id}/botnet_feed/configs/asn", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +181,9 @@ class AsyncASNResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/botnet_feed/configs/asn/{asn_id}",
+            path_template(
+                "/accounts/{account_id}/botnet_feed/configs/asn/{asn_id}", account_id=account_id, asn_id=asn_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +224,7 @@ class AsyncASNResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/botnet_feed/configs/asn",
+            path_template("/accounts/{account_id}/botnet_feed/configs/asn", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

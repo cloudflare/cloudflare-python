@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -76,7 +76,7 @@ class SubdomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             body=maybe_transform({"subdomain": subdomain}, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -119,7 +119,7 @@ class SubdomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +156,7 @@ class SubdomainsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +219,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             body=await async_maybe_transform({"subdomain": subdomain}, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -262,7 +262,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -299,7 +299,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/subdomain",
+            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -7,6 +7,7 @@ from typing import Any, cast
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
+from ......_utils import path_template
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -83,7 +84,12 @@ class BindingsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=SyncSinglePage[BindingGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -153,7 +159,12 @@ class AsyncBindingsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=AsyncSinglePage[BindingGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

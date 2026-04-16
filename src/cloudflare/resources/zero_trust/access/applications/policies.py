@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -137,7 +137,12 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -253,7 +258,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -336,7 +347,12 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -411,7 +427,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -479,7 +501,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -598,7 +626,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -714,7 +747,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -797,7 +836,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -872,7 +916,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -940,7 +990,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

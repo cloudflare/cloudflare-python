@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.d1 import (
     database_raw_params,
@@ -113,7 +113,7 @@ class DatabaseResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/d1/database",
+            path_template("/accounts/{account_id}/d1/database", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -170,7 +170,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._put(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             body=maybe_transform({"read_replication": read_replication}, database_update_params.DatabaseUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -221,7 +223,7 @@ class DatabaseResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database",
+            path_template("/accounts/{account_id}/d1/database", account_id=account_id),
             page=SyncV4PagePaginationArray[DatabaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -275,7 +277,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,7 +328,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             body=maybe_transform({"read_replication": read_replication}, database_edit_params.DatabaseEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -383,7 +389,11 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/export",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/export",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             body=maybe_transform(
                 {
                     "output_format": output_format,
@@ -437,7 +447,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -595,7 +607,11 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/import",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/import",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             body=maybe_transform(
                 {
                     "action": action,
@@ -706,7 +722,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database/{database_id}/query",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/query", account_id=account_id, database_id=database_id
+            ),
             page=SyncSinglePage[QueryResult],
             body=maybe_transform(
                 {
@@ -818,7 +836,9 @@ class DatabaseResource(SyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database/{database_id}/raw",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/raw", account_id=account_id, database_id=database_id
+            ),
             page=SyncSinglePage[DatabaseRawResponse],
             body=maybe_transform(
                 {
@@ -901,7 +921,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/d1/database",
+            path_template("/accounts/{account_id}/d1/database", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -958,7 +978,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             body=await async_maybe_transform(
                 {"read_replication": read_replication}, database_update_params.DatabaseUpdateParams
             ),
@@ -1011,7 +1033,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database",
+            path_template("/accounts/{account_id}/d1/database", account_id=account_id),
             page=AsyncV4PagePaginationArray[DatabaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1065,7 +1087,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1114,7 +1138,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             body=await async_maybe_transform(
                 {"read_replication": read_replication}, database_edit_params.DatabaseEditParams
             ),
@@ -1175,7 +1201,11 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/export",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/export",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "output_format": output_format,
@@ -1229,7 +1259,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/d1/database/{database_id}",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}", account_id=account_id, database_id=database_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1387,7 +1419,11 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/import",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/import",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -1498,7 +1534,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database/{database_id}/query",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/query", account_id=account_id, database_id=database_id
+            ),
             page=AsyncSinglePage[QueryResult],
             body=maybe_transform(
                 {
@@ -1610,7 +1648,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/d1/database/{database_id}/raw",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/raw", account_id=account_id, database_id=database_id
+            ),
             page=AsyncSinglePage[DatabaseRawResponse],
             body=maybe_transform(
                 {

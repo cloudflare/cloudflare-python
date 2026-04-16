@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -83,7 +83,7 @@ class PurgeResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            path_template("/accounts/{account_id}/queues/{queue_id}/purge", account_id=account_id, queue_id=queue_id),
             body=maybe_transform(
                 {"delete_messages_permanently": delete_messages_permanently}, purge_start_params.PurgeStartParams
             ),
@@ -132,7 +132,7 @@ class PurgeResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get(
-            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            path_template("/accounts/{account_id}/queues/{queue_id}/purge", account_id=account_id, queue_id=queue_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,7 +202,7 @@ class AsyncPurgeResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            path_template("/accounts/{account_id}/queues/{queue_id}/purge", account_id=account_id, queue_id=queue_id),
             body=await async_maybe_transform(
                 {"delete_messages_permanently": delete_messages_permanently}, purge_start_params.PurgeStartParams
             ),
@@ -251,7 +251,7 @@ class AsyncPurgeResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            path_template("/accounts/{account_id}/queues/{queue_id}/purge", account_id=account_id, queue_id=queue_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

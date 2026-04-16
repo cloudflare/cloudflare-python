@@ -32,7 +32,7 @@ from .metadata import (
     AsyncMetadataResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.kv import (
     namespace_list_params,
@@ -128,7 +128,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces",
+            path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
             body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,7 +178,11 @@ class NamespacesResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -232,7 +236,7 @@ class NamespacesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/storage/kv/namespaces",
+            path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
             page=SyncV4PagePaginationArray[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -287,7 +291,11 @@ class NamespacesResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -336,7 +344,11 @@ class NamespacesResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -397,7 +409,11 @@ class NamespacesResource(SyncAPIResource):
         return cast(
             Optional[NamespaceBulkGetResponse],
             self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                path_template(
+                    "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                    account_id=account_id,
+                    namespace_id=namespace_id,
+                ),
                 body=maybe_transform(
                     {
                         "keys": keys,
@@ -461,7 +477,11 @@ class NamespacesResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=maybe_transform(body, Iterable[namespace_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -508,7 +528,11 @@ class NamespacesResource(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -588,7 +612,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces",
+            path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
             body=await async_maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -638,7 +662,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -692,7 +720,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/storage/kv/namespaces",
+            path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
             page=AsyncV4PagePaginationArray[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -747,7 +775,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -796,7 +828,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=await async_maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -857,7 +893,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         return cast(
             Optional[NamespaceBulkGetResponse],
             await self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                path_template(
+                    "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                    account_id=account_id,
+                    namespace_id=namespace_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "keys": keys,
@@ -921,7 +961,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             body=await async_maybe_transform(body, Iterable[namespace_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -968,7 +1012,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

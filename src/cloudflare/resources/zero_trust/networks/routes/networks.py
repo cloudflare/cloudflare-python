@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -95,7 +95,11 @@ class NetworksResource(SyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return self._post(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             body=maybe_transform(
                 {
                     "tunnel_id": tunnel_id,
@@ -168,7 +172,11 @@ class NetworksResource(SyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return self._delete(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -227,7 +235,11 @@ class NetworksResource(SyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return self._patch(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -308,7 +320,11 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return await self._post(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             body=await async_maybe_transform(
                 {
                     "tunnel_id": tunnel_id,
@@ -381,7 +397,11 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return await self._delete(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -440,7 +460,11 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not ip_network_encoded:
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return await self._patch(
-            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            path_template(
+                "/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+                account_id=account_id,
+                ip_network_encoded=ip_network_encoded,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

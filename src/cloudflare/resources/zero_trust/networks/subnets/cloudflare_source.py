@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -89,7 +89,11 @@ class CloudflareSourceResource(SyncAPIResource):
         if not address_family:
             raise ValueError(f"Expected a non-empty value for `address_family` but received {address_family!r}")
         return self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}",
+                account_id=account_id,
+                address_family=address_family,
+            ),
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -173,7 +177,11 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
         if not address_family:
             raise ValueError(f"Expected a non-empty value for `address_family` but received {address_family!r}")
         return await self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}",
+                account_id=account_id,
+                address_family=address_family,
+            ),
             body=await async_maybe_transform(
                 {
                     "comment": comment,

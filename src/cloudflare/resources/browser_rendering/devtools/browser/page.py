@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -79,7 +80,12 @@ class PageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",
+            path_template(
+                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",
+                account_id=account_id,
+                session_id=session_id,
+                target_id=target_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -148,7 +154,12 @@ class AsyncPageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",
+            path_template(
+                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",
+                account_id=account_id,
+                session_id=session_id,
+                target_id=target_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

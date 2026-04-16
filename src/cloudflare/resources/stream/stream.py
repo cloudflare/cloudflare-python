@@ -57,7 +57,7 @@ from .videos import (
     AsyncVideosResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .webhooks import (
     WebhooksResource,
     AsyncWebhooksResource,
@@ -271,7 +271,7 @@ class StreamResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -363,7 +363,7 @@ class StreamResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             page=SyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -430,7 +430,7 @@ class StreamResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -517,7 +517,7 @@ class StreamResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             body=maybe_transform(
                 {
                     "allowed_origins": allowed_origins,
@@ -578,7 +578,7 @@ class StreamResource(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -729,7 +729,7 @@ class AsyncStreamResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -823,7 +823,7 @@ class AsyncStreamResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             page=AsyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -890,7 +890,7 @@ class AsyncStreamResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -977,7 +977,7 @@ class AsyncStreamResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             body=await async_maybe_transform(
                 {
                     "allowed_origins": allowed_origins,
@@ -1038,7 +1038,7 @@ class AsyncStreamResource(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

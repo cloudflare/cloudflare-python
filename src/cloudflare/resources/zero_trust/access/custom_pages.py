@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +87,7 @@ class CustomPagesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/access/custom_pages",
+            path_template("/accounts/{account_id}/access/custom_pages", account_id=account_id),
             body=maybe_transform(
                 {
                     "custom_html": custom_html,
@@ -150,7 +150,11 @@ class CustomPagesResource(SyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._put(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             body=maybe_transform(
                 {
                     "custom_html": custom_html,
@@ -205,7 +209,7 @@ class CustomPagesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/custom_pages",
+            path_template("/accounts/{account_id}/access/custom_pages", account_id=account_id),
             page=SyncV4PagePaginationArray[CustomPageWithoutHTML],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -258,7 +262,11 @@ class CustomPagesResource(SyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -304,7 +312,11 @@ class CustomPagesResource(SyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._get(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -375,7 +387,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/access/custom_pages",
+            path_template("/accounts/{account_id}/access/custom_pages", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "custom_html": custom_html,
@@ -438,7 +450,11 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "custom_html": custom_html,
@@ -493,7 +509,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/custom_pages",
+            path_template("/accounts/{account_id}/access/custom_pages", account_id=account_id),
             page=AsyncV4PagePaginationArray[CustomPageWithoutHTML],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -546,7 +562,11 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -592,7 +612,11 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         if not custom_page_id:
             raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+            path_template(
+                "/accounts/{account_id}/access/custom_pages/{custom_page_id}",
+                account_id=account_id,
+                custom_page_id=custom_page_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
