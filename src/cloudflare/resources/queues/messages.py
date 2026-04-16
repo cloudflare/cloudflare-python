@@ -116,7 +116,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageBulkPushResponse:
+    ) -> Optional[MessageBulkPushResponse]:
         """
         Push a batch of message to a Queue
 
@@ -151,9 +151,13 @@ class MessagesResource(SyncAPIResource):
                 message_bulk_push_params.MessageBulkPushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessageBulkPushResponse]]._unwrapper,
             ),
-            cast_to=MessageBulkPushResponse,
+            cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
     def pull(
@@ -231,7 +235,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -268,7 +272,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -304,7 +308,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         if account_id is None:
             account_id = self._client._get_account_id_path_param()
         if not account_id:
@@ -322,9 +326,13 @@ class MessagesResource(SyncAPIResource):
                 message_push_params.MessagePushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePushResponse]]._unwrapper,
             ),
-            cast_to=MessagePushResponse,
+            cast_to=cast(Type[Optional[MessagePushResponse]], ResultWrapper[MessagePushResponse]),
         )
 
 
@@ -416,7 +424,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageBulkPushResponse:
+    ) -> Optional[MessageBulkPushResponse]:
         """
         Push a batch of message to a Queue
 
@@ -451,9 +459,13 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_bulk_push_params.MessageBulkPushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessageBulkPushResponse]]._unwrapper,
             ),
-            cast_to=MessageBulkPushResponse,
+            cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
     async def pull(
@@ -531,7 +543,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -568,7 +580,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -604,7 +616,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         if account_id is None:
             account_id = self._client._get_account_id_path_param()
         if not account_id:
@@ -622,9 +634,13 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_push_params.MessagePushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePushResponse]]._unwrapper,
             ),
-            cast_to=MessagePushResponse,
+            cast_to=cast(Type[Optional[MessagePushResponse]], ResultWrapper[MessagePushResponse]),
         )
 
 

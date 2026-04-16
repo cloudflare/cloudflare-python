@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["MessagePullResponse", "Message"]
+__all__ = ["MessagePullResponse", "Message", "Metadata", "MetadataMetrics"]
 
 
 class Message(BaseModel):
@@ -25,8 +25,38 @@ class Message(BaseModel):
     timestamp_ms: Optional[float] = None
 
 
+class MetadataMetrics(BaseModel):
+    """Best-effort metrics for the queue.
+
+    Values may be approximate due to the distributed nature of queues.
+    """
+
+    backlog_bytes: float
+    """The size in bytes of unacknowledged messages in the queue."""
+
+    backlog_count: float
+    """The number of unacknowledged messages in the queue."""
+
+    oldest_message_timestamp_ms: float
+    """Unix timestamp in milliseconds of the oldest unacknowledged message in the
+    queue.
+
+    Returns 0 if unknown.
+    """
+
+
+class Metadata(BaseModel):
+    metrics: Optional[MetadataMetrics] = None
+    """Best-effort metrics for the queue.
+
+    Values may be approximate due to the distributed nature of queues.
+    """
+
+
 class MessagePullResponse(BaseModel):
     message_backlog_count: Optional[float] = None
-    """The number of unacknowledged messages in the queue"""
+    """The number of unacknowledged messages in the queue."""
 
     messages: Optional[List[Message]] = None
+
+    metadata: Optional[Metadata] = None
