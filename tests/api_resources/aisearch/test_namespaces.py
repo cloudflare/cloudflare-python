@@ -14,7 +14,6 @@ from cloudflare.types.aisearch import (
     NamespaceListResponse,
     NamespaceReadResponse,
     NamespaceCreateResponse,
-    NamespaceDeleteResponse,
     NamespaceSearchResponse,
     NamespaceUpdateResponse,
     NamespaceChatCompletionsResponse,
@@ -30,7 +29,7 @@ class TestNamespaces:
     def test_method_create(self, client: Cloudflare) -> None:
         namespace = client.aisearch.namespaces.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
@@ -38,7 +37,7 @@ class TestNamespaces:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         namespace = client.aisearch.namespaces.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
             description="Production environment",
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
@@ -47,7 +46,7 @@ class TestNamespaces:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.aisearch.namespaces.with_raw_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -59,7 +58,7 @@ class TestNamespaces:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.aisearch.namespaces.with_streaming_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -74,7 +73,7 @@ class TestNamespaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.aisearch.namespaces.with_raw_response.create(
                 account_id="",
-                name="production",
+                name="name",
             )
 
     @parametrize
@@ -145,10 +144,9 @@ class TestNamespaces:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         namespace = client.aisearch.namespaces.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            order_by="created_at",
-            order_by_direction="asc",
             page=1,
-            per_page=1,
+            per_page=20,
+            search="prod",
         )
         assert_matches_type(SyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
@@ -189,7 +187,7 @@ class TestNamespaces:
             name="production",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(object, namespace, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -201,7 +199,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(object, namespace, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -213,7 +211,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+            assert_matches_type(object, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -522,7 +520,7 @@ class TestAsyncNamespaces:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.aisearch.namespaces.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
@@ -530,7 +528,7 @@ class TestAsyncNamespaces:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.aisearch.namespaces.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
             description="Production environment",
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
@@ -539,7 +537,7 @@ class TestAsyncNamespaces:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.aisearch.namespaces.with_raw_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -551,7 +549,7 @@ class TestAsyncNamespaces:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.aisearch.namespaces.with_streaming_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="production",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -566,7 +564,7 @@ class TestAsyncNamespaces:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.aisearch.namespaces.with_raw_response.create(
                 account_id="",
-                name="production",
+                name="name",
             )
 
     @parametrize
@@ -637,10 +635,9 @@ class TestAsyncNamespaces:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.aisearch.namespaces.list(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            order_by="created_at",
-            order_by_direction="asc",
             page=1,
-            per_page=1,
+            per_page=20,
+            search="prod",
         )
         assert_matches_type(AsyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
@@ -681,7 +678,7 @@ class TestAsyncNamespaces:
             name="production",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(object, namespace, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -693,7 +690,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(object, namespace, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -705,7 +702,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+            assert_matches_type(object, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

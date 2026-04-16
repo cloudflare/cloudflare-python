@@ -66,6 +66,11 @@ __all__ = [
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksCommerce",
+    "MetaProcessorsAgentReadinessChecksCommerceAcp",
+    "MetaProcessorsAgentReadinessChecksCommerceAcpEvidence",
+    "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksCommerceAp2",
     "MetaProcessorsAgentReadinessChecksCommerceAp2Evidence",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceFinding",
@@ -766,6 +771,58 @@ class MetaProcessorsAgentReadinessChecksBotAccessControl(BaseModel):
     web_bot_auth: MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuth = FieldInfo(alias="webBotAuth")
 
 
+class MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksCommerceAcpEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksCommerceAcp(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceAcpEvidence]] = None
+
+    message: Optional[str] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceFinding(BaseModel):
     outcome: str
 
@@ -923,6 +980,8 @@ class MetaProcessorsAgentReadinessChecksCommerceX402(BaseModel):
 
 
 class MetaProcessorsAgentReadinessChecksCommerce(BaseModel):
+    acp: MetaProcessorsAgentReadinessChecksCommerceAcp
+
     ap2: MetaProcessorsAgentReadinessChecksCommerceAp2
 
     ucp: MetaProcessorsAgentReadinessChecksCommerceUcp

@@ -38,7 +38,6 @@ from .instances.instances import (
 from ....types.aisearch.namespace_list_response import NamespaceListResponse
 from ....types.aisearch.namespace_read_response import NamespaceReadResponse
 from ....types.aisearch.namespace_create_response import NamespaceCreateResponse
-from ....types.aisearch.namespace_delete_response import NamespaceDeleteResponse
 from ....types.aisearch.namespace_search_response import NamespaceSearchResponse
 from ....types.aisearch.namespace_update_response import NamespaceUpdateResponse
 from ....types.aisearch.namespace_chat_completions_response import NamespaceChatCompletionsResponse
@@ -84,7 +83,7 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceCreateResponse:
         """
-        Create a new namespaces.
+        Create a new namespace.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -171,10 +170,9 @@ class NamespacesResource(SyncAPIResource):
         self,
         *,
         account_id: str | None = None,
-        order_by: Literal["created_at"] | Omit = omit,
-        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,9 +184,12 @@ class NamespacesResource(SyncAPIResource):
         List namespaces.
 
         Args:
-          order_by: Order By Column Name
+          page: Page number (1-indexed).
 
-          order_by_direction: Order By Direction
+          per_page: Number of results per page.
+
+          search: Filter namespaces whose name or description contains this string
+              (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -212,10 +213,9 @@ class NamespacesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     namespace_list_params.NamespaceListParams,
                 ),
@@ -234,7 +234,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NamespaceDeleteResponse:
+    ) -> object:
         """
         Delete namespace.
 
@@ -260,9 +260,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceDeleteResponse], ResultWrapper[NamespaceDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def chat_completions(
@@ -487,7 +487,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceCreateResponse:
         """
-        Create a new namespaces.
+        Create a new namespace.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -576,10 +576,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         self,
         *,
         account_id: str | None = None,
-        order_by: Literal["created_at"] | Omit = omit,
-        order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -591,9 +590,12 @@ class AsyncNamespacesResource(AsyncAPIResource):
         List namespaces.
 
         Args:
-          order_by: Order By Column Name
+          page: Page number (1-indexed).
 
-          order_by_direction: Order By Direction
+          per_page: Number of results per page.
+
+          search: Filter namespaces whose name or description contains this string
+              (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -617,10 +619,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     namespace_list_params.NamespaceListParams,
                 ),
@@ -639,7 +640,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NamespaceDeleteResponse:
+    ) -> object:
         """
         Delete namespace.
 
@@ -665,9 +666,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceDeleteResponse], ResultWrapper[NamespaceDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def chat_completions(

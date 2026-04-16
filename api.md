@@ -11209,7 +11209,6 @@ from cloudflare.types.aisearch import (
     NamespaceCreateResponse,
     NamespaceUpdateResponse,
     NamespaceListResponse,
-    NamespaceDeleteResponse,
     NamespaceChatCompletionsResponse,
     NamespaceReadResponse,
     NamespaceSearchResponse,
@@ -11221,7 +11220,7 @@ Methods:
 - <code title="post /accounts/{account_id}/ai-search/namespaces">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/namespace_create_response.py">NamespaceCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/ai-search/namespaces/{name}">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">update</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/namespace_update_response.py">NamespaceUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/namespaces">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/namespace_list_response.py">SyncV4PagePaginationArray[NamespaceListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/ai-search/namespaces/{name}">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">delete</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/namespace_delete_response.py">NamespaceDeleteResponse</a></code>
+- <code title="delete /accounts/{account_id}/ai-search/namespaces/{name}">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">delete</a>(name, \*, account_id) -> object</code>
 - <code title="post /accounts/{account_id}/ai-search/namespaces/{name}/chat/completions">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">chat_completions</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/namespace_chat_completions_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/namespace_chat_completions_response.py">NamespaceChatCompletionsResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/namespaces/{name}">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">read</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/namespace_read_response.py">NamespaceReadResponse</a></code>
 - <code title="post /accounts/{account_id}/ai-search/namespaces/{name}/search">client.aisearch.namespaces.<a href="./src/cloudflare/resources/aisearch/namespaces/namespaces.py">search</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/namespace_search_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/namespace_search_response.py">NamespaceSearchResponse</a></code>
