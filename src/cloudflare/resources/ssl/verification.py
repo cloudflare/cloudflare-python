@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -50,7 +50,7 @@ class VerificationResource(SyncAPIResource):
         self,
         certificate_pack_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_method: Literal["http", "cname", "txt", "email"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,6 +81,8 @@ class VerificationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
@@ -88,7 +90,11 @@ class VerificationResource(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return self._patch(
-            f"/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             body=maybe_transform(
                 {"validation_method": validation_method}, verification_edit_params.VerificationEditParams
             ),
@@ -105,7 +111,7 @@ class VerificationResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         retry: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -130,10 +136,12 @@ class VerificationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/ssl/verification",
+            path_template("/zones/{zone_id}/ssl/verification", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +178,7 @@ class AsyncVerificationResource(AsyncAPIResource):
         self,
         certificate_pack_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_method: Literal["http", "cname", "txt", "email"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,6 +209,8 @@ class AsyncVerificationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
@@ -208,7 +218,11 @@ class AsyncVerificationResource(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return await self._patch(
-            f"/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
+            path_template(
+                "/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
+                zone_id=zone_id,
+                certificate_pack_id=certificate_pack_id,
+            ),
             body=await async_maybe_transform(
                 {"validation_method": validation_method}, verification_edit_params.VerificationEditParams
             ),
@@ -225,7 +239,7 @@ class AsyncVerificationResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         retry: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -250,10 +264,12 @@ class AsyncVerificationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/ssl/verification",
+            path_template("/zones/{zone_id}/ssl/verification", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
