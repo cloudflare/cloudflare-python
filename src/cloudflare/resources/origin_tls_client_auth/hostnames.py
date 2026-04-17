@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class HostnamesResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         config: Iterable[hostname_update_params.Config],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -76,10 +76,12 @@ class HostnamesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
+            path_template("/zones/{zone_id}/origin_tls_client_auth/hostnames", zone_id=zone_id),
             page=SyncSinglePage[HostnameUpdateResponse],
             body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
@@ -93,7 +95,7 @@ class HostnamesResource(SyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,12 +121,16 @@ class HostnamesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +165,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         config: Iterable[hostname_update_params.Config],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -186,10 +192,12 @@ class AsyncHostnamesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
+            path_template("/zones/{zone_id}/origin_tls_client_auth/hostnames", zone_id=zone_id),
             page=AsyncSinglePage[HostnameUpdateResponse],
             body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
@@ -203,7 +211,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,12 +237,16 @@ class AsyncHostnamesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not hostname:
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}", zone_id=zone_id, hostname=hostname
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -103,7 +103,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         private_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -135,10 +135,12 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/origin_tls_client_auth",
+            path_template("/zones/{zone_id}/origin_tls_client_auth", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "certificate": certificate,
@@ -164,7 +166,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,10 +189,12 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth",
+            path_template("/zones/{zone_id}/origin_tls_client_auth", zone_id=zone_id),
             page=SyncSinglePage[OriginTLSClientAuthListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -205,7 +209,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,12 +233,18 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+                zone_id=zone_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,7 +264,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,12 +289,18 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+                zone_id=zone_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -338,7 +354,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         private_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -370,10 +386,12 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/origin_tls_client_auth",
+            path_template("/zones/{zone_id}/origin_tls_client_auth", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "certificate": certificate,
@@ -399,7 +417,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,10 +440,12 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth",
+            path_template("/zones/{zone_id}/origin_tls_client_auth", zone_id=zone_id),
             page=AsyncSinglePage[OriginTLSClientAuthListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -440,7 +460,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,12 +484,18 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+                zone_id=zone_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -489,7 +515,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -514,12 +540,18 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+            path_template(
+                "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+                zone_id=zone_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
