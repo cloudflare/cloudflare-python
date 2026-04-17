@@ -39,8 +39,8 @@ class TestInstances:
             account_id="account_id",
             instance_id="instance_id",
             instance_retention={
-                "error_retention": 0,
-                "success_retention": 0,
+                "error_retention": "5 minutes",
+                "success_retention": "5 minutes",
             },
             params={},
         )
@@ -166,8 +166,8 @@ class TestInstances:
                 {
                     "instance_id": "instance_id",
                     "instance_retention": {
-                        "error_retention": 0,
-                        "success_retention": 0,
+                        "error_retention": "5 minutes",
+                        "success_retention": "5 minutes",
                     },
                     "params": {},
                 }
@@ -307,8 +307,8 @@ class TestAsyncInstances:
             account_id="account_id",
             instance_id="instance_id",
             instance_retention={
-                "error_retention": 0,
-                "success_retention": 0,
+                "error_retention": "5 minutes",
+                "success_retention": "5 minutes",
             },
             params={},
         )
@@ -434,8 +434,8 @@ class TestAsyncInstances:
                 {
                     "instance_id": "instance_id",
                     "instance_retention": {
-                        "error_retention": 0,
-                        "success_retention": 0,
+                        "error_retention": "5 minutes",
+                        "success_retention": "5 minutes",
                     },
                     "params": {},
                 }

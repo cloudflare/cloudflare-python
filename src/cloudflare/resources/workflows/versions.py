@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -50,7 +50,7 @@ class VersionsResource(SyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -72,12 +72,18 @@ class VersionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions",
+                account_id=account_id,
+                workflow_name=workflow_name,
+            ),
             page=SyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -99,7 +105,7 @@ class VersionsResource(SyncAPIResource):
         self,
         version_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -120,6 +126,8 @@ class VersionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -127,7 +135,12 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,7 +176,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         self,
         workflow_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -185,12 +198,18 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions",
+                account_id=account_id,
+                workflow_name=workflow_name,
+            ),
             page=AsyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -212,7 +231,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         self,
         version_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,6 +252,8 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -240,7 +261,12 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

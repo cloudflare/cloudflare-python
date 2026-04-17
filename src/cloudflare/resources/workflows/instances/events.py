@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -47,7 +47,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_type: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         instance_id: str,
         body: object | Omit = omit,
@@ -70,6 +70,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -79,7 +81,13 @@ class EventsResource(SyncAPIResource):
         if not event_type:
             raise ValueError(f"Expected a non-empty value for `event_type` but received {event_type!r}")
         return self._post(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+                event_type=event_type,
+            ),
             body=maybe_transform(body, event_create_params.EventCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -116,7 +124,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_type: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         instance_id: str,
         body: object | Omit = omit,
@@ -139,6 +147,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -148,7 +158,13 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_type:
             raise ValueError(f"Expected a non-empty value for `event_type` but received {event_type!r}")
         return await self._post(
-            f"/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+                event_type=event_type,
+            ),
             body=await async_maybe_transform(body, event_create_params.EventCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
