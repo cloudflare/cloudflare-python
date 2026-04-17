@@ -7,7 +7,7 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -52,7 +52,7 @@ class EnvironmentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_create_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -73,10 +73,12 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=maybe_transform({"environments": environments}, environment_create_params.EnvironmentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -91,7 +93,7 @@ class EnvironmentsResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_update_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -112,10 +114,12 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=maybe_transform({"environments": environments}, environment_update_params.EnvironmentUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -130,7 +134,7 @@ class EnvironmentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,10 +154,12 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,7 +174,7 @@ class EnvironmentsResource(SyncAPIResource):
         self,
         environment_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,12 +194,16 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not environment_id:
             raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/environments/{environment_id}",
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}", zone_id=zone_id, environment_id=environment_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +217,7 @@ class EnvironmentsResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_edit_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -228,10 +238,12 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=maybe_transform({"environments": environments}, environment_edit_params.EnvironmentEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -247,7 +259,7 @@ class EnvironmentsResource(SyncAPIResource):
         self,
         environment_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -267,12 +279,18 @@ class EnvironmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not environment_id:
             raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
         return self._post(
-            f"/zones/{zone_id}/environments/{environment_id}/rollback",
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/rollback",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +325,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_create_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -328,10 +346,12 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"environments": environments}, environment_create_params.EnvironmentCreateParams
             ),
@@ -348,7 +368,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_update_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,10 +389,12 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"environments": environments}, environment_update_params.EnvironmentUpdateParams
             ),
@@ -389,7 +411,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,10 +431,12 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -427,7 +451,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         self,
         environment_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -447,12 +471,16 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not environment_id:
             raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/environments/{environment_id}",
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}", zone_id=zone_id, environment_id=environment_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +494,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         environments: Iterable[environment_edit_params.Environment],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -487,10 +515,12 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/environments",
+            path_template("/zones/{zone_id}/environments", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"environments": environments}, environment_edit_params.EnvironmentEditParams
             ),
@@ -508,7 +538,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         self,
         environment_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -528,12 +558,18 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not environment_id:
             raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/environments/{environment_id}/rollback",
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/rollback",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

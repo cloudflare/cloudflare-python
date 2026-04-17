@@ -11,7 +11,7 @@ __all__ = ["EnvironmentUpdateParams", "Environment"]
 
 
 class EnvironmentUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     environments: Required[Iterable[Environment]]
 

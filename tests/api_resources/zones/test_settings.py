@@ -87,10 +87,7 @@ class TestSettings:
         setting = client.zones.settings.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            value={
-                "enabled": True,
-                "pool_id": "pool-id",
-            },
+            value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -258,10 +255,7 @@ class TestAsyncSettings:
         setting = await async_client.zones.settings.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            value={
-                "enabled": True,
-                "pool_id": "pool-id",
-            },
+            value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
