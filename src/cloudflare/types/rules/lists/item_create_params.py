@@ -19,7 +19,7 @@ __all__ = [
 
 
 class ItemCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID for this resource."""
 
     body: Required[Iterable[Body]]
