@@ -11,7 +11,7 @@ __all__ = ["ConfigUpdateParams"]
 
 
 class ConfigUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     enabled: Required[bool]
