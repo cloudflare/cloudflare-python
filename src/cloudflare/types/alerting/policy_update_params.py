@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .mechanism_param import MechanismParam
 from .policy_filter_param import PolicyFilterParam
@@ -11,7 +11,7 @@ __all__ = ["PolicyUpdateParams"]
 
 
 class PolicyUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account id"""
 
     alert_interval: str
