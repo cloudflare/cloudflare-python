@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import required_args, maybe_transform, async_maybe_transform
+from ......_utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -57,7 +57,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         name: str,
         text: str,
@@ -100,7 +100,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         algorithm: object,
         format: Literal["raw", "pkcs8", "spki", "jwk"],
@@ -158,14 +158,14 @@ class SecretsResource(SyncAPIResource):
         ...
 
     @required_args(
-        ["account_id", "dispatch_namespace", "name", "text", "type"],
-        ["account_id", "dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
+        ["dispatch_namespace", "name", "text", "type"],
+        ["dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
     )
     def update(
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         name: str,
         text: str | Omit = omit,
@@ -183,6 +183,8 @@ class SecretsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretUpdateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -192,7 +194,12 @@ class SecretsResource(SyncAPIResource):
         return cast(
             SecretUpdateResponse,
             self._put(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -223,7 +230,7 @@ class SecretsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -250,6 +257,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -257,7 +266,12 @@ class SecretsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=SyncSinglePage[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -269,7 +283,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         script_name: str,
         url_encoded: bool | Omit = omit,
@@ -302,6 +316,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -311,7 +327,13 @@ class SecretsResource(SyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+                secret_name=secret_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,7 +349,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         script_name: str,
         url_encoded: bool | Omit = omit,
@@ -361,6 +383,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -372,7 +396,13 @@ class SecretsResource(SyncAPIResource):
         return cast(
             SecretGetResponse,
             self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    secret_name=secret_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -413,7 +443,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         name: str,
         text: str,
@@ -456,7 +486,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         algorithm: object,
         format: Literal["raw", "pkcs8", "spki", "jwk"],
@@ -514,14 +544,14 @@ class AsyncSecretsResource(AsyncAPIResource):
         ...
 
     @required_args(
-        ["account_id", "dispatch_namespace", "name", "text", "type"],
-        ["account_id", "dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
+        ["dispatch_namespace", "name", "text", "type"],
+        ["dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
     )
     async def update(
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         name: str,
         text: str | Omit = omit,
@@ -539,6 +569,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SecretUpdateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -548,7 +580,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         return cast(
             SecretUpdateResponse,
             await self._put(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -579,7 +616,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -606,6 +643,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -613,7 +652,12 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+            ),
             page=AsyncSinglePage[SecretListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -625,7 +669,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         script_name: str,
         url_encoded: bool | Omit = omit,
@@ -658,6 +702,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -667,7 +713,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            path_template(
+                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                account_id=account_id,
+                dispatch_namespace=dispatch_namespace,
+                script_name=script_name,
+                secret_name=secret_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -685,7 +737,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dispatch_namespace: str,
         script_name: str,
         url_encoded: bool | Omit = omit,
@@ -719,6 +771,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -730,7 +784,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         return cast(
             SecretGetResponse,
             await self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    secret_name=secret_name,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

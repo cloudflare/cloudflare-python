@@ -8,7 +8,7 @@ __all__ = ["ScriptDeleteParams"]
 
 
 class ScriptDeleteParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     dispatch_namespace: Required[str]

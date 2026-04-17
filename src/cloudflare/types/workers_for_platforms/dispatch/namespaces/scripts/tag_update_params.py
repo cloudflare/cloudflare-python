@@ -11,7 +11,7 @@ __all__ = ["TagUpdateParams"]
 
 
 class TagUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     dispatch_namespace: Required[str]

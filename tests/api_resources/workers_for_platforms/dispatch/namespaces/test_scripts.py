@@ -45,7 +45,7 @@ class TestScripts:
                         "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "404-page",
-                        "run_worker_first": ["string"],
+                        "run_worker_first": True,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
@@ -117,7 +117,7 @@ class TestScripts:
                 "usage_model": "standard",
             },
             bindings_inherit="strict",
-            files=[b"raw file contents"],
+            files=[b"Example data"],
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
@@ -341,7 +341,7 @@ class TestAsyncScripts:
                         "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "404-page",
-                        "run_worker_first": ["string"],
+                        "run_worker_first": True,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
@@ -413,7 +413,7 @@ class TestAsyncScripts:
                 "usage_model": "standard",
             },
             bindings_inherit="strict",
-            files=[b"raw file contents"],
+            files=[b"Example data"],
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
