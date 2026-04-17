@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import date
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,7 +12,7 @@ __all__ = ["UsagePaygoParams"]
 
 
 class UsagePaygoParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Represents a Cloudflare resource identifier tag."""
 
     from_: Annotated[Union[str, date], PropertyInfo(alias="from", format="iso8601")]
