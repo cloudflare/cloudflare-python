@@ -8,7 +8,7 @@ __all__ = ["RegionalTieredCacheEditParams"]
 
 
 class RegionalTieredCacheEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     value: Required[Literal["on", "off"]]
