@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +80,7 @@ class OrganizationProfileResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/organizations/{organization_id}/profile",
+            path_template("/organizations/{organization_id}/profile", organization_id=organization_id),
             body=maybe_transform(
                 {
                     "business_address": business_address,
@@ -124,8 +124,8 @@ class OrganizationProfileResource(SyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
-        return self._get(  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportUnknownArgumentType]
-            f"/organizations/{organization_id}/profile",
+        return self._get(
+            path_template("/organizations/{organization_id}/profile", organization_id=organization_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +191,7 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/organizations/{organization_id}/profile",
+            path_template("/organizations/{organization_id}/profile", organization_id=organization_id),
             body=await async_maybe_transform(
                 {
                     "business_address": business_address,
@@ -235,8 +235,8 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
-        return await self._get(  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportUnknownArgumentType]
-            f"/organizations/{organization_id}/profile",
+        return await self._get(
+            path_template("/organizations/{organization_id}/profile", organization_id=organization_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
