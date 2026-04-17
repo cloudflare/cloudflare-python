@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ...._types import SequenceNotStr
 
@@ -11,7 +11,7 @@ __all__ = ["SecretListParams"]
 
 
 class SecretListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     direction: Literal["asc", "desc"]
