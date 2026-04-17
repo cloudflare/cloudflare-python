@@ -14,9 +14,6 @@ class WebhookUpdateResponse(BaseModel):
     modified: Optional[datetime] = None
     """The date and time the webhook was last modified."""
 
-    notification_url: Optional[str] = None
-    """The URL where webhooks will be sent."""
-
     notification_url: Optional[str] = FieldInfo(alias="notificationUrl", default=None)
     """The URL where webhooks will be sent."""
 
