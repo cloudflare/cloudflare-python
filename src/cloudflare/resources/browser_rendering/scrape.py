@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class ScrapeResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element],
         html: str,
         cache_ttl: float | Omit = omit,
@@ -182,7 +182,7 @@ class ScrapeResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant1Element],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -310,11 +310,11 @@ class ScrapeResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "elements", "html"], ["account_id", "elements", "url"])
+    @required_args(["elements", "html"], ["elements", "url"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element] | Iterable[scrape_create_params.Variant1Element],
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
@@ -398,10 +398,12 @@ class ScrapeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScrapeCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/browser-rendering/scrape",
+            path_template("/accounts/{account_id}/browser-rendering/scrape", account_id=account_id),
             body=maybe_transform(
                 {
                     "elements": elements,
@@ -464,7 +466,7 @@ class AsyncScrapeResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element],
         html: str,
         cache_ttl: float | Omit = omit,
@@ -597,7 +599,7 @@ class AsyncScrapeResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant1Element],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -725,11 +727,11 @@ class AsyncScrapeResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "elements", "html"], ["account_id", "elements", "url"])
+    @required_args(["elements", "html"], ["elements", "url"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element] | Iterable[scrape_create_params.Variant1Element],
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
@@ -813,10 +815,12 @@ class AsyncScrapeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScrapeCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/browser-rendering/scrape",
+            path_template("/accounts/{account_id}/browser-rendering/scrape", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "elements": elements,

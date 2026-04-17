@@ -30,7 +30,7 @@ __all__ = [
 
 
 class Variant0(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     html: Required[str]
@@ -269,7 +269,7 @@ class Variant0WaitForSelector(TypedDict, total=False):
 
 
 class Variant1(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     url: Required[str]

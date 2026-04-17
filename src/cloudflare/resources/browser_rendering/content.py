@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class ContentResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -182,7 +182,7 @@ class ContentResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -312,11 +312,11 @@ class ContentResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "url"], ["account_id", "html"])
+    @required_args(["url"], ["html"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -401,10 +401,12 @@ class ContentResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/browser-rendering/content",
+            path_template("/accounts/{account_id}/browser-rendering/content", account_id=account_id),
             body=maybe_transform(
                 {
                     "url": url,
@@ -466,7 +468,7 @@ class AsyncContentResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -599,7 +601,7 @@ class AsyncContentResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -729,11 +731,11 @@ class AsyncContentResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "url"], ["account_id", "html"])
+    @required_args(["url"], ["html"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -818,10 +820,12 @@ class AsyncContentResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/browser-rendering/content",
+            path_template("/accounts/{account_id}/browser-rendering/content", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "url": url,
