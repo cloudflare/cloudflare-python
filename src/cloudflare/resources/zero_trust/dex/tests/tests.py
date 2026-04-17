@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -62,7 +62,7 @@ class TestsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
         kind: Literal["http", "traceroute"] | Omit = omit,
@@ -106,10 +106,12 @@ class TestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests/overview",
+            path_template("/accounts/{account_id}/dex/tests/overview", account_id=account_id),
             page=SyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -160,7 +162,7 @@ class AsyncTestsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
         kind: Literal["http", "traceroute"] | Omit = omit,
@@ -204,10 +206,12 @@ class AsyncTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests/overview",
+            path_template("/accounts/{account_id}/dex/tests/overview", account_id=account_id),
             page=AsyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,

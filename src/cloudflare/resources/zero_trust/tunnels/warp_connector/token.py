@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -46,7 +47,7 @@ class TokenResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,12 +72,16 @@ class TokenResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            path_template(
+                "/accounts/{account_id}/warp_connector/{tunnel_id}/token", account_id=account_id, tunnel_id=tunnel_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -112,7 +117,7 @@ class AsyncTokenResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,12 +142,16 @@ class AsyncTokenResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            path_template(
+                "/accounts/{account_id}/warp_connector/{tunnel_id}/token", account_id=account_id, tunnel_id=tunnel_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

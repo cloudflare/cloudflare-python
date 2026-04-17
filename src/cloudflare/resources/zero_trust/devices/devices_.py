@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,7 +50,7 @@ class DevicesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str] | Omit = omit,
         active_registrations: Literal["include", "only", "exclude"] | Omit = omit,
         cursor: str | Omit = omit,
@@ -110,10 +110,12 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
+            path_template("/accounts/{account_id}/devices/physical-devices", account_id=account_id),
             page=SyncCursorPagination[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -144,7 +146,7 @@ class DevicesResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,12 +166,18 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -184,7 +192,7 @@ class DevicesResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -208,12 +216,18 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -229,7 +243,7 @@ class DevicesResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,12 +263,18 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -289,7 +309,7 @@ class AsyncDevicesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str] | Omit = omit,
         active_registrations: Literal["include", "only", "exclude"] | Omit = omit,
         cursor: str | Omit = omit,
@@ -349,10 +369,12 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
+            path_template("/accounts/{account_id}/devices/physical-devices", account_id=account_id),
             page=AsyncCursorPagination[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -383,7 +405,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,12 +425,18 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -423,7 +451,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -447,12 +475,18 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -468,7 +502,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,12 +522,18 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+            path_template(
+                "/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

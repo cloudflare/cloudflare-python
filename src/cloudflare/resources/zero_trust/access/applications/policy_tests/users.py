@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -48,7 +48,7 @@ class UsersResource(SyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["success", "fail", "error"] | Omit = omit,
@@ -79,12 +79,18 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             page=SyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -128,7 +134,7 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["success", "fail", "error"] | Omit = omit,
@@ -159,12 +165,18 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             page=AsyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

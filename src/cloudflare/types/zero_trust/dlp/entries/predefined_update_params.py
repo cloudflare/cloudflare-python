@@ -8,6 +8,6 @@ __all__ = ["PredefinedUpdateParams"]
 
 
 class PredefinedUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     enabled: Required[bool]

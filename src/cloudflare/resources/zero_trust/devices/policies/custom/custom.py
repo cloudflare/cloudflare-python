@@ -23,7 +23,7 @@ from .includes import (
     AsyncIncludesResourceWithStreamingResponse,
 )
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -86,7 +86,7 @@ class CustomResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         match: str,
         name: str,
         precedence: float,
@@ -186,10 +186,12 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/policy",
+            path_template("/accounts/{account_id}/devices/policy", account_id=account_id),
             body=maybe_transform(
                 {
                     "match": match,
@@ -230,7 +232,7 @@ class CustomResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,10 +252,12 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policies",
+            path_template("/accounts/{account_id}/devices/policies", account_id=account_id),
             page=SyncSinglePage[SettingsPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -265,7 +269,7 @@ class CustomResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,12 +290,16 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             page=SyncSinglePage[SettingsPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -304,7 +312,7 @@ class CustomResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_mode_switch: bool | Omit = omit,
         allow_updates: bool | Omit = omit,
         allowed_to_leave: bool | Omit = omit,
@@ -403,12 +411,16 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             body=maybe_transform(
                 {
                     "allow_mode_switch": allow_mode_switch,
@@ -450,7 +462,7 @@ class CustomResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -470,12 +482,16 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -522,7 +538,7 @@ class AsyncCustomResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         match: str,
         name: str,
         precedence: float,
@@ -622,10 +638,12 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/policy",
+            path_template("/accounts/{account_id}/devices/policy", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "match": match,
@@ -666,7 +684,7 @@ class AsyncCustomResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -686,10 +704,12 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policies",
+            path_template("/accounts/{account_id}/devices/policies", account_id=account_id),
             page=AsyncSinglePage[SettingsPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -701,7 +721,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -722,12 +742,16 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             page=AsyncSinglePage[SettingsPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -740,7 +764,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_mode_switch: bool | Omit = omit,
         allow_updates: bool | Omit = omit,
         allowed_to_leave: bool | Omit = omit,
@@ -839,12 +863,16 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_mode_switch": allow_mode_switch,
@@ -886,7 +914,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -906,12 +934,16 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}", account_id=account_id, policy_id=policy_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

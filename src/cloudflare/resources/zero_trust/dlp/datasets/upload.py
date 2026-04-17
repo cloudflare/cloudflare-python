@@ -18,6 +18,7 @@ from ....._types import (
     AsyncBinaryTypes,
     not_given,
 )
+from ....._utils import path_template
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -58,7 +59,7 @@ class UploadResource(SyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -79,12 +80,16 @@ class UploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/upload", account_id=account_id, dataset_id=dataset_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +105,7 @@ class UploadResource(SyncAPIResource):
         version: int,
         dataset: FileContent | BinaryTypes,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -125,13 +130,20 @@ class UploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+            ),
             content=read_file_content(dataset) if isinstance(dataset, os.PathLike) else dataset,
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -168,7 +180,7 @@ class AsyncUploadResource(AsyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -189,12 +201,16 @@ class AsyncUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/upload", account_id=account_id, dataset_id=dataset_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -210,7 +226,7 @@ class AsyncUploadResource(AsyncAPIResource):
         version: int,
         dataset: FileContent | AsyncBinaryTypes,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,13 +251,20 @@ class AsyncUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+            ),
             content=await async_read_file_content(dataset) if isinstance(dataset, os.PathLike) else dataset,
             options=make_request_options(
                 extra_headers=extra_headers,

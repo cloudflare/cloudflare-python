@@ -8,7 +8,7 @@ __all__ = ["CloudflaredCreateParams"]
 
 
 class CloudflaredCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Cloudflare account ID"""
 
     name: Required[str]

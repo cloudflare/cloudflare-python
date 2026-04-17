@@ -12,7 +12,7 @@ __all__ = ["CommandListParams"]
 
 
 class CommandListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     page: Required[float]
     """Page number for pagination"""

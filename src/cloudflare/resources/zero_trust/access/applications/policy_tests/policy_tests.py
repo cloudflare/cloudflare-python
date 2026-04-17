@@ -15,7 +15,7 @@ from .users import (
     AsyncUsersResourceWithStreamingResponse,
 )
 from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -60,7 +60,7 @@ class PolicyTestsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         policies: SequenceNotStr[policy_test_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,10 +83,12 @@ class PolicyTestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/access/policy-tests",
+            path_template("/accounts/{account_id}/access/policy-tests", account_id=account_id),
             body=maybe_transform({"policies": policies}, policy_test_create_params.PolicyTestCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -102,7 +104,7 @@ class PolicyTestsResource(SyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,12 +128,18 @@ class PolicyTestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return self._get(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +178,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         policies: SequenceNotStr[policy_test_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -193,10 +201,12 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/access/policy-tests",
+            path_template("/accounts/{account_id}/access/policy-tests", account_id=account_id),
             body=await async_maybe_transform({"policies": policies}, policy_test_create_params.PolicyTestCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -212,7 +222,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,12 +246,18 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/access/policy-tests/{policy_test_id}",
+            path_template(
+                "/accounts/{account_id}/access/policy-tests/{policy_test_id}",
+                account_id=account_id,
+                policy_test_id=policy_test_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ __all__ = ["FleetStatusLiveParams"]
 
 
 class FleetStatusLiveParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     since_minutes: Required[float]
     """Number of minutes before current time"""

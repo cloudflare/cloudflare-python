@@ -16,7 +16,7 @@ from .items import (
     AsyncItemsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -62,7 +62,7 @@ class ListsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"],
         description: str | Omit = omit,
@@ -94,10 +94,12 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/gateway/lists",
+            path_template("/accounts/{account_id}/gateway/lists", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -121,7 +123,7 @@ class ListsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         description: str | Omit = omit,
         items: Iterable[list_update_params.Item] | Omit = omit,
@@ -154,12 +156,14 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._put(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -181,7 +185,7 @@ class ListsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,10 +208,12 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/lists",
+            path_template("/accounts/{account_id}/gateway/lists", account_id=account_id),
             page=SyncSinglePage[GatewayList],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -223,7 +229,7 @@ class ListsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,12 +251,14 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +273,7 @@ class ListsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         append: Iterable[list_edit_params.Append] | Omit = omit,
         remove: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -293,12 +301,14 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             body=maybe_transform(
                 {
                     "append": append,
@@ -320,7 +330,7 @@ class ListsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,12 +352,14 @@ class ListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -386,7 +398,7 @@ class AsyncListsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"],
         description: str | Omit = omit,
@@ -418,10 +430,12 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/gateway/lists",
+            path_template("/accounts/{account_id}/gateway/lists", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -445,7 +459,7 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         description: str | Omit = omit,
         items: Iterable[list_update_params.Item] | Omit = omit,
@@ -478,12 +492,14 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -505,7 +521,7 @@ class AsyncListsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -528,10 +544,12 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/lists",
+            path_template("/accounts/{account_id}/gateway/lists", account_id=account_id),
             page=AsyncSinglePage[GatewayList],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -547,7 +565,7 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,12 +587,14 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -589,7 +609,7 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         append: Iterable[list_edit_params.Append] | Omit = omit,
         remove: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -617,12 +637,14 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             body=await async_maybe_transform(
                 {
                     "append": append,
@@ -644,7 +666,7 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -666,12 +688,14 @@ class AsyncListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            path_template("/accounts/{account_id}/gateway/lists/{list_id}", account_id=account_id, list_id=list_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

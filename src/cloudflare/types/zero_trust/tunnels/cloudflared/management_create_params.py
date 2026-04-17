@@ -9,7 +9,7 @@ __all__ = ["ManagementCreateParams"]
 
 
 class ManagementCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Cloudflare account ID"""
 
     resources: Required[List[Literal["logs"]]]

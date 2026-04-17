@@ -15,7 +15,7 @@ from .entries import (
     AsyncEntriesResourceWithStreamingResponse,
 )
 from ......_types import Body, Query, Headers, NotGiven, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -60,7 +60,7 @@ class VersionsResource(SyncAPIResource):
         self,
         version: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         body: Iterable[version_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,12 +85,19 @@ class VersionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+            ),
             page=SyncSinglePage[VersionCreateResponse],
             body=maybe_transform(body, Iterable[version_create_params.Body]),
             options=make_request_options(
@@ -129,7 +136,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         self,
         version: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         body: Iterable[version_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,12 +161,19 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+            ),
             page=AsyncSinglePage[VersionCreateResponse],
             body=maybe_transform(body, Iterable[version_create_params.Body]),
             options=make_request_options(

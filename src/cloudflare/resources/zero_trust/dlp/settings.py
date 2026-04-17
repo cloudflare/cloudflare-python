@@ -1,0 +1,526 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Type, Optional, cast
+
+import httpx
+
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.zero_trust.dlp import setting_edit_params, setting_update_params
+from ....types.zero_trust.dlp.dlp_settings import DLPSettings
+
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
+
+
+class SettingsResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return SettingsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return SettingsResourceWithStreamingResponse(self)
+
+    def update(
+        self,
+        *,
+        account_id: str | None = None,
+        ai_context_analysis: Optional[bool] | Omit = omit,
+        ocr: Optional[bool] | Omit = omit,
+        payload_logging: setting_update_params.PayloadLogging | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Missing fields are reset to initial (unconfigured) values.
+
+        Args:
+          ai_context_analysis: Whether AI context analysis is enabled at the account level.
+
+          ocr: Whether OCR is enabled at the account level.
+
+          payload_logging: Request model for payload log settings within the DLP settings endpoint. Unlike
+              the legacy endpoint, null and missing are treated identically here (both mean
+              "not provided" for PATCH, "reset to default" for PUT).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._put(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "ai_context_analysis": ai_context_analysis,
+                    "ocr": ocr,
+                    "payload_logging": payload_logging,
+                },
+                setting_update_params.SettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    def delete(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Delete (reset) DLP account-level settings to initial values.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    def edit(
+        self,
+        *,
+        account_id: str | None = None,
+        ai_context_analysis: Optional[bool] | Omit = omit,
+        ocr: Optional[bool] | Omit = omit,
+        payload_logging: setting_edit_params.PayloadLogging | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Missing fields keep their existing values.
+
+        Args:
+          ai_context_analysis: Whether AI context analysis is enabled at the account level.
+
+          ocr: Whether OCR is enabled at the account level.
+
+          payload_logging: Request model for payload log settings within the DLP settings endpoint. Unlike
+              the legacy endpoint, null and missing are treated identically here (both mean
+              "not provided" for PATCH, "reset to default" for PUT).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._patch(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "ai_context_analysis": ai_context_analysis,
+                    "ocr": ocr,
+                    "payload_logging": payload_logging,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    def get(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Get DLP account-level settings.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+
+class AsyncSettingsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncSettingsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncSettingsResourceWithStreamingResponse(self)
+
+    async def update(
+        self,
+        *,
+        account_id: str | None = None,
+        ai_context_analysis: Optional[bool] | Omit = omit,
+        ocr: Optional[bool] | Omit = omit,
+        payload_logging: setting_update_params.PayloadLogging | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Missing fields are reset to initial (unconfigured) values.
+
+        Args:
+          ai_context_analysis: Whether AI context analysis is enabled at the account level.
+
+          ocr: Whether OCR is enabled at the account level.
+
+          payload_logging: Request model for payload log settings within the DLP settings endpoint. Unlike
+              the legacy endpoint, null and missing are treated identically here (both mean
+              "not provided" for PATCH, "reset to default" for PUT).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._put(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "ai_context_analysis": ai_context_analysis,
+                    "ocr": ocr,
+                    "payload_logging": payload_logging,
+                },
+                setting_update_params.SettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    async def delete(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Delete (reset) DLP account-level settings to initial values.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    async def edit(
+        self,
+        *,
+        account_id: str | None = None,
+        ai_context_analysis: Optional[bool] | Omit = omit,
+        ocr: Optional[bool] | Omit = omit,
+        payload_logging: setting_edit_params.PayloadLogging | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Missing fields keep their existing values.
+
+        Args:
+          ai_context_analysis: Whether AI context analysis is enabled at the account level.
+
+          ocr: Whether OCR is enabled at the account level.
+
+          payload_logging: Request model for payload log settings within the DLP settings endpoint. Unlike
+              the legacy endpoint, null and missing are treated identically here (both mean
+              "not provided" for PATCH, "reset to default" for PUT).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._patch(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "ai_context_analysis": ai_context_analysis,
+                    "ocr": ocr,
+                    "payload_logging": payload_logging,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+    async def get(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DLPSettings]:
+        """
+        Get DLP account-level settings.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            path_template("/accounts/{account_id}/dlp/settings", account_id=account_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DLPSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DLPSettings]], ResultWrapper[DLPSettings]),
+        )
+
+
+class SettingsResourceWithRawResponse:
+    def __init__(self, settings: SettingsResource) -> None:
+        self._settings = settings
+
+        self.update = to_raw_response_wrapper(
+            settings.update,
+        )
+        self.delete = to_raw_response_wrapper(
+            settings.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            settings.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            settings.get,
+        )
+
+
+class AsyncSettingsResourceWithRawResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
+        self._settings = settings
+
+        self.update = async_to_raw_response_wrapper(
+            settings.update,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            settings.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            settings.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            settings.get,
+        )
+
+
+class SettingsResourceWithStreamingResponse:
+    def __init__(self, settings: SettingsResource) -> None:
+        self._settings = settings
+
+        self.update = to_streamed_response_wrapper(
+            settings.update,
+        )
+        self.delete = to_streamed_response_wrapper(
+            settings.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            settings.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            settings.get,
+        )
+
+
+class AsyncSettingsResourceWithStreamingResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
+        self._settings = settings
+
+        self.update = async_to_streamed_response_wrapper(
+            settings.update,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            settings.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            settings.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            settings.get,
+        )

@@ -9,7 +9,7 @@ __all__ = ["BehaviourUpdateParams", "Behaviors"]
 
 
 class BehaviourUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     behaviors: Required[Dict[str, Behaviors]]
 

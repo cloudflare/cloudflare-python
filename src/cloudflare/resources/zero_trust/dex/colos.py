@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -47,7 +47,7 @@ class ColosResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         to: str,
         sort_by: Literal["fleet-status-usage", "application-tests-usage"] | Omit = omit,
@@ -79,10 +79,12 @@ class ColosResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/colos",
+            path_template("/accounts/{account_id}/dex/colos", account_id=account_id),
             page=SyncSinglePage[ColoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -125,7 +127,7 @@ class AsyncColosResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         to: str,
         sort_by: Literal["fleet-status-usage", "application-tests-usage"] | Omit = omit,
@@ -157,10 +159,12 @@ class AsyncColosResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/colos",
+            path_template("/accounts/{account_id}/dex/colos", account_id=account_id),
             page=AsyncSinglePage[ColoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -9,7 +9,7 @@ __all__ = ["PatternValidateParams"]
 
 
 class PatternValidateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     regex: Required[str]
 

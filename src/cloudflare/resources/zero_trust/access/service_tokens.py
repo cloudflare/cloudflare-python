@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -57,8 +57,8 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         *,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
@@ -104,6 +104,10 @@ class ServiceTokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -117,7 +121,11 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -141,8 +149,8 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
         name: str | Omit = omit,
@@ -190,6 +198,10 @@ class ServiceTokensResource(SyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -203,7 +215,12 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "client_secret_version": client_secret_version,
@@ -226,8 +243,8 @@ class ServiceTokensResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -263,6 +280,10 @@ class ServiceTokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -276,7 +297,11 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[ServiceToken],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -300,8 +325,8 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -329,6 +354,10 @@ class ServiceTokensResource(SyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -342,7 +371,12 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -357,8 +391,8 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -386,6 +420,10 @@ class ServiceTokensResource(SyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -399,7 +437,12 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -414,7 +457,7 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,12 +481,18 @@ class ServiceTokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return self._post(
-            f"/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
+            path_template(
+                "/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
+                account_id=account_id,
+                service_token_id=service_token_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -458,7 +507,7 @@ class ServiceTokensResource(SyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -486,12 +535,18 @@ class ServiceTokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return self._post(
-            f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+            path_template(
+                "/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+                account_id=account_id,
+                service_token_id=service_token_id,
+            ),
             body=maybe_transform(
                 {"previous_client_secret_expires_at": previous_client_secret_expires_at},
                 service_token_rotate_params.ServiceTokenRotateParams,
@@ -531,8 +586,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
@@ -578,6 +633,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -591,7 +650,11 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -615,8 +678,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
         name: str | Omit = omit,
@@ -664,6 +727,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -677,7 +744,12 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "client_secret_version": client_secret_version,
@@ -700,8 +772,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -737,6 +809,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -750,7 +826,11 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[ServiceToken],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -774,8 +854,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -803,6 +883,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -816,7 +900,12 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -831,8 +920,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -860,6 +949,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         """
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -873,7 +966,12 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
+                service_token_id=service_token_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -888,7 +986,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -912,12 +1010,18 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
+            path_template(
+                "/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
+                account_id=account_id,
+                service_token_id=service_token_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -932,7 +1036,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         self,
         service_token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -960,12 +1064,18 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_token_id:
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+            path_template(
+                "/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+                account_id=account_id,
+                service_token_id=service_token_id,
+            ),
             body=await async_maybe_transform(
                 {"previous_client_secret_expires_at": previous_client_secret_expires_at},
                 service_token_rotate_params.ServiceTokenRotateParams,

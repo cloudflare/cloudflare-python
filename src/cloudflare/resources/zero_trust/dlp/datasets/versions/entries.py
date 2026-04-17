@@ -18,6 +18,7 @@ from ......_types import (
     AsyncBinaryTypes,
     not_given,
 )
+from ......_utils import path_template
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -58,7 +59,7 @@ class EntriesResource(SyncAPIResource):
         entry_id: str,
         dataset_version_entry: FileContent | BinaryTypes,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         version: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -82,6 +83,8 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
@@ -90,7 +93,13 @@ class EntriesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+                entry_id=entry_id,
+            ),
             content=read_file_content(dataset_version_entry)
             if isinstance(dataset_version_entry, os.PathLike)
             else dataset_version_entry,
@@ -130,7 +139,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         entry_id: str,
         dataset_version_entry: FileContent | AsyncBinaryTypes,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         version: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,6 +163,8 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
@@ -162,7 +173,13 @@ class AsyncEntriesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                version=version,
+                entry_id=entry_id,
+            ),
             content=await async_read_file_content(dataset_version_entry)
             if isinstance(dataset_version_entry, os.PathLike)
             else dataset_version_entry,

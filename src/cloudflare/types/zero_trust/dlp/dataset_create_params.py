@@ -9,7 +9,7 @@ __all__ = ["DatasetCreateParams"]
 
 
 class DatasetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
 

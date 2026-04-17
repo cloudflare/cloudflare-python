@@ -10,7 +10,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -61,7 +61,7 @@ class TargetsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         hostname: str,
         ip: target_create_params.IP,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -91,10 +91,12 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             body=maybe_transform(
                 {
                     "hostname": hostname,
@@ -116,7 +118,7 @@ class TargetsResource(SyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         hostname: str,
         ip: target_update_params.IP,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -148,12 +150,16 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return self._put(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             body=maybe_transform(
                 {
                     "hostname": hostname,
@@ -174,7 +180,7 @@ class TargetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         created_after: Union[str, datetime, None] | Omit = omit,
         created_before: Union[str, datetime, None] | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
@@ -265,10 +271,12 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             page=SyncV4PagePaginationArray[TargetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -308,7 +316,7 @@ class TargetsResource(SyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,13 +340,17 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -349,7 +361,7 @@ class TargetsResource(SyncAPIResource):
     def bulk_delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -371,11 +383,13 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,7 +399,7 @@ class TargetsResource(SyncAPIResource):
     def bulk_delete_v2(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -410,11 +424,13 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch_delete", account_id=account_id),
             body=maybe_transform({"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -425,7 +441,7 @@ class TargetsResource(SyncAPIResource):
     def bulk_update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[target_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -448,10 +464,12 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             page=SyncSinglePage[TargetBulkUpdateResponse],
             body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
@@ -465,7 +483,7 @@ class TargetsResource(SyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -489,12 +507,16 @@ class TargetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return self._get(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -529,7 +551,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         hostname: str,
         ip: target_create_params.IP,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -559,10 +581,12 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
@@ -584,7 +608,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         hostname: str,
         ip: target_update_params.IP,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -616,12 +640,16 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
@@ -642,7 +670,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         created_after: Union[str, datetime, None] | Omit = omit,
         created_before: Union[str, datetime, None] | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
@@ -733,10 +761,12 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets",
+            path_template("/accounts/{account_id}/infrastructure/targets", account_id=account_id),
             page=AsyncV4PagePaginationArray[TargetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -776,7 +806,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -800,13 +830,17 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -817,7 +851,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     async def bulk_delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,11 +873,13 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -853,7 +889,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     async def bulk_delete_v2(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -878,11 +914,13 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch_delete", account_id=account_id),
             body=await async_maybe_transform(
                 {"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params
             ),
@@ -895,7 +933,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     def bulk_update(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[target_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -918,10 +956,12 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+            path_template("/accounts/{account_id}/infrastructure/targets/batch", account_id=account_id),
             page=AsyncSinglePage[TargetBulkUpdateResponse],
             body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
@@ -935,7 +975,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         target_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -959,12 +999,16 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/infrastructure/targets/{target_id}",
+            path_template(
+                "/accounts/{account_id}/infrastructure/targets/{target_id}", account_id=account_id, target_id=target_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

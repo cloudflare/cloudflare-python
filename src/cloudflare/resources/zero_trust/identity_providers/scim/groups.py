@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -46,7 +46,7 @@ class GroupsResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_resource_id: str | Omit = omit,
         idp_resource_id: str | Omit = omit,
         name: str | Omit = omit,
@@ -88,6 +88,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identity_provider_id:
@@ -95,7 +97,11 @@ class GroupsResource(SyncAPIResource):
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+            ),
             page=SyncV4PagePaginationArray[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -141,7 +147,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_resource_id: str | Omit = omit,
         idp_resource_id: str | Omit = omit,
         name: str | Omit = omit,
@@ -183,6 +189,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identity_provider_id:
@@ -190,7 +198,11 @@ class AsyncGroupsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+            ),
             page=AsyncV4PagePaginationArray[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers,

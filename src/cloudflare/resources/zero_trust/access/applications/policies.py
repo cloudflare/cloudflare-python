@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -54,8 +54,8 @@ class PoliciesResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         connection_rules: policy_create_params.ConnectionRules | Omit = omit,
@@ -120,6 +120,10 @@ class PoliciesResource(SyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -133,7 +137,12 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -163,8 +172,8 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         connection_rules: policy_update_params.ConnectionRules | Omit = omit,
@@ -232,6 +241,10 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -245,7 +258,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -274,8 +293,8 @@ class PoliciesResource(SyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -311,6 +330,10 @@ class PoliciesResource(SyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -324,7 +347,12 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -347,8 +375,8 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -382,6 +410,10 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -395,7 +427,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -411,8 +449,8 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,6 +484,10 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -459,7 +501,13 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -495,8 +543,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         connection_rules: policy_create_params.ConnectionRules | Omit = omit,
@@ -561,6 +609,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -574,7 +626,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -604,8 +661,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
         connection_rules: policy_update_params.ConnectionRules | Omit = omit,
@@ -673,6 +730,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -686,7 +747,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "approval_groups": approval_groups,
@@ -715,8 +782,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         app_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -752,6 +819,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -765,7 +836,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                app_id=app_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -788,8 +864,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -823,6 +899,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -836,7 +916,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -852,8 +938,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -887,6 +973,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -900,7 +990,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                app_id=app_id,
+                policy_id=policy_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

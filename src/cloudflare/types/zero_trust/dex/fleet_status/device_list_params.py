@@ -10,7 +10,7 @@ __all__ = ["DeviceListParams"]
 
 
 class DeviceListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Time range beginning in ISO format"""

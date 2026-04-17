@@ -9,7 +9,7 @@ __all__ = ["ListCreateParams", "Item"]
 
 
 class ListCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
     """Specify the list name."""

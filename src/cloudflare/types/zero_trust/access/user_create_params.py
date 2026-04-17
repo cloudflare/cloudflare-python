@@ -8,7 +8,7 @@ __all__ = ["UserCreateParams"]
 
 
 class UserCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     email: Required[str]

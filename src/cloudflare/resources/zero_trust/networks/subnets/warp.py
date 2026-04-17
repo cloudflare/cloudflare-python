@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -48,7 +48,7 @@ class WARPResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         network: str,
         comment: str | Omit = omit,
@@ -94,10 +94,12 @@ class WARPResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/zerotrust/subnets/warp",
+            path_template("/accounts/{account_id}/zerotrust/subnets/warp", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -121,7 +123,7 @@ class WARPResource(SyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,12 +149,16 @@ class WARPResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +173,7 @@ class WARPResource(SyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comment: str | Omit = omit,
         is_default_network: bool | Omit = omit,
         name: str | Omit = omit,
@@ -210,12 +216,16 @@ class WARPResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             body=maybe_transform(
                 {
                     "comment": comment,
@@ -239,7 +249,7 @@ class WARPResource(SyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -263,12 +273,16 @@ class WARPResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return self._get(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -303,7 +317,7 @@ class AsyncWARPResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         network: str,
         comment: str | Omit = omit,
@@ -349,10 +363,12 @@ class AsyncWARPResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/zerotrust/subnets/warp",
+            path_template("/accounts/{account_id}/zerotrust/subnets/warp", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -376,7 +392,7 @@ class AsyncWARPResource(AsyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,12 +418,16 @@ class AsyncWARPResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -422,7 +442,7 @@ class AsyncWARPResource(AsyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comment: str | Omit = omit,
         is_default_network: bool | Omit = omit,
         name: str | Omit = omit,
@@ -465,12 +485,16 @@ class AsyncWARPResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             body=await async_maybe_transform(
                 {
                     "comment": comment,
@@ -494,7 +518,7 @@ class AsyncWARPResource(AsyncAPIResource):
         self,
         subnet_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -518,12 +542,16 @@ class AsyncWARPResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subnet_id:
             raise ValueError(f"Expected a non-empty value for `subnet_id` but received {subnet_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}",
+            path_template(
+                "/accounts/{account_id}/zerotrust/subnets/warp/{subnet_id}", account_id=account_id, subnet_id=subnet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ...._types import SequenceNotStr
 from .gateway_ips import GatewayIPs
@@ -11,7 +11,7 @@ __all__ = ["ProxyEndpointEditParams"]
 
 
 class ProxyEndpointEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     ips: SequenceNotStr[GatewayIPs]
     """Specify the list of CIDRs to restrict ingress connections."""

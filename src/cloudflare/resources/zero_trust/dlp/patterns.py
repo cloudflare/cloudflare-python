@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -47,7 +47,7 @@ class PatternsResource(SyncAPIResource):
     def validate(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         regex: str,
         max_match_bytes: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,10 +83,12 @@ class PatternsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/dlp/patterns/validate",
+            path_template("/accounts/{account_id}/dlp/patterns/validate", account_id=account_id),
             body=maybe_transform(
                 {
                     "regex": regex,
@@ -128,7 +130,7 @@ class AsyncPatternsResource(AsyncAPIResource):
     async def validate(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         regex: str,
         max_match_bytes: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -164,10 +166,12 @@ class AsyncPatternsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/dlp/patterns/validate",
+            path_template("/accounts/{account_id}/dlp/patterns/validate", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "regex": regex,

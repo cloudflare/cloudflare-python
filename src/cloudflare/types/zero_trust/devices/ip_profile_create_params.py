@@ -9,7 +9,7 @@ __all__ = ["IPProfileCreateParams"]
 
 
 class IPProfileCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     match: Required[str]
     """The wirefilter expression to match registrations.

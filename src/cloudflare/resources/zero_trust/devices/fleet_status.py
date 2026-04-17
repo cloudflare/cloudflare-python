@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -45,7 +45,7 @@ class FleetStatusResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         since_minutes: float,
         colo: str | Omit = omit,
         time_now: str | Omit = omit,
@@ -77,12 +77,18 @@ class FleetStatusResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+            path_template(
+                "/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -125,7 +131,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         since_minutes: float,
         colo: str | Omit = omit,
         time_now: str | Omit = omit,
@@ -157,12 +163,18 @@ class AsyncFleetStatusResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+            path_template(
+                "/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+                account_id=account_id,
+                device_id=device_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

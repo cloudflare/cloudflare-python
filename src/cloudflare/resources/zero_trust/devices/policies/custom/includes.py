@@ -7,7 +7,7 @@ from typing import Any, Iterable, cast
 import httpx
 
 from ......_types import Body, Query, Headers, NotGiven, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -48,7 +48,7 @@ class IncludesResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[SplitTunnelIncludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,12 +70,16 @@ class IncludesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/include", account_id=account_id, policy_id=policy_id
+            ),
             page=SyncSinglePage[SplitTunnelInclude],
             body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
@@ -89,7 +93,7 @@ class IncludesResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,12 +114,16 @@ class IncludesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/include", account_id=account_id, policy_id=policy_id
+            ),
             page=SyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -148,7 +156,7 @@ class AsyncIncludesResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[SplitTunnelIncludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -170,12 +178,16 @@ class AsyncIncludesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/include", account_id=account_id, policy_id=policy_id
+            ),
             page=AsyncSinglePage[SplitTunnelInclude],
             body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
@@ -189,7 +201,7 @@ class AsyncIncludesResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,12 +222,16 @@ class AsyncIncludesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            path_template(
+                "/accounts/{account_id}/devices/policy/{policy_id}/include", account_id=account_id, policy_id=policy_id
+            ),
             page=AsyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -7,7 +7,7 @@ from typing import Any, Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -48,7 +48,7 @@ class CustomResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         ai_context_enabled: bool | Omit = omit,
         allowed_match_count: int | Omit = omit,
@@ -96,12 +96,14 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[Profile],
             self._post(
-                f"/accounts/{account_id}/dlp/profiles/custom",
+                path_template("/accounts/{account_id}/dlp/profiles/custom", account_id=account_id),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -136,7 +138,7 @@ class CustomResource(SyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         ai_context_enabled: bool | Omit = omit,
         allowed_match_count: Optional[int] | Omit = omit,
@@ -187,6 +189,8 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
@@ -194,7 +198,11 @@ class CustomResource(SyncAPIResource):
         return cast(
             Optional[Profile],
             self._put(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 body=maybe_transform(
                     {
                         "name": name,
@@ -229,7 +237,7 @@ class CustomResource(SyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,12 +257,16 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/profiles/custom/{profile_id}", account_id=account_id, profile_id=profile_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -269,7 +281,7 @@ class CustomResource(SyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -289,6 +301,8 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
@@ -296,7 +310,11 @@ class CustomResource(SyncAPIResource):
         return cast(
             Optional[Profile],
             self._get(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -334,7 +352,7 @@ class AsyncCustomResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         ai_context_enabled: bool | Omit = omit,
         allowed_match_count: int | Omit = omit,
@@ -382,12 +400,14 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[Profile],
             await self._post(
-                f"/accounts/{account_id}/dlp/profiles/custom",
+                path_template("/accounts/{account_id}/dlp/profiles/custom", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -422,7 +442,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         ai_context_enabled: bool | Omit = omit,
         allowed_match_count: Optional[int] | Omit = omit,
@@ -473,6 +493,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
@@ -480,7 +502,11 @@ class AsyncCustomResource(AsyncAPIResource):
         return cast(
             Optional[Profile],
             await self._put(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "name": name,
@@ -515,7 +541,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,12 +561,16 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+            path_template(
+                "/accounts/{account_id}/dlp/profiles/custom/{profile_id}", account_id=account_id, profile_id=profile_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -555,7 +585,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         profile_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -575,6 +605,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
@@ -582,7 +614,11 @@ class AsyncCustomResource(AsyncAPIResource):
         return cast(
             Optional[Profile],
             await self._get(
-                f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                path_template(
+                    "/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                    account_id=account_id,
+                    profile_id=profile_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

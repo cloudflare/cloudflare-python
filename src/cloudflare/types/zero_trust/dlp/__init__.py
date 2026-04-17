@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .dataset import Dataset as Dataset
 from .profile import Profile as Profile
+from .dlp_settings import DLPSettings as DLPSettings
 from .dataset_array import DatasetArray as DatasetArray
 from .dataset_creation import DatasetCreation as DatasetCreation
 from .context_awareness import ContextAwareness as ContextAwareness
@@ -14,10 +15,12 @@ from .entry_list_response import EntryListResponse as EntryListResponse
 from .entry_update_params import EntryUpdateParams as EntryUpdateParams
 from .limit_list_response import LimitListResponse as LimitListResponse
 from .profile_list_params import ProfileListParams as ProfileListParams
+from .setting_edit_params import SettingEditParams as SettingEditParams
 from .dataset_create_params import DatasetCreateParams as DatasetCreateParams
 from .dataset_update_params import DatasetUpdateParams as DatasetUpdateParams
 from .entry_create_response import EntryCreateResponse as EntryCreateResponse
 from .entry_update_response import EntryUpdateResponse as EntryUpdateResponse
+from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .context_awareness_param import ContextAwarenessParam as ContextAwarenessParam
 from .pattern_validate_params import PatternValidateParams as PatternValidateParams
 from .payload_log_get_response import PayloadLogGetResponse as PayloadLogGetResponse

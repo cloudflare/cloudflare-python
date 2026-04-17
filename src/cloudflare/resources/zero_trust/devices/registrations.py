@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -56,7 +56,7 @@ class RegistrationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str] | Omit = omit,
         cursor: str | Omit = omit,
         device: registration_list_params.Device | Omit = omit,
@@ -113,10 +113,12 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             page=SyncCursorPagination[RegistrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -148,7 +150,7 @@ class RegistrationsResource(SyncAPIResource):
         self,
         registration_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,12 +170,18 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,7 +195,7 @@ class RegistrationsResource(SyncAPIResource):
     def bulk_delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -210,10 +218,12 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -229,7 +239,7 @@ class RegistrationsResource(SyncAPIResource):
         self,
         registration_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -253,12 +263,18 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,7 +289,7 @@ class RegistrationsResource(SyncAPIResource):
     def revoke(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,10 +312,12 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/registrations/revoke",
+            path_template("/accounts/{account_id}/devices/registrations/revoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,7 +332,7 @@ class RegistrationsResource(SyncAPIResource):
     def unrevoke(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -337,10 +355,12 @@ class RegistrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/devices/registrations/unrevoke",
+            path_template("/accounts/{account_id}/devices/registrations/unrevoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -376,7 +396,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str] | Omit = omit,
         cursor: str | Omit = omit,
         device: registration_list_params.Device | Omit = omit,
@@ -433,10 +453,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             page=AsyncCursorPagination[RegistrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -468,7 +490,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         self,
         registration_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,12 +510,18 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -507,7 +535,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
     async def bulk_delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -530,10 +558,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/devices/registrations",
+            path_template("/accounts/{account_id}/devices/registrations", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -551,7 +581,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         self,
         registration_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -575,12 +605,18 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not registration_id:
             raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/registrations/{registration_id}",
+            path_template(
+                "/accounts/{account_id}/devices/registrations/{registration_id}",
+                account_id=account_id,
+                registration_id=registration_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -595,7 +631,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
     async def revoke(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -618,10 +654,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/registrations/revoke",
+            path_template("/accounts/{account_id}/devices/registrations/revoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -636,7 +674,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
     async def unrevoke(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -659,10 +697,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/devices/registrations/unrevoke",
+            path_template("/accounts/{account_id}/devices/registrations/unrevoke", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

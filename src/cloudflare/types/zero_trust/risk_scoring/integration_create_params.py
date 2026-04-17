@@ -9,7 +9,7 @@ __all__ = ["IntegrationCreateParams"]
 
 
 class IntegrationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     integration_type: Required[Literal["Okta"]]
 

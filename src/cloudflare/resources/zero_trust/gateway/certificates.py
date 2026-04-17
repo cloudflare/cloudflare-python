@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -57,7 +57,7 @@ class CertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         validity_period_days: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,10 +83,12 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/gateway/certificates",
+            path_template("/accounts/{account_id}/gateway/certificates", account_id=account_id),
             body=maybe_transform(
                 {"validity_period_days": validity_period_days}, certificate_create_params.CertificateCreateParams
             ),
@@ -103,7 +105,7 @@ class CertificatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,10 +125,12 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/certificates",
+            path_template("/accounts/{account_id}/gateway/certificates", account_id=account_id),
             page=SyncSinglePage[CertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -138,7 +142,7 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,12 +166,18 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -182,7 +192,7 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -205,12 +215,18 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._post(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             body=maybe_transform(body, certificate_activate_params.CertificateActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -226,7 +242,7 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,12 +265,18 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._post(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             body=maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -270,7 +292,7 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,12 +314,18 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._get(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,7 +360,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         validity_period_days: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -358,10 +386,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/gateway/certificates",
+            path_template("/accounts/{account_id}/gateway/certificates", account_id=account_id),
             body=await async_maybe_transform(
                 {"validity_period_days": validity_period_days}, certificate_create_params.CertificateCreateParams
             ),
@@ -378,7 +408,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -398,10 +428,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/gateway/certificates",
+            path_template("/accounts/{account_id}/gateway/certificates", account_id=account_id),
             page=AsyncSinglePage[CertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -413,7 +445,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,12 +469,18 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -457,7 +495,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -480,12 +518,18 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             body=await async_maybe_transform(body, certificate_activate_params.CertificateActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -501,7 +545,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -524,12 +568,18 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             body=await async_maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -545,7 +595,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -567,12 +617,18 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
+            path_template(
+                "/accounts/{account_id}/gateway/certificates/{certificate_id}",
+                account_id=account_id,
+                certificate_id=certificate_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

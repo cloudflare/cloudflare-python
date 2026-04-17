@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ......_utils import maybe_transform
+from ......_utils import path_template, maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -49,7 +49,7 @@ class UpdatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         idp_id: SequenceNotStr[str],
         cf_resource_id: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
@@ -115,10 +115,12 @@ class UpdatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/logs/scim/updates",
+            path_template("/accounts/{account_id}/access/logs/scim/updates", account_id=account_id),
             page=SyncV4PagePaginationArray[UpdateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -172,7 +174,7 @@ class AsyncUpdatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         idp_id: SequenceNotStr[str],
         cf_resource_id: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
@@ -238,10 +240,12 @@ class AsyncUpdatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/access/logs/scim/updates",
+            path_template("/accounts/{account_id}/access/logs/scim/updates", account_id=account_id),
             page=AsyncV4PagePaginationArray[UpdateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

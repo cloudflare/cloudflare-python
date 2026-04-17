@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ...._types import SequenceNotStr
 
@@ -11,7 +11,7 @@ __all__ = ["ListEditParams", "Append"]
 
 
 class ListEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     append: Iterable[Append]
     """Add items to the list."""

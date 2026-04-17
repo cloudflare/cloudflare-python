@@ -10,7 +10,7 @@ __all__ = ["RegistrationBulkDeleteParams"]
 
 
 class RegistrationBulkDeleteParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     id: Required[SequenceNotStr[str]]
     """A list of registration IDs to delete."""
