@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
@@ -12,7 +12,7 @@ __all__ = ["BytimeGetParams"]
 
 
 class BytimeGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     dimensions: str

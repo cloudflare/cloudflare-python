@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -82,7 +82,7 @@ class DNSFirewallResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         upstream_ips: SequenceNotStr[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
@@ -157,10 +157,12 @@ class DNSFirewallResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/dns_firewall",
+            path_template("/accounts/{account_id}/dns_firewall", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -189,7 +191,7 @@ class DNSFirewallResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -217,10 +219,12 @@ class DNSFirewallResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dns_firewall",
+            path_template("/accounts/{account_id}/dns_firewall", account_id=account_id),
             page=SyncV4PagePaginationArray[DNSFirewallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -242,7 +246,7 @@ class DNSFirewallResource(SyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -266,12 +270,18 @@ class DNSFirewallResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,7 +296,7 @@ class DNSFirewallResource(SyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
         deprecate_any_requests: bool | Omit = omit,
         ecs_fallback: bool | Omit = omit,
@@ -363,12 +373,18 @@ class DNSFirewallResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             body=maybe_transform(
                 {
                     "attack_mitigation": attack_mitigation,
@@ -398,7 +414,7 @@ class DNSFirewallResource(SyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,12 +438,18 @@ class DNSFirewallResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._get(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -470,7 +492,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         upstream_ips: SequenceNotStr[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
@@ -545,10 +567,12 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/dns_firewall",
+            path_template("/accounts/{account_id}/dns_firewall", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -577,7 +601,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -605,10 +629,12 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dns_firewall",
+            path_template("/accounts/{account_id}/dns_firewall", account_id=account_id),
             page=AsyncV4PagePaginationArray[DNSFirewallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -630,7 +656,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -654,12 +680,18 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -674,7 +706,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
         deprecate_any_requests: bool | Omit = omit,
         ecs_fallback: bool | Omit = omit,
@@ -751,12 +783,18 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "attack_mitigation": attack_mitigation,
@@ -786,7 +824,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -810,12 +848,18 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+            path_template(
+                "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+                account_id=account_id,
+                dns_firewall_id=dns_firewall_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
