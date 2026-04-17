@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -53,7 +53,7 @@ class EntriesResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         content: str,
         type: Literal["cid", "content_path"],
         description: str | Omit = omit,
@@ -86,12 +86,18 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+                zone_id=zone_id,
+                identifier=identifier,
+            ),
             body=maybe_transform(
                 {
                     "content": content,
@@ -114,7 +120,7 @@ class EntriesResource(SyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         content: str,
         type: Literal["cid", "content_path"],
@@ -150,6 +156,8 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -159,7 +167,12 @@ class EntriesResource(SyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return self._put(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             body=maybe_transform(
                 {
                     "content": content,
@@ -182,7 +195,7 @@ class EntriesResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,12 +219,18 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+                zone_id=zone_id,
+                identifier=identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +245,7 @@ class EntriesResource(SyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -253,6 +272,8 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -262,7 +283,12 @@ class EntriesResource(SyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return self._delete(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -277,7 +303,7 @@ class EntriesResource(SyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -304,6 +330,8 @@ class EntriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -313,7 +341,12 @@ class EntriesResource(SyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return self._get(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,7 +382,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         content: str,
         type: Literal["cid", "content_path"],
         description: str | Omit = omit,
@@ -382,12 +415,18 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+                zone_id=zone_id,
+                identifier=identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "content": content,
@@ -410,7 +449,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         content: str,
         type: Literal["cid", "content_path"],
@@ -446,6 +485,8 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -455,7 +496,12 @@ class AsyncEntriesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return await self._put(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "content": content,
@@ -478,7 +524,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,12 +548,18 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries",
+                zone_id=zone_id,
+                identifier=identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -522,7 +574,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -549,6 +601,8 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -558,7 +612,12 @@ class AsyncEntriesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return await self._delete(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -573,7 +632,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         self,
         content_list_entry_identifier: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -600,6 +659,8 @@ class AsyncEntriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -609,7 +670,12 @@ class AsyncEntriesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `content_list_entry_identifier` but received {content_list_entry_identifier!r}"
             )
         return await self._get(
-            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+            path_template(
+                "/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
+                zone_id=zone_id,
+                identifier=identifier,
+                content_list_entry_identifier=content_list_entry_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

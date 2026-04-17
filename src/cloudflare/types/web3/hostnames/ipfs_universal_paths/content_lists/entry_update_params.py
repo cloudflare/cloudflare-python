@@ -8,7 +8,7 @@ __all__ = ["EntryUpdateParams"]
 
 
 class EntryUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Specify the identifier of the hostname."""
 
     identifier: Required[str]

@@ -9,7 +9,7 @@ __all__ = ["ContentListUpdateParams", "Entry"]
 
 
 class ContentListUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Specify the identifier of the hostname."""
 
     action: Required[Literal["block"]]
