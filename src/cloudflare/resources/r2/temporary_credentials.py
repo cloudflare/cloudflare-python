@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.r2 import temporary_credential_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,7 +48,7 @@ class TemporaryCredentialsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
@@ -89,10 +89,12 @@ class TemporaryCredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/r2/temp-access-credentials",
+            path_template("/accounts/{account_id}/r2/temp-access-credentials", account_id=account_id),
             body=maybe_transform(
                 {
                     "bucket": bucket,
@@ -138,7 +140,7 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket: str,
         parent_access_key_id: str,
         permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
@@ -179,10 +181,12 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/r2/temp-access-credentials",
+            path_template("/accounts/{account_id}/r2/temp-access-credentials", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "bucket": bucket,

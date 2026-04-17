@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,7 +50,7 @@ class EventNotificationsResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         rules: Iterable[event_notification_update_params.Rule],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -83,6 +83,8 @@ class EventNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -94,7 +96,12 @@ class EventNotificationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             body=maybe_transform({"rules": rules}, event_notification_update_params.EventNotificationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -110,7 +117,7 @@ class EventNotificationsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -137,6 +144,8 @@ class EventNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -146,7 +155,11 @@ class EventNotificationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -161,7 +174,7 @@ class EventNotificationsResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -193,6 +206,8 @@ class EventNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -204,7 +219,12 @@ class EventNotificationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +239,7 @@ class EventNotificationsResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -249,6 +269,8 @@ class EventNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -260,7 +282,12 @@ class EventNotificationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,7 +323,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         rules: Iterable[event_notification_update_params.Rule],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -329,6 +356,8 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -340,7 +369,12 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             body=await async_maybe_transform(
                 {"rules": rules}, event_notification_update_params.EventNotificationUpdateParams
             ),
@@ -358,7 +392,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -385,6 +419,8 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -394,7 +430,11 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -409,7 +449,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -441,6 +481,8 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -452,7 +494,12 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -467,7 +514,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -497,6 +544,8 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -508,7 +557,12 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+            path_template(
+                "/accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                queue_id=queue_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

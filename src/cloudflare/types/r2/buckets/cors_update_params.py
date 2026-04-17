@@ -12,7 +12,7 @@ __all__ = ["CORSUpdateParams", "Rule", "RuleAllowed"]
 
 
 class CORSUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     rules: Iterable[Rule]

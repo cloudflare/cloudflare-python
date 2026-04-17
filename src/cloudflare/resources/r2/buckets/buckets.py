@@ -40,7 +40,7 @@ from .metrics import (
     AsyncMetricsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .lifecycle import (
     LifecycleResource,
     AsyncLifecycleResource,
@@ -133,7 +133,7 @@ class BucketsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
@@ -167,6 +167,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -174,7 +176,7 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -196,7 +198,7 @@ class BucketsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         name_contains: str | Omit = omit,
@@ -241,6 +243,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -248,7 +252,7 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +278,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,6 +305,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -310,7 +316,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +333,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         storage_class: Literal["Standard", "InfrequentAccess"],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -355,6 +363,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -369,7 +379,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -384,7 +396,7 @@ class BucketsResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -411,6 +423,8 @@ class BucketsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -420,7 +434,9 @@ class BucketsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -483,7 +499,7 @@ class AsyncBucketsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
@@ -517,6 +533,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -524,7 +542,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -546,7 +564,7 @@ class AsyncBucketsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         name_contains: str | Omit = omit,
@@ -591,6 +609,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
@@ -598,7 +618,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets",
+            path_template("/accounts/{account_id}/r2/buckets", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -624,7 +644,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -651,6 +671,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -660,7 +682,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -675,7 +699,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         storage_class: Literal["Standard", "InfrequentAccess"],
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -705,6 +729,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -719,7 +745,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -734,7 +762,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -761,6 +789,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -770,7 +800,9 @@ class AsyncBucketsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}", account_id=account_id, bucket_name=bucket_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

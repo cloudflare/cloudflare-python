@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ....._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -50,7 +50,7 @@ class ManagedResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         enabled: bool,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,6 +80,8 @@ class ManagedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -89,7 +91,11 @@ class ManagedResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             body=maybe_transform({"enabled": enabled}, managed_update_params.ManagedUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -105,7 +111,7 @@ class ManagedResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,6 +138,8 @@ class ManagedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -141,7 +149,11 @@ class ManagedResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +189,7 @@ class AsyncManagedResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         enabled: bool,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -207,6 +219,8 @@ class AsyncManagedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -216,7 +230,11 @@ class AsyncManagedResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             body=await async_maybe_transform({"enabled": enabled}, managed_update_params.ManagedUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -232,7 +250,7 @@ class AsyncManagedResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -259,6 +277,8 @@ class AsyncManagedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -268,7 +288,11 @@ class AsyncManagedResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+            path_template(
+                "/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
+                account_id=account_id,
+                bucket_name=bucket_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

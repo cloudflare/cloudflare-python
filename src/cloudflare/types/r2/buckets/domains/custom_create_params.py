@@ -11,7 +11,7 @@ __all__ = ["CustomCreateParams"]
 
 
 class CustomCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     domain: Required[str]

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Annotated, TypeAlias, TypedDict
 
 from .provider import Provider
 from ...._utils import PropertyInfo
@@ -23,7 +23,7 @@ __all__ = [
 
 
 class R2EnableSippyAws(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     destination: R2EnableSippyAwsDestination
@@ -81,7 +81,7 @@ class R2EnableSippyAwsSource(TypedDict, total=False):
 
 
 class R2EnableSippyGcs(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     destination: R2EnableSippyGcsDestination
@@ -136,7 +136,7 @@ class R2EnableSippyGcsSource(TypedDict, total=False):
 
 
 class R2EnableSippyS3(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     destination: R2EnableSippyS3Destination
