@@ -399,11 +399,11 @@ class InstanceReadResponse(BaseModel):
 
     status: Optional[str] = None
 
-    sync_interval: Optional[Literal[3600, 7200, 14400, 21600, 43200, 86400]] = None
+    sync_interval: Optional[Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400]] = None
     """Interval between automatic syncs, in seconds.
 
-    Allowed values: 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400
-    (24h).
+    Allowed values: 900 (15min), 1800 (30min), 3600 (1h), 7200 (2h), 14400 (4h),
+    21600 (6h), 43200 (12h), 86400 (24h).
     """
 
     token_id: Optional[str] = None

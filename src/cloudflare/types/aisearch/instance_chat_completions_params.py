@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing import Dict, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -20,7 +20,7 @@ __all__ = [
 
 
 class InstanceChatCompletionsParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     messages: Required[Iterable[Message]]
 
@@ -62,13 +62,10 @@ class InstanceChatCompletionsParams(TypedDict, total=False):
     stream: bool
 
 
-class MessageTyped(TypedDict, total=False):
+class Message(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     content: Required[Optional[str]]
 
     role: Required[Literal["system", "developer", "user", "assistant", "tool"]]
-
-
-Message: TypeAlias = Union[MessageTyped, Dict[str, object]]
 
 
 class AISearchOptionsCache(TypedDict, total=False):

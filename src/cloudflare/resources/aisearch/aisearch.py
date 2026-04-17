@@ -20,11 +20,23 @@ from .instances.instances import (
     InstancesResourceWithStreamingResponse,
     AsyncInstancesResourceWithStreamingResponse,
 )
+from .namespaces.namespaces import (
+    NamespacesResource,
+    AsyncNamespacesResource,
+    NamespacesResourceWithRawResponse,
+    AsyncNamespacesResourceWithRawResponse,
+    NamespacesResourceWithStreamingResponse,
+    AsyncNamespacesResourceWithStreamingResponse,
+)
 
 __all__ = ["AISearchResource", "AsyncAISearchResource"]
 
 
 class AISearchResource(SyncAPIResource):
+    @cached_property
+    def namespaces(self) -> NamespacesResource:
+        return NamespacesResource(self._client)
+
     @cached_property
     def instances(self) -> InstancesResource:
         return InstancesResource(self._client)
@@ -54,6 +66,10 @@ class AISearchResource(SyncAPIResource):
 
 
 class AsyncAISearchResource(AsyncAPIResource):
+    @cached_property
+    def namespaces(self) -> AsyncNamespacesResource:
+        return AsyncNamespacesResource(self._client)
+
     @cached_property
     def instances(self) -> AsyncInstancesResource:
         return AsyncInstancesResource(self._client)
@@ -87,6 +103,10 @@ class AISearchResourceWithRawResponse:
         self._aisearch = aisearch
 
     @cached_property
+    def namespaces(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self._aisearch.namespaces)
+
+    @cached_property
     def instances(self) -> InstancesResourceWithRawResponse:
         return InstancesResourceWithRawResponse(self._aisearch.instances)
 
@@ -98,6 +118,10 @@ class AISearchResourceWithRawResponse:
 class AsyncAISearchResourceWithRawResponse:
     def __init__(self, aisearch: AsyncAISearchResource) -> None:
         self._aisearch = aisearch
+
+    @cached_property
+    def namespaces(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self._aisearch.namespaces)
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithRawResponse:
@@ -113,6 +137,10 @@ class AISearchResourceWithStreamingResponse:
         self._aisearch = aisearch
 
     @cached_property
+    def namespaces(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self._aisearch.namespaces)
+
+    @cached_property
     def instances(self) -> InstancesResourceWithStreamingResponse:
         return InstancesResourceWithStreamingResponse(self._aisearch.instances)
 
@@ -124,6 +152,10 @@ class AISearchResourceWithStreamingResponse:
 class AsyncAISearchResourceWithStreamingResponse:
     def __init__(self, aisearch: AsyncAISearchResource) -> None:
         self._aisearch = aisearch
+
+    @cached_property
+    def namespaces(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self._aisearch.namespaces)
 
     @cached_property
     def instances(self) -> AsyncInstancesResourceWithStreamingResponse:

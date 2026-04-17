@@ -8,10 +8,12 @@ __all__ = ["TokenCreateParams"]
 
 
 class TokenCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     cf_api_id: Required[str]
 
     cf_api_key: Required[str]
 
     name: Required[str]
+
+    legacy: bool

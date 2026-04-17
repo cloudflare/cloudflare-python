@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import Type, cast
-from typing_extensions import Literal
 
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -24,7 +23,6 @@ from ...types.aisearch import token_list_params, token_create_params, token_upda
 from ...types.aisearch.token_list_response import TokenListResponse
 from ...types.aisearch.token_read_response import TokenReadResponse
 from ...types.aisearch.token_create_response import TokenCreateResponse
-from ...types.aisearch.token_delete_response import TokenDeleteResponse
 from ...types.aisearch.token_update_response import TokenUpdateResponse
 
 __all__ = ["TokensResource", "AsyncTokensResource"]
@@ -53,10 +51,11 @@ class TokensResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_api_id: str,
         cf_api_key: str,
         name: str,
+        legacy: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,7 +64,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create a new tokens.
+        Create a new token.
 
         Args:
           extra_headers: Send extra headers
@@ -76,15 +75,18 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/tokens",
+            path_template("/accounts/{account_id}/ai-search/tokens", account_id=account_id),
             body=maybe_transform(
                 {
                     "cf_api_id": cf_api_id,
                     "cf_api_key": cf_api_key,
                     "name": name,
+                    "legacy": legacy,
                 },
                 token_create_params.TokenCreateParams,
             ),
@@ -102,10 +104,11 @@ class TokensResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_api_id: str,
         cf_api_key: str,
         name: str,
+        legacy: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,7 +117,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Update tokens.
+        Update token.
 
         Args:
           extra_headers: Send extra headers
@@ -125,17 +128,20 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             body=maybe_transform(
                 {
                     "cf_api_id": cf_api_id,
                     "cf_api_key": cf_api_key,
                     "name": name,
+                    "legacy": legacy,
                 },
                 token_update_params.TokenUpdateParams,
             ),
@@ -152,11 +158,10 @@ class TokensResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        order_by: Literal["created_at"] | Omit = omit,
-        order_by_direction: Literal["asc", "desc"] | Omit = omit,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,9 +173,11 @@ class TokensResource(SyncAPIResource):
         List tokens.
 
         Args:
-          order_by: Order By Column Name
+          page: Page number (1-indexed).
 
-          order_by_direction: Order By Direction
+          per_page: Number of results per page.
+
+          search: Filter tokens whose name contains this string (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -180,10 +187,12 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/tokens",
+            path_template("/accounts/{account_id}/ai-search/tokens", account_id=account_id),
             page=SyncV4PagePaginationArray[TokenListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -192,10 +201,9 @@ class TokensResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     token_list_params.TokenListParams,
                 ),
@@ -207,16 +215,16 @@ class TokensResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TokenDeleteResponse:
+    ) -> object:
         """
-        Delete tokens.
+        Delete token.
 
         Args:
           extra_headers: Send extra headers
@@ -227,27 +235,29 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[TokenDeleteResponse], ResultWrapper[TokenDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def read(
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,7 +266,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Read tokens.
+        Read token.
 
         Args:
           extra_headers: Send extra headers
@@ -267,12 +277,14 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,10 +319,11 @@ class AsyncTokensResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_api_id: str,
         cf_api_key: str,
         name: str,
+        legacy: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -319,7 +332,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create a new tokens.
+        Create a new token.
 
         Args:
           extra_headers: Send extra headers
@@ -330,15 +343,18 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/tokens",
+            path_template("/accounts/{account_id}/ai-search/tokens", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "cf_api_id": cf_api_id,
                     "cf_api_key": cf_api_key,
                     "name": name,
+                    "legacy": legacy,
                 },
                 token_create_params.TokenCreateParams,
             ),
@@ -356,10 +372,11 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cf_api_id: str,
         cf_api_key: str,
         name: str,
+        legacy: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -368,7 +385,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Update tokens.
+        Update token.
 
         Args:
           extra_headers: Send extra headers
@@ -379,17 +396,20 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             body=await async_maybe_transform(
                 {
                     "cf_api_id": cf_api_id,
                     "cf_api_key": cf_api_key,
                     "name": name,
+                    "legacy": legacy,
                 },
                 token_update_params.TokenUpdateParams,
             ),
@@ -406,11 +426,10 @@ class AsyncTokensResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        order_by: Literal["created_at"] | Omit = omit,
-        order_by_direction: Literal["asc", "desc"] | Omit = omit,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,9 +441,11 @@ class AsyncTokensResource(AsyncAPIResource):
         List tokens.
 
         Args:
-          order_by: Order By Column Name
+          page: Page number (1-indexed).
 
-          order_by_direction: Order By Direction
+          per_page: Number of results per page.
+
+          search: Filter tokens whose name contains this string (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -434,10 +455,12 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/tokens",
+            path_template("/accounts/{account_id}/ai-search/tokens", account_id=account_id),
             page=AsyncV4PagePaginationArray[TokenListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -446,10 +469,9 @@ class AsyncTokensResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     token_list_params.TokenListParams,
                 ),
@@ -461,16 +483,16 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TokenDeleteResponse:
+    ) -> object:
         """
-        Delete tokens.
+        Delete token.
 
         Args:
           extra_headers: Send extra headers
@@ -481,27 +503,29 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[TokenDeleteResponse], ResultWrapper[TokenDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def read(
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -510,7 +534,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Read tokens.
+        Read token.
 
         Args:
           extra_headers: Send extra headers
@@ -521,12 +545,14 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/tokens/{id}",
+            path_template("/accounts/{account_id}/ai-search/tokens/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

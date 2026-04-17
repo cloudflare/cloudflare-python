@@ -16,7 +16,7 @@ from .jobs import (
     AsyncJobsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -74,7 +74,7 @@ class InstancesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[
@@ -182,7 +182,7 @@ class InstancesResource(SyncAPIResource):
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         token_id: str | Omit = omit,
         type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -204,8 +204,8 @@ class InstancesResource(SyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -215,10 +215,12 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/instances",
+            path_template("/accounts/{account_id}/ai-search/instances", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -266,7 +268,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[
             Literal[
@@ -408,7 +410,7 @@ class InstancesResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
         system_prompt_rewrite_query: Optional[str] | Omit = omit,
@@ -430,8 +432,8 @@ class InstancesResource(SyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -441,12 +443,14 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             body=maybe_transform(
                 {
                     "ai_gateway_id": ai_gateway_id,
@@ -495,7 +499,7 @@ class InstancesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace: Optional[str] | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
@@ -527,10 +531,12 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/instances",
+            path_template("/accounts/{account_id}/ai-search/instances", account_id=account_id),
             page=SyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -556,7 +562,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -579,12 +585,14 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -599,7 +607,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: Literal[
@@ -658,12 +666,16 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/chat/completions", account_id=account_id, id=id
+            ),
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -683,7 +695,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -706,12 +718,14 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -726,7 +740,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
         messages: Iterable[instance_search_params.Message] | Omit = omit,
         query: str | Omit = omit,
@@ -755,12 +769,14 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/search",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/search", account_id=account_id, id=id),
             body=maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -783,7 +799,7 @@ class InstancesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -805,12 +821,14 @@ class InstancesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/stats",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/stats", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -849,7 +867,7 @@ class AsyncInstancesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[
@@ -957,7 +975,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         token_id: str | Omit = omit,
         type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -979,8 +997,8 @@ class AsyncInstancesResource(AsyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -990,10 +1008,12 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/instances",
+            path_template("/accounts/{account_id}/ai-search/instances", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -1041,7 +1061,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[
             Literal[
@@ -1183,7 +1203,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
         system_prompt_rewrite_query: Optional[str] | Omit = omit,
@@ -1205,8 +1225,8 @@ class AsyncInstancesResource(AsyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -1216,12 +1236,14 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             body=await async_maybe_transform(
                 {
                     "ai_gateway_id": ai_gateway_id,
@@ -1270,7 +1292,7 @@ class AsyncInstancesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace: Optional[str] | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
@@ -1302,10 +1324,12 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-search/instances",
+            path_template("/accounts/{account_id}/ai-search/instances", account_id=account_id),
             page=AsyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1331,7 +1355,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1354,12 +1378,14 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1374,7 +1400,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: Literal[
@@ -1433,12 +1459,16 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/chat/completions",
+            path_template(
+                "/accounts/{account_id}/ai-search/instances/{id}/chat/completions", account_id=account_id, id=id
+            ),
             body=await async_maybe_transform(
                 {
                     "messages": messages,
@@ -1458,7 +1488,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1481,12 +1511,14 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1501,7 +1533,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
         messages: Iterable[instance_search_params.Message] | Omit = omit,
         query: str | Omit = omit,
@@ -1530,12 +1562,14 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-search/instances/{id}/search",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/search", account_id=account_id, id=id),
             body=await async_maybe_transform(
                 {
                     "aisearch_options": aisearch_options,
@@ -1558,7 +1592,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1580,12 +1614,14 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-search/instances/{id}/stats",
+            path_template("/accounts/{account_id}/ai-search/instances/{id}/stats", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
