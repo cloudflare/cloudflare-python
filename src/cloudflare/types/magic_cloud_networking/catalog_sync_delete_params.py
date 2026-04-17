@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["CatalogSyncDeleteParams"]
 
 
 class CatalogSyncDeleteParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     delete_destination: bool
