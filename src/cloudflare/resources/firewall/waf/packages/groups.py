@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -54,7 +54,7 @@ class GroupsResource(SyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         mode: Literal["on", "off"] | Omit = omit,
@@ -108,12 +108,16 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
+            path_template(
+                "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups", zone_id=zone_id, package_id=package_id
+            ),
             page=SyncV4PagePaginationArray[Group],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -142,7 +146,7 @@ class GroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         mode: Literal["on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -178,6 +182,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -187,7 +193,12 @@ class GroupsResource(SyncAPIResource):
         return cast(
             GroupEditResponse,
             self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    group_id=group_id,
+                ),
                 body=maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -207,7 +218,7 @@ class GroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -237,6 +248,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -246,7 +259,12 @@ class GroupsResource(SyncAPIResource):
         return cast(
             GroupGetResponse,
             self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    group_id=group_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -286,7 +304,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         mode: Literal["on", "off"] | Omit = omit,
@@ -340,12 +358,16 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
+            path_template(
+                "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups", zone_id=zone_id, package_id=package_id
+            ),
             page=AsyncV4PagePaginationArray[Group],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -374,7 +396,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         mode: Literal["on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -410,6 +432,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -419,7 +443,12 @@ class AsyncGroupsResource(AsyncAPIResource):
         return cast(
             GroupEditResponse,
             await self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    group_id=group_id,
+                ),
                 body=await async_maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -439,7 +468,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -469,6 +498,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -478,7 +509,12 @@ class AsyncGroupsResource(AsyncAPIResource):
         return cast(
             GroupGetResponse,
             await self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    group_id=group_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -54,7 +54,7 @@ class RulesResource(SyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         description: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         group_id: str | Omit = omit,
@@ -110,12 +110,16 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
+            path_template(
+                "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules", zone_id=zone_id, package_id=package_id
+            ),
             page=SyncV4PagePaginationArray[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -145,7 +149,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -180,6 +184,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -189,7 +195,12 @@ class RulesResource(SyncAPIResource):
         return cast(
             RuleEditResponse,
             self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    rule_id=rule_id,
+                ),
                 body=maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -209,7 +220,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -239,6 +250,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -248,7 +261,12 @@ class RulesResource(SyncAPIResource):
         return cast(
             RuleGetResponse,
             self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    rule_id=rule_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -288,7 +306,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         description: str | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         group_id: str | Omit = omit,
@@ -344,12 +362,16 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
+            path_template(
+                "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules", zone_id=zone_id, package_id=package_id
+            ),
             page=AsyncV4PagePaginationArray[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -379,7 +401,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -414,6 +436,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -423,7 +447,12 @@ class AsyncRulesResource(AsyncAPIResource):
         return cast(
             RuleEditResponse,
             await self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    rule_id=rule_id,
+                ),
                 body=await async_maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -443,7 +472,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         package_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,6 +502,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -482,7 +513,12 @@ class AsyncRulesResource(AsyncAPIResource):
         return cast(
             RuleGetResponse,
             await self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                    zone_id=zone_id,
+                    package_id=package_id,
+                    rule_id=rule_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

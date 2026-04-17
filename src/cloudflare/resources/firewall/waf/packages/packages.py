@@ -25,7 +25,7 @@ from .groups import (
     AsyncGroupsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -74,7 +74,7 @@ class PackagesResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         name: str | Omit = omit,
@@ -118,10 +118,12 @@ class PackagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages",
+            path_template("/zones/{zone_id}/firewall/waf/packages", zone_id=zone_id),
             page=SyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -148,7 +150,7 @@ class PackagesResource(SyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +177,8 @@ class PackagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -182,7 +186,9 @@ class PackagesResource(SyncAPIResource):
         return cast(
             PackageGetResponse,
             self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}", zone_id=zone_id, package_id=package_id
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -225,7 +231,7 @@ class AsyncPackagesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         name: str | Omit = omit,
@@ -269,10 +275,12 @@ class AsyncPackagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/waf/packages",
+            path_template("/zones/{zone_id}/firewall/waf/packages", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -299,7 +307,7 @@ class AsyncPackagesResource(AsyncAPIResource):
         self,
         package_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -326,6 +334,8 @@ class AsyncPackagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
@@ -333,7 +343,9 @@ class AsyncPackagesResource(AsyncAPIResource):
         return cast(
             PackageGetResponse,
             await self._get(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}",
+                path_template(
+                    "/zones/{zone_id}/firewall/waf/packages/{package_id}", zone_id=zone_id, package_id=package_id
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),

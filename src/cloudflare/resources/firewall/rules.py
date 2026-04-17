@@ -8,7 +8,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -59,7 +59,7 @@ class RulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         action: rule_create_params.Action,
         filter: FirewallFilterParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -86,10 +86,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(
                 {
@@ -112,7 +114,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         action: rule_update_params.Action,
         filter: FirewallFilterParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,12 +143,14 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=maybe_transform(
                 {
                     "action": action,
@@ -170,7 +174,7 @@ class RulesResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         id: str | Omit = omit,
         action: str | Omit = omit,
         description: str | Omit = omit,
@@ -212,10 +216,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -244,7 +250,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,12 +274,14 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -290,7 +298,7 @@ class RulesResource(SyncAPIResource):
     def bulk_delete(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,10 +320,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -330,7 +340,7 @@ class RulesResource(SyncAPIResource):
     def bulk_edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -353,10 +363,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
@@ -372,7 +384,7 @@ class RulesResource(SyncAPIResource):
     def bulk_update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -395,10 +407,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
@@ -415,7 +429,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,12 +453,14 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             page=SyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -460,7 +476,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,12 +500,14 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -527,7 +545,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         action: rule_create_params.Action,
         filter: FirewallFilterParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -554,10 +572,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(
                 {
@@ -580,7 +600,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         action: rule_update_params.Action,
         filter: FirewallFilterParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -609,12 +629,14 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -638,7 +660,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         id: str | Omit = omit,
         action: str | Omit = omit,
         description: str | Omit = omit,
@@ -680,10 +702,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -712,7 +736,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -736,12 +760,14 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -758,7 +784,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def bulk_delete(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -780,10 +806,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -798,7 +826,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def bulk_edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -821,10 +849,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
@@ -840,7 +870,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def bulk_update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -863,10 +893,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules",
+            path_template("/zones/{zone_id}/firewall/rules", zone_id=zone_id),
             page=AsyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
@@ -883,7 +915,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -907,12 +939,14 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -928,7 +962,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -952,12 +986,14 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            path_template("/zones/{zone_id}/firewall/rules/{rule_id}", zone_id=zone_id, rule_id=rule_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

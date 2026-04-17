@@ -8,7 +8,7 @@ __all__ = ["RuleEditParams"]
 
 
 class RuleEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier of a schema."""
 
     package_id: Required[str]
