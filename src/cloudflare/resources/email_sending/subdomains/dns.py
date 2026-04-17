@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -44,7 +45,7 @@ class DNSResource(SyncAPIResource):
         self,
         subdomain_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,12 +69,18 @@ class DNSResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns",
+                zone_id=zone_id,
+                subdomain_id=subdomain_id,
+            ),
             page=SyncSinglePage[DNSRecord],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -106,7 +113,7 @@ class AsyncDNSResource(AsyncAPIResource):
         self,
         subdomain_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,12 +137,18 @@ class AsyncDNSResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not subdomain_id:
             raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns",
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns",
+                zone_id=zone_id,
+                subdomain_id=subdomain_id,
+            ),
             page=AsyncSinglePage[DNSRecord],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

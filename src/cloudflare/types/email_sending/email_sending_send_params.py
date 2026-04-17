@@ -21,7 +21,7 @@ __all__ = [
 
 
 class EmailSendingSendParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of the account."""
 
     from_: Required[Annotated[From, PropertyInfo(alias="from")]]
