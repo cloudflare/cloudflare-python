@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -46,7 +46,7 @@ class QueriesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         query_scan: bool | Omit = omit,
         query_tag: str | Omit = omit,
@@ -74,11 +74,13 @@ class QueriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/brand-protection/queries",
+            path_template("/accounts/{account_id}/brand-protection/queries", account_id=account_id),
             body=maybe_transform(
                 {
                     "max_time": max_time,
@@ -109,7 +111,7 @@ class QueriesResource(SyncAPIResource):
     def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         scan: bool | Omit = omit,
         tag: str | Omit = omit,
@@ -132,11 +134,13 @@ class QueriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/brand-protection/queries",
+            path_template("/accounts/{account_id}/brand-protection/queries", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -157,7 +161,7 @@ class QueriesResource(SyncAPIResource):
     def bulk(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queries: Iterable[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,11 +182,13 @@ class QueriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/brand-protection/queries/bulk",
+            path_template("/accounts/{account_id}/brand-protection/queries/bulk", account_id=account_id),
             body=maybe_transform({"queries": queries}, query_bulk_params.QueryBulkParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -214,7 +220,7 @@ class AsyncQueriesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         query_scan: bool | Omit = omit,
         query_tag: str | Omit = omit,
@@ -242,11 +248,13 @@ class AsyncQueriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/brand-protection/queries",
+            path_template("/accounts/{account_id}/brand-protection/queries", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "max_time": max_time,
@@ -277,7 +285,7 @@ class AsyncQueriesResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         scan: bool | Omit = omit,
         tag: str | Omit = omit,
@@ -300,11 +308,13 @@ class AsyncQueriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/brand-protection/queries",
+            path_template("/accounts/{account_id}/brand-protection/queries", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +335,7 @@ class AsyncQueriesResource(AsyncAPIResource):
     async def bulk(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queries: Iterable[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -346,11 +356,13 @@ class AsyncQueriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/brand-protection/queries/bulk",
+            path_template("/accounts/{account_id}/brand-protection/queries/bulk", account_id=account_id),
             body=await async_maybe_transform({"queries": queries}, query_bulk_params.QueryBulkParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

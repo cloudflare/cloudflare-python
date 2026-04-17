@@ -11,7 +11,7 @@ __all__ = ["MatchGetParams"]
 
 
 class MatchGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     query_id: Required[SequenceNotStr[str]]
     """Query ID or comma-separated list of Query IDs.

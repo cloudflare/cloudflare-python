@@ -10,7 +10,7 @@ __all__ = ["LogoMatchGetParams"]
 
 
 class LogoMatchGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     query_id: Required[str]
 

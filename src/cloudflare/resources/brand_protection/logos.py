@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -44,7 +44,7 @@ class LogosResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         match_type: str | Omit = omit,
         tag: str | Omit = omit,
         threshold: float | Omit = omit,
@@ -68,10 +68,12 @@ class LogosResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/brand-protection/logos",
+            path_template("/accounts/{account_id}/brand-protection/logos", account_id=account_id),
             body=maybe_transform({"image": image}, logo_create_params.LogoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -94,7 +96,7 @@ class LogosResource(SyncAPIResource):
         self,
         logo_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,13 +116,17 @@ class LogosResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not logo_id:
             raise ValueError(f"Expected a non-empty value for `logo_id` but received {logo_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/brand-protection/logos/{logo_id}",
+            path_template(
+                "/accounts/{account_id}/brand-protection/logos/{logo_id}", account_id=account_id, logo_id=logo_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -151,7 +157,7 @@ class AsyncLogosResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         match_type: str | Omit = omit,
         tag: str | Omit = omit,
         threshold: float | Omit = omit,
@@ -175,10 +181,12 @@ class AsyncLogosResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/brand-protection/logos",
+            path_template("/accounts/{account_id}/brand-protection/logos", account_id=account_id),
             body=await async_maybe_transform({"image": image}, logo_create_params.LogoCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -201,7 +209,7 @@ class AsyncLogosResource(AsyncAPIResource):
         self,
         logo_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,13 +229,17 @@ class AsyncLogosResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not logo_id:
             raise ValueError(f"Expected a non-empty value for `logo_id` but received {logo_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/brand-protection/logos/{logo_id}",
+            path_template(
+                "/accounts/{account_id}/brand-protection/logos/{logo_id}", account_id=account_id, logo_id=logo_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
