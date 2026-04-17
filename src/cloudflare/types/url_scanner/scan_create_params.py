@@ -11,10 +11,13 @@ __all__ = ["ScanCreateParams"]
 
 
 class ScanCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     url: Required[str]
+
+    agent_readiness: Annotated[bool, PropertyInfo(alias="agentReadiness")]
+    """Enable agent readiness checks."""
 
     country: Literal[
         "AF",

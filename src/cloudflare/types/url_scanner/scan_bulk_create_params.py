@@ -11,7 +11,7 @@ __all__ = ["ScanBulkCreateParams", "Body"]
 
 
 class ScanBulkCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     body: Iterable[Body]
@@ -20,6 +20,9 @@ class ScanBulkCreateParams(TypedDict, total=False):
 
 class Body(TypedDict, total=False):
     url: Required[str]
+
+    agent_readiness: Annotated[bool, PropertyInfo(alias="agentReadiness")]
+    """Enable agent readiness checks."""
 
     customagent: str
 

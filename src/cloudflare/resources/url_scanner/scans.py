@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -59,8 +59,9 @@ class ScansResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
+        agent_readiness: bool | Omit = omit,
         country: Literal[
             "AF",
             "AL",
@@ -279,6 +280,8 @@ class ScansResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          agent_readiness: Enable agent readiness checks.
+
           country: Country to geo egress from
 
           custom_headers: Set custom headers.
@@ -299,13 +302,16 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/urlscanner/v2/scan",
+            path_template("/accounts/{account_id}/urlscanner/v2/scan", account_id=account_id),
             body=maybe_transform(
                 {
                     "url": url,
+                    "agent_readiness": agent_readiness,
                     "country": country,
                     "customagent": customagent,
                     "custom_headers": custom_headers,
@@ -324,7 +330,7 @@ class ScansResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         q: str | Omit = omit,
         size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -360,10 +366,12 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/search",
+            path_template("/accounts/{account_id}/urlscanner/v2/search", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -383,7 +391,7 @@ class ScansResource(SyncAPIResource):
     def bulk_create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[scan_bulk_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -412,10 +420,12 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            path_template("/accounts/{account_id}/urlscanner/v2/bulk", account_id=account_id),
             body=maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -427,7 +437,7 @@ class ScansResource(SyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,13 +462,15 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/dom/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -469,7 +481,7 @@ class ScansResource(SyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -493,12 +505,16 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/result/{scan_id}", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -509,7 +525,7 @@ class ScansResource(SyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,12 +551,14 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/har/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -551,7 +569,7 @@ class ScansResource(SyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resolution: Literal["desktop", "mobile", "tablet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -578,13 +596,17 @@ class ScansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -619,8 +641,9 @@ class AsyncScansResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
+        agent_readiness: bool | Omit = omit,
         country: Literal[
             "AF",
             "AL",
@@ -839,6 +862,8 @@ class AsyncScansResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          agent_readiness: Enable agent readiness checks.
+
           country: Country to geo egress from
 
           custom_headers: Set custom headers.
@@ -859,13 +884,16 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/urlscanner/v2/scan",
+            path_template("/accounts/{account_id}/urlscanner/v2/scan", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "url": url,
+                    "agent_readiness": agent_readiness,
                     "country": country,
                     "customagent": customagent,
                     "custom_headers": custom_headers,
@@ -884,7 +912,7 @@ class AsyncScansResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         q: str | Omit = omit,
         size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -920,10 +948,12 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/search",
+            path_template("/accounts/{account_id}/urlscanner/v2/search", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -943,7 +973,7 @@ class AsyncScansResource(AsyncAPIResource):
     async def bulk_create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[scan_bulk_create_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -972,10 +1002,12 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            path_template("/accounts/{account_id}/urlscanner/v2/bulk", account_id=account_id),
             body=await async_maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -987,7 +1019,7 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1012,13 +1044,15 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/dom/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1029,7 +1063,7 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1053,12 +1087,16 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/result/{scan_id}", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1069,7 +1107,7 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1095,12 +1133,14 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
+            path_template("/accounts/{account_id}/urlscanner/v2/har/{scan_id}", account_id=account_id, scan_id=scan_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1111,7 +1151,7 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         scan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         resolution: Literal["desktop", "mobile", "tablet"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1138,13 +1178,17 @@ class AsyncScansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
+            path_template(
+                "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png", account_id=account_id, scan_id=scan_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
