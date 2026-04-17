@@ -8,6 +8,6 @@ __all__ = ["AppPostParams"]
 
 
 class AppPostParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]

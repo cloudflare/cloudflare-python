@@ -9,7 +9,7 @@ __all__ = ["RecordingStartTrackRecordingParams", "Layers", "LayersOutput", "Laye
 
 
 class RecordingStartTrackRecordingParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     layers: Required[Dict[str, Layers]]
