@@ -8,7 +8,7 @@ __all__ = ["CustomTrustStoreCreateParams"]
 
 
 class CustomTrustStoreCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     certificate: Required[str]

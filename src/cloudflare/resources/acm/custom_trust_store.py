@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class CustomTrustStoreResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -74,10 +74,12 @@ class CustomTrustStoreResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/acm/custom_trust_store",
+            path_template("/zones/{zone_id}/acm/custom_trust_store", zone_id=zone_id),
             body=maybe_transform(
                 {"certificate": certificate}, custom_trust_store_create_params.CustomTrustStoreCreateParams
             ),
@@ -94,7 +96,7 @@ class CustomTrustStoreResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         page: float | Omit = omit,
@@ -128,10 +130,12 @@ class CustomTrustStoreResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/acm/custom_trust_store",
+            path_template("/zones/{zone_id}/acm/custom_trust_store", zone_id=zone_id),
             page=SyncV4PagePaginationArray[CustomTrustStore],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -155,7 +159,7 @@ class CustomTrustStoreResource(SyncAPIResource):
         self,
         custom_origin_trust_store_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +185,8 @@ class CustomTrustStoreResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_origin_trust_store_id:
@@ -188,7 +194,11 @@ class CustomTrustStoreResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_origin_trust_store_id` but received {custom_origin_trust_store_id!r}"
             )
         return self._delete(
-            f"/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+            path_template(
+                "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+                zone_id=zone_id,
+                custom_origin_trust_store_id=custom_origin_trust_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,7 +213,7 @@ class CustomTrustStoreResource(SyncAPIResource):
         self,
         custom_origin_trust_store_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -228,6 +238,8 @@ class CustomTrustStoreResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_origin_trust_store_id:
@@ -235,7 +247,11 @@ class CustomTrustStoreResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_origin_trust_store_id` but received {custom_origin_trust_store_id!r}"
             )
         return self._get(
-            f"/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+            path_template(
+                "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+                zone_id=zone_id,
+                custom_origin_trust_store_id=custom_origin_trust_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -270,7 +286,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -295,10 +311,12 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/acm/custom_trust_store",
+            path_template("/zones/{zone_id}/acm/custom_trust_store", zone_id=zone_id),
             body=await async_maybe_transform(
                 {"certificate": certificate}, custom_trust_store_create_params.CustomTrustStoreCreateParams
             ),
@@ -315,7 +333,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         page: float | Omit = omit,
@@ -349,10 +367,12 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/acm/custom_trust_store",
+            path_template("/zones/{zone_id}/acm/custom_trust_store", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[CustomTrustStore],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -376,7 +396,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         self,
         custom_origin_trust_store_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,6 +422,8 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_origin_trust_store_id:
@@ -409,7 +431,11 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_origin_trust_store_id` but received {custom_origin_trust_store_id!r}"
             )
         return await self._delete(
-            f"/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+            path_template(
+                "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+                zone_id=zone_id,
+                custom_origin_trust_store_id=custom_origin_trust_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,7 +450,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         self,
         custom_origin_trust_store_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -449,6 +475,8 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not custom_origin_trust_store_id:
@@ -456,7 +484,11 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_origin_trust_store_id` but received {custom_origin_trust_store_id!r}"
             )
         return await self._get(
-            f"/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+            path_template(
+                "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+                zone_id=zone_id,
+                custom_origin_trust_store_id=custom_origin_trust_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
