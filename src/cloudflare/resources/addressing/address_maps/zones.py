@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,8 +46,8 @@ class ZonesResource(SyncAPIResource):
         self,
         address_map_id: str,
         *,
-        zone_id: str,
-        account_id: str,
+        zone_id: str | None = None,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -74,14 +74,23 @@ class ZonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                zone_id=zone_id,
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -93,8 +102,8 @@ class ZonesResource(SyncAPIResource):
         self,
         address_map_id: str,
         *,
-        zone_id: str,
-        account_id: str,
+        zone_id: str | None = None,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,14 +129,23 @@ class ZonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                zone_id=zone_id,
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -159,8 +177,8 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         address_map_id: str,
         *,
-        zone_id: str,
-        account_id: str,
+        zone_id: str | None = None,
+        account_id: str | None = None,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -187,14 +205,23 @@ class AsyncZonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                zone_id=zone_id,
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -206,8 +233,8 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         address_map_id: str,
         *,
-        zone_id: str,
-        account_id: str,
+        zone_id: str | None = None,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,14 +260,23 @@ class AsyncZonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                zone_id=zone_id,
+                account_id=account_id,
+                address_map_id=address_map_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

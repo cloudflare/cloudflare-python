@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,7 +46,7 @@ class IPsResource(SyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_map_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,6 +74,8 @@ class IPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -81,7 +83,12 @@ class IPsResource(SyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+                ip_address=ip_address,
+            ),
             body=maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -93,7 +100,7 @@ class IPsResource(SyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_map_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -120,6 +127,8 @@ class IPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -127,7 +136,12 @@ class IPsResource(SyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+                ip_address=ip_address,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -159,7 +173,7 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_map_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -187,6 +201,8 @@ class AsyncIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -194,7 +210,12 @@ class AsyncIPsResource(AsyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return await self._put(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+                ip_address=ip_address,
+            ),
             body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -206,7 +227,7 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         address_map_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,6 +254,8 @@ class AsyncIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -240,7 +263,12 @@ class AsyncIPsResource(AsyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return await self._delete(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            path_template(
+                "/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                account_id=account_id,
+                address_map_id=address_map_id,
+                ip_address=ip_address,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

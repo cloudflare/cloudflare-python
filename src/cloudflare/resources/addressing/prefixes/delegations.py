@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,7 +50,7 @@ class DelegationsResource(SyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cidr: str,
         delegated_account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,12 +80,18 @@ class DelegationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=maybe_transform(
                 {
                     "cidr": cidr,
@@ -107,7 +113,7 @@ class DelegationsResource(SyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,12 +137,18 @@ class DelegationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             page=SyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -148,7 +160,7 @@ class DelegationsResource(SyncAPIResource):
         self,
         delegation_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -175,6 +187,8 @@ class DelegationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -182,7 +196,12 @@ class DelegationsResource(SyncAPIResource):
         if not delegation_id:
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                delegation_id=delegation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,7 +237,7 @@ class AsyncDelegationsResource(AsyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cidr: str,
         delegated_account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -248,12 +267,18 @@ class AsyncDelegationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "cidr": cidr,
@@ -275,7 +300,7 @@ class AsyncDelegationsResource(AsyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,12 +324,18 @@ class AsyncDelegationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
             page=AsyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -316,7 +347,7 @@ class AsyncDelegationsResource(AsyncAPIResource):
         self,
         delegation_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -343,6 +374,8 @@ class AsyncDelegationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -350,7 +383,12 @@ class AsyncDelegationsResource(AsyncAPIResource):
         if not delegation_id:
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                delegation_id=delegation_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -9,7 +9,7 @@ __all__ = ["PrefixCreateParams"]
 
 
 class PrefixCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of a Cloudflare account."""
 
     asn: Required[int]

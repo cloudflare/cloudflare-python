@@ -8,7 +8,7 @@ __all__ = ["RegionalHostnameEditParams"]
 
 
 class RegionalHostnameEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     region_key: Required[str]
