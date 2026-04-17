@@ -12,7 +12,7 @@ __all__ = ["ACLCreateParams"]
 
 
 class ACLCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     lan_1: Required[ACLConfigurationParam]

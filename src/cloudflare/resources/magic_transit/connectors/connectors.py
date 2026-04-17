@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +78,7 @@ class ConnectorsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         device: connector_create_params.Device,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
@@ -117,10 +117,12 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             body=maybe_transform(
                 {
                     "device": device,
@@ -148,7 +150,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
             Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -187,12 +189,18 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=maybe_transform(
                 {
                     "activated": activated,
@@ -219,7 +227,7 @@ class ConnectorsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,10 +249,12 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=SyncSinglePage[ConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -256,7 +266,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -278,12 +288,18 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -298,7 +314,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
             Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -337,12 +353,18 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=maybe_transform(
                 {
                     "activated": activated,
@@ -370,7 +392,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,12 +414,18 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -440,7 +468,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         device: connector_create_params.Device,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
@@ -479,10 +507,12 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "device": device,
@@ -510,7 +540,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
             Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -549,12 +579,18 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "activated": activated,
@@ -581,7 +617,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -603,10 +639,12 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/connectors",
+            path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=AsyncSinglePage[ConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -618,7 +656,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -640,12 +678,18 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -660,7 +704,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         activated: bool | Omit = omit,
         interrupt_window_days_of_week: List[
             Literal["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -699,12 +743,18 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "activated": activated,
@@ -732,7 +782,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -754,12 +804,18 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            path_template(
+                "/accounts/{account_id}/magic/connectors/{connector_id}",
+                account_id=account_id,
+                connector_id=connector_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -10,7 +10,7 @@ __all__ = ["RouteUpdateParams"]
 
 
 class RouteUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     nexthop: Required[str]

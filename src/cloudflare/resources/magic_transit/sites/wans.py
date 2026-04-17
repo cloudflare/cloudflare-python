@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,7 +50,7 @@ class WANsResource(SyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         physport: int,
         name: str | Omit = omit,
         priority: int | Omit = omit,
@@ -84,12 +84,14 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[WAN],
             body=maybe_transform(
                 {
@@ -112,7 +114,7 @@ class WANsResource(SyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         name: str | Omit = omit,
         physport: int | Omit = omit,
@@ -149,6 +151,8 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -156,7 +160,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -181,7 +190,7 @@ class WANsResource(SyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,12 +214,14 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=SyncSinglePage[WAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -222,7 +233,7 @@ class WANsResource(SyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,6 +260,8 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -256,7 +269,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -271,7 +289,7 @@ class WANsResource(SyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         name: str | Omit = omit,
         physport: int | Omit = omit,
@@ -308,6 +326,8 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -315,7 +335,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -340,7 +365,7 @@ class WANsResource(SyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -367,6 +392,8 @@ class WANsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -374,7 +401,12 @@ class WANsResource(SyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -410,7 +442,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         physport: int,
         name: str | Omit = omit,
         priority: int | Omit = omit,
@@ -444,12 +476,14 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[WAN],
             body=maybe_transform(
                 {
@@ -472,7 +506,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         name: str | Omit = omit,
         physport: int | Omit = omit,
@@ -509,6 +543,8 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -516,7 +552,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -541,7 +582,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -565,12 +606,14 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            path_template("/accounts/{account_id}/magic/sites/{site_id}/wans", account_id=account_id, site_id=site_id),
             page=AsyncSinglePage[WAN],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -582,7 +625,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -609,6 +652,8 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -616,7 +661,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -631,7 +681,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         name: str | Omit = omit,
         physport: int | Omit = omit,
@@ -668,6 +718,8 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -675,7 +727,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -700,7 +757,7 @@ class AsyncWANsResource(AsyncAPIResource):
         self,
         wan_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -727,6 +784,8 @@ class AsyncWANsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -734,7 +793,12 @@ class AsyncWANsResource(AsyncAPIResource):
         if not wan_id:
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            path_template(
+                "/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+                account_id=account_id,
+                site_id=site_id,
+                wan_id=wan_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

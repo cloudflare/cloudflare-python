@@ -13,7 +13,7 @@ __all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsPCAPsRequestSimple", "MagicV
 
 
 class MagicVisibilityPCAPsPCAPsRequestSimple(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     packet_limit: Required[float]
@@ -44,7 +44,7 @@ class MagicVisibilityPCAPsPCAPsRequestSimple(TypedDict, total=False):
 
 
 class MagicVisibilityPCAPsPCAPsRequestFull(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     colo_name: Required[str]

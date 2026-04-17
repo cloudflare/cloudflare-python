@@ -17,7 +17,7 @@ from .download import (
     AsyncDownloadResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .ownership import (
     OwnershipResource,
     AsyncOwnershipResource,
@@ -78,7 +78,7 @@ class PCAPsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         packet_limit: float,
         system: Literal["magic-transit"],
         time_limit: float,
@@ -126,7 +126,7 @@ class PCAPsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo_name: str,
         destination_conf: str,
         system: Literal["magic-transit"],
@@ -179,13 +179,13 @@ class PCAPsResource(SyncAPIResource):
         ...
 
     @required_args(
-        ["account_id", "packet_limit", "system", "time_limit", "type"],
-        ["account_id", "colo_name", "destination_conf", "system", "time_limit", "type"],
+        ["packet_limit", "system", "time_limit", "type"],
+        ["colo_name", "destination_conf", "system", "time_limit", "type"],
     )
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         packet_limit: float | Omit = omit,
         system: Literal["magic-transit"],
         time_limit: float,
@@ -202,12 +202,14 @@ class PCAPsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             PCAPCreateResponse,
             self._post(
-                f"/accounts/{account_id}/pcaps",
+                path_template("/accounts/{account_id}/pcaps", account_id=account_id),
                 body=maybe_transform(
                     {
                         "packet_limit": packet_limit,
@@ -238,7 +240,7 @@ class PCAPsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -260,10 +262,12 @@ class PCAPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps",
+            path_template("/accounts/{account_id}/pcaps", account_id=account_id),
             page=SyncSinglePage[PCAPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -275,7 +279,7 @@ class PCAPsResource(SyncAPIResource):
         self,
         pcap_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,6 +303,8 @@ class PCAPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pcap_id:
@@ -306,7 +312,7 @@ class PCAPsResource(SyncAPIResource):
         return cast(
             PCAPGetResponse,
             self._get(
-                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                path_template("/accounts/{account_id}/pcaps/{pcap_id}", account_id=account_id, pcap_id=pcap_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -324,7 +330,7 @@ class PCAPsResource(SyncAPIResource):
         self,
         pcap_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,13 +354,15 @@ class PCAPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pcap_id:
             raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/pcaps/{pcap_id}/stop",
+            path_template("/accounts/{account_id}/pcaps/{pcap_id}/stop", account_id=account_id, pcap_id=pcap_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,7 +402,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         packet_limit: float,
         system: Literal["magic-transit"],
         time_limit: float,
@@ -442,7 +450,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo_name: str,
         destination_conf: str,
         system: Literal["magic-transit"],
@@ -495,13 +503,13 @@ class AsyncPCAPsResource(AsyncAPIResource):
         ...
 
     @required_args(
-        ["account_id", "packet_limit", "system", "time_limit", "type"],
-        ["account_id", "colo_name", "destination_conf", "system", "time_limit", "type"],
+        ["packet_limit", "system", "time_limit", "type"],
+        ["colo_name", "destination_conf", "system", "time_limit", "type"],
     )
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         packet_limit: float | Omit = omit,
         system: Literal["magic-transit"],
         time_limit: float,
@@ -518,12 +526,14 @@ class AsyncPCAPsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             PCAPCreateResponse,
             await self._post(
-                f"/accounts/{account_id}/pcaps",
+                path_template("/accounts/{account_id}/pcaps", account_id=account_id),
                 body=await async_maybe_transform(
                     {
                         "packet_limit": packet_limit,
@@ -554,7 +564,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -576,10 +586,12 @@ class AsyncPCAPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pcaps",
+            path_template("/accounts/{account_id}/pcaps", account_id=account_id),
             page=AsyncSinglePage[PCAPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -591,7 +603,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         self,
         pcap_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -615,6 +627,8 @@ class AsyncPCAPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pcap_id:
@@ -622,7 +636,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         return cast(
             PCAPGetResponse,
             await self._get(
-                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                path_template("/accounts/{account_id}/pcaps/{pcap_id}", account_id=account_id, pcap_id=pcap_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -640,7 +654,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         self,
         pcap_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,13 +678,15 @@ class AsyncPCAPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pcap_id:
             raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/pcaps/{pcap_id}/stop",
+            path_template("/accounts/{account_id}/pcaps/{pcap_id}/stop", account_id=account_id, pcap_id=pcap_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
