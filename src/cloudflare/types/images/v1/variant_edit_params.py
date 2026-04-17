@@ -10,7 +10,7 @@ __all__ = ["VariantEditParams", "Options"]
 
 
 class VariantEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     options: Required[Options]

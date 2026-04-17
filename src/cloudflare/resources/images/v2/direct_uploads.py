@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -48,7 +48,7 @@ class DirectUploadsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         expiry: Union[str, datetime] | Omit = omit,
@@ -96,6 +96,8 @@ class DirectUploadsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -103,7 +105,7 @@ class DirectUploadsResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/images/v2/direct_upload",
+            path_template("/accounts/{account_id}/images/v2/direct_upload", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -148,7 +150,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         expiry: Union[str, datetime] | Omit = omit,
@@ -196,6 +198,8 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -203,7 +207,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/images/v2/direct_upload",
+            path_template("/accounts/{account_id}/images/v2/direct_upload", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,

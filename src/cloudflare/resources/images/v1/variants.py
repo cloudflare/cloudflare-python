@@ -7,7 +7,7 @@ from typing import Any, Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class VariantsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | Omit = omit,
@@ -81,10 +81,12 @@ class VariantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -106,7 +108,7 @@ class VariantsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,10 +130,12 @@ class VariantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +150,7 @@ class VariantsResource(SyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,6 +172,8 @@ class VariantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
@@ -175,7 +181,11 @@ class VariantsResource(SyncAPIResource):
         return cast(
             VariantDeleteResponse,
             self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+                path_template(
+                    "/accounts/{account_id}/images/v1/variants/{variant_id}",
+                    account_id=account_id,
+                    variant_id=variant_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -193,7 +203,7 @@ class VariantsResource(SyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         options: variant_edit_params.Options,
         never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -222,12 +232,16 @@ class VariantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             body=maybe_transform(
                 {
                     "options": options,
@@ -249,7 +263,7 @@ class VariantsResource(SyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -271,12 +285,16 @@ class VariantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -311,7 +329,7 @@ class AsyncVariantsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | Omit = omit,
@@ -341,10 +359,12 @@ class AsyncVariantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -366,7 +386,7 @@ class AsyncVariantsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -388,10 +408,12 @@ class AsyncVariantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/variants",
+            path_template("/accounts/{account_id}/images/v1/variants", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -406,7 +428,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -428,6 +450,8 @@ class AsyncVariantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
@@ -435,7 +459,11 @@ class AsyncVariantsResource(AsyncAPIResource):
         return cast(
             VariantDeleteResponse,
             await self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+                path_template(
+                    "/accounts/{account_id}/images/v1/variants/{variant_id}",
+                    account_id=account_id,
+                    variant_id=variant_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -453,7 +481,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         options: variant_edit_params.Options,
         never_require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -482,12 +510,16 @@ class AsyncVariantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             body=await async_maybe_transform(
                 {
                     "options": options,
@@ -509,7 +541,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         self,
         variant_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -531,12 +563,16 @@ class AsyncVariantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            path_template(
+                "/accounts/{account_id}/images/v1/variants/{variant_id}", account_id=account_id, variant_id=variant_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -40,7 +40,7 @@ from .variants import (
     AsyncVariantsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -99,7 +99,7 @@ class V1Resource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         file: FileTypes | Omit = omit,
@@ -143,6 +143,8 @@ class V1Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal(
@@ -161,7 +163,7 @@ class V1Resource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             body=maybe_transform(body, v1_create_params.V1CreateParams),
             files=files,
             options=make_request_options(
@@ -178,7 +180,7 @@ class V1Resource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         creator: Optional[str] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -212,10 +214,12 @@ class V1Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             page=SyncV4PagePagination[V1ListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -238,7 +242,7 @@ class V1Resource(SyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +268,8 @@ class V1Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
@@ -271,7 +277,7 @@ class V1Resource(SyncAPIResource):
         return cast(
             V1DeleteResponse,
             self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
+                path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -289,7 +295,7 @@ class V1Resource(SyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         creator: str | Omit = omit,
         metadata: object | Omit = omit,
         require_signed_urls: bool | Omit = omit,
@@ -327,12 +333,14 @@ class V1Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             body=maybe_transform(
                 {
                     "creator": creator,
@@ -355,7 +363,7 @@ class V1Resource(SyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -379,12 +387,14 @@ class V1Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return self._get(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -435,7 +445,7 @@ class AsyncV1Resource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         file: FileTypes | Omit = omit,
@@ -479,6 +489,8 @@ class AsyncV1Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal(
@@ -497,7 +509,7 @@ class AsyncV1Resource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             body=await async_maybe_transform(body, v1_create_params.V1CreateParams),
             files=files,
             options=make_request_options(
@@ -514,7 +526,7 @@ class AsyncV1Resource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         creator: Optional[str] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -548,10 +560,12 @@ class AsyncV1Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/images/v1",
+            path_template("/accounts/{account_id}/images/v1", account_id=account_id),
             page=AsyncV4PagePagination[V1ListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -574,7 +588,7 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -600,6 +614,8 @@ class AsyncV1Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
@@ -607,7 +623,7 @@ class AsyncV1Resource(AsyncAPIResource):
         return cast(
             V1DeleteResponse,
             await self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
+                path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -625,7 +641,7 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         creator: str | Omit = omit,
         metadata: object | Omit = omit,
         require_signed_urls: bool | Omit = omit,
@@ -663,12 +679,14 @@ class AsyncV1Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             body=await async_maybe_transform(
                 {
                     "creator": creator,
@@ -691,7 +709,7 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         image_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -715,12 +733,14 @@ class AsyncV1Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/images/v1/{image_id}",
+            path_template("/accounts/{account_id}/images/v1/{image_id}", account_id=account_id, image_id=image_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
