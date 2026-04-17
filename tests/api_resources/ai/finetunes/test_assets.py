@@ -30,7 +30,7 @@ class TestAssets:
         asset = client.ai.finetunes.assets.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file=b"raw file contents",
+            file=b"Example data",
             file_name="file_name",
         )
         assert_matches_type(AssetCreateResponse, asset, path=["response"])
@@ -94,7 +94,7 @@ class TestAsyncAssets:
         asset = await async_client.ai.finetunes.assets.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file=b"raw file contents",
+            file=b"Example data",
             file_name="file_name",
         )
         assert_matches_type(AssetCreateResponse, asset, path=["response"])
