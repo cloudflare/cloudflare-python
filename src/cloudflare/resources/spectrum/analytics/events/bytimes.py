@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -50,7 +50,7 @@ class BytimesResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"],
         dimensions: List[Dimension] | Omit = omit,
         filters: str | Omit = omit,
@@ -134,10 +134,12 @@ class BytimesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_id}/spectrum/analytics/events/bytime",
+            path_template("/zones/{zone_id}/spectrum/analytics/events/bytime", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -184,7 +186,7 @@ class AsyncBytimesResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"],
         dimensions: List[Dimension] | Omit = omit,
         filters: str | Omit = omit,
@@ -268,10 +270,12 @@ class AsyncBytimesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/spectrum/analytics/events/bytime",
+            path_template("/zones/{zone_id}/spectrum/analytics/events/bytime", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

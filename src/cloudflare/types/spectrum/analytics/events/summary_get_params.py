@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
@@ -14,7 +14,7 @@ __all__ = ["SummaryGetParams"]
 
 
 class SummaryGetParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     dimensions: List[Dimension]

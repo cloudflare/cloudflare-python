@@ -14,7 +14,7 @@ __all__ = ["BytimeGetParams"]
 
 
 class BytimeGetParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     time_delta: Required[Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]]
