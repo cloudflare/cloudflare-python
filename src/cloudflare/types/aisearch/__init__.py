@@ -10,7 +10,6 @@ from .token_update_params import TokenUpdateParams as TokenUpdateParams
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .namespace_list_params import NamespaceListParams as NamespaceListParams
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
-from .token_delete_response import TokenDeleteResponse as TokenDeleteResponse
 from .token_update_response import TokenUpdateResponse as TokenUpdateResponse
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_list_response import InstanceListResponse as InstanceListResponse

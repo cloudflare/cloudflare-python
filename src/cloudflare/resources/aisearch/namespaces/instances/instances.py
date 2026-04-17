@@ -195,7 +195,7 @@ class InstancesResource(SyncAPIResource):
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         token_id: str | Omit = omit,
         type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -217,8 +217,8 @@ class InstancesResource(SyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -428,7 +428,7 @@ class InstancesResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
         system_prompt_rewrite_query: Optional[str] | Omit = omit,
@@ -450,8 +450,8 @@ class InstancesResource(SyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -1048,7 +1048,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_create_params.SourceParams] | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         token_id: str | Omit = omit,
         type: Optional[Literal["r2", "web-crawler"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1070,8 +1070,8 @@ class AsyncInstancesResource(AsyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -1281,7 +1281,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        sync_interval: Literal[3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
+        sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
         system_prompt_rewrite_query: Optional[str] | Omit = omit,
@@ -1303,8 +1303,8 @@ class AsyncInstancesResource(AsyncAPIResource):
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
-          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 3600 (1h), 7200
-              (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+          sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
+              (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
 
           extra_headers: Send extra headers
 
