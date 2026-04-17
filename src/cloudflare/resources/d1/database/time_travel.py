@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,7 +50,7 @@ class TimeTravelResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -80,12 +80,18 @@ class TimeTravelResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get(
-            f"/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +109,7 @@ class TimeTravelResource(SyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bookmark: str | Omit = omit,
         timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -135,12 +141,18 @@ class TimeTravelResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +195,7 @@ class AsyncTimeTravelResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -213,12 +225,18 @@ class AsyncTimeTravelResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -236,7 +254,7 @@ class AsyncTimeTravelResource(AsyncAPIResource):
         self,
         database_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bookmark: str | Omit = omit,
         timestamp: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -268,12 +286,18 @@ class AsyncTimeTravelResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
+                account_id=account_id,
+                database_id=database_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
