@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .resources import (
     ResourcesResource,
@@ -82,7 +82,7 @@ class ResourceSharingResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         recipients: Iterable[resource_sharing_create_params.Recipient],
         resources: Iterable[resource_sharing_create_params.Resource],
@@ -110,10 +110,12 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -136,7 +138,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -164,12 +166,14 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._put(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             body=maybe_transform({"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -184,7 +188,7 @@ class ResourceSharingResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
@@ -245,10 +249,12 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             page=SyncV4PagePaginationArray[ResourceSharingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -278,7 +284,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -303,12 +309,14 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,7 +331,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -353,12 +361,14 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._get(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -408,7 +418,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         recipients: Iterable[resource_sharing_create_params.Recipient],
         resources: Iterable[resource_sharing_create_params.Resource],
@@ -436,10 +446,12 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -462,7 +474,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,12 +502,14 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             body=await async_maybe_transform(
                 {"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams
             ),
@@ -512,7 +526,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
@@ -573,10 +587,12 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
+            path_template("/accounts/{account_id}/shares", account_id=account_id),
             page=AsyncV4PagePaginationArray[ResourceSharingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -606,7 +622,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -631,12 +647,14 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -651,7 +669,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -681,12 +699,14 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/shares/{share_id}",
+            path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

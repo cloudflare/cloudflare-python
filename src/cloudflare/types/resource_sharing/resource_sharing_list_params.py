@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ResourceSharingListParams"]
 
 
 class ResourceSharingListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier."""
 
     direction: Literal["asc", "desc"]
