@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class ConnectionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         exclude_cdn_cgi: bool | Omit = omit,
         exclude_urls: str | Omit = omit,
@@ -127,10 +127,12 @@ class ConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/page_shield/connections",
+            path_template("/zones/{zone_id}/page_shield/connections", zone_id=zone_id),
             page=SyncSinglePage[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -162,7 +164,7 @@ class ConnectionsResource(SyncAPIResource):
         self,
         connection_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,12 +188,16 @@ class ConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get(
-            f"/zones/{zone_id}/page_shield/connections/{connection_id}",
+            path_template(
+                "/zones/{zone_id}/page_shield/connections/{connection_id}", zone_id=zone_id, connection_id=connection_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +232,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         exclude_cdn_cgi: bool | Omit = omit,
         exclude_urls: str | Omit = omit,
@@ -304,10 +310,12 @@ class AsyncConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/page_shield/connections",
+            path_template("/zones/{zone_id}/page_shield/connections", zone_id=zone_id),
             page=AsyncSinglePage[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -339,7 +347,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         self,
         connection_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,12 +371,16 @@ class AsyncConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/page_shield/connections/{connection_id}",
+            path_template(
+                "/zones/{zone_id}/page_shield/connections/{connection_id}", zone_id=zone_id, connection_id=connection_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
