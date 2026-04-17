@@ -8,7 +8,7 @@ __all__ = ["SchemaCreateParams"]
 
 
 class SchemaCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     kind: Required[Literal["openapi_v3"]]
