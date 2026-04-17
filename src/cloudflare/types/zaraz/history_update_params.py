@@ -8,7 +8,7 @@ __all__ = ["HistoryUpdateParams"]
 
 
 class HistoryUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     body: Required[int]
