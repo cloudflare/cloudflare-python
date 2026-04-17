@@ -10,7 +10,7 @@ __all__ = ["TracerouteCreateParams", "Options"]
 
 
 class TracerouteCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     targets: Required[SequenceNotStr[str]]
