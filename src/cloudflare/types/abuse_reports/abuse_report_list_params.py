@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["AbuseReportListParams"]
 
 
 class AbuseReportListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     created_after: str
     """Returns reports created after the specified date"""

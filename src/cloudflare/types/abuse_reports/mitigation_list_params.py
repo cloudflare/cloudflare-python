@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["MitigationListParams"]
 
 
 class MitigationListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     effective_after: str
     """Returns mitigation that were dispatched after the given date"""

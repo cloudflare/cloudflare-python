@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -50,7 +50,7 @@ class MitigationsResource(SyncAPIResource):
         self,
         report_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         effective_after: str | Omit = omit,
         effective_before: str | Omit = omit,
         entity_type: Literal["url_pattern", "account", "zone"] | Omit = omit,
@@ -115,12 +115,18 @@ class MitigationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=SyncV4PagePagination[Optional[MitigationListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -148,7 +154,7 @@ class MitigationsResource(SyncAPIResource):
         self,
         report_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         appeals: Iterable[mitigation_review_params.Appeal],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -171,12 +177,18 @@ class MitigationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=SyncSinglePage[MitigationReviewResponse],
             body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
             options=make_request_options(
@@ -211,7 +223,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         self,
         report_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         effective_after: str | Omit = omit,
         effective_before: str | Omit = omit,
         entity_type: Literal["url_pattern", "account", "zone"] | Omit = omit,
@@ -276,12 +288,18 @@ class AsyncMitigationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=AsyncV4PagePagination[Optional[MitigationListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -309,7 +327,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         self,
         report_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         appeals: Iterable[mitigation_review_params.Appeal],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -332,12 +350,18 @@ class AsyncMitigationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+            path_template(
+                "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+                account_id=account_id,
+                report_id=report_id,
+            ),
             page=AsyncSinglePage[MitigationReviewResponse],
             body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
             options=make_request_options(

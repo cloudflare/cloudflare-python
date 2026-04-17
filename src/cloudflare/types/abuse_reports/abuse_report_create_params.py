@@ -20,7 +20,7 @@ __all__ = [
 
 
 class AbuseReportsDmcaReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_dmca"]]
     """The report type for submitted reports."""
@@ -142,7 +142,7 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
 
 
 class AbuseReportsTrademarkReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_trademark"]]
     """The report type for submitted reports."""
@@ -228,7 +228,7 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
 
 
 class AbuseReportsGeneralReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_general"]]
     """The report type for submitted reports."""
@@ -327,7 +327,7 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
 
 
 class AbuseReportsPhishingReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_phishing"]]
     """The report type for submitted reports."""
@@ -411,7 +411,7 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
 
 
 class AbuseReportsCsamReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_children"]]
     """The report type for submitted reports."""
@@ -501,7 +501,7 @@ class AbuseReportsCsamReport(TypedDict, total=False):
 
 
 class AbuseReportsThreatReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_threat"]]
     """The report type for submitted reports."""
@@ -578,7 +578,7 @@ class AbuseReportsThreatReport(TypedDict, total=False):
 
 
 class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_registrar_whois"]]
     """The report type for submitted reports."""
@@ -701,7 +701,7 @@ class AbuseReportsRegistrarWhoisReportRegWhoRequest(TypedDict, total=False):
 
 
 class AbuseReportsNcseiReport(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     act: Required[Literal["abuse_ncsei"]]
     """The report type for submitted reports."""
