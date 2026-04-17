@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -60,7 +60,7 @@ class TablesResource(SyncAPIResource):
         self,
         namespace: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
@@ -102,6 +102,8 @@ class TablesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -109,7 +111,12 @@ class TablesResource(SyncAPIResource):
         if not namespace:
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,7 +165,7 @@ class AsyncTablesResource(AsyncAPIResource):
         self,
         namespace: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         bucket_name: str,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
@@ -200,6 +207,8 @@ class AsyncTablesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -207,7 +216,12 @@ class AsyncTablesResource(AsyncAPIResource):
         if not namespace:
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return await self._get(
-            f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables",
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables",
+                account_id=account_id,
+                bucket_name=bucket_name,
+                namespace=namespace,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

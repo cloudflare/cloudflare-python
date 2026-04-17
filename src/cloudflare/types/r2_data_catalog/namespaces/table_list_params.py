@@ -8,7 +8,7 @@ __all__ = ["TableListParams"]
 
 
 class TableListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Use this to identify the account."""
 
     bucket_name: Required[str]
