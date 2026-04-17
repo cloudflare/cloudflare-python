@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["SnippetListParams"]
 
 
 class SnippetListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Use this field to specify the unique ID of the zone."""
 
     page: int
