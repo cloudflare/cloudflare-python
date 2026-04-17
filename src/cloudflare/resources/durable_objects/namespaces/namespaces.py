@@ -13,7 +13,7 @@ from .objects import (
     AsyncObjectsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -57,7 +57,7 @@ class NamespacesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,10 +85,12 @@ class NamespacesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/durable_objects/namespaces",
+            path_template("/accounts/{account_id}/workers/durable_objects/namespaces", account_id=account_id),
             page=SyncV4PagePaginationArray[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -134,7 +136,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -162,10 +164,12 @@ class AsyncNamespacesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/durable_objects/namespaces",
+            path_template("/accounts/{account_id}/workers/durable_objects/namespaces", account_id=account_id),
             page=AsyncV4PagePaginationArray[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers,
