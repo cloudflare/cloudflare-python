@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class MetadataIndexResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         index_type: Literal["string", "number", "boolean"],
         property_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,12 +80,18 @@ class MetadataIndexResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform(
                 {
                     "index_type": index_type,
@@ -107,7 +113,7 @@ class MetadataIndexResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -129,12 +135,18 @@ class MetadataIndexResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +161,7 @@ class MetadataIndexResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         property_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,12 +186,18 @@ class MetadataIndexResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=maybe_transform(
                 {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
             ),
@@ -218,7 +236,7 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         index_type: Literal["string", "number", "boolean"],
         property_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -247,12 +265,18 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform(
                 {
                     "index_type": index_type,
@@ -274,7 +298,7 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -296,12 +320,18 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -316,7 +346,7 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         property_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -341,12 +371,18 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+            path_template(
+                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+                account_id=account_id,
+                index_name=index_name,
+            ),
             body=await async_maybe_transform(
                 {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
             ),

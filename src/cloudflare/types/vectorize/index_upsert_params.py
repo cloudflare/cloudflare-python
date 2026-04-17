@@ -11,7 +11,7 @@ __all__ = ["IndexUpsertParams"]
 
 
 class IndexUpsertParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     body: Required[FileTypes]
