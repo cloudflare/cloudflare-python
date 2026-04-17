@@ -15,7 +15,7 @@ from .vtt import (
     AsyncVttResourceWithStreamingResponse,
 )
 from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -61,7 +61,7 @@ class LanguageResource(SyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -88,6 +88,8 @@ class LanguageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -95,7 +97,12 @@ class LanguageResource(SyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -110,7 +117,7 @@ class LanguageResource(SyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         file: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,6 +148,8 @@ class LanguageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -152,7 +161,12 @@ class LanguageResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             body=maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -168,7 +182,7 @@ class LanguageResource(SyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -195,6 +209,8 @@ class LanguageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -202,7 +218,12 @@ class LanguageResource(SyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._delete(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,7 +238,7 @@ class LanguageResource(SyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -244,6 +265,8 @@ class LanguageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -251,7 +274,12 @@ class LanguageResource(SyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._get(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -291,7 +319,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -318,6 +346,8 @@ class AsyncLanguageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -325,7 +355,12 @@ class AsyncLanguageResource(AsyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -340,7 +375,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         file: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -371,6 +406,8 @@ class AsyncLanguageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -382,7 +419,12 @@ class AsyncLanguageResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             body=await async_maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -398,7 +440,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,6 +467,8 @@ class AsyncLanguageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -432,7 +476,12 @@ class AsyncLanguageResource(AsyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._delete(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -447,7 +496,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         self,
         language: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -474,6 +523,8 @@ class AsyncLanguageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -481,7 +532,12 @@ class AsyncLanguageResource(AsyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._get(
-            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/captions/{language}",
+                account_id=account_id,
+                identifier=identifier,
+                language=language,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

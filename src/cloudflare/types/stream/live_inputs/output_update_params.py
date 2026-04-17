@@ -8,7 +8,7 @@ __all__ = ["OutputUpdateParams"]
 
 
 class OutputUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     live_input_identifier: Required[str]

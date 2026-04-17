@@ -57,7 +57,7 @@ from .videos import (
     AsyncVideosResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .webhooks import (
     WebhooksResource,
     AsyncWebhooksResource,
@@ -207,7 +207,7 @@ class StreamResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
         direct_user: bool | Omit = omit,
@@ -254,6 +254,8 @@ class StreamResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -269,7 +271,7 @@ class StreamResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -283,7 +285,7 @@ class StreamResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         after: Union[str, datetime] | Omit = omit,
         asc: bool | Omit = omit,
@@ -356,10 +358,12 @@ class StreamResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             page=SyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -394,7 +398,7 @@ class StreamResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -418,13 +422,15 @@ class StreamResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -435,7 +441,7 @@ class StreamResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
         max_duration_seconds: int | Omit = omit,
@@ -504,12 +510,14 @@ class StreamResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             body=maybe_transform(
                 {
                     "allowed_origins": allowed_origins,
@@ -539,7 +547,7 @@ class StreamResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,12 +571,14 @@ class StreamResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -655,7 +665,7 @@ class AsyncStreamResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
         direct_user: bool | Omit = omit,
@@ -702,6 +712,8 @@ class AsyncStreamResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -717,7 +729,7 @@ class AsyncStreamResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -733,7 +745,7 @@ class AsyncStreamResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         after: Union[str, datetime] | Omit = omit,
         asc: bool | Omit = omit,
@@ -806,10 +818,12 @@ class AsyncStreamResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/stream",
+            path_template("/accounts/{account_id}/stream", account_id=account_id),
             page=AsyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -844,7 +858,7 @@ class AsyncStreamResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -868,13 +882,15 @@ class AsyncStreamResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -885,7 +901,7 @@ class AsyncStreamResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
         max_duration_seconds: int | Omit = omit,
@@ -954,12 +970,14 @@ class AsyncStreamResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             body=await async_maybe_transform(
                 {
                     "allowed_origins": allowed_origins,
@@ -989,7 +1007,7 @@ class AsyncStreamResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1013,12 +1031,14 @@ class AsyncStreamResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
-            f"/accounts/{account_id}/stream/{identifier}",
+            path_template("/accounts/{account_id}/stream/{identifier}", account_id=account_id, identifier=identifier),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

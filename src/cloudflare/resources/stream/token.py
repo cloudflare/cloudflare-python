@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -48,7 +48,7 @@ class TokenResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
@@ -104,12 +104,16 @@ class TokenResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}/token",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/token", account_id=account_id, identifier=identifier
+            ),
             body=maybe_transform(
                 {
                     "id": id,
@@ -157,7 +161,7 @@ class AsyncTokenResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
@@ -213,12 +217,16 @@ class AsyncTokenResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}/token",
+            path_template(
+                "/accounts/{account_id}/stream/{identifier}/token", account_id=account_id, identifier=identifier
+            ),
             body=await async_maybe_transform(
                 {
                     "id": id,

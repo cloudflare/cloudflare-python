@@ -8,7 +8,7 @@ __all__ = ["AudioTrackEditParams"]
 
 
 class AudioTrackEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     identifier: Required[str]

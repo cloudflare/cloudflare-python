@@ -15,7 +15,7 @@ from .outputs import (
     AsyncOutputsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -60,7 +60,7 @@ class LiveInputsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
@@ -105,10 +105,12 @@ class LiveInputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/stream/live_inputs",
+            path_template("/accounts/{account_id}/stream/live_inputs", account_id=account_id),
             body=maybe_transform(
                 {
                     "default_creator": default_creator,
@@ -133,7 +135,7 @@ class LiveInputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
@@ -179,6 +181,8 @@ class LiveInputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -186,7 +190,11 @@ class LiveInputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=maybe_transform(
                 {
                     "default_creator": default_creator,
@@ -210,7 +218,7 @@ class LiveInputsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include_counts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -238,10 +246,12 @@ class LiveInputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/stream/live_inputs",
+            path_template("/accounts/{account_id}/stream/live_inputs", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +267,7 @@ class LiveInputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -282,6 +292,8 @@ class LiveInputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -290,7 +302,11 @@ class LiveInputsResource(SyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,7 +317,7 @@ class LiveInputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -325,6 +341,8 @@ class LiveInputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -332,7 +350,11 @@ class LiveInputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._get(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,7 +393,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
@@ -416,10 +438,12 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/stream/live_inputs",
+            path_template("/accounts/{account_id}/stream/live_inputs", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "default_creator": default_creator,
@@ -444,7 +468,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         default_creator: str | Omit = omit,
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
@@ -490,6 +514,8 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -497,7 +523,11 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return await self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "default_creator": default_creator,
@@ -521,7 +551,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         include_counts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -549,10 +579,12 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/stream/live_inputs",
+            path_template("/accounts/{account_id}/stream/live_inputs", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -570,7 +602,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -595,6 +627,8 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -603,7 +637,11 @@ class AsyncLiveInputsResource(AsyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -614,7 +652,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -638,6 +676,8 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -645,7 +685,11 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return await self._get(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

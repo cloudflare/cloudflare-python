@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -11,7 +11,7 @@ __all__ = ["LiveInputCreateParams", "Recording"]
 
 
 class LiveInputCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     default_creator: Annotated[str, PropertyInfo(alias="defaultCreator")]

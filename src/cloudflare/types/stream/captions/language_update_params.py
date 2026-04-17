@@ -8,7 +8,7 @@ __all__ = ["LanguageUpdateParams"]
 
 
 class LanguageUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     identifier: Required[str]

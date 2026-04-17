@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -49,7 +49,7 @@ class OutputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         stream_key: str,
         url: str,
         enabled: bool | Omit = omit,
@@ -88,6 +88,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -95,7 +97,11 @@ class OutputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._post(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=maybe_transform(
                 {
                     "stream_key": stream_key,
@@ -118,7 +124,7 @@ class OutputsResource(SyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -152,6 +158,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -161,7 +169,12 @@ class OutputsResource(SyncAPIResource):
         if not output_identifier:
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         return self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             body=maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -177,7 +190,7 @@ class OutputsResource(SyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,6 +214,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -208,7 +223,11 @@ class OutputsResource(SyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             page=SyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -220,7 +239,7 @@ class OutputsResource(SyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -247,6 +266,8 @@ class OutputsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -257,7 +278,12 @@ class OutputsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -289,7 +315,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         stream_key: str,
         url: str,
         enabled: bool | Omit = omit,
@@ -328,6 +354,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -335,7 +363,11 @@ class AsyncOutputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return await self._post(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             body=await async_maybe_transform(
                 {
                     "stream_key": stream_key,
@@ -358,7 +390,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -392,6 +424,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -401,7 +435,12 @@ class AsyncOutputsResource(AsyncAPIResource):
         if not output_identifier:
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         return await self._put(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             body=await async_maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -417,7 +456,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         live_input_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,6 +480,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -448,7 +489,11 @@ class AsyncOutputsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
         return self._get_api_list(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+            ),
             page=AsyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -460,7 +505,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         self,
         output_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         live_input_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -487,6 +532,8 @@ class AsyncOutputsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
@@ -497,7 +544,12 @@ class AsyncOutputsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+            path_template(
+                "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
+                account_id=account_id,
+                live_input_identifier=live_input_identifier,
+                output_identifier=output_identifier,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

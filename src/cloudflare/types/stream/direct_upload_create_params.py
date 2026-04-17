@@ -14,7 +14,7 @@ __all__ = ["DirectUploadCreateParams", "Watermark"]
 
 
 class DirectUploadCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     max_duration_seconds: Required[Annotated[int, PropertyInfo(alias="maxDurationSeconds")]]
