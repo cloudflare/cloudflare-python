@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -51,7 +51,7 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         host: str | Omit = omit,
         inclusive: bool | Omit = omit,
         is_paused: bool | Omit = omit,
@@ -83,12 +83,16 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return self._post(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule", account_id=account_id, ruleset_id=ruleset_id
+            ),
             body=maybe_transform(
                 {
                     "host": host,
@@ -112,7 +116,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ruleset_id: str,
         host: str | Omit = omit,
         inclusive: bool | Omit = omit,
@@ -147,6 +151,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
@@ -154,7 +160,12 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+                account_id=account_id,
+                ruleset_id=ruleset_id,
+                rule_id=rule_id,
+            ),
             body=maybe_transform(
                 {
                     "host": host,
@@ -178,7 +189,7 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,12 +213,16 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return self._get(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rules", account_id=account_id, ruleset_id=ruleset_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +237,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ruleset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,6 +264,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
@@ -256,7 +273,12 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+                account_id=account_id,
+                ruleset_id=ruleset_id,
+                rule_id=rule_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -271,7 +293,7 @@ class RulesResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         delete_rules: SequenceNotStr[str] | Omit = omit,
         rules: Iterable[rule_bulk_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -301,12 +323,16 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return self._post(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rules", account_id=account_id, ruleset_id=ruleset_id
+            ),
             body=maybe_transform(
                 {
                     "delete_rules": delete_rules,
@@ -349,7 +375,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         host: str | Omit = omit,
         inclusive: bool | Omit = omit,
         is_paused: bool | Omit = omit,
@@ -381,12 +407,16 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule", account_id=account_id, ruleset_id=ruleset_id
+            ),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -410,7 +440,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ruleset_id: str,
         host: str | Omit = omit,
         inclusive: bool | Omit = omit,
@@ -445,6 +475,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
@@ -452,7 +484,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+                account_id=account_id,
+                ruleset_id=ruleset_id,
+                rule_id=rule_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -476,7 +513,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -500,12 +537,16 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rules", account_id=account_id, ruleset_id=ruleset_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -520,7 +561,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ruleset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -547,6 +588,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
@@ -554,7 +597,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+                account_id=account_id,
+                ruleset_id=ruleset_id,
+                rule_id=rule_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -569,7 +617,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         delete_rules: SequenceNotStr[str] | Omit = omit,
         rules: Iterable[rule_bulk_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -599,12 +647,16 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            path_template(
+                "/accounts/{account_id}/rum/v2/{ruleset_id}/rules", account_id=account_id, ruleset_id=ruleset_id
+            ),
             body=await async_maybe_transform(
                 {
                     "delete_rules": delete_rules,
