@@ -7,7 +7,7 @@ from typing import Type, Union, Mapping, Optional, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -57,7 +57,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         value: Union[str, FileTypes],
         expiration: float | Omit = omit,
@@ -106,6 +106,8 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -124,7 +126,12 @@ class ValuesResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             body=maybe_transform(body, value_update_params.ValueUpdateParams),
             files=files,
             options=make_request_options(
@@ -149,7 +156,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -179,6 +186,8 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -186,7 +195,12 @@ class ValuesResource(SyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +215,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,6 +248,8 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -242,7 +258,12 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -274,7 +295,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         value: Union[str, FileTypes],
         expiration: float | Omit = omit,
@@ -323,6 +344,8 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -341,7 +364,12 @@ class AsyncValuesResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             body=await async_maybe_transform(body, value_update_params.ValueUpdateParams),
             files=files,
             options=make_request_options(
@@ -366,7 +394,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,6 +424,8 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -403,7 +433,12 @@ class AsyncValuesResource(AsyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -418,7 +453,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -451,6 +486,8 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -459,7 +496,12 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            path_template(
+                "/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+                account_id=account_id,
+                namespace_id=namespace_id,
+                key_name=key_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

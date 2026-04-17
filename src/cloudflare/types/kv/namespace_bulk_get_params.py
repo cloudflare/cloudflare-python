@@ -11,7 +11,7 @@ __all__ = ["NamespaceBulkGetParams"]
 
 
 class NamespaceBulkGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     keys: Required[SequenceNotStr[str]]

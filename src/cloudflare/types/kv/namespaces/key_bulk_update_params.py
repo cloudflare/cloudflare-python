@@ -9,7 +9,7 @@ __all__ = ["KeyBulkUpdateParams", "Body"]
 
 
 class KeyBulkUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     body: Required[Iterable[Body]]
