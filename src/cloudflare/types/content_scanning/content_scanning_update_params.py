@@ -8,7 +8,7 @@ __all__ = ["ContentScanningUpdateParams"]
 
 
 class ContentScanningUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier."""
 
     value: Required[Literal["enabled", "disabled"]]
