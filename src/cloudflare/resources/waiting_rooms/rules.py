@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -74,12 +74,18 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
@@ -93,7 +99,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -118,12 +124,18 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
@@ -137,7 +149,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,6 +174,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -169,7 +183,12 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                rule_id=rule_id,
+            ),
             page=SyncSinglePage[WaitingRoomRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -182,7 +201,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
@@ -222,6 +241,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -229,7 +250,12 @@ class RulesResource(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                rule_id=rule_id,
+            ),
             page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(
                 {
@@ -252,7 +278,7 @@ class RulesResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,12 +300,18 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=SyncSinglePage[WaitingRoomRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -312,7 +344,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -337,12 +369,18 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=AsyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
@@ -356,7 +394,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -381,12 +419,18 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=AsyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
@@ -400,7 +444,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,6 +469,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -432,7 +478,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                rule_id=rule_id,
+            ),
             page=AsyncSinglePage[WaitingRoomRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -445,7 +496,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
@@ -485,6 +536,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -492,7 +545,12 @@ class AsyncRulesResource(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                rule_id=rule_id,
+            ),
             page=AsyncSinglePage[WaitingRoomRule],
             body=maybe_transform(
                 {
@@ -515,7 +573,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -537,12 +595,18 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+            ),
             page=AsyncSinglePage[WaitingRoomRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

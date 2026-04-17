@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,7 +47,7 @@ class DetailsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -71,6 +72,8 @@ class DetailsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -78,7 +81,12 @@ class DetailsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}/details",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}/details",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -114,7 +122,7 @@ class AsyncDetailsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -139,6 +147,8 @@ class AsyncDetailsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -146,7 +156,12 @@ class AsyncDetailsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}/details",
+            path_template(
+                "/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}/details",
+                zone_id=zone_id,
+                waiting_room_id=waiting_room_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
