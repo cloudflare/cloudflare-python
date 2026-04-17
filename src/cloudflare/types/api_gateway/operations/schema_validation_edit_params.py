@@ -10,7 +10,7 @@ __all__ = ["SchemaValidationEditParams"]
 
 
 class SchemaValidationEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     settings_multiple_request: Required[SettingsMultipleRequestParam]

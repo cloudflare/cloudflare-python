@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -53,7 +53,7 @@ class OperationsResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         endpoint: str | Omit = omit,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
@@ -103,12 +103,16 @@ class OperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations", zone_id=zone_id, schema_id=schema_id
+            ),
             page=SyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -159,7 +163,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         endpoint: str | Omit = omit,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
@@ -209,12 +213,16 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
+            path_template(
+                "/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations", zone_id=zone_id, schema_id=schema_id
+            ),
             page=AsyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

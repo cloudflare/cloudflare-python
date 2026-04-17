@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from .user.user import (
     UserResource,
     AsyncUserResource,
@@ -71,7 +71,7 @@ class LabelsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["name", "description", "created_at", "last_updated", "mapped_resources.operations"]
@@ -115,10 +115,12 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/labels",
+            path_template("/zones/{zone_id}/api_gateway/labels", zone_id=zone_id),
             page=SyncV4PagePaginationArray[LabelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -173,7 +175,7 @@ class AsyncLabelsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["name", "description", "created_at", "last_updated", "mapped_resources.operations"]
@@ -217,10 +219,12 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/api_gateway/labels",
+            path_template("/zones/{zone_id}/api_gateway/labels", zone_id=zone_id),
             page=AsyncV4PagePaginationArray[LabelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
