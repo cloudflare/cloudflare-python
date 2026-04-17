@@ -10,7 +10,7 @@ __all__ = ["SubscriptionUpdateParams", "Destination"]
 
 
 class SubscriptionUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     destination: Destination

@@ -23,7 +23,7 @@ __all__ = [
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """A Resource identifier."""
 
     destination: Destination

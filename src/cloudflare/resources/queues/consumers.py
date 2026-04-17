@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -52,7 +52,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         type: Literal["worker"],
         dead_letter_queue: str | Omit = omit,
@@ -89,7 +89,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         type: Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
         settings: consumer_create_params.MqHTTPConsumerRequestSettings | Omit = omit,
@@ -118,12 +118,12 @@ class ConsumersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "script_name", "type"], ["account_id", "type"])
+    @required_args(["script_name", "type"], ["type"])
     def create(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str | Omit = omit,
         type: Literal["worker"] | Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
@@ -137,6 +137,8 @@ class ConsumersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -144,7 +146,9 @@ class ConsumersResource(SyncAPIResource):
         return cast(
             Optional[Consumer],
             self._post(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers", account_id=account_id, queue_id=queue_id
+                ),
                 body=maybe_transform(
                     {
                         "script_name": script_name,
@@ -172,7 +176,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         script_name: str,
         type: Literal["worker"],
@@ -212,7 +216,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         type: Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
@@ -244,12 +248,12 @@ class ConsumersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "queue_id", "script_name", "type"], ["account_id", "queue_id", "type"])
+    @required_args(["queue_id", "script_name", "type"], ["queue_id", "type"])
     def update(
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         script_name: str | Omit = omit,
         type: Literal["worker"] | Literal["http_pull"],
@@ -264,6 +268,8 @@ class ConsumersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -273,7 +279,12 @@ class ConsumersResource(SyncAPIResource):
         return cast(
             Optional[Consumer],
             self._put(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                    account_id=account_id,
+                    queue_id=queue_id,
+                    consumer_id=consumer_id,
+                ),
                 body=maybe_transform(
                     {
                         "script_name": script_name,
@@ -300,7 +311,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -324,12 +335,16 @@ class ConsumersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/queues/{queue_id}/consumers",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/consumers", account_id=account_id, queue_id=queue_id
+            ),
             page=SyncSinglePage[Consumer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -341,7 +356,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -368,6 +383,8 @@ class ConsumersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -375,7 +392,12 @@ class ConsumersResource(SyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                account_id=account_id,
+                queue_id=queue_id,
+                consumer_id=consumer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -386,7 +408,7 @@ class ConsumersResource(SyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -413,6 +435,8 @@ class ConsumersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -422,7 +446,12 @@ class ConsumersResource(SyncAPIResource):
         return cast(
             Optional[Consumer],
             self._get(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                    account_id=account_id,
+                    queue_id=queue_id,
+                    consumer_id=consumer_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -462,7 +491,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str,
         type: Literal["worker"],
         dead_letter_queue: str | Omit = omit,
@@ -499,7 +528,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         type: Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
         settings: consumer_create_params.MqHTTPConsumerRequestSettings | Omit = omit,
@@ -528,12 +557,12 @@ class AsyncConsumersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "script_name", "type"], ["account_id", "type"])
+    @required_args(["script_name", "type"], ["type"])
     async def create(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         script_name: str | Omit = omit,
         type: Literal["worker"] | Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
@@ -547,6 +576,8 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -554,7 +585,9 @@ class AsyncConsumersResource(AsyncAPIResource):
         return cast(
             Optional[Consumer],
             await self._post(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers", account_id=account_id, queue_id=queue_id
+                ),
                 body=await async_maybe_transform(
                     {
                         "script_name": script_name,
@@ -582,7 +615,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         script_name: str,
         type: Literal["worker"],
@@ -622,7 +655,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         type: Literal["http_pull"],
         dead_letter_queue: str | Omit = omit,
@@ -654,12 +687,12 @@ class AsyncConsumersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "queue_id", "script_name", "type"], ["account_id", "queue_id", "type"])
+    @required_args(["queue_id", "script_name", "type"], ["queue_id", "type"])
     async def update(
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         script_name: str | Omit = omit,
         type: Literal["worker"] | Literal["http_pull"],
@@ -674,6 +707,8 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -683,7 +718,12 @@ class AsyncConsumersResource(AsyncAPIResource):
         return cast(
             Optional[Consumer],
             await self._put(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                    account_id=account_id,
+                    queue_id=queue_id,
+                    consumer_id=consumer_id,
+                ),
                 body=await async_maybe_transform(
                     {
                         "script_name": script_name,
@@ -710,7 +750,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -734,12 +774,16 @@ class AsyncConsumersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/queues/{queue_id}/consumers",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/consumers", account_id=account_id, queue_id=queue_id
+            ),
             page=AsyncSinglePage[Consumer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -751,7 +795,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -778,6 +822,8 @@ class AsyncConsumersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -785,7 +831,12 @@ class AsyncConsumersResource(AsyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                account_id=account_id,
+                queue_id=queue_id,
+                consumer_id=consumer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -796,7 +847,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         self,
         consumer_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -823,6 +874,8 @@ class AsyncConsumersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -832,7 +885,12 @@ class AsyncConsumersResource(AsyncAPIResource):
         return cast(
             Optional[Consumer],
             await self._get(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                path_template(
+                    "/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+                    account_id=account_id,
+                    queue_id=queue_id,
+                    consumer_id=consumer_id,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

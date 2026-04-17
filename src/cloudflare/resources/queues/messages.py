@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -52,7 +52,7 @@ class MessagesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         acks: Iterable[message_ack_params.Ack] | Omit = omit,
         retries: Iterable[message_ack_params.Retry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,12 +78,16 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/ack",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/ack", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "acks": acks,
@@ -105,7 +109,7 @@ class MessagesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         delay_seconds: float | Omit = omit,
         messages: Iterable[message_bulk_push_params.Message] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -114,7 +118,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageBulkPushResponse:
+    ) -> Optional[MessageBulkPushResponse]:
         """
         Push a batch of message to a Queue
 
@@ -133,12 +137,16 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/batch", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "delay_seconds": delay_seconds,
@@ -147,16 +155,20 @@ class MessagesResource(SyncAPIResource):
                 message_bulk_push_params.MessageBulkPushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessageBulkPushResponse]]._unwrapper,
             ),
-            cast_to=MessageBulkPushResponse,
+            cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
     def pull(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch_size: float | Omit = omit,
         visibility_timeout_ms: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -187,12 +199,16 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/pull", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -215,7 +231,7 @@ class MessagesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: str | Omit = omit,
         content_type: Literal["text"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -225,7 +241,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -252,7 +268,7 @@ class MessagesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object | Omit = omit,
         content_type: Literal["json"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -262,7 +278,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -284,12 +300,11 @@ class MessagesResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"])
     def push(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: str | object | Omit = omit,
         content_type: Literal["text"] | Literal["json"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -299,13 +314,17 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages", account_id=account_id, queue_id=queue_id
+            ),
             body=maybe_transform(
                 {
                     "body": body,
@@ -315,9 +334,13 @@ class MessagesResource(SyncAPIResource):
                 message_push_params.MessagePushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePushResponse]]._unwrapper,
             ),
-            cast_to=MessagePushResponse,
+            cast_to=cast(Type[Optional[MessagePushResponse]], ResultWrapper[MessagePushResponse]),
         )
 
 
@@ -345,7 +368,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         acks: Iterable[message_ack_params.Ack] | Omit = omit,
         retries: Iterable[message_ack_params.Retry] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -371,12 +394,16 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/ack",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/ack", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "acks": acks,
@@ -398,7 +425,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         delay_seconds: float | Omit = omit,
         messages: Iterable[message_bulk_push_params.Message] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -407,7 +434,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageBulkPushResponse:
+    ) -> Optional[MessageBulkPushResponse]:
         """
         Push a batch of message to a Queue
 
@@ -426,12 +453,16 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/batch", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "delay_seconds": delay_seconds,
@@ -440,16 +471,20 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_bulk_push_params.MessageBulkPushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessageBulkPushResponse]]._unwrapper,
             ),
-            cast_to=MessageBulkPushResponse,
+            cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
     async def pull(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         batch_size: float | Omit = omit,
         visibility_timeout_ms: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -480,12 +515,16 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/pull", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -508,7 +547,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: str | Omit = omit,
         content_type: Literal["text"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -518,7 +557,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -545,7 +584,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: object | Omit = omit,
         content_type: Literal["json"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -555,7 +594,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
         """
         Push a message to a Queue
 
@@ -577,12 +616,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"])
     async def push(
         self,
         queue_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: str | object | Omit = omit,
         content_type: Literal["text"] | Literal["json"] | Omit = omit,
         delay_seconds: float | Omit = omit,
@@ -592,13 +630,17 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagePushResponse:
+    ) -> Optional[MessagePushResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages", account_id=account_id, queue_id=queue_id
+            ),
             body=await async_maybe_transform(
                 {
                     "body": body,
@@ -608,9 +650,13 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_push_params.MessagePushParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePushResponse]]._unwrapper,
             ),
-            cast_to=MessagePushResponse,
+            cast_to=cast(Type[Optional[MessagePushResponse]], ResultWrapper[MessagePushResponse]),
         )
 
 
