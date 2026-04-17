@@ -74,6 +74,7 @@ class ItemsResource(SyncAPIResource):
         *,
         account_id: str | None = None,
         name: str,
+        item_id: str | Omit = omit,
         metadata_filter: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -94,6 +95,8 @@ class ItemsResource(SyncAPIResource):
           id: AI Search instance ID.
 
         Lowercase alphanumeric, hyphens, and underscores.
+
+          item_id: Filter items by their unique ID. Returns at most one item.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
@@ -138,6 +141,7 @@ class ItemsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "item_id": item_id,
                         "metadata_filter": metadata_filter,
                         "page": page,
                         "per_page": per_page,
@@ -660,6 +664,7 @@ class AsyncItemsResource(AsyncAPIResource):
         *,
         account_id: str | None = None,
         name: str,
+        item_id: str | Omit = omit,
         metadata_filter: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -680,6 +685,8 @@ class AsyncItemsResource(AsyncAPIResource):
           id: AI Search instance ID.
 
         Lowercase alphanumeric, hyphens, and underscores.
+
+          item_id: Filter items by their unique ID. Returns at most one item.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
@@ -724,6 +731,7 @@ class AsyncItemsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "item_id": item_id,
                         "metadata_filter": metadata_filter,
                         "page": page,
                         "per_page": per_page,

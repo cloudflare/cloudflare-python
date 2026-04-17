@@ -12,6 +12,9 @@ class ItemListParams(TypedDict, total=False):
 
     name: Required[str]
 
+    item_id: str
+    """Filter items by their unique ID. Returns at most one item."""
+
     metadata_filter: str
     """JSON-encoded metadata filter using Vectorize filter syntax.
 
