@@ -33,16 +33,16 @@ class TestDeployments:
         deployment = client.pages.projects.deployments.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            _headers=b"raw file contents",
-            _redirects=b"raw file contents",
-            _routes_json=b"raw file contents",
-            _worker_bundle=b"raw file contents",
-            _worker_js=b"raw file contents",
+            _headers=b"Example data",
+            _redirects=b"Example data",
+            _routes_json=b"Example data",
+            _worker_bundle=b"Example data",
+            _worker_js=b"Example data",
             branch="staging",
             commit_dirty="false",
             commit_hash="a1b2c3d4e5f6",
             commit_message="Update homepage",
-            functions_filepath_routing_config_json=b"raw file contents",
+            functions_filepath_routing_config_json=b"Example data",
             manifest='{"index.html": "abc123", "style.css": "def456"}',
             pages_build_output_dir="dist",
             wrangler_config_hash="wrangler_config_hash",
@@ -157,6 +157,16 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+        )
+        assert_matches_type(object, deployment, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        deployment = client.pages.projects.deployments.delete(
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+            force=True,
         )
         assert_matches_type(object, deployment, path=["response"])
 
@@ -412,16 +422,16 @@ class TestAsyncDeployments:
         deployment = await async_client.pages.projects.deployments.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            _headers=b"raw file contents",
-            _redirects=b"raw file contents",
-            _routes_json=b"raw file contents",
-            _worker_bundle=b"raw file contents",
-            _worker_js=b"raw file contents",
+            _headers=b"Example data",
+            _redirects=b"Example data",
+            _routes_json=b"Example data",
+            _worker_bundle=b"Example data",
+            _worker_js=b"Example data",
             branch="staging",
             commit_dirty="false",
             commit_hash="a1b2c3d4e5f6",
             commit_message="Update homepage",
-            functions_filepath_routing_config_json=b"raw file contents",
+            functions_filepath_routing_config_json=b"Example data",
             manifest='{"index.html": "abc123", "style.css": "def456"}',
             pages_build_output_dir="dist",
             wrangler_config_hash="wrangler_config_hash",
@@ -536,6 +546,16 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+        )
+        assert_matches_type(object, deployment, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        deployment = await async_client.pages.projects.deployments.delete(
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+            force=True,
         )
         assert_matches_type(object, deployment, path=["response"])
 

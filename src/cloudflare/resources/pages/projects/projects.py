@@ -15,7 +15,7 @@ from .domains import (
     AsyncDomainsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -72,7 +72,7 @@ class ProjectsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         production_branch: str,
         build_config: project_create_params.BuildConfig | Omit = omit,
@@ -109,10 +109,12 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/pages/projects",
+            path_template("/accounts/{account_id}/pages/projects", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -136,7 +138,7 @@ class ProjectsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -164,10 +166,12 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pages/projects",
+            path_template("/accounts/{account_id}/pages/projects", account_id=account_id),
             page=SyncV4PagePaginationArray[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -189,7 +193,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -213,12 +217,16 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._delete(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -233,7 +241,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         build_config: project_edit_params.BuildConfig | Omit = omit,
         deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
         name: str | Omit = omit,
@@ -274,12 +282,16 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._patch(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             body=maybe_transform(
                 {
                     "build_config": build_config,
@@ -304,7 +316,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -328,12 +340,16 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -348,7 +364,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,12 +388,18 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -420,7 +442,7 @@ class AsyncProjectsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         production_branch: str,
         build_config: project_create_params.BuildConfig | Omit = omit,
@@ -457,10 +479,12 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/pages/projects",
+            path_template("/accounts/{account_id}/pages/projects", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -484,7 +508,7 @@ class AsyncProjectsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -512,10 +536,12 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/pages/projects",
+            path_template("/accounts/{account_id}/pages/projects", account_id=account_id),
             page=AsyncV4PagePaginationArray[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -537,7 +563,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -561,12 +587,16 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._delete(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -581,7 +611,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         build_config: project_edit_params.BuildConfig | Omit = omit,
         deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
         name: str | Omit = omit,
@@ -622,12 +652,16 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._patch(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             body=await async_maybe_transform(
                 {
                     "build_config": build_config,
@@ -652,7 +686,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -676,12 +710,16 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/pages/projects/{project_name}",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}", account_id=account_id, project_name=project_name
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -696,7 +734,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,12 +758,18 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
+                account_id=account_id,
+                project_name=project_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
