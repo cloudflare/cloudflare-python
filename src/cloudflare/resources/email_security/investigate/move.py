@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class MoveResource(SyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -83,12 +83,18 @@ class MoveResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._post(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -104,7 +110,7 @@ class MoveResource(SyncAPIResource):
     def bulk(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -135,10 +141,12 @@ class MoveResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate/move",
+            path_template("/accounts/{account_id}/email-security/investigate/move", account_id=account_id),
             page=SyncSinglePage[MoveBulkResponse],
             body=maybe_transform(
                 {
@@ -180,7 +188,7 @@ class AsyncMoveResource(AsyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -212,12 +220,18 @@ class AsyncMoveResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}/move",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             body=await async_maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -233,7 +247,7 @@ class AsyncMoveResource(AsyncAPIResource):
     def bulk(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -264,10 +278,12 @@ class AsyncMoveResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/investigate/move",
+            path_template("/accounts/{account_id}/email-security/investigate/move", account_id=account_id),
             page=AsyncSinglePage[MoveBulkResponse],
             body=maybe_transform(
                 {

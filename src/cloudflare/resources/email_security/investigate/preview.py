@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -48,7 +48,7 @@ class PreviewResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         postfix_id: str,
         submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,10 +78,12 @@ class PreviewResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/email-security/investigate/preview",
+            path_template("/accounts/{account_id}/email-security/investigate/preview", account_id=account_id),
             body=maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -98,7 +100,7 @@ class PreviewResource(SyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,12 +125,18 @@ class PreviewResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,7 +171,7 @@ class AsyncPreviewResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         postfix_id: str,
         submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -193,10 +201,12 @@ class AsyncPreviewResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/email-security/investigate/preview",
+            path_template("/accounts/{account_id}/email-security/investigate/preview", account_id=account_id),
             body=await async_maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -215,7 +225,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,12 +250,18 @@ class AsyncPreviewResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
             raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
+                account_id=account_id,
+                postfix_id=postfix_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

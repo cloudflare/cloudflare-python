@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -57,7 +57,7 @@ class AllowPoliciesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         is_acceptable_sender: bool,
         is_exempt_recipient: bool,
         is_regex: bool,
@@ -102,10 +102,12 @@ class AllowPoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             body=maybe_transform(
                 {
                     "is_acceptable_sender": is_acceptable_sender,
@@ -135,7 +137,7 @@ class AllowPoliciesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         is_acceptable_sender: bool | Omit = omit,
         is_exempt_recipient: bool | Omit = omit,
@@ -183,10 +185,12 @@ class AllowPoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             page=SyncV4PagePaginationArray[AllowPolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -220,7 +224,7 @@ class AllowPoliciesResource(SyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,10 +250,16 @@ class AllowPoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -264,7 +274,7 @@ class AllowPoliciesResource(SyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comments: Optional[str] | Omit = omit,
         is_acceptable_sender: Optional[bool] | Omit = omit,
         is_exempt_recipient: Optional[bool] | Omit = omit,
@@ -308,10 +318,16 @@ class AllowPoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             body=maybe_transform(
                 {
                     "comments": comments,
@@ -339,7 +355,7 @@ class AllowPoliciesResource(SyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,10 +380,16 @@ class AllowPoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -402,7 +424,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         is_acceptable_sender: bool,
         is_exempt_recipient: bool,
         is_regex: bool,
@@ -447,10 +469,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "is_acceptable_sender": is_acceptable_sender,
@@ -480,7 +504,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         is_acceptable_sender: bool | Omit = omit,
         is_exempt_recipient: bool | Omit = omit,
@@ -528,10 +552,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/settings/allow_policies",
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies", account_id=account_id),
             page=AsyncV4PagePaginationArray[AllowPolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -565,7 +591,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -591,10 +617,16 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -609,7 +641,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comments: Optional[str] | Omit = omit,
         is_acceptable_sender: Optional[bool] | Omit = omit,
         is_exempt_recipient: Optional[bool] | Omit = omit,
@@ -653,10 +685,16 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "comments": comments,
@@ -684,7 +722,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         self,
         policy_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -709,10 +747,16 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+            path_template(
+                "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
+                account_id=account_id,
+                policy_id=policy_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from datetime import date, datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -48,7 +48,7 @@ class ReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
@@ -79,10 +79,12 @@ class ReportsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/phishguard/reports",
+            path_template("/accounts/{account_id}/email-security/phishguard/reports", account_id=account_id),
             page=SyncSinglePage[ReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -126,7 +128,7 @@ class AsyncReportsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
@@ -157,10 +159,12 @@ class AsyncReportsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/email-security/phishguard/reports",
+            path_template("/accounts/{account_id}/email-security/phishguard/reports", account_id=account_id),
             page=AsyncSinglePage[ReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
