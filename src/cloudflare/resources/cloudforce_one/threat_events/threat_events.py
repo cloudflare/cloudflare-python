@@ -33,8 +33,16 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .attackers import (
     AttackersResource,
     AsyncAttackersResource,
@@ -83,14 +91,6 @@ from .indicator_types import (
     AsyncIndicatorTypesResourceWithRawResponse,
     IndicatorTypesResourceWithStreamingResponse,
     AsyncIndicatorTypesResourceWithStreamingResponse,
-)
-from .datasets.datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
 )
 from .target_industries import (
     TargetIndustriesResource,
@@ -178,7 +178,7 @@ class ThreatEventsResource(SyncAPIResource):
     def create(
         self,
         *,
-        path_account_id: str,
+        path_account_id: str | None = None,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -222,10 +222,12 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if path_account_id is None:
+            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return self._post(
-            f"/accounts/{path_account_id}/cloudforce-one/events/create",
+            path_template("/accounts/{path_account_id}/cloudforce-one/events/create", path_account_id=path_account_id),
             body=maybe_transform(
                 {
                     "category": category,
@@ -256,7 +258,7 @@ class ThreatEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -301,10 +303,12 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            path_template("/accounts/{account_id}/cloudforce-one/events", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -331,7 +335,7 @@ class ThreatEventsResource(SyncAPIResource):
     def bulk_create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -363,10 +367,12 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/create/bulk",
+            path_template("/accounts/{account_id}/cloudforce-one/events/create/bulk", account_id=account_id),
             body=maybe_transform(
                 {
                     "data": data,
@@ -385,7 +391,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -425,12 +431,16 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             body=maybe_transform(
                 {
                     "dataset_id": dataset_id,
@@ -461,7 +471,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,12 +497,16 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -563,7 +577,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        path_account_id: str,
+        path_account_id: str | None = None,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -607,10 +621,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if path_account_id is None:
+            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return await self._post(
-            f"/accounts/{path_account_id}/cloudforce-one/events/create",
+            path_template("/accounts/{path_account_id}/cloudforce-one/events/create", path_account_id=path_account_id),
             body=await async_maybe_transform(
                 {
                     "category": category,
@@ -641,7 +657,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -686,10 +702,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            path_template("/accounts/{account_id}/cloudforce-one/events", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -716,7 +734,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def bulk_create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -748,10 +766,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/events/create/bulk",
+            path_template("/accounts/{account_id}/cloudforce-one/events/create/bulk", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "data": data,
@@ -770,7 +790,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -810,12 +830,16 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             body=await async_maybe_transform(
                 {
                     "dataset_id": dataset_id,
@@ -846,7 +870,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -872,12 +896,16 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/{event_id}", account_id=account_id, event_id=event_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

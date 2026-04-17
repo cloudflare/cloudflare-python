@@ -10,7 +10,7 @@ __all__ = ["DatasetCreateParams"]
 
 
 class DatasetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     is_public: Required[Annotated[bool, PropertyInfo(alias="isPublic")]]

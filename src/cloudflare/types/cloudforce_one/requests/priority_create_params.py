@@ -11,7 +11,7 @@ __all__ = ["PriorityCreateParams"]
 
 
 class PriorityCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     labels: Required[SequenceNotStr[Label]]

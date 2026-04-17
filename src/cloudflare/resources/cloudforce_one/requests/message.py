@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -52,7 +52,7 @@ class MessageResource(SyncAPIResource):
         self,
         request_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -79,12 +79,18 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             body=maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -100,7 +106,7 @@ class MessageResource(SyncAPIResource):
         self,
         message_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         request_id: str,
         content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -128,12 +134,19 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._put(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             body=maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -149,7 +162,7 @@ class MessageResource(SyncAPIResource):
         self,
         message_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,12 +187,19 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -190,7 +210,7 @@ class MessageResource(SyncAPIResource):
         self,
         request_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int,
         per_page: int,
         after: Union[str, datetime] | Omit = omit,
@@ -232,12 +252,18 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             page=SyncSinglePage[Message],
             body=maybe_transform(
                 {
@@ -282,7 +308,7 @@ class AsyncMessageResource(AsyncAPIResource):
         self,
         request_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,12 +335,18 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             body=await async_maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -330,7 +362,7 @@ class AsyncMessageResource(AsyncAPIResource):
         self,
         message_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         request_id: str,
         content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -358,12 +390,19 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             body=await async_maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -379,7 +418,7 @@ class AsyncMessageResource(AsyncAPIResource):
         self,
         message_id: int,
         *,
-        account_id: str,
+        account_id: str | None = None,
         request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -404,12 +443,19 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
+                account_id=account_id,
+                request_id=request_id,
+                message_id=message_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -420,7 +466,7 @@ class AsyncMessageResource(AsyncAPIResource):
         self,
         request_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int,
         per_page: int,
         after: Union[str, datetime] | Omit = omit,
@@ -462,12 +508,18 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not request_id:
             raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
+                account_id=account_id,
+                request_id=request_id,
+            ),
             page=AsyncSinglePage[Message],
             body=maybe_transform(
                 {

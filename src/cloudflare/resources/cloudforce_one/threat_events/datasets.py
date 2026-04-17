@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -16,63 +14,60 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloudforce_one.requests import asset_create_params, asset_update_params
-from ....types.cloudforce_one.requests.asset_get_response import AssetGetResponse
-from ....types.cloudforce_one.requests.asset_create_response import AssetCreateResponse
-from ....types.cloudforce_one.requests.asset_delete_response import AssetDeleteResponse
-from ....types.cloudforce_one.requests.asset_update_response import AssetUpdateResponse
+from ...._base_client import make_request_options
+from ....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
+from ....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
+from ....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
+from ....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
+from ....types.cloudforce_one.threat_events.dataset_list_response import DatasetListResponse
+from ....types.cloudforce_one.threat_events.dataset_create_response import DatasetCreateResponse
 
-__all__ = ["AssetsResource", "AsyncAssetsResource"]
+__all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
-class AssetsResource(SyncAPIResource):
+class DatasetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AssetsResourceWithRawResponse:
+    def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AssetsResourceWithRawResponse(self)
+        return DatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AssetsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> DatasetsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AssetsResourceWithStreamingResponse(self)
+        return DatasetsResourceWithStreamingResponse(self)
 
     def create(
         self,
-        request_id: str,
         *,
         account_id: str | None = None,
-        page: int,
-        per_page: int,
+        is_public: bool,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[AssetCreateResponse]:
+    ) -> DatasetCreateResponse:
         """
-        Lists assets attached to a Cloudforce One intelligence request.
+        Creates a dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
+          is_public: If true, then anyone can search the dataset. If false, then its limited to the
+              account.
 
-          page: Page number of results.
-
-          per_page: Number of results per page.
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -86,54 +81,37 @@ class AssetsResource(SyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        return self._get_api_list(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset",
-                account_id=account_id,
-                request_id=request_id,
-            ),
-            page=SyncSinglePage[AssetCreateResponse],
+        return self._post(
+            path_template("/accounts/{account_id}/cloudforce-one/events/dataset/create", account_id=account_id),
             body=maybe_transform(
                 {
-                    "page": page,
-                    "per_page": per_page,
+                    "is_public": is_public,
+                    "name": name,
                 },
-                asset_create_params.AssetCreateParams,
+                dataset_create_params.DatasetCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AssetCreateResponse,
-            method="post",
+            cast_to=DatasetCreateResponse,
         )
 
-    def update(
+    def list(
         self,
-        asset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
-        source: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AssetUpdateResponse]:
+    ) -> DatasetListResponse:
         """
-        Updates an asset in a Cloudforce One intelligence request.
+        Lists all datasets in an account
 
         Args:
-          account_id: Identifier.
-
-          request_id: UUID.
-
-          asset_id: UUID.
-
-          source: Asset file to upload.
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -147,50 +125,40 @@ class AssetsResource(SyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return self._put(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
-                account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
-            ),
-            body=maybe_transform({"source": source}, asset_update_params.AssetUpdateParams),
+        return self._get(
+            path_template("/accounts/{account_id}/cloudforce-one/events/dataset", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetUpdateResponse]], ResultWrapper[AssetUpdateResponse]),
+            cast_to=DatasetListResponse,
         )
 
-    def delete(
+    def edit(
         self,
-        asset_id: str,
+        dataset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
+        is_public: bool,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssetDeleteResponse:
+    ) -> DatasetEditResponse:
         """
-        Removes an asset from a Cloudforce One intelligence request.
+        Updates an existing dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
+          dataset_id: Dataset ID.
 
-          asset_id: UUID.
+          is_public: If true, then anyone can search the dataset. If false, then its limited to the
+              account.
+
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -204,45 +172,46 @@ class AssetsResource(SyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return self._delete(
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        return self._patch(
             path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
+                "/accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}",
                 account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
+                dataset_id=dataset_id,
+            ),
+            body=maybe_transform(
+                {
+                    "is_public": is_public,
+                    "name": name,
+                },
+                dataset_edit_params.DatasetEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssetDeleteResponse,
+            cast_to=DatasetEditResponse,
         )
 
     def get(
         self,
-        asset_id: str,
+        dataset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[AssetGetResponse]:
+    ) -> DatasetGetResponse:
         """
-        Retrieves an asset attached to a Cloudforce One intelligence request.
+        Reads a dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
-
-          asset_id: UUID.
+          dataset_id: Dataset ID.
 
           extra_headers: Send extra headers
 
@@ -256,70 +225,118 @@ class AssetsResource(SyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return self._get_api_list(
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        return self._get(
             path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
+                "/accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}",
                 account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
+                dataset_id=dataset_id,
             ),
-            page=SyncSinglePage[AssetGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AssetGetResponse,
+            cast_to=DatasetGetResponse,
+        )
+
+    def raw(
+        self,
+        event_id: str,
+        *,
+        account_id: str | None = None,
+        dataset_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DatasetRawResponse:
+        """Retrieves the raw data associated with an event.
+
+        Searches across all shards in
+        the dataset.
+
+        Args:
+          account_id: Account ID.
+
+          dataset_id: Dataset ID.
+
+          event_id: Event ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                event_id=event_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetRawResponse,
         )
 
 
-class AsyncAssetsResource(AsyncAPIResource):
+class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAssetsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAssetsResourceWithRawResponse(self)
+        return AsyncDatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAssetsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncDatasetsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncAssetsResourceWithStreamingResponse(self)
+        return AsyncDatasetsResourceWithStreamingResponse(self)
 
-    def create(
+    async def create(
         self,
-        request_id: str,
         *,
         account_id: str | None = None,
-        page: int,
-        per_page: int,
+        is_public: bool,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AssetCreateResponse, AsyncSinglePage[AssetCreateResponse]]:
+    ) -> DatasetCreateResponse:
         """
-        Lists assets attached to a Cloudforce One intelligence request.
+        Creates a dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
+          is_public: If true, then anyone can search the dataset. If false, then its limited to the
+              account.
 
-          page: Page number of results.
-
-          per_page: Number of results per page.
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -333,54 +350,37 @@ class AsyncAssetsResource(AsyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        return self._get_api_list(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset",
-                account_id=account_id,
-                request_id=request_id,
-            ),
-            page=AsyncSinglePage[AssetCreateResponse],
-            body=maybe_transform(
+        return await self._post(
+            path_template("/accounts/{account_id}/cloudforce-one/events/dataset/create", account_id=account_id),
+            body=await async_maybe_transform(
                 {
-                    "page": page,
-                    "per_page": per_page,
+                    "is_public": is_public,
+                    "name": name,
                 },
-                asset_create_params.AssetCreateParams,
+                dataset_create_params.DatasetCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AssetCreateResponse,
-            method="post",
+            cast_to=DatasetCreateResponse,
         )
 
-    async def update(
+    async def list(
         self,
-        asset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
-        source: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AssetUpdateResponse]:
+    ) -> DatasetListResponse:
         """
-        Updates an asset in a Cloudforce One intelligence request.
+        Lists all datasets in an account
 
         Args:
-          account_id: Identifier.
-
-          request_id: UUID.
-
-          asset_id: UUID.
-
-          source: Asset file to upload.
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -394,50 +394,40 @@ class AsyncAssetsResource(AsyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return await self._put(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
-                account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
-            ),
-            body=await async_maybe_transform({"source": source}, asset_update_params.AssetUpdateParams),
+        return await self._get(
+            path_template("/accounts/{account_id}/cloudforce-one/events/dataset", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetUpdateResponse]], ResultWrapper[AssetUpdateResponse]),
+            cast_to=DatasetListResponse,
         )
 
-    async def delete(
+    async def edit(
         self,
-        asset_id: str,
+        dataset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
+        is_public: bool,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssetDeleteResponse:
+    ) -> DatasetEditResponse:
         """
-        Removes an asset from a Cloudforce One intelligence request.
+        Updates an existing dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
+          dataset_id: Dataset ID.
 
-          asset_id: UUID.
+          is_public: If true, then anyone can search the dataset. If false, then its limited to the
+              account.
+
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -451,45 +441,46 @@ class AsyncAssetsResource(AsyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return await self._delete(
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        return await self._patch(
             path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
+                "/accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}",
                 account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
+                dataset_id=dataset_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "is_public": is_public,
+                    "name": name,
+                },
+                dataset_edit_params.DatasetEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssetDeleteResponse,
+            cast_to=DatasetEditResponse,
         )
 
-    def get(
+    async def get(
         self,
-        asset_id: str,
+        dataset_id: str,
         *,
         account_id: str | None = None,
-        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AssetGetResponse, AsyncSinglePage[AssetGetResponse]]:
+    ) -> DatasetGetResponse:
         """
-        Retrieves an asset attached to a Cloudforce One intelligence request.
+        Reads a dataset
 
         Args:
-          account_id: Identifier.
+          account_id: Account ID.
 
-          request_id: UUID.
-
-          asset_id: UUID.
+          dataset_id: Dataset ID.
 
           extra_headers: Send extra headers
 
@@ -503,92 +494,154 @@ class AsyncAssetsResource(AsyncAPIResource):
             account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not request_id:
-            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
-        if not asset_id:
-            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
-        return self._get_api_list(
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        return await self._get(
             path_template(
-                "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
+                "/accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}",
                 account_id=account_id,
-                request_id=request_id,
-                asset_id=asset_id,
+                dataset_id=dataset_id,
             ),
-            page=AsyncSinglePage[AssetGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AssetGetResponse,
+            cast_to=DatasetGetResponse,
+        )
+
+    async def raw(
+        self,
+        event_id: str,
+        *,
+        account_id: str | None = None,
+        dataset_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DatasetRawResponse:
+        """Retrieves the raw data associated with an event.
+
+        Searches across all shards in
+        the dataset.
+
+        Args:
+          account_id: Account ID.
+
+          dataset_id: Dataset ID.
+
+          event_id: Event ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}",
+                account_id=account_id,
+                dataset_id=dataset_id,
+                event_id=event_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasetRawResponse,
         )
 
 
-class AssetsResourceWithRawResponse:
-    def __init__(self, assets: AssetsResource) -> None:
-        self._assets = assets
+class DatasetsResourceWithRawResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
+        self._datasets = datasets
 
         self.create = to_raw_response_wrapper(
-            assets.create,
+            datasets.create,
         )
-        self.update = to_raw_response_wrapper(
-            assets.update,
+        self.list = to_raw_response_wrapper(
+            datasets.list,
         )
-        self.delete = to_raw_response_wrapper(
-            assets.delete,
+        self.edit = to_raw_response_wrapper(
+            datasets.edit,
         )
         self.get = to_raw_response_wrapper(
-            assets.get,
+            datasets.get,
+        )
+        self.raw = to_raw_response_wrapper(
+            datasets.raw,
         )
 
 
-class AsyncAssetsResourceWithRawResponse:
-    def __init__(self, assets: AsyncAssetsResource) -> None:
-        self._assets = assets
+class AsyncDatasetsResourceWithRawResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
+        self._datasets = datasets
 
         self.create = async_to_raw_response_wrapper(
-            assets.create,
+            datasets.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            assets.update,
+        self.list = async_to_raw_response_wrapper(
+            datasets.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            assets.delete,
+        self.edit = async_to_raw_response_wrapper(
+            datasets.edit,
         )
         self.get = async_to_raw_response_wrapper(
-            assets.get,
+            datasets.get,
+        )
+        self.raw = async_to_raw_response_wrapper(
+            datasets.raw,
         )
 
 
-class AssetsResourceWithStreamingResponse:
-    def __init__(self, assets: AssetsResource) -> None:
-        self._assets = assets
+class DatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
+        self._datasets = datasets
 
         self.create = to_streamed_response_wrapper(
-            assets.create,
+            datasets.create,
         )
-        self.update = to_streamed_response_wrapper(
-            assets.update,
+        self.list = to_streamed_response_wrapper(
+            datasets.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            assets.delete,
+        self.edit = to_streamed_response_wrapper(
+            datasets.edit,
         )
         self.get = to_streamed_response_wrapper(
-            assets.get,
+            datasets.get,
+        )
+        self.raw = to_streamed_response_wrapper(
+            datasets.raw,
         )
 
 
-class AsyncAssetsResourceWithStreamingResponse:
-    def __init__(self, assets: AsyncAssetsResource) -> None:
-        self._assets = assets
+class AsyncDatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
+        self._datasets = datasets
 
         self.create = async_to_streamed_response_wrapper(
-            assets.create,
+            datasets.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            assets.update,
+        self.list = async_to_streamed_response_wrapper(
+            datasets.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            assets.delete,
+        self.edit = async_to_streamed_response_wrapper(
+            datasets.edit,
         )
         self.get = async_to_streamed_response_wrapper(
-            assets.get,
+            datasets.get,
+        )
+        self.raw = async_to_streamed_response_wrapper(
+            datasets.raw,
         )
