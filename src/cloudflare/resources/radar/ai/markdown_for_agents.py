@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -20,36 +20,35 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.radar.post_quantum import origin_summary_params, origin_timeseries_groups_params
-from ....types.radar.post_quantum.origin_summary_response import OriginSummaryResponse
-from ....types.radar.post_quantum.origin_timeseries_groups_response import OriginTimeseriesGroupsResponse
+from ....types.radar.ai import markdown_for_agent_summary_params, markdown_for_agent_timeseries_params
+from ....types.radar.ai.markdown_for_agent_summary_response import MarkdownForAgentSummaryResponse
+from ....types.radar.ai.markdown_for_agent_timeseries_response import MarkdownForAgentTimeseriesResponse
 
-__all__ = ["OriginResource", "AsyncOriginResource"]
+__all__ = ["MarkdownForAgentsResource", "AsyncMarkdownForAgentsResource"]
 
 
-class OriginResource(SyncAPIResource):
+class MarkdownForAgentsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OriginResourceWithRawResponse:
+    def with_raw_response(self) -> MarkdownForAgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return OriginResourceWithRawResponse(self)
+        return MarkdownForAgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OriginResourceWithStreamingResponse:
+    def with_streaming_response(self) -> MarkdownForAgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return OriginResourceWithStreamingResponse(self)
+        return MarkdownForAgentsResourceWithStreamingResponse(self)
 
     def summary(
         self,
-        dimension: Literal["KEY_AGREEMENT"],
         *,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -62,14 +61,12 @@ class OriginResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OriginSummaryResponse:
+    ) -> MarkdownForAgentSummaryResponse:
         """
-        Returns a summary of origin post-quantum data grouped by the specified
-        dimension.
+        Retrieves the overall median HTML-to-markdown reduction ratio for AI agent
+        requests over the given date range.
 
         Args:
-          dimension: Specifies the origin post-quantum data dimension by which to group the results.
-
           date_end: End of the date range (inclusive).
 
           date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
@@ -90,10 +87,8 @@ class OriginResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            path_template("/radar/post_quantum/origin/summary/{dimension}", dimension=dimension),
+            "/radar/ai/markdown_for_agents/summary",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,17 +102,17 @@ class OriginResource(SyncAPIResource):
                         "format": format,
                         "name": name,
                     },
-                    origin_summary_params.OriginSummaryParams,
+                    markdown_for_agent_summary_params.MarkdownForAgentSummaryParams,
                 ),
-                post_parser=ResultWrapper[OriginSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[MarkdownForAgentSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OriginSummaryResponse], ResultWrapper[OriginSummaryResponse]),
+            cast_to=cast(Type[MarkdownForAgentSummaryResponse], ResultWrapper[MarkdownForAgentSummaryResponse]),
         )
 
-    def timeseries_groups(
+    def timeseries(
         self,
-        dimension: Literal["KEY_AGREEMENT"],
         *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -129,13 +124,15 @@ class OriginResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OriginTimeseriesGroupsResponse:
+    ) -> MarkdownForAgentTimeseriesResponse:
         """
-        Returns a timeseries of origin post-quantum data grouped by the specified
-        dimension.
+        Retrieves the median HTML-to-markdown reduction ratio over time for AI agent
+        requests.
 
         Args:
-          dimension: Specifies the origin post-quantum data dimension by which to group the results.
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
@@ -157,10 +154,8 @@ class OriginResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return self._get(
-            path_template("/radar/post_quantum/origin/timeseries_groups/{dimension}", dimension=dimension),
+            "/radar/ai/markdown_for_agents/timeseries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,43 +163,43 @@ class OriginResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "agg_interval": agg_interval,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
                         "name": name,
                     },
-                    origin_timeseries_groups_params.OriginTimeseriesGroupsParams,
+                    markdown_for_agent_timeseries_params.MarkdownForAgentTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[OriginTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[MarkdownForAgentTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OriginTimeseriesGroupsResponse], ResultWrapper[OriginTimeseriesGroupsResponse]),
+            cast_to=cast(Type[MarkdownForAgentTimeseriesResponse], ResultWrapper[MarkdownForAgentTimeseriesResponse]),
         )
 
 
-class AsyncOriginResource(AsyncAPIResource):
+class AsyncMarkdownForAgentsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOriginResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncMarkdownForAgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncOriginResourceWithRawResponse(self)
+        return AsyncMarkdownForAgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncMarkdownForAgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncOriginResourceWithStreamingResponse(self)
+        return AsyncMarkdownForAgentsResourceWithStreamingResponse(self)
 
     async def summary(
         self,
-        dimension: Literal["KEY_AGREEMENT"],
         *,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -217,14 +212,12 @@ class AsyncOriginResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OriginSummaryResponse:
+    ) -> MarkdownForAgentSummaryResponse:
         """
-        Returns a summary of origin post-quantum data grouped by the specified
-        dimension.
+        Retrieves the overall median HTML-to-markdown reduction ratio for AI agent
+        requests over the given date range.
 
         Args:
-          dimension: Specifies the origin post-quantum data dimension by which to group the results.
-
           date_end: End of the date range (inclusive).
 
           date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
@@ -245,10 +238,8 @@ class AsyncOriginResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            path_template("/radar/post_quantum/origin/summary/{dimension}", dimension=dimension),
+            "/radar/ai/markdown_for_agents/summary",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,17 +253,17 @@ class AsyncOriginResource(AsyncAPIResource):
                         "format": format,
                         "name": name,
                     },
-                    origin_summary_params.OriginSummaryParams,
+                    markdown_for_agent_summary_params.MarkdownForAgentSummaryParams,
                 ),
-                post_parser=ResultWrapper[OriginSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[MarkdownForAgentSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OriginSummaryResponse], ResultWrapper[OriginSummaryResponse]),
+            cast_to=cast(Type[MarkdownForAgentSummaryResponse], ResultWrapper[MarkdownForAgentSummaryResponse]),
         )
 
-    async def timeseries_groups(
+    async def timeseries(
         self,
-        dimension: Literal["KEY_AGREEMENT"],
         *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -284,13 +275,15 @@ class AsyncOriginResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OriginTimeseriesGroupsResponse:
+    ) -> MarkdownForAgentTimeseriesResponse:
         """
-        Returns a timeseries of origin post-quantum data grouped by the specified
-        dimension.
+        Retrieves the median HTML-to-markdown reduction ratio over time for AI agent
+        requests.
 
         Args:
-          dimension: Specifies the origin post-quantum data dimension by which to group the results.
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
@@ -312,10 +305,8 @@ class AsyncOriginResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
         return await self._get(
-            path_template("/radar/post_quantum/origin/timeseries_groups/{dimension}", dimension=dimension),
+            "/radar/ai/markdown_for_agents/timeseries",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,63 +314,64 @@ class AsyncOriginResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "agg_interval": agg_interval,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
                         "name": name,
                     },
-                    origin_timeseries_groups_params.OriginTimeseriesGroupsParams,
+                    markdown_for_agent_timeseries_params.MarkdownForAgentTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[OriginTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[MarkdownForAgentTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OriginTimeseriesGroupsResponse], ResultWrapper[OriginTimeseriesGroupsResponse]),
+            cast_to=cast(Type[MarkdownForAgentTimeseriesResponse], ResultWrapper[MarkdownForAgentTimeseriesResponse]),
         )
 
 
-class OriginResourceWithRawResponse:
-    def __init__(self, origin: OriginResource) -> None:
-        self._origin = origin
+class MarkdownForAgentsResourceWithRawResponse:
+    def __init__(self, markdown_for_agents: MarkdownForAgentsResource) -> None:
+        self._markdown_for_agents = markdown_for_agents
 
         self.summary = to_raw_response_wrapper(
-            origin.summary,
+            markdown_for_agents.summary,
         )
-        self.timeseries_groups = to_raw_response_wrapper(
-            origin.timeseries_groups,
+        self.timeseries = to_raw_response_wrapper(
+            markdown_for_agents.timeseries,
         )
 
 
-class AsyncOriginResourceWithRawResponse:
-    def __init__(self, origin: AsyncOriginResource) -> None:
-        self._origin = origin
+class AsyncMarkdownForAgentsResourceWithRawResponse:
+    def __init__(self, markdown_for_agents: AsyncMarkdownForAgentsResource) -> None:
+        self._markdown_for_agents = markdown_for_agents
 
         self.summary = async_to_raw_response_wrapper(
-            origin.summary,
+            markdown_for_agents.summary,
         )
-        self.timeseries_groups = async_to_raw_response_wrapper(
-            origin.timeseries_groups,
+        self.timeseries = async_to_raw_response_wrapper(
+            markdown_for_agents.timeseries,
         )
 
 
-class OriginResourceWithStreamingResponse:
-    def __init__(self, origin: OriginResource) -> None:
-        self._origin = origin
+class MarkdownForAgentsResourceWithStreamingResponse:
+    def __init__(self, markdown_for_agents: MarkdownForAgentsResource) -> None:
+        self._markdown_for_agents = markdown_for_agents
 
         self.summary = to_streamed_response_wrapper(
-            origin.summary,
+            markdown_for_agents.summary,
         )
-        self.timeseries_groups = to_streamed_response_wrapper(
-            origin.timeseries_groups,
+        self.timeseries = to_streamed_response_wrapper(
+            markdown_for_agents.timeseries,
         )
 
 
-class AsyncOriginResourceWithStreamingResponse:
-    def __init__(self, origin: AsyncOriginResource) -> None:
-        self._origin = origin
+class AsyncMarkdownForAgentsResourceWithStreamingResponse:
+    def __init__(self, markdown_for_agents: AsyncMarkdownForAgentsResource) -> None:
+        self._markdown_for_agents = markdown_for_agents
 
         self.summary = async_to_streamed_response_wrapper(
-            origin.summary,
+            markdown_for_agents.summary,
         )
-        self.timeseries_groups = async_to_streamed_response_wrapper(
-            origin.timeseries_groups,
+        self.timeseries = async_to_streamed_response_wrapper(
+            markdown_for_agents.timeseries,
         )

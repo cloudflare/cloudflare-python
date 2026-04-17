@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -151,7 +151,7 @@ class ASNsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/radar/entities/asns/{asn}/as_set",
+            path_template("/radar/entities/asns/{asn}/as_set", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -279,7 +279,7 @@ class ASNsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/radar/entities/asns/{asn}",
+            path_template("/radar/entities/asns/{asn}", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -372,7 +372,7 @@ class ASNsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/radar/entities/asns/{asn}/rel",
+            path_template("/radar/entities/asns/{asn}/rel", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -504,7 +504,7 @@ class AsyncASNsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/radar/entities/asns/{asn}/as_set",
+            path_template("/radar/entities/asns/{asn}/as_set", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -632,7 +632,7 @@ class AsyncASNsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/radar/entities/asns/{asn}",
+            path_template("/radar/entities/asns/{asn}", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -725,7 +725,7 @@ class AsyncASNsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/radar/entities/asns/{asn}/rel",
+            path_template("/radar/entities/asns/{asn}/rel", asn=asn),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

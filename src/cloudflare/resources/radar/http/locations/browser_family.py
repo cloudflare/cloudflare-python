@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -138,7 +138,7 @@ class BrowserFamilyResource(SyncAPIResource):
         if not browser_family:
             raise ValueError(f"Expected a non-empty value for `browser_family` but received {browser_family!r}")
         return self._get(
-            f"/radar/http/top/locations/browser_family/{browser_family}",
+            path_template("/radar/http/top/locations/browser_family/{browser_family}", browser_family=browser_family),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -284,7 +284,7 @@ class AsyncBrowserFamilyResource(AsyncAPIResource):
         if not browser_family:
             raise ValueError(f"Expected a non-empty value for `browser_family` but received {browser_family!r}")
         return await self._get(
-            f"/radar/http/top/locations/browser_family/{browser_family}",
+            path_template("/radar/http/top/locations/browser_family/{browser_family}", browser_family=browser_family),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

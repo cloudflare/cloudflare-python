@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -128,7 +128,7 @@ class AuthoritiesResource(SyncAPIResource):
         if not ca_slug:
             raise ValueError(f"Expected a non-empty value for `ca_slug` but received {ca_slug!r}")
         return self._get(
-            f"/radar/ct/authorities/{ca_slug}",
+            path_template("/radar/ct/authorities/{ca_slug}", ca_slug=ca_slug),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -243,7 +243,7 @@ class AsyncAuthoritiesResource(AsyncAPIResource):
         if not ca_slug:
             raise ValueError(f"Expected a non-empty value for `ca_slug` but received {ca_slug!r}")
         return await self._get(
-            f"/radar/ct/authorities/{ca_slug}",
+            path_template("/radar/ct/authorities/{ca_slug}", ca_slug=ca_slug),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

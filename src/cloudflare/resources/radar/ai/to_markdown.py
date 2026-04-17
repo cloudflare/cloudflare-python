@@ -16,7 +16,7 @@ from ...._types import (
     SequenceNotStr,
     not_given,
 )
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -59,7 +59,7 @@ class ToMarkdownResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         files: SequenceNotStr[FileTypes],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -80,6 +80,8 @@ class ToMarkdownResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal({"files": files})
@@ -88,8 +90,8 @@ class ToMarkdownResource(SyncAPIResource):
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._get_api_list(  # type: ignore[call-arg]  # pyright: ignore[reportUnknownVariableType, reportCallIssue]
-            f"/accounts/{account_id}/ai/tomarkdown",
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=SyncSinglePage[ToMarkdownCreateResponse],
             body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
             files=extracted_files,  # pyright: ignore[reportCallIssue]  # type: ignore[call-arg]
@@ -127,7 +129,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         files: SequenceNotStr[FileTypes],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -148,6 +150,8 @@ class AsyncToMarkdownResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal({"files": files})
@@ -156,8 +160,8 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._get_api_list(  # type: ignore[call-arg]  # pyright: ignore[reportUnknownVariableType, reportCallIssue]
-            f"/accounts/{account_id}/ai/tomarkdown",
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=AsyncSinglePage[ToMarkdownCreateResponse],
             body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
             files=extracted_files,  # pyright: ignore[reportCallIssue]  # type: ignore[call-arg]

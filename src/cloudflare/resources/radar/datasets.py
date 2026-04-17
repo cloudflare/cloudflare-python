@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -178,7 +178,7 @@ class DatasetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `alias` but received {alias!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return self._get(
-            f"/radar/datasets/{alias}",
+            path_template("/radar/datasets/{alias}", alias=alias),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -337,7 +337,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `alias` but received {alias!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return await self._get(
-            f"/radar/datasets/{alias}",
+            path_template("/radar/datasets/{alias}", alias=alias),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

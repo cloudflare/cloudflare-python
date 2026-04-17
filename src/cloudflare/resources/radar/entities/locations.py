@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -148,7 +148,7 @@ class LocationsResource(SyncAPIResource):
         if not location:
             raise ValueError(f"Expected a non-empty value for `location` but received {location!r}")
         return self._get(
-            f"/radar/entities/locations/{location}",
+            path_template("/radar/entities/locations/{location}", location=location),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -283,7 +283,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         if not location:
             raise ValueError(f"Expected a non-empty value for `location` but received {location!r}")
         return await self._get(
-            f"/radar/entities/locations/{location}",
+            path_template("/radar/entities/locations/{location}", location=location),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
