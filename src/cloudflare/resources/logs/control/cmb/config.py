@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -47,7 +47,7 @@ class ConfigResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_out_of_region_access: bool | Omit = omit,
         regions: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,10 +75,12 @@ class ConfigResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             body=maybe_transform(
                 {
                     "allow_out_of_region_access": allow_out_of_region_access,
@@ -99,7 +101,7 @@ class ConfigResource(SyncAPIResource):
     def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,10 +123,12 @@ class ConfigResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +142,7 @@ class ConfigResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,10 +164,12 @@ class ConfigResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,7 +204,7 @@ class AsyncConfigResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_out_of_region_access: bool | Omit = omit,
         regions: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -226,10 +232,12 @@ class AsyncConfigResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "allow_out_of_region_access": allow_out_of_region_access,
@@ -250,7 +258,7 @@ class AsyncConfigResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -272,10 +280,12 @@ class AsyncConfigResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -289,7 +299,7 @@ class AsyncConfigResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,10 +321,12 @@ class AsyncConfigResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/logs/control/cmb/config",
+            path_template("/accounts/{account_id}/logs/control/cmb/config", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

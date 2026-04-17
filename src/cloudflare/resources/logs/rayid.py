@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -48,7 +48,7 @@ class RayIDResource(SyncAPIResource):
         self,
         rayid: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         fields: str | Omit = omit,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -94,6 +94,8 @@ class RayIDResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:
@@ -101,7 +103,7 @@ class RayIDResource(SyncAPIResource):
         return cast(
             RayIDGetResponse,
             self._get(
-                f"/zones/{zone_id}/logs/rayids/{rayid}",
+                path_template("/zones/{zone_id}/logs/rayids/{rayid}", zone_id=zone_id, rayid=rayid),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -144,7 +146,7 @@ class AsyncRayIDResource(AsyncAPIResource):
         self,
         rayid: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         fields: str | Omit = omit,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -190,6 +192,8 @@ class AsyncRayIDResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:
@@ -197,7 +201,7 @@ class AsyncRayIDResource(AsyncAPIResource):
         return cast(
             RayIDGetResponse,
             await self._get(
-                f"/zones/{zone_id}/logs/rayids/{rayid}",
+                path_template("/zones/{zone_id}/logs/rayids/{rayid}", zone_id=zone_id, rayid=rayid),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
