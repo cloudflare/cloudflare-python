@@ -69,6 +69,7 @@ if TYPE_CHECKING:
         aisearch,
         alerting,
         firewall,
+        rulesets,
         snippets,
         spectrum,
         hostnames,
@@ -112,6 +113,7 @@ if TYPE_CHECKING:
         durable_objects,
         r2_data_catalog,
         request_tracers,
+        security_center,
         brand_protection,
         content_scanning,
         custom_hostnames,
@@ -139,76 +141,69 @@ if TYPE_CHECKING:
         magic_network_monitoring,
         origin_post_quantum_encryption,
     )
-    from .resources.ips import IPsResource, AsyncIPsResource
     from .resources.ai.ai import AIResource, AsyncAIResource
     from .resources.d1.d1 import D1Resource, AsyncD1Resource
-    from .resources.fraud import FraudResource, AsyncFraudResource
     from .resources.kv.kv import KVResource, AsyncKVResource
     from .resources.r2.r2 import R2Resource, AsyncR2Resource
     from .resources.acm.acm import ACMResource, AsyncACMResource
     from .resources.dns.dns import DNSResource, AsyncDNSResource
-    from .resources.filters import FiltersResource, AsyncFiltersResource
     from .resources.iam.iam import IAMResource, AsyncIAMResource
+    from .resources.ips.ips import IPsResource, AsyncIPsResource
     from .resources.rum.rum import RUMResource, AsyncRUMResource
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
     from .resources.logs.logs import LogsResource, AsyncLogsResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
-    from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
-    from .resources.page_rules import PageRulesResource, AsyncPageRulesResource
     from .resources.cache.cache import CacheResource, AsyncCacheResource
     from .resources.calls.calls import CallsResource, AsyncCallsResource
+    from .resources.fraud.fraud import FraudResource, AsyncFraudResource
     from .resources.intel.intel import IntelResource, AsyncIntelResource
-    from .resources.memberships import MembershipsResource, AsyncMembershipsResource
     from .resources.pages.pages import PagesResource, AsyncPagesResource
     from .resources.radar.radar import RadarResource, AsyncRadarResource
-    from .resources.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.rules.rules import RulesResource, AsyncRulesResource
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
     from .resources.zaraz.zaraz import ZarazResource, AsyncZarazResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
-    from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.queues.queues import QueuesResource, AsyncQueuesResource
     from .resources.stream.stream import StreamResource, AsyncStreamResource
-    from .resources.bot_management import BotManagementResource, AsyncBotManagementResource
-    from .resources.dcv_delegation import DCVDelegationResource, AsyncDCVDelegationResource
     from .resources.billing.billing import BillingResource, AsyncBillingResource
+    from .resources.filters.filters import FiltersResource, AsyncFiltersResource
     from .resources.logpush.logpush import LogpushResource, AsyncLogpushResource
     from .resources.workers.workers import WorkersResource, AsyncWorkersResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
     from .resources.aisearch.aisearch import AISearchResource, AsyncAISearchResource
     from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
     from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
+    from .resources.rulesets.rulesets import RulesetsResource, AsyncRulesetsResource
     from .resources.snippets.snippets import SnippetsResource, AsyncSnippetsResource
     from .resources.spectrum.spectrum import SpectrumResource, AsyncSpectrumResource
-    from .resources.url_normalization import URLNormalizationResource, AsyncURLNormalizationResource
-    from .resources.custom_nameservers import CustomNameserversResource, AsyncCustomNameserversResource
-    from .resources.managed_transforms import ManagedTransformsResource, AsyncManagedTransformsResource
-    from .resources.client_certificates import ClientCertificatesResource, AsyncClientCertificatesResource
     from .resources.hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
     from .resources.pipelines.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.registrar.registrar import RegistrarResource, AsyncRegistrarResource
     from .resources.turnstile.turnstile import TurnstileResource, AsyncTurnstileResource
     from .resources.vectorize.vectorize import VectorizeResource, AsyncVectorizeResource
     from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
-    from .resources.keyless_certificates import KeylessCertificatesResource, AsyncKeylessCertificatesResource
     from .resources.addressing.addressing import AddressingResource, AsyncAddressingResource
     from .resources.ai_gateway.ai_gateway import AIGatewayResource, AsyncAIGatewayResource
+    from .resources.audit_logs.audit_logs import AuditLogsResource, AsyncAuditLogsResource
     from .resources.hyperdrive.hyperdrive import HyperdriveResource, AsyncHyperdriveResource
+    from .resources.page_rules.page_rules import PageRulesResource, AsyncPageRulesResource
     from .resources.zero_trust.zero_trust import ZeroTrustResource, AsyncZeroTrustResource
-    from .resources.origin_ca_certificates import OriginCACertificatesResource, AsyncOriginCACertificatesResource
     from .resources.api_gateway.api_gateway import APIGatewayResource, AsyncAPIGatewayResource
     from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
+    from .resources.memberships.memberships import MembershipsResource, AsyncMembershipsResource
     from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
+    from .resources.rate_limits.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
     from .resources.connectivity.connectivity import ConnectivityResource, AsyncConnectivityResource
     from .resources.custom_pages.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.realtime_kit.realtime_kit import RealtimeKitResource, AsyncRealtimeKitResource
+    from .resources.security_txt.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.abuse_reports.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.email_sending.email_sending import EmailSendingResource, AsyncEmailSendingResource
@@ -216,17 +211,16 @@ if TYPE_CHECKING:
     from .resources.organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
     from .resources.secrets_store.secrets_store import SecretsStoreResource, AsyncSecretsStoreResource
     from .resources.waiting_rooms.waiting_rooms import WaitingRoomsResource, AsyncWaitingRoomsResource
+    from .resources.bot_management.bot_management import BotManagementResource, AsyncBotManagementResource
     from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
+    from .resources.dcv_delegation.dcv_delegation import DCVDelegationResource, AsyncDCVDelegationResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
-    from .resources.origin_post_quantum_encryption import (
-        OriginPostQuantumEncryptionResource,
-        AsyncOriginPostQuantumEncryptionResource,
-    )
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.r2_data_catalog.r2_data_catalog import R2DataCatalogResource, AsyncR2DataCatalogResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
+    from .resources.security_center.security_center import SecurityCenterResource, AsyncSecurityCenterResource
     from .resources.brand_protection.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
@@ -236,10 +230,27 @@ if TYPE_CHECKING:
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
     from .resources.schema_validation.schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
+    from .resources.url_normalization.url_normalization import URLNormalizationResource, AsyncURLNormalizationResource
+    from .resources.custom_nameservers.custom_nameservers import (
+        CustomNameserversResource,
+        AsyncCustomNameserversResource,
+    )
     from .resources.google_tag_gateway.google_tag_gateway import GoogleTagGatewayResource, AsyncGoogleTagGatewayResource
+    from .resources.managed_transforms.managed_transforms import (
+        ManagedTransformsResource,
+        AsyncManagedTransformsResource,
+    )
+    from .resources.client_certificates.client_certificates import (
+        ClientCertificatesResource,
+        AsyncClientCertificatesResource,
+    )
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
         AsyncCustomCertificatesResource,
+    )
+    from .resources.keyless_certificates.keyless_certificates import (
+        KeylessCertificatesResource,
+        AsyncKeylessCertificatesResource,
     )
     from .resources.network_interconnects.network_interconnects import (
         NetworkInterconnectsResource,
@@ -257,6 +268,10 @@ if TYPE_CHECKING:
         MagicCloudNetworkingResource,
         AsyncMagicCloudNetworkingResource,
     )
+    from .resources.origin_ca_certificates.origin_ca_certificates import (
+        OriginCACertificatesResource,
+        AsyncOriginCACertificatesResource,
+    )
     from .resources.origin_tls_client_auth.origin_tls_client_auth import (
         OriginTLSClientAuthResource,
         AsyncOriginTLSClientAuthResource,
@@ -272,6 +287,10 @@ if TYPE_CHECKING:
     from .resources.magic_network_monitoring.magic_network_monitoring import (
         MagicNetworkMonitoringResource,
         AsyncMagicNetworkMonitoringResource,
+    )
+    from .resources.origin_post_quantum_encryption.origin_post_quantum_encryption import (
+        OriginPostQuantumEncryptionResource,
+        AsyncOriginPostQuantumEncryptionResource,
     )
 
 __all__ = [
@@ -292,6 +311,8 @@ class Cloudflare(SyncAPIClient):
     api_key: str | None
     api_email: str | None
     user_service_key: str | None
+    account_id: str | None
+    zone_id: str | None
 
     def __init__(
         self,
@@ -300,6 +321,8 @@ class Cloudflare(SyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -327,6 +350,8 @@ class Cloudflare(SyncAPIClient):
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
+        - `account_id` from `CLOUDFLARE_ACCOUNT_ID`
+        - `zone_id` from `CLOUDFLARE_ZONE_ID`
         """
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
@@ -343,6 +368,14 @@ class Cloudflare(SyncAPIClient):
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
+
+        if account_id is None:
+            account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+        self.account_id = account_id
+
+        if zone_id is None:
+            zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
+        self.zone_id = zone_id
 
         if base_url is None:
             base_url = os.environ.get("CLOUDFLARE_BASE_URL")
@@ -603,6 +636,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.page_shield import PageShieldResource
 
         return PageShieldResource(self)
+
+    @cached_property
+    def rulesets(self) -> RulesetsResource:
+        from .resources.rulesets import RulesetsResource
+
+        return RulesetsResource(self)
 
     @cached_property
     def url_normalization(self) -> URLNormalizationResource:
@@ -953,6 +992,12 @@ class Cloudflare(SyncAPIClient):
         return AISearchResource(self)
 
     @cached_property
+    def security_center(self) -> SecurityCenterResource:
+        from .resources.security_center import SecurityCenterResource
+
+        return SecurityCenterResource(self)
+
+    @cached_property
     def browser_rendering(self) -> BrowserRenderingResource:
         from .resources.browser_rendering import BrowserRenderingResource
 
@@ -1078,6 +1123,8 @@ class Cloudflare(SyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -1116,6 +1163,8 @@ class Cloudflare(SyncAPIClient):
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
+            account_id=account_id or self.account_id,
+            zone_id=zone_id or self.zone_id,
             base_url=base_url or self.base_url,
             api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -1129,6 +1178,24 @@ class Cloudflare(SyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
+
+    def _get_account_id_path_param(self) -> str:
+        from_client = self.account_id
+        if from_client is not None:
+            return from_client
+
+        raise ValueError(
+            "Missing account_id argument; Please provide it at the client level, e.g. Cloudflare(account_id='abcd') or per method."
+        )
+
+    def _get_zone_id_path_param(self) -> str:
+        from_client = self.zone_id
+        if from_client is not None:
+            return from_client
+
+        raise ValueError(
+            "Missing zone_id argument; Please provide it at the client level, e.g. Cloudflare(zone_id='abcd') or per method."
+        )
 
     @override
     def _make_status_error(
@@ -1170,6 +1237,8 @@ class AsyncCloudflare(AsyncAPIClient):
     api_key: str | None
     api_email: str | None
     user_service_key: str | None
+    account_id: str | None
+    zone_id: str | None
 
     def __init__(
         self,
@@ -1178,6 +1247,8 @@ class AsyncCloudflare(AsyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -1205,6 +1276,8 @@ class AsyncCloudflare(AsyncAPIClient):
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
+        - `account_id` from `CLOUDFLARE_ACCOUNT_ID`
+        - `zone_id` from `CLOUDFLARE_ZONE_ID`
         """
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
@@ -1221,6 +1294,14 @@ class AsyncCloudflare(AsyncAPIClient):
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
+
+        if account_id is None:
+            account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+        self.account_id = account_id
+
+        if zone_id is None:
+            zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
+        self.zone_id = zone_id
 
         if base_url is None:
             base_url = os.environ.get("CLOUDFLARE_BASE_URL")
@@ -1481,6 +1562,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.page_shield import AsyncPageShieldResource
 
         return AsyncPageShieldResource(self)
+
+    @cached_property
+    def rulesets(self) -> AsyncRulesetsResource:
+        from .resources.rulesets import AsyncRulesetsResource
+
+        return AsyncRulesetsResource(self)
 
     @cached_property
     def url_normalization(self) -> AsyncURLNormalizationResource:
@@ -1831,6 +1918,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncAISearchResource(self)
 
     @cached_property
+    def security_center(self) -> AsyncSecurityCenterResource:
+        from .resources.security_center import AsyncSecurityCenterResource
+
+        return AsyncSecurityCenterResource(self)
+
+    @cached_property
     def browser_rendering(self) -> AsyncBrowserRenderingResource:
         from .resources.browser_rendering import AsyncBrowserRenderingResource
 
@@ -1956,6 +2049,8 @@ class AsyncCloudflare(AsyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -1994,6 +2089,8 @@ class AsyncCloudflare(AsyncAPIClient):
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
+            account_id=account_id or self.account_id,
+            zone_id=zone_id or self.zone_id,
             base_url=base_url or self.base_url,
             api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -2007,6 +2104,24 @@ class AsyncCloudflare(AsyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
+
+    def _get_account_id_path_param(self) -> str:
+        from_client = self.account_id
+        if from_client is not None:
+            return from_client
+
+        raise ValueError(
+            "Missing account_id argument; Please provide it at the client level, e.g. AsyncCloudflare(account_id='abcd') or per method."
+        )
+
+    def _get_zone_id_path_param(self) -> str:
+        from_client = self.zone_id
+        if from_client is not None:
+            return from_client
+
+        raise ValueError(
+            "Missing zone_id argument; Please provide it at the client level, e.g. AsyncCloudflare(zone_id='abcd') or per method."
+        )
 
     @override
     def _make_status_error(
@@ -2287,6 +2402,12 @@ class CloudflareWithRawResponse:
         from .resources.page_shield import PageShieldResourceWithRawResponse
 
         return PageShieldResourceWithRawResponse(self._client.page_shield)
+
+    @cached_property
+    def rulesets(self) -> rulesets.RulesetsResourceWithRawResponse:
+        from .resources.rulesets import RulesetsResourceWithRawResponse
+
+        return RulesetsResourceWithRawResponse(self._client.rulesets)
 
     @cached_property
     def url_normalization(self) -> url_normalization.URLNormalizationResourceWithRawResponse:
@@ -2639,6 +2760,12 @@ class CloudflareWithRawResponse:
         return AISearchResourceWithRawResponse(self._client.aisearch)
 
     @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithRawResponse:
+        from .resources.security_center import SecurityCenterResourceWithRawResponse
+
+        return SecurityCenterResourceWithRawResponse(self._client.security_center)
+
+    @cached_property
     def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithRawResponse:
         from .resources.browser_rendering import BrowserRenderingResourceWithRawResponse
 
@@ -2920,6 +3047,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.page_shield import AsyncPageShieldResourceWithRawResponse
 
         return AsyncPageShieldResourceWithRawResponse(self._client.page_shield)
+
+    @cached_property
+    def rulesets(self) -> rulesets.AsyncRulesetsResourceWithRawResponse:
+        from .resources.rulesets import AsyncRulesetsResourceWithRawResponse
+
+        return AsyncRulesetsResourceWithRawResponse(self._client.rulesets)
 
     @cached_property
     def url_normalization(self) -> url_normalization.AsyncURLNormalizationResourceWithRawResponse:
@@ -3272,6 +3405,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncAISearchResourceWithRawResponse(self._client.aisearch)
 
     @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithRawResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithRawResponse
+
+        return AsyncSecurityCenterResourceWithRawResponse(self._client.security_center)
+
+    @cached_property
     def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithRawResponse:
         from .resources.browser_rendering import AsyncBrowserRenderingResourceWithRawResponse
 
@@ -3553,6 +3692,12 @@ class CloudflareWithStreamedResponse:
         from .resources.page_shield import PageShieldResourceWithStreamingResponse
 
         return PageShieldResourceWithStreamingResponse(self._client.page_shield)
+
+    @cached_property
+    def rulesets(self) -> rulesets.RulesetsResourceWithStreamingResponse:
+        from .resources.rulesets import RulesetsResourceWithStreamingResponse
+
+        return RulesetsResourceWithStreamingResponse(self._client.rulesets)
 
     @cached_property
     def url_normalization(self) -> url_normalization.URLNormalizationResourceWithStreamingResponse:
@@ -3905,6 +4050,12 @@ class CloudflareWithStreamedResponse:
         return AISearchResourceWithStreamingResponse(self._client.aisearch)
 
     @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import SecurityCenterResourceWithStreamingResponse
+
+        return SecurityCenterResourceWithStreamingResponse(self._client.security_center)
+
+    @cached_property
     def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithStreamingResponse:
         from .resources.browser_rendering import BrowserRenderingResourceWithStreamingResponse
 
@@ -4188,6 +4339,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.page_shield import AsyncPageShieldResourceWithStreamingResponse
 
         return AsyncPageShieldResourceWithStreamingResponse(self._client.page_shield)
+
+    @cached_property
+    def rulesets(self) -> rulesets.AsyncRulesetsResourceWithStreamingResponse:
+        from .resources.rulesets import AsyncRulesetsResourceWithStreamingResponse
+
+        return AsyncRulesetsResourceWithStreamingResponse(self._client.rulesets)
 
     @cached_property
     def url_normalization(self) -> url_normalization.AsyncURLNormalizationResourceWithStreamingResponse:
@@ -4546,6 +4703,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.aisearch import AsyncAISearchResourceWithStreamingResponse
 
         return AsyncAISearchResourceWithStreamingResponse(self._client.aisearch)
+
+    @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithStreamingResponse
+
+        return AsyncSecurityCenterResourceWithStreamingResponse(self._client.security_center)
 
     @cached_property
     def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithStreamingResponse:

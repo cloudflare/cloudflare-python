@@ -88,6 +88,7 @@ from ._exceptions import (
     APIConnectionError,
     APIResponseValidationError,
 )
+from ._utils._json import openapi_dumps
 
 log: logging.Logger = logging.getLogger(__name__)
 
@@ -563,6 +564,10 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                 files = cast(HttpxRequestFiles, ForceMultipartDict())
 
         prepared_url = self._prepare_url(options.url)
+        # preserve hard-coded query params from the url
+        if params and prepared_url.query:
+            params = {**dict(prepared_url.params.items()), **params}
+            prepared_url = prepared_url.copy_with(raw_path=prepared_url.raw_path.split(b"?", 1)[0])
         if "_" in prepared_url.host:
             # work around https://github.com/encode/httpx/discussions/2880
             kwargs["extensions"] = {"sni_hostname": prepared_url.host.replace("_", "-")}
@@ -578,8 +583,10 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                 kwargs["content"] = options.content
             elif isinstance(json_data, bytes):
                 kwargs["content"] = json_data
-            else:
-                kwargs["json"] = json_data if is_given(json_data) else None
+            elif not files:
+                # Don't set content when JSON is sent as multipart/form-data,
+                # since httpx's content param overrides other body arguments
+                kwargs["content"] = openapi_dumps(json_data) if is_given(json_data) and json_data is not None else None
             kwargs["files"] = files
         else:
             headers.pop("Content-Type", None)
