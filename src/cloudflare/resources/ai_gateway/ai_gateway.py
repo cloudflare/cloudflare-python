@@ -24,7 +24,7 @@ from .urls import (
     AsyncURLsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -137,7 +137,7 @@ class AIGatewayResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
@@ -185,10 +185,12 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways",
+            path_template("/accounts/{account_id}/ai-gateway/gateways", account_id=account_id),
             body=maybe_transform(
                 {
                     "id": id,
@@ -225,7 +227,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
         collect_logs: bool,
@@ -276,12 +278,14 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             body=maybe_transform(
                 {
                     "cache_invalidate_on_update": cache_invalidate_on_update,
@@ -320,7 +324,7 @@ class AIGatewayResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -345,10 +349,12 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-gateway/gateways",
+            path_template("/accounts/{account_id}/ai-gateway/gateways", account_id=account_id),
             page=SyncV4PagePaginationArray[AIGatewayListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -371,7 +377,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -393,12 +399,14 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -413,7 +421,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -435,12 +443,14 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -503,7 +513,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
@@ -551,10 +561,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/ai-gateway/gateways",
+            path_template("/accounts/{account_id}/ai-gateway/gateways", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -591,7 +603,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
         collect_logs: bool,
@@ -642,12 +654,14 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             body=await async_maybe_transform(
                 {
                     "cache_invalidate_on_update": cache_invalidate_on_update,
@@ -686,7 +700,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -711,10 +725,12 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/ai-gateway/gateways",
+            path_template("/accounts/{account_id}/ai-gateway/gateways", account_id=account_id),
             page=AsyncV4PagePaginationArray[AIGatewayListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -737,7 +753,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -759,12 +775,14 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -779,7 +797,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -801,12 +819,14 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/accounts/{account_id}/ai-gateway/gateways/{id}",
+            path_template("/accounts/{account_id}/ai-gateway/gateways/{id}", account_id=account_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
