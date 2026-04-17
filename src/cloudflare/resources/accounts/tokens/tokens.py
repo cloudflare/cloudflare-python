@@ -17,7 +17,7 @@ from .value import (
     AsyncValueResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +78,7 @@ class TokensResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         policies: Iterable[TokenPolicy],
         condition: token_create_params.Condition | Omit = omit,
@@ -114,10 +114,12 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/tokens",
+            path_template("/accounts/{account_id}/tokens", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -142,7 +144,7 @@ class TokensResource(SyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         policies: Iterable[TokenPolicy],
         condition: token_update_params.Condition | Omit = omit,
@@ -183,12 +185,14 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._put(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -213,7 +217,7 @@ class TokensResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -244,10 +248,12 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tokens",
+            path_template("/accounts/{account_id}/tokens", account_id=account_id),
             page=SyncV4PagePaginationArray[Token],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -270,7 +276,7 @@ class TokensResource(SyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,12 +300,14 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,7 +322,7 @@ class TokensResource(SyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,12 +346,14 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._get(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -357,7 +367,7 @@ class TokensResource(SyncAPIResource):
     def verify(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -379,10 +389,12 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/tokens/verify",
+            path_template("/accounts/{account_id}/tokens/verify", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -425,7 +437,7 @@ class AsyncTokensResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         policies: Iterable[TokenPolicy],
         condition: token_create_params.Condition | Omit = omit,
@@ -461,10 +473,12 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/tokens",
+            path_template("/accounts/{account_id}/tokens", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -489,7 +503,7 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         policies: Iterable[TokenPolicy],
         condition: token_update_params.Condition | Omit = omit,
@@ -530,12 +544,14 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -560,7 +576,7 @@ class AsyncTokensResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -591,10 +607,12 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tokens",
+            path_template("/accounts/{account_id}/tokens", account_id=account_id),
             page=AsyncV4PagePaginationArray[Token],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -617,7 +635,7 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -641,12 +659,14 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -661,7 +681,7 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         token_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -685,12 +705,14 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not token_id:
             raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/tokens/{token_id}",
+            path_template("/accounts/{account_id}/tokens/{token_id}", account_id=account_id, token_id=token_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -704,7 +726,7 @@ class AsyncTokensResource(AsyncAPIResource):
     async def verify(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -726,10 +748,12 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/tokens/verify",
+            path_template("/accounts/{account_id}/tokens/verify", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

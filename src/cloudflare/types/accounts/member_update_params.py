@@ -18,7 +18,7 @@ __all__ = [
 
 
 class IAMUpdateMemberWithRoles(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     roles: Iterable[Role]
@@ -26,7 +26,7 @@ class IAMUpdateMemberWithRoles(TypedDict, total=False):
 
 
 class IAMUpdateMemberWithPolicies(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     policies: Required[Iterable[IAMUpdateMemberWithPoliciesPolicy]]
