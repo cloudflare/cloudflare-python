@@ -45,7 +45,7 @@ class TestContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
-            files=[b"raw file contents"],
+            files=[b"Example data"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
@@ -190,7 +190,7 @@ class TestAsyncContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
-            files=[b"raw file contents"],
+            files=[b"Example data"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )

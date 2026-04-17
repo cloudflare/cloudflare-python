@@ -24,7 +24,7 @@ __all__ = [
 
 
 class TelemetryQueryParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     query_id: Required[Annotated[str, PropertyInfo(alias="queryId")]]
     """Unique identifier for the query to execute"""

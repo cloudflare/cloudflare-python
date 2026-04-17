@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -56,7 +56,7 @@ class DestinationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         configuration: destination_create_params.Configuration,
         enabled: bool,
         name: str,
@@ -80,10 +80,12 @@ class DestinationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             body=maybe_transform(
                 {
                     "configuration": configuration,
@@ -107,7 +109,7 @@ class DestinationsResource(SyncAPIResource):
         self,
         slug: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         configuration: destination_update_params.Configuration,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -129,12 +131,16 @@ class DestinationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._patch(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             body=maybe_transform(
                 {
                     "configuration": configuration,
@@ -155,7 +161,7 @@ class DestinationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: Literal["created", "updated"] | Omit = omit,
         page: float | Omit = omit,
@@ -179,10 +185,12 @@ class DestinationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             page=SyncSinglePage[DestinationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -206,7 +214,7 @@ class DestinationsResource(SyncAPIResource):
         self,
         slug: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,12 +234,16 @@ class DestinationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -266,7 +278,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         configuration: destination_create_params.Configuration,
         enabled: bool,
         name: str,
@@ -290,10 +302,12 @@ class AsyncDestinationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "configuration": configuration,
@@ -317,7 +331,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
         self,
         slug: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         configuration: destination_update_params.Configuration,
         enabled: bool,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -339,12 +353,16 @@ class AsyncDestinationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._patch(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             body=await async_maybe_transform(
                 {
                     "configuration": configuration,
@@ -365,7 +383,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: Literal["created", "updated"] | Omit = omit,
         page: float | Omit = omit,
@@ -389,10 +407,12 @@ class AsyncDestinationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/destinations",
+            path_template("/accounts/{account_id}/workers/observability/destinations", account_id=account_id),
             page=AsyncSinglePage[DestinationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -416,7 +436,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
         self,
         slug: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -436,12 +456,16 @@ class AsyncDestinationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
-            f"/accounts/{account_id}/workers/observability/destinations/{slug}",
+            path_template(
+                "/accounts/{account_id}/workers/observability/destinations/{slug}", account_id=account_id, slug=slug
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

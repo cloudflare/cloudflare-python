@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class TelemetryResource(SyncAPIResource):
     def keys(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
         from_: float | Omit = omit,
@@ -91,10 +91,12 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/telemetry/keys",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/keys", account_id=account_id),
             page=SyncSinglePage[TelemetryKeysResponse],
             body=maybe_transform(
                 {
@@ -118,7 +120,7 @@ class TelemetryResource(SyncAPIResource):
     def query(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
         chart: bool | Omit = omit,
@@ -186,10 +188,12 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/observability/telemetry/query",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/query", account_id=account_id),
             body=maybe_transform(
                 {
                     "query_id": query_id,
@@ -221,7 +225,7 @@ class TelemetryResource(SyncAPIResource):
     def values(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
@@ -255,10 +259,12 @@ class TelemetryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/telemetry/values",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/values", account_id=account_id),
             page=SyncSinglePage[TelemetryValuesResponse],
             body=maybe_transform(
                 {
@@ -303,7 +309,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     def keys(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
         from_: float | Omit = omit,
@@ -343,10 +349,12 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/telemetry/keys",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/keys", account_id=account_id),
             page=AsyncSinglePage[TelemetryKeysResponse],
             body=maybe_transform(
                 {
@@ -370,7 +378,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     async def query(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
         chart: bool | Omit = omit,
@@ -438,10 +446,12 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/observability/telemetry/query",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/query", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "query_id": query_id,
@@ -473,7 +483,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
     def values(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
@@ -507,10 +517,12 @@ class AsyncTelemetryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/workers/observability/telemetry/values",
+            path_template("/accounts/{account_id}/workers/observability/telemetry/values", account_id=account_id),
             page=AsyncSinglePage[TelemetryValuesResponse],
             body=maybe_transform(
                 {

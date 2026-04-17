@@ -19,6 +19,7 @@ from ...._types import (
 )
 from ...._utils import (
     extract_files,
+    path_template,
     maybe_transform,
     strip_not_given,
     deepcopy_minimal,
@@ -72,7 +73,7 @@ class ContentResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         metadata: content_update_params.Metadata,
         files: SequenceNotStr[FileTypes] | Omit = omit,
         cf_worker_body_part: str | Omit = omit,
@@ -110,6 +111,8 @@ class ContentResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -135,7 +138,11 @@ class ContentResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/content",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=maybe_transform(body, content_update_params.ContentUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -153,7 +160,7 @@ class ContentResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,13 +184,19 @@ class ContentResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         extra_headers = {"Accept": "string", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/content/v2",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/content/v2",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -215,7 +228,7 @@ class AsyncContentResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         metadata: content_update_params.Metadata,
         files: SequenceNotStr[FileTypes] | Omit = omit,
         cf_worker_body_part: str | Omit = omit,
@@ -253,6 +266,8 @@ class AsyncContentResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -278,7 +293,11 @@ class AsyncContentResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/content",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/content",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             body=await async_maybe_transform(body, content_update_params.ContentUpdateParams),
             files=extracted_files,
             options=make_request_options(
@@ -296,7 +315,7 @@ class AsyncContentResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,13 +339,19 @@ class AsyncContentResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         extra_headers = {"Accept": "string", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/content/v2",
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/content/v2",
+                account_id=account_id,
+                script_name=script_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

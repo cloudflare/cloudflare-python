@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -48,7 +48,7 @@ class UploadResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         base64: Literal[True],
         body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,6 +77,8 @@ class UploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -84,7 +86,7 @@ class UploadResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/workers/assets/upload",
+            path_template("/accounts/{account_id}/workers/assets/upload", account_id=account_id),
             body=maybe_transform(body, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -121,7 +123,7 @@ class AsyncUploadResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         base64: Literal[True],
         body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -150,6 +152,8 @@ class AsyncUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -157,7 +161,7 @@ class AsyncUploadResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/workers/assets/upload",
+            path_template("/accounts/{account_id}/workers/assets/upload", account_id=account_id),
             body=await async_maybe_transform(body, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

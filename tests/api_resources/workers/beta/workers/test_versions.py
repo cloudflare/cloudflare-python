@@ -43,7 +43,7 @@ class TestVersions:
                 "config": {
                     "html_handling": "auto-trailing-slash",
                     "not_found_handling": "404-page",
-                    "run_worker_first": ["string"],
+                    "run_worker_first": True,
                 },
                 "jwt": "jwt",
             },
@@ -350,7 +350,7 @@ class TestAsyncVersions:
                 "config": {
                     "html_handling": "auto-trailing-slash",
                     "not_found_handling": "404-page",
-                    "run_worker_first": ["string"],
+                    "run_worker_first": True,
                 },
                 "jwt": "jwt",
             },
