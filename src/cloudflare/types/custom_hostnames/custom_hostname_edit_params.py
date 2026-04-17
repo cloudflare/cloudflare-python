@@ -15,7 +15,7 @@ __all__ = ["CustomHostnameEditParams", "SSL", "SSLCustomCERTBundle", "SSLSetting
 
 
 class CustomHostnameEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     custom_metadata: Dict[str, str]
