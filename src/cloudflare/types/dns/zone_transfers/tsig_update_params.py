@@ -8,7 +8,7 @@ __all__ = ["TSIGUpdateParams"]
 
 
 class TSIGUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     algo: Required[str]
     """TSIG algorithm."""
