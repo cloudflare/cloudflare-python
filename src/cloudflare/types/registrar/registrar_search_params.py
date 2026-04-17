@@ -10,7 +10,7 @@ __all__ = ["RegistrarSearchParams"]
 
 
 class RegistrarSearchParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     q: Required[str]
