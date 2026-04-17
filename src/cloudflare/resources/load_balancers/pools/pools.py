@@ -16,7 +16,7 @@ from .health import (
     AsyncHealthResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
     ReferencesResource,
@@ -85,7 +85,7 @@ class PoolsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         origins: Iterable[OriginParam],
         description: str | Omit = omit,
@@ -162,10 +162,12 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -198,7 +200,7 @@ class PoolsResource(SyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         origins: Iterable[OriginParam],
         check_regions: Optional[List[CheckRegion]] | Omit = omit,
@@ -279,12 +281,16 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._put(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             body=maybe_transform(
                 {
                     "name": name,
@@ -317,7 +323,7 @@ class PoolsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         monitor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -343,10 +349,12 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             page=SyncSinglePage[Pool],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -362,7 +370,7 @@ class PoolsResource(SyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,12 +392,16 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,7 +415,7 @@ class PoolsResource(SyncAPIResource):
     def bulk_edit(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         notification_email: Literal[""] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -434,10 +446,12 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             page=SyncSinglePage[Pool],
             body=maybe_transform({"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams),
             options=make_request_options(
@@ -451,7 +465,7 @@ class PoolsResource(SyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         check_regions: Optional[List[CheckRegion]] | Omit = omit,
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
@@ -532,12 +546,16 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             body=maybe_transform(
                 {
                     "check_regions": check_regions,
@@ -571,7 +589,7 @@ class PoolsResource(SyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -593,12 +611,16 @@ class PoolsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._get(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -641,7 +663,7 @@ class AsyncPoolsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         origins: Iterable[OriginParam],
         description: str | Omit = omit,
@@ -718,10 +740,12 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -754,7 +778,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         origins: Iterable[OriginParam],
         check_regions: Optional[List[CheckRegion]] | Omit = omit,
@@ -835,12 +859,16 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -873,7 +901,7 @@ class AsyncPoolsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         monitor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -899,10 +927,12 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             page=AsyncSinglePage[Pool],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -918,7 +948,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -940,12 +970,16 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -959,7 +993,7 @@ class AsyncPoolsResource(AsyncAPIResource):
     def bulk_edit(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         notification_email: Literal[""] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -990,10 +1024,12 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/pools",
+            path_template("/accounts/{account_id}/load_balancers/pools", account_id=account_id),
             page=AsyncSinglePage[Pool],
             body=maybe_transform({"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams),
             options=make_request_options(
@@ -1007,7 +1043,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         check_regions: Optional[List[CheckRegion]] | Omit = omit,
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
@@ -1088,12 +1124,16 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             body=await async_maybe_transform(
                 {
                     "check_regions": check_regions,
@@ -1127,7 +1167,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         pool_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1149,12 +1189,16 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/pools/{pool_id}", account_id=account_id, pool_id=pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

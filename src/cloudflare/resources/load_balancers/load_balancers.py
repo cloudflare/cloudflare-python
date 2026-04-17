@@ -15,7 +15,7 @@ from .regions import (
     AsyncRegionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .previews import (
     PreviewsResource,
     AsyncPreviewsResource,
@@ -135,7 +135,7 @@ class LoadBalancersResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -283,10 +283,12 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/load_balancers",
+            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
             body=maybe_transform(
                 {
                     "default_pools": default_pools,
@@ -324,7 +326,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -475,12 +477,16 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._put(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             body=maybe_transform(
                 {
                     "default_pools": default_pools,
@@ -518,7 +524,7 @@ class LoadBalancersResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,10 +544,12 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/load_balancers",
+            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
             page=SyncSinglePage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -553,7 +561,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -573,12 +581,16 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -593,7 +605,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -741,12 +753,16 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._patch(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             body=maybe_transform(
                 {
                     "adaptive_routing": adaptive_routing,
@@ -784,7 +800,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -804,12 +820,16 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._get(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -868,7 +888,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -1016,10 +1036,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/load_balancers",
+            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
                     "default_pools": default_pools,
@@ -1057,7 +1079,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -1208,12 +1230,16 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._put(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             body=await async_maybe_transform(
                 {
                     "default_pools": default_pools,
@@ -1251,7 +1277,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1271,10 +1297,12 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/load_balancers",
+            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
             page=AsyncSinglePage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1286,7 +1314,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1306,12 +1334,16 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1326,7 +1358,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -1474,12 +1506,16 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._patch(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             body=await async_maybe_transform(
                 {
                     "adaptive_routing": adaptive_routing,
@@ -1517,7 +1553,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1537,12 +1573,16 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            path_template(
+                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

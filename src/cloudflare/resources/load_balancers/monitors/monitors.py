@@ -16,7 +16,7 @@ from .previews import (
     AsyncPreviewsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
     ReferencesResource,
@@ -74,7 +74,7 @@ class MonitorsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -161,10 +161,12 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/load_balancers/monitors",
+            path_template("/accounts/{account_id}/load_balancers/monitors", account_id=account_id),
             body=maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -200,7 +202,7 @@ class MonitorsResource(SyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -287,12 +289,18 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._put(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -327,7 +335,7 @@ class MonitorsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -349,10 +357,12 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/monitors",
+            path_template("/accounts/{account_id}/load_balancers/monitors", account_id=account_id),
             page=SyncSinglePage[Monitor],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -364,7 +374,7 @@ class MonitorsResource(SyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -386,12 +396,18 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -406,7 +422,7 @@ class MonitorsResource(SyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -493,12 +509,18 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -534,7 +556,7 @@ class MonitorsResource(SyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -556,12 +578,18 @@ class MonitorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._get(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -604,7 +632,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -691,10 +719,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/load_balancers/monitors",
+            path_template("/accounts/{account_id}/load_balancers/monitors", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -730,7 +760,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -817,12 +847,18 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -857,7 +893,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -879,10 +915,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/load_balancers/monitors",
+            path_template("/accounts/{account_id}/load_balancers/monitors", account_id=account_id),
             page=AsyncSinglePage[Monitor],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -894,7 +932,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -916,12 +954,18 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -936,7 +980,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         allow_insecure: bool | Omit = omit,
         consecutive_down: int | Omit = omit,
         consecutive_up: int | Omit = omit,
@@ -1023,12 +1067,18 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "allow_insecure": allow_insecure,
@@ -1064,7 +1114,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         monitor_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1086,12 +1136,18 @@ class AsyncMonitorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not monitor_id:
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+            path_template(
+                "/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
+                account_id=account_id,
+                monitor_id=monitor_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
