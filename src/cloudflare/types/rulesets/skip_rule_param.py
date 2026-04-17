@@ -1,0 +1,137 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Dict, List
+from typing_extensions import Literal, Required, TypedDict
+
+from .phase import Phase
+from ..._types import SequenceNotStr
+from .logging_param import LoggingParam
+
+__all__ = ["SkipRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"]
+
+
+class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
+    phase: Literal["current"]
+    """A phase to skip the execution of.
+
+    This option is only compatible with the products option.
+    """
+
+    phases: List[Phase]
+    """A list of phases to skip the execution of.
+
+    This option is incompatible with the rulesets option.
+    """
+
+    products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
+    """A list of legacy security products to skip the execution of."""
+
+    rules: Dict[str, SequenceNotStr[str]]
+    """
+    A mapping of ruleset IDs to a list of rule IDs in that ruleset to skip the
+    execution of. This option is incompatible with the ruleset option.
+    """
+
+    ruleset: Literal["current"]
+    """A ruleset to skip the execution of.
+
+    This option is incompatible with the rulesets option.
+    """
+
+    rulesets: SequenceNotStr[str]
+    """A list of ruleset IDs to skip the execution of.
+
+    This option is incompatible with the ruleset and phases options.
+    """
+
+
+class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
+    password_expression: Required[str]
+    """An expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """An expression that selects the user ID used in the credentials check."""
+
+
+class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
+    """
+    Characteristics of the request on which the rate limit counter will be
+    incremented.
+    """
+
+    period: Required[int]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """An expression that defines when the rate limit counter should be incremented.
+
+    It defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Whether counting is only performed when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
+    """
+
+
+class SkipRuleParam(TypedDict, total=False):
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["skip"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: ActionParameters
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    exposed_credential_check: ExposedCredentialCheck
+    """Configuration for exposed credential checking."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ratelimit: Ratelimit
+    """An object configuring the rule's rate limit behavior."""
+
+    ref: str
+    """The reference of the rule (the rule's ID by default)."""

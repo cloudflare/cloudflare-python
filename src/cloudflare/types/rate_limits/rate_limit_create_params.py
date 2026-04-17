@@ -11,7 +11,7 @@ __all__ = ["RateLimitCreateParams", "Action", "ActionResponse", "Match", "MatchH
 
 
 class RateLimitCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier."""
 
     action: Required[Action]

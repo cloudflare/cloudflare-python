@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .tunnel_param import TunnelParam
 
@@ -10,7 +10,7 @@ __all__ = ["KeylessCertificateEditParams"]
 
 
 class KeylessCertificateEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     enabled: bool

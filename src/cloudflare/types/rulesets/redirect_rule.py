@@ -1,0 +1,158 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
+from .logging import Logging
+from ..._models import BaseModel
+
+__all__ = [
+    "RedirectRule",
+    "ActionParameters",
+    "ActionParametersFromList",
+    "ActionParametersFromValue",
+    "ActionParametersFromValueTargetURL",
+    "ExposedCredentialCheck",
+    "Ratelimit",
+]
+
+
+class ActionParametersFromList(BaseModel):
+    """A redirect based on a bulk list lookup."""
+
+    key: str
+    """An expression that evaluates to the list lookup key."""
+
+    name: str
+    """The name of the list to match against."""
+
+
+class ActionParametersFromValueTargetURL(BaseModel):
+    """A URL to redirect the request to."""
+
+    expression: Optional[str] = None
+    """An expression that evaluates to a URL to redirect the request to."""
+
+    value: Optional[str] = None
+    """A URL to redirect the request to."""
+
+
+class ActionParametersFromValue(BaseModel):
+    """A redirect based on the request properties."""
+
+    target_url: ActionParametersFromValueTargetURL
+    """A URL to redirect the request to."""
+
+    preserve_query_string: Optional[bool] = None
+    """Whether to keep the query string of the original request."""
+
+    status_code: Optional[Literal[301, 302, 303, 307, 308]] = None
+    """The status code to use for the redirect."""
+
+
+class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
+    from_list: Optional[ActionParametersFromList] = None
+    """A redirect based on a bulk list lookup."""
+
+    from_value: Optional[ActionParametersFromValue] = None
+    """A redirect based on the request properties."""
+
+
+class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
+    password_expression: str
+    """An expression that selects the password used in the credentials check."""
+
+    username_expression: str
+    """An expression that selects the user ID used in the credentials check."""
+
+
+class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: List[str]
+    """
+    Characteristics of the request on which the rate limit counter will be
+    incremented.
+    """
+
+    period: int
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: Optional[str] = None
+    """An expression that defines when the rate limit counter should be incremented.
+
+    It defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: Optional[int] = None
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: Optional[int] = None
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: Optional[bool] = None
+    """Whether counting is only performed when an origin is reached."""
+
+    score_per_period: Optional[int] = None
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: Optional[str] = None
+    """
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
+    """
+
+
+class RedirectRule(BaseModel):
+    last_updated: datetime
+    """The timestamp of when the rule was last modified."""
+
+    version: str
+    """The version of the rule."""
+
+    id: Optional[str] = None
+    """The unique ID of the rule."""
+
+    action: Optional[Literal["redirect"]] = None
+    """The action to perform when the rule matches."""
+
+    action_parameters: Optional[ActionParameters] = None
+    """The parameters configuring the rule's action."""
+
+    categories: Optional[List[str]] = None
+    """The categories of the rule."""
+
+    description: Optional[str] = None
+    """An informative description of the rule."""
+
+    enabled: Optional[bool] = None
+    """Whether the rule should be executed."""
+
+    exposed_credential_check: Optional[ExposedCredentialCheck] = None
+    """Configuration for exposed credential checking."""
+
+    expression: Optional[str] = None
+    """The expression defining which traffic will match the rule."""
+
+    logging: Optional[Logging] = None
+    """An object configuring the rule's logging behavior."""
+
+    ratelimit: Optional[Ratelimit] = None
+    """An object configuring the rule's rate limit behavior."""
+
+    ref: Optional[str] = None
+    """The reference of the rule (the rule's ID by default)."""

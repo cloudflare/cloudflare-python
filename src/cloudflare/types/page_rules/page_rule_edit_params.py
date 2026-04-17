@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from .target_param import TargetParam
@@ -56,7 +56,7 @@ __all__ = [
 
 
 class PageRuleEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     actions: Iterable[Action]
