@@ -11,7 +11,7 @@ __all__ = ["CNIUpdateParams", "Magic", "BGP"]
 
 
 class CNIUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Customer account tag"""
 
     id: Required[str]

@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class CNIsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         account: str,
         interconnect: str,
         magic: cni_create_params.Magic,
@@ -77,10 +77,12 @@ class CNIsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/cni/cnis",
+            path_template("/accounts/{account_id}/cni/cnis", account_id=account_id),
             body=maybe_transform(
                 {
                     "account": account,
@@ -100,7 +102,7 @@ class CNIsResource(SyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         account: str,
         cust_ip: str,
@@ -139,12 +141,14 @@ class CNIsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         return self._put(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             body=maybe_transform(
                 {
                     "id": id,
@@ -166,7 +170,7 @@ class CNIsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: Optional[int] | Omit = omit,
         limit: Optional[int] | Omit = omit,
         slot: Optional[str] | Omit = omit,
@@ -196,10 +200,12 @@ class CNIsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/cni/cnis",
+            path_template("/accounts/{account_id}/cni/cnis", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +228,7 @@ class CNIsResource(SyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,13 +250,15 @@ class CNIsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -261,7 +269,7 @@ class CNIsResource(SyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,12 +291,14 @@ class CNIsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         return self._get(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -319,7 +329,7 @@ class AsyncCNIsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         account: str,
         interconnect: str,
         magic: cni_create_params.Magic,
@@ -347,10 +357,12 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/cni/cnis",
+            path_template("/accounts/{account_id}/cni/cnis", account_id=account_id),
             body=await async_maybe_transform(
                 {
                     "account": account,
@@ -370,7 +382,7 @@ class AsyncCNIsResource(AsyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str,
         account: str,
         cust_ip: str,
@@ -409,12 +421,14 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         return await self._put(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -436,7 +450,7 @@ class AsyncCNIsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cursor: Optional[int] | Omit = omit,
         limit: Optional[int] | Omit = omit,
         slot: Optional[str] | Omit = omit,
@@ -466,10 +480,12 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/cni/cnis",
+            path_template("/accounts/{account_id}/cni/cnis", account_id=account_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -492,7 +508,7 @@ class AsyncCNIsResource(AsyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -514,13 +530,15 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -531,7 +549,7 @@ class AsyncCNIsResource(AsyncAPIResource):
         self,
         cni: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -553,12 +571,14 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cni:
             raise ValueError(f"Expected a non-empty value for `cni` but received {cni!r}")
         return await self._get(
-            f"/accounts/{account_id}/cni/cnis/{cni}",
+            path_template("/accounts/{account_id}/cni/cnis/{cni}", account_id=account_id, cni=cni),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
