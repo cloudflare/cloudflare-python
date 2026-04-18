@@ -8,7 +8,7 @@ __all__ = ["VerificationEditParams"]
 
 
 class VerificationEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     validation_method: Required[Literal["http", "cname", "txt", "email"]]

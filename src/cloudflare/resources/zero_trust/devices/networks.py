@@ -49,7 +49,7 @@ class NetworksResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: network_create_params.Config,
         name: str,
         type: Literal["tls"],
@@ -79,8 +79,6 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -107,7 +105,7 @@ class NetworksResource(SyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: network_update_params.Config | Omit = omit,
         name: str | Omit = omit,
         type: Literal["tls"] | Omit = omit,
@@ -139,8 +137,6 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
@@ -170,7 +166,7 @@ class NetworksResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,8 +186,6 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -207,7 +201,7 @@ class NetworksResource(SyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,8 +224,6 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
@@ -252,7 +244,7 @@ class NetworksResource(SyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,8 +266,6 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
@@ -318,7 +308,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: network_create_params.Config,
         name: str,
         type: Literal["tls"],
@@ -348,8 +338,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -376,7 +364,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: network_update_params.Config | Omit = omit,
         name: str | Omit = omit,
         type: Literal["tls"] | Omit = omit,
@@ -408,8 +396,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
@@ -439,7 +425,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,8 +445,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -476,7 +460,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -499,8 +483,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
@@ -521,7 +503,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         network_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -543,8 +525,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:

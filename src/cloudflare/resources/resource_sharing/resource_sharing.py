@@ -82,7 +82,7 @@ class ResourceSharingResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         recipients: Iterable[resource_sharing_create_params.Recipient],
         resources: Iterable[resource_sharing_create_params.Resource],
@@ -110,8 +110,6 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -138,7 +136,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -166,8 +164,6 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
@@ -188,7 +184,7 @@ class ResourceSharingResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
@@ -249,8 +245,6 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -284,7 +278,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,8 +303,6 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
@@ -331,7 +323,7 @@ class ResourceSharingResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -361,8 +353,6 @@ class ResourceSharingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
@@ -418,7 +408,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         recipients: Iterable[resource_sharing_create_params.Recipient],
         resources: Iterable[resource_sharing_create_params.Resource],
@@ -446,8 +436,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -474,7 +462,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -502,8 +490,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
@@ -526,7 +512,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
@@ -587,8 +573,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -622,7 +606,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,8 +631,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:
@@ -669,7 +651,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -699,8 +681,6 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_id:

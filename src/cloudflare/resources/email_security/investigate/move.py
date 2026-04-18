@@ -51,7 +51,7 @@ class MoveResource(SyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -83,8 +83,6 @@ class MoveResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
@@ -110,7 +108,7 @@ class MoveResource(SyncAPIResource):
     def bulk(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -141,8 +139,6 @@ class MoveResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -188,7 +184,7 @@ class AsyncMoveResource(AsyncAPIResource):
         self,
         postfix_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -220,8 +216,6 @@ class AsyncMoveResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
@@ -247,7 +241,7 @@ class AsyncMoveResource(AsyncAPIResource):
     def bulk(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
@@ -278,8 +272,6 @@ class AsyncMoveResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

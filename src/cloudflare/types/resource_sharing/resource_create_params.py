@@ -8,7 +8,7 @@ __all__ = ["ResourceCreateParams"]
 
 
 class ResourceCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier."""
 
     meta: Required[object]

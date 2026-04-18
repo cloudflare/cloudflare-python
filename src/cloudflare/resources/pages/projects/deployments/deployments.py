@@ -29,7 +29,11 @@ from .history.history import (
 )
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.pages.projects import deployment_list_params, deployment_create_params, deployment_delete_params
-from .....types.pages.deployment import Deployment
+from .....types.pages.projects.deployment_get_response import DeploymentGetResponse
+from .....types.pages.projects.deployment_list_response import DeploymentListResponse
+from .....types.pages.projects.deployment_retry_response import DeploymentRetryResponse
+from .....types.pages.projects.deployment_create_response import DeploymentCreateResponse
+from .....types.pages.projects.deployment_rollback_response import DeploymentRollbackResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -62,7 +66,7 @@ class DeploymentsResource(SyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         _headers: FileTypes | Omit = omit,
         _redirects: FileTypes | Omit = omit,
         _routes_json: FileTypes | Omit = omit,
@@ -82,7 +86,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -132,8 +136,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -183,16 +185,16 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
         self,
         project_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         env: Literal["production", "preview"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -202,7 +204,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Deployment]:
+    ) -> SyncV4PagePaginationArray[DeploymentListResponse]:
         """
         Fetch a list of project deployments.
 
@@ -225,8 +227,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -237,7 +237,7 @@ class DeploymentsResource(SyncAPIResource):
                 account_id=account_id,
                 project_name=project_name,
             ),
-            page=SyncV4PagePaginationArray[Deployment],
+            page=SyncV4PagePaginationArray[DeploymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,14 +252,14 @@ class DeploymentsResource(SyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Deployment,
+            model=DeploymentListResponse,
         )
 
     def delete(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -290,8 +290,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -320,7 +318,7 @@ class DeploymentsResource(SyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -328,7 +326,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Fetch information about a deployment.
 
@@ -347,8 +345,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -367,16 +363,16 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
     def retry(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -384,7 +380,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRetryResponse:
         """
         Retry a previous deployment.
 
@@ -403,8 +399,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -423,16 +417,16 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
         )
 
     def rollback(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -440,7 +434,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRollbackResponse:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -461,8 +455,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -481,9 +473,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
         )
 
 
@@ -515,7 +507,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         project_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         _headers: FileTypes | Omit = omit,
         _redirects: FileTypes | Omit = omit,
         _routes_json: FileTypes | Omit = omit,
@@ -535,7 +527,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -585,8 +577,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -636,16 +626,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
         self,
         project_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         env: Literal["production", "preview"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -655,7 +645,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
+    ) -> AsyncPaginator[DeploymentListResponse, AsyncV4PagePaginationArray[DeploymentListResponse]]:
         """
         Fetch a list of project deployments.
 
@@ -678,8 +668,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -690,7 +678,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 account_id=account_id,
                 project_name=project_name,
             ),
-            page=AsyncV4PagePaginationArray[Deployment],
+            page=AsyncV4PagePaginationArray[DeploymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -705,14 +693,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Deployment,
+            model=DeploymentListResponse,
         )
 
     async def delete(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -743,8 +731,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -773,7 +759,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -781,7 +767,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Fetch information about a deployment.
 
@@ -800,8 +786,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -820,16 +804,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
     async def retry(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -837,7 +821,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRetryResponse:
         """
         Retry a previous deployment.
 
@@ -856,8 +840,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -876,16 +858,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
         )
 
     async def rollback(
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         project_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -893,7 +875,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRollbackResponse:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -914,8 +896,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
@@ -934,9 +914,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
         )
 
 

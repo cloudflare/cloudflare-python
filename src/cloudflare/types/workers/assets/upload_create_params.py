@@ -9,7 +9,7 @@ __all__ = ["UploadCreateParams"]
 
 
 class UploadCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     base64: Required[Literal[True]]

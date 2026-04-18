@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Mapping, cast
 
 import httpx
@@ -53,13 +52,10 @@ class ToMarkdownResource(SyncAPIResource):
         """
         return ToMarkdownResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
-    )
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         files: SequenceNotStr[FileTypes],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -80,8 +76,6 @@ class ToMarkdownResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal({"files": files})
@@ -123,13 +117,10 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         return AsyncToMarkdownResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
-    )
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         files: SequenceNotStr[FileTypes],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -150,8 +141,6 @@ class AsyncToMarkdownResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         body = deepcopy_minimal({"files": files})
@@ -177,10 +166,8 @@ class ToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                to_markdown.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_raw_response_wrapper(
+            to_markdown.create,
         )
 
 
@@ -188,10 +175,8 @@ class AsyncToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                to_markdown.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_raw_response_wrapper(
+            to_markdown.create,
         )
 
 
@@ -199,10 +184,8 @@ class ToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                to_markdown.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_streamed_response_wrapper(
+            to_markdown.create,
         )
 
 
@@ -210,8 +193,6 @@ class AsyncToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                to_markdown.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_streamed_response_wrapper(
+            to_markdown.create,
         )

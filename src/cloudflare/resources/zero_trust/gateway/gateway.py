@@ -22,14 +22,6 @@ from .logging import (
     LoggingResourceWithStreamingResponse,
     AsyncLoggingResourceWithStreamingResponse,
 )
-from .pacfiles import (
-    PacfilesResource,
-    AsyncPacfilesResource,
-    PacfilesResourceWithRawResponse,
-    AsyncPacfilesResourceWithRawResponse,
-    PacfilesResourceWithStreamingResponse,
-    AsyncPacfilesResourceWithStreamingResponse,
-)
 from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import path_template
 from .app_types import (
@@ -154,10 +146,6 @@ class GatewayResource(SyncAPIResource):
         return CertificatesResource(self._client)
 
     @cached_property
-    def pacfiles(self) -> PacfilesResource:
-        return PacfilesResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> GatewayResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -179,7 +167,7 @@ class GatewayResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,8 +187,6 @@ class GatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -218,7 +204,7 @@ class GatewayResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,8 +224,6 @@ class GatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -297,10 +281,6 @@ class AsyncGatewayResource(AsyncAPIResource):
         return AsyncCertificatesResource(self._client)
 
     @cached_property
-    def pacfiles(self) -> AsyncPacfilesResource:
-        return AsyncPacfilesResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncGatewayResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -322,7 +302,7 @@ class AsyncGatewayResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,8 +322,6 @@ class AsyncGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -361,7 +339,7 @@ class AsyncGatewayResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,8 +359,6 @@ class AsyncGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -449,10 +425,6 @@ class GatewayResourceWithRawResponse:
     def certificates(self) -> CertificatesResourceWithRawResponse:
         return CertificatesResourceWithRawResponse(self._gateway.certificates)
 
-    @cached_property
-    def pacfiles(self) -> PacfilesResourceWithRawResponse:
-        return PacfilesResourceWithRawResponse(self._gateway.pacfiles)
-
 
 class AsyncGatewayResourceWithRawResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -504,10 +476,6 @@ class AsyncGatewayResourceWithRawResponse:
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
         return AsyncCertificatesResourceWithRawResponse(self._gateway.certificates)
-
-    @cached_property
-    def pacfiles(self) -> AsyncPacfilesResourceWithRawResponse:
-        return AsyncPacfilesResourceWithRawResponse(self._gateway.pacfiles)
 
 
 class GatewayResourceWithStreamingResponse:
@@ -561,10 +529,6 @@ class GatewayResourceWithStreamingResponse:
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
         return CertificatesResourceWithStreamingResponse(self._gateway.certificates)
 
-    @cached_property
-    def pacfiles(self) -> PacfilesResourceWithStreamingResponse:
-        return PacfilesResourceWithStreamingResponse(self._gateway.pacfiles)
-
 
 class AsyncGatewayResourceWithStreamingResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -616,7 +580,3 @@ class AsyncGatewayResourceWithStreamingResponse:
     @cached_property
     def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
         return AsyncCertificatesResourceWithStreamingResponse(self._gateway.certificates)
-
-    @cached_property
-    def pacfiles(self) -> AsyncPacfilesResourceWithStreamingResponse:
-        return AsyncPacfilesResourceWithStreamingResponse(self._gateway.pacfiles)

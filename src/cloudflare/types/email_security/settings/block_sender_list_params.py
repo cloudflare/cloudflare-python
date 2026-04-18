@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["BlockSenderListParams"]
 
 
 class BlockSenderListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     direction: Literal["asc", "desc"]

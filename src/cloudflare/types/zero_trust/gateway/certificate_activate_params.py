@@ -8,6 +8,6 @@ __all__ = ["CertificateActivateParams"]
 
 
 class CertificateActivateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     body: Required[object]

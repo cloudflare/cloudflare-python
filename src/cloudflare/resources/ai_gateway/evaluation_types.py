@@ -47,7 +47,7 @@ class EvaluationTypesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         order_by: str | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -71,8 +71,6 @@ class EvaluationTypesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -120,7 +118,7 @@ class AsyncEvaluationTypesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         order_by: str | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -144,8 +142,6 @@ class AsyncEvaluationTypesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

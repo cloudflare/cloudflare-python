@@ -10,7 +10,7 @@ __all__ = ["FleetStatusOverTimeParams"]
 
 
 class FleetStatusOverTimeParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Time range beginning in ISO format"""

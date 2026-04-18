@@ -45,12 +45,12 @@ from ......._response import (
 from ......._wrappers import ResultWrapper
 from ......._base_client import make_request_options
 from .......types.radar.email.security.top import tld_get_params
-from .......types.radar.email.security.top.tld_get_response import TLDGetResponse
+from .......types.radar.email.security.top.tld_get_response import TldGetResponse
 
-__all__ = ["TLDsResource", "AsyncTLDsResource"]
+__all__ = ["TldsResource", "AsyncTldsResource"]
 
 
-class TLDsResource(SyncAPIResource):
+class TldsResource(SyncAPIResource):
     @cached_property
     def malicious(self) -> MaliciousResource:
         return MaliciousResource(self._client)
@@ -64,23 +64,23 @@ class TLDsResource(SyncAPIResource):
         return SpoofResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TLDsResourceWithRawResponse:
+    def with_raw_response(self) -> TldsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return TLDsResourceWithRawResponse(self)
+        return TldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TLDsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TldsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return TLDsResourceWithStreamingResponse(self)
+        return TldsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -103,7 +103,7 @@ class TLDsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TLDGetResponse:
+    ) -> TldGetResponse:
         """
         Retrieves the top TLDs by number of email messages.
 
@@ -165,15 +165,15 @@ class TLDsResource(SyncAPIResource):
                         "tld_category": tld_category,
                         "tls_version": tls_version,
                     },
-                    tld_get_params.TLDGetParams,
+                    tld_get_params.TldGetParams,
                 ),
-                post_parser=ResultWrapper[TLDGetResponse]._unwrapper,
+                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TLDGetResponse], ResultWrapper[TLDGetResponse]),
+            cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )
 
 
-class AsyncTLDsResource(AsyncAPIResource):
+class AsyncTldsResource(AsyncAPIResource):
     @cached_property
     def malicious(self) -> AsyncMaliciousResource:
         return AsyncMaliciousResource(self._client)
@@ -187,23 +187,23 @@ class AsyncTLDsResource(AsyncAPIResource):
         return AsyncSpoofResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTLDsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTldsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncTLDsResourceWithRawResponse(self)
+        return AsyncTldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTLDsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTldsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncTLDsResourceWithStreamingResponse(self)
+        return AsyncTldsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -226,7 +226,7 @@ class AsyncTLDsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TLDGetResponse:
+    ) -> TldGetResponse:
         """
         Retrieves the top TLDs by number of email messages.
 
@@ -288,16 +288,16 @@ class AsyncTLDsResource(AsyncAPIResource):
                         "tld_category": tld_category,
                         "tls_version": tls_version,
                     },
-                    tld_get_params.TLDGetParams,
+                    tld_get_params.TldGetParams,
                 ),
-                post_parser=ResultWrapper[TLDGetResponse]._unwrapper,
+                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TLDGetResponse], ResultWrapper[TLDGetResponse]),
+            cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )
 
 
-class TLDsResourceWithRawResponse:
-    def __init__(self, tlds: TLDsResource) -> None:
+class TldsResourceWithRawResponse:
+    def __init__(self, tlds: TldsResource) -> None:
         self._tlds = tlds
 
         self.get = to_raw_response_wrapper(
@@ -317,8 +317,8 @@ class TLDsResourceWithRawResponse:
         return SpoofResourceWithRawResponse(self._tlds.spoof)
 
 
-class AsyncTLDsResourceWithRawResponse:
-    def __init__(self, tlds: AsyncTLDsResource) -> None:
+class AsyncTldsResourceWithRawResponse:
+    def __init__(self, tlds: AsyncTldsResource) -> None:
         self._tlds = tlds
 
         self.get = async_to_raw_response_wrapper(
@@ -338,8 +338,8 @@ class AsyncTLDsResourceWithRawResponse:
         return AsyncSpoofResourceWithRawResponse(self._tlds.spoof)
 
 
-class TLDsResourceWithStreamingResponse:
-    def __init__(self, tlds: TLDsResource) -> None:
+class TldsResourceWithStreamingResponse:
+    def __init__(self, tlds: TldsResource) -> None:
         self._tlds = tlds
 
         self.get = to_streamed_response_wrapper(
@@ -359,8 +359,8 @@ class TLDsResourceWithStreamingResponse:
         return SpoofResourceWithStreamingResponse(self._tlds.spoof)
 
 
-class AsyncTLDsResourceWithStreamingResponse:
-    def __init__(self, tlds: AsyncTLDsResource) -> None:
+class AsyncTldsResourceWithStreamingResponse:
+    def __init__(self, tlds: AsyncTldsResource) -> None:
         self._tlds = tlds
 
         self.get = async_to_streamed_response_wrapper(

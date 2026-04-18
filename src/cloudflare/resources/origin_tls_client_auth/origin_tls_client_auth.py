@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -18,14 +17,6 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .hostnames import (
-    HostnamesResource,
-    AsyncHostnamesResource,
-    HostnamesResourceWithRawResponse,
-    AsyncHostnamesResourceWithRawResponse,
-    HostnamesResourceWithStreamingResponse,
-    AsyncHostnamesResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -36,21 +27,13 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from .zone_certificates import (
-    ZoneCertificatesResource,
-    AsyncZoneCertificatesResource,
-    ZoneCertificatesResourceWithRawResponse,
-    AsyncZoneCertificatesResourceWithRawResponse,
-    ZoneCertificatesResourceWithStreamingResponse,
-    AsyncZoneCertificatesResourceWithStreamingResponse,
-)
-from .hostname_certificates import (
-    HostnameCertificatesResource,
-    AsyncHostnameCertificatesResource,
-    HostnameCertificatesResourceWithRawResponse,
-    AsyncHostnameCertificatesResourceWithRawResponse,
-    HostnameCertificatesResourceWithStreamingResponse,
-    AsyncHostnameCertificatesResourceWithStreamingResponse,
+from .hostnames.hostnames import (
+    HostnamesResource,
+    AsyncHostnamesResource,
+    HostnamesResourceWithRawResponse,
+    AsyncHostnamesResourceWithRawResponse,
+    HostnamesResourceWithStreamingResponse,
+    AsyncHostnamesResourceWithStreamingResponse,
 )
 from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params
 from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
@@ -63,16 +46,8 @@ __all__ = ["OriginTLSClientAuthResource", "AsyncOriginTLSClientAuthResource"]
 
 class OriginTLSClientAuthResource(SyncAPIResource):
     @cached_property
-    def zone_certificates(self) -> ZoneCertificatesResource:
-        return ZoneCertificatesResource(self._client)
-
-    @cached_property
     def hostnames(self) -> HostnamesResource:
         return HostnamesResource(self._client)
-
-    @cached_property
-    def hostname_certificates(self) -> HostnameCertificatesResource:
-        return HostnameCertificatesResource(self._client)
 
     @cached_property
     def settings(self) -> SettingsResource:
@@ -97,13 +72,10 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         """
         return OriginTLSClientAuthResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.create for zone-level certificates. This method will be removed in a future major version."
-    )
     def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         certificate: str,
         private_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -135,8 +107,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -160,13 +130,10 @@ class OriginTLSClientAuthResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.list for zone-level certificates. This method will be removed in a future major version."
-    )
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -189,8 +156,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -202,14 +167,11 @@ class OriginTLSClientAuthResource(SyncAPIResource):
             model=OriginTLSClientAuthListResponse,
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.delete for zone-level certificates. This method will be removed in a future major version."
-    )
     def delete(
         self,
         certificate_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,8 +195,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
@@ -257,14 +217,11 @@ class OriginTLSClientAuthResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.get for zone-level certificates. This method will be removed in a future major version."
-    )
     def get(
         self,
         certificate_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -289,8 +246,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
@@ -314,16 +269,8 @@ class OriginTLSClientAuthResource(SyncAPIResource):
 
 class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
     @cached_property
-    def zone_certificates(self) -> AsyncZoneCertificatesResource:
-        return AsyncZoneCertificatesResource(self._client)
-
-    @cached_property
     def hostnames(self) -> AsyncHostnamesResource:
         return AsyncHostnamesResource(self._client)
-
-    @cached_property
-    def hostname_certificates(self) -> AsyncHostnameCertificatesResource:
-        return AsyncHostnameCertificatesResource(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
@@ -348,13 +295,10 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         """
         return AsyncOriginTLSClientAuthResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.create for zone-level certificates. This method will be removed in a future major version."
-    )
     async def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         certificate: str,
         private_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -386,8 +330,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -411,13 +353,10 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.list for zone-level certificates. This method will be removed in a future major version."
-    )
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -440,8 +379,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -453,14 +390,11 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
             model=OriginTLSClientAuthListResponse,
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.delete for zone-level certificates. This method will be removed in a future major version."
-    )
     async def delete(
         self,
         certificate_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,8 +418,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
@@ -508,14 +440,11 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use zone_certificates.get for zone-level certificates. This method will be removed in a future major version."
-    )
     async def get(
         self,
         certificate_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -540,8 +469,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_id:
@@ -567,38 +494,22 @@ class OriginTLSClientAuthResourceWithRawResponse:
     def __init__(self, origin_tls_client_auth: OriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                origin_tls_client_auth.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_raw_response_wrapper(
+            origin_tls_client_auth.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                origin_tls_client_auth.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_raw_response_wrapper(
+            origin_tls_client_auth.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                origin_tls_client_auth.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = to_raw_response_wrapper(
+            origin_tls_client_auth.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                origin_tls_client_auth.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_raw_response_wrapper(
+            origin_tls_client_auth.get,
         )
-
-    @cached_property
-    def zone_certificates(self) -> ZoneCertificatesResourceWithRawResponse:
-        return ZoneCertificatesResourceWithRawResponse(self._origin_tls_client_auth.zone_certificates)
 
     @cached_property
     def hostnames(self) -> HostnamesResourceWithRawResponse:
         return HostnamesResourceWithRawResponse(self._origin_tls_client_auth.hostnames)
-
-    @cached_property
-    def hostname_certificates(self) -> HostnameCertificatesResourceWithRawResponse:
-        return HostnameCertificatesResourceWithRawResponse(self._origin_tls_client_auth.hostname_certificates)
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
@@ -609,38 +520,22 @@ class AsyncOriginTLSClientAuthResourceWithRawResponse:
     def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                origin_tls_client_auth.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_raw_response_wrapper(
+            origin_tls_client_auth.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                origin_tls_client_auth.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_raw_response_wrapper(
+            origin_tls_client_auth.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                origin_tls_client_auth.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = async_to_raw_response_wrapper(
+            origin_tls_client_auth.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                origin_tls_client_auth.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_raw_response_wrapper(
+            origin_tls_client_auth.get,
         )
-
-    @cached_property
-    def zone_certificates(self) -> AsyncZoneCertificatesResourceWithRawResponse:
-        return AsyncZoneCertificatesResourceWithRawResponse(self._origin_tls_client_auth.zone_certificates)
 
     @cached_property
     def hostnames(self) -> AsyncHostnamesResourceWithRawResponse:
         return AsyncHostnamesResourceWithRawResponse(self._origin_tls_client_auth.hostnames)
-
-    @cached_property
-    def hostname_certificates(self) -> AsyncHostnameCertificatesResourceWithRawResponse:
-        return AsyncHostnameCertificatesResourceWithRawResponse(self._origin_tls_client_auth.hostname_certificates)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -651,38 +546,22 @@ class OriginTLSClientAuthResourceWithStreamingResponse:
     def __init__(self, origin_tls_client_auth: OriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                origin_tls_client_auth.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = to_streamed_response_wrapper(
+            origin_tls_client_auth.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                origin_tls_client_auth.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = to_streamed_response_wrapper(
+            origin_tls_client_auth.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                origin_tls_client_auth.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = to_streamed_response_wrapper(
+            origin_tls_client_auth.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                origin_tls_client_auth.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_streamed_response_wrapper(
+            origin_tls_client_auth.get,
         )
-
-    @cached_property
-    def zone_certificates(self) -> ZoneCertificatesResourceWithStreamingResponse:
-        return ZoneCertificatesResourceWithStreamingResponse(self._origin_tls_client_auth.zone_certificates)
 
     @cached_property
     def hostnames(self) -> HostnamesResourceWithStreamingResponse:
         return HostnamesResourceWithStreamingResponse(self._origin_tls_client_auth.hostnames)
-
-    @cached_property
-    def hostname_certificates(self) -> HostnameCertificatesResourceWithStreamingResponse:
-        return HostnameCertificatesResourceWithStreamingResponse(self._origin_tls_client_auth.hostname_certificates)
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
@@ -693,40 +572,22 @@ class AsyncOriginTLSClientAuthResourceWithStreamingResponse:
     def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
-        self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                origin_tls_client_auth.create,  # pyright: ignore[reportDeprecated],
-            )
+        self.create = async_to_streamed_response_wrapper(
+            origin_tls_client_auth.create,
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                origin_tls_client_auth.list,  # pyright: ignore[reportDeprecated],
-            )
+        self.list = async_to_streamed_response_wrapper(
+            origin_tls_client_auth.list,
         )
-        self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                origin_tls_client_auth.delete,  # pyright: ignore[reportDeprecated],
-            )
+        self.delete = async_to_streamed_response_wrapper(
+            origin_tls_client_auth.delete,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                origin_tls_client_auth.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_streamed_response_wrapper(
+            origin_tls_client_auth.get,
         )
-
-    @cached_property
-    def zone_certificates(self) -> AsyncZoneCertificatesResourceWithStreamingResponse:
-        return AsyncZoneCertificatesResourceWithStreamingResponse(self._origin_tls_client_auth.zone_certificates)
 
     @cached_property
     def hostnames(self) -> AsyncHostnamesResourceWithStreamingResponse:
         return AsyncHostnamesResourceWithStreamingResponse(self._origin_tls_client_auth.hostnames)
-
-    @cached_property
-    def hostname_certificates(self) -> AsyncHostnameCertificatesResourceWithStreamingResponse:
-        return AsyncHostnameCertificatesResourceWithStreamingResponse(
-            self._origin_tls_client_auth.hostname_certificates
-        )
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:

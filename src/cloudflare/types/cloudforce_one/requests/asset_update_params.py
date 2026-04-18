@@ -8,7 +8,7 @@ __all__ = ["AssetUpdateParams"]
 
 
 class AssetUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     request_id: Required[str]

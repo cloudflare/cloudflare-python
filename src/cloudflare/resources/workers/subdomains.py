@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,7 +48,7 @@ class SubdomainsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         subdomain: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -71,8 +71,6 @@ class SubdomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
@@ -88,48 +86,10 @@ class SubdomainsResource(SyncAPIResource):
             cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
-    def delete(
-        self,
-        *,
-        account_id: str | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Deletes a Workers subdomain for an account.
-
-        Args:
-          account_id: Identifier.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
     def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,8 +111,6 @@ class SubdomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -191,7 +149,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         subdomain: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -214,8 +172,6 @@ class AsyncSubdomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
@@ -231,48 +187,10 @@ class AsyncSubdomainsResource(AsyncAPIResource):
             cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
-    async def delete(
-        self,
-        *,
-        account_id: str | None = None,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Deletes a Workers subdomain for an account.
-
-        Args:
-          account_id: Identifier.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            path_template("/accounts/{account_id}/workers/subdomain", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
     async def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,8 +212,6 @@ class AsyncSubdomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -318,9 +234,6 @@ class SubdomainsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             subdomains.update,
         )
-        self.delete = to_raw_response_wrapper(
-            subdomains.delete,
-        )
         self.get = to_raw_response_wrapper(
             subdomains.get,
         )
@@ -332,9 +245,6 @@ class AsyncSubdomainsResourceWithRawResponse:
 
         self.update = async_to_raw_response_wrapper(
             subdomains.update,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            subdomains.delete,
         )
         self.get = async_to_raw_response_wrapper(
             subdomains.get,
@@ -348,9 +258,6 @@ class SubdomainsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             subdomains.update,
         )
-        self.delete = to_streamed_response_wrapper(
-            subdomains.delete,
-        )
         self.get = to_streamed_response_wrapper(
             subdomains.get,
         )
@@ -362,9 +269,6 @@ class AsyncSubdomainsResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             subdomains.update,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            subdomains.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             subdomains.get,

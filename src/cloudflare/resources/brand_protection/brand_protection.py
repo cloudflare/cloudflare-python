@@ -12,14 +12,6 @@ from .logos import (
     LogosResourceWithStreamingResponse,
     AsyncLogosResourceWithStreamingResponse,
 )
-from .v2.v2 import (
-    V2Resource,
-    AsyncV2Resource,
-    V2ResourceWithRawResponse,
-    AsyncV2ResourceWithRawResponse,
-    V2ResourceWithStreamingResponse,
-    AsyncV2ResourceWithStreamingResponse,
-)
 from .matches import (
     MatchesResource,
     AsyncMatchesResource,
@@ -80,10 +72,6 @@ class BrandProtectionResource(SyncAPIResource):
         return LogoMatchesResource(self._client)
 
     @cached_property
-    def v2(self) -> V2Resource:
-        return V2Resource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -105,7 +93,7 @@ class BrandProtectionResource(SyncAPIResource):
     def submit(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,8 +113,6 @@ class BrandProtectionResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -140,7 +126,7 @@ class BrandProtectionResource(SyncAPIResource):
     def url_info(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,8 +146,6 @@ class BrandProtectionResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -192,10 +176,6 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         return AsyncLogoMatchesResource(self._client)
 
     @cached_property
-    def v2(self) -> AsyncV2Resource:
-        return AsyncV2Resource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -217,7 +197,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
     async def submit(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,8 +217,6 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -252,7 +230,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
     def url_info(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -272,8 +250,6 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -313,10 +289,6 @@ class BrandProtectionResourceWithRawResponse:
     def logo_matches(self) -> LogoMatchesResourceWithRawResponse:
         return LogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
 
-    @cached_property
-    def v2(self) -> V2ResourceWithRawResponse:
-        return V2ResourceWithRawResponse(self._brand_protection.v2)
-
 
 class AsyncBrandProtectionResourceWithRawResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -344,10 +316,6 @@ class AsyncBrandProtectionResourceWithRawResponse:
     @cached_property
     def logo_matches(self) -> AsyncLogoMatchesResourceWithRawResponse:
         return AsyncLogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
-
-    @cached_property
-    def v2(self) -> AsyncV2ResourceWithRawResponse:
-        return AsyncV2ResourceWithRawResponse(self._brand_protection.v2)
 
 
 class BrandProtectionResourceWithStreamingResponse:
@@ -377,10 +345,6 @@ class BrandProtectionResourceWithStreamingResponse:
     def logo_matches(self) -> LogoMatchesResourceWithStreamingResponse:
         return LogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)
 
-    @cached_property
-    def v2(self) -> V2ResourceWithStreamingResponse:
-        return V2ResourceWithStreamingResponse(self._brand_protection.v2)
-
 
 class AsyncBrandProtectionResourceWithStreamingResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -408,7 +372,3 @@ class AsyncBrandProtectionResourceWithStreamingResponse:
     @cached_property
     def logo_matches(self) -> AsyncLogoMatchesResourceWithStreamingResponse:
         return AsyncLogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)
-
-    @cached_property
-    def v2(self) -> AsyncV2ResourceWithStreamingResponse:
-        return AsyncV2ResourceWithStreamingResponse(self._brand_protection.v2)

@@ -53,7 +53,7 @@ class RateLimitsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: rate_limit_create_params.Action,
         match: rate_limit_create_params.Match,
         period: float,
@@ -93,8 +93,6 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -124,7 +122,7 @@ class RateLimitsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -153,8 +151,6 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -183,7 +179,7 @@ class RateLimitsResource(SyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -207,8 +203,6 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:
@@ -232,7 +226,7 @@ class RateLimitsResource(SyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: rate_limit_edit_params.Action,
         match: rate_limit_edit_params.Match,
         period: float,
@@ -272,8 +266,6 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:
@@ -306,7 +298,7 @@ class RateLimitsResource(SyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -330,8 +322,6 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:
@@ -375,7 +365,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: rate_limit_create_params.Action,
         match: rate_limit_create_params.Match,
         period: float,
@@ -415,8 +405,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -446,7 +434,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -475,8 +463,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -505,7 +491,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,8 +515,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:
@@ -554,7 +538,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: rate_limit_edit_params.Action,
         match: rate_limit_edit_params.Match,
         period: float,
@@ -594,8 +578,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:
@@ -628,7 +610,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         self,
         rate_limit_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -652,8 +634,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rate_limit_id:

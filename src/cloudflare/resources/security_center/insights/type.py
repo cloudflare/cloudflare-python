@@ -49,8 +49,8 @@ class TypeResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -85,10 +85,6 @@ class TypeResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -157,8 +153,8 @@ class AsyncTypeResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -193,10 +189,6 @@ class AsyncTypeResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestStores:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         store = client.secrets_store.stores.create(
@@ -30,7 +29,6 @@ class TestStores:
         )
         assert_matches_type(Optional[StoreCreateResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secrets_store.stores.with_raw_response.create(
@@ -43,7 +41,6 @@ class TestStores:
         store = response.parse()
         assert_matches_type(Optional[StoreCreateResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secrets_store.stores.with_streaming_response.create(
@@ -58,7 +55,6 @@ class TestStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -67,7 +63,6 @@ class TestStores:
                 name="service_x_keys",
             )
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         store = client.secrets_store.stores.list(
@@ -75,7 +70,6 @@ class TestStores:
         )
         assert_matches_type(SyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         store = client.secrets_store.stores.list(
@@ -87,7 +81,6 @@ class TestStores:
         )
         assert_matches_type(SyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.secrets_store.stores.with_raw_response.list(
@@ -99,7 +92,6 @@ class TestStores:
         store = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.secrets_store.stores.with_streaming_response.list(
@@ -113,7 +105,6 @@ class TestStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -121,7 +112,6 @@ class TestStores:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         store = client.secrets_store.stores.delete(
@@ -130,7 +120,6 @@ class TestStores:
         )
         assert_matches_type(object, store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secrets_store.stores.with_raw_response.delete(
@@ -143,7 +132,6 @@ class TestStores:
         store = response.parse()
         assert_matches_type(object, store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secrets_store.stores.with_streaming_response.delete(
@@ -158,7 +146,6 @@ class TestStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -179,7 +166,6 @@ class TestAsyncStores:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         store = await async_client.secrets_store.stores.create(
@@ -188,7 +174,6 @@ class TestAsyncStores:
         )
         assert_matches_type(Optional[StoreCreateResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secrets_store.stores.with_raw_response.create(
@@ -201,7 +186,6 @@ class TestAsyncStores:
         store = await response.parse()
         assert_matches_type(Optional[StoreCreateResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secrets_store.stores.with_streaming_response.create(
@@ -216,7 +200,6 @@ class TestAsyncStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -225,7 +208,6 @@ class TestAsyncStores:
                 name="service_x_keys",
             )
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         store = await async_client.secrets_store.stores.list(
@@ -233,7 +215,6 @@ class TestAsyncStores:
         )
         assert_matches_type(AsyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         store = await async_client.secrets_store.stores.list(
@@ -245,7 +226,6 @@ class TestAsyncStores:
         )
         assert_matches_type(AsyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secrets_store.stores.with_raw_response.list(
@@ -257,7 +237,6 @@ class TestAsyncStores:
         store = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[StoreListResponse], store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secrets_store.stores.with_streaming_response.list(
@@ -271,7 +250,6 @@ class TestAsyncStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -279,7 +257,6 @@ class TestAsyncStores:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         store = await async_client.secrets_store.stores.delete(
@@ -288,7 +265,6 @@ class TestAsyncStores:
         )
         assert_matches_type(object, store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secrets_store.stores.with_raw_response.delete(
@@ -301,7 +277,6 @@ class TestAsyncStores:
         store = await response.parse()
         assert_matches_type(object, store, path=["response"])
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secrets_store.stores.with_streaming_response.delete(
@@ -316,7 +291,6 @@ class TestAsyncStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

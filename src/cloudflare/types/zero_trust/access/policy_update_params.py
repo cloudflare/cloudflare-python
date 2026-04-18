@@ -9,11 +9,11 @@ from .decision import Decision
 from .approval_group_param import ApprovalGroupParam
 from .applications.access_rule_param import AccessRuleParam
 
-__all__ = ["PolicyUpdateParams", "ConnectionRules", "ConnectionRulesRDP", "MfaConfig"]
+__all__ = ["PolicyUpdateParams", "ConnectionRules", "ConnectionRulesRdp", "MfaConfig"]
 
 
 class PolicyUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     decision: Required[Decision]
@@ -82,7 +82,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     """
 
 
-class ConnectionRulesRDP(TypedDict, total=False):
+class ConnectionRulesRdp(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
@@ -101,7 +101,7 @@ class ConnectionRules(TypedDict, total=False):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: ConnectionRulesRDP
+    rdp: ConnectionRulesRdp
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 

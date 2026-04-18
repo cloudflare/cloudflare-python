@@ -11,7 +11,7 @@ __all__ = ["ConnectivityPrecheckTargetParams", "Secret"]
 
 
 class ConnectivityPrecheckTargetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     bucket: Required[str]
 

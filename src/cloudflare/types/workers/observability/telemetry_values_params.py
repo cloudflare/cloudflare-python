@@ -19,7 +19,7 @@ __all__ = [
 
 
 class TelemetryValuesParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     datasets: Required[SequenceNotStr[str]]
     """Leave this empty to use the default datasets"""

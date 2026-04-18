@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["MessageBulkPushParams", "Message", "MessageMqQueueMessageText", "MessageMqQueueMessageJson"]
 
 
 class MessageBulkPushParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """A Resource identifier."""
 
     delay_seconds: float

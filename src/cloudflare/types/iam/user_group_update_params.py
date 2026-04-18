@@ -9,7 +9,7 @@ __all__ = ["UserGroupUpdateParams", "Policy", "PolicyPermissionGroup", "PolicyRe
 
 
 class UserGroupUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     name: str

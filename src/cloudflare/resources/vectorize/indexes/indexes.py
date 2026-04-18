@@ -44,7 +44,6 @@ from ....types.vectorize import (
     index_insert_params,
     index_upsert_params,
     index_get_by_ids_params,
-    index_list_vectors_params,
     index_delete_by_ids_params,
 )
 from ....types.vectorize.create_index import CreateIndex
@@ -53,7 +52,6 @@ from ....types.vectorize.index_query_response import IndexQueryResponse
 from ....types.vectorize.index_delete_response import IndexDeleteResponse
 from ....types.vectorize.index_insert_response import IndexInsertResponse
 from ....types.vectorize.index_upsert_response import IndexUpsertResponse
-from ....types.vectorize.index_list_vectors_response import IndexListVectorsResponse
 from ....types.vectorize.index_delete_by_ids_response import IndexDeleteByIDsResponse
 
 __all__ = ["IndexesResource", "AsyncIndexesResource"]
@@ -86,7 +84,7 @@ class IndexesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: index_create_params.Config,
         name: str,
         description: str | Omit = omit,
@@ -115,8 +113,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -142,7 +138,7 @@ class IndexesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,8 +160,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -181,7 +175,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,8 +197,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -234,7 +226,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -259,8 +251,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -286,7 +276,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -308,8 +298,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -332,7 +320,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -357,8 +345,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -384,7 +370,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -406,8 +392,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -432,7 +416,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -461,8 +445,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -487,72 +469,11 @@ class IndexesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
         )
 
-    def list_vectors(
-        self,
-        index_name: str,
-        *,
-        account_id: str | None = None,
-        count: int | Omit = omit,
-        cursor: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[IndexListVectorsResponse]:
-        """
-        Returns a paginated list of vector identifiers from the specified index.
-
-        Args:
-          account_id: Identifier
-
-          count: Maximum number of vectors to return
-
-          cursor: Cursor for pagination to get the next page of results
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
-                account_id=account_id,
-                index_name=index_name,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "count": count,
-                        "cursor": cursor,
-                    },
-                    index_list_vectors_params.IndexListVectorsParams,
-                ),
-                post_parser=ResultWrapper[Optional[IndexListVectorsResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[IndexListVectorsResponse]], ResultWrapper[IndexListVectorsResponse]),
-        )
-
     def query(
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         vector: Iterable[float],
         filter: object | Omit = omit,
         return_metadata: Literal["none", "indexed", "all"] | Omit = omit,
@@ -590,8 +511,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -626,7 +545,7 @@ class IndexesResource(SyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -655,8 +574,6 @@ class IndexesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -709,7 +626,7 @@ class AsyncIndexesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         config: index_create_params.Config,
         name: str,
         description: str | Omit = omit,
@@ -738,8 +655,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -765,7 +680,7 @@ class AsyncIndexesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -787,8 +702,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -804,7 +717,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -826,8 +739,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -857,7 +768,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -882,8 +793,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -909,7 +818,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -931,8 +840,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -955,7 +862,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -980,8 +887,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -1007,7 +912,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1029,8 +934,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -1055,7 +958,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1084,8 +987,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -1110,72 +1011,11 @@ class AsyncIndexesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
         )
 
-    async def list_vectors(
-        self,
-        index_name: str,
-        *,
-        account_id: str | None = None,
-        count: int | Omit = omit,
-        cursor: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[IndexListVectorsResponse]:
-        """
-        Returns a paginated list of vector identifiers from the specified index.
-
-        Args:
-          account_id: Identifier
-
-          count: Maximum number of vectors to return
-
-          cursor: Cursor for pagination to get the next page of results
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
-                account_id=account_id,
-                index_name=index_name,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "count": count,
-                        "cursor": cursor,
-                    },
-                    index_list_vectors_params.IndexListVectorsParams,
-                ),
-                post_parser=ResultWrapper[Optional[IndexListVectorsResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[IndexListVectorsResponse]], ResultWrapper[IndexListVectorsResponse]),
-        )
-
     async def query(
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         vector: Iterable[float],
         filter: object | Omit = omit,
         return_metadata: Literal["none", "indexed", "all"] | Omit = omit,
@@ -1213,8 +1053,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -1249,7 +1087,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         index_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1278,8 +1116,6 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
@@ -1333,9 +1169,6 @@ class IndexesResourceWithRawResponse:
         self.insert = to_raw_response_wrapper(
             indexes.insert,
         )
-        self.list_vectors = to_raw_response_wrapper(
-            indexes.list_vectors,
-        )
         self.query = to_raw_response_wrapper(
             indexes.query,
         )
@@ -1375,9 +1208,6 @@ class AsyncIndexesResourceWithRawResponse:
         )
         self.insert = async_to_raw_response_wrapper(
             indexes.insert,
-        )
-        self.list_vectors = async_to_raw_response_wrapper(
-            indexes.list_vectors,
         )
         self.query = async_to_raw_response_wrapper(
             indexes.query,
@@ -1419,9 +1249,6 @@ class IndexesResourceWithStreamingResponse:
         self.insert = to_streamed_response_wrapper(
             indexes.insert,
         )
-        self.list_vectors = to_streamed_response_wrapper(
-            indexes.list_vectors,
-        )
         self.query = to_streamed_response_wrapper(
             indexes.query,
         )
@@ -1461,9 +1288,6 @@ class AsyncIndexesResourceWithStreamingResponse:
         )
         self.insert = async_to_streamed_response_wrapper(
             indexes.insert,
-        )
-        self.list_vectors = async_to_streamed_response_wrapper(
-            indexes.list_vectors,
         )
         self.query = async_to_streamed_response_wrapper(
             indexes.query,

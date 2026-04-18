@@ -8,7 +8,7 @@ __all__ = ["TailCreateParams"]
 
 
 class TailCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     body: Required[object]

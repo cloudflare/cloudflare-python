@@ -42,14 +42,6 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_edit_params, queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
@@ -60,20 +52,16 @@ __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 class QueuesResource(SyncAPIResource):
     @cached_property
+    def consumers(self) -> ConsumersResource:
+        return ConsumersResource(self._client)
+
+    @cached_property
     def messages(self) -> MessagesResource:
         return MessagesResource(self._client)
 
     @cached_property
     def purge(self) -> PurgeResource:
         return PurgeResource(self._client)
-
-    @cached_property
-    def consumers(self) -> ConsumersResource:
-        return ConsumersResource(self._client)
-
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResource:
-        return SubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> QueuesResourceWithRawResponse:
@@ -97,7 +85,7 @@ class QueuesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -120,8 +108,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -141,7 +127,7 @@ class QueuesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str | Omit = omit,
         settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -170,8 +156,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -198,7 +182,7 @@ class QueuesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -220,8 +204,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -237,7 +219,7 @@ class QueuesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,8 +243,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -279,7 +259,7 @@ class QueuesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str | Omit = omit,
         settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -305,8 +285,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -334,7 +312,7 @@ class QueuesResource(SyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -358,8 +336,6 @@ class QueuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -379,20 +355,16 @@ class QueuesResource(SyncAPIResource):
 
 class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
+    def consumers(self) -> AsyncConsumersResource:
+        return AsyncConsumersResource(self._client)
+
+    @cached_property
     def messages(self) -> AsyncMessagesResource:
         return AsyncMessagesResource(self._client)
 
     @cached_property
     def purge(self) -> AsyncPurgeResource:
         return AsyncPurgeResource(self._client)
-
-    @cached_property
-    def consumers(self) -> AsyncConsumersResource:
-        return AsyncConsumersResource(self._client)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResource:
-        return AsyncSubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
@@ -416,7 +388,7 @@ class AsyncQueuesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -439,8 +411,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -460,7 +430,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str | Omit = omit,
         settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -489,8 +459,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -517,7 +485,7 @@ class AsyncQueuesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -539,8 +507,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -556,7 +522,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -580,8 +546,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -598,7 +562,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         queue_name: str | Omit = omit,
         settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -624,8 +588,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -653,7 +615,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         self,
         queue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -677,8 +639,6 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
@@ -720,20 +680,16 @@ class QueuesResourceWithRawResponse:
         )
 
     @cached_property
+    def consumers(self) -> ConsumersResourceWithRawResponse:
+        return ConsumersResourceWithRawResponse(self._queues.consumers)
+
+    @cached_property
     def messages(self) -> MessagesResourceWithRawResponse:
         return MessagesResourceWithRawResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> PurgeResourceWithRawResponse:
         return PurgeResourceWithRawResponse(self._queues.purge)
-
-    @cached_property
-    def consumers(self) -> ConsumersResourceWithRawResponse:
-        return ConsumersResourceWithRawResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
-        return SubscriptionsResourceWithRawResponse(self._queues.subscriptions)
 
 
 class AsyncQueuesResourceWithRawResponse:
@@ -760,20 +716,16 @@ class AsyncQueuesResourceWithRawResponse:
         )
 
     @cached_property
+    def consumers(self) -> AsyncConsumersResourceWithRawResponse:
+        return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
+
+    @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
         return AsyncMessagesResourceWithRawResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> AsyncPurgeResourceWithRawResponse:
         return AsyncPurgeResourceWithRawResponse(self._queues.purge)
-
-    @cached_property
-    def consumers(self) -> AsyncConsumersResourceWithRawResponse:
-        return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
-        return AsyncSubscriptionsResourceWithRawResponse(self._queues.subscriptions)
 
 
 class QueuesResourceWithStreamingResponse:
@@ -800,20 +752,16 @@ class QueuesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def consumers(self) -> ConsumersResourceWithStreamingResponse:
+        return ConsumersResourceWithStreamingResponse(self._queues.consumers)
+
+    @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
         return MessagesResourceWithStreamingResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> PurgeResourceWithStreamingResponse:
         return PurgeResourceWithStreamingResponse(self._queues.purge)
-
-    @cached_property
-    def consumers(self) -> ConsumersResourceWithStreamingResponse:
-        return ConsumersResourceWithStreamingResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
-        return SubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)
 
 
 class AsyncQueuesResourceWithStreamingResponse:
@@ -840,17 +788,13 @@ class AsyncQueuesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
+        return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
+
+    @cached_property
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
         return AsyncMessagesResourceWithStreamingResponse(self._queues.messages)
 
     @cached_property
     def purge(self) -> AsyncPurgeResourceWithStreamingResponse:
         return AsyncPurgeResourceWithStreamingResponse(self._queues.purge)
-
-    @cached_property
-    def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
-        return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
-        return AsyncSubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)

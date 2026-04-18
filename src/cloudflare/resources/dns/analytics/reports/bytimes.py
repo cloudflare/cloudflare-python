@@ -49,7 +49,7 @@ class BytimesResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         dimensions: str | Omit = omit,
         filters: str | Omit = omit,
         limit: int | Omit = omit,
@@ -101,8 +101,6 @@ class BytimesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
@@ -154,7 +152,7 @@ class AsyncBytimesResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         dimensions: str | Omit = omit,
         filters: str | Omit = omit,
         limit: int | Omit = omit,
@@ -206,8 +204,6 @@ class AsyncBytimesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(

@@ -51,7 +51,7 @@ class ACLsResource(SyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         lan_1: ACLConfigurationParam,
         lan_2: ACLConfigurationParam,
         name: str,
@@ -95,8 +95,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -129,7 +127,7 @@ class ACLsResource(SyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         description: str | Omit = omit,
         forward_locally: bool | Omit = omit,
@@ -176,8 +174,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -217,7 +213,7 @@ class ACLsResource(SyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,8 +237,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -260,7 +254,7 @@ class ACLsResource(SyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -287,8 +281,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -316,7 +308,7 @@ class ACLsResource(SyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         description: str | Omit = omit,
         forward_locally: bool | Omit = omit,
@@ -363,8 +355,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -404,7 +394,7 @@ class ACLsResource(SyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -431,8 +421,6 @@ class ACLsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -481,7 +469,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         lan_1: ACLConfigurationParam,
         lan_2: ACLConfigurationParam,
         name: str,
@@ -525,8 +513,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -559,7 +545,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         description: str | Omit = omit,
         forward_locally: bool | Omit = omit,
@@ -606,8 +592,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -647,7 +631,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         site_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -671,8 +655,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -690,7 +672,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -717,8 +699,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -746,7 +726,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         description: str | Omit = omit,
         forward_locally: bool | Omit = omit,
@@ -793,8 +773,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
@@ -834,7 +812,7 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         acl_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -861,8 +839,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:

@@ -40,14 +40,6 @@ from .evaluations import (
     EvaluationsResourceWithStreamingResponse,
     AsyncEvaluationsResourceWithStreamingResponse,
 )
-from .dynamic_routing import (
-    DynamicRoutingResource,
-    AsyncDynamicRoutingResource,
-    DynamicRoutingResourceWithRawResponse,
-    AsyncDynamicRoutingResourceWithRawResponse,
-    DynamicRoutingResourceWithStreamingResponse,
-    AsyncDynamicRoutingResourceWithStreamingResponse,
-)
 from .evaluation_types import (
     EvaluationTypesResource,
     AsyncEvaluationTypesResource,
@@ -55,14 +47,6 @@ from .evaluation_types import (
     AsyncEvaluationTypesResourceWithRawResponse,
     EvaluationTypesResourceWithStreamingResponse,
     AsyncEvaluationTypesResourceWithStreamingResponse,
-)
-from .provider_configs import (
-    ProviderConfigsResource,
-    AsyncProviderConfigsResource,
-    ProviderConfigsResourceWithRawResponse,
-    AsyncProviderConfigsResourceWithRawResponse,
-    ProviderConfigsResourceWithStreamingResponse,
-    AsyncProviderConfigsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -90,18 +74,6 @@ __all__ = [
     "AsyncEvaluationsResourceWithRawResponse",
     "EvaluationsResourceWithStreamingResponse",
     "AsyncEvaluationsResourceWithStreamingResponse",
-    "DynamicRoutingResource",
-    "AsyncDynamicRoutingResource",
-    "DynamicRoutingResourceWithRawResponse",
-    "AsyncDynamicRoutingResourceWithRawResponse",
-    "DynamicRoutingResourceWithStreamingResponse",
-    "AsyncDynamicRoutingResourceWithStreamingResponse",
-    "ProviderConfigsResource",
-    "AsyncProviderConfigsResource",
-    "ProviderConfigsResourceWithRawResponse",
-    "AsyncProviderConfigsResourceWithRawResponse",
-    "ProviderConfigsResourceWithStreamingResponse",
-    "AsyncProviderConfigsResourceWithStreamingResponse",
     "URLsResource",
     "AsyncURLsResource",
     "URLsResourceWithRawResponse",

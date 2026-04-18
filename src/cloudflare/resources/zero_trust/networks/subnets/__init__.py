@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .warp import (
-    WARPResource,
-    AsyncWARPResource,
-    WARPResourceWithRawResponse,
-    AsyncWARPResourceWithRawResponse,
-    WARPResourceWithStreamingResponse,
-    AsyncWARPResourceWithStreamingResponse,
-)
 from .subnets import (
     SubnetsResource,
     AsyncSubnetsResource,
@@ -26,12 +18,6 @@ from .cloudflare_source import (
 )
 
 __all__ = [
-    "WARPResource",
-    "AsyncWARPResource",
-    "WARPResourceWithRawResponse",
-    "AsyncWARPResourceWithRawResponse",
-    "WARPResourceWithStreamingResponse",
-    "AsyncWARPResourceWithStreamingResponse",
     "CloudflareSourceResource",
     "AsyncCloudflareSourceResource",
     "CloudflareSourceResourceWithRawResponse",

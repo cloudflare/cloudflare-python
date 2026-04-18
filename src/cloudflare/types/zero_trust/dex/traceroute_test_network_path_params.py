@@ -10,7 +10,7 @@ __all__ = ["TracerouteTestNetworkPathParams"]
 
 
 class TracerouteTestNetworkPathParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     device_id: Required[Annotated[str, PropertyInfo(alias="deviceId")]]
     """Device to filter tracroute result runs to"""

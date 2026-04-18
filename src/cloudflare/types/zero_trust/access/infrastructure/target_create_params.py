@@ -8,7 +8,7 @@ __all__ = ["TargetCreateParams", "IP", "IPIPV4", "IPIPV6"]
 
 
 class TargetCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier"""
 
     hostname: Required[str]

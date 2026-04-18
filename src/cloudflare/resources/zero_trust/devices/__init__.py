@@ -72,14 +72,6 @@ from .resilience import (
     ResilienceResourceWithStreamingResponse,
     AsyncResilienceResourceWithStreamingResponse,
 )
-from .ip_profiles import (
-    IPProfilesResource,
-    AsyncIPProfilesResource,
-    IPProfilesResourceWithRawResponse,
-    AsyncIPProfilesResourceWithRawResponse,
-    IPProfilesResourceWithStreamingResponse,
-    AsyncIPProfilesResourceWithStreamingResponse,
-)
 from .fleet_status import (
     FleetStatusResource,
     AsyncFleetStatusResource,
@@ -124,12 +116,6 @@ __all__ = [
     "AsyncDEXTestsResourceWithRawResponse",
     "DEXTestsResourceWithStreamingResponse",
     "AsyncDEXTestsResourceWithStreamingResponse",
-    "IPProfilesResource",
-    "AsyncIPProfilesResource",
-    "IPProfilesResourceWithRawResponse",
-    "AsyncIPProfilesResourceWithRawResponse",
-    "IPProfilesResourceWithStreamingResponse",
-    "AsyncIPProfilesResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

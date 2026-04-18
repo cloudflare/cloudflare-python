@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .beta import (
-    BetaResource,
-    AsyncBetaResource,
-    BetaResourceWithRawResponse,
-    AsyncBetaResourceWithRawResponse,
-    BetaResourceWithStreamingResponse,
-    AsyncBetaResourceWithStreamingResponse,
-)
 from .assets import (
     AssetsResource,
     AsyncAssetsResource,
@@ -74,12 +66,6 @@ from .account_settings import (
 )
 
 __all__ = [
-    "BetaResource",
-    "AsyncBetaResource",
-    "BetaResourceWithRawResponse",
-    "AsyncBetaResourceWithRawResponse",
-    "BetaResourceWithStreamingResponse",
-    "AsyncBetaResourceWithStreamingResponse",
     "RoutesResource",
     "AsyncRoutesResource",
     "RoutesResourceWithRawResponse",

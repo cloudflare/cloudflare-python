@@ -12,7 +12,7 @@ __all__ = ["MessageGetParams"]
 
 
 class MessageGetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     page: Required[int]

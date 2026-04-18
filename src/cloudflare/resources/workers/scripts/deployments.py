@@ -20,8 +20,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import deployment_create_params
-from ....types.workers.scripts.deployment import Deployment
+from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
 from ....types.workers.scripts.deployment_list_response import DeploymentListResponse
+from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
 from ....types.workers.scripts.deployment_delete_response import DeploymentDeleteResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
@@ -51,7 +52,7 @@ class DeploymentsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
         force: bool | Omit = omit,
@@ -62,7 +63,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -85,8 +86,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -111,16 +110,16 @@ class DeploymentsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,8 +145,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -172,7 +169,7 @@ class DeploymentsResource(SyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         script_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -199,8 +196,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -224,7 +219,7 @@ class DeploymentsResource(SyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         script_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -232,7 +227,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Get information about a Worker Deployment.
 
@@ -249,8 +244,6 @@ class DeploymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -269,9 +262,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
@@ -299,7 +292,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
         force: bool | Omit = omit,
@@ -310,7 +303,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -333,8 +326,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -359,16 +350,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     async def list(
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -394,8 +385,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -420,7 +409,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         script_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -447,8 +436,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -472,7 +459,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         self,
         deployment_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         script_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -480,7 +467,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Get information about a Worker Deployment.
 
@@ -497,8 +484,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -517,9 +502,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 

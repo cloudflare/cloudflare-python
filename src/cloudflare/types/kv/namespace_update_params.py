@@ -8,7 +8,7 @@ __all__ = ["NamespaceUpdateParams"]
 
 
 class NamespaceUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     title: Required[str]

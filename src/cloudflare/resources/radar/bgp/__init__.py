@@ -24,14 +24,6 @@ from .top import (
     TopResourceWithStreamingResponse,
     AsyncTopResourceWithStreamingResponse,
 )
-from .rpki import (
-    RPKIResource,
-    AsyncRPKIResource,
-    RPKIResourceWithRawResponse,
-    AsyncRPKIResourceWithRawResponse,
-    RPKIResourceWithStreamingResponse,
-    AsyncRPKIResourceWithStreamingResponse,
-)
 from .leaks import (
     LeaksResource,
     AsyncLeaksResource,
@@ -88,12 +80,6 @@ __all__ = [
     "AsyncIPsResourceWithRawResponse",
     "IPsResourceWithStreamingResponse",
     "AsyncIPsResourceWithStreamingResponse",
-    "RPKIResource",
-    "AsyncRPKIResource",
-    "RPKIResourceWithRawResponse",
-    "AsyncRPKIResourceWithRawResponse",
-    "RPKIResourceWithStreamingResponse",
-    "AsyncRPKIResourceWithStreamingResponse",
     "BGPResource",
     "AsyncBGPResource",
     "BGPResourceWithRawResponse",

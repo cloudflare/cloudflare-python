@@ -78,7 +78,7 @@ __all__ = [
 
 
 class ScriptAndVersionSettingEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     settings: Settings

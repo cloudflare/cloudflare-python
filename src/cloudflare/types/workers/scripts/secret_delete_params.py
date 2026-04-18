@@ -8,7 +8,7 @@ __all__ = ["SecretDeleteParams"]
 
 
 class SecretDeleteParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     script_name: Required[str]

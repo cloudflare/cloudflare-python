@@ -51,7 +51,7 @@ class OperationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         diff: bool | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
@@ -117,8 +117,6 @@ class OperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -151,7 +149,7 @@ class OperationsResource(SyncAPIResource):
     def bulk_edit(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         body: Dict[str, operation_bulk_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,8 +172,6 @@ class OperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
@@ -195,7 +191,7 @@ class OperationsResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         state: Literal["review", "ignored"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,8 +221,6 @@ class OperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -272,7 +266,7 @@ class AsyncOperationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         diff: bool | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
@@ -338,8 +332,6 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -372,7 +364,7 @@ class AsyncOperationsResource(AsyncAPIResource):
     async def bulk_edit(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         body: Dict[str, operation_bulk_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -395,8 +387,6 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
@@ -416,7 +406,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         state: Literal["review", "ignored"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -446,8 +436,6 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:

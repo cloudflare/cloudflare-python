@@ -9,21 +9,21 @@ from .top import (
     AsyncTopResourceWithStreamingResponse,
 )
 from .tlds import (
-    TLDsResource,
-    AsyncTLDsResource,
-    TLDsResourceWithRawResponse,
-    AsyncTLDsResourceWithRawResponse,
-    TLDsResourceWithStreamingResponse,
-    AsyncTLDsResourceWithStreamingResponse,
+    TldsResource,
+    AsyncTldsResource,
+    TldsResourceWithRawResponse,
+    AsyncTldsResourceWithRawResponse,
+    TldsResourceWithStreamingResponse,
+    AsyncTldsResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "TLDsResource",
-    "AsyncTLDsResource",
-    "TLDsResourceWithRawResponse",
-    "AsyncTLDsResourceWithRawResponse",
-    "TLDsResourceWithStreamingResponse",
-    "AsyncTLDsResourceWithStreamingResponse",
+    "TldsResource",
+    "AsyncTldsResource",
+    "TldsResourceWithRawResponse",
+    "AsyncTldsResourceWithRawResponse",
+    "TldsResourceWithStreamingResponse",
+    "AsyncTldsResourceWithStreamingResponse",
     "TopResource",
     "AsyncTopResource",
     "TopResourceWithRawResponse",

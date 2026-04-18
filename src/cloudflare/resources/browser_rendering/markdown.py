@@ -49,7 +49,7 @@ class MarkdownResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -182,7 +182,7 @@ class MarkdownResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -312,11 +312,11 @@ class MarkdownResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["url"], ["html"])
+    @required_args(["account_id", "url"], ["account_id", "html"])
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -401,8 +401,6 @@ class MarkdownResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -468,7 +466,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -601,7 +599,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -731,11 +729,11 @@ class AsyncMarkdownResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["url"], ["html"])
+    @required_args(["account_id", "url"], ["account_id", "html"])
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -820,8 +818,6 @@ class AsyncMarkdownResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

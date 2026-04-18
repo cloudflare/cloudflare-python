@@ -8,7 +8,7 @@ __all__ = ["EntryCreateParams"]
 
 
 class EntryCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     dataset_id: Required[str]
 

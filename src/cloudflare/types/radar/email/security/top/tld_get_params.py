@@ -9,10 +9,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ......_types import SequenceNotStr
 from ......_utils import PropertyInfo
 
-__all__ = ["TLDGetParams"]
+__all__ = ["TldGetParams"]
 
 
-class TLDGetParams(TypedDict, total=False):
+class TldGetParams(TypedDict, total=False):
     arc: List[Literal["PASS", "NONE", "FAIL"]]
     """Filters results by ARC (Authenticated Received Chain) validation."""
 

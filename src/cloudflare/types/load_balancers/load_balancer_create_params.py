@@ -19,7 +19,7 @@ __all__ = ["LoadBalancerCreateParams"]
 
 
 class LoadBalancerCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
 
     default_pools: Required[SequenceNotStr[DefaultPools]]
     """A list of pool IDs ordered by their failover priority.

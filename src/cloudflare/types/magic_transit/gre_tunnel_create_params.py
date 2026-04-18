@@ -20,7 +20,7 @@ __all__ = [
 
 
 class GRETunnelCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     cloudflare_gre_endpoint: Required[str]

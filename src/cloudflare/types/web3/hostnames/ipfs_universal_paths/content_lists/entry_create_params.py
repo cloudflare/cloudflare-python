@@ -8,7 +8,7 @@ __all__ = ["EntryCreateParams"]
 
 
 class EntryCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Specify the identifier of the hostname."""
 
     content: Required[str]

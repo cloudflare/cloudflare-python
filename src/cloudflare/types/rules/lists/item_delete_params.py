@@ -9,7 +9,7 @@ __all__ = ["ItemDeleteParams", "Item"]
 
 
 class ItemDeleteParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The Account ID for this resource."""
 
     items: Iterable[Item]

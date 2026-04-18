@@ -51,14 +51,6 @@ from .dex_tests import (
     AsyncDEXTestsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from .ip_profiles import (
-    IPProfilesResource,
-    AsyncIPProfilesResource,
-    IPProfilesResourceWithRawResponse,
-    AsyncIPProfilesResourceWithRawResponse,
-    IPProfilesResourceWithStreamingResponse,
-    AsyncIPProfilesResourceWithStreamingResponse,
-)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -141,10 +133,6 @@ class DevicesResource(SyncAPIResource):
         return DEXTestsResource(self._client)
 
     @cached_property
-    def ip_profiles(self) -> IPProfilesResource:
-        return IPProfilesResource(self._client)
-
-    @cached_property
     def networks(self) -> NetworksResource:
         return NetworksResource(self._client)
 
@@ -199,7 +187,7 @@ class DevicesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,8 +215,6 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -245,7 +231,7 @@ class DevicesResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,8 +262,6 @@ class DevicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
@@ -311,10 +295,6 @@ class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResource:
         return AsyncDEXTestsResource(self._client)
-
-    @cached_property
-    def ip_profiles(self) -> AsyncIPProfilesResource:
-        return AsyncIPProfilesResource(self._client)
 
     @cached_property
     def networks(self) -> AsyncNetworksResource:
@@ -371,7 +351,7 @@ class AsyncDevicesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,8 +379,6 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -417,7 +395,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -448,8 +426,6 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
@@ -497,10 +473,6 @@ class DevicesResourceWithRawResponse:
     @cached_property
     def dex_tests(self) -> DEXTestsResourceWithRawResponse:
         return DEXTestsResourceWithRawResponse(self._devices.dex_tests)
-
-    @cached_property
-    def ip_profiles(self) -> IPProfilesResourceWithRawResponse:
-        return IPProfilesResourceWithRawResponse(self._devices.ip_profiles)
 
     @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
@@ -567,10 +539,6 @@ class AsyncDevicesResourceWithRawResponse:
         return AsyncDEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
     @cached_property
-    def ip_profiles(self) -> AsyncIPProfilesResourceWithRawResponse:
-        return AsyncIPProfilesResourceWithRawResponse(self._devices.ip_profiles)
-
-    @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
         return AsyncNetworksResourceWithRawResponse(self._devices.networks)
 
@@ -635,10 +603,6 @@ class DevicesResourceWithStreamingResponse:
         return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
     @cached_property
-    def ip_profiles(self) -> IPProfilesResourceWithStreamingResponse:
-        return IPProfilesResourceWithStreamingResponse(self._devices.ip_profiles)
-
-    @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
@@ -701,10 +665,6 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:
         return AsyncDEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
-
-    @cached_property
-    def ip_profiles(self) -> AsyncIPProfilesResourceWithStreamingResponse:
-        return AsyncIPProfilesResourceWithStreamingResponse(self._devices.ip_profiles)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:

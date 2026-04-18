@@ -2,21 +2,42 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing import Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..profiles.pattern_param import PatternParam
 
-__all__ = ["CustomUpdateParams"]
+__all__ = ["CustomUpdateParams", "Variant0", "Variant1", "Variant2"]
 
 
-class CustomUpdateParams(TypedDict, total=False):
-    account_id: str
-
-    enabled: Required[bool]
+class Variant0(TypedDict, total=False):
+    account_id: Required[str]
 
     name: Required[str]
 
     pattern: Required[PatternParam]
 
+    type: Required[Literal["custom"]]
+
     description: Optional[str]
+
+    enabled: bool
+
+
+class Variant1(TypedDict, total=False):
+    account_id: Required[str]
+
+    type: Required[Literal["predefined"]]
+
+    enabled: bool
+
+
+class Variant2(TypedDict, total=False):
+    account_id: Required[str]
+
+    type: Required[Literal["integration"]]
+
+    enabled: bool
+
+
+CustomUpdateParams: TypeAlias = Union[Variant0, Variant1, Variant2]

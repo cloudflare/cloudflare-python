@@ -8,7 +8,7 @@ __all__ = ["FinetuneCreateParams"]
 
 
 class FinetuneCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     model: Required[str]
 

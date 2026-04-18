@@ -9,7 +9,7 @@ __all__ = ["DEXTestUpdateParams", "Data", "TargetPolicy"]
 
 
 class DEXTestUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     data: Required[Data]
     """

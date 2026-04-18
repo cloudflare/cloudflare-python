@@ -62,7 +62,7 @@ class IssuesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -102,8 +102,6 @@ class IssuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -140,7 +138,7 @@ class IssuesResource(SyncAPIResource):
     def class_(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -173,8 +171,6 @@ class IssuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -210,7 +206,7 @@ class IssuesResource(SyncAPIResource):
         self,
         issue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismiss: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,8 +231,6 @@ class IssuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
@@ -258,7 +252,7 @@ class IssuesResource(SyncAPIResource):
     def severity(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -291,8 +285,6 @@ class IssuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -327,7 +319,7 @@ class IssuesResource(SyncAPIResource):
     def type(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -360,8 +352,6 @@ class IssuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -417,7 +407,7 @@ class AsyncIssuesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -457,8 +447,6 @@ class AsyncIssuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -495,7 +483,7 @@ class AsyncIssuesResource(AsyncAPIResource):
     async def class_(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -528,8 +516,6 @@ class AsyncIssuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -565,7 +551,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         self,
         issue_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismiss: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -590,8 +576,6 @@ class AsyncIssuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
@@ -613,7 +597,7 @@ class AsyncIssuesResource(AsyncAPIResource):
     async def severity(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -646,8 +630,6 @@ class AsyncIssuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -682,7 +664,7 @@ class AsyncIssuesResource(AsyncAPIResource):
     async def type(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dismissed: bool | Omit = omit,
         issue_class: SequenceNotStr[str] | Omit = omit,
         issue_class_neq: SequenceNotStr[str] | Omit = omit,
@@ -715,8 +697,6 @@ class AsyncIssuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

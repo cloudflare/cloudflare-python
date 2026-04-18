@@ -52,14 +52,6 @@ from .evaluations import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from .dynamic_routing import (
-    DynamicRoutingResource,
-    AsyncDynamicRoutingResource,
-    DynamicRoutingResourceWithRawResponse,
-    AsyncDynamicRoutingResourceWithRawResponse,
-    DynamicRoutingResourceWithStreamingResponse,
-    AsyncDynamicRoutingResourceWithStreamingResponse,
-)
 from .evaluation_types import (
     EvaluationTypesResource,
     AsyncEvaluationTypesResource,
@@ -67,14 +59,6 @@ from .evaluation_types import (
     AsyncEvaluationTypesResourceWithRawResponse,
     EvaluationTypesResourceWithStreamingResponse,
     AsyncEvaluationTypesResourceWithStreamingResponse,
-)
-from .provider_configs import (
-    ProviderConfigsResource,
-    AsyncProviderConfigsResource,
-    ProviderConfigsResourceWithRawResponse,
-    AsyncProviderConfigsResourceWithRawResponse,
-    ProviderConfigsResourceWithStreamingResponse,
-    AsyncProviderConfigsResourceWithStreamingResponse,
 )
 from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
 from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
@@ -104,14 +88,6 @@ class AIGatewayResource(SyncAPIResource):
         return EvaluationsResource(self._client)
 
     @cached_property
-    def dynamic_routing(self) -> DynamicRoutingResource:
-        return DynamicRoutingResource(self._client)
-
-    @cached_property
-    def provider_configs(self) -> ProviderConfigsResource:
-        return ProviderConfigsResource(self._client)
-
-    @cached_property
     def urls(self) -> URLsResource:
         return URLsResource(self._client)
 
@@ -137,7 +113,7 @@ class AIGatewayResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
@@ -185,8 +161,6 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -227,7 +201,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
         collect_logs: bool,
@@ -278,8 +252,6 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -324,7 +296,7 @@ class AIGatewayResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -349,8 +321,6 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -377,7 +347,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,8 +369,6 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -421,7 +389,7 @@ class AIGatewayResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,8 +411,6 @@ class AIGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -480,14 +446,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         return AsyncEvaluationsResource(self._client)
 
     @cached_property
-    def dynamic_routing(self) -> AsyncDynamicRoutingResource:
-        return AsyncDynamicRoutingResource(self._client)
-
-    @cached_property
-    def provider_configs(self) -> AsyncProviderConfigsResource:
-        return AsyncProviderConfigsResource(self._client)
-
-    @cached_property
     def urls(self) -> AsyncURLsResource:
         return AsyncURLsResource(self._client)
 
@@ -513,7 +471,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
@@ -561,8 +519,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -603,7 +559,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: Optional[int],
         collect_logs: bool,
@@ -654,8 +610,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -700,7 +654,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -725,8 +679,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -753,7 +705,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -775,8 +727,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -797,7 +747,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -819,8 +769,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
@@ -875,14 +823,6 @@ class AIGatewayResourceWithRawResponse:
         return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
     @cached_property
-    def dynamic_routing(self) -> DynamicRoutingResourceWithRawResponse:
-        return DynamicRoutingResourceWithRawResponse(self._ai_gateway.dynamic_routing)
-
-    @cached_property
-    def provider_configs(self) -> ProviderConfigsResourceWithRawResponse:
-        return ProviderConfigsResourceWithRawResponse(self._ai_gateway.provider_configs)
-
-    @cached_property
     def urls(self) -> URLsResourceWithRawResponse:
         return URLsResourceWithRawResponse(self._ai_gateway.urls)
 
@@ -922,14 +862,6 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
         return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
-
-    @cached_property
-    def dynamic_routing(self) -> AsyncDynamicRoutingResourceWithRawResponse:
-        return AsyncDynamicRoutingResourceWithRawResponse(self._ai_gateway.dynamic_routing)
-
-    @cached_property
-    def provider_configs(self) -> AsyncProviderConfigsResourceWithRawResponse:
-        return AsyncProviderConfigsResourceWithRawResponse(self._ai_gateway.provider_configs)
 
     @cached_property
     def urls(self) -> AsyncURLsResourceWithRawResponse:
@@ -973,14 +905,6 @@ class AIGatewayResourceWithStreamingResponse:
         return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
     @cached_property
-    def dynamic_routing(self) -> DynamicRoutingResourceWithStreamingResponse:
-        return DynamicRoutingResourceWithStreamingResponse(self._ai_gateway.dynamic_routing)
-
-    @cached_property
-    def provider_configs(self) -> ProviderConfigsResourceWithStreamingResponse:
-        return ProviderConfigsResourceWithStreamingResponse(self._ai_gateway.provider_configs)
-
-    @cached_property
     def urls(self) -> URLsResourceWithStreamingResponse:
         return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
 
@@ -1020,14 +944,6 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
         return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
-
-    @cached_property
-    def dynamic_routing(self) -> AsyncDynamicRoutingResourceWithStreamingResponse:
-        return AsyncDynamicRoutingResourceWithStreamingResponse(self._ai_gateway.dynamic_routing)
-
-    @cached_property
-    def provider_configs(self) -> AsyncProviderConfigsResourceWithStreamingResponse:
-        return AsyncProviderConfigsResourceWithStreamingResponse(self._ai_gateway.provider_configs)
 
     @cached_property
     def urls(self) -> AsyncURLsResourceWithStreamingResponse:

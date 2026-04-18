@@ -51,7 +51,7 @@ class SubscriptionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
         rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,8 +79,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -105,7 +103,7 @@ class SubscriptionsResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
         rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,8 +131,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
@@ -159,7 +155,7 @@ class SubscriptionsResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,8 +177,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
@@ -221,7 +215,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
         rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -249,8 +243,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -275,7 +267,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
         rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -303,8 +295,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
@@ -329,7 +319,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,8 +341,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(

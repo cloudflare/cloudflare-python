@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -50,7 +50,7 @@ class BotManagementResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -159,7 +159,7 @@ class BotManagementResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -279,7 +279,7 @@ class BotManagementResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -402,7 +402,7 @@ class BotManagementResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
@@ -517,10 +517,11 @@ class BotManagementResource(SyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -542,8 +543,6 @@ class BotManagementResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -585,7 +584,7 @@ class BotManagementResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -607,8 +606,6 @@ class BotManagementResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -653,7 +650,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -762,7 +759,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -882,7 +879,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -1005,7 +1002,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
@@ -1120,10 +1117,11 @@ class AsyncBotManagementResource(AsyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -1145,8 +1143,6 @@ class AsyncBotManagementResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -1188,7 +1184,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1210,8 +1206,6 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(

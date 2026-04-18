@@ -60,7 +60,7 @@ class V2Resource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         continuation_token: Optional[str] | Omit = omit,
         creator: Optional[str] | Omit = omit,
         meta: v2_list_params.Meta | Omit = omit,
@@ -142,8 +142,6 @@ class V2Resource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -196,7 +194,7 @@ class AsyncV2Resource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         continuation_token: Optional[str] | Omit = omit,
         creator: Optional[str] | Omit = omit,
         meta: v2_list_params.Meta | Omit = omit,
@@ -278,8 +276,6 @@ class AsyncV2Resource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

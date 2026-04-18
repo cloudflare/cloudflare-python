@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .database.database import (
+from .database import (
     DatabaseResource,
     AsyncDatabaseResource,
     DatabaseResourceWithRawResponse,
@@ -12,6 +10,8 @@ from .database.database import (
     DatabaseResourceWithStreamingResponse,
     AsyncDatabaseResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["D1Resource", "AsyncD1Resource"]
 

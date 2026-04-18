@@ -18,7 +18,7 @@ __all__ = [
 
 
 class IAMCreateMemberWithRoles(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     email: Required[str]
@@ -37,7 +37,7 @@ class IAMCreateMemberWithRoles(TypedDict, total=False):
 
 
 class IAMCreateMemberWithPolicies(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     email: Required[str]

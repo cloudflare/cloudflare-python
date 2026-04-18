@@ -10,7 +10,7 @@ __all__ = ["UnrevokeCreateParams"]
 
 
 class UnrevokeCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     body: Required[SequenceNotStr[str]]
     """A list of Registration IDs to unrevoke."""

@@ -8,7 +8,7 @@ __all__ = ["GlobalWARPOverrideCreateParams"]
 
 
 class GlobalWARPOverrideCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     disconnect: Required[bool]
     """Disconnects all devices on the account using Global WARP override."""

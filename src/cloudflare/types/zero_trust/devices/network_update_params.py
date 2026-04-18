@@ -8,7 +8,7 @@ __all__ = ["NetworkUpdateParams", "Config"]
 
 
 class NetworkUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     config: Config
     """

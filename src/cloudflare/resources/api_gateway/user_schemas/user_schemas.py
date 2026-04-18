@@ -43,7 +43,9 @@ from ....types.api_gateway import (
     user_schema_list_params,
     user_schema_create_params,
 )
-from ....types.api_gateway.old_public_schema import OldPublicSchema
+from ....types.api_gateway.user_schema_get_response import UserSchemaGetResponse
+from ....types.api_gateway.user_schema_edit_response import UserSchemaEditResponse
+from ....types.api_gateway.user_schema_list_response import UserSchemaListResponse
 from ....types.api_gateway.user_schema_create_response import UserSchemaCreateResponse
 from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
 
@@ -84,7 +86,7 @@ class UserSchemasResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
         name: str | Omit = omit,
@@ -118,8 +120,6 @@ class UserSchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         body = deepcopy_minimal(
@@ -155,7 +155,7 @@ class UserSchemasResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         omit_source: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -166,7 +166,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[OldPublicSchema]:
+    ) -> SyncV4PagePaginationArray[UserSchemaListResponse]:
         """
         Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
         validation status and associated operations.
@@ -190,13 +190,11 @@ class UserSchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
-            page=SyncV4PagePaginationArray[OldPublicSchema],
+            page=SyncV4PagePaginationArray[UserSchemaListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -212,7 +210,7 @@ class UserSchemasResource(SyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=OldPublicSchema,
+            model=UserSchemaListResponse,
         )
 
     @typing_extensions.deprecated(
@@ -222,7 +220,7 @@ class UserSchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,8 +244,6 @@ class UserSchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -269,7 +265,7 @@ class UserSchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -277,7 +273,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> UserSchemaEditResponse:
         """Activates schema validation for an uploaded OpenAPI schema.
 
         Requests to matching
@@ -296,8 +292,6 @@ class UserSchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -314,9 +308,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[UserSchemaEditResponse], ResultWrapper[UserSchemaEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -326,7 +320,7 @@ class UserSchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,7 +328,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> UserSchemaGetResponse:
         """
         Gets detailed information about a specific uploaded OpenAPI schema, including
         its contents and validation configuration.
@@ -352,8 +346,6 @@ class UserSchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -368,9 +360,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams),
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[UserSchemaGetResponse], ResultWrapper[UserSchemaGetResponse]),
         )
 
 
@@ -408,7 +400,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
         name: str | Omit = omit,
@@ -442,8 +434,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         body = deepcopy_minimal(
@@ -479,7 +469,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         omit_source: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -490,7 +480,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OldPublicSchema, AsyncV4PagePaginationArray[OldPublicSchema]]:
+    ) -> AsyncPaginator[UserSchemaListResponse, AsyncV4PagePaginationArray[UserSchemaListResponse]]:
         """
         Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
         validation status and associated operations.
@@ -514,13 +504,11 @@ class AsyncUserSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/api_gateway/user_schemas", zone_id=zone_id),
-            page=AsyncV4PagePaginationArray[OldPublicSchema],
+            page=AsyncV4PagePaginationArray[UserSchemaListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -536,7 +524,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=OldPublicSchema,
+            model=UserSchemaListResponse,
         )
 
     @typing_extensions.deprecated(
@@ -546,7 +534,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -570,8 +558,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -593,7 +579,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -601,7 +587,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> UserSchemaEditResponse:
         """Activates schema validation for an uploaded OpenAPI schema.
 
         Requests to matching
@@ -620,8 +606,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -638,9 +622,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[UserSchemaEditResponse], ResultWrapper[UserSchemaEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -650,7 +634,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -658,7 +642,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> UserSchemaGetResponse:
         """
         Gets detailed information about a specific uploaded OpenAPI schema, including
         its contents and validation configuration.
@@ -676,8 +660,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -694,9 +676,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams
                 ),
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[UserSchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[UserSchemaGetResponse], ResultWrapper[UserSchemaGetResponse]),
         )
 
 

@@ -9,12 +9,12 @@ from .spam import (
     AsyncSpamResourceWithStreamingResponse,
 )
 from .tlds import (
-    TLDsResource,
-    AsyncTLDsResource,
-    TLDsResourceWithRawResponse,
-    AsyncTLDsResourceWithRawResponse,
-    TLDsResourceWithStreamingResponse,
-    AsyncTLDsResourceWithStreamingResponse,
+    TldsResource,
+    AsyncTldsResource,
+    TldsResourceWithRawResponse,
+    AsyncTldsResourceWithRawResponse,
+    TldsResourceWithStreamingResponse,
+    AsyncTldsResourceWithStreamingResponse,
 )
 from .spoof import (
     SpoofResource,
@@ -52,10 +52,10 @@ __all__ = [
     "AsyncSpoofResourceWithRawResponse",
     "SpoofResourceWithStreamingResponse",
     "AsyncSpoofResourceWithStreamingResponse",
-    "TLDsResource",
-    "AsyncTLDsResource",
-    "TLDsResourceWithRawResponse",
-    "AsyncTLDsResourceWithRawResponse",
-    "TLDsResourceWithStreamingResponse",
-    "AsyncTLDsResourceWithStreamingResponse",
+    "TldsResource",
+    "AsyncTldsResource",
+    "TldsResourceWithRawResponse",
+    "AsyncTldsResourceWithRawResponse",
+    "TldsResourceWithStreamingResponse",
+    "AsyncTldsResourceWithStreamingResponse",
 ]

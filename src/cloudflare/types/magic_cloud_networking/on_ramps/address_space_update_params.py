@@ -10,6 +10,6 @@ __all__ = ["AddressSpaceUpdateParams"]
 
 
 class AddressSpaceUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     prefixes: Required[SequenceNotStr[str]]

@@ -48,7 +48,7 @@ class RayIDResource(SyncAPIResource):
         self,
         rayid: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         fields: str | Omit = omit,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -94,8 +94,6 @@ class RayIDResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:
@@ -146,7 +144,7 @@ class AsyncRayIDResource(AsyncAPIResource):
         self,
         rayid: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         fields: str | Omit = omit,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,8 +190,6 @@ class AsyncRayIDResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:

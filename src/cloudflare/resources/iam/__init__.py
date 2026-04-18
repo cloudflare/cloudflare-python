@@ -8,14 +8,6 @@ from .iam import (
     IAMResourceWithStreamingResponse,
     AsyncIAMResourceWithStreamingResponse,
 )
-from .sso import (
-    SSOResource,
-    AsyncSSOResource,
-    SSOResourceWithRawResponse,
-    AsyncSSOResourceWithRawResponse,
-    SSOResourceWithStreamingResponse,
-    AsyncSSOResourceWithStreamingResponse,
-)
 from .user_groups import (
     UserGroupsResource,
     AsyncUserGroupsResource,
@@ -60,12 +52,6 @@ __all__ = [
     "AsyncUserGroupsResourceWithRawResponse",
     "UserGroupsResourceWithStreamingResponse",
     "AsyncUserGroupsResourceWithStreamingResponse",
-    "SSOResource",
-    "AsyncSSOResource",
-    "SSOResourceWithRawResponse",
-    "AsyncSSOResourceWithRawResponse",
-    "SSOResourceWithStreamingResponse",
-    "AsyncSSOResourceWithStreamingResponse",
     "IAMResource",
     "AsyncIAMResource",
     "IAMResourceWithRawResponse",

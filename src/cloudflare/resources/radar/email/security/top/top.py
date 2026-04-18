@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .tlds.tlds import (
-    TLDsResource,
-    AsyncTLDsResource,
-    TLDsResourceWithRawResponse,
-    AsyncTLDsResourceWithRawResponse,
-    TLDsResourceWithStreamingResponse,
-    AsyncTLDsResourceWithStreamingResponse,
+    TldsResource,
+    AsyncTldsResource,
+    TldsResourceWithRawResponse,
+    AsyncTldsResourceWithRawResponse,
+    TldsResourceWithStreamingResponse,
+    AsyncTldsResourceWithStreamingResponse,
 )
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -18,8 +18,8 @@ __all__ = ["TopResource", "AsyncTopResource"]
 
 class TopResource(SyncAPIResource):
     @cached_property
-    def tlds(self) -> TLDsResource:
-        return TLDsResource(self._client)
+    def tlds(self) -> TldsResource:
+        return TldsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> TopResourceWithRawResponse:
@@ -43,8 +43,8 @@ class TopResource(SyncAPIResource):
 
 class AsyncTopResource(AsyncAPIResource):
     @cached_property
-    def tlds(self) -> AsyncTLDsResource:
-        return AsyncTLDsResource(self._client)
+    def tlds(self) -> AsyncTldsResource:
+        return AsyncTldsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
@@ -71,8 +71,8 @@ class TopResourceWithRawResponse:
         self._top = top
 
     @cached_property
-    def tlds(self) -> TLDsResourceWithRawResponse:
-        return TLDsResourceWithRawResponse(self._top.tlds)
+    def tlds(self) -> TldsResourceWithRawResponse:
+        return TldsResourceWithRawResponse(self._top.tlds)
 
 
 class AsyncTopResourceWithRawResponse:
@@ -80,8 +80,8 @@ class AsyncTopResourceWithRawResponse:
         self._top = top
 
     @cached_property
-    def tlds(self) -> AsyncTLDsResourceWithRawResponse:
-        return AsyncTLDsResourceWithRawResponse(self._top.tlds)
+    def tlds(self) -> AsyncTldsResourceWithRawResponse:
+        return AsyncTldsResourceWithRawResponse(self._top.tlds)
 
 
 class TopResourceWithStreamingResponse:
@@ -89,8 +89,8 @@ class TopResourceWithStreamingResponse:
         self._top = top
 
     @cached_property
-    def tlds(self) -> TLDsResourceWithStreamingResponse:
-        return TLDsResourceWithStreamingResponse(self._top.tlds)
+    def tlds(self) -> TldsResourceWithStreamingResponse:
+        return TldsResourceWithStreamingResponse(self._top.tlds)
 
 
 class AsyncTopResourceWithStreamingResponse:
@@ -98,5 +98,5 @@ class AsyncTopResourceWithStreamingResponse:
         self._top = top
 
     @cached_property
-    def tlds(self) -> AsyncTLDsResourceWithStreamingResponse:
-        return AsyncTLDsResourceWithStreamingResponse(self._top.tlds)
+    def tlds(self) -> AsyncTldsResourceWithStreamingResponse:
+        return AsyncTldsResourceWithStreamingResponse(self._top.tlds)

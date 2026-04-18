@@ -10,7 +10,7 @@ __all__ = ["MetadataIndexDeleteParams"]
 
 
 class MetadataIndexDeleteParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     property_name: Required[Annotated[str, PropertyInfo(alias="propertyName")]]

@@ -9,7 +9,7 @@ __all__ = ["KeyBulkUpdateParams", "Body"]
 
 
 class KeyBulkUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     body: Required[Iterable[Body]]
@@ -43,4 +43,3 @@ class Body(TypedDict, total=False):
     """Expires the key after a number of seconds. Must be at least 60."""
 
     metadata: object
-    """Arbitrary JSON that is associated with a key."""

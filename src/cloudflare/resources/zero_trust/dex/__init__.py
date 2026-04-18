@@ -16,14 +16,6 @@ from .colos import (
     ColosResourceWithStreamingResponse,
     AsyncColosResourceWithStreamingResponse,
 )
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
 from .tests import (
     TestsResource,
     AsyncTestsResource,
@@ -130,12 +122,6 @@ __all__ = [
     "AsyncTracerouteTestsResourceWithRawResponse",
     "TracerouteTestsResourceWithStreamingResponse",
     "AsyncTracerouteTestsResourceWithStreamingResponse",
-    "RulesResource",
-    "AsyncRulesResource",
-    "RulesResourceWithRawResponse",
-    "AsyncRulesResourceWithRawResponse",
-    "RulesResourceWithStreamingResponse",
-    "AsyncRulesResourceWithStreamingResponse",
     "DEXResource",
     "AsyncDEXResource",
     "DEXResourceWithRawResponse",

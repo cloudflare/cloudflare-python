@@ -11,7 +11,7 @@ __all__ = ["AccountMappingCreateParams", "AuthRequirements", "AuthRequirementsUn
 
 
 class AccountMappingCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     auth_requirements: Required[AuthRequirements]
 

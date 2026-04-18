@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestScriptAndVersionSettings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         script_and_version_setting = client.workers.scripts.script_and_version_settings.edit(
@@ -29,7 +28,6 @@ class TestScriptAndVersionSettings:
         )
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         script_and_version_setting = client.workers.scripts.script_and_version_settings.edit(
@@ -105,7 +103,6 @@ class TestScriptAndVersionSettings:
         )
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.workers.scripts.script_and_version_settings.with_raw_response.edit(
@@ -118,7 +115,6 @@ class TestScriptAndVersionSettings:
         script_and_version_setting = response.parse()
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.workers.scripts.script_and_version_settings.with_streaming_response.edit(
@@ -133,7 +129,6 @@ class TestScriptAndVersionSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -202,7 +197,6 @@ class TestAsyncScriptAndVersionSettings:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         script_and_version_setting = await async_client.workers.scripts.script_and_version_settings.edit(
@@ -211,7 +205,6 @@ class TestAsyncScriptAndVersionSettings:
         )
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         script_and_version_setting = await async_client.workers.scripts.script_and_version_settings.edit(
@@ -287,7 +280,6 @@ class TestAsyncScriptAndVersionSettings:
         )
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.script_and_version_settings.with_raw_response.edit(
@@ -300,7 +292,6 @@ class TestAsyncScriptAndVersionSettings:
         script_and_version_setting = await response.parse()
         assert_matches_type(ScriptAndVersionSettingEditResponse, script_and_version_setting, path=["response"])
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.script_and_version_settings.with_streaming_response.edit(
@@ -315,7 +306,6 @@ class TestAsyncScriptAndVersionSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="422 Unprocessable Entity: needs schema update which is merged but not published")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

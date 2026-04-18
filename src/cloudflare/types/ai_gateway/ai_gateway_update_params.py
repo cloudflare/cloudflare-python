@@ -20,7 +20,7 @@ __all__ = [
 
 
 class AIGatewayUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     cache_invalidate_on_update: Required[bool]
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -20,14 +20,9 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.api_gateway.operations import (
-    SettingsMultipleRequest,
-    schema_validation_edit_params,
-    schema_validation_update_params,
-)
-from ....types.api_gateway.operations.settings_multiple_request import SettingsMultipleRequest
+from ....types.api_gateway.operations import schema_validation_edit_params, schema_validation_update_params
 from ....types.api_gateway.operations.schema_validation_get_response import SchemaValidationGetResponse
-from ....types.api_gateway.operations.settings_multiple_request_param import SettingsMultipleRequestParam
+from ....types.api_gateway.operations.schema_validation_edit_response import SchemaValidationEditResponse
 from ....types.api_gateway.operations.schema_validation_update_response import SchemaValidationUpdateResponse
 
 __all__ = ["SchemaValidationResource", "AsyncSchemaValidationResource"]
@@ -60,7 +55,7 @@ class SchemaValidationResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         mitigation_action: Optional[Literal["log", "block", "none"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -94,8 +89,6 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -121,15 +114,15 @@ class SchemaValidationResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str | None = None,
-        settings_multiple_request: SettingsMultipleRequestParam,
+        zone_id: str,
+        body: Dict[str, schema_validation_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SettingsMultipleRequest:
+    ) -> SchemaValidationEditResponse:
         """
         Updates multiple operation-level schema validation settings on the zone
 
@@ -144,21 +137,19 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             path_template("/zones/{zone_id}/api_gateway/operations/schema_validation", zone_id=zone_id),
-            body=maybe_transform(settings_multiple_request, schema_validation_edit_params.SchemaValidationEditParams),
+            body=maybe_transform(body, schema_validation_edit_params.SchemaValidationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingsMultipleRequest]._unwrapper,
+                post_parser=ResultWrapper[SchemaValidationEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SettingsMultipleRequest], ResultWrapper[SettingsMultipleRequest]),
+            cast_to=cast(Type[SchemaValidationEditResponse], ResultWrapper[SchemaValidationEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -168,7 +159,7 @@ class SchemaValidationResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,8 +183,6 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -238,7 +227,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         mitigation_action: Optional[Literal["log", "block", "none"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -272,8 +261,6 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -299,15 +286,15 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str | None = None,
-        settings_multiple_request: SettingsMultipleRequestParam,
+        zone_id: str,
+        body: Dict[str, schema_validation_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SettingsMultipleRequest:
+    ) -> SchemaValidationEditResponse:
         """
         Updates multiple operation-level schema validation settings on the zone
 
@@ -322,23 +309,19 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             path_template("/zones/{zone_id}/api_gateway/operations/schema_validation", zone_id=zone_id),
-            body=await async_maybe_transform(
-                settings_multiple_request, schema_validation_edit_params.SchemaValidationEditParams
-            ),
+            body=await async_maybe_transform(body, schema_validation_edit_params.SchemaValidationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingsMultipleRequest]._unwrapper,
+                post_parser=ResultWrapper[SchemaValidationEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SettingsMultipleRequest], ResultWrapper[SettingsMultipleRequest]),
+            cast_to=cast(Type[SchemaValidationEditResponse], ResultWrapper[SchemaValidationEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -348,7 +331,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,8 +355,6 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:

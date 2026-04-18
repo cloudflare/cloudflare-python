@@ -12,7 +12,7 @@ __all__ = ["RuleUpdateParams"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     actions: Required[Iterable[ActionParam]]

@@ -18,7 +18,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
+from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.accounts.logs import audit_list_params
 from ....types.accounts.logs.audit_list_response import AuditListResponse
@@ -49,7 +49,7 @@ class AuditResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         before: Union[str, date],
         since: Union[str, date],
         id: audit_list_params.ID | Omit = omit,
@@ -83,7 +83,7 @@ class AuditResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPaginationAfter[AuditListResponse]:
+    ) -> SyncCursorLimitPagination[AuditListResponse]:
         """
         Gets a list of audit logs for an account.
 
@@ -116,13 +116,11 @@ class AuditResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/logs/audit", account_id=account_id),
-            page=SyncCursorPaginationAfter[AuditListResponse],
+            page=SyncCursorLimitPagination[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +186,7 @@ class AsyncAuditResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         before: Union[str, date],
         since: Union[str, date],
         id: audit_list_params.ID | Omit = omit,
@@ -222,7 +220,7 @@ class AsyncAuditResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AuditListResponse, AsyncCursorPaginationAfter[AuditListResponse]]:
+    ) -> AsyncPaginator[AuditListResponse, AsyncCursorLimitPagination[AuditListResponse]]:
         """
         Gets a list of audit logs for an account.
 
@@ -255,13 +253,11 @@ class AsyncAuditResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/logs/audit", account_id=account_id),
-            page=AsyncCursorPaginationAfter[AuditListResponse],
+            page=AsyncCursorLimitPagination[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

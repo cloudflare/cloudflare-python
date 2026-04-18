@@ -10,14 +10,6 @@ from .ai.ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
-from .ct.ct import (
-    CTResource,
-    AsyncCTResource,
-    CTResourceWithRawResponse,
-    AsyncCTResourceWithRawResponse,
-    CTResourceWithStreamingResponse,
-    AsyncCTResourceWithStreamingResponse,
-)
 from .search import (
     SearchResource,
     AsyncSearchResource,
@@ -84,22 +76,6 @@ from .email.email import (
     EmailResourceWithStreamingResponse,
     AsyncEmailResourceWithStreamingResponse,
 )
-from .geolocations import (
-    GeolocationsResource,
-    AsyncGeolocationsResource,
-    GeolocationsResourceWithRawResponse,
-    AsyncGeolocationsResourceWithRawResponse,
-    GeolocationsResourceWithStreamingResponse,
-    AsyncGeolocationsResourceWithStreamingResponse,
-)
-from .agent_readiness import (
-    AgentReadinessResource,
-    AsyncAgentReadinessResource,
-    AgentReadinessResourceWithRawResponse,
-    AsyncAgentReadinessResourceWithRawResponse,
-    AgentReadinessResourceWithStreamingResponse,
-    AsyncAgentReadinessResourceWithStreamingResponse,
-)
 from .attacks.attacks import (
     AttacksResource,
     AsyncAttacksResource,
@@ -133,12 +109,12 @@ from .entities.entities import (
     AsyncEntitiesResourceWithStreamingResponse,
 )
 from .netflows.netflows import (
-    NetFlowsResource,
-    AsyncNetFlowsResource,
-    NetFlowsResourceWithRawResponse,
-    AsyncNetFlowsResourceWithRawResponse,
-    NetFlowsResourceWithStreamingResponse,
-    AsyncNetFlowsResourceWithStreamingResponse,
+    NetflowsResource,
+    AsyncNetflowsResource,
+    NetflowsResourceWithRawResponse,
+    AsyncNetflowsResourceWithRawResponse,
+    NetflowsResourceWithStreamingResponse,
+    AsyncNetflowsResourceWithStreamingResponse,
 )
 from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResource,
@@ -163,14 +139,6 @@ from .annotations.annotations import (
     AsyncAnnotationsResourceWithRawResponse,
     AnnotationsResourceWithStreamingResponse,
     AsyncAnnotationsResourceWithStreamingResponse,
-)
-from .post_quantum.post_quantum import (
-    PostQuantumResource,
-    AsyncPostQuantumResource,
-    PostQuantumResourceWithRawResponse,
-    AsyncPostQuantumResourceWithRawResponse,
-    PostQuantumResourceWithStreamingResponse,
-    AsyncPostQuantumResourceWithStreamingResponse,
 )
 from .verified_bots.verified_bots import (
     VerifiedBotsResource,
@@ -202,16 +170,8 @@ __all__ = ["RadarResource", "AsyncRadarResource"]
 
 class RadarResource(SyncAPIResource):
     @cached_property
-    def agent_readiness(self) -> AgentReadinessResource:
-        return AgentReadinessResource(self._client)
-
-    @cached_property
     def ai(self) -> AIResource:
         return AIResource(self._client)
-
-    @cached_property
-    def ct(self) -> CTResource:
-        return CTResource(self._client)
 
     @cached_property
     def annotations(self) -> AnnotationsResource:
@@ -234,12 +194,8 @@ class RadarResource(SyncAPIResource):
         return DNSResource(self._client)
 
     @cached_property
-    def netflows(self) -> NetFlowsResource:
-        return NetFlowsResource(self._client)
-
-    @cached_property
-    def post_quantum(self) -> PostQuantumResource:
-        return PostQuantumResource(self._client)
+    def netflows(self) -> NetflowsResource:
+        return NetflowsResource(self._client)
 
     @cached_property
     def search(self) -> SearchResource:
@@ -264,10 +220,6 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def entities(self) -> EntitiesResource:
         return EntitiesResource(self._client)
-
-    @cached_property
-    def geolocations(self) -> GeolocationsResource:
-        return GeolocationsResource(self._client)
 
     @cached_property
     def http(self) -> HTTPResource:
@@ -319,16 +271,8 @@ class RadarResource(SyncAPIResource):
 
 class AsyncRadarResource(AsyncAPIResource):
     @cached_property
-    def agent_readiness(self) -> AsyncAgentReadinessResource:
-        return AsyncAgentReadinessResource(self._client)
-
-    @cached_property
     def ai(self) -> AsyncAIResource:
         return AsyncAIResource(self._client)
-
-    @cached_property
-    def ct(self) -> AsyncCTResource:
-        return AsyncCTResource(self._client)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResource:
@@ -351,12 +295,8 @@ class AsyncRadarResource(AsyncAPIResource):
         return AsyncDNSResource(self._client)
 
     @cached_property
-    def netflows(self) -> AsyncNetFlowsResource:
-        return AsyncNetFlowsResource(self._client)
-
-    @cached_property
-    def post_quantum(self) -> AsyncPostQuantumResource:
-        return AsyncPostQuantumResource(self._client)
+    def netflows(self) -> AsyncNetflowsResource:
+        return AsyncNetflowsResource(self._client)
 
     @cached_property
     def search(self) -> AsyncSearchResource:
@@ -381,10 +321,6 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def entities(self) -> AsyncEntitiesResource:
         return AsyncEntitiesResource(self._client)
-
-    @cached_property
-    def geolocations(self) -> AsyncGeolocationsResource:
-        return AsyncGeolocationsResource(self._client)
 
     @cached_property
     def http(self) -> AsyncHTTPResource:
@@ -439,16 +375,8 @@ class RadarResourceWithRawResponse:
         self._radar = radar
 
     @cached_property
-    def agent_readiness(self) -> AgentReadinessResourceWithRawResponse:
-        return AgentReadinessResourceWithRawResponse(self._radar.agent_readiness)
-
-    @cached_property
     def ai(self) -> AIResourceWithRawResponse:
         return AIResourceWithRawResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> CTResourceWithRawResponse:
-        return CTResourceWithRawResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AnnotationsResourceWithRawResponse:
@@ -471,12 +399,8 @@ class RadarResourceWithRawResponse:
         return DNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetFlowsResourceWithRawResponse:
-        return NetFlowsResourceWithRawResponse(self._radar.netflows)
-
-    @cached_property
-    def post_quantum(self) -> PostQuantumResourceWithRawResponse:
-        return PostQuantumResourceWithRawResponse(self._radar.post_quantum)
+    def netflows(self) -> NetflowsResourceWithRawResponse:
+        return NetflowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> SearchResourceWithRawResponse:
@@ -501,10 +425,6 @@ class RadarResourceWithRawResponse:
     @cached_property
     def entities(self) -> EntitiesResourceWithRawResponse:
         return EntitiesResourceWithRawResponse(self._radar.entities)
-
-    @cached_property
-    def geolocations(self) -> GeolocationsResourceWithRawResponse:
-        return GeolocationsResourceWithRawResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> HTTPResourceWithRawResponse:
@@ -540,16 +460,8 @@ class AsyncRadarResourceWithRawResponse:
         self._radar = radar
 
     @cached_property
-    def agent_readiness(self) -> AsyncAgentReadinessResourceWithRawResponse:
-        return AsyncAgentReadinessResourceWithRawResponse(self._radar.agent_readiness)
-
-    @cached_property
     def ai(self) -> AsyncAIResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> AsyncCTResourceWithRawResponse:
-        return AsyncCTResourceWithRawResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithRawResponse:
@@ -572,12 +484,8 @@ class AsyncRadarResourceWithRawResponse:
         return AsyncDNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetFlowsResourceWithRawResponse:
-        return AsyncNetFlowsResourceWithRawResponse(self._radar.netflows)
-
-    @cached_property
-    def post_quantum(self) -> AsyncPostQuantumResourceWithRawResponse:
-        return AsyncPostQuantumResourceWithRawResponse(self._radar.post_quantum)
+    def netflows(self) -> AsyncNetflowsResourceWithRawResponse:
+        return AsyncNetflowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithRawResponse:
@@ -602,10 +510,6 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def entities(self) -> AsyncEntitiesResourceWithRawResponse:
         return AsyncEntitiesResourceWithRawResponse(self._radar.entities)
-
-    @cached_property
-    def geolocations(self) -> AsyncGeolocationsResourceWithRawResponse:
-        return AsyncGeolocationsResourceWithRawResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> AsyncHTTPResourceWithRawResponse:
@@ -641,16 +545,8 @@ class RadarResourceWithStreamingResponse:
         self._radar = radar
 
     @cached_property
-    def agent_readiness(self) -> AgentReadinessResourceWithStreamingResponse:
-        return AgentReadinessResourceWithStreamingResponse(self._radar.agent_readiness)
-
-    @cached_property
     def ai(self) -> AIResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> CTResourceWithStreamingResponse:
-        return CTResourceWithStreamingResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AnnotationsResourceWithStreamingResponse:
@@ -673,12 +569,8 @@ class RadarResourceWithStreamingResponse:
         return DNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetFlowsResourceWithStreamingResponse:
-        return NetFlowsResourceWithStreamingResponse(self._radar.netflows)
-
-    @cached_property
-    def post_quantum(self) -> PostQuantumResourceWithStreamingResponse:
-        return PostQuantumResourceWithStreamingResponse(self._radar.post_quantum)
+    def netflows(self) -> NetflowsResourceWithStreamingResponse:
+        return NetflowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> SearchResourceWithStreamingResponse:
@@ -703,10 +595,6 @@ class RadarResourceWithStreamingResponse:
     @cached_property
     def entities(self) -> EntitiesResourceWithStreamingResponse:
         return EntitiesResourceWithStreamingResponse(self._radar.entities)
-
-    @cached_property
-    def geolocations(self) -> GeolocationsResourceWithStreamingResponse:
-        return GeolocationsResourceWithStreamingResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> HTTPResourceWithStreamingResponse:
@@ -742,16 +630,8 @@ class AsyncRadarResourceWithStreamingResponse:
         self._radar = radar
 
     @cached_property
-    def agent_readiness(self) -> AsyncAgentReadinessResourceWithStreamingResponse:
-        return AsyncAgentReadinessResourceWithStreamingResponse(self._radar.agent_readiness)
-
-    @cached_property
     def ai(self) -> AsyncAIResourceWithStreamingResponse:
         return AsyncAIResourceWithStreamingResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> AsyncCTResourceWithStreamingResponse:
-        return AsyncCTResourceWithStreamingResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithStreamingResponse:
@@ -774,12 +654,8 @@ class AsyncRadarResourceWithStreamingResponse:
         return AsyncDNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetFlowsResourceWithStreamingResponse:
-        return AsyncNetFlowsResourceWithStreamingResponse(self._radar.netflows)
-
-    @cached_property
-    def post_quantum(self) -> AsyncPostQuantumResourceWithStreamingResponse:
-        return AsyncPostQuantumResourceWithStreamingResponse(self._radar.post_quantum)
+    def netflows(self) -> AsyncNetflowsResourceWithStreamingResponse:
+        return AsyncNetflowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithStreamingResponse:
@@ -804,10 +680,6 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
         return AsyncEntitiesResourceWithStreamingResponse(self._radar.entities)
-
-    @cached_property
-    def geolocations(self) -> AsyncGeolocationsResourceWithStreamingResponse:
-        return AsyncGeolocationsResourceWithStreamingResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> AsyncHTTPResourceWithStreamingResponse:

@@ -8,7 +8,7 @@ __all__ = ["CertificateUpdateParams"]
 
 
 class CertificateUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     custom_hostname_id: Required[str]

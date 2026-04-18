@@ -11,7 +11,7 @@ __all__ = ["IndexQueryParams"]
 
 
 class IndexQueryParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     vector: Required[Iterable[float]]

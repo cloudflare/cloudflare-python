@@ -8,7 +8,7 @@ __all__ = ["SettingUpdateParams"]
 
 
 class SettingUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     enabled: Required[bool]

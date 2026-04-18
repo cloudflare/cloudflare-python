@@ -16,33 +16,9 @@ from .token import (
     TokenResourceWithStreamingResponse,
     AsyncTokenResourceWithStreamingResponse,
 )
-from .failover import (
-    FailoverResource,
-    AsyncFailoverResource,
-    FailoverResourceWithRawResponse,
-    AsyncFailoverResourceWithRawResponse,
-    FailoverResourceWithStreamingResponse,
-    AsyncFailoverResourceWithStreamingResponse,
-)
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import path_template, maybe_transform, async_maybe_transform
-from .connectors import (
-    ConnectorsResource,
-    AsyncConnectorsResource,
-    ConnectorsResourceWithRawResponse,
-    AsyncConnectorsResourceWithRawResponse,
-    ConnectorsResourceWithStreamingResponse,
-    AsyncConnectorsResourceWithStreamingResponse,
-)
 from ....._compat import cached_property
-from .connections import (
-    ConnectionsResource,
-    AsyncConnectionsResource,
-    ConnectionsResourceWithRawResponse,
-    AsyncConnectionsResourceWithRawResponse,
-    ConnectionsResourceWithStreamingResponse,
-    AsyncConnectionsResourceWithStreamingResponse,
-)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -73,18 +49,6 @@ class WARPConnectorResource(SyncAPIResource):
         return TokenResource(self._client)
 
     @cached_property
-    def connections(self) -> ConnectionsResource:
-        return ConnectionsResource(self._client)
-
-    @cached_property
-    def connectors(self) -> ConnectorsResource:
-        return ConnectorsResource(self._client)
-
-    @cached_property
-    def failover(self) -> FailoverResource:
-        return FailoverResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -106,7 +70,7 @@ class WARPConnectorResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         ha: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -135,8 +99,6 @@ class WARPConnectorResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -161,7 +123,7 @@ class WARPConnectorResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -213,8 +175,6 @@ class WARPConnectorResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -249,7 +209,7 @@ class WARPConnectorResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,8 +233,6 @@ class WARPConnectorResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -297,7 +255,7 @@ class WARPConnectorResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str | Omit = omit,
         tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -328,8 +286,6 @@ class WARPConnectorResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -359,7 +315,7 @@ class WARPConnectorResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,8 +339,6 @@ class WARPConnectorResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -410,18 +364,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         return AsyncTokenResource(self._client)
 
     @cached_property
-    def connections(self) -> AsyncConnectionsResource:
-        return AsyncConnectionsResource(self._client)
-
-    @cached_property
-    def connectors(self) -> AsyncConnectorsResource:
-        return AsyncConnectorsResource(self._client)
-
-    @cached_property
-    def failover(self) -> AsyncFailoverResource:
-        return AsyncFailoverResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -443,7 +385,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         ha: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -472,8 +414,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -498,7 +438,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -550,8 +490,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -586,7 +524,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -610,8 +548,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -634,7 +570,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str | Omit = omit,
         tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -665,8 +601,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -696,7 +630,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,8 +654,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -765,18 +697,6 @@ class WARPConnectorResourceWithRawResponse:
     def token(self) -> TokenResourceWithRawResponse:
         return TokenResourceWithRawResponse(self._warp_connector.token)
 
-    @cached_property
-    def connections(self) -> ConnectionsResourceWithRawResponse:
-        return ConnectionsResourceWithRawResponse(self._warp_connector.connections)
-
-    @cached_property
-    def connectors(self) -> ConnectorsResourceWithRawResponse:
-        return ConnectorsResourceWithRawResponse(self._warp_connector.connectors)
-
-    @cached_property
-    def failover(self) -> FailoverResourceWithRawResponse:
-        return FailoverResourceWithRawResponse(self._warp_connector.failover)
-
 
 class AsyncWARPConnectorResourceWithRawResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -801,18 +721,6 @@ class AsyncWARPConnectorResourceWithRawResponse:
     @cached_property
     def token(self) -> AsyncTokenResourceWithRawResponse:
         return AsyncTokenResourceWithRawResponse(self._warp_connector.token)
-
-    @cached_property
-    def connections(self) -> AsyncConnectionsResourceWithRawResponse:
-        return AsyncConnectionsResourceWithRawResponse(self._warp_connector.connections)
-
-    @cached_property
-    def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
-        return AsyncConnectorsResourceWithRawResponse(self._warp_connector.connectors)
-
-    @cached_property
-    def failover(self) -> AsyncFailoverResourceWithRawResponse:
-        return AsyncFailoverResourceWithRawResponse(self._warp_connector.failover)
 
 
 class WARPConnectorResourceWithStreamingResponse:
@@ -839,18 +747,6 @@ class WARPConnectorResourceWithStreamingResponse:
     def token(self) -> TokenResourceWithStreamingResponse:
         return TokenResourceWithStreamingResponse(self._warp_connector.token)
 
-    @cached_property
-    def connections(self) -> ConnectionsResourceWithStreamingResponse:
-        return ConnectionsResourceWithStreamingResponse(self._warp_connector.connections)
-
-    @cached_property
-    def connectors(self) -> ConnectorsResourceWithStreamingResponse:
-        return ConnectorsResourceWithStreamingResponse(self._warp_connector.connectors)
-
-    @cached_property
-    def failover(self) -> FailoverResourceWithStreamingResponse:
-        return FailoverResourceWithStreamingResponse(self._warp_connector.failover)
-
 
 class AsyncWARPConnectorResourceWithStreamingResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -875,15 +771,3 @@ class AsyncWARPConnectorResourceWithStreamingResponse:
     @cached_property
     def token(self) -> AsyncTokenResourceWithStreamingResponse:
         return AsyncTokenResourceWithStreamingResponse(self._warp_connector.token)
-
-    @cached_property
-    def connections(self) -> AsyncConnectionsResourceWithStreamingResponse:
-        return AsyncConnectionsResourceWithStreamingResponse(self._warp_connector.connections)
-
-    @cached_property
-    def connectors(self) -> AsyncConnectorsResourceWithStreamingResponse:
-        return AsyncConnectorsResourceWithStreamingResponse(self._warp_connector.connectors)
-
-    @cached_property
-    def failover(self) -> AsyncFailoverResourceWithStreamingResponse:
-        return AsyncFailoverResourceWithStreamingResponse(self._warp_connector.failover)

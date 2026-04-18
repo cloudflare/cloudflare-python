@@ -10,7 +10,7 @@ __all__ = ["DatabaseExportParams", "DumpOptions"]
 
 
 class DatabaseExportParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     output_format: Required[Literal["polling"]]

@@ -22,7 +22,7 @@ __all__ = [
 
 
 class PipelineUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Specifies the public ID of the account."""
 
     destination: Required[Destination]

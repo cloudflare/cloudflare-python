@@ -8,6 +8,6 @@ __all__ = ["OutgoingDisableParams"]
 
 
 class OutgoingDisableParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
 
     body: Required[object]

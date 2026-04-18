@@ -18,7 +18,7 @@ from .top import (
     AsyncTopResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -28,44 +28,37 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import (
-    netflows_summary_params,
-    netflows_summary_v2_params,
-    netflows_timeseries_params,
-    netflows_timeseries_groups_params,
-)
+from ....types.radar import netflow_summary_params, netflow_timeseries_params
 from ...._base_client import make_request_options
-from ....types.radar.netflows_summary_response import NetFlowsSummaryResponse
-from ....types.radar.netflows_summary_v2_response import NetFlowsSummaryV2Response
-from ....types.radar.netflows_timeseries_response import NetFlowsTimeseriesResponse
-from ....types.radar.netflows_timeseries_groups_response import NetFlowsTimeseriesGroupsResponse
+from ....types.radar.netflow_summary_response import NetflowSummaryResponse
+from ....types.radar.netflow_timeseries_response import NetflowTimeseriesResponse
 
-__all__ = ["NetFlowsResource", "AsyncNetFlowsResource"]
+__all__ = ["NetflowsResource", "AsyncNetflowsResource"]
 
 
-class NetFlowsResource(SyncAPIResource):
+class NetflowsResource(SyncAPIResource):
     @cached_property
     def top(self) -> TopResource:
         return TopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> NetFlowsResourceWithRawResponse:
+    def with_raw_response(self) -> NetflowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return NetFlowsResourceWithRawResponse(self)
+        return NetflowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> NetFlowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> NetflowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return NetFlowsResourceWithStreamingResponse(self)
+        return NetflowsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
         "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
@@ -88,7 +81,7 @@ class NetFlowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsSummaryResponse:
+    ) -> NetflowSummaryResponse:
         """
         Retrieves the distribution of network traffic (NetFlows) by HTTP vs other
         protocols.
@@ -151,114 +144,11 @@ class NetFlowsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    netflows_summary_params.NetFlowsSummaryParams,
+                    netflow_summary_params.NetflowSummaryParams,
                 ),
-                post_parser=ResultWrapper[NetFlowsSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetFlowsSummaryResponse], ResultWrapper[NetFlowsSummaryResponse]),
-        )
-
-    def summary_v2(
-        self,
-        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
-        *,
-        asn: SequenceNotStr[str] | Omit = omit,
-        continent: SequenceNotStr[str] | Omit = omit,
-        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        date_range: SequenceNotStr[str] | Omit = omit,
-        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        format: Literal["JSON", "CSV"] | Omit = omit,
-        geo_id: SequenceNotStr[str] | Omit = omit,
-        limit_per_group: int | Omit = omit,
-        location: SequenceNotStr[str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        product: List[Literal["HTTP", "ALL"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsSummaryV2Response:
-        """
-        Retrieves the distribution of network traffic (NetFlows) by the specified
-        dimension.
-
-        Args:
-          dimension: Specifies the NetFlows attribute by which to group the results.
-
-          asn: Filters results by Autonomous System. Specify one or more Autonomous System
-              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
-              results. For example, `-174, 3356` excludes results from AS174, but includes
-              results from AS3356.
-
-          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
-              excludes results from EU, but includes results from NA.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
-
-          date_start: Start of the date range.
-
-          format: Format in which results will be returned.
-
-          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
-              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
-              excludes results from the 2267056 (Lisbon), but includes results from 5128638
-              (New York).
-
-          limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
-
-          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude locations from results. For example, `-US,PT`
-              excludes results from the US, but includes results from PT.
-
-          name: Array of names used to label the series in the response.
-
-          product: Filters the results by network traffic product types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
-        return self._get(
-            path_template("/radar/netflows/summary/{dimension}", dimension=dimension),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "geo_id": geo_id,
-                        "limit_per_group": limit_per_group,
-                        "location": location,
-                        "name": name,
-                        "product": product,
-                    },
-                    netflows_summary_v2_params.NetFlowsSummaryV2Params,
-                ),
-                post_parser=ResultWrapper[NetFlowsSummaryV2Response]._unwrapper,
-            ),
-            cast_to=cast(Type[NetFlowsSummaryV2Response], ResultWrapper[NetFlowsSummaryV2Response]),
+            cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
         )
 
     def timeseries(
@@ -282,7 +172,7 @@ class NetFlowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsTimeseriesResponse:
+    ) -> NetflowTimeseriesResponse:
         """
         Retrieves network traffic (NetFlows) over time.
 
@@ -356,151 +246,37 @@ class NetFlowsResource(SyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflows_timeseries_params.NetFlowsTimeseriesParams,
+                    netflow_timeseries_params.NetflowTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[NetFlowsTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetFlowsTimeseriesResponse], ResultWrapper[NetFlowsTimeseriesResponse]),
-        )
-
-    def timeseries_groups(
-        self,
-        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
-        asn: SequenceNotStr[str] | Omit = omit,
-        continent: SequenceNotStr[str] | Omit = omit,
-        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        date_range: SequenceNotStr[str] | Omit = omit,
-        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        format: Literal["JSON", "CSV"] | Omit = omit,
-        geo_id: SequenceNotStr[str] | Omit = omit,
-        limit_per_group: int | Omit = omit,
-        location: SequenceNotStr[str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
-        product: List[Literal["HTTP", "ALL"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsTimeseriesGroupsResponse:
-        """
-        Retrieves the distribution of NetFlows traffic, grouped by the specified
-        dimension over time.
-
-        Args:
-          dimension: Specifies the NetFlows attribute by which to group the results.
-
-          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
-              Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Filters results by Autonomous System. Specify one or more Autonomous System
-              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
-              results. For example, `-174, 3356` excludes results from AS174, but includes
-              results from AS3356.
-
-          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
-              excludes results from EU, but includes results from NA.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
-
-          date_start: Start of the date range.
-
-          format: Format in which results will be returned.
-
-          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
-              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
-              excludes results from the 2267056 (Lisbon), but includes results from 5128638
-              (New York).
-
-          limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
-
-          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude locations from results. For example, `-US,PT`
-              excludes results from the US, but includes results from PT.
-
-          name: Array of names used to label the series in the response.
-
-          normalization: Normalization method applied to the results. Refer to
-              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
-
-          product: Filters the results by network traffic product types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
-        return self._get(
-            path_template("/radar/netflows/timeseries_groups/{dimension}", dimension=dimension),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "geo_id": geo_id,
-                        "limit_per_group": limit_per_group,
-                        "location": location,
-                        "name": name,
-                        "normalization": normalization,
-                        "product": product,
-                    },
-                    netflows_timeseries_groups_params.NetFlowsTimeseriesGroupsParams,
-                ),
-                post_parser=ResultWrapper[NetFlowsTimeseriesGroupsResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[NetFlowsTimeseriesGroupsResponse], ResultWrapper[NetFlowsTimeseriesGroupsResponse]),
+            cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )
 
 
-class AsyncNetFlowsResource(AsyncAPIResource):
+class AsyncNetflowsResource(AsyncAPIResource):
     @cached_property
     def top(self) -> AsyncTopResource:
         return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNetFlowsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncNetflowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncNetFlowsResourceWithRawResponse(self)
+        return AsyncNetflowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetFlowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncNetflowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncNetFlowsResourceWithStreamingResponse(self)
+        return AsyncNetflowsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
         "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
@@ -523,7 +299,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsSummaryResponse:
+    ) -> NetflowSummaryResponse:
         """
         Retrieves the distribution of network traffic (NetFlows) by HTTP vs other
         protocols.
@@ -586,114 +362,11 @@ class AsyncNetFlowsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    netflows_summary_params.NetFlowsSummaryParams,
+                    netflow_summary_params.NetflowSummaryParams,
                 ),
-                post_parser=ResultWrapper[NetFlowsSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetFlowsSummaryResponse], ResultWrapper[NetFlowsSummaryResponse]),
-        )
-
-    async def summary_v2(
-        self,
-        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
-        *,
-        asn: SequenceNotStr[str] | Omit = omit,
-        continent: SequenceNotStr[str] | Omit = omit,
-        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        date_range: SequenceNotStr[str] | Omit = omit,
-        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        format: Literal["JSON", "CSV"] | Omit = omit,
-        geo_id: SequenceNotStr[str] | Omit = omit,
-        limit_per_group: int | Omit = omit,
-        location: SequenceNotStr[str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        product: List[Literal["HTTP", "ALL"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsSummaryV2Response:
-        """
-        Retrieves the distribution of network traffic (NetFlows) by the specified
-        dimension.
-
-        Args:
-          dimension: Specifies the NetFlows attribute by which to group the results.
-
-          asn: Filters results by Autonomous System. Specify one or more Autonomous System
-              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
-              results. For example, `-174, 3356` excludes results from AS174, but includes
-              results from AS3356.
-
-          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
-              excludes results from EU, but includes results from NA.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
-
-          date_start: Start of the date range.
-
-          format: Format in which results will be returned.
-
-          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
-              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
-              excludes results from the 2267056 (Lisbon), but includes results from 5128638
-              (New York).
-
-          limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
-
-          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude locations from results. For example, `-US,PT`
-              excludes results from the US, but includes results from PT.
-
-          name: Array of names used to label the series in the response.
-
-          product: Filters the results by network traffic product types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
-        return await self._get(
-            path_template("/radar/netflows/summary/{dimension}", dimension=dimension),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "geo_id": geo_id,
-                        "limit_per_group": limit_per_group,
-                        "location": location,
-                        "name": name,
-                        "product": product,
-                    },
-                    netflows_summary_v2_params.NetFlowsSummaryV2Params,
-                ),
-                post_parser=ResultWrapper[NetFlowsSummaryV2Response]._unwrapper,
-            ),
-            cast_to=cast(Type[NetFlowsSummaryV2Response], ResultWrapper[NetFlowsSummaryV2Response]),
+            cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
         )
 
     async def timeseries(
@@ -717,7 +390,7 @@ class AsyncNetFlowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsTimeseriesResponse:
+    ) -> NetflowTimeseriesResponse:
         """
         Retrieves network traffic (NetFlows) over time.
 
@@ -791,130 +464,16 @@ class AsyncNetFlowsResource(AsyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflows_timeseries_params.NetFlowsTimeseriesParams,
+                    netflow_timeseries_params.NetflowTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[NetFlowsTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetFlowsTimeseriesResponse], ResultWrapper[NetFlowsTimeseriesResponse]),
-        )
-
-    async def timeseries_groups(
-        self,
-        dimension: Literal["ADM1", "AS", "LOCATION", "PRODUCT"],
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
-        asn: SequenceNotStr[str] | Omit = omit,
-        continent: SequenceNotStr[str] | Omit = omit,
-        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        date_range: SequenceNotStr[str] | Omit = omit,
-        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
-        format: Literal["JSON", "CSV"] | Omit = omit,
-        geo_id: SequenceNotStr[str] | Omit = omit,
-        limit_per_group: int | Omit = omit,
-        location: SequenceNotStr[str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
-        product: List[Literal["HTTP", "ALL"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetFlowsTimeseriesGroupsResponse:
-        """
-        Retrieves the distribution of NetFlows traffic, grouped by the specified
-        dimension over time.
-
-        Args:
-          dimension: Specifies the NetFlows attribute by which to group the results.
-
-          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
-              Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Filters results by Autonomous System. Specify one or more Autonomous System
-              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
-              results. For example, `-174, 3356` excludes results from AS174, but includes
-              results from AS3356.
-
-          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
-              excludes results from EU, but includes results from NA.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
-
-          date_start: Start of the date range.
-
-          format: Format in which results will be returned.
-
-          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
-              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
-              excludes results from the 2267056 (Lisbon), but includes results from 5128638
-              (New York).
-
-          limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
-
-          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
-              Prefix with `-` to exclude locations from results. For example, `-US,PT`
-              excludes results from the US, but includes results from PT.
-
-          name: Array of names used to label the series in the response.
-
-          normalization: Normalization method applied to the results. Refer to
-              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
-
-          product: Filters the results by network traffic product types.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dimension:
-            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
-        return await self._get(
-            path_template("/radar/netflows/timeseries_groups/{dimension}", dimension=dimension),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "geo_id": geo_id,
-                        "limit_per_group": limit_per_group,
-                        "location": location,
-                        "name": name,
-                        "normalization": normalization,
-                        "product": product,
-                    },
-                    netflows_timeseries_groups_params.NetFlowsTimeseriesGroupsParams,
-                ),
-                post_parser=ResultWrapper[NetFlowsTimeseriesGroupsResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[NetFlowsTimeseriesGroupsResponse], ResultWrapper[NetFlowsTimeseriesGroupsResponse]),
+            cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )
 
 
-class NetFlowsResourceWithRawResponse:
-    def __init__(self, netflows: NetFlowsResource) -> None:
+class NetflowsResourceWithRawResponse:
+    def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -922,14 +481,8 @@ class NetFlowsResourceWithRawResponse:
                 netflows.summary,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.summary_v2 = to_raw_response_wrapper(
-            netflows.summary_v2,
-        )
         self.timeseries = to_raw_response_wrapper(
             netflows.timeseries,
-        )
-        self.timeseries_groups = to_raw_response_wrapper(
-            netflows.timeseries_groups,
         )
 
     @cached_property
@@ -937,8 +490,8 @@ class NetFlowsResourceWithRawResponse:
         return TopResourceWithRawResponse(self._netflows.top)
 
 
-class AsyncNetFlowsResourceWithRawResponse:
-    def __init__(self, netflows: AsyncNetFlowsResource) -> None:
+class AsyncNetflowsResourceWithRawResponse:
+    def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -946,14 +499,8 @@ class AsyncNetFlowsResourceWithRawResponse:
                 netflows.summary,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.summary_v2 = async_to_raw_response_wrapper(
-            netflows.summary_v2,
-        )
         self.timeseries = async_to_raw_response_wrapper(
             netflows.timeseries,
-        )
-        self.timeseries_groups = async_to_raw_response_wrapper(
-            netflows.timeseries_groups,
         )
 
     @cached_property
@@ -961,8 +508,8 @@ class AsyncNetFlowsResourceWithRawResponse:
         return AsyncTopResourceWithRawResponse(self._netflows.top)
 
 
-class NetFlowsResourceWithStreamingResponse:
-    def __init__(self, netflows: NetFlowsResource) -> None:
+class NetflowsResourceWithStreamingResponse:
+    def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -970,14 +517,8 @@ class NetFlowsResourceWithStreamingResponse:
                 netflows.summary,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.summary_v2 = to_streamed_response_wrapper(
-            netflows.summary_v2,
-        )
         self.timeseries = to_streamed_response_wrapper(
             netflows.timeseries,
-        )
-        self.timeseries_groups = to_streamed_response_wrapper(
-            netflows.timeseries_groups,
         )
 
     @cached_property
@@ -985,8 +526,8 @@ class NetFlowsResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self._netflows.top)
 
 
-class AsyncNetFlowsResourceWithStreamingResponse:
-    def __init__(self, netflows: AsyncNetFlowsResource) -> None:
+class AsyncNetflowsResourceWithStreamingResponse:
+    def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -994,14 +535,8 @@ class AsyncNetFlowsResourceWithStreamingResponse:
                 netflows.summary,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.summary_v2 = async_to_streamed_response_wrapper(
-            netflows.summary_v2,
-        )
         self.timeseries = async_to_streamed_response_wrapper(
             netflows.timeseries,
-        )
-        self.timeseries_groups = async_to_streamed_response_wrapper(
-            netflows.timeseries_groups,
         )
 
     @cached_property

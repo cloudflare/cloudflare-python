@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ......_models import BaseModel
 
 __all__ = [
-    "TLDGetResponse",
+    "TldGetResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
@@ -126,7 +126,7 @@ class Top0(BaseModel):
     """A numeric string."""
 
 
-class TLDGetResponse(BaseModel):
+class TldGetResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 

@@ -15,7 +15,7 @@ __all__ = [
 
 
 class MqWorkerConsumerRequest(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """A Resource identifier."""
 
     queue_id: Required[str]
@@ -58,7 +58,7 @@ class MqWorkerConsumerRequestSettings(TypedDict, total=False):
 
 
 class MqHTTPConsumerRequest(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """A Resource identifier."""
 
     queue_id: Required[str]

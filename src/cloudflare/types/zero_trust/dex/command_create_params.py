@@ -11,7 +11,7 @@ __all__ = ["CommandCreateParams", "Command", "CommandCommandArgs"]
 
 
 class CommandCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     commands: Required[Iterable[Command]]
     """List of device-level commands to execute"""

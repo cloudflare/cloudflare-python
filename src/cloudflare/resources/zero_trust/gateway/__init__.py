@@ -32,14 +32,6 @@ from .logging import (
     LoggingResourceWithStreamingResponse,
     AsyncLoggingResourceWithStreamingResponse,
 )
-from .pacfiles import (
-    PacfilesResource,
-    AsyncPacfilesResource,
-    PacfilesResourceWithRawResponse,
-    AsyncPacfilesResourceWithRawResponse,
-    PacfilesResourceWithStreamingResponse,
-    AsyncPacfilesResourceWithStreamingResponse,
-)
 from .app_types import (
     AppTypesResource,
     AsyncAppTypesResource,
@@ -158,12 +150,6 @@ __all__ = [
     "AsyncCertificatesResourceWithRawResponse",
     "CertificatesResourceWithStreamingResponse",
     "AsyncCertificatesResourceWithStreamingResponse",
-    "PacfilesResource",
-    "AsyncPacfilesResource",
-    "PacfilesResourceWithRawResponse",
-    "AsyncPacfilesResourceWithRawResponse",
-    "PacfilesResourceWithStreamingResponse",
-    "AsyncPacfilesResourceWithStreamingResponse",
     "GatewayResource",
     "AsyncGatewayResource",
     "GatewayResourceWithRawResponse",

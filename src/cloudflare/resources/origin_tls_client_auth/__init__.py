@@ -16,22 +16,6 @@ from .hostnames import (
     HostnamesResourceWithStreamingResponse,
     AsyncHostnamesResourceWithStreamingResponse,
 )
-from .zone_certificates import (
-    ZoneCertificatesResource,
-    AsyncZoneCertificatesResource,
-    ZoneCertificatesResourceWithRawResponse,
-    AsyncZoneCertificatesResourceWithRawResponse,
-    ZoneCertificatesResourceWithStreamingResponse,
-    AsyncZoneCertificatesResourceWithStreamingResponse,
-)
-from .hostname_certificates import (
-    HostnameCertificatesResource,
-    AsyncHostnameCertificatesResource,
-    HostnameCertificatesResourceWithRawResponse,
-    AsyncHostnameCertificatesResourceWithRawResponse,
-    HostnameCertificatesResourceWithStreamingResponse,
-    AsyncHostnameCertificatesResourceWithStreamingResponse,
-)
 from .origin_tls_client_auth import (
     OriginTLSClientAuthResource,
     AsyncOriginTLSClientAuthResource,
@@ -42,24 +26,12 @@ from .origin_tls_client_auth import (
 )
 
 __all__ = [
-    "ZoneCertificatesResource",
-    "AsyncZoneCertificatesResource",
-    "ZoneCertificatesResourceWithRawResponse",
-    "AsyncZoneCertificatesResourceWithRawResponse",
-    "ZoneCertificatesResourceWithStreamingResponse",
-    "AsyncZoneCertificatesResourceWithStreamingResponse",
     "HostnamesResource",
     "AsyncHostnamesResource",
     "HostnamesResourceWithRawResponse",
     "AsyncHostnamesResourceWithRawResponse",
     "HostnamesResourceWithStreamingResponse",
     "AsyncHostnamesResourceWithStreamingResponse",
-    "HostnameCertificatesResource",
-    "AsyncHostnameCertificatesResource",
-    "HostnameCertificatesResourceWithRawResponse",
-    "AsyncHostnameCertificatesResourceWithRawResponse",
-    "HostnameCertificatesResourceWithStreamingResponse",
-    "AsyncHostnameCertificatesResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",

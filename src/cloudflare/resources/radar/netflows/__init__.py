@@ -9,12 +9,12 @@ from .top import (
     AsyncTopResourceWithStreamingResponse,
 )
 from .netflows import (
-    NetFlowsResource,
-    AsyncNetFlowsResource,
-    NetFlowsResourceWithRawResponse,
-    AsyncNetFlowsResourceWithRawResponse,
-    NetFlowsResourceWithStreamingResponse,
-    AsyncNetFlowsResourceWithStreamingResponse,
+    NetflowsResource,
+    AsyncNetflowsResource,
+    NetflowsResourceWithRawResponse,
+    AsyncNetflowsResourceWithRawResponse,
+    NetflowsResourceWithStreamingResponse,
+    AsyncNetflowsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncTopResourceWithRawResponse",
     "TopResourceWithStreamingResponse",
     "AsyncTopResourceWithStreamingResponse",
-    "NetFlowsResource",
-    "AsyncNetFlowsResource",
-    "NetFlowsResourceWithRawResponse",
-    "AsyncNetFlowsResourceWithRawResponse",
-    "NetFlowsResourceWithStreamingResponse",
-    "AsyncNetFlowsResourceWithStreamingResponse",
+    "NetflowsResource",
+    "AsyncNetflowsResource",
+    "NetflowsResourceWithRawResponse",
+    "AsyncNetflowsResourceWithRawResponse",
+    "NetflowsResourceWithStreamingResponse",
+    "AsyncNetflowsResourceWithStreamingResponse",
 ]

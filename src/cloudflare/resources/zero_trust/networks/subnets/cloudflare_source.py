@@ -20,7 +20,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.networks.subnets import cloudflare_source_update_params
-from .....types.zero_trust.networks.subnets.subnet import Subnet
+from .....types.zero_trust.networks.subnets.cloudflare_source_update_response import CloudflareSourceUpdateResponse
 
 __all__ = ["CloudflareSourceResource", "AsyncCloudflareSourceResource"]
 
@@ -49,7 +49,7 @@ class CloudflareSourceResource(SyncAPIResource):
         self,
         address_family: Literal["v4", "v6"],
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         name: str | Omit = omit,
         network: str | Omit = omit,
@@ -59,7 +59,7 @@ class CloudflareSourceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subnet:
+    ) -> CloudflareSourceUpdateResponse:
         """
         Updates the Cloudflare Source subnet of the given address family
 
@@ -82,8 +82,6 @@ class CloudflareSourceResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_family:
@@ -107,9 +105,9 @@ class CloudflareSourceResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subnet]._unwrapper,
+                post_parser=ResultWrapper[CloudflareSourceUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
+            cast_to=cast(Type[CloudflareSourceUpdateResponse], ResultWrapper[CloudflareSourceUpdateResponse]),
         )
 
 
@@ -137,7 +135,7 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
         self,
         address_family: Literal["v4", "v6"],
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         name: str | Omit = omit,
         network: str | Omit = omit,
@@ -147,7 +145,7 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subnet:
+    ) -> CloudflareSourceUpdateResponse:
         """
         Updates the Cloudflare Source subnet of the given address family
 
@@ -170,8 +168,6 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_family:
@@ -195,9 +191,9 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subnet]._unwrapper,
+                post_parser=ResultWrapper[CloudflareSourceUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subnet], ResultWrapper[Subnet]),
+            cast_to=cast(Type[CloudflareSourceUpdateResponse], ResultWrapper[CloudflareSourceUpdateResponse]),
         )
 
 

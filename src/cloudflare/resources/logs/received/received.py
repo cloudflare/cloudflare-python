@@ -59,7 +59,7 @@ class ReceivedResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         end: Union[str, int],
         count: int | Omit = omit,
         fields: str | Omit = omit,
@@ -137,8 +137,6 @@ class ReceivedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -196,7 +194,7 @@ class AsyncReceivedResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         end: Union[str, int],
         count: int | Omit = omit,
         fields: str | Omit = omit,
@@ -274,8 +272,6 @@ class AsyncReceivedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(

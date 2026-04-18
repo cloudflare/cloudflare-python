@@ -40,14 +40,6 @@ from .timeseries_groups import (
     TimeseriesGroupsResourceWithStreamingResponse,
     AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
-from .markdown_for_agents import (
-    MarkdownForAgentsResource,
-    AsyncMarkdownForAgentsResource,
-    MarkdownForAgentsResourceWithRawResponse,
-    AsyncMarkdownForAgentsResourceWithRawResponse,
-    MarkdownForAgentsResourceWithStreamingResponse,
-    AsyncMarkdownForAgentsResourceWithStreamingResponse,
-)
 
 __all__ = [
     "ToMarkdownResource",
@@ -74,12 +66,6 @@ __all__ = [
     "AsyncTimeseriesGroupsResourceWithRawResponse",
     "TimeseriesGroupsResourceWithStreamingResponse",
     "AsyncTimeseriesGroupsResourceWithStreamingResponse",
-    "MarkdownForAgentsResource",
-    "AsyncMarkdownForAgentsResource",
-    "MarkdownForAgentsResourceWithRawResponse",
-    "AsyncMarkdownForAgentsResourceWithRawResponse",
-    "MarkdownForAgentsResourceWithStreamingResponse",
-    "AsyncMarkdownForAgentsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

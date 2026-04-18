@@ -10,14 +10,6 @@ from .colos import (
     ColosResourceWithStreamingResponse,
     AsyncColosResourceWithStreamingResponse,
 )
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from .tests.tests import (
     TestsResource,
@@ -114,10 +106,6 @@ class DEXResource(SyncAPIResource):
         return TracerouteTestsResource(self._client)
 
     @cached_property
-    def rules(self) -> RulesResource:
-        return RulesResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> DEXResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -169,10 +157,6 @@ class AsyncDEXResource(AsyncAPIResource):
     @cached_property
     def traceroute_tests(self) -> AsyncTracerouteTestsResource:
         return AsyncTracerouteTestsResource(self._client)
-
-    @cached_property
-    def rules(self) -> AsyncRulesResource:
-        return AsyncRulesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDEXResourceWithRawResponse:
@@ -230,10 +214,6 @@ class DEXResourceWithRawResponse:
     def traceroute_tests(self) -> TracerouteTestsResourceWithRawResponse:
         return TracerouteTestsResourceWithRawResponse(self._dex.traceroute_tests)
 
-    @cached_property
-    def rules(self) -> RulesResourceWithRawResponse:
-        return RulesResourceWithRawResponse(self._dex.rules)
-
 
 class AsyncDEXResourceWithRawResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
@@ -270,10 +250,6 @@ class AsyncDEXResourceWithRawResponse:
     @cached_property
     def traceroute_tests(self) -> AsyncTracerouteTestsResourceWithRawResponse:
         return AsyncTracerouteTestsResourceWithRawResponse(self._dex.traceroute_tests)
-
-    @cached_property
-    def rules(self) -> AsyncRulesResourceWithRawResponse:
-        return AsyncRulesResourceWithRawResponse(self._dex.rules)
 
 
 class DEXResourceWithStreamingResponse:
@@ -312,10 +288,6 @@ class DEXResourceWithStreamingResponse:
     def traceroute_tests(self) -> TracerouteTestsResourceWithStreamingResponse:
         return TracerouteTestsResourceWithStreamingResponse(self._dex.traceroute_tests)
 
-    @cached_property
-    def rules(self) -> RulesResourceWithStreamingResponse:
-        return RulesResourceWithStreamingResponse(self._dex.rules)
-
 
 class AsyncDEXResourceWithStreamingResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
@@ -352,7 +324,3 @@ class AsyncDEXResourceWithStreamingResponse:
     @cached_property
     def traceroute_tests(self) -> AsyncTracerouteTestsResourceWithStreamingResponse:
         return AsyncTracerouteTestsResourceWithStreamingResponse(self._dex.traceroute_tests)
-
-    @cached_property
-    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
-        return AsyncRulesResourceWithStreamingResponse(self._dex.rules)

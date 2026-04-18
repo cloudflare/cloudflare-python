@@ -78,7 +78,7 @@ __all__ = [
 
 
 class ScriptUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     dispatch_namespace: Required[str]

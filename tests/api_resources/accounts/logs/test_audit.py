@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_date
-from cloudflare.pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
+from cloudflare.pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 from cloudflare.types.accounts.logs import AuditListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +27,7 @@ class TestAudit:
             before=parse_date("2024-10-31"),
             since=parse_date("2024-10-30"),
         )
-        assert_matches_type(SyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -62,7 +62,7 @@ class TestAudit:
             zone_id={"not": ["string"]},
             zone_name={"not": ["example.com"]},
         )
-        assert_matches_type(SyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -76,7 +76,7 @@ class TestAudit:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit = response.parse()
-        assert_matches_type(SyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -90,7 +90,7 @@ class TestAudit:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit = response.parse()
-            assert_matches_type(SyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+            assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -118,7 +118,7 @@ class TestAsyncAudit:
             before=parse_date("2024-10-31"),
             since=parse_date("2024-10-30"),
         )
-        assert_matches_type(AsyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -153,7 +153,7 @@ class TestAsyncAudit:
             zone_id={"not": ["string"]},
             zone_name={"not": ["example.com"]},
         )
-        assert_matches_type(AsyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -167,7 +167,7 @@ class TestAsyncAudit:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit = await response.parse()
-        assert_matches_type(AsyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+        assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
     @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
@@ -181,7 +181,7 @@ class TestAsyncAudit:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit = await response.parse()
-            assert_matches_type(AsyncCursorPaginationAfter[AuditListResponse], audit, path=["response"])
+            assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -16,14 +16,6 @@ from .json import (
     JsonResourceWithStreamingResponse,
     AsyncJsonResourceWithStreamingResponse,
 )
-from .crawl import (
-    CrawlResource,
-    AsyncCrawlResource,
-    CrawlResourceWithRawResponse,
-    AsyncCrawlResourceWithRawResponse,
-    CrawlResourceWithStreamingResponse,
-    AsyncCrawlResourceWithStreamingResponse,
-)
 from .links import (
     LinksResource,
     AsyncLinksResource,
@@ -47,14 +39,6 @@ from .content import (
     AsyncContentResourceWithRawResponse,
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
-)
-from .devtools import (
-    DevtoolsResource,
-    AsyncDevtoolsResource,
-    DevtoolsResourceWithRawResponse,
-    AsyncDevtoolsResourceWithRawResponse,
-    DevtoolsResourceWithStreamingResponse,
-    AsyncDevtoolsResourceWithStreamingResponse,
 )
 from .markdown import (
     MarkdownResource,
@@ -138,18 +122,6 @@ __all__ = [
     "AsyncMarkdownResourceWithRawResponse",
     "MarkdownResourceWithStreamingResponse",
     "AsyncMarkdownResourceWithStreamingResponse",
-    "CrawlResource",
-    "AsyncCrawlResource",
-    "CrawlResourceWithRawResponse",
-    "AsyncCrawlResourceWithRawResponse",
-    "CrawlResourceWithStreamingResponse",
-    "AsyncCrawlResourceWithStreamingResponse",
-    "DevtoolsResource",
-    "AsyncDevtoolsResource",
-    "DevtoolsResourceWithRawResponse",
-    "AsyncDevtoolsResourceWithRawResponse",
-    "DevtoolsResourceWithStreamingResponse",
-    "AsyncDevtoolsResourceWithStreamingResponse",
     "BrowserRenderingResource",
     "AsyncBrowserRenderingResource",
     "BrowserRenderingResourceWithRawResponse",

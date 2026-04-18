@@ -12,14 +12,6 @@ from .total_tls import (
     AsyncTotalTLSResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .custom_trust_store import (
-    CustomTrustStoreResource,
-    AsyncCustomTrustStoreResource,
-    CustomTrustStoreResourceWithRawResponse,
-    AsyncCustomTrustStoreResourceWithRawResponse,
-    CustomTrustStoreResourceWithStreamingResponse,
-    AsyncCustomTrustStoreResourceWithStreamingResponse,
-)
 
 __all__ = ["ACMResource", "AsyncACMResource"]
 
@@ -28,10 +20,6 @@ class ACMResource(SyncAPIResource):
     @cached_property
     def total_tls(self) -> TotalTLSResource:
         return TotalTLSResource(self._client)
-
-    @cached_property
-    def custom_trust_store(self) -> CustomTrustStoreResource:
-        return CustomTrustStoreResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ACMResourceWithRawResponse:
@@ -57,10 +45,6 @@ class AsyncACMResource(AsyncAPIResource):
     @cached_property
     def total_tls(self) -> AsyncTotalTLSResource:
         return AsyncTotalTLSResource(self._client)
-
-    @cached_property
-    def custom_trust_store(self) -> AsyncCustomTrustStoreResource:
-        return AsyncCustomTrustStoreResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncACMResourceWithRawResponse:
@@ -90,10 +74,6 @@ class ACMResourceWithRawResponse:
     def total_tls(self) -> TotalTLSResourceWithRawResponse:
         return TotalTLSResourceWithRawResponse(self._acm.total_tls)
 
-    @cached_property
-    def custom_trust_store(self) -> CustomTrustStoreResourceWithRawResponse:
-        return CustomTrustStoreResourceWithRawResponse(self._acm.custom_trust_store)
-
 
 class AsyncACMResourceWithRawResponse:
     def __init__(self, acm: AsyncACMResource) -> None:
@@ -102,10 +82,6 @@ class AsyncACMResourceWithRawResponse:
     @cached_property
     def total_tls(self) -> AsyncTotalTLSResourceWithRawResponse:
         return AsyncTotalTLSResourceWithRawResponse(self._acm.total_tls)
-
-    @cached_property
-    def custom_trust_store(self) -> AsyncCustomTrustStoreResourceWithRawResponse:
-        return AsyncCustomTrustStoreResourceWithRawResponse(self._acm.custom_trust_store)
 
 
 class ACMResourceWithStreamingResponse:
@@ -116,10 +92,6 @@ class ACMResourceWithStreamingResponse:
     def total_tls(self) -> TotalTLSResourceWithStreamingResponse:
         return TotalTLSResourceWithStreamingResponse(self._acm.total_tls)
 
-    @cached_property
-    def custom_trust_store(self) -> CustomTrustStoreResourceWithStreamingResponse:
-        return CustomTrustStoreResourceWithStreamingResponse(self._acm.custom_trust_store)
-
 
 class AsyncACMResourceWithStreamingResponse:
     def __init__(self, acm: AsyncACMResource) -> None:
@@ -128,7 +100,3 @@ class AsyncACMResourceWithStreamingResponse:
     @cached_property
     def total_tls(self) -> AsyncTotalTLSResourceWithStreamingResponse:
         return AsyncTotalTLSResourceWithStreamingResponse(self._acm.total_tls)
-
-    @cached_property
-    def custom_trust_store(self) -> AsyncCustomTrustStoreResourceWithStreamingResponse:
-        return AsyncCustomTrustStoreResourceWithStreamingResponse(self._acm.custom_trust_store)

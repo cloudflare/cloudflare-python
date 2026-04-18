@@ -18,7 +18,6 @@ from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .migration_step_param import MigrationStepParam as MigrationStepParam
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
 from .script_list_response import ScriptListResponse as ScriptListResponse
-from .script_search_params import ScriptSearchParams as ScriptSearchParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse
 from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
@@ -27,7 +26,6 @@ from .single_step_migration import SingleStepMigration as SingleStepMigration
 from .worker_metadata_param import WorkerMetadataParam as WorkerMetadataParam
 from .domain_delete_response import DomainDeleteResponse as DomainDeleteResponse
 from .domain_update_response import DomainUpdateResponse as DomainUpdateResponse
-from .script_search_response import ScriptSearchResponse as ScriptSearchResponse
 from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .subdomain_update_params import SubdomainUpdateParams as SubdomainUpdateParams

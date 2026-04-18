@@ -8,7 +8,7 @@ __all__ = ["ReclassifyCreateParams"]
 
 
 class ReclassifyCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     expected_disposition: Required[Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"]]

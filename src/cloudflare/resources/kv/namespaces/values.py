@@ -57,7 +57,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         value: Union[str, FileTypes],
         expiration: float | Omit = omit,
@@ -96,8 +96,6 @@ class ValuesResource(SyncAPIResource):
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
 
-          metadata: Associates arbitrary JSON data with a key/value pair.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -106,8 +104,6 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -155,7 +151,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -185,8 +181,6 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -214,7 +208,7 @@ class ValuesResource(SyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -247,8 +241,6 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -294,7 +286,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         value: Union[str, FileTypes],
         expiration: float | Omit = omit,
@@ -333,8 +325,6 @@ class AsyncValuesResource(AsyncAPIResource):
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
 
-          metadata: Associates arbitrary JSON data with a key/value pair.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -343,8 +333,6 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -392,7 +380,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -422,8 +410,6 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
@@ -451,7 +437,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         key_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         namespace_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -484,8 +470,6 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:

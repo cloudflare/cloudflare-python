@@ -5,16 +5,16 @@
 Types:
 
 ```python
-from cloudflare.types.schema_validation import PublicSchema, SchemaDeleteResponse
+from cloudflare.types.schema_validation import SchemaDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/schema_validation/schemas">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_create_params.py">params</a>) -> <a href="./src/cloudflare/types/schema_validation/public_schema.py">PublicSchema</a></code>
-- <code title="get /zones/{zone_id}/schema_validation/schemas">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_list_params.py">params</a>) -> <a href="./src/cloudflare/types/schema_validation/public_schema.py">SyncV4PagePaginationArray[PublicSchema]</a></code>
+- <code title="post /zones/{zone_id}/schema_validation/schemas">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">PublicSchema</a></code>
+- <code title="get /zones/{zone_id}/schema_validation/schemas">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">SyncV4PagePaginationArray[PublicSchema]</a></code>
 - <code title="delete /zones/{zone_id}/schema_validation/schemas/{schema_id}">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">delete</a>(schema_id, \*, zone_id) -> <a href="./src/cloudflare/types/schema_validation/schema_delete_response.py">SchemaDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/schema_validation/schemas/{schema_id}">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">edit</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/schema_validation/public_schema.py">PublicSchema</a></code>
-- <code title="get /zones/{zone_id}/schema_validation/schemas/{schema_id}">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">get</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/schema_validation/public_schema.py">PublicSchema</a></code>
+- <code title="patch /zones/{zone_id}/schema_validation/schemas/{schema_id}">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">edit</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">PublicSchema</a></code>
+- <code title="get /zones/{zone_id}/schema_validation/schemas/{schema_id}">client.schema_validation.schemas.<a href="./src/cloudflare/resources/schema_validation/schemas.py">get</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/schema_validation/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">PublicSchema</a></code>
 
 ## Settings
 

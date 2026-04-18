@@ -10,7 +10,7 @@ __all__ = ["RuleUpdateParams"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     ruleset_id: Required[str]

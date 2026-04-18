@@ -10,7 +10,7 @@ __all__ = ["TargetBulkDeleteV2Params"]
 
 
 class TargetBulkDeleteV2Params(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier"""
 
     target_ids: Required[SequenceNotStr[str]]

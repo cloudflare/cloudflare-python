@@ -11,7 +11,7 @@ __all__ = ["PolicyCreateParams"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account id"""
 
     alert_type: Required[

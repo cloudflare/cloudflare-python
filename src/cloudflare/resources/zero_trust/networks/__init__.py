@@ -24,14 +24,6 @@ from .networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
-from .hostname_routes import (
-    HostnameRoutesResource,
-    AsyncHostnameRoutesResource,
-    HostnameRoutesResourceWithRawResponse,
-    AsyncHostnameRoutesResourceWithRawResponse,
-    HostnameRoutesResourceWithStreamingResponse,
-    AsyncHostnameRoutesResourceWithStreamingResponse,
-)
 from .virtual_networks import (
     VirtualNetworksResource,
     AsyncVirtualNetworksResource,
@@ -60,12 +52,6 @@ __all__ = [
     "AsyncSubnetsResourceWithRawResponse",
     "SubnetsResourceWithStreamingResponse",
     "AsyncSubnetsResourceWithStreamingResponse",
-    "HostnameRoutesResource",
-    "AsyncHostnameRoutesResource",
-    "HostnameRoutesResourceWithRawResponse",
-    "AsyncHostnameRoutesResourceWithRawResponse",
-    "HostnameRoutesResourceWithStreamingResponse",
-    "AsyncHostnameRoutesResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

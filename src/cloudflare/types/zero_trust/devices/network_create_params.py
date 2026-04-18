@@ -8,7 +8,7 @@ __all__ = ["NetworkCreateParams", "Config"]
 
 
 class NetworkCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     config: Required[Config]
     """

@@ -8,7 +8,7 @@ from typing_extensions import overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -51,7 +51,7 @@ class SettingsResource(SyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,7 +85,7 @@ class SettingsResource(SyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -114,11 +114,12 @@ class SettingsResource(SyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     def edit(
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         enabled: bool | Omit = omit,
         value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -128,8 +129,6 @@ class SettingsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -162,7 +161,7 @@ class SettingsResource(SyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,8 +185,6 @@ class SettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -235,7 +232,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -269,7 +266,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,11 +295,12 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     async def edit(
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         enabled: bool | Omit = omit,
         value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -312,8 +310,6 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -346,7 +342,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         setting_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -370,8 +366,6 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:

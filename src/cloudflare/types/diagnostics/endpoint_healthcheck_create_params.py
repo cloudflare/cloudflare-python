@@ -8,7 +8,7 @@ __all__ = ["EndpointHealthcheckCreateParams"]
 
 
 class EndpointHealthcheckCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     check_type: Required[Literal["icmp"]]

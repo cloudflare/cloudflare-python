@@ -32,7 +32,7 @@ __all__ = [
     "SelfHostedApplicationOAuthConfigurationGrant",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyConnectionRules",
-    "SelfHostedApplicationPolicyConnectionRulesRDP",
+    "SelfHostedApplicationPolicyConnectionRulesRdp",
     "SelfHostedApplicationPolicyMfaConfig",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -42,7 +42,7 @@ __all__ = [
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyConnectionRules",
-    "SaaSApplicationPolicyConnectionRulesRDP",
+    "SaaSApplicationPolicyConnectionRulesRdp",
     "SaaSApplicationPolicyMfaConfig",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
@@ -61,7 +61,7 @@ __all__ = [
     "BrowserSSHApplicationOAuthConfigurationGrant",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyConnectionRules",
-    "BrowserSSHApplicationPolicyConnectionRulesRDP",
+    "BrowserSSHApplicationPolicyConnectionRulesRdp",
     "BrowserSSHApplicationPolicyMfaConfig",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -79,7 +79,7 @@ __all__ = [
     "BrowserVNCApplicationOAuthConfigurationGrant",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyConnectionRules",
-    "BrowserVNCApplicationPolicyConnectionRulesRDP",
+    "BrowserVNCApplicationPolicyConnectionRulesRdp",
     "BrowserVNCApplicationPolicyMfaConfig",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -91,27 +91,27 @@ __all__ = [
     "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyConnectionRules",
-    "AppLauncherApplicationPolicyConnectionRulesRDP",
+    "AppLauncherApplicationPolicyConnectionRulesRdp",
     "AppLauncherApplicationPolicyMfaConfig",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyConnectionRules",
-    "DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRDP",
+    "DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp",
     "DeviceEnrollmentPermissionsApplicationPolicyMfaConfig",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyConnectionRules",
-    "BrowserIsolationPermissionsApplicationPolicyConnectionRulesRDP",
+    "BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp",
     "BrowserIsolationPermissionsApplicationPolicyMfaConfig",
     "GatewayIdentityProxyEndpointApplication",
     "GatewayIdentityProxyEndpointApplicationPolicy",
     "GatewayIdentityProxyEndpointApplicationPolicyConnectionRules",
-    "GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRDP",
+    "GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp",
     "GatewayIdentityProxyEndpointApplicationPolicyMfaConfig",
     "BookmarkApplication",
     "BookmarkApplicationPolicy",
     "BookmarkApplicationPolicyConnectionRules",
-    "BookmarkApplicationPolicyConnectionRulesRDP",
+    "BookmarkApplicationPolicyConnectionRulesRdp",
     "BookmarkApplicationPolicyMfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
@@ -119,25 +119,25 @@ __all__ = [
     "InfrastructureApplicationPolicyConnectionRules",
     "InfrastructureApplicationPolicyConnectionRulesSSH",
     "InfrastructureApplicationPolicyMfaConfig",
-    "BrowserRDPApplication",
-    "BrowserRDPApplicationTargetCriterion",
-    "BrowserRDPApplicationDestination",
-    "BrowserRDPApplicationDestinationPublicDestination",
-    "BrowserRDPApplicationDestinationPrivateDestination",
-    "BrowserRDPApplicationDestinationViaMcpServerPortalDestination",
-    "BrowserRDPApplicationMfaConfig",
-    "BrowserRDPApplicationOAuthConfiguration",
-    "BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration",
-    "BrowserRDPApplicationOAuthConfigurationGrant",
-    "BrowserRDPApplicationPolicy",
-    "BrowserRDPApplicationPolicyConnectionRules",
-    "BrowserRDPApplicationPolicyConnectionRulesRDP",
-    "BrowserRDPApplicationPolicyMfaConfig",
-    "BrowserRDPApplicationSCIMConfig",
-    "BrowserRDPApplicationSCIMConfigAuthentication",
-    "BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserRdpApplication",
+    "BrowserRdpApplicationTargetCriterion",
+    "BrowserRdpApplicationDestination",
+    "BrowserRdpApplicationDestinationPublicDestination",
+    "BrowserRdpApplicationDestinationPrivateDestination",
+    "BrowserRdpApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserRdpApplicationMfaConfig",
+    "BrowserRdpApplicationOAuthConfiguration",
+    "BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration",
+    "BrowserRdpApplicationOAuthConfigurationGrant",
+    "BrowserRdpApplicationPolicy",
+    "BrowserRdpApplicationPolicyConnectionRules",
+    "BrowserRdpApplicationPolicyConnectionRulesRdp",
+    "BrowserRdpApplicationPolicyMfaConfig",
+    "BrowserRdpApplicationSCIMConfig",
+    "BrowserRdpApplicationSCIMConfigAuthentication",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "McpServerApplication",
     "McpServerApplicationDestination",
     "McpServerApplicationDestinationPublicDestination",
@@ -148,7 +148,7 @@ __all__ = [
     "McpServerApplicationOAuthConfigurationGrant",
     "McpServerApplicationPolicy",
     "McpServerApplicationPolicyConnectionRules",
-    "McpServerApplicationPolicyConnectionRulesRDP",
+    "McpServerApplicationPolicyConnectionRulesRdp",
     "McpServerApplicationPolicyMfaConfig",
     "McpServerApplicationSCIMConfig",
     "McpServerApplicationSCIMConfigAuthentication",
@@ -165,7 +165,7 @@ __all__ = [
     "McpServerPortalApplicationOAuthConfigurationGrant",
     "McpServerPortalApplicationPolicy",
     "McpServerPortalApplicationPolicyConnectionRules",
-    "McpServerPortalApplicationPolicyConnectionRulesRDP",
+    "McpServerPortalApplicationPolicyConnectionRulesRdp",
     "McpServerPortalApplicationPolicyMfaConfig",
     "McpServerPortalApplicationSCIMConfig",
     "McpServerPortalApplicationSCIMConfigAuthentication",
@@ -311,7 +311,7 @@ class SelfHostedApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
-class SelfHostedApplicationPolicyConnectionRulesRDP(BaseModel):
+class SelfHostedApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -330,7 +330,7 @@ class SelfHostedApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[SelfHostedApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[SelfHostedApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -710,7 +710,7 @@ class SelfHostedApplication(BaseModel):
     """
 
 
-class SaaSApplicationPolicyConnectionRulesRDP(BaseModel):
+class SaaSApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -729,7 +729,7 @@ class SaaSApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[SaaSApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[SaaSApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -1123,7 +1123,7 @@ class BrowserSSHApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
-class BrowserSSHApplicationPolicyConnectionRulesRDP(BaseModel):
+class BrowserSSHApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -1142,7 +1142,7 @@ class BrowserSSHApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[BrowserSSHApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[BrowserSSHApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -1673,7 +1673,7 @@ class BrowserVNCApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
-class BrowserVNCApplicationPolicyConnectionRulesRDP(BaseModel):
+class BrowserVNCApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -1692,7 +1692,7 @@ class BrowserVNCApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[BrowserVNCApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[BrowserVNCApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -2114,7 +2114,7 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-class AppLauncherApplicationPolicyConnectionRulesRDP(BaseModel):
+class AppLauncherApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -2133,7 +2133,7 @@ class AppLauncherApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[AppLauncherApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[AppLauncherApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -2328,7 +2328,7 @@ class AppLauncherApplication(BaseModel):
     """Determines when to skip the App Launcher landing page."""
 
 
-class DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRDP(BaseModel):
+class DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -2347,7 +2347,7 @@ class DeviceEnrollmentPermissionsApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[DeviceEnrollmentPermissionsApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -2509,7 +2509,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """
 
 
-class BrowserIsolationPermissionsApplicationPolicyConnectionRulesRDP(BaseModel):
+class BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -2528,7 +2528,7 @@ class BrowserIsolationPermissionsApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[BrowserIsolationPermissionsApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[BrowserIsolationPermissionsApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -2690,7 +2690,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """
 
 
-class GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRDP(BaseModel):
+class GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -2709,7 +2709,7 @@ class GatewayIdentityProxyEndpointApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[GatewayIdentityProxyEndpointApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -2871,7 +2871,7 @@ class GatewayIdentityProxyEndpointApplication(BaseModel):
     """
 
 
-class BookmarkApplicationPolicyConnectionRulesRDP(BaseModel):
+class BookmarkApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -2890,7 +2890,7 @@ class BookmarkApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[BookmarkApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[BookmarkApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -3154,7 +3154,7 @@ class InfrastructureApplication(BaseModel):
     policies: Optional[List[InfrastructureApplicationPolicy]] = None
 
 
-class BrowserRDPApplicationTargetCriterion(BaseModel):
+class BrowserRdpApplicationTargetCriterion(BaseModel):
     port: int
     """The port that the targets use for the chosen communication protocol.
 
@@ -3168,7 +3168,7 @@ class BrowserRDPApplicationTargetCriterion(BaseModel):
     """Contains a map of target attribute keys to target attribute values."""
 
 
-class BrowserRDPApplicationDestinationPublicDestination(BaseModel):
+class BrowserRdpApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
@@ -3184,7 +3184,7 @@ class BrowserRDPApplicationDestinationPublicDestination(BaseModel):
     """
 
 
-class BrowserRDPApplicationDestinationPrivateDestination(BaseModel):
+class BrowserRdpApplicationDestinationPrivateDestination(BaseModel):
     cidr: Optional[str] = None
     """The CIDR range of the destination. Single IPs will be computed as /32."""
 
@@ -3209,7 +3209,7 @@ class BrowserRDPApplicationDestinationPrivateDestination(BaseModel):
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
-class BrowserRDPApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     """A MCP server id configured in ai-controls.
 
     Access will secure the MCP server if accessed through a MCP portal.
@@ -3221,14 +3221,14 @@ class BrowserRDPApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-BrowserRDPApplicationDestination: TypeAlias = Union[
-    BrowserRDPApplicationDestinationPublicDestination,
-    BrowserRDPApplicationDestinationPrivateDestination,
-    BrowserRDPApplicationDestinationViaMcpServerPortalDestination,
+BrowserRdpApplicationDestination: TypeAlias = Union[
+    BrowserRdpApplicationDestinationPublicDestination,
+    BrowserRdpApplicationDestinationPrivateDestination,
+    BrowserRdpApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
-class BrowserRDPApplicationMfaConfig(BaseModel):
+class BrowserRdpApplicationMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
@@ -3248,7 +3248,7 @@ class BrowserRDPApplicationMfaConfig(BaseModel):
     """
 
 
-class BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration(BaseModel):
+class BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration(BaseModel):
     """Settings for OAuth dynamic client registration."""
 
     allow_any_on_localhost: Optional[bool] = None
@@ -3267,7 +3267,7 @@ class BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration(BaseModel
     """Whether dynamic client registration is enabled."""
 
 
-class BrowserRDPApplicationOAuthConfigurationGrant(BaseModel):
+class BrowserRdpApplicationOAuthConfigurationGrant(BaseModel):
     """Settings for OAuth grant behavior."""
 
     access_token_lifetime: Optional[str] = None
@@ -3285,12 +3285,12 @@ class BrowserRDPApplicationOAuthConfigurationGrant(BaseModel):
     """
 
 
-class BrowserRDPApplicationOAuthConfiguration(BaseModel):
+class BrowserRdpApplicationOAuthConfiguration(BaseModel):
     """
     **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
     """
 
-    dynamic_client_registration: Optional[BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration] = None
+    dynamic_client_registration: Optional[BrowserRdpApplicationOAuthConfigurationDynamicClientRegistration] = None
     """Settings for OAuth dynamic client registration."""
 
     enabled: Optional[bool] = None
@@ -3300,11 +3300,11 @@ class BrowserRDPApplicationOAuthConfiguration(BaseModel):
     to `true` if omitted.
     """
 
-    grant: Optional[BrowserRDPApplicationOAuthConfigurationGrant] = None
+    grant: Optional[BrowserRdpApplicationOAuthConfigurationGrant] = None
     """Settings for OAuth grant behavior."""
 
 
-class BrowserRDPApplicationPolicyConnectionRulesRDP(BaseModel):
+class BrowserRdpApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -3318,16 +3318,16 @@ class BrowserRDPApplicationPolicyConnectionRulesRDP(BaseModel):
     """
 
 
-class BrowserRDPApplicationPolicyConnectionRules(BaseModel):
+class BrowserRdpApplicationPolicyConnectionRules(BaseModel):
     """
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[BrowserRDPApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[BrowserRdpApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
-class BrowserRDPApplicationPolicyMfaConfig(BaseModel):
+class BrowserRdpApplicationPolicyMfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings."""
 
     allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key"]]] = None
@@ -3347,7 +3347,7 @@ class BrowserRDPApplicationPolicyMfaConfig(BaseModel):
     """
 
 
-class BrowserRDPApplicationPolicy(BaseModel):
+class BrowserRdpApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
@@ -3360,7 +3360,7 @@ class BrowserRDPApplicationPolicy(BaseModel):
     session.
     """
 
-    connection_rules: Optional[BrowserRDPApplicationPolicyConnectionRules] = None
+    connection_rules: Optional[BrowserRdpApplicationPolicyConnectionRules] = None
     """
     The rules that define how users may connect to targets secured by your
     application.
@@ -3393,7 +3393,7 @@ class BrowserRDPApplicationPolicy(BaseModel):
     this feature.
     """
 
-    mfa_config: Optional[BrowserRDPApplicationPolicyMfaConfig] = None
+    mfa_config: Optional[BrowserRdpApplicationPolicyMfaConfig] = None
     """Configures multi-factor authentication (MFA) settings."""
 
     name: Optional[str] = None
@@ -3427,7 +3427,7 @@ class BrowserRDPApplicationPolicy(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
     """
     Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
     """
@@ -3448,7 +3448,7 @@ class BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
     """
@@ -3471,23 +3471,23 @@ class BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenti
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic,
     SCIMConfigAuthenticationOAuthBearerToken,
     SCIMConfigAuthenticationOauth2,
-    BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
 ]
 
-BrowserRDPApplicationSCIMConfigAuthentication: TypeAlias = Union[
+BrowserRdpApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic,
     SCIMConfigAuthenticationOAuthBearerToken,
     SCIMConfigAuthenticationOauth2,
-    BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    List[BrowserRDPApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
+    BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
-class BrowserRDPApplicationSCIMConfig(BaseModel):
+class BrowserRdpApplicationSCIMConfig(BaseModel):
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -3502,7 +3502,7 @@ class BrowserRDPApplicationSCIMConfig(BaseModel):
     remote_uri: str
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: Optional[BrowserRDPApplicationSCIMConfigAuthentication] = None
+    authentication: Optional[BrowserRdpApplicationSCIMConfigAuthentication] = None
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -3525,14 +3525,14 @@ class BrowserRDPApplicationSCIMConfig(BaseModel):
     """
 
 
-class BrowserRDPApplication(BaseModel):
+class BrowserRdpApplication(BaseModel):
     domain: str
     """The primary hostname and path secured by Access.
 
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    target_criteria: List[BrowserRDPApplicationTargetCriterion]
+    target_criteria: List[BrowserRdpApplicationTargetCriterion]
 
     type: ApplicationType
     """The application type."""
@@ -3594,7 +3594,7 @@ class BrowserRDPApplication(BaseModel):
     custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
-    destinations: Optional[List[BrowserRDPApplicationDestination]] = None
+    destinations: Optional[List[BrowserRdpApplicationDestination]] = None
     """List of destinations secured by Access.
 
     This supersedes `self_hosted_domains` to allow for more flexibility in defining
@@ -3617,13 +3617,13 @@ class BrowserRDPApplication(BaseModel):
     logo_url: Optional[str] = None
     """The image URL for the logo shown in the App Launcher dashboard."""
 
-    mfa_config: Optional[BrowserRDPApplicationMfaConfig] = None
+    mfa_config: Optional[BrowserRdpApplicationMfaConfig] = None
     """Configures multi-factor authentication (MFA) settings."""
 
     name: Optional[str] = None
     """The name of the application."""
 
-    oauth_configuration: Optional[BrowserRDPApplicationOAuthConfiguration] = None
+    oauth_configuration: Optional[BrowserRdpApplicationOAuthConfiguration] = None
     """
     **Beta:** Optional configuration for managing an OAuth authorization flow
     controlled by Access. When set, Access will act as the OAuth authorization
@@ -3644,7 +3644,7 @@ class BrowserRDPApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[BrowserRDPApplicationPolicy]] = None
+    policies: Optional[List[BrowserRdpApplicationPolicy]] = None
 
     read_service_tokens_from_header: Optional[str] = None
     """
@@ -3663,7 +3663,7 @@ class BrowserRDPApplication(BaseModel):
     attacks.
     """
 
-    scim_config: Optional[BrowserRDPApplicationSCIMConfig] = None
+    scim_config: Optional[BrowserRdpApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -3821,7 +3821,7 @@ class McpServerApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
-class McpServerApplicationPolicyConnectionRulesRDP(BaseModel):
+class McpServerApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -3840,7 +3840,7 @@ class McpServerApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[McpServerApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[McpServerApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -4274,7 +4274,7 @@ class McpServerPortalApplicationOAuthConfiguration(BaseModel):
     """Settings for OAuth grant behavior."""
 
 
-class McpServerPortalApplicationPolicyConnectionRulesRDP(BaseModel):
+class McpServerPortalApplicationPolicyConnectionRulesRdp(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -4293,7 +4293,7 @@ class McpServerPortalApplicationPolicyConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[McpServerPortalApplicationPolicyConnectionRulesRDP] = None
+    rdp: Optional[McpServerPortalApplicationPolicyConnectionRulesRdp] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 
@@ -4628,7 +4628,7 @@ ApplicationGetResponse: TypeAlias = Union[
     GatewayIdentityProxyEndpointApplication,
     BookmarkApplication,
     InfrastructureApplication,
-    BrowserRDPApplication,
+    BrowserRdpApplication,
     McpServerApplication,
     McpServerPortalApplication,
 ]

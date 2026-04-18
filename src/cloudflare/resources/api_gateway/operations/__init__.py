@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .labels import (
-    LabelsResource,
-    AsyncLabelsResource,
-    LabelsResourceWithRawResponse,
-    AsyncLabelsResourceWithRawResponse,
-    LabelsResourceWithStreamingResponse,
-    AsyncLabelsResourceWithStreamingResponse,
-)
 from .operations import (
     OperationsResource,
     AsyncOperationsResource,
@@ -26,12 +18,6 @@ from .schema_validation import (
 )
 
 __all__ = [
-    "LabelsResource",
-    "AsyncLabelsResource",
-    "LabelsResourceWithRawResponse",
-    "AsyncLabelsResourceWithRawResponse",
-    "LabelsResourceWithStreamingResponse",
-    "AsyncLabelsResourceWithStreamingResponse",
     "SchemaValidationResource",
     "AsyncSchemaValidationResource",
     "SchemaValidationResourceWithRawResponse",

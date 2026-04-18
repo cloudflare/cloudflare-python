@@ -9,7 +9,7 @@ __all__ = ["VersionCreateParams", "Body", "BodyExistingColumn", "BodyNewColumn"]
 
 
 class VersionCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     dataset_id: Required[str]
 
