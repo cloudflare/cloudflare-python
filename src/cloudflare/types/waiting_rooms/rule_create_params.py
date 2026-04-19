@@ -8,7 +8,7 @@ __all__ = ["RuleCreateParams", "Rules"]
 
 
 class RuleCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     rules: Required[Rules]

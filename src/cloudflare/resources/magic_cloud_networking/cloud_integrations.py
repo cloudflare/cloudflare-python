@@ -66,7 +66,7 @@ class CloudIntegrationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE", "CLOUDFLARE"],
         friendly_name: str,
         description: str | Omit = omit,
@@ -90,6 +90,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -117,7 +119,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aws_arn: str | Omit = omit,
         azure_subscription_id: str | Omit = omit,
         azure_tenant_id: str | Omit = omit,
@@ -144,6 +146,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -179,7 +183,7 @@ class CloudIntegrationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloudflare: bool | Omit = omit,
         desc: bool | Omit = omit,
         order_by: str | Omit = omit,
@@ -205,6 +209,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -232,7 +238,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,6 +258,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -276,7 +284,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -297,6 +305,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -320,7 +330,7 @@ class CloudIntegrationsResource(SyncAPIResource):
     def discover_all(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,6 +350,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -354,7 +366,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aws_arn: str | Omit = omit,
         azure_subscription_id: str | Omit = omit,
         azure_tenant_id: str | Omit = omit,
@@ -381,6 +393,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -417,7 +431,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -438,6 +452,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -463,7 +479,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,6 +499,8 @@ class CloudIntegrationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -532,7 +550,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE", "CLOUDFLARE"],
         friendly_name: str,
         description: str | Omit = omit,
@@ -556,6 +574,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -583,7 +603,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aws_arn: str | Omit = omit,
         azure_subscription_id: str | Omit = omit,
         azure_tenant_id: str | Omit = omit,
@@ -610,6 +630,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -645,7 +667,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cloudflare: bool | Omit = omit,
         desc: bool | Omit = omit,
         order_by: str | Omit = omit,
@@ -671,6 +693,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -698,7 +722,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -718,6 +742,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -742,7 +768,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -763,6 +789,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -788,7 +816,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
     async def discover_all(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -808,6 +836,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -822,7 +852,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         aws_arn: str | Omit = omit,
         azure_subscription_id: str | Omit = omit,
         azure_tenant_id: str | Omit = omit,
@@ -849,6 +879,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -885,7 +917,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -906,6 +938,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:
@@ -933,7 +967,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         provider_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -953,6 +987,8 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not provider_id:

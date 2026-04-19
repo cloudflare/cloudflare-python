@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -80,8 +80,8 @@ class JobsResource(SyncAPIResource):
             "zero_trust_network_sessions",
         ],
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,6 +110,10 @@ class JobsResource(SyncAPIResource):
         """
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -193,8 +197,8 @@ class AsyncJobsResource(AsyncAPIResource):
             "zero_trust_network_sessions",
         ],
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,6 +227,10 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

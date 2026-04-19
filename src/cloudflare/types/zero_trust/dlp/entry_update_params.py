@@ -11,7 +11,7 @@ __all__ = ["EntryUpdateParams", "Variant0", "Variant1", "Variant2"]
 
 
 class Variant0(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
 
@@ -25,7 +25,7 @@ class Variant0(TypedDict, total=False):
 
 
 class Variant1(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     type: Required[Literal["predefined"]]
 
@@ -33,7 +33,7 @@ class Variant1(TypedDict, total=False):
 
 
 class Variant2(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     type: Required[Literal["integration"]]
 

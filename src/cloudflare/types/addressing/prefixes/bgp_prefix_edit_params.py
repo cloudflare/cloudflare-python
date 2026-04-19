@@ -8,7 +8,7 @@ __all__ = ["BGPPrefixEditParams", "OnDemand"]
 
 
 class BGPPrefixEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of a Cloudflare account."""
 
     prefix_id: Required[str]

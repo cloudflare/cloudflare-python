@@ -52,7 +52,7 @@ class VirtualNetworksResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         comment: str | Omit = omit,
         is_default: bool | Omit = omit,
@@ -86,6 +86,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -112,7 +114,7 @@ class VirtualNetworksResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         is_default: bool | Omit = omit,
         is_default_network: bool | Omit = omit,
@@ -152,6 +154,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -180,7 +184,7 @@ class VirtualNetworksResource(SyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,6 +208,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
@@ -228,7 +234,7 @@ class VirtualNetworksResource(SyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comment: str | Omit = omit,
         is_default_network: bool | Omit = omit,
         name: str | Omit = omit,
@@ -261,6 +267,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
@@ -293,7 +301,7 @@ class VirtualNetworksResource(SyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,6 +325,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
@@ -361,7 +371,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         comment: str | Omit = omit,
         is_default: bool | Omit = omit,
@@ -395,6 +405,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -421,7 +433,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         is_default: bool | Omit = omit,
         is_default_network: bool | Omit = omit,
@@ -461,6 +473,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -489,7 +503,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -513,6 +527,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
@@ -537,7 +553,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         comment: str | Omit = omit,
         is_default_network: bool | Omit = omit,
         name: str | Omit = omit,
@@ -570,6 +586,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
@@ -602,7 +620,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         self,
         virtual_network_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -626,6 +644,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:

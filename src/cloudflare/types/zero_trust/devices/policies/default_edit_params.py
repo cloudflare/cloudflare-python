@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 from ..split_tunnel_include_param import SplitTunnelIncludeParam
@@ -12,7 +12,7 @@ __all__ = ["DefaultEditParams", "ServiceModeV2"]
 
 
 class DefaultEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     allow_mode_switch: bool
     """Whether to allow the user to switch WARP between modes."""

@@ -8,7 +8,7 @@ __all__ = ["MTLSCertificateCreateParams"]
 
 
 class MTLSCertificateCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     ca: Required[bool]

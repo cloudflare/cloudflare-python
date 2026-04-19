@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ZoneEditParams", "InternalDNS", "Nameservers", "SOA"]
 
 
 class ZoneEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     flatten_all_cnames: bool

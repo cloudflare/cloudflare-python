@@ -48,7 +48,7 @@ class DirectUploadsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         expiry: Union[str, datetime] | Omit = omit,
@@ -96,6 +96,8 @@ class DirectUploadsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -148,7 +150,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         creator: str | Omit = omit,
         expiry: Union[str, datetime] | Omit = omit,
@@ -196,6 +198,8 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be

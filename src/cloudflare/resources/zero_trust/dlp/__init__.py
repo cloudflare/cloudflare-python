@@ -56,6 +56,14 @@ from .profiles import (
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .payload_logs import (
     PayloadLogsResource,
     AsyncPayloadLogsResource,
@@ -84,6 +92,12 @@ __all__ = [
     "AsyncPayloadLogsResourceWithRawResponse",
     "PayloadLogsResourceWithStreamingResponse",
     "AsyncPayloadLogsResourceWithStreamingResponse",
+    "SettingsResource",
+    "AsyncSettingsResource",
+    "SettingsResourceWithRawResponse",
+    "AsyncSettingsResourceWithRawResponse",
+    "SettingsResourceWithStreamingResponse",
+    "AsyncSettingsResourceWithStreamingResponse",
     "EmailResource",
     "AsyncEmailResource",
     "EmailResourceWithRawResponse",

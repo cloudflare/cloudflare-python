@@ -8,7 +8,7 @@ __all__ = ["DatabaseUpdateParams", "ReadReplication"]
 
 
 class DatabaseUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     read_replication: Required[ReadReplication]

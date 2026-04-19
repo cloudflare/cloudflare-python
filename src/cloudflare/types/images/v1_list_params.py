@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["V1ListParams"]
 
 
 class V1ListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     creator: Optional[str]

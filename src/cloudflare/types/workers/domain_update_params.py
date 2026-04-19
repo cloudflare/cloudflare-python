@@ -8,7 +8,7 @@ __all__ = ["DomainUpdateParams"]
 
 
 class DomainUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     hostname: Required[str]

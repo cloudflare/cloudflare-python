@@ -8,6 +8,6 @@ __all__ = ["AdvertisementEditParams"]
 
 
 class AdvertisementEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     body: Required[object]

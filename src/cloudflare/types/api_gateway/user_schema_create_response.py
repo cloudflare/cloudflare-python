@@ -1,33 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .old_public_schema import OldPublicSchema
 
-__all__ = ["UserSchemaCreateResponse", "Schema", "UploadDetails", "UploadDetailsWarning"]
-
-
-class Schema(BaseModel):
-    created_at: datetime
-
-    kind: Literal["openapi_v3"]
-    """Kind of schema"""
-
-    name: str
-    """Name of the schema"""
-
-    schema_id: str
-    """UUID."""
-
-    source: Optional[str] = None
-    """Source of the schema"""
-
-    validation_enabled: Optional[bool] = None
-    """Flag whether schema is enabled for validation."""
+__all__ = ["UserSchemaCreateResponse", "UploadDetails", "UploadDetailsWarning"]
 
 
 class UploadDetailsWarning(BaseModel):
@@ -55,6 +35,6 @@ class UploadDetails(BaseModel):
 
 
 class UserSchemaCreateResponse(BaseModel):
-    schema_: Schema = FieldInfo(alias="schema")
+    schema_: OldPublicSchema = FieldInfo(alias="schema")
 
     upload_details: Optional[UploadDetails] = None

@@ -24,7 +24,7 @@ from .authors import (
     AsyncAuthorsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import ai_run_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -35,6 +35,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .to_markdown import (
+    ToMarkdownResource,
+    AsyncToMarkdownResource,
+    ToMarkdownResourceWithRawResponse,
+    AsyncToMarkdownResourceWithRawResponse,
+    ToMarkdownResourceWithStreamingResponse,
+    AsyncToMarkdownResourceWithStreamingResponse,
+)
 from .models.models import (
     ModelsResource,
     AsyncModelsResource,
@@ -75,6 +83,10 @@ class AIResource(SyncAPIResource):
         return ModelsResource(self._client)
 
     @cached_property
+    def to_markdown(self) -> ToMarkdownResource:
+        return ToMarkdownResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -98,7 +110,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,7 +148,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         guidance: float | Omit = omit,
         height: int | Omit = omit,
@@ -208,7 +220,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -250,7 +262,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -288,7 +300,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         audio: Iterable[float],
         source_lang: str | Omit = omit,
         target_lang: str | Omit = omit,
@@ -334,7 +346,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -373,7 +385,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -412,7 +424,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         frequency_penalty: float | Omit = omit,
         lora: str | Omit = omit,
@@ -491,7 +503,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | Omit = omit,
         functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
@@ -571,7 +583,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         target_lang: str,
         text: str,
         source_lang: str | Omit = omit,
@@ -616,7 +628,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         input_text: str,
         max_length: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -657,7 +669,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float],
         frequency_penalty: float | Omit = omit,
         max_tokens: int | Omit = omit,
@@ -732,7 +744,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str,
         prompt: str,
         frequency_penalty: float | Omit = omit,
@@ -806,7 +818,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str,
         messages: Iterable[ai_run_params.Variant13Message],
         frequency_penalty: float | Omit = omit,
@@ -880,7 +892,7 @@ class AIResource(SyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str | Omit = omit,
         text: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -914,23 +926,11 @@ class AIResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "text"],
-        ["account_id", "prompt"],
-        ["account_id", "audio"],
-        ["account_id", "image"],
-        ["account_id"],
-        ["account_id", "messages"],
-        ["account_id", "target_lang", "text"],
-        ["account_id", "input_text"],
-        ["account_id", "image", "prompt"],
-        ["account_id", "image", "messages"],
-    )
     def run(
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | Omit = omit,
         prompt: str | Omit = omit,
         guidance: float | Omit = omit,
@@ -971,6 +971,8 @@ class AIResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not model_name:
@@ -1051,6 +1053,10 @@ class AsyncAIResource(AsyncAPIResource):
         return AsyncModelsResource(self._client)
 
     @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResource:
+        return AsyncToMarkdownResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -1074,7 +1080,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1112,7 +1118,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         guidance: float | Omit = omit,
         height: int | Omit = omit,
@@ -1184,7 +1190,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         lang: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1226,7 +1232,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1264,7 +1270,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         audio: Iterable[float],
         source_lang: str | Omit = omit,
         target_lang: str | Omit = omit,
@@ -1310,7 +1316,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1349,7 +1355,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1388,7 +1394,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prompt: str,
         frequency_penalty: float | Omit = omit,
         lora: str | Omit = omit,
@@ -1467,7 +1473,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | Omit = omit,
         functions: Iterable[ai_run_params.MessagesFunction] | Omit = omit,
@@ -1547,7 +1553,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         target_lang: str,
         text: str,
         source_lang: str | Omit = omit,
@@ -1592,7 +1598,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         input_text: str,
         max_length: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1633,7 +1639,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: Iterable[float],
         frequency_penalty: float | Omit = omit,
         max_tokens: int | Omit = omit,
@@ -1708,7 +1714,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str,
         prompt: str,
         frequency_penalty: float | Omit = omit,
@@ -1782,7 +1788,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str,
         messages: Iterable[ai_run_params.Variant13Message],
         frequency_penalty: float | Omit = omit,
@@ -1856,7 +1862,7 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         image: str | Omit = omit,
         text: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1890,23 +1896,11 @@ class AsyncAIResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["account_id", "text"],
-        ["account_id", "prompt"],
-        ["account_id", "audio"],
-        ["account_id", "image"],
-        ["account_id"],
-        ["account_id", "messages"],
-        ["account_id", "target_lang", "text"],
-        ["account_id", "input_text"],
-        ["account_id", "image", "prompt"],
-        ["account_id", "image", "messages"],
-    )
     async def run(
         self,
         model_name: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | Omit = omit,
         prompt: str | Omit = omit,
         guidance: float | Omit = omit,
@@ -1947,6 +1941,8 @@ class AsyncAIResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AIRunResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not model_name:
@@ -2033,6 +2029,10 @@ class AIResourceWithRawResponse:
     def models(self) -> ModelsResourceWithRawResponse:
         return ModelsResourceWithRawResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithRawResponse:
+        return ToMarkdownResourceWithRawResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -2057,6 +2057,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithRawResponse:
         return AsyncModelsResourceWithRawResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithRawResponse:
+        return AsyncToMarkdownResourceWithRawResponse(self._ai.to_markdown)
 
 
 class AIResourceWithStreamingResponse:
@@ -2083,6 +2087,10 @@ class AIResourceWithStreamingResponse:
     def models(self) -> ModelsResourceWithStreamingResponse:
         return ModelsResourceWithStreamingResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithStreamingResponse:
+        return ToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -2107,3 +2115,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithStreamingResponse:
         return AsyncModelsResourceWithStreamingResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithStreamingResponse:
+        return AsyncToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)

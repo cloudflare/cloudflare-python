@@ -63,3 +63,6 @@ from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
+from .record_scan_review_params import RecordScanReviewParams as RecordScanReviewParams
+from .record_scan_review_response import RecordScanReviewResponse as RecordScanReviewResponse
+from .record_scan_trigger_response import RecordScanTriggerResponse as RecordScanTriggerResponse

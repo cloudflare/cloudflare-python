@@ -52,7 +52,7 @@ class RulesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal[
             "on",
             "off",
@@ -146,6 +146,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -181,7 +183,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal[
             "on",
             "off",
@@ -277,6 +279,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -313,7 +317,7 @@ class RulesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -333,6 +337,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -348,7 +354,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -370,6 +376,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -390,7 +398,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,6 +420,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -428,11 +438,48 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
+    def list_tenant(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[GatewayRule]:
+        """
+        List Zero Trust Gateway rules for the parent account of an account in the MSP
+        configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/gateway/rules/tenant", account_id=account_id),
+            page=SyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=GatewayRule,
+        )
+
     def reset_expiration(
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,6 +503,8 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -500,7 +549,7 @@ class AsyncRulesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal[
             "on",
             "off",
@@ -594,6 +643,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -629,7 +680,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         action: Literal[
             "on",
             "off",
@@ -725,6 +776,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -761,7 +814,7 @@ class AsyncRulesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -781,6 +834,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -796,7 +851,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -818,6 +873,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -838,7 +895,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -860,6 +917,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -876,11 +935,48 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
+    def list_tenant(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
+        """
+        List Zero Trust Gateway rules for the parent account of an account in the MSP
+        configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/gateway/rules/tenant", account_id=account_id),
+            page=AsyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=GatewayRule,
+        )
+
     async def reset_expiration(
         self,
         rule_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -904,6 +1000,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
@@ -944,6 +1042,9 @@ class RulesResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             rules.get,
         )
+        self.list_tenant = to_raw_response_wrapper(
+            rules.list_tenant,
+        )
         self.reset_expiration = to_raw_response_wrapper(
             rules.reset_expiration,
         )
@@ -967,6 +1068,9 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             rules.get,
+        )
+        self.list_tenant = async_to_raw_response_wrapper(
+            rules.list_tenant,
         )
         self.reset_expiration = async_to_raw_response_wrapper(
             rules.reset_expiration,
@@ -992,6 +1096,9 @@ class RulesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rules.get,
         )
+        self.list_tenant = to_streamed_response_wrapper(
+            rules.list_tenant,
+        )
         self.reset_expiration = to_streamed_response_wrapper(
             rules.reset_expiration,
         )
@@ -1015,6 +1122,9 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             rules.get,
+        )
+        self.list_tenant = async_to_streamed_response_wrapper(
+            rules.list_tenant,
         )
         self.reset_expiration = async_to_streamed_response_wrapper(
             rules.reset_expiration,

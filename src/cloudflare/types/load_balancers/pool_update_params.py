@@ -15,7 +15,7 @@ __all__ = ["PoolUpdateParams"]
 
 
 class PoolUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     name: Required[str]

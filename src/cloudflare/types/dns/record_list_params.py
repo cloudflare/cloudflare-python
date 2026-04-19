@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..shared.sort_direction import SortDirection
 
@@ -10,7 +10,7 @@ __all__ = ["RecordListParams", "Comment", "Content", "Name", "Tag"]
 
 
 class RecordListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     comment: Comment

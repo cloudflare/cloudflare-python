@@ -110,7 +110,7 @@ class CloudflaredResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         config_src: Literal["local", "cloudflare"] | Omit = omit,
         tunnel_secret: str | Omit = omit,
@@ -144,6 +144,8 @@ class CloudflaredResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -169,7 +171,7 @@ class CloudflaredResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -221,6 +223,8 @@ class CloudflaredResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -255,7 +259,7 @@ class CloudflaredResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,6 +283,8 @@ class CloudflaredResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -299,7 +305,7 @@ class CloudflaredResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str | Omit = omit,
         tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -330,6 +336,8 @@ class CloudflaredResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -357,7 +365,7 @@ class CloudflaredResource(SyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,6 +389,8 @@ class CloudflaredResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -441,7 +451,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         config_src: Literal["local", "cloudflare"] | Omit = omit,
         tunnel_secret: str | Omit = omit,
@@ -475,6 +485,8 @@ class AsyncCloudflaredResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -500,7 +512,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -552,6 +564,8 @@ class AsyncCloudflaredResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -586,7 +600,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -610,6 +624,8 @@ class AsyncCloudflaredResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -630,7 +646,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str | Omit = omit,
         tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -661,6 +677,8 @@ class AsyncCloudflaredResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
@@ -688,7 +706,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         self,
         tunnel_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -712,6 +730,8 @@ class AsyncCloudflaredResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:

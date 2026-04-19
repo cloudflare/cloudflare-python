@@ -11,7 +11,7 @@ __all__ = ["OverrideCreateParams"]
 
 
 class OverrideCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier."""
 
     urls: Required[SequenceNotStr[OverrideURL]]

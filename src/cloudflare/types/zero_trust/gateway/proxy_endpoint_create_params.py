@@ -13,7 +13,7 @@ __all__ = [
 
 
 class ZeroTrustGatewayProxyEndpointIPCreate(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
     """Specify the name of the proxy endpoint."""
@@ -23,7 +23,7 @@ class ZeroTrustGatewayProxyEndpointIPCreate(TypedDict, total=False):
 
 
 class ZeroTrustGatewayProxyEndpointIdentityCreate(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     kind: Required[Literal["identity"]]
     """The proxy endpoint kind"""

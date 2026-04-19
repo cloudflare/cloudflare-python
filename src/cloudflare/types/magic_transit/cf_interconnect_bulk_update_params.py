@@ -10,7 +10,7 @@ __all__ = ["CfInterconnectBulkUpdateParams"]
 
 
 class CfInterconnectBulkUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     body: Required[object]

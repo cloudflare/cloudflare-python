@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -12,7 +12,7 @@ __all__ = ["TokenCreateParams", "AccessRule", "Flags"]
 
 
 class TokenCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account identifier tag."""
 
     id: str

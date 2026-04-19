@@ -10,9 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.api_gateway.settings import (
-    SchemaValidationGetResponse,
-    SchemaValidationEditResponse,
-    SchemaValidationUpdateResponse,
+    Settings,
 )
 
 # pyright: reportDeprecated=false
@@ -31,7 +29,7 @@ class TestSchemaValidation:
                 validation_default_mitigation_action="block",
             )
 
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -42,7 +40,7 @@ class TestSchemaValidation:
                 validation_override_mitigation_action="none",
             )
 
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -55,7 +53,7 @@ class TestSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = response.parse()
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -68,7 +66,7 @@ class TestSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = response.parse()
-                assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +86,7 @@ class TestSchemaValidation:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -99,7 +97,7 @@ class TestSchemaValidation:
                 validation_override_mitigation_action="none",
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -111,7 +109,7 @@ class TestSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = response.parse()
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -123,7 +121,7 @@ class TestSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = response.parse()
-                assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -142,7 +140,7 @@ class TestSchemaValidation:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -154,7 +152,7 @@ class TestSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = response.parse()
-        assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -166,7 +164,7 @@ class TestSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = response.parse()
-                assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,7 +190,7 @@ class TestAsyncSchemaValidation:
                 validation_default_mitigation_action="block",
             )
 
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -203,7 +201,7 @@ class TestAsyncSchemaValidation:
                 validation_override_mitigation_action="none",
             )
 
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -216,7 +214,7 @@ class TestAsyncSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = await response.parse()
-        assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -229,7 +227,7 @@ class TestAsyncSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = await response.parse()
-                assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -249,7 +247,7 @@ class TestAsyncSchemaValidation:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -260,7 +258,7 @@ class TestAsyncSchemaValidation:
                 validation_override_mitigation_action="none",
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -272,7 +270,7 @@ class TestAsyncSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = await response.parse()
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -284,7 +282,7 @@ class TestAsyncSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = await response.parse()
-                assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,7 +301,7 @@ class TestAsyncSchemaValidation:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -315,7 +313,7 @@ class TestAsyncSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = await response.parse()
-        assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+        assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -327,7 +325,7 @@ class TestAsyncSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = await response.parse()
-                assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
+                assert_matches_type(Settings, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

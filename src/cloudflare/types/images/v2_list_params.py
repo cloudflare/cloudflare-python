@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -11,7 +11,7 @@ __all__ = ["V2ListParams", "Meta"]
 
 
 class V2ListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     continuation_token: Optional[str]

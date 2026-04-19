@@ -21,7 +21,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schema_validation import schema_get_params, schema_edit_params, schema_list_params, schema_create_params
-from ...types.api_gateway.public_schema import PublicSchema
+from ...types.schema_validation.public_schema import PublicSchema
 from ...types.schema_validation.schema_delete_response import SchemaDeleteResponse
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
@@ -50,7 +50,7 @@ class SchemasResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         kind: Literal["openapi_v3"],
         name: str,
         source: str,
@@ -86,6 +86,8 @@ class SchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -112,7 +114,7 @@ class SchemasResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         omit_source: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -146,6 +148,8 @@ class SchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -173,7 +177,7 @@ class SchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,6 +203,8 @@ class SchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -221,7 +227,7 @@ class SchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,6 +255,8 @@ class SchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -272,7 +280,7 @@ class SchemasResource(SyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -300,6 +308,8 @@ class SchemasResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -343,7 +353,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         kind: Literal["openapi_v3"],
         name: str,
         source: str,
@@ -379,6 +389,8 @@ class AsyncSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -405,7 +417,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         omit_source: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -439,6 +451,8 @@ class AsyncSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -466,7 +480,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -492,6 +506,8 @@ class AsyncSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -514,7 +530,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -542,6 +558,8 @@ class AsyncSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
@@ -567,7 +585,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         schema_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -595,6 +613,8 @@ class AsyncSchemasResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:

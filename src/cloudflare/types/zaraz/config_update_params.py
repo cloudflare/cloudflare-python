@@ -60,7 +60,7 @@ __all__ = [
 
 
 class ConfigUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     data_layer: Required[Annotated[bool, PropertyInfo(alias="dataLayer")]]

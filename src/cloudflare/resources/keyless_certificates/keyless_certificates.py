@@ -52,7 +52,7 @@ class KeylessCertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         host: str,
         port: float,
@@ -97,6 +97,8 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -125,7 +127,7 @@ class KeylessCertificatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,6 +149,8 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -162,7 +166,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,6 +192,8 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
@@ -216,7 +222,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         enabled: bool | Omit = omit,
         host: str | Omit = omit,
         name: str | Omit = omit,
@@ -258,6 +264,8 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
@@ -294,7 +302,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,6 +326,8 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
@@ -364,7 +374,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         certificate: str,
         host: str,
         port: float,
@@ -409,6 +419,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -437,7 +449,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,6 +471,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -474,7 +488,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -500,6 +514,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
@@ -528,7 +544,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         enabled: bool | Omit = omit,
         host: str | Omit = omit,
         name: str | Omit = omit,
@@ -570,6 +586,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
@@ -606,7 +624,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         self,
         keyless_certificate_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -630,6 +648,8 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:

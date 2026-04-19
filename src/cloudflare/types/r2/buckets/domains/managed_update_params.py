@@ -10,7 +10,7 @@ __all__ = ["ManagedUpdateParams"]
 
 
 class ManagedUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     enabled: Required[bool]

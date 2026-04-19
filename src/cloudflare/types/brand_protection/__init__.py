@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .match_get_params import MatchGetParams as MatchGetParams
+from .query_bulk_params import QueryBulkParams as QueryBulkParams
 from .logo_create_params import LogoCreateParams as LogoCreateParams
 from .match_get_response import MatchGetResponse as MatchGetResponse
 from .query_create_params import QueryCreateParams as QueryCreateParams

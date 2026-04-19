@@ -11,7 +11,7 @@ __all__ = ["ConfigCreateParams", "WARPDevice"]
 
 
 class ConfigCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     default_sampling: Required[float]
     """Fallback sampling rate of flow messages being sent in packets per second.

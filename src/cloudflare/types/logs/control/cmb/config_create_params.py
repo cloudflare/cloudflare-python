@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ConfigCreateParams"]
 
 
 class ConfigCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     allow_out_of_region_access: bool

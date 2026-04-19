@@ -1,0 +1,1692 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import os
+from typing import Any, cast
+
+import pytest
+
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.aisearch.namespaces import (
+    InstanceListResponse,
+    InstanceReadResponse,
+    InstanceStatsResponse,
+    InstanceCreateResponse,
+    InstanceDeleteResponse,
+    InstanceSearchResponse,
+    InstanceUpdateResponse,
+    InstanceChatCompletionsResponse,
+)
+
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+
+class TestInstances:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        )
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+            ai_gateway_id="ai_gateway_id",
+            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
+            chunk=True,
+            chunk_overlap=0,
+            chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
+            hybrid_search_enabled=True,
+            index_method={
+                "keyword": True,
+                "vector": True,
+            },
+            indexing_options={"keyword_tokenizer": "porter"},
+            max_num_results=1,
+            metadata={
+                "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
+                "worker_domain": "worker_domain",
+            },
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "enabled": True,
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
+            reranking=True,
+            reranking_model="@cf/baai/bge-reranker-base",
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "and",
+            },
+            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_query=True,
+            score_threshold=0,
+            source="source",
+            source_params={
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
+                "prefix": "prefix",
+                "r2_jurisdiction": "r2_jurisdiction",
+                "web_crawler": {
+                    "crawl_options": {
+                        "depth": 1,
+                        "include_external_links": True,
+                        "include_subdomains": True,
+                        "max_age": 0,
+                        "source": "all",
+                    },
+                    "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
+                        "include_headers": {"foo": "string"},
+                        "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
+                        "use_browser_rendering": True,
+                    },
+                    "parse_type": "sitemap",
+                    "store_options": {
+                        "storage_id": "storage_id",
+                        "r2_jurisdiction": "r2_jurisdiction",
+                        "storage_type": "r2",
+                    },
+                },
+            },
+            sync_interval=900,
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="r2",
+        )
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.create(
+                name="my-namespace",
+                account_id="",
+                id="my-ai-search",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.create(
+                name="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                id="my-ai-search",
+            )
+
+    @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            ai_gateway_id="ai_gateway_id",
+            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
+            chunk=True,
+            chunk_overlap=0,
+            chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
+            index_method={
+                "keyword": True,
+                "vector": True,
+            },
+            indexing_options={"keyword_tokenizer": "porter"},
+            max_num_results=1,
+            metadata={
+                "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
+                "worker_domain": "worker_domain",
+            },
+            paused=True,
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "enabled": True,
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
+            reranking=True,
+            reranking_model="@cf/baai/bge-reranker-base",
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "and",
+            },
+            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_query=True,
+            score_threshold=0,
+            source_params={
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
+                "prefix": "prefix",
+                "r2_jurisdiction": "r2_jurisdiction",
+                "web_crawler": {
+                    "crawl_options": {
+                        "depth": 1,
+                        "include_external_links": True,
+                        "include_subdomains": True,
+                        "max_age": 0,
+                        "source": "all",
+                    },
+                    "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
+                        "include_headers": {"foo": "string"},
+                        "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
+                        "use_browser_rendering": True,
+                    },
+                    "parse_type": "sitemap",
+                    "store_options": {
+                        "storage_id": "storage_id",
+                        "r2_jurisdiction": "r2_jurisdiction",
+                        "storage_type": "r2",
+                    },
+                },
+            },
+            summarization=True,
+            summarization_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            sync_interval=900,
+            system_prompt_aisearch="system_prompt_ai_search",
+            system_prompt_index_summarization="system_prompt_index_summarization",
+            system_prompt_rewrite_query="system_prompt_rewrite_query",
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.update(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.update(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.update(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        )
+        assert_matches_type(SyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="namespace",
+            order_by="created_at",
+            order_by_direction="asc",
+            page=1,
+            per_page=1,
+            search="search",
+        )
+        assert_matches_type(SyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(SyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(SyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.list(
+                name="my-namespace",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.list(
+                name="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            )
+
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    def test_method_chat_completions(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_chat_completions_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
+                    "context_expansion": 0,
+                    "filters": {"foo": "bar"},
+                    "fusion_method": "max",
+                    "keyword_match_mode": "and",
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                    "return_on_failure": True,
+                },
+            },
+            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            stream=True,
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_chat_completions(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_chat_completions(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_chat_completions(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+    @parametrize
+    def test_method_read(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_read(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_read(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_read(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.read(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.read(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.read(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    def test_method_search(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_search_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
+                    "context_expansion": 0,
+                    "filters": {"foo": "bar"},
+                    "fusion_method": "max",
+                    "keyword_match_mode": "and",
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                    "return_on_failure": True,
+                },
+            },
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            query="x",
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_search(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_search(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_search(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.search(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    def test_method_stats(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_stats(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_stats(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_stats(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+
+class TestAsyncInstances:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        )
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+            ai_gateway_id="ai_gateway_id",
+            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
+            chunk=True,
+            chunk_overlap=0,
+            chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
+            hybrid_search_enabled=True,
+            index_method={
+                "keyword": True,
+                "vector": True,
+            },
+            indexing_options={"keyword_tokenizer": "porter"},
+            max_num_results=1,
+            metadata={
+                "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
+                "worker_domain": "worker_domain",
+            },
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "enabled": True,
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
+            reranking=True,
+            reranking_model="@cf/baai/bge-reranker-base",
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "and",
+            },
+            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_query=True,
+            score_threshold=0,
+            source="source",
+            source_params={
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
+                "prefix": "prefix",
+                "r2_jurisdiction": "r2_jurisdiction",
+                "web_crawler": {
+                    "crawl_options": {
+                        "depth": 1,
+                        "include_external_links": True,
+                        "include_subdomains": True,
+                        "max_age": 0,
+                        "source": "all",
+                    },
+                    "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
+                        "include_headers": {"foo": "string"},
+                        "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
+                        "use_browser_rendering": True,
+                    },
+                    "parse_type": "sitemap",
+                    "store_options": {
+                        "storage_id": "storage_id",
+                        "r2_jurisdiction": "r2_jurisdiction",
+                        "storage_type": "r2",
+                    },
+                },
+            },
+            sync_interval=900,
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="r2",
+        )
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.create(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            id="my-ai-search",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceCreateResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.create(
+                name="my-namespace",
+                account_id="",
+                id="my-ai-search",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.create(
+                name="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                id="my-ai-search",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            ai_gateway_id="ai_gateway_id",
+            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            cache=True,
+            cache_threshold="super_strict_match",
+            chunk=True,
+            chunk_overlap=0,
+            chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            fusion_method="max",
+            index_method={
+                "keyword": True,
+                "vector": True,
+            },
+            indexing_options={"keyword_tokenizer": "porter"},
+            max_num_results=1,
+            metadata={
+                "created_from_aisearch_wizard": True,
+                "search_for_agents": {
+                    "hostname": "hostname",
+                    "zone_id": "zone_id",
+                    "zone_name": "zone_name",
+                },
+                "worker_domain": "worker_domain",
+            },
+            paused=True,
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "enabled": True,
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
+            reranking=True,
+            reranking_model="@cf/baai/bge-reranker-base",
+            retrieval_options={
+                "boost_by": [
+                    {
+                        "field": "timestamp",
+                        "direction": "desc",
+                    }
+                ],
+                "keyword_match_mode": "and",
+            },
+            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_query=True,
+            score_threshold=0,
+            source_params={
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
+                "prefix": "prefix",
+                "r2_jurisdiction": "r2_jurisdiction",
+                "web_crawler": {
+                    "crawl_options": {
+                        "depth": 1,
+                        "include_external_links": True,
+                        "include_subdomains": True,
+                        "max_age": 0,
+                        "source": "all",
+                    },
+                    "parse_options": {
+                        "content_selector": [
+                            {
+                                "path": "**/blog/**",
+                                "selector": "article .post-body",
+                            }
+                        ],
+                        "include_headers": {"foo": "string"},
+                        "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
+                        "use_browser_rendering": True,
+                    },
+                    "parse_type": "sitemap",
+                    "store_options": {
+                        "storage_id": "storage_id",
+                        "r2_jurisdiction": "r2_jurisdiction",
+                        "storage_type": "r2",
+                    },
+                },
+            },
+            summarization=True,
+            summarization_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            sync_interval=900,
+            system_prompt_aisearch="system_prompt_ai_search",
+            system_prompt_index_summarization="system_prompt_index_summarization",
+            system_prompt_rewrite_query="system_prompt_rewrite_query",
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.update(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.update(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.update(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="namespace",
+            order_by="created_at",
+            order_by_direction="asc",
+            page=1,
+            per_page=1,
+            search="search",
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(AsyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.list(
+            name="my-namespace",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(AsyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.list(
+                name="my-namespace",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.list(
+                name="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.delete(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.delete(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    async def test_method_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_chat_completions_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
+                    "context_expansion": 0,
+                    "filters": {"foo": "bar"},
+                    "fusion_method": "max",
+                    "keyword_match_mode": "and",
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                    "return_on_failure": True,
+                },
+            },
+            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            stream=True,
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+    @parametrize
+    async def test_method_read(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_read(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_read(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.read(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceReadResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_read(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.read(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.read(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.read(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    async def test_method_search(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_search_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            aisearch_options={
+                "cache": {
+                    "cache_threshold": "super_strict_match",
+                    "enabled": True,
+                },
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "boost_by": [
+                        {
+                            "field": "timestamp",
+                            "direction": "desc",
+                        }
+                    ],
+                    "context_expansion": 0,
+                    "filters": {"foo": "bar"},
+                    "fusion_method": "max",
+                    "keyword_match_mode": "and",
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                    "return_on_failure": True,
+                },
+            },
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            query="x",
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_search(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_search(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_search(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.search(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )
+
+    @parametrize
+    async def test_method_stats(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+        assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_stats(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_stats(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.stats(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceStatsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_stats(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="my-ai-search",
+                account_id="",
+                name="my-namespace",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="my-ai-search",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.stats(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                name="my-namespace",
+            )

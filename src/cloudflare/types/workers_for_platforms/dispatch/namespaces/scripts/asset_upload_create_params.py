@@ -9,7 +9,7 @@ __all__ = ["AssetUploadCreateParams", "Manifest"]
 
 
 class AssetUploadCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     dispatch_namespace: Required[str]

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = [
     "BotManagementUpdateParams",
@@ -15,7 +15,7 @@ __all__ = [
 
 
 class BotFightModeConfiguration(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -49,7 +49,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -96,7 +96,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
 
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -146,7 +146,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
 
 class SubscriptionConfiguration(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]

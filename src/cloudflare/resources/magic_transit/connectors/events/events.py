@@ -61,7 +61,7 @@ class EventsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: float,
         to: float,
         cursor: str | Omit = omit,
@@ -90,6 +90,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
@@ -124,7 +126,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_n: float,
         *,
-        account_id: str,
+        account_id: str | None = None,
         connector_id: str,
         event_t: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -148,6 +150,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
@@ -199,7 +203,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: float,
         to: float,
         cursor: str | Omit = omit,
@@ -228,6 +232,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
@@ -262,7 +268,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_n: float,
         *,
-        account_id: str,
+        account_id: str | None = None,
         connector_id: str,
         event_t: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -286,6 +292,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:

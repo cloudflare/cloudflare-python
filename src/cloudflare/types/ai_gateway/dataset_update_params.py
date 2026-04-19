@@ -11,7 +11,7 @@ __all__ = ["DatasetUpdateParams", "Filter"]
 
 
 class DatasetUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     gateway_id: Required[str]
     """gateway id"""

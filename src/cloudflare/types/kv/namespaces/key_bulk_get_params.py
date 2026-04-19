@@ -11,7 +11,7 @@ __all__ = ["KeyBulkGetParams"]
 
 
 class KeyBulkGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     keys: Required[SequenceNotStr[str]]

@@ -51,7 +51,7 @@ class WebhooksResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         url: str,
         secret: str | Omit = omit,
@@ -85,6 +85,8 @@ class WebhooksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -111,7 +113,7 @@ class WebhooksResource(SyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         url: str,
         secret: str | Omit = omit,
@@ -147,6 +149,8 @@ class WebhooksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
@@ -178,7 +182,7 @@ class WebhooksResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,6 +204,8 @@ class WebhooksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -215,7 +221,7 @@ class WebhooksResource(SyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,6 +245,8 @@ class WebhooksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
@@ -259,7 +267,7 @@ class WebhooksResource(SyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,6 +291,8 @@ class WebhooksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
@@ -327,7 +337,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         url: str,
         secret: str | Omit = omit,
@@ -361,6 +371,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -387,7 +399,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         url: str,
         secret: str | Omit = omit,
@@ -423,6 +435,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
@@ -454,7 +468,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,6 +490,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -491,7 +507,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -515,6 +531,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
@@ -535,7 +553,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         self,
         webhook_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,6 +577,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:

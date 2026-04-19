@@ -36,6 +36,14 @@ from .inference.inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
+from .markdown_for_agents import (
+    MarkdownForAgentsResource,
+    AsyncMarkdownForAgentsResource,
+    MarkdownForAgentsResourceWithRawResponse,
+    AsyncMarkdownForAgentsResourceWithRawResponse,
+    MarkdownForAgentsResourceWithStreamingResponse,
+    AsyncMarkdownForAgentsResourceWithStreamingResponse,
+)
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
@@ -56,6 +64,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsResource:
         return TimeseriesGroupsResource(self._client)
+
+    @cached_property
+    def markdown_for_agents(self) -> MarkdownForAgentsResource:
+        return MarkdownForAgentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -93,6 +105,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
         return AsyncTimeseriesGroupsResource(self._client)
+
+    @cached_property
+    def markdown_for_agents(self) -> AsyncMarkdownForAgentsResource:
+        return AsyncMarkdownForAgentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -134,6 +150,10 @@ class AIResourceWithRawResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._ai.timeseries_groups)
 
+    @cached_property
+    def markdown_for_agents(self) -> MarkdownForAgentsResourceWithRawResponse:
+        return MarkdownForAgentsResourceWithRawResponse(self._ai.markdown_for_agents)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -154,6 +174,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._ai.timeseries_groups)
+
+    @cached_property
+    def markdown_for_agents(self) -> AsyncMarkdownForAgentsResourceWithRawResponse:
+        return AsyncMarkdownForAgentsResourceWithRawResponse(self._ai.markdown_for_agents)
 
 
 class AIResourceWithStreamingResponse:
@@ -176,6 +200,10 @@ class AIResourceWithStreamingResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._ai.timeseries_groups)
 
+    @cached_property
+    def markdown_for_agents(self) -> MarkdownForAgentsResourceWithStreamingResponse:
+        return MarkdownForAgentsResourceWithStreamingResponse(self._ai.markdown_for_agents)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -196,3 +224,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._ai.timeseries_groups)
+
+    @cached_property
+    def markdown_for_agents(self) -> AsyncMarkdownForAgentsResourceWithStreamingResponse:
+        return AsyncMarkdownForAgentsResourceWithStreamingResponse(self._ai.markdown_for_agents)

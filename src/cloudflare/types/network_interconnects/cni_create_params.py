@@ -11,7 +11,7 @@ __all__ = ["CNICreateParams", "Magic", "BGP"]
 
 
 class CNICreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Customer account tag"""
 
     account: Required[str]

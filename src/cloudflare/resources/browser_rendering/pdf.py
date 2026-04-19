@@ -51,7 +51,7 @@ class PDFResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -188,7 +188,7 @@ class PDFResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -320,11 +320,11 @@ class PDFResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "html"], ["account_id", "url"])
+    @required_args(["html"], ["url"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -404,6 +404,8 @@ class PDFResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
@@ -470,7 +472,7 @@ class AsyncPDFResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -607,7 +609,7 @@ class AsyncPDFResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -739,11 +741,11 @@ class AsyncPDFResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "html"], ["account_id", "url"])
+    @required_args(["html"], ["url"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -823,6 +825,8 @@ class AsyncPDFResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}

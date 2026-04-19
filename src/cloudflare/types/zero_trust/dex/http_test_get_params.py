@@ -11,7 +11,7 @@ __all__ = ["HTTPTestGetParams"]
 
 
 class HTTPTestGetParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start time for aggregate metrics in ISO ms"""

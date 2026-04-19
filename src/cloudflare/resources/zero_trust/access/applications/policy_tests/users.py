@@ -48,7 +48,7 @@ class UsersResource(SyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["success", "fail", "error"] | Omit = omit,
@@ -79,6 +79,8 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
@@ -132,7 +134,7 @@ class AsyncUsersResource(AsyncAPIResource):
         self,
         policy_test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["success", "fail", "error"] | Omit = omit,
@@ -163,6 +165,8 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:

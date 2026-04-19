@@ -64,8 +64,8 @@ class CertificatesResource(SyncAPIResource):
         *,
         certificate: str,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         associated_hostnames: SequenceNotStr[AssociatedHostnames] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -96,6 +96,10 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -137,8 +141,8 @@ class CertificatesResource(SyncAPIResource):
         certificate_id: str,
         *,
         associated_hostnames: SequenceNotStr[AssociatedHostnames],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -171,6 +175,10 @@ class CertificatesResource(SyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -210,8 +218,8 @@ class CertificatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -241,6 +249,10 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -280,8 +292,8 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,6 +321,10 @@ class CertificatesResource(SyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -342,8 +358,8 @@ class CertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -371,6 +387,10 @@ class CertificatesResource(SyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -430,8 +450,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         *,
         certificate: str,
         name: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         associated_hostnames: SequenceNotStr[AssociatedHostnames] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -462,6 +482,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -503,8 +527,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         certificate_id: str,
         *,
         associated_hostnames: SequenceNotStr[AssociatedHostnames],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -537,6 +561,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -576,8 +604,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -607,6 +635,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -646,8 +678,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -675,6 +707,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -708,8 +744,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -737,6 +773,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

@@ -11,7 +11,7 @@ __all__ = ["LocationCreateParams", "Network"]
 
 
 class LocationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
     """Specify the location name."""

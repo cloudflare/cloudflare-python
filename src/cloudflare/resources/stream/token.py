@@ -48,7 +48,7 @@ class TokenResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
@@ -104,6 +104,8 @@ class TokenResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -159,7 +161,7 @@ class AsyncTokenResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         id: str | Omit = omit,
         access_rules: Iterable[token_create_params.AccessRule] | Omit = omit,
         downloadable: bool | Omit = omit,
@@ -215,6 +217,8 @@ class AsyncTokenResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:

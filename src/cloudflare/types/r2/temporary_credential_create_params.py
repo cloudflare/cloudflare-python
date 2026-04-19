@@ -11,7 +11,7 @@ __all__ = ["TemporaryCredentialCreateParams"]
 
 
 class TemporaryCredentialCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     bucket: Required[str]

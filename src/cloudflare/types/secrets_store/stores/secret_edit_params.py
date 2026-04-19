@@ -10,7 +10,7 @@ __all__ = ["SecretEditParams"]
 
 
 class SecretEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account Identifier"""
 
     store_id: Required[str]

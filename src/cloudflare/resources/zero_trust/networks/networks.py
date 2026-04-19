@@ -12,6 +12,14 @@ from .routes.routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
+from .hostname_routes import (
+    HostnameRoutesResource,
+    AsyncHostnameRoutesResource,
+    HostnameRoutesResourceWithRawResponse,
+    AsyncHostnameRoutesResourceWithRawResponse,
+    HostnameRoutesResourceWithStreamingResponse,
+    AsyncHostnameRoutesResourceWithStreamingResponse,
+)
 from .subnets.subnets import (
     SubnetsResource,
     AsyncSubnetsResource,
@@ -46,6 +54,10 @@ class NetworksResource(SyncAPIResource):
         return SubnetsResource(self._client)
 
     @cached_property
+    def hostname_routes(self) -> HostnameRoutesResource:
+        return HostnameRoutesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -77,6 +89,10 @@ class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def subnets(self) -> AsyncSubnetsResource:
         return AsyncSubnetsResource(self._client)
+
+    @cached_property
+    def hostname_routes(self) -> AsyncHostnameRoutesResource:
+        return AsyncHostnameRoutesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
@@ -114,6 +130,10 @@ class NetworksResourceWithRawResponse:
     def subnets(self) -> SubnetsResourceWithRawResponse:
         return SubnetsResourceWithRawResponse(self._networks.subnets)
 
+    @cached_property
+    def hostname_routes(self) -> HostnameRoutesResourceWithRawResponse:
+        return HostnameRoutesResourceWithRawResponse(self._networks.hostname_routes)
+
 
 class AsyncNetworksResourceWithRawResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
@@ -130,6 +150,10 @@ class AsyncNetworksResourceWithRawResponse:
     @cached_property
     def subnets(self) -> AsyncSubnetsResourceWithRawResponse:
         return AsyncSubnetsResourceWithRawResponse(self._networks.subnets)
+
+    @cached_property
+    def hostname_routes(self) -> AsyncHostnameRoutesResourceWithRawResponse:
+        return AsyncHostnameRoutesResourceWithRawResponse(self._networks.hostname_routes)
 
 
 class NetworksResourceWithStreamingResponse:
@@ -148,6 +172,10 @@ class NetworksResourceWithStreamingResponse:
     def subnets(self) -> SubnetsResourceWithStreamingResponse:
         return SubnetsResourceWithStreamingResponse(self._networks.subnets)
 
+    @cached_property
+    def hostname_routes(self) -> HostnameRoutesResourceWithStreamingResponse:
+        return HostnameRoutesResourceWithStreamingResponse(self._networks.hostname_routes)
+
 
 class AsyncNetworksResourceWithStreamingResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
@@ -164,3 +192,7 @@ class AsyncNetworksResourceWithStreamingResponse:
     @cached_property
     def subnets(self) -> AsyncSubnetsResourceWithStreamingResponse:
         return AsyncSubnetsResourceWithStreamingResponse(self._networks.subnets)
+
+    @cached_property
+    def hostname_routes(self) -> AsyncHostnameRoutesResourceWithStreamingResponse:
+        return AsyncHostnameRoutesResourceWithStreamingResponse(self._networks.hostname_routes)

@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import Any, Type, Optional, cast
-from typing_extensions import Literal, overload
 
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -18,9 +17,12 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dlp.entries import custom_create_params, custom_update_params
 from .....types.zero_trust.dlp.profiles.pattern_param import PatternParam
+from .....types.zero_trust.dlp.entries.custom_get_response import CustomGetResponse
+from .....types.zero_trust.dlp.entries.custom_list_response import CustomListResponse
 from .....types.zero_trust.dlp.entries.custom_create_response import CustomCreateResponse
 from .....types.zero_trust.dlp.entries.custom_update_response import CustomUpdateResponse
 
@@ -50,7 +52,7 @@ class CustomResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         enabled: bool,
         name: str,
         pattern: PatternParam,
@@ -75,6 +77,8 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -99,17 +103,15 @@ class CustomResource(SyncAPIResource):
             cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
 
-    @overload
     def update(
         self,
         entry_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
+        enabled: bool,
         name: str,
         pattern: PatternParam,
-        type: Literal["custom"],
         description: Optional[str] | Omit = omit,
-        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,7 +120,7 @@ class CustomResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomUpdateResponse]:
         """
-        Updates a DLP entry.
+        Updates a DLP custom entry.
 
         Args:
           extra_headers: Send extra headers
@@ -129,122 +131,76 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        type: Literal["predefined"],
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
-        """
-        Updates a DLP entry.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        type: Literal["integration"],
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
-        """
-        Updates a DLP entry.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "name", "pattern", "type"], ["account_id", "type"])
-    def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        name: str | Omit = omit,
-        pattern: PatternParam | Omit = omit,
-        type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
-        description: Optional[str] | Omit = omit,
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
-        return cast(
-            Optional[CustomUpdateResponse],
-            self._put(
-                path_template(
-                    "/accounts/{account_id}/dlp/entries/{entry_id}", account_id=account_id, entry_id=entry_id
-                ),
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "pattern": pattern,
-                        "type": type,
-                        "description": description,
-                        "enabled": enabled,
-                    },
-                    custom_update_params.CustomUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            path_template(
+                "/accounts/{account_id}/dlp/entries/custom/{entry_id}", account_id=account_id, entry_id=entry_id
             ),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "name": name,
+                    "pattern": pattern,
+                    "description": description,
+                },
+                custom_update_params.CustomUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomUpdateResponse]], ResultWrapper[CustomUpdateResponse]),
+        )
+
+    def list(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[CustomListResponse]:
+        """
+        Lists all DLP entries in an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/dlp/entries", account_id=account_id),
+            page=SyncSinglePage[CustomListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, CustomListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
         self,
         entry_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +220,8 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not entry_id:
@@ -278,6 +236,55 @@ class CustomResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def get(
+        self,
+        entry_id: str,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CustomGetResponse]:
+        """
+        Fetches a DLP entry by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not entry_id:
+            raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
+        return cast(
+            Optional[CustomGetResponse],
+            self._get(
+                path_template(
+                    "/accounts/{account_id}/dlp/entries/{entry_id}", account_id=account_id, entry_id=entry_id
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CustomGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
 
@@ -304,7 +311,7 @@ class AsyncCustomResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         enabled: bool,
         name: str,
         pattern: PatternParam,
@@ -329,6 +336,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -353,17 +362,15 @@ class AsyncCustomResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
 
-    @overload
     async def update(
         self,
         entry_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
+        enabled: bool,
         name: str,
         pattern: PatternParam,
-        type: Literal["custom"],
         description: Optional[str] | Omit = omit,
-        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,7 +379,7 @@ class AsyncCustomResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomUpdateResponse]:
         """
-        Updates a DLP entry.
+        Updates a DLP custom entry.
 
         Args:
           extra_headers: Send extra headers
@@ -383,122 +390,76 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        type: Literal["predefined"],
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
-        """
-        Updates a DLP entry.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        type: Literal["integration"],
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
-        """
-        Updates a DLP entry.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "name", "pattern", "type"], ["account_id", "type"])
-    async def update(
-        self,
-        entry_id: str,
-        *,
-        account_id: str,
-        name: str | Omit = omit,
-        pattern: PatternParam | Omit = omit,
-        type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
-        description: Optional[str] | Omit = omit,
-        enabled: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CustomUpdateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
-        return cast(
-            Optional[CustomUpdateResponse],
-            await self._put(
-                path_template(
-                    "/accounts/{account_id}/dlp/entries/{entry_id}", account_id=account_id, entry_id=entry_id
-                ),
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "pattern": pattern,
-                        "type": type,
-                        "description": description,
-                        "enabled": enabled,
-                    },
-                    custom_update_params.CustomUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            path_template(
+                "/accounts/{account_id}/dlp/entries/custom/{entry_id}", account_id=account_id, entry_id=entry_id
             ),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "name": name,
+                    "pattern": pattern,
+                    "description": description,
+                },
+                custom_update_params.CustomUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomUpdateResponse]], ResultWrapper[CustomUpdateResponse]),
+        )
+
+    def list(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[CustomListResponse, AsyncSinglePage[CustomListResponse]]:
+        """
+        Lists all DLP entries in an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/dlp/entries", account_id=account_id),
+            page=AsyncSinglePage[CustomListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, CustomListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
         self,
         entry_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -518,6 +479,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not entry_id:
@@ -534,6 +497,55 @@ class AsyncCustomResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        entry_id: str,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CustomGetResponse]:
+        """
+        Fetches a DLP entry by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not entry_id:
+            raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
+        return cast(
+            Optional[CustomGetResponse],
+            await self._get(
+                path_template(
+                    "/accounts/{account_id}/dlp/entries/{entry_id}", account_id=account_id, entry_id=entry_id
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CustomGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class CustomResourceWithRawResponse:
     def __init__(self, custom: CustomResource) -> None:
@@ -545,8 +557,14 @@ class CustomResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             custom.update,
         )
+        self.list = to_raw_response_wrapper(
+            custom.list,
+        )
         self.delete = to_raw_response_wrapper(
             custom.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            custom.get,
         )
 
 
@@ -560,8 +578,14 @@ class AsyncCustomResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             custom.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            custom.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             custom.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            custom.get,
         )
 
 
@@ -575,8 +599,14 @@ class CustomResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             custom.update,
         )
+        self.list = to_streamed_response_wrapper(
+            custom.list,
+        )
         self.delete = to_streamed_response_wrapper(
             custom.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            custom.get,
         )
 
 
@@ -590,6 +620,12 @@ class AsyncCustomResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             custom.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            custom.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             custom.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            custom.get,
         )

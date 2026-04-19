@@ -8,7 +8,7 @@ __all__ = ["WebhookUpdateParams"]
 
 
 class WebhookUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The account id"""
 
     name: Required[str]

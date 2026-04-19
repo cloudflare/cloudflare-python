@@ -47,7 +47,7 @@ class AssetsResource(SyncAPIResource):
         self,
         finetune_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         file: FileTypes | Omit = omit,
         file_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,6 +69,8 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not finetune_id:
@@ -123,7 +125,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         self,
         finetune_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         file: FileTypes | Omit = omit,
         file_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -145,6 +147,8 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not finetune_id:

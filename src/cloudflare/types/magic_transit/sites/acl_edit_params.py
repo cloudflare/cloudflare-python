@@ -12,7 +12,7 @@ __all__ = ["ACLEditParams"]
 
 
 class ACLEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier"""
 
     site_id: Required[str]

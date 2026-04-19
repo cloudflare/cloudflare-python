@@ -56,7 +56,7 @@ class WidgetsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
@@ -129,6 +129,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -170,7 +172,7 @@ class WidgetsResource(SyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
@@ -220,6 +222,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -254,7 +258,7 @@ class WidgetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
@@ -301,6 +305,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -329,7 +335,7 @@ class WidgetsResource(SyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -353,6 +359,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -375,7 +383,7 @@ class WidgetsResource(SyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,6 +407,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -421,7 +431,7 @@ class WidgetsResource(SyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         invalidate_immediately: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -454,6 +464,8 @@ class WidgetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -501,7 +513,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
@@ -574,6 +586,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -615,7 +629,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
@@ -665,6 +679,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -699,7 +715,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
@@ -746,6 +762,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -774,7 +792,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -798,6 +816,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -820,7 +840,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -844,6 +864,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:
@@ -866,7 +888,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         self,
         sitekey: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         invalidate_immediately: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -899,6 +921,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sitekey:

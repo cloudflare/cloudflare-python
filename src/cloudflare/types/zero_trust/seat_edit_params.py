@@ -9,7 +9,7 @@ __all__ = ["SeatEditParams", "Body"]
 
 
 class SeatEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     body: Required[Iterable[Body]]

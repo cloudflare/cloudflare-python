@@ -32,7 +32,7 @@ __all__ = [
 
 
 class Variant0(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     elements: Required[Iterable[Variant0Element]]
@@ -273,7 +273,7 @@ class Variant0WaitForSelector(TypedDict, total=False):
 
 
 class Variant1(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     elements: Required[Iterable[Variant1Element]]

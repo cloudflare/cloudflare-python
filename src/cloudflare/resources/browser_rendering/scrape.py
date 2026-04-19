@@ -49,7 +49,7 @@ class ScrapeResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element],
         html: str,
         cache_ttl: float | Omit = omit,
@@ -182,7 +182,7 @@ class ScrapeResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant1Element],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -310,11 +310,11 @@ class ScrapeResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "elements", "html"], ["account_id", "elements", "url"])
+    @required_args(["elements", "html"], ["elements", "url"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element] | Iterable[scrape_create_params.Variant1Element],
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
@@ -398,6 +398,8 @@ class ScrapeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScrapeCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -464,7 +466,7 @@ class AsyncScrapeResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element],
         html: str,
         cache_ttl: float | Omit = omit,
@@ -597,7 +599,7 @@ class AsyncScrapeResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant1Element],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -725,11 +727,11 @@ class AsyncScrapeResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "elements", "html"], ["account_id", "elements", "url"])
+    @required_args(["elements", "html"], ["elements", "url"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         elements: Iterable[scrape_create_params.Variant0Element] | Iterable[scrape_create_params.Variant1Element],
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
@@ -813,6 +815,8 @@ class AsyncScrapeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScrapeCreateResponse:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

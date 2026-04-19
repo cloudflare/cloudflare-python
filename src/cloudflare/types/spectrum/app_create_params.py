@@ -15,7 +15,7 @@ __all__ = ["AppCreateParams", "SpectrumConfigAppConfig", "SpectrumConfigPaygoApp
 
 
 class SpectrumConfigAppConfig(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Zone identifier."""
 
     dns: Required[DNSParam]
@@ -85,7 +85,7 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
 
 
 class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Zone identifier."""
 
     dns: Required[DNSParam]

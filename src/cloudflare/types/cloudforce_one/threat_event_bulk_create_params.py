@@ -13,7 +13,7 @@ __all__ = ["ThreatEventBulkCreateParams", "Data", "DataRaw", "DataIndicator"]
 
 
 class ThreatEventBulkCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account ID."""
 
     data: Required[Iterable[Data]]

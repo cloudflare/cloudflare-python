@@ -10,7 +10,7 @@ __all__ = ["ConfigCreateParams"]
 
 
 class ConfigCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Defines the Account ID."""
 
     ips: Required[SequenceNotStr[str]]

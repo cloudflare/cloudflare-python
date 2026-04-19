@@ -52,7 +52,7 @@ class MembersResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         roles: SequenceNotStr[str],
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -91,7 +91,7 @@ class MembersResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy],
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -126,11 +126,11 @@ class MembersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "email", "roles"], ["account_id", "email", "policies"])
+    @required_args(["email", "roles"], ["email", "policies"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         roles: SequenceNotStr[str] | Omit = omit,
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -142,6 +142,8 @@ class MembersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Member]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -170,7 +172,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         roles: Iterable[Role] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,7 +206,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,12 +235,11 @@ class MembersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"], ["account_id", "policies"])
     def update(
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         roles: Iterable[Role] | Omit = omit,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -248,6 +249,8 @@ class MembersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Member]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -274,7 +277,7 @@ class MembersResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | Omit = omit,
         page: float | Omit = omit,
@@ -311,6 +314,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -339,7 +344,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,6 +368,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -383,7 +390,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,6 +414,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -448,7 +457,7 @@ class AsyncMembersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         roles: SequenceNotStr[str],
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -487,7 +496,7 @@ class AsyncMembersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy],
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -522,11 +531,11 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "email", "roles"], ["account_id", "email", "policies"])
+    @required_args(["email", "roles"], ["email", "policies"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         email: str,
         roles: SequenceNotStr[str] | Omit = omit,
         status: Literal["accepted", "pending"] | Omit = omit,
@@ -538,6 +547,8 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Member]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -566,7 +577,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         roles: Iterable[Role] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -600,7 +611,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -629,12 +640,11 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"], ["account_id", "policies"])
     async def update(
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         roles: Iterable[Role] | Omit = omit,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -644,6 +654,8 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Member]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -670,7 +682,7 @@ class AsyncMembersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | Omit = omit,
         page: float | Omit = omit,
@@ -707,6 +719,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -735,7 +749,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -759,6 +773,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -779,7 +795,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -803,6 +819,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:

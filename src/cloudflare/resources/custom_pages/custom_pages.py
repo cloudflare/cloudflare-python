@@ -7,7 +7,15 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -29,6 +37,10 @@ __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 
 
 class CustomPagesResource(SyncAPIResource):
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> CustomPagesResourceWithRawResponse:
         """
@@ -65,8 +77,8 @@ class CustomPagesResource(SyncAPIResource):
         *,
         state: Literal["default", "customized"],
         url: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,6 +110,10 @@ class CustomPagesResource(SyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -137,8 +153,8 @@ class CustomPagesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,6 +178,10 @@ class CustomPagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -202,8 +222,8 @@ class CustomPagesResource(SyncAPIResource):
             "waf_challenge",
         ],
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,6 +251,10 @@ class CustomPagesResource(SyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -262,6 +286,10 @@ class CustomPagesResource(SyncAPIResource):
 
 
 class AsyncCustomPagesResource(AsyncAPIResource):
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomPagesResourceWithRawResponse:
         """
@@ -298,8 +326,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         *,
         state: Literal["default", "customized"],
         url: str,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -331,6 +359,10 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -370,8 +402,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,6 +427,10 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -435,8 +471,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             "waf_challenge",
         ],
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,6 +500,10 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -508,6 +548,10 @@ class CustomPagesResourceWithRawResponse:
             custom_pages.get,
         )
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._custom_pages.assets)
+
 
 class AsyncCustomPagesResourceWithRawResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
@@ -522,6 +566,10 @@ class AsyncCustomPagesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             custom_pages.get,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._custom_pages.assets)
 
 
 class CustomPagesResourceWithStreamingResponse:
@@ -538,6 +586,10 @@ class CustomPagesResourceWithStreamingResponse:
             custom_pages.get,
         )
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._custom_pages.assets)
+
 
 class AsyncCustomPagesResourceWithStreamingResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
@@ -552,3 +604,7 @@ class AsyncCustomPagesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             custom_pages.get,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._custom_pages.assets)

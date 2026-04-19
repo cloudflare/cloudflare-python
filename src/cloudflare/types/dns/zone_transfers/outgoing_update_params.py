@@ -10,7 +10,7 @@ __all__ = ["OutgoingUpdateParams"]
 
 
 class OutgoingUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     name: Required[str]
     """Zone name."""

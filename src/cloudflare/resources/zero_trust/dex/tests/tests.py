@@ -62,7 +62,7 @@ class TestsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
         kind: Literal["http", "traceroute"] | Omit = omit,
@@ -106,6 +106,8 @@ class TestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -160,7 +162,7 @@ class AsyncTestsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         colo: str | Omit = omit,
         device_id: SequenceNotStr[str] | Omit = omit,
         kind: Literal["http", "traceroute"] | Omit = omit,
@@ -204,6 +206,8 @@ class AsyncTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

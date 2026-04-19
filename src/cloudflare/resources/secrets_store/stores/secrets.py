@@ -59,7 +59,7 @@ class SecretsResource(SyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[secret_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -84,6 +84,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -107,7 +109,7 @@ class SecretsResource(SyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
         page: int | Omit = omit,
@@ -149,6 +151,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -184,7 +188,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -211,6 +215,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -238,7 +244,7 @@ class SecretsResource(SyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +268,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -286,7 +294,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         name: str,
         scopes: SequenceNotStr[str],
@@ -322,6 +330,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -357,7 +367,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         comment: str | Omit = omit,
         scopes: SequenceNotStr[str] | Omit = omit,
@@ -394,6 +404,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -429,7 +441,7 @@ class SecretsResource(SyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -456,6 +468,8 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -504,7 +518,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         body: Iterable[secret_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -529,6 +543,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -552,7 +568,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
         page: int | Omit = omit,
@@ -594,6 +610,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -629,7 +647,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -656,6 +674,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -683,7 +703,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         store_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -707,6 +727,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -731,7 +753,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         name: str,
         scopes: SequenceNotStr[str],
@@ -767,6 +789,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -802,7 +826,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         comment: str | Omit = omit,
         scopes: SequenceNotStr[str] | Omit = omit,
@@ -839,6 +863,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:
@@ -874,7 +900,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         self,
         secret_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         store_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -901,6 +927,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not store_id:

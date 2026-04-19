@@ -12,7 +12,7 @@ __all__ = ["CustomCreateParams", "ServiceModeV2"]
 
 
 class CustomCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     match: Required[str]
     """The wirefilter expression to match devices.

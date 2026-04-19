@@ -9,10 +9,10 @@ from ...._models import BaseModel
 from .approval_group import ApprovalGroup
 from .applications.access_rule import AccessRule
 
-__all__ = ["PolicyCreateResponse", "ConnectionRules", "ConnectionRulesRdp", "MfaConfig"]
+__all__ = ["PolicyCreateResponse", "ConnectionRules", "ConnectionRulesRDP", "MfaConfig"]
 
 
-class ConnectionRulesRdp(BaseModel):
+class ConnectionRulesRDP(BaseModel):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
     allowed_clipboard_local_to_remote_formats: Optional[List[Literal["text"]]] = None
@@ -31,7 +31,7 @@ class ConnectionRules(BaseModel):
     The rules that define how users may connect to targets secured by your application.
     """
 
-    rdp: Optional[ConnectionRulesRdp] = None
+    rdp: Optional[ConnectionRulesRDP] = None
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
 

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["RuleUpdateParams", "Rule", "RuleParameters"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     rules: Iterable[Rule]

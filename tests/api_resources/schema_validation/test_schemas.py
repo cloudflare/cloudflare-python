@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.api_gateway import PublicSchema
 from cloudflare.types.schema_validation import (
+    PublicSchema,
     SchemaDeleteResponse,
 )
 

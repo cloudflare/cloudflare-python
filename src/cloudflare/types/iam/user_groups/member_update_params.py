@@ -9,7 +9,7 @@ __all__ = ["MemberUpdateParams", "Body"]
 
 
 class MemberUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     body: Required[Iterable[Body]]

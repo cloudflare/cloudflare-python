@@ -49,7 +49,7 @@ class BGPPrefixesResource(SyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cidr: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -78,6 +78,8 @@ class BGPPrefixesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -103,7 +105,7 @@ class BGPPrefixesResource(SyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,6 +133,8 @@ class BGPPrefixesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -152,7 +156,7 @@ class BGPPrefixesResource(SyncAPIResource):
         self,
         bgp_prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         asn_prepend_count: int | Omit = omit,
         auto_advertise_withdraw: bool | Omit = omit,
@@ -190,6 +194,8 @@ class BGPPrefixesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -225,7 +231,7 @@ class BGPPrefixesResource(SyncAPIResource):
         self,
         bgp_prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -252,6 +258,8 @@ class BGPPrefixesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -300,7 +308,7 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         cidr: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -329,6 +337,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -354,7 +364,7 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         self,
         prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -382,6 +392,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -403,7 +415,7 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         self,
         bgp_prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         asn_prepend_count: int | Omit = omit,
         auto_advertise_withdraw: bool | Omit = omit,
@@ -441,6 +453,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
@@ -476,7 +490,7 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         self,
         bgp_prefix_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         prefix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -503,6 +517,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:

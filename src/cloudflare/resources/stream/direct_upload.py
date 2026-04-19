@@ -49,7 +49,7 @@ class DirectUploadResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         max_duration_seconds: int,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
@@ -111,6 +111,8 @@ class DirectUploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"Upload-Creator": upload_creator}), **(extra_headers or {})}
@@ -164,7 +166,7 @@ class AsyncDirectUploadResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         max_duration_seconds: int,
         allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
         creator: str | Omit = omit,
@@ -226,6 +228,8 @@ class AsyncDirectUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"Upload-Creator": upload_creator}), **(extra_headers or {})}

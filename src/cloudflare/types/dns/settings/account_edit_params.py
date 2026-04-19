@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["AccountEditParams", "ZoneDefaults", "ZoneDefaultsInternalDNS", "ZoneDefaultsNameservers", "ZoneDefaultsSOA"]
 
 
 class AccountEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     zone_defaults: ZoneDefaults

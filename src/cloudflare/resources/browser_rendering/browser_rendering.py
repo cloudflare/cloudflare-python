@@ -18,6 +18,14 @@ from .json import (
     JsonResourceWithStreamingResponse,
     AsyncJsonResourceWithStreamingResponse,
 )
+from .crawl import (
+    CrawlResource,
+    AsyncCrawlResource,
+    CrawlResourceWithRawResponse,
+    AsyncCrawlResourceWithRawResponse,
+    CrawlResourceWithStreamingResponse,
+    AsyncCrawlResourceWithStreamingResponse,
+)
 from .links import (
     LinksResource,
     AsyncLinksResource,
@@ -68,6 +76,14 @@ from .screenshot import (
     AsyncScreenshotResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .devtools.devtools import (
+    DevtoolsResource,
+    AsyncDevtoolsResource,
+    DevtoolsResourceWithRawResponse,
+    AsyncDevtoolsResourceWithRawResponse,
+    DevtoolsResourceWithStreamingResponse,
+    AsyncDevtoolsResourceWithStreamingResponse,
+)
 
 __all__ = ["BrowserRenderingResource", "AsyncBrowserRenderingResource"]
 
@@ -104,6 +120,14 @@ class BrowserRenderingResource(SyncAPIResource):
     @cached_property
     def markdown(self) -> MarkdownResource:
         return MarkdownResource(self._client)
+
+    @cached_property
+    def crawl(self) -> CrawlResource:
+        return CrawlResource(self._client)
+
+    @cached_property
+    def devtools(self) -> DevtoolsResource:
+        return DevtoolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BrowserRenderingResourceWithRawResponse:
@@ -157,6 +181,14 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
     @cached_property
     def markdown(self) -> AsyncMarkdownResource:
         return AsyncMarkdownResource(self._client)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResource:
+        return AsyncCrawlResource(self._client)
+
+    @cached_property
+    def devtools(self) -> AsyncDevtoolsResource:
+        return AsyncDevtoolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBrowserRenderingResourceWithRawResponse:
@@ -214,6 +246,14 @@ class BrowserRenderingResourceWithRawResponse:
     def markdown(self) -> MarkdownResourceWithRawResponse:
         return MarkdownResourceWithRawResponse(self._browser_rendering.markdown)
 
+    @cached_property
+    def crawl(self) -> CrawlResourceWithRawResponse:
+        return CrawlResourceWithRawResponse(self._browser_rendering.crawl)
+
+    @cached_property
+    def devtools(self) -> DevtoolsResourceWithRawResponse:
+        return DevtoolsResourceWithRawResponse(self._browser_rendering.devtools)
+
 
 class AsyncBrowserRenderingResourceWithRawResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -250,6 +290,14 @@ class AsyncBrowserRenderingResourceWithRawResponse:
     @cached_property
     def markdown(self) -> AsyncMarkdownResourceWithRawResponse:
         return AsyncMarkdownResourceWithRawResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResourceWithRawResponse:
+        return AsyncCrawlResourceWithRawResponse(self._browser_rendering.crawl)
+
+    @cached_property
+    def devtools(self) -> AsyncDevtoolsResourceWithRawResponse:
+        return AsyncDevtoolsResourceWithRawResponse(self._browser_rendering.devtools)
 
 
 class BrowserRenderingResourceWithStreamingResponse:
@@ -288,6 +336,14 @@ class BrowserRenderingResourceWithStreamingResponse:
     def markdown(self) -> MarkdownResourceWithStreamingResponse:
         return MarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
 
+    @cached_property
+    def crawl(self) -> CrawlResourceWithStreamingResponse:
+        return CrawlResourceWithStreamingResponse(self._browser_rendering.crawl)
+
+    @cached_property
+    def devtools(self) -> DevtoolsResourceWithStreamingResponse:
+        return DevtoolsResourceWithStreamingResponse(self._browser_rendering.devtools)
+
 
 class AsyncBrowserRenderingResourceWithStreamingResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -324,3 +380,11 @@ class AsyncBrowserRenderingResourceWithStreamingResponse:
     @cached_property
     def markdown(self) -> AsyncMarkdownResourceWithStreamingResponse:
         return AsyncMarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def crawl(self) -> AsyncCrawlResourceWithStreamingResponse:
+        return AsyncCrawlResourceWithStreamingResponse(self._browser_rendering.crawl)
+
+    @cached_property
+    def devtools(self) -> AsyncDevtoolsResourceWithStreamingResponse:
+        return AsyncDevtoolsResourceWithStreamingResponse(self._browser_rendering.devtools)

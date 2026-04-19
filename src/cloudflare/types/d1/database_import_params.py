@@ -9,7 +9,7 @@ __all__ = ["DatabaseImportParams", "Init", "Ingest", "Poll"]
 
 
 class Init(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     action: Required[Literal["init"]]
@@ -24,7 +24,7 @@ class Init(TypedDict, total=False):
 
 
 class Ingest(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     action: Required[Literal["ingest"]]
@@ -41,7 +41,7 @@ class Ingest(TypedDict, total=False):
 
 
 class Poll(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Account identifier tag."""
 
     action: Required[Literal["poll"]]

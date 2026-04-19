@@ -8,7 +8,7 @@ __all__ = ["AssetCreateParams"]
 
 
 class AssetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     page: Required[int]

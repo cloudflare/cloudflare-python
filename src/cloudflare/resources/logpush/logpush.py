@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .edge import (
+    EdgeResource,
+    AsyncEdgeResource,
+    EdgeResourceWithRawResponse,
+    AsyncEdgeResourceWithRawResponse,
+    EdgeResourceWithStreamingResponse,
+    AsyncEdgeResourceWithStreamingResponse,
+)
 from .jobs import (
     JobsResource,
     AsyncJobsResource,
@@ -46,6 +54,10 @@ class LogpushResource(SyncAPIResource):
         return DatasetsResource(self._client)
 
     @cached_property
+    def edge(self) -> EdgeResource:
+        return EdgeResource(self._client)
+
+    @cached_property
     def jobs(self) -> JobsResource:
         return JobsResource(self._client)
 
@@ -81,6 +93,10 @@ class AsyncLogpushResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
+
+    @cached_property
+    def edge(self) -> AsyncEdgeResource:
+        return AsyncEdgeResource(self._client)
 
     @cached_property
     def jobs(self) -> AsyncJobsResource:
@@ -123,6 +139,10 @@ class LogpushResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._logpush.datasets)
 
     @cached_property
+    def edge(self) -> EdgeResourceWithRawResponse:
+        return EdgeResourceWithRawResponse(self._logpush.edge)
+
+    @cached_property
     def jobs(self) -> JobsResourceWithRawResponse:
         return JobsResourceWithRawResponse(self._logpush.jobs)
 
@@ -142,6 +162,10 @@ class AsyncLogpushResourceWithRawResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
         return AsyncDatasetsResourceWithRawResponse(self._logpush.datasets)
+
+    @cached_property
+    def edge(self) -> AsyncEdgeResourceWithRawResponse:
+        return AsyncEdgeResourceWithRawResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithRawResponse:
@@ -165,6 +189,10 @@ class LogpushResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._logpush.datasets)
 
     @cached_property
+    def edge(self) -> EdgeResourceWithStreamingResponse:
+        return EdgeResourceWithStreamingResponse(self._logpush.edge)
+
+    @cached_property
     def jobs(self) -> JobsResourceWithStreamingResponse:
         return JobsResourceWithStreamingResponse(self._logpush.jobs)
 
@@ -184,6 +212,10 @@ class AsyncLogpushResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
         return AsyncDatasetsResourceWithStreamingResponse(self._logpush.datasets)
+
+    @cached_property
+    def edge(self) -> AsyncEdgeResourceWithStreamingResponse:
+        return AsyncEdgeResourceWithStreamingResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithStreamingResponse:

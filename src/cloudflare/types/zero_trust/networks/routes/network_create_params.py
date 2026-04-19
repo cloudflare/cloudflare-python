@@ -8,7 +8,7 @@ __all__ = ["NetworkCreateParams"]
 
 
 class NetworkCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Cloudflare account ID"""
 
     tunnel_id: Required[str]

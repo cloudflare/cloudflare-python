@@ -48,6 +48,14 @@ from .load_balancers import (
     LoadBalancersResourceWithStreamingResponse,
     AsyncLoadBalancersResourceWithStreamingResponse,
 )
+from .monitor_groups import (
+    MonitorGroupsResource,
+    AsyncMonitorGroupsResource,
+    MonitorGroupsResourceWithRawResponse,
+    AsyncMonitorGroupsResourceWithRawResponse,
+    MonitorGroupsResourceWithStreamingResponse,
+    AsyncMonitorGroupsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "MonitorsResource",
@@ -56,6 +64,12 @@ __all__ = [
     "AsyncMonitorsResourceWithRawResponse",
     "MonitorsResourceWithStreamingResponse",
     "AsyncMonitorsResourceWithStreamingResponse",
+    "MonitorGroupsResource",
+    "AsyncMonitorGroupsResource",
+    "MonitorGroupsResourceWithRawResponse",
+    "AsyncMonitorGroupsResourceWithRawResponse",
+    "MonitorGroupsResourceWithStreamingResponse",
+    "AsyncMonitorGroupsResourceWithStreamingResponse",
     "PoolsResource",
     "AsyncPoolsResource",
     "PoolsResourceWithRawResponse",

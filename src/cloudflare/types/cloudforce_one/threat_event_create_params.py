@@ -13,7 +13,7 @@ __all__ = ["ThreatEventCreateParams", "Raw", "Indicator"]
 
 
 class ThreatEventCreateParams(TypedDict, total=False):
-    path_account_id: Required[Annotated[str, PropertyInfo(alias="account_id")]]
+    path_account_id: Annotated[str, PropertyInfo(alias="account_id")]
     """Account ID."""
 
     category: Required[str]

@@ -51,7 +51,7 @@ class ProxyEndpointsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         kind: Literal["ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,7 +83,7 @@ class ProxyEndpointsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         kind: Literal["identity"],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -111,11 +111,11 @@ class ProxyEndpointsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "name"], ["account_id", "kind", "name"])
+    @required_args(["name"], ["kind", "name"])
     def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         kind: Literal["ip"] | Literal["identity"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -125,6 +125,8 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -154,7 +156,7 @@ class ProxyEndpointsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,6 +176,8 @@ class ProxyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -189,7 +193,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,6 +213,8 @@ class ProxyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
@@ -233,7 +239,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ips: SequenceNotStr[GatewayIPs] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -259,6 +265,8 @@ class ProxyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
@@ -295,7 +303,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,6 +323,8 @@ class ProxyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
@@ -365,7 +375,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         kind: Literal["ip"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -397,7 +407,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         kind: Literal["identity"],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -425,11 +435,11 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "name"], ["account_id", "kind", "name"])
+    @required_args(["name"], ["kind", "name"])
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         name: str,
         kind: Literal["ip"] | Literal["identity"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -439,6 +449,8 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -468,7 +480,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,6 +500,8 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -503,7 +517,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,6 +537,8 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
@@ -547,7 +563,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         ips: SequenceNotStr[GatewayIPs] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -573,6 +589,8 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
@@ -609,7 +627,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         self,
         proxy_endpoint_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -629,6 +647,8 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:

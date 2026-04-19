@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["InstanceBulkParams", "Body", "BodyInstanceRetention"]
 
 
 class InstanceBulkParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     body: Iterable[Body]
 

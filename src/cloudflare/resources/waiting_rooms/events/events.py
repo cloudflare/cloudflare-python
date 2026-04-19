@@ -63,7 +63,7 @@ class EventsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -158,6 +158,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -202,7 +204,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
@@ -292,6 +294,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -339,7 +343,7 @@ class EventsResource(SyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -367,6 +371,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -398,7 +404,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -421,6 +427,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -448,7 +456,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
@@ -538,6 +546,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -585,7 +595,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -608,6 +618,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -660,7 +672,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -755,6 +767,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -799,7 +813,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
@@ -889,6 +903,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -936,7 +952,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         waiting_room_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -964,6 +980,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -995,7 +1013,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1018,6 +1036,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -1045,7 +1065,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
@@ -1135,6 +1155,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
@@ -1182,7 +1204,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1205,6 +1227,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:

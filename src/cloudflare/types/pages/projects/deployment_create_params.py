@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._types import FileTypes
 from ...._utils import PropertyInfo
@@ -11,7 +11,7 @@ __all__ = ["DeploymentCreateParams"]
 
 
 class DeploymentCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     _headers: FileTypes

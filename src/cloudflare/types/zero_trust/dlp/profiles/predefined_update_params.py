@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-from ..context_awareness_param import ContextAwarenessParam
+from ....._types import SequenceNotStr
 
 __all__ = ["PredefinedUpdateParams", "Entry"]
 
 
 class PredefinedUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     ai_context_enabled: bool
 
@@ -19,11 +19,7 @@ class PredefinedUpdateParams(TypedDict, total=False):
 
     confidence_threshold: Optional[str]
 
-    context_awareness: ContextAwarenessParam
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
+    enabled_entries: Optional[SequenceNotStr[str]]
 
     entries: Iterable[Entry]
 

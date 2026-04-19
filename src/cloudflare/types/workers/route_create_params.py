@@ -8,7 +8,7 @@ __all__ = ["RouteCreateParams"]
 
 
 class RouteCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     pattern: Required[str]

@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+from .crawl_get_params import CrawlGetParams as CrawlGetParams
 from .pdf_create_params import PDFCreateParams as PDFCreateParams
+from .crawl_get_response import CrawlGetResponse as CrawlGetResponse
 from .json_create_params import JsonCreateParams as JsonCreateParams
 from .link_create_params import LinkCreateParams as LinkCreateParams
+from .crawl_create_params import CrawlCreateParams as CrawlCreateParams
 from .json_create_response import JsonCreateResponse as JsonCreateResponse
 from .link_create_response import LinkCreateResponse as LinkCreateResponse
 from .scrape_create_params import ScrapeCreateParams as ScrapeCreateParams
 from .content_create_params import ContentCreateParams as ContentCreateParams
+from .crawl_create_response import CrawlCreateResponse as CrawlCreateResponse
+from .crawl_delete_response import CrawlDeleteResponse as CrawlDeleteResponse
 from .markdown_create_params import MarkdownCreateParams as MarkdownCreateParams
 from .scrape_create_response import ScrapeCreateResponse as ScrapeCreateResponse
 from .snapshot_create_params import SnapshotCreateParams as SnapshotCreateParams

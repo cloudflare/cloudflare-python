@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -20,7 +20,7 @@ __all__ = [
 
 
 class CachePurgeFlexPurgeByTags(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     tags: SequenceNotStr[str]
     """
@@ -30,7 +30,7 @@ class CachePurgeFlexPurgeByTags(TypedDict, total=False):
 
 
 class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     hosts: SequenceNotStr[str]
     """
@@ -40,7 +40,7 @@ class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
 
 
 class CachePurgeFlexPurgeByPrefixes(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     prefixes: SequenceNotStr[str]
     """
@@ -50,7 +50,7 @@ class CachePurgeFlexPurgeByPrefixes(TypedDict, total=False):
 
 
 class CachePurgeEverything(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     purge_everything: bool
     """
@@ -60,7 +60,7 @@ class CachePurgeEverything(TypedDict, total=False):
 
 
 class CachePurgeSingleFile(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     files: SequenceNotStr[str]
     """
@@ -70,7 +70,7 @@ class CachePurgeSingleFile(TypedDict, total=False):
 
 
 class CachePurgeSingleFileWithURLAndHeaders(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     files: Iterable[CachePurgeSingleFileWithURLAndHeadersFile]
     """

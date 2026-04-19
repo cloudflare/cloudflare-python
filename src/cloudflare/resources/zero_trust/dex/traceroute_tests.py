@@ -55,7 +55,7 @@ class TracerouteTestsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         interval: Literal["minute", "hour"],
         to: str,
@@ -95,6 +95,8 @@ class TracerouteTestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:
@@ -127,7 +129,7 @@ class TracerouteTestsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         device_id: str,
         from_: str,
         interval: Literal["minute", "hour"],
@@ -161,6 +163,8 @@ class TracerouteTestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:
@@ -194,7 +198,7 @@ class TracerouteTestsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         to: str,
         colo: str | Omit = omit,
@@ -231,6 +235,8 @@ class TracerouteTestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:
@@ -287,7 +293,7 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         interval: Literal["minute", "hour"],
         to: str,
@@ -327,6 +333,8 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:
@@ -359,7 +367,7 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         device_id: str,
         from_: str,
         interval: Literal["minute", "hour"],
@@ -393,6 +401,8 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:
@@ -426,7 +436,7 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         from_: str,
         to: str,
         colo: str | Omit = omit,
@@ -463,6 +473,8 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not test_id:

@@ -8,7 +8,7 @@ __all__ = ["DeviceListParams"]
 
 
 class DeviceListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     page: Required[float]
     """Page number of paginated results"""

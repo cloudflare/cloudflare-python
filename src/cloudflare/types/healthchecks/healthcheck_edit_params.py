@@ -14,7 +14,7 @@ __all__ = ["HealthcheckEditParams"]
 
 
 class HealthcheckEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier"""
 
     address: Required[str]

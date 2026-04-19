@@ -11,7 +11,7 @@ __all__ = ["DatasetCreateParams", "Filter"]
 
 
 class DatasetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     enable: Required[bool]
 

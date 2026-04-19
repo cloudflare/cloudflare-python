@@ -11,7 +11,7 @@ __all__ = ["RuleCreateParams", "Action", "Condition"]
 
 
 class RuleCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     action: Required[Action]
 

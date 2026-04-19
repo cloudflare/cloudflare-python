@@ -31,6 +31,8 @@ from cloudflare.types import (
 
 # [Accounts](src/cloudflare/resources/accounts/api.md)
 
+# [Organizations](src/cloudflare/resources/organizations/api.md)
+
 # [OriginCACertificates](src/cloudflare/resources/origin_ca_certificates/api.md)
 
 # [IPs](src/cloudflare/resources/ips/api.md)
@@ -68,6 +70,8 @@ from cloudflare.types import (
 # [EmailSecurity](src/cloudflare/resources/email_security/api.md)
 
 # [EmailRouting](src/cloudflare/resources/email_routing/api.md)
+
+# [EmailSending](src/cloudflare/resources/email_sending/api.md)
 
 # [Filters](src/cloudflare/resources/filters/api.md)
 
@@ -113,8 +117,6 @@ from cloudflare.types import (
 
 # [Addressing](src/cloudflare/resources/addressing/api.md)
 
-# [DLS](src/cloudflare/resources/dls/api.md)
-
 # [AuditLogs](src/cloudflare/resources/audit_logs/api.md)
 
 # [Billing](src/cloudflare/resources/billing/api.md)
@@ -153,11 +155,15 @@ from cloudflare.types import (
 
 # [R2](src/cloudflare/resources/r2/api.md)
 
+# [R2DataCatalog](src/cloudflare/resources/r2_data_catalog/api.md)
+
 # [WorkersForPlatforms](src/cloudflare/resources/workers_for_platforms/api.md)
 
 # [ZeroTrust](src/cloudflare/resources/zero_trust/api.md)
 
 # [Turnstile](src/cloudflare/resources/turnstile/api.md)
+
+# [Connectivity](src/cloudflare/resources/connectivity/api.md)
 
 # [Hyperdrive](src/cloudflare/resources/hyperdrive/api.md)
 
@@ -167,11 +173,17 @@ from cloudflare.types import (
 
 # [URLScanner](src/cloudflare/resources/url_scanner/api.md)
 
+# [VulnerabilityScanner](src/cloudflare/resources/vulnerability_scanner/api.md)
+
 # [Radar](src/cloudflare/resources/radar/api.md)
 
 # [BotManagement](src/cloudflare/resources/bot_management/api.md)
 
+# [Fraud](src/cloudflare/resources/fraud/api.md)
+
 # [OriginPostQuantumEncryption](src/cloudflare/resources/origin_post_quantum_encryption/api.md)
+
+# [GoogleTagGateway](src/cloudflare/resources/google_tag_gateway/api.md)
 
 # [Zaraz](src/cloudflare/resources/zaraz/api.md)
 
@@ -182,6 +194,8 @@ from cloudflare.types import (
 # [Hostnames](src/cloudflare/resources/hostnames/api.md)
 
 # [Snippets](src/cloudflare/resources/snippets/api.md)
+
+# [RealtimeKit](src/cloudflare/resources/realtime_kit/api.md)
 
 # [Calls](src/cloudflare/resources/calls/api.md)
 
@@ -201,6 +215,8 @@ from cloudflare.types import (
 
 # [ResourceSharing](src/cloudflare/resources/resource_sharing/api.md)
 
+# [ResourceTagging](src/cloudflare/resources/resource_tagging/api.md)
+
 # [LeakedCredentialChecks](src/cloudflare/resources/leaked_credential_checks/api.md)
 
 # [ContentScanning](src/cloudflare/resources/content_scanning/api.md)
@@ -208,6 +224,8 @@ from cloudflare.types import (
 # [AbuseReports](src/cloudflare/resources/abuse_reports/api.md)
 
 # [AI](src/cloudflare/resources/ai/api.md)
+
+# [AISearch](src/cloudflare/resources/aisearch/api.md)
 
 # [SecurityCenter](src/cloudflare/resources/security_center/api.md)
 
@@ -220,3 +238,5 @@ from cloudflare.types import (
 # [Pipelines](src/cloudflare/resources/pipelines/api.md)
 
 # [SchemaValidation](src/cloudflare/resources/schema_validation/api.md)
+
+# [TokenValidation](src/cloudflare/resources/token_validation/api.md)

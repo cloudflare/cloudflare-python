@@ -127,8 +127,8 @@ class ApplicationsResource(SyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -285,8 +285,8 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -371,8 +371,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -546,8 +546,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -720,8 +720,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -802,8 +802,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -866,8 +866,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -930,8 +930,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -1000,8 +1000,8 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         app_launcher_visible: bool | Omit = omit,
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
@@ -1058,8 +1058,8 @@ class ApplicationsResource(SyncAPIResource):
         *,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1098,10 +1098,10 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         domain: str,
-        target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
+        target_criteria: Iterable[application_create_params.BrowserRDPApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -1112,19 +1112,19 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserRDPApplicationDestination] | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
-        mfa_config: application_create_params.BrowserRdpApplicationMfaConfig | Omit = omit,
+        mfa_config: application_create_params.BrowserRDPApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
-        oauth_configuration: application_create_params.BrowserRdpApplicationOAuthConfiguration | Omit = omit,
+        oauth_configuration: application_create_params.BrowserRDPApplicationOAuthConfiguration | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
-        policies: SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserRDPApplicationPolicy] | Omit = omit,
         read_service_tokens_from_header: str | Omit = omit,
         same_site_cookie_attribute: str | Omit = omit,
-        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        scim_config: application_create_params.BrowserRDPApplicationSCIMConfig | Omit = omit,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
@@ -1259,8 +1259,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -1371,8 +1371,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -1504,8 +1504,8 @@ class ApplicationsResource(SyncAPIResource):
             "proxy_endpoint",
         ]
         | Omit = omit,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -1519,7 +1519,7 @@ class ApplicationsResource(SyncAPIResource):
         destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
         | Iterable[application_create_params.BrowserSSHApplicationDestination]
         | Iterable[application_create_params.BrowserVNCApplicationDestination]
-        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | Iterable[application_create_params.BrowserRDPApplicationDestination]
         | Iterable[application_create_params.McpServerApplicationDestination]
         | Iterable[application_create_params.McpServerPortalApplicationDestination]
         | Omit = omit,
@@ -1529,13 +1529,13 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_create_params.SelfHostedApplicationMfaConfig
         | application_create_params.BrowserSSHApplicationMfaConfig
         | application_create_params.BrowserVNCApplicationMfaConfig
-        | application_create_params.BrowserRdpApplicationMfaConfig
+        | application_create_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
         oauth_configuration: application_create_params.SelfHostedApplicationOAuthConfiguration
         | application_create_params.BrowserSSHApplicationOAuthConfiguration
         | application_create_params.BrowserVNCApplicationOAuthConfiguration
-        | application_create_params.BrowserRdpApplicationOAuthConfiguration
+        | application_create_params.BrowserRDPApplicationOAuthConfiguration
         | application_create_params.McpServerApplicationOAuthConfiguration
         | application_create_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
@@ -1551,7 +1551,7 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | SequenceNotStr[application_create_params.BookmarkApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
-        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserRDPApplicationPolicy]
         | SequenceNotStr[application_create_params.McpServerApplicationPolicy]
         | SequenceNotStr[application_create_params.McpServerPortalApplicationPolicy]
         | Omit = omit,
@@ -1561,7 +1561,7 @@ class ApplicationsResource(SyncAPIResource):
         | application_create_params.SaaSApplicationSCIMConfig
         | application_create_params.BrowserSSHApplicationSCIMConfig
         | application_create_params.BrowserVNCApplicationSCIMConfig
-        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | application_create_params.BrowserRDPApplicationSCIMConfig
         | application_create_params.McpServerApplicationSCIMConfig
         | application_create_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
@@ -1579,7 +1579,7 @@ class ApplicationsResource(SyncAPIResource):
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
         skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
+        | Iterable[application_create_params.BrowserRDPApplicationTargetCriterion]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1588,6 +1588,10 @@ class ApplicationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1672,8 +1676,8 @@ class ApplicationsResource(SyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -1833,8 +1837,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -1922,8 +1926,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -2100,8 +2104,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -2277,8 +2281,8 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -2362,8 +2366,8 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -2429,8 +2433,8 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -2496,8 +2500,8 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -2569,8 +2573,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         app_launcher_visible: bool | Omit = omit,
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
@@ -2630,8 +2634,8 @@ class ApplicationsResource(SyncAPIResource):
         *,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2673,10 +2677,10 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         domain: str,
-        target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
+        target_criteria: Iterable[application_update_params.BrowserRDPApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -2687,19 +2691,19 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserRDPApplicationDestination] | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
-        mfa_config: application_update_params.BrowserRdpApplicationMfaConfig | Omit = omit,
+        mfa_config: application_update_params.BrowserRDPApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
-        oauth_configuration: application_update_params.BrowserRdpApplicationOAuthConfiguration | Omit = omit,
+        oauth_configuration: application_update_params.BrowserRDPApplicationOAuthConfiguration | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
-        policies: SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserRDPApplicationPolicy] | Omit = omit,
         read_service_tokens_from_header: str | Omit = omit,
         same_site_cookie_attribute: str | Omit = omit,
-        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        scim_config: application_update_params.BrowserRDPApplicationSCIMConfig | Omit = omit,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
@@ -2837,8 +2841,8 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -2952,8 +2956,8 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -3088,8 +3092,8 @@ class ApplicationsResource(SyncAPIResource):
             "proxy_endpoint",
         ]
         | Omit = omit,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -3103,7 +3107,7 @@ class ApplicationsResource(SyncAPIResource):
         destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
         | Iterable[application_update_params.BrowserSSHApplicationDestination]
         | Iterable[application_update_params.BrowserVNCApplicationDestination]
-        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | Iterable[application_update_params.BrowserRDPApplicationDestination]
         | Iterable[application_update_params.McpServerApplicationDestination]
         | Iterable[application_update_params.McpServerPortalApplicationDestination]
         | Omit = omit,
@@ -3113,13 +3117,13 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_update_params.SelfHostedApplicationMfaConfig
         | application_update_params.BrowserSSHApplicationMfaConfig
         | application_update_params.BrowserVNCApplicationMfaConfig
-        | application_update_params.BrowserRdpApplicationMfaConfig
+        | application_update_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
         oauth_configuration: application_update_params.SelfHostedApplicationOAuthConfiguration
         | application_update_params.BrowserSSHApplicationOAuthConfiguration
         | application_update_params.BrowserVNCApplicationOAuthConfiguration
-        | application_update_params.BrowserRdpApplicationOAuthConfiguration
+        | application_update_params.BrowserRDPApplicationOAuthConfiguration
         | application_update_params.McpServerApplicationOAuthConfiguration
         | application_update_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
@@ -3135,7 +3139,7 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | SequenceNotStr[application_update_params.BookmarkApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
-        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserRDPApplicationPolicy]
         | SequenceNotStr[application_update_params.McpServerApplicationPolicy]
         | SequenceNotStr[application_update_params.McpServerPortalApplicationPolicy]
         | Omit = omit,
@@ -3145,7 +3149,7 @@ class ApplicationsResource(SyncAPIResource):
         | application_update_params.SaaSApplicationSCIMConfig
         | application_update_params.BrowserSSHApplicationSCIMConfig
         | application_update_params.BrowserVNCApplicationSCIMConfig
-        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | application_update_params.BrowserRDPApplicationSCIMConfig
         | application_update_params.McpServerApplicationSCIMConfig
         | application_update_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
@@ -3163,7 +3167,7 @@ class ApplicationsResource(SyncAPIResource):
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
         skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
+        | Iterable[application_update_params.BrowserRDPApplicationTargetCriterion]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3174,6 +3178,10 @@ class ApplicationsResource(SyncAPIResource):
     ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3255,8 +3263,8 @@ class ApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         aud: str | Omit = omit,
         domain: str | Omit = omit,
         exact: bool | Omit = omit,
@@ -3304,6 +3312,10 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3349,8 +3361,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3378,6 +3390,10 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3411,8 +3427,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3440,6 +3456,10 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3478,8 +3498,8 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3507,6 +3527,10 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3583,8 +3607,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -3741,8 +3765,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -3827,8 +3851,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -4002,8 +4026,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -4176,8 +4200,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -4258,8 +4282,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -4322,8 +4346,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -4386,8 +4410,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -4456,8 +4480,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         app_launcher_visible: bool | Omit = omit,
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
@@ -4514,8 +4538,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4554,10 +4578,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         domain: str,
-        target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
+        target_criteria: Iterable[application_create_params.BrowserRDPApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -4568,19 +4592,19 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | Omit = omit,
+        destinations: Iterable[application_create_params.BrowserRDPApplicationDestination] | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
-        mfa_config: application_create_params.BrowserRdpApplicationMfaConfig | Omit = omit,
+        mfa_config: application_create_params.BrowserRDPApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
-        oauth_configuration: application_create_params.BrowserRdpApplicationOAuthConfiguration | Omit = omit,
+        oauth_configuration: application_create_params.BrowserRDPApplicationOAuthConfiguration | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
-        policies: SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BrowserRDPApplicationPolicy] | Omit = omit,
         read_service_tokens_from_header: str | Omit = omit,
         same_site_cookie_attribute: str | Omit = omit,
-        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        scim_config: application_create_params.BrowserRDPApplicationSCIMConfig | Omit = omit,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
@@ -4715,8 +4739,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -4827,8 +4851,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -4960,8 +4984,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "proxy_endpoint",
         ]
         | Omit = omit,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -4975,7 +4999,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
         | Iterable[application_create_params.BrowserSSHApplicationDestination]
         | Iterable[application_create_params.BrowserVNCApplicationDestination]
-        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | Iterable[application_create_params.BrowserRDPApplicationDestination]
         | Iterable[application_create_params.McpServerApplicationDestination]
         | Iterable[application_create_params.McpServerPortalApplicationDestination]
         | Omit = omit,
@@ -4985,13 +5009,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_create_params.SelfHostedApplicationMfaConfig
         | application_create_params.BrowserSSHApplicationMfaConfig
         | application_create_params.BrowserVNCApplicationMfaConfig
-        | application_create_params.BrowserRdpApplicationMfaConfig
+        | application_create_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
         oauth_configuration: application_create_params.SelfHostedApplicationOAuthConfiguration
         | application_create_params.BrowserSSHApplicationOAuthConfiguration
         | application_create_params.BrowserVNCApplicationOAuthConfiguration
-        | application_create_params.BrowserRdpApplicationOAuthConfiguration
+        | application_create_params.BrowserRDPApplicationOAuthConfiguration
         | application_create_params.McpServerApplicationOAuthConfiguration
         | application_create_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
@@ -5007,7 +5031,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | SequenceNotStr[application_create_params.BookmarkApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
-        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserRDPApplicationPolicy]
         | SequenceNotStr[application_create_params.McpServerApplicationPolicy]
         | SequenceNotStr[application_create_params.McpServerPortalApplicationPolicy]
         | Omit = omit,
@@ -5017,7 +5041,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_create_params.SaaSApplicationSCIMConfig
         | application_create_params.BrowserSSHApplicationSCIMConfig
         | application_create_params.BrowserVNCApplicationSCIMConfig
-        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | application_create_params.BrowserRDPApplicationSCIMConfig
         | application_create_params.McpServerApplicationSCIMConfig
         | application_create_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
@@ -5035,7 +5059,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
         skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
+        | Iterable[application_create_params.BrowserRDPApplicationTargetCriterion]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5044,6 +5068,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -5128,8 +5156,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         domain: str,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -5289,8 +5317,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -5378,8 +5406,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -5556,8 +5584,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -5733,8 +5761,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ],
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -5818,8 +5846,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -5885,8 +5913,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -5952,8 +5980,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_deny_url: str | Omit = omit,
@@ -6025,8 +6053,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         app_launcher_visible: bool | Omit = omit,
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
@@ -6086,8 +6114,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -6129,10 +6157,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         domain: str,
-        target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
+        target_criteria: Iterable[application_update_params.BrowserRDPApplicationTargetCriterion],
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -6143,19 +6171,19 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | Omit = omit,
+        destinations: Iterable[application_update_params.BrowserRDPApplicationDestination] | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
-        mfa_config: application_update_params.BrowserRdpApplicationMfaConfig | Omit = omit,
+        mfa_config: application_update_params.BrowserRDPApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
-        oauth_configuration: application_update_params.BrowserRdpApplicationOAuthConfiguration | Omit = omit,
+        oauth_configuration: application_update_params.BrowserRDPApplicationOAuthConfiguration | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
-        policies: SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy] | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BrowserRDPApplicationPolicy] | Omit = omit,
         read_service_tokens_from_header: str | Omit = omit,
         same_site_cookie_attribute: str | Omit = omit,
-        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | Omit = omit,
+        scim_config: application_update_params.BrowserRDPApplicationSCIMConfig | Omit = omit,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
@@ -6293,8 +6321,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -6408,8 +6436,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
@@ -6544,8 +6572,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "proxy_endpoint",
         ]
         | Omit = omit,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
         allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
@@ -6559,7 +6587,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
         | Iterable[application_update_params.BrowserSSHApplicationDestination]
         | Iterable[application_update_params.BrowserVNCApplicationDestination]
-        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | Iterable[application_update_params.BrowserRDPApplicationDestination]
         | Iterable[application_update_params.McpServerApplicationDestination]
         | Iterable[application_update_params.McpServerPortalApplicationDestination]
         | Omit = omit,
@@ -6569,13 +6597,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_update_params.SelfHostedApplicationMfaConfig
         | application_update_params.BrowserSSHApplicationMfaConfig
         | application_update_params.BrowserVNCApplicationMfaConfig
-        | application_update_params.BrowserRdpApplicationMfaConfig
+        | application_update_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
         oauth_configuration: application_update_params.SelfHostedApplicationOAuthConfiguration
         | application_update_params.BrowserSSHApplicationOAuthConfiguration
         | application_update_params.BrowserVNCApplicationOAuthConfiguration
-        | application_update_params.BrowserRdpApplicationOAuthConfiguration
+        | application_update_params.BrowserRDPApplicationOAuthConfiguration
         | application_update_params.McpServerApplicationOAuthConfiguration
         | application_update_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
@@ -6591,7 +6619,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | SequenceNotStr[application_update_params.BookmarkApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
-        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserRDPApplicationPolicy]
         | SequenceNotStr[application_update_params.McpServerApplicationPolicy]
         | SequenceNotStr[application_update_params.McpServerPortalApplicationPolicy]
         | Omit = omit,
@@ -6601,7 +6629,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_update_params.SaaSApplicationSCIMConfig
         | application_update_params.BrowserSSHApplicationSCIMConfig
         | application_update_params.BrowserVNCApplicationSCIMConfig
-        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | application_update_params.BrowserRDPApplicationSCIMConfig
         | application_update_params.McpServerApplicationSCIMConfig
         | application_update_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
@@ -6619,7 +6647,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | Omit = omit,
         skip_app_launcher_login_page: bool | Omit = omit,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
+        | Iterable[application_update_params.BrowserRDPApplicationTargetCriterion]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6630,6 +6658,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
     ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -6711,8 +6743,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         aud: str | Omit = omit,
         domain: str | Omit = omit,
         exact: bool | Omit = omit,
@@ -6760,6 +6792,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -6805,8 +6841,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6834,6 +6870,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -6867,8 +6907,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6896,6 +6936,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -6934,8 +6978,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
+        account_id: str | None = None,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6963,6 +7007,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

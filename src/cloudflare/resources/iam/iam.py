@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .sso import (
+    SSOResource,
+    AsyncSSOResource,
+    SSOResourceWithRawResponse,
+    AsyncSSOResourceWithRawResponse,
+    SSOResourceWithStreamingResponse,
+    AsyncSSOResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .resource_groups import (
@@ -46,6 +54,10 @@ class IAMResource(SyncAPIResource):
         return UserGroupsResource(self._client)
 
     @cached_property
+    def sso(self) -> SSOResource:
+        return SSOResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> IAMResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -77,6 +89,10 @@ class AsyncIAMResource(AsyncAPIResource):
     @cached_property
     def user_groups(self) -> AsyncUserGroupsResource:
         return AsyncUserGroupsResource(self._client)
+
+    @cached_property
+    def sso(self) -> AsyncSSOResource:
+        return AsyncSSOResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncIAMResourceWithRawResponse:
@@ -114,6 +130,10 @@ class IAMResourceWithRawResponse:
     def user_groups(self) -> UserGroupsResourceWithRawResponse:
         return UserGroupsResourceWithRawResponse(self._iam.user_groups)
 
+    @cached_property
+    def sso(self) -> SSOResourceWithRawResponse:
+        return SSOResourceWithRawResponse(self._iam.sso)
+
 
 class AsyncIAMResourceWithRawResponse:
     def __init__(self, iam: AsyncIAMResource) -> None:
@@ -130,6 +150,10 @@ class AsyncIAMResourceWithRawResponse:
     @cached_property
     def user_groups(self) -> AsyncUserGroupsResourceWithRawResponse:
         return AsyncUserGroupsResourceWithRawResponse(self._iam.user_groups)
+
+    @cached_property
+    def sso(self) -> AsyncSSOResourceWithRawResponse:
+        return AsyncSSOResourceWithRawResponse(self._iam.sso)
 
 
 class IAMResourceWithStreamingResponse:
@@ -148,6 +172,10 @@ class IAMResourceWithStreamingResponse:
     def user_groups(self) -> UserGroupsResourceWithStreamingResponse:
         return UserGroupsResourceWithStreamingResponse(self._iam.user_groups)
 
+    @cached_property
+    def sso(self) -> SSOResourceWithStreamingResponse:
+        return SSOResourceWithStreamingResponse(self._iam.sso)
+
 
 class AsyncIAMResourceWithStreamingResponse:
     def __init__(self, iam: AsyncIAMResource) -> None:
@@ -164,3 +192,7 @@ class AsyncIAMResourceWithStreamingResponse:
     @cached_property
     def user_groups(self) -> AsyncUserGroupsResourceWithStreamingResponse:
         return AsyncUserGroupsResourceWithStreamingResponse(self._iam.user_groups)
+
+    @cached_property
+    def sso(self) -> AsyncSSOResourceWithStreamingResponse:
+        return AsyncSSOResourceWithStreamingResponse(self._iam.sso)

@@ -8,7 +8,7 @@ __all__ = ["CatalogSyncCreateParams"]
 
 
 class CatalogSyncCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     destination_type: Required[Literal["NONE", "ZERO_TRUST_LIST"]]
 

@@ -1,0 +1,279 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Mapping, cast
+
+import httpx
+
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal
+from ..._compat import cached_property
+from ...types.ai import to_markdown_transform_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.ai.to_markdown_supported_response import ToMarkdownSupportedResponse
+from ...types.ai.to_markdown_transform_response import ToMarkdownTransformResponse
+
+__all__ = ["ToMarkdownResource", "AsyncToMarkdownResource"]
+
+
+class ToMarkdownResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> ToMarkdownResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return ToMarkdownResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ToMarkdownResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return ToMarkdownResourceWithStreamingResponse(self)
+
+    def supported(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[ToMarkdownSupportedResponse]:
+        """
+        Lists all file formats supported for conversion to Markdown.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown/supported", account_id=account_id),
+            page=SyncSinglePage[ToMarkdownSupportedResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=ToMarkdownSupportedResponse,
+        )
+
+    def transform(
+        self,
+        *,
+        account_id: str | None = None,
+        file: to_markdown_transform_params.File,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[ToMarkdownTransformResponse]:
+        """
+        Converts uploaded files into Markdown format using Workers AI.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(file)
+        files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
+            page=SyncSinglePage[ToMarkdownTransformResponse],
+            body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=ToMarkdownTransformResponse,
+            method="post",
+        )
+
+
+class AsyncToMarkdownResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncToMarkdownResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncToMarkdownResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncToMarkdownResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncToMarkdownResourceWithStreamingResponse(self)
+
+    def supported(
+        self,
+        *,
+        account_id: str | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ToMarkdownSupportedResponse, AsyncSinglePage[ToMarkdownSupportedResponse]]:
+        """
+        Lists all file formats supported for conversion to Markdown.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown/supported", account_id=account_id),
+            page=AsyncSinglePage[ToMarkdownSupportedResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=ToMarkdownSupportedResponse,
+        )
+
+    def transform(
+        self,
+        *,
+        account_id: str | None = None,
+        file: to_markdown_transform_params.File,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ToMarkdownTransformResponse, AsyncSinglePage[ToMarkdownTransformResponse]]:
+        """
+        Converts uploaded files into Markdown format using Workers AI.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(file)
+        files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
+            page=AsyncSinglePage[ToMarkdownTransformResponse],
+            body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=ToMarkdownTransformResponse,
+            method="post",
+        )
+
+
+class ToMarkdownResourceWithRawResponse:
+    def __init__(self, to_markdown: ToMarkdownResource) -> None:
+        self._to_markdown = to_markdown
+
+        self.supported = to_raw_response_wrapper(
+            to_markdown.supported,
+        )
+        self.transform = to_raw_response_wrapper(
+            to_markdown.transform,
+        )
+
+
+class AsyncToMarkdownResourceWithRawResponse:
+    def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
+        self._to_markdown = to_markdown
+
+        self.supported = async_to_raw_response_wrapper(
+            to_markdown.supported,
+        )
+        self.transform = async_to_raw_response_wrapper(
+            to_markdown.transform,
+        )
+
+
+class ToMarkdownResourceWithStreamingResponse:
+    def __init__(self, to_markdown: ToMarkdownResource) -> None:
+        self._to_markdown = to_markdown
+
+        self.supported = to_streamed_response_wrapper(
+            to_markdown.supported,
+        )
+        self.transform = to_streamed_response_wrapper(
+            to_markdown.transform,
+        )
+
+
+class AsyncToMarkdownResourceWithStreamingResponse:
+    def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
+        self._to_markdown = to_markdown
+
+        self.supported = async_to_streamed_response_wrapper(
+            to_markdown.supported,
+        )
+        self.transform = async_to_streamed_response_wrapper(
+            to_markdown.transform,
+        )

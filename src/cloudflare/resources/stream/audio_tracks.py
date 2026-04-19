@@ -50,7 +50,7 @@ class AudioTracksResource(SyncAPIResource):
         self,
         audio_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -79,6 +79,8 @@ class AudioTracksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -106,7 +108,7 @@ class AudioTracksResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         label: str,
         url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,6 +141,8 @@ class AudioTracksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -168,7 +172,7 @@ class AudioTracksResource(SyncAPIResource):
         self,
         audio_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         default: bool | Omit = omit,
         label: str | Omit = omit,
@@ -205,6 +209,8 @@ class AudioTracksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -239,7 +245,7 @@ class AudioTracksResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,6 +271,8 @@ class AudioTracksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -308,7 +316,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         self,
         audio_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -337,6 +345,8 @@ class AsyncAudioTracksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -364,7 +374,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         label: str,
         url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -397,6 +407,8 @@ class AsyncAudioTracksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -426,7 +438,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         self,
         audio_identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         identifier: str,
         default: bool | Omit = omit,
         label: str | Omit = omit,
@@ -463,6 +475,8 @@ class AsyncAudioTracksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
@@ -497,7 +511,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,6 +537,8 @@ class AsyncAudioTracksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:

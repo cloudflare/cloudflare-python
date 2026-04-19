@@ -45,7 +45,7 @@ class FleetStatusResource(SyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         since_minutes: float,
         colo: str | Omit = omit,
         time_now: str | Omit = omit,
@@ -77,6 +77,8 @@ class FleetStatusResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
@@ -129,7 +131,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         self,
         device_id: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         since_minutes: float,
         colo: str | Omit = omit,
         time_now: str | Omit = omit,
@@ -161,6 +163,8 @@ class AsyncFleetStatusResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:

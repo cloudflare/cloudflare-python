@@ -20,7 +20,7 @@ __all__ = [
 
 
 class CustomUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     name: Required[str]
 

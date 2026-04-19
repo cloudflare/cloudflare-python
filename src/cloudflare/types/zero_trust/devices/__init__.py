@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .file_input import FileInput as FileInput
+from .ip_profile import IPProfile as IPProfile
 from .device_input import DeviceInput as DeviceInput
 from .device_match import DeviceMatch as DeviceMatch
 from .intune_input import IntuneInput as IntuneInput
@@ -48,6 +49,7 @@ from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .dex_test_create_params import DEXTestCreateParams as DEXTestCreateParams
 from .dex_test_list_response import DEXTestListResponse as DEXTestListResponse
 from .dex_test_update_params import DEXTestUpdateParams as DEXTestUpdateParams
+from .ip_profile_list_params import IPProfileListParams as IPProfileListParams
 from .os_version_input_param import OSVersionInputParam as OSVersionInputParam
 from .revoke_create_response import RevokeCreateResponse as RevokeCreateResponse
 from .unique_client_id_input import UniqueClientIDInput as UniqueClientIDInput
@@ -61,6 +63,8 @@ from .client_certificate_input import ClientCertificateInput as ClientCertificat
 from .dex_test_create_response import DEXTestCreateResponse as DEXTestCreateResponse
 from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResponse
 from .dex_test_update_response import DEXTestUpdateResponse as DEXTestUpdateResponse
+from .ip_profile_create_params import IPProfileCreateParams as IPProfileCreateParams
+from .ip_profile_update_params import IPProfileUpdateParams as IPProfileUpdateParams
 from .registration_list_params import RegistrationListParams as RegistrationListParams
 from .unrevoke_create_response import UnrevokeCreateResponse as UnrevokeCreateResponse
 from .domain_joined_input_param import DomainJoinedInputParam as DomainJoinedInputParam
@@ -68,6 +72,7 @@ from .fleet_status_get_response import FleetStatusGetResponse as FleetStatusGetR
 from .registration_get_response import RegistrationGetResponse as RegistrationGetResponse
 from .workspace_one_input_param import WorkspaceOneInputParam as WorkspaceOneInputParam
 from .device_policy_certificates import DevicePolicyCertificates as DevicePolicyCertificates
+from .ip_profile_delete_response import IPProfileDeleteResponse as IPProfileDeleteResponse
 from .override_code_get_response import OverrideCodeGetResponse as OverrideCodeGetResponse
 from .registration_list_response import RegistrationListResponse as RegistrationListResponse
 from .registration_revoke_params import RegistrationRevokeParams as RegistrationRevokeParams

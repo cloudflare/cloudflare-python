@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 from .hostname_association import HostnameAssociation
@@ -11,7 +11,7 @@ __all__ = ["HostnameAssociationUpdateParams"]
 
 
 class HostnameAssociationUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     hostnames: SequenceNotStr[HostnameAssociation]

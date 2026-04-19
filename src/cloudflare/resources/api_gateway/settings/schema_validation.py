@@ -20,9 +20,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.api_gateway.settings import schema_validation_edit_params, schema_validation_update_params
-from ....types.api_gateway.settings.schema_validation_get_response import SchemaValidationGetResponse
-from ....types.api_gateway.settings.schema_validation_edit_response import SchemaValidationEditResponse
-from ....types.api_gateway.settings.schema_validation_update_response import SchemaValidationUpdateResponse
+from ....types.api_gateway.settings.settings import Settings
 
 __all__ = ["SchemaValidationResource", "AsyncSchemaValidationResource"]
 
@@ -53,7 +51,7 @@ class SchemaValidationResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_default_mitigation_action: Literal["none", "log", "block"],
         validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,7 +60,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationUpdateResponse:
+    ) -> Settings:
         """
         Updates zone level schema validation settings on the zone
 
@@ -95,6 +93,8 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
@@ -109,7 +109,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationUpdateResponse,
+            cast_to=Settings,
         )
 
     @typing_extensions.deprecated(
@@ -118,7 +118,7 @@ class SchemaValidationResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_default_mitigation_action: Optional[Literal["none", "log", "block"]] | Omit = omit,
         validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -127,7 +127,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationEditResponse:
+    ) -> Settings:
         """
         Updates zone level schema validation settings on the zone
 
@@ -161,6 +161,8 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
@@ -175,7 +177,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationEditResponse,
+            cast_to=Settings,
         )
 
     @typing_extensions.deprecated(
@@ -184,14 +186,14 @@ class SchemaValidationResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationGetResponse:
+    ) -> Settings:
         """
         Retrieves zone level schema validation settings currently set on the zone
 
@@ -206,6 +208,8 @@ class SchemaValidationResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
@@ -213,7 +217,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationGetResponse,
+            cast_to=Settings,
         )
 
 
@@ -243,7 +247,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_default_mitigation_action: Literal["none", "log", "block"],
         validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -252,7 +256,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationUpdateResponse:
+    ) -> Settings:
         """
         Updates zone level schema validation settings on the zone
 
@@ -285,6 +289,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
@@ -299,7 +305,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationUpdateResponse,
+            cast_to=Settings,
         )
 
     @typing_extensions.deprecated(
@@ -308,7 +314,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         validation_default_mitigation_action: Optional[Literal["none", "log", "block"]] | Omit = omit,
         validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -317,7 +323,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationEditResponse:
+    ) -> Settings:
         """
         Updates zone level schema validation settings on the zone
 
@@ -351,6 +357,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
@@ -365,7 +373,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationEditResponse,
+            cast_to=Settings,
         )
 
     @typing_extensions.deprecated(
@@ -374,14 +382,14 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaValidationGetResponse:
+    ) -> Settings:
         """
         Retrieves zone level schema validation settings currently set on the zone
 
@@ -396,6 +404,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
@@ -403,7 +413,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SchemaValidationGetResponse,
+            cast_to=Settings,
         )
 
 

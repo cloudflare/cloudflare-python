@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 from .rules_param import RulesParam
@@ -19,7 +19,7 @@ __all__ = ["LoadBalancerEditParams"]
 
 
 class LoadBalancerEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     adaptive_routing: AdaptiveRoutingParam
     """

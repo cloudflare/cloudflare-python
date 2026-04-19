@@ -6,6 +6,40 @@ Types:
 from cloudflare.types.workers import MigrationStep, SingleStepMigration, WorkerMetadata
 ```
 
+## Beta
+
+### Workers
+
+Types:
+
+```python
+from cloudflare.types.workers.beta import Worker, WorkerDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/workers">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+- <code title="put /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">update</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+- <code title="get /accounts/{account_id}/workers/workers">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">SyncV4PagePaginationArray[Worker]</a></code>
+- <code title="delete /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">delete</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker_delete_response.py">WorkerDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">edit</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">get</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+
+#### Versions
+
+Types:
+
+```python
+from cloudflare.types.workers.beta.workers import Version, VersionDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/workers/{worker_id}/versions">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">create</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">Version</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}/versions">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">list</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">SyncV4PagePaginationArray[Version]</a></code>
+- <code title="delete /accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">delete</a>(version_id, \*, account_id, worker_id) -> <a href="./src/cloudflare/types/workers/beta/workers/version_delete_response.py">VersionDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">get</a>(version_id, \*, account_id, worker_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">Version</a></code>
+
 ## Routes
 
 Types:
@@ -53,6 +87,7 @@ from cloudflare.types.workers import (
     ScriptUpdateResponse,
     ScriptListResponse,
     ScriptGetResponse,
+    ScriptSearchResponse,
 )
 ```
 
@@ -62,6 +97,7 @@ Methods:
 - <code title="get /accounts/{account_id}/workers/scripts">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_list_response.py">SyncSinglePage[ScriptListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> object</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> str</code>
+- <code title="get /accounts/{account_id}/workers/scripts-search">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">search</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/script_search_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_search_response.py">ScriptSearchResponse</a></code>
 
 ### Assets
 
@@ -147,19 +183,18 @@ Types:
 
 ```python
 from cloudflare.types.workers.scripts import (
-    DeploymentCreateResponse,
+    Deployment,
     DeploymentListResponse,
     DeploymentDeleteResponse,
-    DeploymentGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">DeploymentCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment.py">Deployment</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_list_response.py">DeploymentListResponse</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">delete</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_delete_response.py">DeploymentDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment.py">Deployment</a></code>
 
 ### Versions
 
@@ -258,6 +293,7 @@ from cloudflare.types.workers import SubdomainUpdateResponse, SubdomainGetRespon
 Methods:
 
 - <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">SubdomainUpdateResponse</a></code>
+- <code title="delete /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">delete</a>(\*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">SubdomainGetResponse</a></code>
 
 ## Observability
@@ -279,3 +315,23 @@ Methods:
 - <code title="post /accounts/{account_id}/workers/observability/telemetry/keys">client.workers.observability.telemetry.<a href="./src/cloudflare/resources/workers/observability/telemetry.py">keys</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry_keys_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry_keys_response.py">SyncSinglePage[TelemetryKeysResponse]</a></code>
 - <code title="post /accounts/{account_id}/workers/observability/telemetry/query">client.workers.observability.telemetry.<a href="./src/cloudflare/resources/workers/observability/telemetry.py">query</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry_query_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry_query_response.py">TelemetryQueryResponse</a></code>
 - <code title="post /accounts/{account_id}/workers/observability/telemetry/values">client.workers.observability.telemetry.<a href="./src/cloudflare/resources/workers/observability/telemetry.py">values</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry_values_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry_values_response.py">SyncSinglePage[TelemetryValuesResponse]</a></code>
+
+### Destinations
+
+Types:
+
+```python
+from cloudflare.types.workers.observability import (
+    DestinationCreateResponse,
+    DestinationUpdateResponse,
+    DestinationListResponse,
+    DestinationDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/destinations">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/destination_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/destination_create_response.py">DestinationCreateResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/observability/destinations/{slug}">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">update</a>(slug, \*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/destination_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/destination_update_response.py">DestinationUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/observability/destinations">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/destination_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/destination_list_response.py">SyncSinglePage[DestinationListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/workers/observability/destinations/{slug}">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">delete</a>(slug, \*, account_id) -> <a href="./src/cloudflare/types/workers/observability/destination_delete_response.py">Optional[DestinationDeleteResponse]</a></code>

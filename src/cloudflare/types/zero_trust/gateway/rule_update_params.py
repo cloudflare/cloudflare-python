@@ -15,7 +15,7 @@ __all__ = ["RuleUpdateParams", "Expiration"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     action: Required[
         Literal[

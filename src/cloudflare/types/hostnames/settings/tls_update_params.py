@@ -10,7 +10,7 @@ __all__ = ["TLSUpdateParams"]
 
 
 class TLSUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     setting_id: Required[Literal["ciphers", "min_tls_version", "http2"]]

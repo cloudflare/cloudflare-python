@@ -47,7 +47,7 @@ class EventsResource(SyncAPIResource):
         self,
         event_type: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         instance_id: str,
         body: object | Omit = omit,
@@ -70,6 +70,8 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -122,7 +124,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         event_type: str,
         *,
-        account_id: str,
+        account_id: str | None = None,
         workflow_name: str,
         instance_id: str,
         body: object | Omit = omit,
@@ -145,6 +147,8 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:

@@ -8,7 +8,7 @@ __all__ = ["AdvertisementStatusEditParams"]
 
 
 class AdvertisementStatusEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier of a Cloudflare account."""
 
     advertised: Required[bool]

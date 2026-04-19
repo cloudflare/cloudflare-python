@@ -51,6 +51,14 @@ from .pools.pools import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from .monitor_groups import (
+    MonitorGroupsResource,
+    AsyncMonitorGroupsResource,
+    MonitorGroupsResourceWithRawResponse,
+    AsyncMonitorGroupsResourceWithRawResponse,
+    MonitorGroupsResourceWithStreamingResponse,
+    AsyncMonitorGroupsResourceWithStreamingResponse,
+)
 from .monitors.monitors import (
     MonitorsResource,
     AsyncMonitorsResource,
@@ -84,6 +92,10 @@ class LoadBalancersResource(SyncAPIResource):
     @cached_property
     def monitors(self) -> MonitorsResource:
         return MonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> MonitorGroupsResource:
+        return MonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> PoolsResource:
@@ -123,7 +135,7 @@ class LoadBalancersResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -271,6 +283,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -312,7 +326,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -463,6 +477,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -508,7 +524,7 @@ class LoadBalancersResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -528,6 +544,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -543,7 +561,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,6 +581,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -585,7 +605,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -733,6 +753,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -778,7 +800,7 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -798,6 +820,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -821,6 +845,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
     def monitors(self) -> AsyncMonitorsResource:
         return AsyncMonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResource:
+        return AsyncMonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> AsyncPoolsResource:
@@ -860,7 +888,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -1008,6 +1036,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -1049,7 +1079,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
@@ -1200,6 +1230,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -1245,7 +1277,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1265,6 +1297,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -1280,7 +1314,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1300,6 +1334,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -1322,7 +1358,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -1470,6 +1506,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -1515,7 +1553,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        zone_id: str | None = None,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1535,6 +1573,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if zone_id is None:
+            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
@@ -1582,6 +1622,10 @@ class LoadBalancersResourceWithRawResponse:
         return MonitorsResourceWithRawResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithRawResponse:
+        return MonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithRawResponse:
         return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
@@ -1624,6 +1668,10 @@ class AsyncLoadBalancersResourceWithRawResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithRawResponse:
         return AsyncMonitorsResourceWithRawResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithRawResponse:
+        return AsyncMonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithRawResponse:
@@ -1670,6 +1718,10 @@ class LoadBalancersResourceWithStreamingResponse:
         return MonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithStreamingResponse:
+        return MonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithStreamingResponse:
         return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
@@ -1712,6 +1764,10 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithStreamingResponse:
         return AsyncMonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithStreamingResponse:
+        return AsyncMonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithStreamingResponse:

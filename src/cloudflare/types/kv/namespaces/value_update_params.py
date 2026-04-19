@@ -11,7 +11,7 @@ __all__ = ["ValueUpdateParams"]
 
 
 class ValueUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """Identifier."""
 
     namespace_id: Required[str]
@@ -30,3 +30,4 @@ class ValueUpdateParams(TypedDict, total=False):
     """Expires the key after a number of seconds. Must be at least 60."""
 
     metadata: object
+    """Associates arbitrary JSON data with a key/value pair."""

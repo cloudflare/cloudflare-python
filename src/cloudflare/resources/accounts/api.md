@@ -100,4 +100,4 @@ from cloudflare.types.accounts.logs import AuditListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorLimitPagination[AuditListResponse]</a></code>
+- <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>

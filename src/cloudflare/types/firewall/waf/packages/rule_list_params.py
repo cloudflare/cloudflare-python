@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["RuleListParams"]
 
 
 class RuleListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Defines an identifier of a schema."""
 
     description: str

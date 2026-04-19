@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["PayloadLogUpdateParams"]
 
 
 class PayloadLogUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     masking_level: Literal["full", "partial", "clear", "default"]
     """Masking level for payload logs.

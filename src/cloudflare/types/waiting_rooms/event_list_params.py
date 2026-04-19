@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["EventListParams"]
 
 
 class EventListParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     page: float

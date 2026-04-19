@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["HostnameAssociationGetParams"]
 
 
 class HostnameAssociationGetParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     mtls_certificate_id: str

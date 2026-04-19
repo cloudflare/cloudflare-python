@@ -70,7 +70,7 @@ __all__ = [
 
 
 class ARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -132,7 +132,7 @@ class ARecordSettings(TypedDict, total=False):
 
 
 class AAAARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -194,7 +194,7 @@ class AAAARecordSettings(TypedDict, total=False):
 
 
 class CNAMERecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -261,7 +261,7 @@ class CNAMERecordSettings(TypedDict, total=False):
 
 
 class MXRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -327,7 +327,7 @@ class MXRecordSettings(TypedDict, total=False):
 
 
 class NSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -386,7 +386,7 @@ class NSRecordSettings(TypedDict, total=False):
 
 
 class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -445,7 +445,7 @@ class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
 
 
 class PTRRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -504,7 +504,7 @@ class PTRRecordSettings(TypedDict, total=False):
 
 
 class TXTRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -571,7 +571,7 @@ class TXTRecordSettings(TypedDict, total=False):
 
 
 class CAARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -643,7 +643,7 @@ class CAARecordSettings(TypedDict, total=False):
 
 
 class CERTRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -718,7 +718,7 @@ class CERTRecordSettings(TypedDict, total=False):
 
 
 class DNSKEYRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -793,7 +793,7 @@ class DNSKEYRecordSettings(TypedDict, total=False):
 
 
 class DSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -868,7 +868,7 @@ class DSRecordSettings(TypedDict, total=False):
 
 
 class HTTPSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -940,7 +940,7 @@ class HTTPSRecordSettings(TypedDict, total=False):
 
 
 class LOCRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1039,7 +1039,7 @@ class LOCRecordSettings(TypedDict, total=False):
 
 
 class NAPTRRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1120,7 +1120,7 @@ class NAPTRRecordSettings(TypedDict, total=False):
 
 
 class SMIMEARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1195,7 +1195,7 @@ class SMIMEARecordSettings(TypedDict, total=False):
 
 
 class SRVRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1274,7 +1274,7 @@ class SRVRecordSettings(TypedDict, total=False):
 
 
 class SSHFPRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1346,7 +1346,7 @@ class SSHFPRecordSettings(TypedDict, total=False):
 
 
 class SVCBRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1418,7 +1418,7 @@ class SVCBRecordSettings(TypedDict, total=False):
 
 
 class TLSARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]
@@ -1493,7 +1493,7 @@ class TLSARecordSettings(TypedDict, total=False):
 
 
 class URIRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
     """Identifier."""
 
     name: Required[str]

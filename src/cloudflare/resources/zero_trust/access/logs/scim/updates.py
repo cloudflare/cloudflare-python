@@ -49,7 +49,7 @@ class UpdatesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         idp_id: SequenceNotStr[str],
         cf_resource_id: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
@@ -115,6 +115,8 @@ class UpdatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -172,7 +174,7 @@ class AsyncUpdatesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
+        account_id: str | None = None,
         idp_id: SequenceNotStr[str],
         cf_resource_id: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
@@ -238,6 +240,8 @@ class AsyncUpdatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if account_id is None:
+            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

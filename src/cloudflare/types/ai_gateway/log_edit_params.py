@@ -9,7 +9,7 @@ __all__ = ["LogEditParams"]
 
 
 class LogEditParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     gateway_id: Required[str]
     """gateway id"""

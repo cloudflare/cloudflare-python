@@ -8,7 +8,7 @@ __all__ = ["CertificateEditParams"]
 
 
 class CertificateEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: str
 
     enabled: Required[bool]
     """

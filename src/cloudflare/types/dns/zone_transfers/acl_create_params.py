@@ -8,7 +8,7 @@ __all__ = ["ACLCreateParams"]
 
 
 class ACLCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
 
     ip_range: Required[str]
     """Allowed IPv4/IPv6 address range of primary or secondary nameservers.
