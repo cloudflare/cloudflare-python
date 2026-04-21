@@ -38,6 +38,7 @@ class JobCreateParams(TypedDict, total=False):
             "dns_firewall_logs",
             "dns_logs",
             "email_security_alerts",
+            "email_security_post_delivery_events",
             "firewall_events",
             "gateway_dns",
             "gateway_http",
