@@ -86,3 +86,32 @@ Methods:
 
 - <code title="patch /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/regional_tiered_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_edit_response.py">Optional[RegionalTieredCacheEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_get_response.py">Optional[RegionalTieredCacheGetResponse]</a></code>
+
+## OriginCloudRegions
+
+Types:
+
+```python
+from cloudflare.types.cache import (
+    OriginCloudRegion,
+    OriginCloudRegionCreateResponse,
+    OriginCloudRegionListResponse,
+    OriginCloudRegionDeleteResponse,
+    OriginCloudRegionBulkDeleteResponse,
+    OriginCloudRegionBulkEditResponse,
+    OriginCloudRegionEditResponse,
+    OriginCloudRegionGetResponse,
+    OriginCloudRegionSupportedRegionsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_create_response.py">Optional[OriginCloudRegionCreateResponse]</a></code>
+- <code title="get /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_list_response.py">Optional[OriginCloudRegionListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">delete</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_delete_response.py">Optional[OriginCloudRegionDeleteResponse]</a></code>
+- <code title="delete /zones/{zone_id}/cache/origin_cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_delete_response.py">Optional[OriginCloudRegionBulkDeleteResponse]</a></code>
+- <code title="patch /zones/{zone_id}/cache/origin_cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_edit_response.py">Optional[OriginCloudRegionBulkEditResponse]</a></code>
+- <code title="patch /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_edit_response.py">Optional[OriginCloudRegionEditResponse]</a></code>
+- <code title="get /zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">get</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_get_response.py">Optional[OriginCloudRegionGetResponse]</a></code>
+- <code title="get /zones/{zone_id}/cache/origin_cloud_regions/supported_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">supported_regions</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_supported_regions_response.py">Optional[OriginCloudRegionSupportedRegionsResponse]</a></code>
