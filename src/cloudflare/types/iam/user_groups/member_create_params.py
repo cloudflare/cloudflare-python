@@ -5,16 +5,16 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MemberCreateParams", "Body"]
+__all__ = ["MemberCreateParams", "Member"]
 
 
 class MemberCreateParams(TypedDict, total=False):
     account_id: str
     """Account identifier tag."""
 
-    body: Required[Iterable[Body]]
+    members: Required[Iterable[Member]]
 
 
-class Body(TypedDict, total=False):
+class Member(TypedDict, total=False):
     id: Required[str]
     """The identifier of an existing account Member."""

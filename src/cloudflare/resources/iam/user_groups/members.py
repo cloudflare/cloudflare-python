@@ -53,7 +53,7 @@ class MembersResource(SyncAPIResource):
         user_group_id: str,
         *,
         account_id: str | None = None,
-        body: Iterable[member_create_params.Body],
+        members: Iterable[member_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,7 +89,7 @@ class MembersResource(SyncAPIResource):
                 account_id=account_id,
                 user_group_id=user_group_id,
             ),
-            body=maybe_transform(body, Iterable[member_create_params.Body]),
+            body=maybe_transform(members, Iterable[member_create_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -105,7 +105,7 @@ class MembersResource(SyncAPIResource):
         user_group_id: str,
         *,
         account_id: str | None = None,
-        body: Iterable[member_update_params.Body],
+        members: Iterable[member_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,7 +121,7 @@ class MembersResource(SyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
-          body: Set/Replace members to a user group.
+          members: Set/Replace members to a user group.
 
           extra_headers: Send extra headers
 
@@ -144,7 +144,7 @@ class MembersResource(SyncAPIResource):
                 user_group_id=user_group_id,
             ),
             page=SyncSinglePage[MemberUpdateResponse],
-            body=maybe_transform(body, Iterable[member_update_params.Body]),
+            body=maybe_transform(members, Iterable[member_update_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -297,7 +297,7 @@ class AsyncMembersResource(AsyncAPIResource):
         user_group_id: str,
         *,
         account_id: str | None = None,
-        body: Iterable[member_create_params.Body],
+        members: Iterable[member_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -333,7 +333,7 @@ class AsyncMembersResource(AsyncAPIResource):
                 account_id=account_id,
                 user_group_id=user_group_id,
             ),
-            body=await async_maybe_transform(body, Iterable[member_create_params.Body]),
+            body=await async_maybe_transform(members, Iterable[member_create_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,7 +349,7 @@ class AsyncMembersResource(AsyncAPIResource):
         user_group_id: str,
         *,
         account_id: str | None = None,
-        body: Iterable[member_update_params.Body],
+        members: Iterable[member_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,7 +365,7 @@ class AsyncMembersResource(AsyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
-          body: Set/Replace members to a user group.
+          members: Set/Replace members to a user group.
 
           extra_headers: Send extra headers
 
@@ -388,7 +388,7 @@ class AsyncMembersResource(AsyncAPIResource):
                 user_group_id=user_group_id,
             ),
             page=AsyncSinglePage[MemberUpdateResponse],
-            body=maybe_transform(body, Iterable[member_update_params.Body]),
+            body=maybe_transform(members, Iterable[member_update_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
