@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-__all__ = ["StatusEditParams"]
+from ...._utils import PropertyInfo
+
+__all__ = ["StatusEditParams", "From"]
 
 
 class StatusEditParams(TypedDict, total=False):
@@ -14,3 +16,16 @@ class StatusEditParams(TypedDict, total=False):
 
     status: Required[Literal["resume", "pause", "terminate", "restart"]]
     """Apply action to instance."""
+
+    from_: Annotated[From, PropertyInfo(alias="from")]
+    """Step to restart from. Only applicable when status is "restart"."""
+
+
+class From(TypedDict, total=False):
+    """Step to restart from. Only applicable when status is "restart"."""
+
+    name: Required[str]
+
+    count: int
+
+    type: Literal["do", "sleep", "waitForEvent"]

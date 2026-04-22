@@ -28,6 +28,21 @@ class TestStatus:
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="resume",
+            from_={
+                "name": "x",
+                "count": 1,
+                "type": "do",
+            },
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.workflows.instances.status.with_raw_response.edit(
             instance_id="x",
@@ -96,6 +111,21 @@ class TestAsyncStatus:
             account_id="account_id",
             workflow_name="x",
             status="resume",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="resume",
+            from_={
+                "name": "x",
+                "count": 1,
+                "type": "do",
+            },
         )
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
