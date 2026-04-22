@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,6 +52,7 @@ class StatusResource(SyncAPIResource):
         account_id: str | None = None,
         workflow_name: str,
         status: Literal["resume", "pause", "terminate", "restart"],
+        from_: status_edit_params.From | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,6 +66,8 @@ class StatusResource(SyncAPIResource):
 
         Args:
           status: Apply action to instance.
+
+          from_: Step to restart from. Only applicable when status is "restart".
 
           extra_headers: Send extra headers
 
@@ -89,7 +92,13 @@ class StatusResource(SyncAPIResource):
                 workflow_name=workflow_name,
                 instance_id=instance_id,
             ),
-            body=maybe_transform({"status": status}, status_edit_params.StatusEditParams),
+            body=maybe_transform(
+                {
+                    "status": status,
+                    "from_": from_,
+                },
+                status_edit_params.StatusEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,6 +137,7 @@ class AsyncStatusResource(AsyncAPIResource):
         account_id: str | None = None,
         workflow_name: str,
         status: Literal["resume", "pause", "terminate", "restart"],
+        from_: status_edit_params.From | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,6 +151,8 @@ class AsyncStatusResource(AsyncAPIResource):
 
         Args:
           status: Apply action to instance.
+
+          from_: Step to restart from. Only applicable when status is "restart".
 
           extra_headers: Send extra headers
 
@@ -165,7 +177,13 @@ class AsyncStatusResource(AsyncAPIResource):
                 workflow_name=workflow_name,
                 instance_id=instance_id,
             ),
-            body=await async_maybe_transform({"status": status}, status_edit_params.StatusEditParams),
+            body=await async_maybe_transform(
+                {
+                    "status": status,
+                    "from_": from_,
+                },
+                status_edit_params.StatusEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

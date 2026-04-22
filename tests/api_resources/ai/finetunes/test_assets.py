@@ -22,14 +22,6 @@ class TestAssets:
         asset = client.ai.finetunes.assets.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AssetCreateResponse, asset, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        asset = client.ai.finetunes.assets.create(
-            finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file=b"Example data",
             file_name="file_name",
         )
@@ -40,6 +32,8 @@ class TestAssets:
         response = client.ai.finetunes.assets.with_raw_response.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file=b"Example data",
+            file_name="file_name",
         )
 
         assert response.is_closed is True
@@ -52,6 +46,8 @@ class TestAssets:
         with client.ai.finetunes.assets.with_streaming_response.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file=b"Example data",
+            file_name="file_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,12 +63,16 @@ class TestAssets:
             client.ai.finetunes.assets.with_raw_response.create(
                 finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
                 account_id="",
+                file=b"Example data",
+                file_name="file_name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `finetune_id` but received ''"):
             client.ai.finetunes.assets.with_raw_response.create(
                 finetune_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                file=b"Example data",
+                file_name="file_name",
             )
 
 
@@ -86,14 +86,6 @@ class TestAsyncAssets:
         asset = await async_client.ai.finetunes.assets.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AssetCreateResponse, asset, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        asset = await async_client.ai.finetunes.assets.create(
-            finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file=b"Example data",
             file_name="file_name",
         )
@@ -104,6 +96,8 @@ class TestAsyncAssets:
         response = await async_client.ai.finetunes.assets.with_raw_response.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file=b"Example data",
+            file_name="file_name",
         )
 
         assert response.is_closed is True
@@ -116,6 +110,8 @@ class TestAsyncAssets:
         async with async_client.ai.finetunes.assets.with_streaming_response.create(
             finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file=b"Example data",
+            file_name="file_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -131,10 +127,14 @@ class TestAsyncAssets:
             await async_client.ai.finetunes.assets.with_raw_response.create(
                 finetune_id="bc451aef-f723-4b26-a6b2-901afd2e7a8a",
                 account_id="",
+                file=b"Example data",
+                file_name="file_name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `finetune_id` but received ''"):
             await async_client.ai.finetunes.assets.with_raw_response.create(
                 finetune_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                file=b"Example data",
+                file_name="file_name",
             )

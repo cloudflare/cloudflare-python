@@ -6,7 +6,7 @@ from typing import Mapping, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, FileTypes, not_given
 from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -48,8 +48,8 @@ class AssetsResource(SyncAPIResource):
         finetune_id: str,
         *,
         account_id: str | None = None,
-        file: FileTypes | Omit = omit,
-        file_name: str | Omit = omit,
+        file: FileTypes,
+        file_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,6 +61,10 @@ class AssetsResource(SyncAPIResource):
         Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
+          file: File to upload
+
+          file_name: Name of the file (adapter_config.json or adapter_model.safetensors)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -126,8 +130,8 @@ class AsyncAssetsResource(AsyncAPIResource):
         finetune_id: str,
         *,
         account_id: str | None = None,
-        file: FileTypes | Omit = omit,
-        file_name: str | Omit = omit,
+        file: FileTypes,
+        file_name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,6 +143,10 @@ class AsyncAssetsResource(AsyncAPIResource):
         Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
+          file: File to upload
+
+          file_name: Name of the file (adapter_config.json or adapter_model.safetensors)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
