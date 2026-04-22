@@ -276,11 +276,11 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        When `datasetId` is unspecified, events will be listed from the
-        `Cloudforce One Threat Events` dataset. To list existing datasets (and their
-        IDs), use the
+        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
+        (limited to 10). When `datasetId` is unspecified, events are listed from the
+        default Cloudforce One Threat Events dataset. To list existing datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint). Also, must provide query parameters.
+        endpoint.
 
         Args:
           account_id: Account ID.
@@ -289,6 +289,10 @@ class ThreatEventsResource(SyncAPIResource):
               only need to pass cursor and pageSize. Returned in the previous response's
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
+
+          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+              '\\**' to query all event datasets for the account. If not provided, uses the
+              default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
@@ -675,11 +679,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        When `datasetId` is unspecified, events will be listed from the
-        `Cloudforce One Threat Events` dataset. To list existing datasets (and their
-        IDs), use the
+        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
+        (limited to 10). When `datasetId` is unspecified, events are listed from the
+        default Cloudforce One Threat Events dataset. To list existing datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint). Also, must provide query parameters.
+        endpoint.
 
         Args:
           account_id: Account ID.
@@ -688,6 +692,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
               only need to pass cursor and pageSize. Returned in the previous response's
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
+
+          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+              '\\**' to query all event datasets for the account. If not provided, uses the
+              default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.

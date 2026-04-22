@@ -17,7 +17,8 @@ class MatchGetParams(TypedDict, total=False):
     """Query ID or comma-separated list of Query IDs.
 
     When multiple IDs are provided, matches are deduplicated across queries and each
-    match includes matched_queries and match_ids arrays.
+    match includes a match_details array with per-match query metadata and dismissed
+    state.
     """
 
     domain_search: str

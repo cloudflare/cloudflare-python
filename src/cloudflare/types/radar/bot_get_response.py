@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
@@ -34,6 +34,12 @@ class Bot(BaseModel):
     user_agent_patterns: List[str] = FieldInfo(alias="userAgentPatterns")
 
     user_agents: List[str] = FieldInfo(alias="userAgents")
+
+    signature_agent_url: Optional[str] = FieldInfo(alias="signatureAgentUrl", default=None)
+    """
+    The URL of the agent's [Web Bot Auth](https://blog.cloudflare.com/web-bot-auth/)
+    resource. Null for bots not verified via request signature.
+    """
 
 
 class BotGetResponse(BaseModel):
