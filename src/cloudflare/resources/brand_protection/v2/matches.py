@@ -65,12 +65,13 @@ class MatchesResource(SyncAPIResource):
         """
         Get paginated list of domain matches for one or more brand protection queries.
         When multiple query_ids are provided (comma-separated), matches are deduplicated
-        across queries and each match includes a matched_queries array.
+        across queries and each match includes a match_details array with per-match
+        query metadata and individual dismissed state.
 
         Args:
           query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
-              matches are deduplicated across queries and each match includes matched_queries
-              and match_ids arrays.
+              matches are deduplicated across queries and each match includes a match_details
+              array with per-match query metadata and dismissed state.
 
           domain_search: Filter matches by domain name (substring match)
 
@@ -159,12 +160,13 @@ class AsyncMatchesResource(AsyncAPIResource):
         """
         Get paginated list of domain matches for one or more brand protection queries.
         When multiple query_ids are provided (comma-separated), matches are deduplicated
-        across queries and each match includes a matched_queries array.
+        across queries and each match includes a match_details array with per-match
+        query metadata and individual dismissed state.
 
         Args:
           query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
-              matches are deduplicated across queries and each match includes matched_queries
-              and match_ids arrays.
+              matches are deduplicated across queries and each match includes a match_details
+              array with per-match query metadata and dismissed state.
 
           domain_search: Filter matches by domain name (substring match)
 

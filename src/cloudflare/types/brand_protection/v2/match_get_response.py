@@ -4,16 +4,26 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["MatchGetResponse", "Match", "MatchPublicScans"]
+__all__ = ["MatchGetResponse", "Match", "MatchPublicScans", "MatchMatchDetail"]
 
 
 class MatchPublicScans(BaseModel):
     submission_id: str
 
 
-class Match(BaseModel):
+class MatchMatchDetail(BaseModel):
     dismissed: bool
+    """Individual dismissed state for this specific match."""
 
+    match_id: int
+
+    query_id: int
+
+    query_tag: Optional[str] = None
+    """Tag associated with the query, if one exists."""
+
+
+class Match(BaseModel):
     domain: str
 
     first_seen: str
@@ -28,14 +38,15 @@ class Match(BaseModel):
 
     source: Optional[str] = None
 
-    match_ids: Optional[List[int]] = None
-    """All underlying match row IDs for this domain.
+    dismissed: Optional[bool] = None
+    """Whether the match is dismissed.
 
-    Only present when multiple query_ids are requested.
+    Only present for single-query requests. For multi-query requests, use the
+    dismissed field in each match_details entry.
     """
 
-    matched_queries: Optional[List[int]] = None
-    """List of query IDs that produced this match.
+    match_details: Optional[List[MatchMatchDetail]] = None
+    """Per-match detail objects with query metadata and individual dismissed state.
 
     Only present when multiple query_ids are requested.
     """
