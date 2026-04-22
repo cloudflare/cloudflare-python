@@ -10,5 +10,5 @@ __all__ = ["ListListParams"]
 class ListListParams(TypedDict, total=False):
     account_id: str
 
-    type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"]
+    type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE", "AAGUID"]
     """Specify the list type."""
