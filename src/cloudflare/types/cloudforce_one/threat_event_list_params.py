@@ -25,6 +25,11 @@ class ThreatEventListParams(TypedDict, total=False):
     """
 
     dataset_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetId")]
+    """
+    Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+    '\\**' to query all event datasets for the account. If not provided, uses the
+    default dataset.
+    """
 
     force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
 
