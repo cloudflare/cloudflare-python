@@ -38,6 +38,12 @@ class OutputOptions(BaseModel):
     specify all the fields names you are interested in.
     """
 
+    merge_subrequests: Optional[bool] = None
+    """If set to true, subrequests will be merged into the parent request.
+
+    Only supported for the `http_requests` dataset.
+    """
+
     output_type: Optional[Literal["ndjson", "csv"]] = None
     """Specifies the output type, such as `ndjson` or `csv`.
 
