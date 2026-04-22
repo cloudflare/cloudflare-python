@@ -5,7 +5,16 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["DetectionGetResponse", "Attachment", "Header", "Link", "SenderInfo", "ThreatCategory", "Validation"]
+__all__ = [
+    "DetectionGetResponse",
+    "Attachment",
+    "Finding",
+    "Header",
+    "Link",
+    "SenderInfo",
+    "ThreatCategory",
+    "Validation",
+]
 
 
 class Attachment(BaseModel):
@@ -31,6 +40,39 @@ class Attachment(BaseModel):
     encrypted: Optional[bool] = None
 
     name: Optional[str] = None
+
+
+class Finding(BaseModel):
+    attachment: Optional[str] = None
+
+    detail: Optional[str] = None
+
+    detection: Optional[
+        Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+    ] = None
+
+    field: Optional[str] = None
+
+    name: Optional[str] = None
+
+    portion: Optional[str] = None
+
+    reason: Optional[str] = None
+
+    score: Optional[float] = None
+
+    value: Optional[str] = None
 
 
 class Header(BaseModel):
@@ -81,6 +123,8 @@ class DetectionGetResponse(BaseModel):
     action: str
 
     attachments: List[Attachment]
+
+    findings: List[Finding]
 
     headers: List[Header]
 

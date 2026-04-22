@@ -128,6 +128,10 @@ class InvestigateGetResponse(BaseModel):
         ]
     ] = None
 
+    delivery_status: Optional[
+        List[Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]]
+    ] = None
+
     edf_hash: Optional[str] = None
 
     envelope_from: Optional[str] = None
@@ -150,7 +154,7 @@ class InvestigateGetResponse(BaseModel):
     ] = None
 
     findings: Optional[List[Finding]] = None
-    """Deprecated."""
+    """Deprecated: use `/investigate/{id}/detections` instead."""
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 

@@ -51,7 +51,7 @@ class InvestigateListParams(TypedDict, total=False):
     """Deprecated: Use cursor pagination instead."""
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     query: str
     """The space-delimited term used in the query. The search is case-insensitive.
