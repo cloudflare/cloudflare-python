@@ -26,3 +26,17 @@ Methods:
 
 - <code title="put /organizations/{organization_id}/profile">client.organizations.organization_profile.<a href="./src/cloudflare/resources/organizations/organization_profile.py">update</a>(organization_id, \*\*<a href="src/cloudflare/types/organizations/organization_profile_update_params.py">params</a>) -> None</code>
 - <code title="get /organizations/{organization_id}/profile">client.organizations.organization_profile.<a href="./src/cloudflare/resources/organizations/organization_profile.py">get</a>(organization_id) -> Result</code>
+
+## Logs
+
+### Audit
+
+Types:
+
+```python
+from cloudflare.types.organizations.logs import AuditListResponse
+```
+
+Methods:
+
+- <code title="get /organizations/{organization_id}/logs/audit">client.organizations.logs.audit.<a href="./src/cloudflare/resources/organizations/logs/audit.py">list</a>(organization_id, \*\*<a href="src/cloudflare/types/organizations/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/organizations/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>
