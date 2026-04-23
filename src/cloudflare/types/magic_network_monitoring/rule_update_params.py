@@ -11,7 +11,7 @@ __all__ = ["RuleUpdateParams"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     automatic_advertisement: Required[Optional[bool]]
     """
