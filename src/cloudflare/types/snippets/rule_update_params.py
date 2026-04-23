@@ -9,7 +9,7 @@ __all__ = ["RuleUpdateParams", "Rule"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Use this field to specify the unique ID of the zone."""
 
     rules: Required[Iterable[Rule]]
