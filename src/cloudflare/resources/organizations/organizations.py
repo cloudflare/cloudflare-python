@@ -9,6 +9,14 @@ import httpx
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
+from .logs.logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -38,6 +46,10 @@ class OrganizationsResource(SyncAPIResource):
     @cached_property
     def organization_profile(self) -> OrganizationProfileResource:
         return OrganizationProfileResource(self._client)
+
+    @cached_property
+    def logs(self) -> LogsResource:
+        return LogsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
@@ -303,6 +315,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
     def organization_profile(self) -> AsyncOrganizationProfileResource:
         return AsyncOrganizationProfileResource(self._client)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResource:
+        return AsyncLogsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
@@ -588,6 +604,10 @@ class OrganizationsResourceWithRawResponse:
     def organization_profile(self) -> OrganizationProfileResourceWithRawResponse:
         return OrganizationProfileResourceWithRawResponse(self._organizations.organization_profile)
 
+    @cached_property
+    def logs(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self._organizations.logs)
+
 
 class AsyncOrganizationsResourceWithRawResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -612,6 +632,10 @@ class AsyncOrganizationsResourceWithRawResponse:
     @cached_property
     def organization_profile(self) -> AsyncOrganizationProfileResourceWithRawResponse:
         return AsyncOrganizationProfileResourceWithRawResponse(self._organizations.organization_profile)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self._organizations.logs)
 
 
 class OrganizationsResourceWithStreamingResponse:
@@ -638,6 +662,10 @@ class OrganizationsResourceWithStreamingResponse:
     def organization_profile(self) -> OrganizationProfileResourceWithStreamingResponse:
         return OrganizationProfileResourceWithStreamingResponse(self._organizations.organization_profile)
 
+    @cached_property
+    def logs(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self._organizations.logs)
+
 
 class AsyncOrganizationsResourceWithStreamingResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -662,3 +690,7 @@ class AsyncOrganizationsResourceWithStreamingResponse:
     @cached_property
     def organization_profile(self) -> AsyncOrganizationProfileResourceWithStreamingResponse:
         return AsyncOrganizationProfileResourceWithStreamingResponse(self._organizations.organization_profile)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self._organizations.logs)

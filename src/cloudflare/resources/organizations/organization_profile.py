@@ -19,9 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.organizations import organization_profile_update_params
-from ...types.organizations.organization_profile_get_params import (  # type: ignore[import-not-found]  # pyright: ignore[reportMissingImports]
-    Result,  # pyright: ignore[reportUnknownVariableType]
-)
+from ...types.organizations.organization_profile_get_params import Result
 
 __all__ = ["OrganizationProfileResource", "AsyncOrganizationProfileResource"]
 
@@ -97,7 +95,7 @@ class OrganizationProfileResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def get(  # pyright: ignore[reportUnknownParameterType]
+    def get(
         self,
         organization_id: str,
         *,
@@ -131,9 +129,9 @@ class OrganizationProfileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Result]._unwrapper,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+                post_parser=ResultWrapper[Result]._unwrapper,
             ),
-            cast_to=cast(Type[Result], ResultWrapper[Result]),  # pyright: ignore[reportUnknownArgumentType]
+            cast_to=cast(Type[Result], ResultWrapper[Result]),
         )
 
 
@@ -208,7 +206,7 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def get(  # pyright: ignore[reportUnknownParameterType]
+    async def get(
         self,
         organization_id: str,
         *,
@@ -242,9 +240,9 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Result]._unwrapper,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+                post_parser=ResultWrapper[Result]._unwrapper,
             ),
-            cast_to=cast(Type[Result], ResultWrapper[Result]),  # pyright: ignore[reportUnknownArgumentType]
+            cast_to=cast(Type[Result], ResultWrapper[Result]),
         )
 
 
@@ -256,7 +254,7 @@ class OrganizationProfileResourceWithRawResponse:
             organization_profile.update,
         )
         self.get = to_raw_response_wrapper(
-            organization_profile.get,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+            organization_profile.get,
         )
 
 
@@ -268,7 +266,7 @@ class AsyncOrganizationProfileResourceWithRawResponse:
             organization_profile.update,
         )
         self.get = async_to_raw_response_wrapper(
-            organization_profile.get,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+            organization_profile.get,
         )
 
 
@@ -280,7 +278,7 @@ class OrganizationProfileResourceWithStreamingResponse:
             organization_profile.update,
         )
         self.get = to_streamed_response_wrapper(
-            organization_profile.get,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+            organization_profile.get,
         )
 
 
@@ -292,5 +290,5 @@ class AsyncOrganizationProfileResourceWithStreamingResponse:
             organization_profile.update,
         )
         self.get = async_to_streamed_response_wrapper(
-            organization_profile.get,  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+            organization_profile.get,
         )
