@@ -54,8 +54,8 @@ class AssetsResource(SyncAPIResource):
         description: str,
         name: str,
         url: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,10 +86,6 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -132,8 +128,8 @@ class AssetsResource(SyncAPIResource):
         *,
         description: str,
         url: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,10 +162,6 @@ class AssetsResource(SyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -209,8 +201,8 @@ class AssetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -236,10 +228,6 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -279,8 +267,8 @@ class AssetsResource(SyncAPIResource):
         self,
         asset_name: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,10 +297,6 @@ class AssetsResource(SyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -343,8 +327,8 @@ class AssetsResource(SyncAPIResource):
         self,
         asset_name: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,10 +357,6 @@ class AssetsResource(SyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -433,8 +413,8 @@ class AsyncAssetsResource(AsyncAPIResource):
         description: str,
         name: str,
         url: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -465,10 +445,6 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -511,8 +487,8 @@ class AsyncAssetsResource(AsyncAPIResource):
         *,
         description: str,
         url: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,10 +521,6 @@ class AsyncAssetsResource(AsyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -588,8 +560,8 @@ class AsyncAssetsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -615,10 +587,6 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -658,8 +626,8 @@ class AsyncAssetsResource(AsyncAPIResource):
         self,
         asset_name: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -688,10 +656,6 @@ class AsyncAssetsResource(AsyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -722,8 +686,8 @@ class AsyncAssetsResource(AsyncAPIResource):
         self,
         asset_name: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -752,10 +716,6 @@ class AsyncAssetsResource(AsyncAPIResource):
         """
         if not asset_name:
             raise ValueError(f"Expected a non-empty value for `asset_name` but received {asset_name!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
