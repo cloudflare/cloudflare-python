@@ -50,7 +50,7 @@ class BytimesResource(SyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dimensions: str | Omit = omit,
         filters: str | Omit = omit,
         limit: int | Omit = omit,
@@ -104,8 +104,6 @@ class BytimesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
@@ -164,7 +162,7 @@ class AsyncBytimesResource(AsyncAPIResource):
         self,
         dns_firewall_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dimensions: str | Omit = omit,
         filters: str | Omit = omit,
         limit: int | Omit = omit,
@@ -218,8 +216,6 @@ class AsyncBytimesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dns_firewall_id:
