@@ -9,7 +9,7 @@ __all__ = ["NamespaceCreateParams"]
 
 
 class NamespaceCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
 

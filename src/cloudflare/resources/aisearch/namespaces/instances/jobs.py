@@ -59,7 +59,7 @@ class JobsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,8 +83,6 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -113,7 +111,7 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         action: Literal["cancel"],
@@ -138,8 +136,6 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -171,7 +167,7 @@ class JobsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -196,8 +192,6 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -232,7 +226,7 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -256,8 +250,6 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -288,7 +280,7 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         page: int | Omit = omit,
@@ -314,8 +306,6 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -374,7 +364,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -398,8 +388,6 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -428,7 +416,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         action: Literal["cancel"],
@@ -453,8 +441,6 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -486,7 +472,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -511,8 +497,6 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -547,7 +531,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -571,8 +555,6 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
@@ -603,7 +585,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
         id: str,
         page: int | Omit = omit,
@@ -629,8 +611,6 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:

@@ -8,7 +8,7 @@ __all__ = ["ItemChunksParams"]
 
 
 class ItemChunksParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
 
