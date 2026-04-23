@@ -36,7 +36,7 @@ __all__ = [
 
 
 class DynamicRoutingCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     elements: Required[Iterable[Element]]
 

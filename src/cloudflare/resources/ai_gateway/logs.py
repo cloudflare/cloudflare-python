@@ -53,7 +53,7 @@ class LogsResource(SyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cached: bool | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
@@ -103,8 +103,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -162,7 +160,7 @@ class LogsResource(SyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         filters: Iterable[log_delete_params.Filter] | Omit = omit,
         limit: int | Omit = omit,
         order_by: Literal[
@@ -201,8 +199,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -235,7 +231,7 @@ class LogsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         feedback: Optional[float] | Omit = omit,
         metadata: Optional[Dict[str, Union[str, float, bool]]] | Omit = omit,
@@ -261,8 +257,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -298,7 +292,7 @@ class LogsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,8 +315,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -350,7 +342,7 @@ class LogsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -373,8 +365,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -398,7 +388,7 @@ class LogsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -421,8 +411,6 @@ class LogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -467,7 +455,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cached: bool | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
@@ -517,8 +505,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -576,7 +562,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         gateway_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         filters: Iterable[log_delete_params.Filter] | Omit = omit,
         limit: int | Omit = omit,
         order_by: Literal[
@@ -615,8 +601,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -649,7 +633,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         feedback: Optional[float] | Omit = omit,
         metadata: Optional[Dict[str, Union[str, float, bool]]] | Omit = omit,
@@ -675,8 +659,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -712,7 +694,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -735,8 +717,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -764,7 +744,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -787,8 +767,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:
@@ -812,7 +790,7 @@ class AsyncLogsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         gateway_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -835,8 +813,6 @@ class AsyncLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not gateway_id:

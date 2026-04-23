@@ -8,7 +8,7 @@ __all__ = ["ProviderConfigCreateParams"]
 
 
 class ProviderConfigCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     alias: Required[str]
 

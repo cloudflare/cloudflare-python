@@ -9,7 +9,7 @@ __all__ = ["AIGatewayCreateParams"]
 
 
 class AIGatewayCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     id: Required[str]
     """gateway id"""
