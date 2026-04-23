@@ -8,7 +8,7 @@ __all__ = ["OwnershipCreateParams"]
 
 
 class OwnershipCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     destination_conf: Required[str]

@@ -21,7 +21,7 @@ __all__ = [
 
 
 class IPSECTunnelUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     cloudflare_endpoint: Required[str]
