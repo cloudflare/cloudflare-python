@@ -8,7 +8,7 @@ from typing_extensions import overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .variants import (
     VariantsResource,
     AsyncVariantsResource,
@@ -44,6 +44,14 @@ from .smart_tiered_cache import (
     SmartTieredCacheResourceWithStreamingResponse,
     AsyncSmartTieredCacheResourceWithStreamingResponse,
 )
+from .origin_cloud_regions import (
+    OriginCloudRegionsResource,
+    AsyncOriginCloudRegionsResource,
+    OriginCloudRegionsResourceWithRawResponse,
+    AsyncOriginCloudRegionsResourceWithRawResponse,
+    OriginCloudRegionsResourceWithStreamingResponse,
+    AsyncOriginCloudRegionsResourceWithStreamingResponse,
+)
 from .regional_tiered_cache import (
     RegionalTieredCacheResource,
     AsyncRegionalTieredCacheResource,
@@ -75,6 +83,10 @@ class CacheResource(SyncAPIResource):
         return RegionalTieredCacheResource(self._client)
 
     @cached_property
+    def origin_cloud_regions(self) -> OriginCloudRegionsResource:
+        return OriginCloudRegionsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CacheResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -97,7 +109,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -199,7 +211,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         hosts: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +313,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -403,7 +415,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         purge_everything: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -505,7 +517,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         files: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -607,7 +619,7 @@ class CacheResource(SyncAPIResource):
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -705,10 +717,11 @@ class CacheResource(SyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         tags: SequenceNotStr[str] | Omit = omit,
         hosts: SequenceNotStr[str] | Omit = omit,
         prefixes: SequenceNotStr[str] | Omit = omit,
@@ -723,8 +736,6 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
@@ -768,6 +779,10 @@ class AsyncCacheResource(AsyncAPIResource):
         return AsyncRegionalTieredCacheResource(self._client)
 
     @cached_property
+    def origin_cloud_regions(self) -> AsyncOriginCloudRegionsResource:
+        return AsyncOriginCloudRegionsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCacheResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -790,7 +805,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -892,7 +907,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         hosts: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -994,7 +1009,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1096,7 +1111,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         purge_everything: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1198,7 +1213,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         files: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1300,7 +1315,7 @@ class AsyncCacheResource(AsyncAPIResource):
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1398,10 +1413,11 @@ class AsyncCacheResource(AsyncAPIResource):
         """
         ...
 
+    @required_args(["zone_id"])
     async def purge(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         tags: SequenceNotStr[str] | Omit = omit,
         hosts: SequenceNotStr[str] | Omit = omit,
         prefixes: SequenceNotStr[str] | Omit = omit,
@@ -1416,8 +1432,6 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
@@ -1467,6 +1481,10 @@ class CacheResourceWithRawResponse:
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithRawResponse:
         return RegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
+    @cached_property
+    def origin_cloud_regions(self) -> OriginCloudRegionsResourceWithRawResponse:
+        return OriginCloudRegionsResourceWithRawResponse(self._cache.origin_cloud_regions)
+
 
 class AsyncCacheResourceWithRawResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:
@@ -1491,6 +1509,10 @@ class AsyncCacheResourceWithRawResponse:
     @cached_property
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
         return AsyncRegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
+
+    @cached_property
+    def origin_cloud_regions(self) -> AsyncOriginCloudRegionsResourceWithRawResponse:
+        return AsyncOriginCloudRegionsResourceWithRawResponse(self._cache.origin_cloud_regions)
 
 
 class CacheResourceWithStreamingResponse:
@@ -1517,6 +1539,10 @@ class CacheResourceWithStreamingResponse:
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithStreamingResponse:
         return RegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)
 
+    @cached_property
+    def origin_cloud_regions(self) -> OriginCloudRegionsResourceWithStreamingResponse:
+        return OriginCloudRegionsResourceWithStreamingResponse(self._cache.origin_cloud_regions)
+
 
 class AsyncCacheResourceWithStreamingResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:
@@ -1541,3 +1567,7 @@ class AsyncCacheResourceWithStreamingResponse:
     @cached_property
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithStreamingResponse:
         return AsyncRegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)
+
+    @cached_property
+    def origin_cloud_regions(self) -> AsyncOriginCloudRegionsResourceWithStreamingResponse:
+        return AsyncOriginCloudRegionsResourceWithStreamingResponse(self._cache.origin_cloud_regions)

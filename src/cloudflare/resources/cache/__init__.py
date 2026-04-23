@@ -32,6 +32,14 @@ from .smart_tiered_cache import (
     SmartTieredCacheResourceWithStreamingResponse,
     AsyncSmartTieredCacheResourceWithStreamingResponse,
 )
+from .origin_cloud_regions import (
+    OriginCloudRegionsResource,
+    AsyncOriginCloudRegionsResource,
+    OriginCloudRegionsResourceWithRawResponse,
+    AsyncOriginCloudRegionsResourceWithRawResponse,
+    OriginCloudRegionsResourceWithStreamingResponse,
+    AsyncOriginCloudRegionsResourceWithStreamingResponse,
+)
 from .regional_tiered_cache import (
     RegionalTieredCacheResource,
     AsyncRegionalTieredCacheResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncRegionalTieredCacheResourceWithRawResponse",
     "RegionalTieredCacheResourceWithStreamingResponse",
     "AsyncRegionalTieredCacheResourceWithStreamingResponse",
+    "OriginCloudRegionsResource",
+    "AsyncOriginCloudRegionsResource",
+    "OriginCloudRegionsResourceWithRawResponse",
+    "AsyncOriginCloudRegionsResourceWithRawResponse",
+    "OriginCloudRegionsResourceWithStreamingResponse",
+    "AsyncOriginCloudRegionsResourceWithStreamingResponse",
     "CacheResource",
     "AsyncCacheResource",
     "CacheResourceWithRawResponse",
