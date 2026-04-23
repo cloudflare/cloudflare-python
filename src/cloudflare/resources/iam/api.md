@@ -67,15 +67,17 @@ from cloudflare.types.iam.user_groups import (
     MemberUpdateResponse,
     MemberListResponse,
     MemberDeleteResponse,
+    MemberGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/iam/user_groups/{user_group_id}/members">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">create</a>(user_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/user_groups/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/user_groups/member_create_response.py">Optional[MemberCreateResponse]</a></code>
+- <code title="post /accounts/{account_id}/iam/user_groups/{user_group_id}/members">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">create</a>(user_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/user_groups/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/user_groups/member_create_response.py">SyncSinglePage[MemberCreateResponse]</a></code>
 - <code title="put /accounts/{account_id}/iam/user_groups/{user_group_id}/members">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">update</a>(user_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/user_groups/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/user_groups/member_update_response.py">SyncSinglePage[MemberUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/iam/user_groups/{user_group_id}/members">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">list</a>(user_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/user_groups/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/user_groups/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/iam/user_groups/{user_group_id}/members/{member_id}">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">delete</a>(member_id, \*, account_id, user_group_id) -> <a href="./src/cloudflare/types/iam/user_groups/member_delete_response.py">Optional[MemberDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/iam/user_groups/{user_group_id}/members/{member_id}">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">get</a>(member_id, \*, account_id, user_group_id) -> <a href="./src/cloudflare/types/iam/user_groups/member_get_response.py">Optional[MemberGetResponse]</a></code>
 
 ## SSO
 

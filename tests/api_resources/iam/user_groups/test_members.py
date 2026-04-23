@@ -11,6 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.iam.user_groups import (
+    MemberGetResponse,
     MemberListResponse,
     MemberCreateResponse,
     MemberDeleteResponse,
@@ -28,35 +29,35 @@ class TestMembers:
         member = client.iam.user_groups.members.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
-        assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+        assert_matches_type(SyncSinglePage[MemberCreateResponse], member, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.iam.user_groups.members.with_raw_response.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = response.parse()
-        assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+        assert_matches_type(SyncSinglePage[MemberCreateResponse], member, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.iam.user_groups.members.with_streaming_response.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = response.parse()
-            assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+            assert_matches_type(SyncSinglePage[MemberCreateResponse], member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -66,14 +67,14 @@ class TestMembers:
             client.iam.user_groups.members.with_raw_response.create(
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
             client.iam.user_groups.members.with_raw_response.create(
                 user_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
     @parametrize
@@ -81,7 +82,7 @@ class TestMembers:
         member = client.iam.user_groups.members.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
         assert_matches_type(SyncSinglePage[MemberUpdateResponse], member, path=["response"])
 
@@ -90,7 +91,7 @@ class TestMembers:
         response = client.iam.user_groups.members.with_raw_response.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
 
         assert response.is_closed is True
@@ -103,7 +104,7 @@ class TestMembers:
         with client.iam.user_groups.members.with_streaming_response.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,14 +120,14 @@ class TestMembers:
             client.iam.user_groups.members.with_raw_response.update(
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
             client.iam.user_groups.members.with_raw_response.update(
                 user_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
     @parametrize
@@ -142,6 +143,8 @@ class TestMembers:
         member = client.iam.user_groups.members.list(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            direction="asc",
+            fuzzy_email="user@",
             page=1,
             per_page=1,
         )
@@ -247,6 +250,66 @@ class TestMembers:
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        member = client.iam.user_groups.members.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.iam.user_groups.members.with_raw_response.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        member = response.parse()
+        assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.iam.user_groups.members.with_streaming_response.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            member = response.parse()
+            assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.iam.user_groups.members.with_raw_response.get(
+                member_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
+            client.iam.user_groups.members.with_raw_response.get(
+                member_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                user_group_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
+            client.iam.user_groups.members.with_raw_response.get(
+                member_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
 
 class TestAsyncMembers:
     parametrize = pytest.mark.parametrize(
@@ -258,35 +321,35 @@ class TestAsyncMembers:
         member = await async_client.iam.user_groups.members.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
-        assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+        assert_matches_type(AsyncSinglePage[MemberCreateResponse], member, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.iam.user_groups.members.with_raw_response.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = await response.parse()
-        assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+        assert_matches_type(AsyncSinglePage[MemberCreateResponse], member, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.iam.user_groups.members.with_streaming_response.create(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = await response.parse()
-            assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
+            assert_matches_type(AsyncSinglePage[MemberCreateResponse], member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,14 +359,14 @@ class TestAsyncMembers:
             await async_client.iam.user_groups.members.with_raw_response.create(
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
             await async_client.iam.user_groups.members.with_raw_response.create(
                 user_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
     @parametrize
@@ -311,7 +374,7 @@ class TestAsyncMembers:
         member = await async_client.iam.user_groups.members.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
         assert_matches_type(AsyncSinglePage[MemberUpdateResponse], member, path=["response"])
 
@@ -320,7 +383,7 @@ class TestAsyncMembers:
         response = await async_client.iam.user_groups.members.with_raw_response.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         )
 
         assert response.is_closed is True
@@ -333,7 +396,7 @@ class TestAsyncMembers:
         async with async_client.iam.user_groups.members.with_streaming_response.update(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -349,14 +412,14 @@ class TestAsyncMembers:
             await async_client.iam.user_groups.members.with_raw_response.update(
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
             await async_client.iam.user_groups.members.with_raw_response.update(
                 user_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+                members=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             )
 
     @parametrize
@@ -372,6 +435,8 @@ class TestAsyncMembers:
         member = await async_client.iam.user_groups.members.list(
             user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            direction="asc",
+            fuzzy_email="user@",
             page=1,
             per_page=1,
         )
@@ -472,6 +537,66 @@ class TestAsyncMembers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.iam.user_groups.members.with_raw_response.delete(
+                member_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        member = await async_client.iam.user_groups.members.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.iam.user_groups.members.with_raw_response.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        member = await response.parse()
+        assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.iam.user_groups.members.with_streaming_response.get(
+            member_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            member = await response.parse()
+            assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.iam.user_groups.members.with_raw_response.get(
+                member_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                user_group_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_group_id` but received ''"):
+            await async_client.iam.user_groups.members.with_raw_response.get(
+                member_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                user_group_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
+            await async_client.iam.user_groups.members.with_raw_response.get(
                 member_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 user_group_id="023e105f4ecef8ad9ca31a8372d0c353",

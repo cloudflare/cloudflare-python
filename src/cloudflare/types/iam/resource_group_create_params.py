@@ -9,7 +9,7 @@ __all__ = ["ResourceGroupCreateParams", "Scope", "ScopeObject"]
 
 
 class ResourceGroupCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     name: Required[str]

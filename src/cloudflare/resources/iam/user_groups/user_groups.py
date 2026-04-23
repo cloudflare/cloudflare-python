@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -64,9 +65,9 @@ class UserGroupsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
-        policies: Iterable[user_group_create_params.Policy],
+        policies: Iterable[user_group_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,8 +93,6 @@ class UserGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -119,7 +118,7 @@ class UserGroupsResource(SyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str | Omit = omit,
         policies: Iterable[user_group_update_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -149,8 +148,6 @@ class UserGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -181,9 +178,9 @@ class UserGroupsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
-        direction: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
         fuzzy_name: str | Omit = omit,
         name: str | Omit = omit,
         page: float | Omit = omit,
@@ -203,8 +200,7 @@ class UserGroupsResource(SyncAPIResource):
 
           id: ID of the user group to be fetched.
 
-          direction: The sort order of returned user groups by name. Default sort order is ascending.
-              To switch to descending, set this parameter to "desc"
+          direction: The sort order of returned user groups by name (ascending or descending).
 
           fuzzy_name: A string used for searching for user groups containing that substring.
 
@@ -222,8 +218,6 @@ class UserGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -253,7 +247,7 @@ class UserGroupsResource(SyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,8 +271,6 @@ class UserGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -303,7 +295,7 @@ class UserGroupsResource(SyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,8 +319,6 @@ class UserGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -377,9 +367,9 @@ class AsyncUserGroupsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str,
-        policies: Iterable[user_group_create_params.Policy],
+        policies: Iterable[user_group_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -405,8 +395,6 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -432,7 +420,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         name: str | Omit = omit,
         policies: Iterable[user_group_update_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -462,8 +450,6 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -494,9 +480,9 @@ class AsyncUserGroupsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
-        direction: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
         fuzzy_name: str | Omit = omit,
         name: str | Omit = omit,
         page: float | Omit = omit,
@@ -516,8 +502,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           id: ID of the user group to be fetched.
 
-          direction: The sort order of returned user groups by name. Default sort order is ascending.
-              To switch to descending, set this parameter to "desc"
+          direction: The sort order of returned user groups by name (ascending or descending).
 
           fuzzy_name: A string used for searching for user groups containing that substring.
 
@@ -535,8 +520,6 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -566,7 +549,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -590,8 +573,6 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -616,7 +597,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -640,8 +621,6 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:

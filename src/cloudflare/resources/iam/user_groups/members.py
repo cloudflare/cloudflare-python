@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -20,6 +21,7 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.iam.user_groups import member_list_params, member_create_params, member_update_params
+from ....types.iam.user_groups.member_get_response import MemberGetResponse
 from ....types.iam.user_groups.member_list_response import MemberListResponse
 from ....types.iam.user_groups.member_create_response import MemberCreateResponse
 from ....types.iam.user_groups.member_delete_response import MemberDeleteResponse
@@ -52,15 +54,15 @@ class MembersResource(SyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
-        body: Iterable[member_create_params.Body],
+        account_id: str,
+        members: Iterable[member_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> SyncSinglePage[MemberCreateResponse]:
         """
         Add members to a User Group.
 
@@ -77,35 +79,31 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
-        return self._post(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/iam/user_groups/{user_group_id}/members",
                 account_id=account_id,
                 user_group_id=user_group_id,
             ),
-            body=maybe_transform(body, Iterable[member_create_params.Body]),
+            page=SyncSinglePage[MemberCreateResponse],
+            body=maybe_transform(members, Iterable[member_create_params.Member]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MemberCreateResponse]], ResultWrapper[MemberCreateResponse]),
+            model=MemberCreateResponse,
+            method="post",
         )
 
     def update(
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
-        body: Iterable[member_update_params.Body],
+        account_id: str,
+        members: Iterable[member_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,7 +119,7 @@ class MembersResource(SyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
-          body: Set/Replace members to a user group.
+          members: Set/Replace members to a user group.
 
           extra_headers: Send extra headers
 
@@ -131,8 +129,6 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -144,7 +140,7 @@ class MembersResource(SyncAPIResource):
                 user_group_id=user_group_id,
             ),
             page=SyncSinglePage[MemberUpdateResponse],
-            body=maybe_transform(body, Iterable[member_update_params.Body]),
+            body=maybe_transform(members, Iterable[member_update_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +152,9 @@ class MembersResource(SyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        fuzzy_email: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -174,6 +172,10 @@ class MembersResource(SyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
+          direction: The sort order of returned user group members by email.
+
+          fuzzy_email: A string used for filtering members by partial email match.
+
           page: Page number of paginated results.
 
           per_page: Maximum number of results per page.
@@ -186,8 +188,6 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -206,6 +206,8 @@ class MembersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
+                        "fuzzy_email": fuzzy_email,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -219,7 +221,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         user_group_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -246,8 +248,6 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -271,6 +271,60 @@ class MembersResource(SyncAPIResource):
             cast_to=cast(Type[Optional[MemberDeleteResponse]], ResultWrapper[MemberDeleteResponse]),
         )
 
+    def get(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        user_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MemberGetResponse]:
+        """
+        Get details of a specific member in a user group.
+
+        Args:
+          account_id: Account identifier tag.
+
+          user_group_id: User Group identifier tag.
+
+          member_id: The identifier of an existing account Member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_group_id:
+            raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}/members/{member_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+                member_id=member_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MemberGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MemberGetResponse]], ResultWrapper[MemberGetResponse]),
+        )
+
 
 class AsyncMembersResource(AsyncAPIResource):
     @cached_property
@@ -292,19 +346,19 @@ class AsyncMembersResource(AsyncAPIResource):
         """
         return AsyncMembersResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
-        body: Iterable[member_create_params.Body],
+        account_id: str,
+        members: Iterable[member_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> AsyncPaginator[MemberCreateResponse, AsyncSinglePage[MemberCreateResponse]]:
         """
         Add members to a User Group.
 
@@ -321,35 +375,31 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
             raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
-        return await self._post(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/iam/user_groups/{user_group_id}/members",
                 account_id=account_id,
                 user_group_id=user_group_id,
             ),
-            body=await async_maybe_transform(body, Iterable[member_create_params.Body]),
+            page=AsyncSinglePage[MemberCreateResponse],
+            body=maybe_transform(members, Iterable[member_create_params.Member]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MemberCreateResponse]], ResultWrapper[MemberCreateResponse]),
+            model=MemberCreateResponse,
+            method="post",
         )
 
     def update(
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
-        body: Iterable[member_update_params.Body],
+        account_id: str,
+        members: Iterable[member_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,7 +415,7 @@ class AsyncMembersResource(AsyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
-          body: Set/Replace members to a user group.
+          members: Set/Replace members to a user group.
 
           extra_headers: Send extra headers
 
@@ -375,8 +425,6 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -388,7 +436,7 @@ class AsyncMembersResource(AsyncAPIResource):
                 user_group_id=user_group_id,
             ),
             page=AsyncSinglePage[MemberUpdateResponse],
-            body=maybe_transform(body, Iterable[member_update_params.Body]),
+            body=maybe_transform(members, Iterable[member_update_params.Member]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -400,7 +448,9 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         user_group_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        fuzzy_email: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -418,6 +468,10 @@ class AsyncMembersResource(AsyncAPIResource):
 
           user_group_id: User Group identifier tag.
 
+          direction: The sort order of returned user group members by email.
+
+          fuzzy_email: A string used for filtering members by partial email match.
+
           page: Page number of paginated results.
 
           per_page: Maximum number of results per page.
@@ -430,8 +484,6 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -450,6 +502,8 @@ class AsyncMembersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
+                        "fuzzy_email": fuzzy_email,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -463,7 +517,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         user_group_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,8 +544,6 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_group_id:
@@ -515,6 +567,60 @@ class AsyncMembersResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[MemberDeleteResponse]], ResultWrapper[MemberDeleteResponse]),
         )
 
+    async def get(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        user_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MemberGetResponse]:
+        """
+        Get details of a specific member in a user group.
+
+        Args:
+          account_id: Account identifier tag.
+
+          user_group_id: User Group identifier tag.
+
+          member_id: The identifier of an existing account Member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_group_id:
+            raise ValueError(f"Expected a non-empty value for `user_group_id` but received {user_group_id!r}")
+        if not member_id:
+            raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/iam/user_groups/{user_group_id}/members/{member_id}",
+                account_id=account_id,
+                user_group_id=user_group_id,
+                member_id=member_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MemberGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MemberGetResponse]], ResultWrapper[MemberGetResponse]),
+        )
+
 
 class MembersResourceWithRawResponse:
     def __init__(self, members: MembersResource) -> None:
@@ -531,6 +637,9 @@ class MembersResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             members.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            members.get,
         )
 
 
@@ -550,6 +659,9 @@ class AsyncMembersResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             members.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            members.get,
+        )
 
 
 class MembersResourceWithStreamingResponse:
@@ -568,6 +680,9 @@ class MembersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             members.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            members.get,
+        )
 
 
 class AsyncMembersResourceWithStreamingResponse:
@@ -585,4 +700,7 @@ class AsyncMembersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             members.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            members.get,
         )
