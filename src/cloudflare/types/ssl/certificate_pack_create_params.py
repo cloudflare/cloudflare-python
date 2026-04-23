@@ -11,7 +11,7 @@ __all__ = ["CertificatePackCreateParams"]
 
 
 class CertificatePackCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     certificate_authority: Required[Literal["google", "lets_encrypt", "ssl_com"]]
