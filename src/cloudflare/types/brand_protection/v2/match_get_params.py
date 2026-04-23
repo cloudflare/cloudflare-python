@@ -11,13 +11,14 @@ __all__ = ["MatchGetParams"]
 
 
 class MatchGetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     query_id: Required[SequenceNotStr[str]]
     """Query ID or comma-separated list of Query IDs.
 
     When multiple IDs are provided, matches are deduplicated across queries and each
-    match includes matched_queries and match_ids arrays.
+    match includes a match_details array with per-match query metadata and dismissed
+    state.
     """
 
     domain_search: str

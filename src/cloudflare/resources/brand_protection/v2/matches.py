@@ -46,7 +46,7 @@ class MatchesResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         query_id: SequenceNotStr[str],
         domain_search: str | Omit = omit,
         include_dismissed: str | Omit = omit,
@@ -65,12 +65,13 @@ class MatchesResource(SyncAPIResource):
         """
         Get paginated list of domain matches for one or more brand protection queries.
         When multiple query_ids are provided (comma-separated), matches are deduplicated
-        across queries and each match includes a matched_queries array.
+        across queries and each match includes a match_details array with per-match
+        query metadata and individual dismissed state.
 
         Args:
           query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
-              matches are deduplicated across queries and each match includes matched_queries
-              and match_ids arrays.
+              matches are deduplicated across queries and each match includes a match_details
+              array with per-match query metadata and dismissed state.
 
           domain_search: Filter matches by domain name (substring match)
 
@@ -86,8 +87,6 @@ class MatchesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -140,7 +139,7 @@ class AsyncMatchesResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         query_id: SequenceNotStr[str],
         domain_search: str | Omit = omit,
         include_dismissed: str | Omit = omit,
@@ -159,12 +158,13 @@ class AsyncMatchesResource(AsyncAPIResource):
         """
         Get paginated list of domain matches for one or more brand protection queries.
         When multiple query_ids are provided (comma-separated), matches are deduplicated
-        across queries and each match includes a matched_queries array.
+        across queries and each match includes a match_details array with per-match
+        query metadata and individual dismissed state.
 
         Args:
           query_id: Query ID or comma-separated list of Query IDs. When multiple IDs are provided,
-              matches are deduplicated across queries and each match includes matched_queries
-              and match_ids arrays.
+              matches are deduplicated across queries and each match includes a match_details
+              array with per-match query metadata and dismissed state.
 
           domain_search: Filter matches by domain name (substring match)
 
@@ -180,8 +180,6 @@ class AsyncMatchesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
