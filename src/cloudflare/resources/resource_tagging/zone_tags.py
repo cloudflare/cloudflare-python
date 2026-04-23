@@ -50,7 +50,7 @@ class ZoneTagsResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "api_gateway_operation",
@@ -97,7 +97,7 @@ class ZoneTagsResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         access_application_id: str,
         resource_id: str,
         resource_type: Literal[
@@ -144,11 +144,14 @@ class ZoneTagsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["resource_id", "resource_type"], ["access_application_id", "resource_id", "resource_type"])
+    @required_args(
+        ["zone_id", "resource_id", "resource_type"],
+        ["zone_id", "access_application_id", "resource_id", "resource_type"],
+    )
     def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "api_gateway_operation",
@@ -177,8 +180,6 @@ class ZoneTagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneTagUpdateResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
@@ -211,7 +212,7 @@ class ZoneTagsResource(SyncAPIResource):
     def delete(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,8 +235,6 @@ class ZoneTagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -251,7 +250,7 @@ class ZoneTagsResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "access_application_policy",
@@ -291,8 +290,6 @@ class ZoneTagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -345,7 +342,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "api_gateway_operation",
@@ -392,7 +389,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         access_application_id: str,
         resource_id: str,
         resource_type: Literal[
@@ -439,11 +436,14 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["resource_id", "resource_type"], ["access_application_id", "resource_id", "resource_type"])
+    @required_args(
+        ["zone_id", "resource_id", "resource_type"],
+        ["zone_id", "access_application_id", "resource_id", "resource_type"],
+    )
     async def update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "api_gateway_operation",
@@ -472,8 +472,6 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneTagUpdateResponse]:
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {**strip_not_given({"If-Match": if_match}), **(extra_headers or {})}
@@ -506,7 +504,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -529,8 +527,6 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
@@ -546,7 +542,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         resource_id: str,
         resource_type: Literal[
             "access_application_policy",
@@ -586,8 +582,6 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
