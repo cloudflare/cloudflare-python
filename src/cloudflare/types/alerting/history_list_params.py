@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,7 +12,7 @@ __all__ = ["HistoryListParams"]
 
 
 class HistoryListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account id"""
 
     before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
