@@ -13,7 +13,7 @@ __all__ = ["OverrideUpdateParams"]
 
 
 class OverrideUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Defines an identifier."""
 
     id: Required[str]
