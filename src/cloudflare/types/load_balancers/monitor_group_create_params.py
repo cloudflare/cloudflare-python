@@ -9,7 +9,7 @@ __all__ = ["MonitorGroupCreateParams", "Member"]
 
 
 class MonitorGroupCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     id: Required[str]
