@@ -8,6 +8,6 @@ __all__ = ["ForceAXFRCreateParams"]
 
 
 class ForceAXFRCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
 
     body: Required[object]

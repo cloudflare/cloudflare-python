@@ -9,7 +9,7 @@ __all__ = ["ConfigGetParams"]
 
 
 class ConfigGetParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ids: Required[Iterable[int]]

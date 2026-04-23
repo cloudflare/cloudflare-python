@@ -9,7 +9,7 @@ __all__ = ["WebhookCreateWebhookParams"]
 
 
 class WebhookCreateWebhookParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account identifier tag."""
 
     events: Required[

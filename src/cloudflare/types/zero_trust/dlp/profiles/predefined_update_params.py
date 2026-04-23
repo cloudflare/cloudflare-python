@@ -11,7 +11,7 @@ __all__ = ["PredefinedUpdateParams", "Entry"]
 
 
 class PredefinedUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     ai_context_enabled: bool
 

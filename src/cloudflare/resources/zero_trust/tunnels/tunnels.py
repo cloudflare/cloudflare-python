@@ -73,7 +73,7 @@ class TunnelsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -128,8 +128,6 @@ class TunnelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -193,7 +191,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         exclude_prefix: str | Omit = omit,
         existed_at: str | Omit = omit,
         include_prefix: str | Omit = omit,
@@ -248,8 +246,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

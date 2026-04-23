@@ -10,7 +10,7 @@ __all__ = ["EventTagCreateParams"]
 
 
 class EventTagCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account ID."""
 
     tags: Required[SequenceNotStr[str]]

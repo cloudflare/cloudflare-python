@@ -13,7 +13,7 @@ __all__ = ["LANEditParams"]
 
 
 class LANEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     site_id: Required[str]

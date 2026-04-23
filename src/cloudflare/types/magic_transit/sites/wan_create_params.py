@@ -10,7 +10,7 @@ __all__ = ["WANCreateParams"]
 
 
 class WANCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     physport: Required[int]

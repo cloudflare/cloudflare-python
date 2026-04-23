@@ -38,7 +38,7 @@ __all__ = [
 
 
 class SinkCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Specifies the public ID of the account."""
 
     name: Required[str]

@@ -11,7 +11,7 @@ __all__ = ["SecretCreateParams", "Body"]
 
 
 class SecretCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     body: Required[Iterable[Body]]

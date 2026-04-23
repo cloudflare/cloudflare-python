@@ -11,7 +11,7 @@ __all__ = ["KeylessCertificateCreateParams"]
 
 
 class KeylessCertificateCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     certificate: Required[str]

@@ -9,7 +9,7 @@ __all__ = ["BlockSenderCreateParams"]
 
 
 class BlockSenderCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     is_regex: Required[bool]

@@ -11,7 +11,7 @@ __all__ = ["ConnectorCreateParams", "Device"]
 
 
 class ConnectorCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier"""
 
     device: Required[Device]

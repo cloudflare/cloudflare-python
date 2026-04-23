@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -10,7 +10,7 @@ __all__ = ["DestinationListParams"]
 
 
 class DestinationListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     order: Literal["asc", "desc"]
 

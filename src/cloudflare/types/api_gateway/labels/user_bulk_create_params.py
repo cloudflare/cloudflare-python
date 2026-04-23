@@ -9,7 +9,7 @@ __all__ = ["UserBulkCreateParams", "Body"]
 
 
 class UserBulkCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     body: Required[Iterable[Body]]

@@ -9,7 +9,7 @@ __all__ = ["MitigationReviewParams", "Appeal"]
 
 
 class MitigationReviewParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     appeals: Required[Iterable[Appeal]]
     """List of mitigations to appeal."""

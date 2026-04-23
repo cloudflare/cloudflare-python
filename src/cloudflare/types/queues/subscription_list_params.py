@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SubscriptionListParams"]
 
 
 class SubscriptionListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """A Resource identifier."""
 
     direction: Literal["asc", "desc"]

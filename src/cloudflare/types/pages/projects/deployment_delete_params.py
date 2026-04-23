@@ -8,7 +8,7 @@ __all__ = ["DeploymentDeleteParams"]
 
 
 class DeploymentDeleteParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     project_name: Required[str]

@@ -46,7 +46,7 @@ class IPsResource(SyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         address_map_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,8 +74,6 @@ class IPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -100,7 +98,7 @@ class IPsResource(SyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         address_map_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,8 +125,6 @@ class IPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -173,7 +169,7 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         address_map_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,8 +197,6 @@ class AsyncIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
@@ -227,7 +221,7 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         ip_address: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         address_map_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -254,8 +248,6 @@ class AsyncIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:

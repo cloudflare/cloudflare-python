@@ -53,7 +53,7 @@ class SubscriptionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: subscription_create_params.Destination | Omit = omit,
         enabled: bool | Omit = omit,
         events: SequenceNotStr[str] | Omit = omit,
@@ -90,8 +90,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -120,7 +118,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: subscription_update_params.Destination | Omit = omit,
         enabled: bool | Omit = omit,
         events: SequenceNotStr[str] | Omit = omit,
@@ -156,8 +154,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:
@@ -190,7 +186,7 @@ class SubscriptionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["created_at", "name", "enabled", "source"] | Omit = omit,
         page: int | Omit = omit,
@@ -224,8 +220,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -253,7 +247,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,8 +271,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:
@@ -303,7 +295,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,8 +319,6 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:
@@ -373,7 +363,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: subscription_create_params.Destination | Omit = omit,
         enabled: bool | Omit = omit,
         events: SequenceNotStr[str] | Omit = omit,
@@ -410,8 +400,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -440,7 +428,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: subscription_update_params.Destination | Omit = omit,
         enabled: bool | Omit = omit,
         events: SequenceNotStr[str] | Omit = omit,
@@ -476,8 +464,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:
@@ -510,7 +496,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         order: Literal["created_at", "name", "enabled", "source"] | Omit = omit,
         page: int | Omit = omit,
@@ -544,8 +530,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -573,7 +557,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -597,8 +581,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:
@@ -623,7 +605,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,8 +629,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_id:

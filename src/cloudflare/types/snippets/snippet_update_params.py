@@ -8,7 +8,7 @@ __all__ = ["SnippetUpdateParams", "Metadata"]
 
 
 class SnippetUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Use this field to specify the unique ID of the zone."""
 
     metadata: Required[Metadata]

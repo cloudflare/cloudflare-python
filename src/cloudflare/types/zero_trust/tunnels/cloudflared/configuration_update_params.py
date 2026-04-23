@@ -20,7 +20,7 @@ __all__ = [
 
 
 class ConfigurationUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     config: Config

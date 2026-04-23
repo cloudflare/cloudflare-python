@@ -8,7 +8,7 @@ __all__ = ["PacfileUpdateParams"]
 
 
 class PacfileUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     contents: Required[str]
     """Actual contents of the PAC file"""

@@ -9,7 +9,7 @@ __all__ = ["EventCreateParams"]
 
 
 class EventCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     event_end_time: Required[str]

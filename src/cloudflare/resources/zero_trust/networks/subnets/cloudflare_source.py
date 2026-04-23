@@ -49,7 +49,7 @@ class CloudflareSourceResource(SyncAPIResource):
         self,
         address_family: Literal["v4", "v6"],
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         name: str | Omit = omit,
         network: str | Omit = omit,
@@ -82,8 +82,6 @@ class CloudflareSourceResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_family:
@@ -137,7 +135,7 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
         self,
         address_family: Literal["v4", "v6"],
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         name: str | Omit = omit,
         network: str | Omit = omit,
@@ -170,8 +168,6 @@ class AsyncCloudflareSourceResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_family:

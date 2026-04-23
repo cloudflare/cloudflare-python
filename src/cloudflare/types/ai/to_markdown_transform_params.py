@@ -10,7 +10,7 @@ __all__ = ["ToMarkdownTransformParams", "File"]
 
 
 class ToMarkdownTransformParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     file: Required[File]
 

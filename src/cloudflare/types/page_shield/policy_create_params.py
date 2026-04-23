@@ -8,7 +8,7 @@ __all__ = ["PolicyCreateParams"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier"""
 
     action: Required[Literal["allow", "log", "add_reporting_directives"]]

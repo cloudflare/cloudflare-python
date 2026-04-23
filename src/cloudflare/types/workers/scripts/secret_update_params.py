@@ -9,7 +9,7 @@ __all__ = ["SecretUpdateParams", "WorkersBindingKindSecretText", "WorkersBinding
 
 
 class WorkersBindingKindSecretText(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     name: Required[str]
@@ -23,7 +23,7 @@ class WorkersBindingKindSecretText(TypedDict, total=False):
 
 
 class WorkersBindingKindSecretKey(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     algorithm: Required[object]

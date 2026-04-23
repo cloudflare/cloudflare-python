@@ -12,7 +12,7 @@ __all__ = ["PageTrendParams"]
 
 
 class PageTrendParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     device_type: Required[Annotated[Literal["DESKTOP", "MOBILE"], PropertyInfo(alias="deviceType")]]

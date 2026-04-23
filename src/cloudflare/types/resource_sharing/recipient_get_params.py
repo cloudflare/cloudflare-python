@@ -8,7 +8,7 @@ __all__ = ["RecipientGetParams"]
 
 
 class RecipientGetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier."""
 
     share_id: Required[str]

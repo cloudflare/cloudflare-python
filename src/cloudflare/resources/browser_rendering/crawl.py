@@ -51,7 +51,7 @@ class CrawlResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -224,7 +224,7 @@ class CrawlResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -297,11 +297,11 @@ class CrawlResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["url"], ["render", "url"])
+    @required_args(["account_id", "url"], ["account_id", "render", "url"])
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -382,8 +382,6 @@ class CrawlResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -436,7 +434,7 @@ class CrawlResource(SyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,8 +459,6 @@ class CrawlResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not job_id:
@@ -485,7 +481,7 @@ class CrawlResource(SyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cache_ttl: float | Omit = omit,
         cursor: float | Omit = omit,
         limit: float | Omit = omit,
@@ -521,8 +517,6 @@ class CrawlResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not job_id:
@@ -575,7 +569,7 @@ class AsyncCrawlResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -748,7 +742,7 @@ class AsyncCrawlResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
@@ -821,11 +815,11 @@ class AsyncCrawlResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["url"], ["render", "url"])
+    @required_args(["account_id", "url"], ["account_id", "render", "url"])
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -906,8 +900,6 @@ class AsyncCrawlResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -960,7 +952,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -985,8 +977,6 @@ class AsyncCrawlResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not job_id:
@@ -1009,7 +999,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         self,
         job_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cache_ttl: float | Omit = omit,
         cursor: float | Omit = omit,
         limit: float | Omit = omit,
@@ -1045,8 +1035,6 @@ class AsyncCrawlResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not job_id:

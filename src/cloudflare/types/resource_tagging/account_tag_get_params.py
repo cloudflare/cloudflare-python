@@ -8,7 +8,7 @@ __all__ = ["AccountTagGetParams"]
 
 
 class AccountTagGetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     resource_id: Required[str]

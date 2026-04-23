@@ -11,7 +11,7 @@ __all__ = ["RouteBulkUpdateParams", "Route"]
 
 
 class RouteBulkUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     routes: Required[Iterable[Route]]

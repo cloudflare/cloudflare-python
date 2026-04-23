@@ -178,7 +178,7 @@ class ThreatEventsResource(SyncAPIResource):
     def create(
         self,
         *,
-        path_account_id: str | None = None,
+        path_account_id: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -222,8 +222,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if path_account_id is None:
-            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return self._post(
@@ -258,7 +256,7 @@ class ThreatEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -307,8 +305,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -339,7 +335,7 @@ class ThreatEventsResource(SyncAPIResource):
     def bulk_create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -371,8 +367,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -395,7 +389,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -435,8 +429,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -475,7 +467,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -501,8 +493,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -581,7 +571,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        path_account_id: str | None = None,
+        path_account_id: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -625,8 +615,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if path_account_id is None:
-            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return await self._post(
@@ -661,7 +649,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -710,8 +698,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -742,7 +728,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def bulk_create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -774,8 +760,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -798,7 +782,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -838,8 +822,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -878,7 +860,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -904,8 +886,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:

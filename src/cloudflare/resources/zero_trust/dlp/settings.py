@@ -47,7 +47,7 @@ class SettingsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ai_context_analysis: Optional[bool] | Omit = omit,
         ocr: Optional[bool] | Omit = omit,
         payload_logging: setting_update_params.PayloadLogging | Omit = omit,
@@ -78,8 +78,6 @@ class SettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
@@ -105,7 +103,7 @@ class SettingsResource(SyncAPIResource):
     def delete(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,8 +123,6 @@ class SettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
@@ -144,7 +140,7 @@ class SettingsResource(SyncAPIResource):
     def edit(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ai_context_analysis: Optional[bool] | Omit = omit,
         ocr: Optional[bool] | Omit = omit,
         payload_logging: setting_edit_params.PayloadLogging | Omit = omit,
@@ -175,8 +171,6 @@ class SettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
@@ -202,7 +196,7 @@ class SettingsResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,8 +216,6 @@ class SettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -262,7 +254,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ai_context_analysis: Optional[bool] | Omit = omit,
         ocr: Optional[bool] | Omit = omit,
         payload_logging: setting_update_params.PayloadLogging | Omit = omit,
@@ -293,8 +285,6 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
@@ -320,7 +310,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,8 +330,6 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
@@ -359,7 +347,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         ai_context_analysis: Optional[bool] | Omit = omit,
         ocr: Optional[bool] | Omit = omit,
         payload_logging: setting_edit_params.PayloadLogging | Omit = omit,
@@ -390,8 +378,6 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
@@ -417,7 +403,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,8 +423,6 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

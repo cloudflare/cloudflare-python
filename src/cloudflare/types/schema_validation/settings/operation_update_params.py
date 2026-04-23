@@ -9,7 +9,7 @@ __all__ = ["OperationUpdateParams"]
 
 
 class OperationUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     mitigation_action: Required[Optional[Literal["log", "block", "none"]]]

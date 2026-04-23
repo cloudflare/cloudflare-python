@@ -56,7 +56,7 @@ __all__ = [
 
 
 class PageRuleCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     actions: Required[Iterable[Action]]

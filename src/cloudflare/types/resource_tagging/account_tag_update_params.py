@@ -15,7 +15,7 @@ __all__ = [
 
 
 class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     resource_id: Required[str]
@@ -60,7 +60,7 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
 
 
 class ResourceTaggingSetTagsRequestAccountLevelBase(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     resource_id: Required[str]

@@ -26,7 +26,7 @@ __all__ = [
 
 
 class LifecycleUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account ID."""
 
     rules: Iterable[Rule]

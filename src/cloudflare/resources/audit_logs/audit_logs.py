@@ -49,7 +49,7 @@ class AuditLogsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         action: audit_log_list_params.Action | Omit = omit,
         actor: audit_log_list_params.Actor | Omit = omit,
@@ -102,8 +102,6 @@ class AuditLogsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -158,7 +156,7 @@ class AsyncAuditLogsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         action: audit_log_list_params.Action | Omit = omit,
         actor: audit_log_list_params.Actor | Omit = omit,
@@ -211,8 +209,6 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

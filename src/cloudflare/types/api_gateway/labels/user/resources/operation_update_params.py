@@ -10,7 +10,7 @@ __all__ = ["OperationUpdateParams", "Selector", "SelectorInclude"]
 
 
 class OperationUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     selector: Required[Selector]

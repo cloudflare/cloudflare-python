@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["InterconnectListParams"]
 
 
 class InterconnectListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Customer account tag"""
 
     cursor: Optional[int]

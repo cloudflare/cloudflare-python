@@ -48,7 +48,7 @@ class ValuesResource(SyncAPIResource):
         self,
         tag_key: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         type: Literal[
             "access_application",
@@ -106,8 +106,6 @@ class ValuesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tag_key:
@@ -156,7 +154,7 @@ class AsyncValuesResource(AsyncAPIResource):
         self,
         tag_key: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         type: Literal[
             "access_application",
@@ -214,8 +212,6 @@ class AsyncValuesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tag_key:

@@ -12,7 +12,7 @@ __all__ = ["LockdownCreateParams"]
 
 
 class LockdownCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Defines an identifier."""
 
     configurations: Required[ConfigurationParam]

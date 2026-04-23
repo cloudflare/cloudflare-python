@@ -48,7 +48,7 @@ class ReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
@@ -79,8 +79,6 @@ class ReportsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -128,7 +126,7 @@ class AsyncReportsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
@@ -159,8 +157,6 @@ class AsyncReportsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

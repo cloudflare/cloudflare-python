@@ -9,7 +9,7 @@ __all__ = ["DestinationUpdateParams", "Configuration"]
 
 
 class DestinationUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     configuration: Required[Configuration]
 

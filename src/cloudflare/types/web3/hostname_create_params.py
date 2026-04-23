@@ -8,7 +8,7 @@ __all__ = ["HostnameCreateParams"]
 
 
 class HostnameCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Specify the identifier of the hostname."""
 
     name: Required[str]

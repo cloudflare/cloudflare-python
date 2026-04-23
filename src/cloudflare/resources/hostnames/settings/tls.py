@@ -53,7 +53,7 @@ class TLSResource(SyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         value: SettingValueParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -98,8 +98,6 @@ class TLSResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -128,7 +126,7 @@ class TLSResource(SyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,8 +160,6 @@ class TLSResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -191,7 +187,7 @@ class TLSResource(SyncAPIResource):
         self,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,8 +218,6 @@ class TLSResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -262,7 +256,7 @@ class AsyncTLSResource(AsyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         value: SettingValueParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -307,8 +301,6 @@ class AsyncTLSResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -337,7 +329,7 @@ class AsyncTLSResource(AsyncAPIResource):
         self,
         hostname: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -371,8 +363,6 @@ class AsyncTLSResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
@@ -400,7 +390,7 @@ class AsyncTLSResource(AsyncAPIResource):
         self,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -431,8 +421,6 @@ class AsyncTLSResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:

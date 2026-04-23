@@ -52,7 +52,7 @@ class HostnameRoutesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         hostname: str | Omit = omit,
         tunnel_id: str | Omit = omit,
@@ -83,8 +83,6 @@ class HostnameRoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -110,7 +108,7 @@ class HostnameRoutesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         comment: str | Omit = omit,
         existed_at: str | Omit = omit,
@@ -159,8 +157,6 @@ class HostnameRoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -192,7 +188,7 @@ class HostnameRoutesResource(SyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,8 +212,6 @@ class HostnameRoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:
@@ -242,7 +236,7 @@ class HostnameRoutesResource(SyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         hostname: str | Omit = omit,
         tunnel_id: str | Omit = omit,
@@ -275,8 +269,6 @@ class HostnameRoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:
@@ -309,7 +301,7 @@ class HostnameRoutesResource(SyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -333,8 +325,6 @@ class HostnameRoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:
@@ -379,7 +369,7 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         hostname: str | Omit = omit,
         tunnel_id: str | Omit = omit,
@@ -410,8 +400,6 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -437,7 +425,7 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         comment: str | Omit = omit,
         existed_at: str | Omit = omit,
@@ -486,8 +474,6 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -519,7 +505,7 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -543,8 +529,6 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:
@@ -569,7 +553,7 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         comment: str | Omit = omit,
         hostname: str | Omit = omit,
         tunnel_id: str | Omit = omit,
@@ -602,8 +586,6 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:
@@ -636,7 +618,7 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
         self,
         hostname_route_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -660,8 +642,6 @@ class AsyncHostnameRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hostname_route_id:

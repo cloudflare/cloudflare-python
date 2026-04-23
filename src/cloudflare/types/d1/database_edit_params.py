@@ -8,7 +8,7 @@ __all__ = ["DatabaseEditParams", "ReadReplication"]
 
 
 class DatabaseEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     read_replication: ReadReplication

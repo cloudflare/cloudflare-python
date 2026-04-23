@@ -8,6 +8,6 @@ __all__ = ["UploadEditParams"]
 
 
 class UploadEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     dataset_id: Required[str]

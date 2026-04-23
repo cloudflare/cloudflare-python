@@ -9,7 +9,7 @@ __all__ = ["PortalCreateParams", "Server", "ServerUpdatedPrompt", "ServerUpdated
 
 
 class PortalCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     id: Required[str]
     """portal id"""

@@ -8,6 +8,6 @@ __all__ = ["ResourcePolicyPreviewParams"]
 
 
 class ResourcePolicyPreviewParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     policy: Required[str]

@@ -45,7 +45,7 @@ class TraceroutesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         targets: SequenceNotStr[str],
         colos: SequenceNotStr[str] | Omit = omit,
         options: traceroute_create_params.Options | Omit = omit,
@@ -73,8 +73,6 @@ class TraceroutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -119,7 +117,7 @@ class AsyncTraceroutesResource(AsyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         targets: SequenceNotStr[str],
         colos: SequenceNotStr[str] | Omit = omit,
         options: traceroute_create_params.Options | Omit = omit,
@@ -147,8 +145,6 @@ class AsyncTraceroutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(

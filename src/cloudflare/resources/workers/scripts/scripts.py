@@ -182,7 +182,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         metadata: script_update_params.Metadata,
         bindings_inherit: Literal["strict"] | Omit = omit,
         files: SequenceNotStr[FileTypes] | Omit = omit,
@@ -226,8 +226,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -264,7 +262,7 @@ class ScriptsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -290,8 +288,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -311,7 +307,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -341,8 +337,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -366,7 +360,7 @@ class ScriptsResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,8 +386,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -412,7 +404,7 @@ class ScriptsResource(SyncAPIResource):
     def search(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         name: str | Omit = omit,
         order_by: Literal["created_on", "modified_on", "name"] | Omit = omit,
@@ -449,8 +441,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -540,7 +530,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         metadata: script_update_params.Metadata,
         bindings_inherit: Literal["strict"] | Omit = omit,
         files: SequenceNotStr[FileTypes] | Omit = omit,
@@ -584,8 +574,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -624,7 +612,7 @@ class AsyncScriptsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -650,8 +638,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -671,7 +657,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -701,8 +687,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -726,7 +710,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -752,8 +736,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -772,7 +754,7 @@ class AsyncScriptsResource(AsyncAPIResource):
     async def search(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         id: str | Omit = omit,
         name: str | Omit = omit,
         order_by: Literal["created_on", "modified_on", "name"] | Omit = omit,
@@ -809,8 +791,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

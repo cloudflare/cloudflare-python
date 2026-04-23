@@ -48,7 +48,7 @@ class ScreenshotResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -188,7 +188,7 @@ class ScreenshotResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -323,11 +323,11 @@ class ScreenshotResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["html"], ["url"])
+    @required_args(["account_id", "html"], ["account_id", "url"])
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -417,8 +417,6 @@ class ScreenshotResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScreenshotCreateResponse:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -486,7 +484,7 @@ class AsyncScreenshotResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -626,7 +624,7 @@ class AsyncScreenshotResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         url: str,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -761,11 +759,11 @@ class AsyncScreenshotResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["html"], ["url"])
+    @required_args(["account_id", "html"], ["account_id", "url"])
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         html: str | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
@@ -855,8 +853,6 @@ class AsyncScreenshotResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScreenshotCreateResponse:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

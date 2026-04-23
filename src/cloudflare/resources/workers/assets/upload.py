@@ -48,7 +48,7 @@ class UploadResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         base64: Literal[True],
         body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,8 +77,6 @@ class UploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be
@@ -123,7 +121,7 @@ class AsyncUploadResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         base64: Literal[True],
         body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -152,8 +150,6 @@ class AsyncUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         # It should be noted that the actual Content-Type header that will be

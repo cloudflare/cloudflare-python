@@ -8,7 +8,7 @@ __all__ = ["PipelineValidateSqlParams"]
 
 
 class PipelineValidateSqlParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Specifies the public ID of the account."""
 
     sql: Required[str]

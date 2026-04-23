@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["CertificateCreateParams"]
 
 
 class CertificateCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     validity_period_days: int
     """Sets the certificate validity period in days (range: 1-10,950 days / ~30 years).

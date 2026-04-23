@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AppListParams"]
 
 
 class AppListParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Zone identifier."""
 
     direction: Literal["asc", "desc"]

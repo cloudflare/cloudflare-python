@@ -10,7 +10,7 @@ __all__ = ["RegistrarCheckParams"]
 
 
 class RegistrarCheckParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     domains: Required[SequenceNotStr[str]]

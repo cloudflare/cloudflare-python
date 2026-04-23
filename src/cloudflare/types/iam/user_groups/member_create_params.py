@@ -9,7 +9,7 @@ __all__ = ["MemberCreateParams", "Member"]
 
 
 class MemberCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     members: Required[Iterable[Member]]

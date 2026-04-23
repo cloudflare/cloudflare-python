@@ -20,7 +20,7 @@ __all__ = [
 
 
 class ConfigEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Define configurations using a unique string identifier."""
 
     caching: Caching

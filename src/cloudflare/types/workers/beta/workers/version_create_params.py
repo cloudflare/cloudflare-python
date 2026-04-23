@@ -78,7 +78,7 @@ __all__ = [
 
 
 class VersionCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     deploy: bool

@@ -8,7 +8,7 @@ __all__ = ["OriginCloudRegionCreateParams"]
 
 
 class OriginCloudRegionCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ip: Required[str]

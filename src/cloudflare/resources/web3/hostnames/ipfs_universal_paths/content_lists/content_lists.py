@@ -61,7 +61,7 @@ class ContentListsResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: Literal["block"],
         entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -91,8 +91,6 @@ class ContentListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -124,7 +122,7 @@ class ContentListsResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -148,8 +146,6 @@ class ContentListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -199,7 +195,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         action: Literal["block"],
         entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -229,8 +225,6 @@ class AsyncContentListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
@@ -262,7 +256,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,8 +280,6 @@ class AsyncContentListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:

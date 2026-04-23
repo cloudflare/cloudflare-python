@@ -8,7 +8,7 @@ __all__ = ["RecordScanParams"]
 
 
 class RecordScanParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     body: Required[object]

@@ -19,7 +19,7 @@ __all__ = [
 
 
 class RecordingStartRecordingsParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account identifier tag."""
 
     allow_multiple_recordings: bool

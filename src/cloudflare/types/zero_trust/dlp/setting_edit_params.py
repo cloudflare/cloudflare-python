@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SettingEditParams", "PayloadLogging"]
 
 
 class SettingEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     ai_context_analysis: Optional[bool]
     """Whether AI context analysis is enabled at the account level."""

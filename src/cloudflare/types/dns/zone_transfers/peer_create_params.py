@@ -8,7 +8,7 @@ __all__ = ["PeerCreateParams"]
 
 
 class PeerCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
     """The name of the peer."""

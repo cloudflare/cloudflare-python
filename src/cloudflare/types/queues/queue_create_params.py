@@ -8,7 +8,7 @@ __all__ = ["QueueCreateParams"]
 
 
 class QueueCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """A Resource identifier."""
 
     queue_name: Required[str]

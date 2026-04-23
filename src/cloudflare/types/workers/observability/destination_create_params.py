@@ -11,7 +11,7 @@ __all__ = ["DestinationCreateParams", "Configuration"]
 
 
 class DestinationCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     configuration: Required[Configuration]
 

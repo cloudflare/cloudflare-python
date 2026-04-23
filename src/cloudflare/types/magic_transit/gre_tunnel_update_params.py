@@ -13,7 +13,7 @@ __all__ = ["GRETunnelUpdateParams", "HealthCheck", "HealthCheckTarget", "HealthC
 
 
 class GRETunnelUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     cloudflare_gre_endpoint: Required[str]

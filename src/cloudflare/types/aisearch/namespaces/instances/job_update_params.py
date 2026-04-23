@@ -8,7 +8,7 @@ __all__ = ["JobUpdateParams"]
 
 
 class JobUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
 

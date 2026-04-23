@@ -11,7 +11,7 @@ __all__ = ["WorkerEditParams", "Observability", "ObservabilityLogs", "Observabil
 
 
 class WorkerEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     logpush: Required[bool]

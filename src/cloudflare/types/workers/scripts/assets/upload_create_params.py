@@ -9,7 +9,7 @@ __all__ = ["UploadCreateParams", "Manifest"]
 
 
 class UploadCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     manifest: Required[Dict[str, Manifest]]

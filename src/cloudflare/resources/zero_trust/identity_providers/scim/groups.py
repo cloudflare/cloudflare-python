@@ -46,7 +46,7 @@ class GroupsResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cf_resource_id: str | Omit = omit,
         idp_resource_id: str | Omit = omit,
         name: str | Omit = omit,
@@ -88,8 +88,6 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identity_provider_id:
@@ -147,7 +145,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cf_resource_id: str | Omit = omit,
         idp_resource_id: str | Omit = omit,
         name: str | Omit = omit,
@@ -189,8 +187,6 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identity_provider_id:

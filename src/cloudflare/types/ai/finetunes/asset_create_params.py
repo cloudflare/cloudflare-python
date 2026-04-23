@@ -10,7 +10,7 @@ __all__ = ["AssetCreateParams"]
 
 
 class AssetCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     file: Required[FileTypes]
     """File to upload"""

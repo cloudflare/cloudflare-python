@@ -11,7 +11,7 @@ __all__ = ["LogDeleteParams", "Filter"]
 
 
 class LogDeleteParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     filters: Iterable[Filter]
 

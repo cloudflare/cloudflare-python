@@ -9,7 +9,7 @@ __all__ = ["AllowPolicyCreateParams"]
 
 
 class AllowPolicyCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     is_acceptable_sender: Required[bool]

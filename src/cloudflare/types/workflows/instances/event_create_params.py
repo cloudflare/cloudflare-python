@@ -8,7 +8,7 @@ __all__ = ["EventCreateParams"]
 
 
 class EventCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     workflow_name: Required[str]
 

@@ -11,7 +11,7 @@ __all__ = ["DomainEditParams"]
 
 
 class DomainEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     ip_restrictions: Required[SequenceNotStr[str]]

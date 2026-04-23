@@ -47,7 +47,7 @@ class MiscategorizationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         content_adds: Iterable[int] | Omit = omit,
         content_removes: Iterable[int] | Omit = omit,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | Omit = omit,
@@ -90,8 +90,6 @@ class MiscategorizationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -138,7 +136,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         content_adds: Iterable[int] | Omit = omit,
         content_removes: Iterable[int] | Omit = omit,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | Omit = omit,
@@ -181,8 +179,6 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

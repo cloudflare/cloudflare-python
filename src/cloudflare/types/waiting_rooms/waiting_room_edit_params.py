@@ -12,7 +12,7 @@ __all__ = ["WaitingRoomEditParams"]
 
 
 class WaitingRoomEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     host: Required[str]

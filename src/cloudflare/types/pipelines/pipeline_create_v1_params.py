@@ -8,7 +8,7 @@ __all__ = ["PipelineCreateV1Params"]
 
 
 class PipelineCreateV1Params(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Specifies the public ID of the account."""
 
     name: Required[str]

@@ -11,7 +11,7 @@ __all__ = ["EventNotificationUpdateParams", "Rule"]
 
 
 class EventNotificationUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account ID."""
 
     bucket_name: Required[str]

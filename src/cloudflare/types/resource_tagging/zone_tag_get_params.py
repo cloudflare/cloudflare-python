@@ -8,7 +8,7 @@ __all__ = ["ZoneTagGetParams"]
 
 
 class ZoneTagGetParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Zone ID is required only for zone-level resources"""
 
     resource_id: Required[str]

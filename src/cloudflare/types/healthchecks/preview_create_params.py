@@ -14,7 +14,7 @@ __all__ = ["PreviewCreateParams"]
 
 
 class PreviewCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier"""
 
     address: Required[str]

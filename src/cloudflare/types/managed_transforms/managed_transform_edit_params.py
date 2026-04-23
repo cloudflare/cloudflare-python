@@ -9,7 +9,7 @@ __all__ = ["ManagedTransformEditParams", "ManagedRequestHeader", "ManagedRespons
 
 
 class ManagedTransformEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """The unique ID of the zone."""
 
     managed_request_headers: Required[Iterable[ManagedRequestHeader]]

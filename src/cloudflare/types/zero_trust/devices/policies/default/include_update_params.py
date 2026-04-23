@@ -11,6 +11,6 @@ __all__ = ["IncludeUpdateParams"]
 
 
 class IncludeUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     body: Required[Iterable[SplitTunnelIncludeParam]]

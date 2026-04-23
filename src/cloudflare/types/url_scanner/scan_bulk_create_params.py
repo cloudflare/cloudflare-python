@@ -11,7 +11,7 @@ __all__ = ["ScanBulkCreateParams", "Body"]
 
 
 class ScanBulkCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account ID."""
 
     body: Iterable[Body]

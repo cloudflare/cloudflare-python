@@ -21,7 +21,7 @@ __all__ = [
 
 
 class NamespaceChatCompletionsParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     aisearch_options: Required[Annotated[AISearchOptions, PropertyInfo(alias="ai_search_options")]]
 

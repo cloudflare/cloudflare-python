@@ -8,7 +8,7 @@ __all__ = ["AudioTrackCopyParams"]
 
 
 class AudioTrackCopyParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account identifier tag."""
 
     label: Required[str]

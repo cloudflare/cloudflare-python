@@ -20,7 +20,7 @@ __all__ = [
 
 
 class RuleEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     action: Literal["log", "block"]

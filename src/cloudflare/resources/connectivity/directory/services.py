@@ -53,7 +53,7 @@ class ServicesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraHTTPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -91,7 +91,7 @@ class ServicesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -125,11 +125,11 @@ class ServicesResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["host", "name", "type"])
+    @required_args(["account_id", "host", "name", "type"])
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraHTTPServiceConfigHost | service_create_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -147,8 +147,6 @@ class ServicesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -186,7 +184,7 @@ class ServicesResource(SyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraHTTPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -223,7 +221,7 @@ class ServicesResource(SyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -255,12 +253,12 @@ class ServicesResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["host", "name", "type"])
+    @required_args(["account_id", "host", "name", "type"])
     def update(
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraHTTPServiceConfigHost | service_update_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -278,8 +276,6 @@ class ServicesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
@@ -321,7 +317,7 @@ class ServicesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         type: Optional[Literal["tcp", "http"]] | Omit = omit,
@@ -350,8 +346,6 @@ class ServicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -378,7 +372,7 @@ class ServicesResource(SyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -398,8 +392,6 @@ class ServicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
@@ -421,7 +413,7 @@ class ServicesResource(SyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,8 +433,6 @@ class ServicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
@@ -493,7 +483,7 @@ class AsyncServicesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraHTTPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -531,7 +521,7 @@ class AsyncServicesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -565,11 +555,11 @@ class AsyncServicesResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["host", "name", "type"])
+    @required_args(["account_id", "host", "name", "type"])
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_create_params.InfraHTTPServiceConfigHost | service_create_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -587,8 +577,6 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -626,7 +614,7 @@ class AsyncServicesResource(AsyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraHTTPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -663,7 +651,7 @@ class AsyncServicesResource(AsyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -695,12 +683,12 @@ class AsyncServicesResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["host", "name", "type"])
+    @required_args(["account_id", "host", "name", "type"])
     async def update(
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         host: service_update_params.InfraHTTPServiceConfigHost | service_update_params.InfraTCPServiceConfigHost,
         name: str,
         type: Literal["tcp", "http"],
@@ -718,8 +706,6 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
@@ -761,7 +747,7 @@ class AsyncServicesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         type: Optional[Literal["tcp", "http"]] | Omit = omit,
@@ -790,8 +776,6 @@ class AsyncServicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -818,7 +802,7 @@ class AsyncServicesResource(AsyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -838,8 +822,6 @@ class AsyncServicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
@@ -861,7 +843,7 @@ class AsyncServicesResource(AsyncAPIResource):
         self,
         service_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -881,8 +863,6 @@ class AsyncServicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:

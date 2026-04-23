@@ -49,7 +49,7 @@ class ZoneResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         flatten_all_cnames: bool | Omit = omit,
         foundation_dns: bool | Omit = omit,
         internal_dns: zone_edit_params.InternalDNS | Omit = omit,
@@ -102,8 +102,6 @@ class ZoneResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
@@ -135,7 +133,7 @@ class ZoneResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,8 +155,6 @@ class ZoneResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
@@ -197,7 +193,7 @@ class AsyncZoneResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         flatten_all_cnames: bool | Omit = omit,
         foundation_dns: bool | Omit = omit,
         internal_dns: zone_edit_params.InternalDNS | Omit = omit,
@@ -250,8 +246,6 @@ class AsyncZoneResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
@@ -283,7 +277,7 @@ class AsyncZoneResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -305,8 +299,6 @@ class AsyncZoneResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(

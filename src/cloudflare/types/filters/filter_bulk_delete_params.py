@@ -10,7 +10,7 @@ __all__ = ["FilterBulkDeleteParams"]
 
 
 class FilterBulkDeleteParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Defines an identifier."""
 
     id: Required[SequenceNotStr[str]]

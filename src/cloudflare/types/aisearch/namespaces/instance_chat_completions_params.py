@@ -20,7 +20,7 @@ __all__ = [
 
 
 class InstanceChatCompletionsParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
 

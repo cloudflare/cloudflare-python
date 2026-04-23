@@ -55,8 +55,8 @@ class AccessRulesResource(SyncAPIResource):
         *,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -92,10 +92,6 @@ class AccessRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -135,8 +131,8 @@ class AccessRulesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         configuration: access_rule_list_params.Configuration | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
@@ -188,10 +184,6 @@ class AccessRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -237,8 +229,8 @@ class AccessRulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,10 +260,6 @@ class AccessRulesResource(SyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -307,8 +295,8 @@ class AccessRulesResource(SyncAPIResource):
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -345,10 +333,6 @@ class AccessRulesResource(SyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -390,8 +374,8 @@ class AccessRulesResource(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,10 +403,6 @@ class AccessRulesResource(SyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -478,8 +458,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -515,10 +495,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -558,8 +534,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         configuration: access_rule_list_params.Configuration | Omit = omit,
         direction: Literal["asc", "desc"] | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
@@ -611,10 +587,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -660,8 +632,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -691,10 +663,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -730,8 +698,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         notes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -768,10 +736,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -813,8 +777,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -842,10 +806,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         """
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

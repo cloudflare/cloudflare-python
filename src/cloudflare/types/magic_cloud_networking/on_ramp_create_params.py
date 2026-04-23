@@ -10,7 +10,7 @@ __all__ = ["OnRampCreateParams"]
 
 
 class OnRampCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     cloud_type: Required[Literal["AWS", "AZURE", "GOOGLE"]]
 

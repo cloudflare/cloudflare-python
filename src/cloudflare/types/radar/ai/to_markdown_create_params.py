@@ -10,6 +10,6 @@ __all__ = ["ToMarkdownCreateParams"]
 
 
 class ToMarkdownCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     files: Required[SequenceNotStr[FileTypes]]

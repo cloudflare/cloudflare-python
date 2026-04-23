@@ -71,7 +71,7 @@ class LabelsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["name", "description", "created_at", "last_updated", "mapped_resources.operations"]
@@ -115,8 +115,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -175,7 +173,7 @@ class AsyncLabelsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         filter: str | Omit = omit,
         order: Literal["name", "description", "created_at", "last_updated", "mapped_resources.operations"]
@@ -219,8 +217,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
