@@ -10,7 +10,7 @@ __all__ = ["FallthroughCreateParams"]
 
 
 class FallthroughCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     hosts: Required[SequenceNotStr[str]]

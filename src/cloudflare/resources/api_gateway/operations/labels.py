@@ -59,7 +59,7 @@ class LabelsResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: SequenceNotStr[str] | Omit = omit,
         user: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -89,8 +89,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -122,7 +120,7 @@ class LabelsResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: SequenceNotStr[str] | Omit = omit,
         user: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,8 +152,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -187,7 +183,7 @@ class LabelsResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,8 +207,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -236,7 +230,7 @@ class LabelsResource(SyncAPIResource):
     def bulk_create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         selector: label_bulk_create_params.Selector,
         managed: label_bulk_create_params.Managed | Omit = omit,
         user: label_bulk_create_params.User | Omit = omit,
@@ -263,8 +257,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -288,7 +280,7 @@ class LabelsResource(SyncAPIResource):
     def bulk_delete(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -310,8 +302,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -327,7 +317,7 @@ class LabelsResource(SyncAPIResource):
     def bulk_update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: label_bulk_update_params.Managed,
         selector: label_bulk_update_params.Selector,
         user: label_bulk_update_params.User,
@@ -358,8 +348,6 @@ class LabelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -405,7 +393,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: SequenceNotStr[str] | Omit = omit,
         user: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -435,8 +423,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -468,7 +454,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: SequenceNotStr[str] | Omit = omit,
         user: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -500,8 +486,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -533,7 +517,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -557,8 +541,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
@@ -582,7 +564,7 @@ class AsyncLabelsResource(AsyncAPIResource):
     def bulk_create(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         selector: label_bulk_create_params.Selector,
         managed: label_bulk_create_params.Managed | Omit = omit,
         user: label_bulk_create_params.User | Omit = omit,
@@ -609,8 +591,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -634,7 +614,7 @@ class AsyncLabelsResource(AsyncAPIResource):
     def bulk_delete(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -656,8 +636,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
@@ -673,7 +651,7 @@ class AsyncLabelsResource(AsyncAPIResource):
     def bulk_update(
         self,
         *,
-        zone_id: str | None = None,
+        zone_id: str,
         managed: label_bulk_update_params.Managed,
         selector: label_bulk_update_params.Selector,
         user: label_bulk_update_params.User,
@@ -704,8 +682,6 @@ class AsyncLabelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(

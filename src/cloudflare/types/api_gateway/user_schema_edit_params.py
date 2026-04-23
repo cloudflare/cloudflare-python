@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["UserSchemaEditParams"]
 
 
 class UserSchemaEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     validation_enabled: Literal[True]
