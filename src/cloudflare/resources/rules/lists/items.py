@@ -53,7 +53,7 @@ class ItemsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: Iterable[item_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,8 +85,6 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -108,7 +106,7 @@ class ItemsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: Iterable[item_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -140,8 +138,6 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -163,7 +159,7 @@ class ItemsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -203,8 +199,6 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -233,7 +227,7 @@ class ItemsResource(SyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         items: Iterable[item_delete_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -265,8 +259,6 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -288,7 +280,7 @@ class ItemsResource(SyncAPIResource):
         self,
         item_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         list_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -315,8 +307,6 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -370,7 +360,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: Iterable[item_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -402,8 +392,6 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -425,7 +413,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         body: Iterable[item_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -457,8 +445,6 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -480,7 +466,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -520,8 +506,6 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -550,7 +534,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         list_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         items: Iterable[item_delete_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -582,8 +566,6 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
@@ -605,7 +587,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         item_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         list_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -632,8 +614,6 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
