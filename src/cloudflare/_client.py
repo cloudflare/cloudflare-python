@@ -311,8 +311,6 @@ class Cloudflare(SyncAPIClient):
     api_key: str | None
     api_email: str | None
     user_service_key: str | None
-    account_id: str | None
-    zone_id: str | None
 
     def __init__(
         self,
@@ -321,8 +319,6 @@ class Cloudflare(SyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
-        account_id: str | None = None,
-        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -350,8 +346,6 @@ class Cloudflare(SyncAPIClient):
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
-        - `account_id` from `CLOUDFLARE_ACCOUNT_ID`
-        - `zone_id` from `CLOUDFLARE_ZONE_ID`
         """
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
@@ -368,14 +362,6 @@ class Cloudflare(SyncAPIClient):
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
-
-        if account_id is None:
-            account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
-        self.account_id = account_id
-
-        if zone_id is None:
-            zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
-        self.zone_id = zone_id
 
         if base_url is None:
             base_url = os.environ.get("CLOUDFLARE_BASE_URL")
@@ -1123,8 +1109,6 @@ class Cloudflare(SyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
-        account_id: str | None = None,
-        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -1163,8 +1147,6 @@ class Cloudflare(SyncAPIClient):
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
-            account_id=account_id or self.account_id,
-            zone_id=zone_id or self.zone_id,
             base_url=base_url or self.base_url,
             api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -1178,24 +1160,6 @@ class Cloudflare(SyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
-
-    def _get_account_id_path_param(self) -> str:
-        from_client = self.account_id
-        if from_client is not None:
-            return from_client
-
-        raise ValueError(
-            "Missing account_id argument; Please provide it at the client level, e.g. Cloudflare(account_id='abcd') or per method."
-        )
-
-    def _get_zone_id_path_param(self) -> str:
-        from_client = self.zone_id
-        if from_client is not None:
-            return from_client
-
-        raise ValueError(
-            "Missing zone_id argument; Please provide it at the client level, e.g. Cloudflare(zone_id='abcd') or per method."
-        )
 
     @override
     def _make_status_error(
@@ -1237,8 +1201,6 @@ class AsyncCloudflare(AsyncAPIClient):
     api_key: str | None
     api_email: str | None
     user_service_key: str | None
-    account_id: str | None
-    zone_id: str | None
 
     def __init__(
         self,
@@ -1247,8 +1209,6 @@ class AsyncCloudflare(AsyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
-        account_id: str | None = None,
-        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -1276,8 +1236,6 @@ class AsyncCloudflare(AsyncAPIClient):
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
-        - `account_id` from `CLOUDFLARE_ACCOUNT_ID`
-        - `zone_id` from `CLOUDFLARE_ZONE_ID`
         """
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
@@ -1294,14 +1252,6 @@ class AsyncCloudflare(AsyncAPIClient):
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
-
-        if account_id is None:
-            account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
-        self.account_id = account_id
-
-        if zone_id is None:
-            zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
-        self.zone_id = zone_id
 
         if base_url is None:
             base_url = os.environ.get("CLOUDFLARE_BASE_URL")
@@ -2049,8 +1999,6 @@ class AsyncCloudflare(AsyncAPIClient):
         api_key: str | None = None,
         api_email: str | None = None,
         user_service_key: str | None = None,
-        account_id: str | None = None,
-        zone_id: str | None = None,
         base_url: str | httpx.URL | None = None,
         api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -2089,8 +2037,6 @@ class AsyncCloudflare(AsyncAPIClient):
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
-            account_id=account_id or self.account_id,
-            zone_id=zone_id or self.zone_id,
             base_url=base_url or self.base_url,
             api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -2104,24 +2050,6 @@ class AsyncCloudflare(AsyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
-
-    def _get_account_id_path_param(self) -> str:
-        from_client = self.account_id
-        if from_client is not None:
-            return from_client
-
-        raise ValueError(
-            "Missing account_id argument; Please provide it at the client level, e.g. AsyncCloudflare(account_id='abcd') or per method."
-        )
-
-    def _get_zone_id_path_param(self) -> str:
-        from_client = self.zone_id
-        if from_client is not None:
-            return from_client
-
-        raise ValueError(
-            "Missing zone_id argument; Please provide it at the client level, e.g. AsyncCloudflare(zone_id='abcd') or per method."
-        )
 
     @override
     def _make_status_error(
