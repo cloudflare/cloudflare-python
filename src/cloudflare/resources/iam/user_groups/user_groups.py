@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -66,7 +67,7 @@ class UserGroupsResource(SyncAPIResource):
         *,
         account_id: str | None = None,
         name: str,
-        policies: Iterable[user_group_create_params.Policy],
+        policies: Iterable[user_group_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,7 +184,7 @@ class UserGroupsResource(SyncAPIResource):
         *,
         account_id: str | None = None,
         id: str | Omit = omit,
-        direction: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
         fuzzy_name: str | Omit = omit,
         name: str | Omit = omit,
         page: float | Omit = omit,
@@ -203,8 +204,7 @@ class UserGroupsResource(SyncAPIResource):
 
           id: ID of the user group to be fetched.
 
-          direction: The sort order of returned user groups by name. Default sort order is ascending.
-              To switch to descending, set this parameter to "desc"
+          direction: The sort order of returned user groups by name (ascending or descending).
 
           fuzzy_name: A string used for searching for user groups containing that substring.
 
@@ -379,7 +379,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         *,
         account_id: str | None = None,
         name: str,
-        policies: Iterable[user_group_create_params.Policy],
+        policies: Iterable[user_group_create_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -496,7 +496,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
         *,
         account_id: str | None = None,
         id: str | Omit = omit,
-        direction: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
         fuzzy_name: str | Omit = omit,
         name: str | Omit = omit,
         page: float | Omit = omit,
@@ -516,8 +516,7 @@ class AsyncUserGroupsResource(AsyncAPIResource):
 
           id: ID of the user group to be fetched.
 
-          direction: The sort order of returned user groups by name. Default sort order is ascending.
-              To switch to descending, set this parameter to "desc"
+          direction: The sort order of returned user groups by name (ascending or descending).
 
           fuzzy_name: A string used for searching for user groups containing that substring.
 

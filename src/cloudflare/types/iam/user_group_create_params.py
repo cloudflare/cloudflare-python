@@ -15,7 +15,7 @@ class UserGroupCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the User group."""
 
-    policies: Required[Iterable[Policy]]
+    policies: Iterable[Policy]
     """Policies attached to the User group"""
 
 

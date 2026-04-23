@@ -29,6 +29,14 @@ class TestUserGroups:
         user_group = client.iam.user_groups.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
+        )
+        assert_matches_type(Optional[UserGroupCreateResponse], user_group, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        user_group = client.iam.user_groups.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My New User Group",
             policies=[
                 {
                     "access": "allow",
@@ -47,16 +55,6 @@ class TestUserGroups:
         response = client.iam.user_groups.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
-            policies=[
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -69,16 +67,6 @@ class TestUserGroups:
         with client.iam.user_groups.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
-            policies=[
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,16 +82,6 @@ class TestUserGroups:
             client.iam.user_groups.with_raw_response.create(
                 account_id="",
                 name="My New User Group",
-                policies=[
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                    }
-                ],
             )
 
     @parametrize
@@ -190,7 +168,7 @@ class TestUserGroups:
             fuzzy_name="Foo",
             name="NameOfTheUserGroup",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(SyncV4PagePaginationArray[UserGroupListResponse], user_group, path=["response"])
 
@@ -332,6 +310,14 @@ class TestAsyncUserGroups:
         user_group = await async_client.iam.user_groups.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
+        )
+        assert_matches_type(Optional[UserGroupCreateResponse], user_group, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        user_group = await async_client.iam.user_groups.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My New User Group",
             policies=[
                 {
                     "access": "allow",
@@ -350,16 +336,6 @@ class TestAsyncUserGroups:
         response = await async_client.iam.user_groups.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
-            policies=[
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -372,16 +348,6 @@ class TestAsyncUserGroups:
         async with async_client.iam.user_groups.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My New User Group",
-            policies=[
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -397,16 +363,6 @@ class TestAsyncUserGroups:
             await async_client.iam.user_groups.with_raw_response.create(
                 account_id="",
                 name="My New User Group",
-                policies=[
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
-                    }
-                ],
             )
 
     @parametrize
@@ -493,7 +449,7 @@ class TestAsyncUserGroups:
             fuzzy_name="Foo",
             name="NameOfTheUserGroup",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(AsyncV4PagePaginationArray[UserGroupListResponse], user_group, path=["response"])
 

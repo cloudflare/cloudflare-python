@@ -393,8 +393,9 @@ class SecretsResource(SyncAPIResource):
 
           scopes: The list of services that can use this secret.
 
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
+          value: The value of the secret. Maximum 64 KiB (65,536 bytes). Note that this is 'write
+              only' - no API response will provide this value, it is only used to
+              create/modify secrets.
 
           extra_headers: Send extra headers
 
@@ -852,8 +853,9 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           scopes: The list of services that can use this secret.
 
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
+          value: The value of the secret. Maximum 64 KiB (65,536 bytes). Note that this is 'write
+              only' - no API response will provide this value, it is only used to
+              create/modify secrets.
 
           extra_headers: Send extra headers
 
