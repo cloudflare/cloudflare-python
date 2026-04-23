@@ -8,7 +8,7 @@ __all__ = ["ImpersonationRegistryCreateParams"]
 
 
 class ImpersonationRegistryCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     email: Required[str]

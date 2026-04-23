@@ -10,7 +10,7 @@ __all__ = ["ReleaseBulkParams"]
 
 
 class ReleaseBulkParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     body: Required[SequenceNotStr[str]]

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,7 +12,7 @@ __all__ = ["InvestigateListParams"]
 
 
 class InvestigateListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account Identifier"""
 
     action_log: bool
@@ -51,7 +51,7 @@ class InvestigateListParams(TypedDict, total=False):
     """Deprecated: Use cursor pagination instead."""
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     query: str
     """The space-delimited term used in the query. The search is case-insensitive.
