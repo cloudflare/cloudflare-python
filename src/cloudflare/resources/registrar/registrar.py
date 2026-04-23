@@ -96,7 +96,7 @@ class RegistrarResource(SyncAPIResource):
     def check(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         domains: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -175,8 +175,6 @@ class RegistrarResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -195,7 +193,7 @@ class RegistrarResource(SyncAPIResource):
     def search(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         q: str,
         extensions: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -263,8 +261,6 @@ class RegistrarResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -327,7 +323,7 @@ class AsyncRegistrarResource(AsyncAPIResource):
     async def check(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         domains: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -406,8 +402,6 @@ class AsyncRegistrarResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -426,7 +420,7 @@ class AsyncRegistrarResource(AsyncAPIResource):
     async def search(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         q: str,
         extensions: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
@@ -494,8 +488,6 @@ class AsyncRegistrarResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

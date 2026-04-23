@@ -16,7 +16,7 @@ __all__ = [
 
 
 class RegistrationCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     domain_name: Required[str]
