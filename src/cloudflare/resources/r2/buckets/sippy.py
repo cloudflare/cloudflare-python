@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, required_args, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class SippyResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -91,7 +91,7 @@ class SippyResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -131,7 +131,7 @@ class SippyResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
         source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -166,11 +166,12 @@ class SippyResource(SyncAPIResource):
         """
         ...
 
+    @required_args(["account_id"])
     def update(
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination
         | sippy_update_params.R2EnableSippyGcsDestination
         | sippy_update_params.R2EnableSippyS3Destination
@@ -187,8 +188,6 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -222,7 +221,7 @@ class SippyResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,8 +248,6 @@ class SippyResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -277,7 +274,7 @@ class SippyResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -304,8 +301,6 @@ class SippyResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -354,7 +349,7 @@ class AsyncSippyResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -394,7 +389,7 @@ class AsyncSippyResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -434,7 +429,7 @@ class AsyncSippyResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
         source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
@@ -469,11 +464,12 @@ class AsyncSippyResource(AsyncAPIResource):
         """
         ...
 
+    @required_args(["account_id"])
     async def update(
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination
         | sippy_update_params.R2EnableSippyGcsDestination
         | sippy_update_params.R2EnableSippyS3Destination
@@ -490,8 +486,6 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -525,7 +519,7 @@ class AsyncSippyResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -552,8 +546,6 @@ class AsyncSippyResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -580,7 +572,7 @@ class AsyncSippyResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -607,8 +599,6 @@ class AsyncSippyResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
