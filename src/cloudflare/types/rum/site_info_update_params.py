@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["SiteInfoUpdateParams"]
 
 
 class SiteInfoUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     auto_install: bool
