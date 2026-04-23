@@ -36,7 +36,7 @@ __all__ = [
 
 
 class PresetUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account identifier tag."""
 
     app_id: Required[str]

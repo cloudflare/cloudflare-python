@@ -37,7 +37,7 @@ __all__ = [
 
 
 class PresetCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The account identifier tag."""
 
     config: Required[Config]
