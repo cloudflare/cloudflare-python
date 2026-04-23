@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,8 +49,8 @@ class OwnershipResource(SyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,10 +78,6 @@ class OwnershipResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -116,8 +112,8 @@ class OwnershipResource(SyncAPIResource):
         *,
         destination_conf: str,
         ownership_challenge: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,10 +143,6 @@ class OwnershipResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -211,8 +203,8 @@ class AsyncOwnershipResource(AsyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,10 +232,6 @@ class AsyncOwnershipResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -280,8 +268,8 @@ class AsyncOwnershipResource(AsyncAPIResource):
         *,
         destination_conf: str,
         ownership_challenge: str,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,10 +299,6 @@ class AsyncOwnershipResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
