@@ -9,7 +9,7 @@ __all__ = ["InterconnectCreateParams", "NscInterconnectCreatePhysicalBody", "Nsc
 
 
 class NscInterconnectCreatePhysicalBody(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Customer account tag"""
 
     account: Required[str]
@@ -22,7 +22,7 @@ class NscInterconnectCreatePhysicalBody(TypedDict, total=False):
 
 
 class NscInterconnectCreateGcpPartnerBody(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Customer account tag"""
 
     account: Required[str]
