@@ -8,7 +8,7 @@ __all__ = ["FallbackOriginUpdateParams"]
 
 
 class FallbackOriginUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     origin: Required[str]
