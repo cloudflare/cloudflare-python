@@ -12,7 +12,7 @@ __all__ = ["RequestListParams"]
 
 
 class RequestListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     page: Required[int]

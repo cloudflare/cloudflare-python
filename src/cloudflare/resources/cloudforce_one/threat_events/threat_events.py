@@ -178,7 +178,7 @@ class ThreatEventsResource(SyncAPIResource):
     def create(
         self,
         *,
-        path_account_id: str | None = None,
+        path_account_id: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -222,8 +222,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if path_account_id is None:
-            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return self._post(
@@ -258,7 +256,7 @@ class ThreatEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -276,11 +274,11 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        When `datasetId` is unspecified, events will be listed from the
-        `Cloudforce One Threat Events` dataset. To list existing datasets (and their
-        IDs), use the
+        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
+        (limited to 10). When `datasetId` is unspecified, events are listed from the
+        default Cloudforce One Threat Events dataset. To list existing datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint). Also, must provide query parameters.
+        endpoint.
 
         Args:
           account_id: Account ID.
@@ -289,6 +287,10 @@ class ThreatEventsResource(SyncAPIResource):
               only need to pass cursor and pageSize. Returned in the previous response's
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
+
+          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+              '\\**' to query all event datasets for the account. If not provided, uses the
+              default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
@@ -303,8 +305,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -335,7 +335,7 @@ class ThreatEventsResource(SyncAPIResource):
     def bulk_create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -367,8 +367,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -391,7 +389,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -431,8 +429,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -471,7 +467,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,8 +493,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -577,7 +571,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        path_account_id: str | None = None,
+        path_account_id: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -621,8 +615,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if path_account_id is None:
-            path_account_id = self._client._get_account_id_path_param()
         if not path_account_id:
             raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
         return await self._post(
@@ -657,7 +649,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -675,11 +667,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        When `datasetId` is unspecified, events will be listed from the
-        `Cloudforce One Threat Events` dataset. To list existing datasets (and their
-        IDs), use the
+        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
+        (limited to 10). When `datasetId` is unspecified, events are listed from the
+        default Cloudforce One Threat Events dataset. To list existing datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint). Also, must provide query parameters.
+        endpoint.
 
         Args:
           account_id: Account ID.
@@ -688,6 +680,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
               only need to pass cursor and pageSize. Returned in the previous response's
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
+
+          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+              '\\**' to query all event datasets for the account. If not provided, uses the
+              default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
@@ -702,8 +698,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
@@ -734,7 +728,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def bulk_create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
         include_created_events: bool | Omit = omit,
@@ -766,8 +760,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -790,7 +782,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dataset_id: str,
         attacker: Optional[str] | Omit = omit,
         attacker_country: str | Omit = omit,
@@ -830,8 +822,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
@@ -870,7 +860,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -896,8 +886,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:

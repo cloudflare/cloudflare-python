@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -12,7 +12,7 @@ __all__ = ["ThreatEventListParams", "Search"]
 
 
 class ThreatEventListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account ID."""
 
     cursor: str
@@ -25,6 +25,11 @@ class ThreatEventListParams(TypedDict, total=False):
     """
 
     dataset_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetId")]
+    """
+    Dataset IDs to query events from (array of UUIDs), or special value 'all' or
+    '\\**' to query all event datasets for the account. If not provided, uses the
+    default dataset.
+    """
 
     force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
 
