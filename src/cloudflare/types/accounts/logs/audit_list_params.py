@@ -37,7 +37,7 @@ __all__ = [
 
 
 class AuditListParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """The unique id that identifies the account."""
 
     before: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
