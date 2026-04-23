@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["AddressMapEditParams"]
 
 
 class AddressMapEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier of a Cloudflare account."""
 
     default_sni: Optional[str]
