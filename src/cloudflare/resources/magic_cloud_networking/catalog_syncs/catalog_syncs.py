@@ -72,7 +72,7 @@ class CatalogSyncsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination_type: Literal["NONE", "ZERO_TRUST_LIST"],
         name: str,
         update_mode: Literal["AUTO", "MANUAL"],
@@ -98,8 +98,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -129,7 +127,7 @@ class CatalogSyncsResource(SyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
         policy: str | Omit = omit,
@@ -153,8 +151,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -185,7 +181,7 @@ class CatalogSyncsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,8 +201,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -222,7 +216,7 @@ class CatalogSyncsResource(SyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         delete_destination: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -243,8 +237,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -270,7 +262,7 @@ class CatalogSyncsResource(SyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
         policy: str | Omit = omit,
@@ -294,8 +286,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -327,7 +317,7 @@ class CatalogSyncsResource(SyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,8 +337,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -371,7 +359,7 @@ class CatalogSyncsResource(SyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,8 +380,6 @@ class CatalogSyncsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -442,7 +428,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         destination_type: Literal["NONE", "ZERO_TRUST_LIST"],
         name: str,
         update_mode: Literal["AUTO", "MANUAL"],
@@ -468,8 +454,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {**strip_not_given({"forwarded": forwarded}), **(extra_headers or {})}
@@ -499,7 +483,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
         policy: str | Omit = omit,
@@ -523,8 +507,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -555,7 +537,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -575,8 +557,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
@@ -592,7 +572,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         delete_destination: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -613,8 +593,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -640,7 +618,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
         policy: str | Omit = omit,
@@ -664,8 +642,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -697,7 +673,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -717,8 +693,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
@@ -741,7 +715,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         self,
         sync_id: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -762,8 +736,6 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not sync_id:
