@@ -8,7 +8,7 @@ __all__ = ["PagePreviewParams"]
 
 
 class PagePreviewParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     custom_html: Required[str]
