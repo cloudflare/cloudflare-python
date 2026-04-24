@@ -62,6 +62,13 @@ class SubscriptionConfiguration(BaseModel):
     cf_robots_variant: Optional[Literal["off", "policy_only"]] = None
     """Specifies the Robots Access Control License variant to use."""
 
+    content_bots_protection: Optional[Literal["block", "disabled"]] = None
+    """Enable rule to block content bots.
+
+    When enabled, blocks automated traffic with low bot scores, excluding safe
+    verified bot categories. Exceptions should be managed via skip rules.
+    """
+
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 

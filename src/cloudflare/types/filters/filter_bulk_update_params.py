@@ -9,7 +9,7 @@ __all__ = ["FilterBulkUpdateParams", "Body"]
 
 
 class FilterBulkUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Defines an identifier."""
 
     body: Required[Iterable[Body]]

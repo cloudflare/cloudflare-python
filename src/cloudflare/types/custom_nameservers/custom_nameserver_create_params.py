@@ -8,7 +8,7 @@ __all__ = ["CustomNameserverCreateParams"]
 
 
 class CustomNameserverCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Account identifier tag."""
 
     ns_name: Required[str]

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "BotManagementUpdateParams",
@@ -15,7 +15,7 @@ __all__ = [
 
 
 class BotFightModeConfiguration(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -27,6 +27,13 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
+
+    content_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block content bots.
+
+    When enabled, blocks automated traffic with low bot scores, excluding safe
+    verified bot categories. Exceptions should be managed via skip rules.
+    """
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -49,7 +56,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -61,6 +68,13 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
+
+    content_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block content bots.
+
+    When enabled, blocks automated traffic with low bot scores, excluding safe
+    verified bot categories. Exceptions should be managed via skip rules.
+    """
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -96,7 +110,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
 
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -108,6 +122,13 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
+
+    content_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block content bots.
+
+    When enabled, blocks automated traffic with low bot scores, excluding safe
+    verified bot categories. Exceptions should be managed via skip rules.
+    """
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -146,7 +167,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
 
 class SubscriptionConfiguration(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
@@ -171,6 +192,13 @@ class SubscriptionConfiguration(TypedDict, total=False):
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
+
+    content_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block content bots.
+
+    When enabled, blocks automated traffic with low bot scores, excluding safe
+    verified bot categories. Exceptions should be managed via skip rules.
+    """
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""

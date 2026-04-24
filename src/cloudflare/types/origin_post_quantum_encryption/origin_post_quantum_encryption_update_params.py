@@ -8,7 +8,7 @@ __all__ = ["OriginPostQuantumEncryptionUpdateParams"]
 
 
 class OriginPostQuantumEncryptionUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     value: Required[Literal["preferred", "supported", "off"]]
