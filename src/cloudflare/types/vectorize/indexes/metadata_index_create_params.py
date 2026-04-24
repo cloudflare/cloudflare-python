@@ -10,7 +10,7 @@ __all__ = ["MetadataIndexCreateParams"]
 
 
 class MetadataIndexCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier"""
 
     index_type: Required[Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="indexType")]]
