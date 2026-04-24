@@ -64,8 +64,8 @@ class BISOAdminControls(BaseModel):
     download: Optional[Literal["enabled", "disabled", "remote_only"]] = None
     """Configure download behavior.
 
-    When set to remote_only, users can view downloads but cannot save them. Applies
-    only when version == "v2".
+    When set to remote_only, users can view downloads but cannot save them. If this
+    field is absent, downloading remains enabled. Applies only when version == "v2".
     """
 
     dp: Optional[bool] = None
@@ -104,6 +104,12 @@ class BISOAdminControls(BaseModel):
 
     version: Optional[Literal["v1", "v2"]] = None
     """Indicate which version of the browser isolation controls should apply."""
+
+    wm_id: Optional[str] = None
+    """Specify the watermark ID (UUID) to apply to the isolated browser session.
+
+    When present, enables watermark rendering in the isolated browser.
+    """
 
 
 class BlockPage(BaseModel):

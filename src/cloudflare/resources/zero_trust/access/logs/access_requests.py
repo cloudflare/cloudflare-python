@@ -49,7 +49,7 @@ class AccessRequestsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         allowed_op: Literal["eq", "neq"] | Omit = omit,
         app_type_op: Literal["eq", "neq"] | Omit = omit,
         app_uid_op: Literal["eq", "neq"] | Omit = omit,
@@ -132,8 +132,6 @@ class AccessRequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -196,7 +194,7 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         allowed_op: Literal["eq", "neq"] | Omit = omit,
         app_type_op: Literal["eq", "neq"] | Omit = omit,
         app_uid_op: Literal["eq", "neq"] | Omit = omit,
@@ -279,8 +277,6 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

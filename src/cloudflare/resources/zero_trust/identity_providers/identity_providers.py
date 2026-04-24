@@ -75,8 +75,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,8 +123,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -171,8 +171,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -219,8 +219,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -267,8 +267,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -315,8 +315,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -363,8 +363,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -411,8 +411,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -459,8 +459,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -507,8 +507,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -555,8 +555,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -603,8 +603,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -651,8 +651,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -699,8 +699,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -757,8 +757,8 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -767,10 +767,6 @@ class IdentityProvidersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IdentityProvider]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -821,8 +817,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -872,8 +868,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -923,8 +919,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -974,8 +970,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1025,8 +1021,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1076,8 +1072,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1127,8 +1123,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1178,8 +1174,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1229,8 +1225,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1280,8 +1276,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1331,8 +1327,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1382,8 +1378,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1433,8 +1429,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1484,8 +1480,8 @@ class IdentityProvidersResource(SyncAPIResource):
         config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1545,8 +1541,8 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1559,10 +1555,6 @@ class IdentityProvidersResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1609,8 +1601,8 @@ class IdentityProvidersResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         scim_enabled: str | Omit = omit,
@@ -1644,10 +1636,6 @@ class IdentityProvidersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1690,8 +1678,8 @@ class IdentityProvidersResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1721,10 +1709,6 @@ class IdentityProvidersResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1758,8 +1742,8 @@ class IdentityProvidersResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1789,10 +1773,6 @@ class IdentityProvidersResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1859,8 +1839,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1907,8 +1887,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1955,8 +1935,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2003,8 +1983,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2051,8 +2031,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2099,8 +2079,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2147,8 +2127,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2195,8 +2175,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2243,8 +2223,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2291,8 +2271,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2339,8 +2319,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2387,8 +2367,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2435,8 +2415,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2483,8 +2463,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2541,8 +2521,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2551,10 +2531,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IdentityProvider]:
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2605,8 +2581,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2656,8 +2632,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2707,8 +2683,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2758,8 +2734,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2809,8 +2785,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2860,8 +2836,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2911,8 +2887,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2962,8 +2938,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3013,8 +2989,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3064,8 +3040,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3115,8 +3091,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3166,8 +3142,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3217,8 +3193,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3268,8 +3244,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3329,8 +3305,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3343,10 +3319,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3393,8 +3365,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         scim_enabled: str | Omit = omit,
@@ -3428,10 +3400,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3474,8 +3442,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3505,10 +3473,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3542,8 +3506,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        account_id: str | None = None,
-        zone_id: str | None = None,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3573,10 +3537,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
             )
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
-        if zone_id is None:
-            zone_id = self._client._get_zone_id_path_param()
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

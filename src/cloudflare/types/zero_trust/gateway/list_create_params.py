@@ -9,12 +9,12 @@ __all__ = ["ListCreateParams", "Item"]
 
 
 class ListCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     name: Required[str]
     """Specify the list name."""
 
-    type: Required[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"]]
+    type: Required[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE", "AAGUID"]]
     """Specify the list type."""
 
     description: str

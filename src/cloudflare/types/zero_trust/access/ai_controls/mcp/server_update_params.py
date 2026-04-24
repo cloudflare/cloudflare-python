@@ -9,7 +9,7 @@ __all__ = ["ServerUpdateParams", "UpdatedPrompt", "UpdatedTool"]
 
 
 class ServerUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     auth_credentials: str
 

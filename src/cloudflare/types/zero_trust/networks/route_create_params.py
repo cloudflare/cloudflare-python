@@ -8,7 +8,7 @@ __all__ = ["RouteCreateParams"]
 
 
 class RouteCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Cloudflare account ID"""
 
     network: Required[str]

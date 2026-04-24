@@ -9,7 +9,7 @@ __all__ = ["IntegrationUpdateParams"]
 
 
 class IntegrationUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     active: Required[bool]
     """Whether this integration is enabled.

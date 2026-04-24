@@ -47,7 +47,7 @@ class PatternsResource(SyncAPIResource):
     def validate(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         regex: str,
         max_match_bytes: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,8 +83,6 @@ class PatternsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -130,7 +128,7 @@ class AsyncPatternsResource(AsyncAPIResource):
     async def validate(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         regex: str,
         max_match_bytes: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -166,8 +164,6 @@ class AsyncPatternsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(

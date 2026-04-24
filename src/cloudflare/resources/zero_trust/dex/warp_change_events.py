@@ -48,7 +48,7 @@ class WARPChangeEventsResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         from_: str,
         page: float,
         per_page: float,
@@ -96,8 +96,6 @@ class WARPChangeEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
@@ -150,7 +148,7 @@ class AsyncWARPChangeEventsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: str | None = None,
+        account_id: str,
         from_: str,
         page: float,
         per_page: float,
@@ -198,8 +196,6 @@ class AsyncWARPChangeEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(

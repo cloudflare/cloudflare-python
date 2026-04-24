@@ -13,7 +13,7 @@ __all__ = ["PolicyUpdateParams", "ConnectionRules", "ConnectionRulesRDP", "MfaCo
 
 
 class PolicyUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     decision: Required[Decision]

@@ -8,7 +8,7 @@ __all__ = ["UserUpdateParams"]
 
 
 class UserUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     email: Required[str]

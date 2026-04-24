@@ -9,6 +9,6 @@ __all__ = ["RuleBulkEditParams"]
 
 
 class RuleBulkEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     new_priorities: Required[Dict[str, int]]

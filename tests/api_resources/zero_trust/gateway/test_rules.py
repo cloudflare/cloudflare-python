@@ -66,6 +66,7 @@ class TestRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                    "wm_id": "475345dc-5299-4b6e-8f6a-3d3e4c8e9f1a",
                 },
                 "block_page": {
                     "target_uri": "https://example.com",
@@ -230,6 +231,7 @@ class TestRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                    "wm_id": "475345dc-5299-4b6e-8f6a-3d3e4c8e9f1a",
                 },
                 "block_page": {
                     "target_uri": "https://example.com",
@@ -629,6 +631,7 @@ class TestAsyncRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                    "wm_id": "475345dc-5299-4b6e-8f6a-3d3e4c8e9f1a",
                 },
                 "block_page": {
                     "target_uri": "https://example.com",
@@ -793,6 +796,7 @@ class TestAsyncRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                    "wm_id": "475345dc-5299-4b6e-8f6a-3d3e4c8e9f1a",
                 },
                 "block_page": {
                     "target_uri": "https://example.com",

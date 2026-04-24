@@ -8,7 +8,7 @@ __all__ = ["CustomPageCreateParams"]
 
 
 class CustomPageCreateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     custom_html: Required[str]

@@ -8,7 +8,7 @@ __all__ = ["FailoverUpdateParams"]
 
 
 class FailoverUpdateParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Cloudflare account ID"""
 
     client_id: Required[str]
