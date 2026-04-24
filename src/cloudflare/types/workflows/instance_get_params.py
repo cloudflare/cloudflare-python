@@ -8,7 +8,7 @@ __all__ = ["InstanceGetParams"]
 
 
 class InstanceGetParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
 
     workflow_name: Required[str]
 
