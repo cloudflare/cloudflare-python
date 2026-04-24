@@ -10,7 +10,7 @@ __all__ = ["ZarazUpdateParams"]
 
 
 class ZarazUpdateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     workflow: Required[Workflow]
