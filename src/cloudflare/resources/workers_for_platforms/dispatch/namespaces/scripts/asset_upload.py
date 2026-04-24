@@ -50,7 +50,7 @@ class AssetUploadResource(SyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dispatch_namespace: str,
         manifest: Dict[str, asset_upload_create_params.Manifest],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,8 +84,6 @@ class AssetUploadResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -135,7 +133,7 @@ class AsyncAssetUploadResource(AsyncAPIResource):
         self,
         script_name: str,
         *,
-        account_id: str | None = None,
+        account_id: str,
         dispatch_namespace: str,
         manifest: Dict[str, asset_upload_create_params.Manifest],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -169,8 +167,6 @@ class AsyncAssetUploadResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if account_id is None:
-            account_id = self._client._get_account_id_path_param()
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:

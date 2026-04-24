@@ -76,7 +76,7 @@ __all__ = [
 
 
 class SettingEditParams(TypedDict, total=False):
-    account_id: str
+    account_id: Required[str]
     """Identifier."""
 
     dispatch_namespace: Required[str]
