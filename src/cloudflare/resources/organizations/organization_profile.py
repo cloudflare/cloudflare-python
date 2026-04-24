@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.organizations import organization_profile_update_params
-from ...types.organizations.organization_profile_get_params import Result
+from ...types.organizations.organization_profile import OrganizationProfile as Result
 
 __all__ = ["OrganizationProfileResource", "AsyncOrganizationProfileResource"]
 

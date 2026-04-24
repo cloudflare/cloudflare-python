@@ -111,11 +111,11 @@ class ToMarkdownResource(SyncAPIResource):
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._get_api_list(
+        return self._get_api_list(  # type: ignore[call-arg]
             path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=SyncSinglePage[ToMarkdownTransformResponse],
             body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
-            files=files,
+            files=files,  # pyright: ignore[reportCallIssue]
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -210,11 +210,11 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._get_api_list(
+        return self._get_api_list(  # type: ignore[call-arg]
             path_template("/accounts/{account_id}/ai/tomarkdown", account_id=account_id),
             page=AsyncSinglePage[ToMarkdownTransformResponse],
             body=maybe_transform(body, to_markdown_transform_params.ToMarkdownTransformParams),
-            files=files,
+            files=files,  # pyright: ignore[reportCallIssue]
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
