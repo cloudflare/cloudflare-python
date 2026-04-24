@@ -18,7 +18,7 @@ __all__ = [
 
 
 class ConfigurationCreateParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     credentials: Required[Credentials]

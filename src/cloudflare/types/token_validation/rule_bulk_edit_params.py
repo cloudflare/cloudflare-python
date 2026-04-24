@@ -21,7 +21,7 @@ __all__ = [
 
 
 class RuleBulkEditParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier."""
 
     body: Required[Iterable[Body]]
