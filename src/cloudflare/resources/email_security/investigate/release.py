@@ -54,13 +54,12 @@ class ReleaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ReleaseBulkResponse]:
         """
-        Releases a quarantined email message, allowing it to be delivered to the
-        recipient.
+        Releases one or more quarantined messages, delivering them to the intended
+        recipients. Use when a message was incorrectly quarantined. Returns delivery
+        status for each recipient.
 
         Args:
-          account_id: Account Identifier
-
-          body: A list of messages identfied by their `postfix_id`s that should be released.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,13 +116,12 @@ class AsyncReleaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReleaseBulkResponse, AsyncSinglePage[ReleaseBulkResponse]]:
         """
-        Releases a quarantined email message, allowing it to be delivered to the
-        recipient.
+        Releases one or more quarantined messages, delivering them to the intended
+        recipients. Use when a message was incorrectly quarantined. Returns delivery
+        status for each recipient.
 
         Args:
-          account_id: Account Identifier
-
-          body: A list of messages identfied by their `postfix_id`s that should be released.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

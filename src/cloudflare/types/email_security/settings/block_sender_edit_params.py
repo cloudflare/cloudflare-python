@@ -10,12 +10,16 @@ __all__ = ["BlockSenderEditParams"]
 
 class BlockSenderEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     comments: Optional[str]
 
-    is_regex: Optional[bool]
+    is_regex: bool
 
-    pattern: Optional[str]
+    pattern: str
 
-    pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]]
+    pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
+    """
+    Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+    creating or updating policies, but may be returned for existing entries.
+    """

@@ -10,12 +10,16 @@ __all__ = ["BlockSenderCreateParams"]
 
 class BlockSenderCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     is_regex: Required[bool]
 
     pattern: Required[str]
 
     pattern_type: Required[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]]
+    """
+    Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+    creating or updating policies, but may be returned for existing entries.
+    """
 
     comments: Optional[str]

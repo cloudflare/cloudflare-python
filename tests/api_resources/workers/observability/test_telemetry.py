@@ -37,7 +37,13 @@ class TestTelemetry:
             filters=[
                 {
                     "filter_combination": "and",
-                    "filters": [{}],
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
                     "kind": "group",
                 }
             ],
@@ -132,7 +138,13 @@ class TestTelemetry:
                 "filters": [
                     {
                         "filter_combination": "and",
-                        "filters": [{}],
+                        "filters": [
+                            {
+                                "filter_combination": "and",
+                                "filters": [{}],
+                                "kind": "group",
+                            }
+                        ],
                         "kind": "group",
                     }
                 ],
@@ -238,7 +250,13 @@ class TestTelemetry:
             filters=[
                 {
                     "filter_combination": "and",
-                    "filters": [{}],
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
                     "kind": "group",
                 }
             ],
@@ -324,7 +342,13 @@ class TestAsyncTelemetry:
             filters=[
                 {
                     "filter_combination": "and",
-                    "filters": [{}],
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
                     "kind": "group",
                 }
             ],
@@ -419,7 +443,13 @@ class TestAsyncTelemetry:
                 "filters": [
                     {
                         "filter_combination": "and",
-                        "filters": [{}],
+                        "filters": [
+                            {
+                                "filter_combination": "and",
+                                "filters": [{}],
+                                "kind": "group",
+                            }
+                        ],
                         "kind": "group",
                     }
                 ],
@@ -525,7 +555,13 @@ class TestAsyncTelemetry:
             filters=[
                 {
                     "filter_combination": "and",
-                    "filters": [{}],
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
                     "kind": "group",
                 }
             ],

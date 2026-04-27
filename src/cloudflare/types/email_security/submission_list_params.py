@@ -13,32 +13,27 @@ __all__ = ["SubmissionListParams"]
 
 class SubmissionListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
-
-    customer_status: Literal["escalated", "reviewed", "unreviewed"]
+    """Identifier."""
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The end of the search date range. Defaults to `now` if not provided."""
+    """The end of the search date range. Defaults to `now`."""
 
     original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
     outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
     page: int
-    """The page number of paginated results."""
+    """Current page within paginated list of results."""
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     query: Optional[str]
 
     requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """
-    The beginning of the search date range. Defaults to `now - 30 days` if not
-    provided.
-    """
+    """The beginning of the search date range. Defaults to `now - 30 days`."""
 
     status: str
 

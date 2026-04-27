@@ -8,11 +8,41 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InvestigateListResponse", "Properties", "Finding", "Validation"]
+__all__ = ["InvestigateListResponse", "ActionLog", "ActionLogProperties", "Properties", "Finding", "Validation"]
+
+
+class ActionLogProperties(BaseModel):
+    """Additional properties for the action"""
+
+    folder: Optional[str] = None
+    """Target folder for move operations"""
+
+    requested_by: Optional[str] = None
+    """User who requested the action"""
+
+
+class ActionLog(BaseModel):
+    completed_at: datetime
+    """Timestamp when action completed"""
+
+    operation: Literal["MOVE", "RELEASE", "RECLASSIFY", "SUBMISSION", "QUARANTINE_RELEASE", "PREVIEW"]
+    """Type of action performed"""
+
+    completed_timestamp: Optional[str] = None
+    """Deprecated, use `completed_at` instead. End of life: November 1, 2026."""
+
+    properties: Optional[ActionLogProperties] = None
+    """Additional properties for the action"""
+
+    status: Optional[str] = None
+    """Status of the action"""
 
 
 class Properties(BaseModel):
+    """Message processing properties"""
+
     allowlisted_pattern: Optional[str] = None
+    """Pattern that allowlisted this message"""
 
     allowlisted_pattern_type: Optional[
         Literal[
@@ -26,10 +56,13 @@ class Properties(BaseModel):
             "outbound_ndr",
         ]
     ] = None
+    """Type of allowlist pattern"""
 
     blocklisted_message: Optional[bool] = None
+    """Whether message was blocklisted"""
 
     blocklisted_pattern: Optional[str] = None
+    """Pattern that blocklisted this message"""
 
     whitelisted_pattern_type: Optional[
         Literal[
@@ -43,6 +76,7 @@ class Properties(BaseModel):
             "outbound_ndr",
         ]
     ] = None
+    """Legacy field for allowlist pattern type"""
 
 
 class Finding(BaseModel):
@@ -90,9 +124,13 @@ class Validation(BaseModel):
 
 class InvestigateListResponse(BaseModel):
     id: str
+    """Unique identifier for a message retrieved from investigation"""
 
-    action_log: object
-    """Deprecated: use `/investigate/{id}/action_log` instead."""
+    action_log: List[ActionLog]
+    """Deprecated, use `GET /investigate/{investigate_id}/action_log` instead.
+
+    End of life: November 1, 2026.
+    """
 
     client_recipients: List[str]
 
@@ -103,12 +141,13 @@ class InvestigateListResponse(BaseModel):
     is_quarantined: bool
 
     postfix_id: str
-    """The identifier of the message."""
+    """The identifier of the message"""
 
     properties: Properties
+    """Message processing properties"""
 
     ts: str
-    """Deprecated, use `scanned_at` instead"""
+    """Deprecated, use `scanned_at` instead. End of life: November 1, 2026."""
 
     alert_id: Optional[str] = None
 
@@ -154,7 +193,11 @@ class InvestigateListResponse(BaseModel):
     ] = None
 
     findings: Optional[List[Finding]] = None
-    """Deprecated: use `/investigate/{id}/detections` instead."""
+    """
+    Deprecated, use the `findings` field from
+    `GET /investigate/{investigate_id}/detections` instead. End of life: November
+    1, 2026. Detection findings for this message.
+    """
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
@@ -165,17 +208,19 @@ class InvestigateListResponse(BaseModel):
     message_id: Optional[str] = None
 
     post_delivery_operations: Optional[List[Literal["PREVIEW", "QUARANTINE_RELEASE", "SUBMISSION", "MOVE"]]] = None
+    """Post-delivery operations performed on this message"""
 
     postfix_id_outbound: Optional[str] = None
 
     replyto: Optional[str] = None
 
     scanned_at: Optional[datetime] = None
+    """When the message was scanned (UTC)"""
 
     sent_at: Optional[datetime] = None
+    """When the message was sent (UTC)"""
 
     sent_date: Optional[str] = None
-    """Deprecated, use `sent_at` instead"""
 
     subject: Optional[str] = None
 

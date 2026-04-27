@@ -2,17 +2,28 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Optional
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ImpersonationRegistryCreateParams"]
 
 
 class ImpersonationRegistryCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     email: Required[str]
 
     is_email_regex: Required[bool]
 
     name: Required[str]
+
+    comments: Optional[str]
+
+    directory_id: Optional[int]
+
+    directory_node_id: Optional[int]
+
+    external_directory_node_id: Optional[str]
+
+    provenance: Literal["A1S_INTERNAL", "SNOOPY-CASB_OFFICE_365", "SNOOPY-OFFICE_365", "SNOOPY-GOOGLE_DIRECTORY"]

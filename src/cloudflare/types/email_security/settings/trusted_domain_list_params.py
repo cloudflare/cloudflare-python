@@ -9,29 +9,33 @@ __all__ = ["TrustedDomainListParams"]
 
 class TrustedDomainListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
     is_recent: bool
+    """
+    Filter to show only recently registered domains that are trusted to prevent
+    triggering Suspicious or Malicious dispositions.
+    """
 
     is_similarity: bool
+    """
+    Filter to show only proximity domains (partner or approved domains with similar
+    spelling to connected domains) that prevent Spoof dispositions.
+    """
 
     order: Literal["pattern", "created_at"]
-    """The field to sort by."""
+    """Field to sort by."""
 
     page: int
-    """The page number of paginated results."""
+    """Current page within paginated list of results."""
 
     pattern: str
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     search: str
-    """
-    Allows searching in multiple properties of a record simultaneously. This
-    parameter is intended for human users, not automation. Its exact behavior is
-    intentionally left unspecified and is subject to change in the future.
-    """
+    """Search term for filtering records. Behavior may change."""

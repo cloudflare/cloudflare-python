@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -18,14 +18,13 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import domain_edit_params, domain_list_params
 from ....types.email_security.settings.domain_get_response import DomainGetResponse
 from ....types.email_security.settings.domain_edit_response import DomainEditResponse
 from ....types.email_security.settings.domain_list_response import DomainListResponse
 from ....types.email_security.settings.domain_delete_response import DomainDeleteResponse
-from ....types.email_security.settings.domain_bulk_delete_response import DomainBulkDeleteResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -63,6 +62,7 @@ class DomainsResource(SyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
+        status: Literal["pending", "active", "failed", "timeout"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -70,31 +70,34 @@ class DomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DomainListResponse]:
-        """
-        Lists, searches, and sorts an account’s email domains.
+        """Returns a paginated list of email domains protected by Email Security.
+
+        Includes
+        domain configuration, delivery modes, and authorization status. Supports
+        filtering by delivery mode and integration ID.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          active_delivery_mode: Filters response to domains with the currently active delivery mode.
+          active_delivery_mode: Currently active delivery mode to filter by.
 
-          allowed_delivery_mode: Filters response to domains with the provided delivery mode.
+          allowed_delivery_mode: Delivery mode to filter by.
 
           direction: The sorting direction.
 
-          domain: Filters results by the provided domains, allowing for multiple occurrences.
+          domain: Domain names to filter by.
 
-          integration_id: Filters response to domains with the provided integration ID.
+          integration_id: Integration ID to filter by.
 
-          order: The field to sort by.
+          order: Field to sort by.
 
-          page: The page number of paginated results.
+          page: Current page within paginated list of results.
 
-          per_page: The number of results per page.
+          per_page: The number of results per page. Maximum value is 1000.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          search: Search term for filtering records. Behavior may change.
+
+          status: Filters response to domains with the provided status.
 
           extra_headers: Send extra headers
 
@@ -125,6 +128,7 @@ class DomainsResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
+                        "status": status,
                     },
                     domain_list_params.DomainListParams,
                 ),
@@ -134,7 +138,7 @@ class DomainsResource(SyncAPIResource):
 
     def delete(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,14 +147,17 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainDeleteResponse:
-        """
-        Unprotect an email domain
+    ) -> Optional[DomainDeleteResponse]:
+        """Removes email security protection from a domain.
+
+        After deletion, emails for this
+        domain will no longer be processed by Email Security. This action cannot be
+        undone.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -162,6 +169,8 @@ class DomainsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return self._delete(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -173,55 +182,16 @@ class DomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainDeleteResponse], ResultWrapper[DomainDeleteResponse]),
-        )
-
-    def bulk_delete(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[DomainBulkDeleteResponse]:
-        """
-        Bulk removes multiple domains from email security configuration in a single
-        request.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
-            page=SyncSinglePage[DomainBulkDeleteResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=DomainBulkDeleteResponse,
-            method="delete",
+            cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
     def edit(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
-        ip_restrictions: SequenceNotStr[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
         domain: str | Omit = omit,
         drop_dispositions: List[
@@ -240,7 +210,8 @@ class DomainsResource(SyncAPIResource):
         ]
         | Omit = omit,
         folder: Literal["AllItems", "Inbox"] | Omit = omit,
-        integration_id: str | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        ip_restrictions: SequenceNotStr[str] | Omit = omit,
         lookback_hops: int | Omit = omit,
         regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]] | Omit = omit,
         require_tls_inbound: bool | Omit = omit,
@@ -252,14 +223,17 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainEditResponse:
-        """
-        Updates configuration for a domain in email security.
+    ) -> Optional[DomainEditResponse]:
+        """Updates configuration for a protected email domain.
+
+        Only provided fields will be
+        modified. Changes affect delivery mode, security settings, and regional
+        processing.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -271,6 +245,8 @@ class DomainsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return self._patch(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -279,12 +255,12 @@ class DomainsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
-                    "ip_restrictions": ip_restrictions,
                     "allowed_delivery_modes": allowed_delivery_modes,
                     "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
+                    "ip_restrictions": ip_restrictions,
                     "lookback_hops": lookback_hops,
                     "regions": regions,
                     "require_tls_inbound": require_tls_inbound,
@@ -298,14 +274,14 @@ class DomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
+            cast_to=cast(Type[Optional[DomainEditResponse]], ResultWrapper[DomainEditResponse]),
         )
 
     def get(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -314,14 +290,15 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainGetResponse:
+    ) -> Optional[DomainGetResponse]:
         """
-        Gets configuration details for a specific domain in email security.
+        Retrieves detailed information for a specific protected email domain including
+        its delivery configuration, SPF/DMARC status, and authorization state.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -333,6 +310,8 @@ class DomainsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return self._get(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -344,9 +323,9 @@ class DomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[Optional[DomainGetResponse]], ResultWrapper[DomainGetResponse]),
         )
 
 
@@ -383,6 +362,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
+        status: Literal["pending", "active", "failed", "timeout"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -390,31 +370,34 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainListResponse, AsyncV4PagePaginationArray[DomainListResponse]]:
-        """
-        Lists, searches, and sorts an account’s email domains.
+        """Returns a paginated list of email domains protected by Email Security.
+
+        Includes
+        domain configuration, delivery modes, and authorization status. Supports
+        filtering by delivery mode and integration ID.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          active_delivery_mode: Filters response to domains with the currently active delivery mode.
+          active_delivery_mode: Currently active delivery mode to filter by.
 
-          allowed_delivery_mode: Filters response to domains with the provided delivery mode.
+          allowed_delivery_mode: Delivery mode to filter by.
 
           direction: The sorting direction.
 
-          domain: Filters results by the provided domains, allowing for multiple occurrences.
+          domain: Domain names to filter by.
 
-          integration_id: Filters response to domains with the provided integration ID.
+          integration_id: Integration ID to filter by.
 
-          order: The field to sort by.
+          order: Field to sort by.
 
-          page: The page number of paginated results.
+          page: Current page within paginated list of results.
 
-          per_page: The number of results per page.
+          per_page: The number of results per page. Maximum value is 1000.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          search: Search term for filtering records. Behavior may change.
+
+          status: Filters response to domains with the provided status.
 
           extra_headers: Send extra headers
 
@@ -445,6 +428,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
+                        "status": status,
                     },
                     domain_list_params.DomainListParams,
                 ),
@@ -454,7 +438,7 @@ class AsyncDomainsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -463,14 +447,17 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainDeleteResponse:
-        """
-        Unprotect an email domain
+    ) -> Optional[DomainDeleteResponse]:
+        """Removes email security protection from a domain.
+
+        After deletion, emails for this
+        domain will no longer be processed by Email Security. This action cannot be
+        undone.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -482,6 +469,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return await self._delete(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -493,55 +482,16 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainDeleteResponse], ResultWrapper[DomainDeleteResponse]),
-        )
-
-    def bulk_delete(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
-        """
-        Bulk removes multiple domains from email security configuration in a single
-        request.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
-            page=AsyncSinglePage[DomainBulkDeleteResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=DomainBulkDeleteResponse,
-            method="delete",
+            cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
     async def edit(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
-        ip_restrictions: SequenceNotStr[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
         domain: str | Omit = omit,
         drop_dispositions: List[
@@ -560,7 +510,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         folder: Literal["AllItems", "Inbox"] | Omit = omit,
-        integration_id: str | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        ip_restrictions: SequenceNotStr[str] | Omit = omit,
         lookback_hops: int | Omit = omit,
         regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]] | Omit = omit,
         require_tls_inbound: bool | Omit = omit,
@@ -572,14 +523,17 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainEditResponse:
-        """
-        Updates configuration for a domain in email security.
+    ) -> Optional[DomainEditResponse]:
+        """Updates configuration for a protected email domain.
+
+        Only provided fields will be
+        modified. Changes affect delivery mode, security settings, and regional
+        processing.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -591,6 +545,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return await self._patch(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -599,12 +555,12 @@ class AsyncDomainsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
-                    "ip_restrictions": ip_restrictions,
                     "allowed_delivery_modes": allowed_delivery_modes,
                     "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
+                    "ip_restrictions": ip_restrictions,
                     "lookback_hops": lookback_hops,
                     "regions": regions,
                     "require_tls_inbound": require_tls_inbound,
@@ -618,14 +574,14 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
+            cast_to=cast(Type[Optional[DomainEditResponse]], ResultWrapper[DomainEditResponse]),
         )
 
     async def get(
         self,
-        domain_id: int,
+        domain_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -634,14 +590,15 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DomainGetResponse:
+    ) -> Optional[DomainGetResponse]:
         """
-        Gets configuration details for a specific domain in email security.
+        Retrieves detailed information for a specific protected email domain including
+        its delivery configuration, SPF/DMARC status, and authorization state.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          domain_id: The unique identifier for the domain.
+          domain_id: Domain identifier
 
           extra_headers: Send extra headers
 
@@ -653,6 +610,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
         return await self._get(
             path_template(
                 "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
@@ -664,9 +623,9 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[Optional[DomainGetResponse]], ResultWrapper[DomainGetResponse]),
         )
 
 
@@ -679,9 +638,6 @@ class DomainsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             domains.delete,
-        )
-        self.bulk_delete = to_raw_response_wrapper(
-            domains.bulk_delete,
         )
         self.edit = to_raw_response_wrapper(
             domains.edit,
@@ -701,9 +657,6 @@ class AsyncDomainsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             domains.delete,
         )
-        self.bulk_delete = async_to_raw_response_wrapper(
-            domains.bulk_delete,
-        )
         self.edit = async_to_raw_response_wrapper(
             domains.edit,
         )
@@ -722,9 +675,6 @@ class DomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             domains.delete,
         )
-        self.bulk_delete = to_streamed_response_wrapper(
-            domains.bulk_delete,
-        )
         self.edit = to_streamed_response_wrapper(
             domains.edit,
         )
@@ -742,9 +692,6 @@ class AsyncDomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             domains.delete,
-        )
-        self.bulk_delete = async_to_streamed_response_wrapper(
-            domains.bulk_delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             domains.edit,

@@ -60,16 +60,22 @@ class ReportsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ReportListResponse]:
-        """
-        Retrieves `PhishGuard` reports showing phishing attempts and suspicious email
-        patterns detected.
+        """Retrieves PhishGuard security alert reports for a specified date range.
+
+        Reports
+        include detected threats, dispositions, and contextual information. Use for
+        security monitoring and threat analysis.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          end: The end of the search date range (RFC3339 format).
+          end: End of the time range (RFC3339). Takes precedence over to_date.
 
-          start: The beginning of the search date range (RFC3339 format).
+          from_date: Deprecated, use `start` instead. Start date in YYYY-MM-DD format.
+
+          start: Start of the time range (RFC3339). Takes precedence over from_date.
+
+          to_date: Deprecated, use `end` instead. End date in YYYY-MM-DD format.
 
           extra_headers: Send extra headers
 
@@ -138,16 +144,22 @@ class AsyncReportsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReportListResponse, AsyncSinglePage[ReportListResponse]]:
-        """
-        Retrieves `PhishGuard` reports showing phishing attempts and suspicious email
-        patterns detected.
+        """Retrieves PhishGuard security alert reports for a specified date range.
+
+        Reports
+        include detected threats, dispositions, and contextual information. Use for
+        security monitoring and threat analysis.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          end: The end of the search date range (RFC3339 format).
+          end: End of the time range (RFC3339). Takes precedence over to_date.
 
-          start: The beginning of the search date range (RFC3339 format).
+          from_date: Deprecated, use `start` instead. Start date in YYYY-MM-DD format.
+
+          start: Start of the time range (RFC3339). Takes precedence over from_date.
+
+          to_date: Deprecated, use `end` instead. End date in YYYY-MM-DD format.
 
           extra_headers: Send extra headers
 

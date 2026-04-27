@@ -75,24 +75,41 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyCreateResponse:
-        """
-        Creates a new email allow policy that permits specific senders, domains, or
-        patterns to bypass security scanning.
+    ) -> Optional[AllowPolicyCreateResponse]:
+        """Creates a new allow policy that exempts matching emails from security
+        detections.
+
+        Use with caution as this bypasses email security scanning. Policies
+        can match on sender patterns and apply to specific detections or all detections.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note: This will not exempt messages with Malicious or Suspicious
+              dispositions. Note - This will not exempt messages with Malicious or Suspicious
               dispositions.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections.
+          is_exempt_recipient: Messages to this recipient will bypass all detections
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following.
+          is_trusted_sender: Messages from this sender will bypass all detections and link following
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
+
+          is_recipient:
+              Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
+              July 1, 2026.
+
+          is_sender:
+              Deprecated as of July 1, 2025. Use `is_trusted_sender` instead. End of life:
+              July 1, 2026.
+
+          is_spoof:
+              Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
+              July 1, 2026.
 
           extra_headers: Send extra headers
 
@@ -127,9 +144,9 @@ class AllowPoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyCreateResponse], ResultWrapper[AllowPolicyCreateResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyCreateResponse]], ResultWrapper[AllowPolicyCreateResponse]),
         )
 
     def list(
@@ -139,9 +156,6 @@ class AllowPoliciesResource(SyncAPIResource):
         direction: Literal["asc", "desc"] | Omit = omit,
         is_acceptable_sender: bool | Omit = omit,
         is_exempt_recipient: bool | Omit = omit,
-        is_recipient: bool | Omit = omit,
-        is_sender: bool | Omit = omit,
-        is_spoof: bool | Omit = omit,
         is_trusted_sender: bool | Omit = omit,
         order: Literal["pattern", "created_at"] | Omit = omit,
         page: int | Omit = omit,
@@ -157,23 +171,38 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[AllowPolicyListResponse]:
-        """
-        Lists, searches, and sorts an account’s email allow policies.
+        """Returns a paginated list of email allow policies.
+
+        These policies exempt matching
+        emails from security detection, allowing them to bypass disposition actions.
+        Supports filtering by pattern type and policy attributes.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           direction: The sorting direction.
 
-          order: The field to sort by.
+          is_acceptable_sender: Filter to show only policies where messages from the sender are exempted from
+              Spam, Spoof, and Bulk dispositions (not Malicious or Suspicious).
 
-          page: The page number of paginated results.
+          is_exempt_recipient: Filter to show only policies where messages to the recipient bypass all
+              detections.
 
-          per_page: The number of results per page.
+          is_trusted_sender: Filter to show only policies where messages from the sender bypass all
+              detections and link following.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          order: Field to sort by.
+
+          page: Current page within paginated list of results.
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
+
+          per_page: The number of results per page. Maximum value is 1000.
+
+          search: Search term for filtering records. Behavior may change.
+
+          verify_sender: Filter to show only policies that enforce DMARC, SPF, or DKIM authentication.
 
           extra_headers: Send extra headers
 
@@ -198,9 +227,6 @@ class AllowPoliciesResource(SyncAPIResource):
                         "direction": direction,
                         "is_acceptable_sender": is_acceptable_sender,
                         "is_exempt_recipient": is_exempt_recipient,
-                        "is_recipient": is_recipient,
-                        "is_sender": is_sender,
-                        "is_spoof": is_spoof,
                         "is_trusted_sender": is_trusted_sender,
                         "order": order,
                         "page": page,
@@ -218,7 +244,7 @@ class AllowPoliciesResource(SyncAPIResource):
 
     def delete(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -227,16 +253,16 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyDeleteResponse:
-        """Removes an email allow policy.
+    ) -> Optional[AllowPolicyDeleteResponse]:
+        """Removes an allow policy.
 
-        Previously allowed senders will be subject to
-        normal security scanning.
+        After deletion, emails matching this pattern will be
+        subject to normal security scanning and disposition actions.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           extra_headers: Send extra headers
 
@@ -248,6 +274,8 @@ class AllowPoliciesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._delete(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -259,47 +287,66 @@ class AllowPoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyDeleteResponse], ResultWrapper[AllowPolicyDeleteResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyDeleteResponse]], ResultWrapper[AllowPolicyDeleteResponse]),
         )
 
     def edit(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         comments: Optional[str] | Omit = omit,
-        is_acceptable_sender: Optional[bool] | Omit = omit,
-        is_exempt_recipient: Optional[bool] | Omit = omit,
-        is_regex: Optional[bool] | Omit = omit,
-        is_trusted_sender: Optional[bool] | Omit = omit,
-        pattern: Optional[str] | Omit = omit,
-        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | Omit = omit,
-        verify_sender: Optional[bool] | Omit = omit,
+        is_acceptable_sender: bool | Omit = omit,
+        is_exempt_recipient: bool | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
+        is_trusted_sender: bool | Omit = omit,
+        pattern: str | Omit = omit,
+        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
+        verify_sender: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyEditResponse:
-        """
-        Updates an existing email allow policy, modifying its matching criteria or
-        scope.
+    ) -> Optional[AllowPolicyEditResponse]:
+        """Updates an existing allow policy.
+
+        Only provided fields will be modified. Changes
+        take effect for new emails matching the pattern.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note: This will not exempt messages with Malicious or Suspicious
+              dispositions. Note - This will not exempt messages with Malicious or Suspicious
               dispositions.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections.
+          is_exempt_recipient: Messages to this recipient will bypass all detections
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following.
+          is_recipient:
+              Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
+              July 1, 2026.
+
+          is_sender:
+              Deprecated as of July 1, 2025. Use `is_trusted_sender` instead. End of life:
+              July 1, 2026.
+
+          is_spoof:
+              Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
+              July 1, 2026.
+
+          is_trusted_sender: Messages from this sender will bypass all detections and link following
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -314,6 +361,8 @@ class AllowPoliciesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -325,7 +374,10 @@ class AllowPoliciesResource(SyncAPIResource):
                     "comments": comments,
                     "is_acceptable_sender": is_acceptable_sender,
                     "is_exempt_recipient": is_exempt_recipient,
+                    "is_recipient": is_recipient,
                     "is_regex": is_regex,
+                    "is_sender": is_sender,
+                    "is_spoof": is_spoof,
                     "is_trusted_sender": is_trusted_sender,
                     "pattern": pattern,
                     "pattern_type": pattern_type,
@@ -338,14 +390,14 @@ class AllowPoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyEditResponse], ResultWrapper[AllowPolicyEditResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyEditResponse]], ResultWrapper[AllowPolicyEditResponse]),
         )
 
     def get(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -354,15 +406,15 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyGetResponse:
+    ) -> Optional[AllowPolicyGetResponse]:
         """
-        Retrieves details for a specific email allow policy, including its matching
-        criteria and scope.
+        Retrieves details for a specific allow policy including its pattern,
+        dispositions that are exempted, and whether it applies to all detections.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           extra_headers: Send extra headers
 
@@ -374,6 +426,8 @@ class AllowPoliciesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -385,9 +439,9 @@ class AllowPoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyGetResponse], ResultWrapper[AllowPolicyGetResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyGetResponse]], ResultWrapper[AllowPolicyGetResponse]),
         )
 
 
@@ -432,24 +486,41 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyCreateResponse:
-        """
-        Creates a new email allow policy that permits specific senders, domains, or
-        patterns to bypass security scanning.
+    ) -> Optional[AllowPolicyCreateResponse]:
+        """Creates a new allow policy that exempts matching emails from security
+        detections.
+
+        Use with caution as this bypasses email security scanning. Policies
+        can match on sender patterns and apply to specific detections or all detections.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note: This will not exempt messages with Malicious or Suspicious
+              dispositions. Note - This will not exempt messages with Malicious or Suspicious
               dispositions.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections.
+          is_exempt_recipient: Messages to this recipient will bypass all detections
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following.
+          is_trusted_sender: Messages from this sender will bypass all detections and link following
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
+
+          is_recipient:
+              Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
+              July 1, 2026.
+
+          is_sender:
+              Deprecated as of July 1, 2025. Use `is_trusted_sender` instead. End of life:
+              July 1, 2026.
+
+          is_spoof:
+              Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
+              July 1, 2026.
 
           extra_headers: Send extra headers
 
@@ -484,9 +555,9 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyCreateResponse], ResultWrapper[AllowPolicyCreateResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyCreateResponse]], ResultWrapper[AllowPolicyCreateResponse]),
         )
 
     def list(
@@ -496,9 +567,6 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         direction: Literal["asc", "desc"] | Omit = omit,
         is_acceptable_sender: bool | Omit = omit,
         is_exempt_recipient: bool | Omit = omit,
-        is_recipient: bool | Omit = omit,
-        is_sender: bool | Omit = omit,
-        is_spoof: bool | Omit = omit,
         is_trusted_sender: bool | Omit = omit,
         order: Literal["pattern", "created_at"] | Omit = omit,
         page: int | Omit = omit,
@@ -514,23 +582,38 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AllowPolicyListResponse, AsyncV4PagePaginationArray[AllowPolicyListResponse]]:
-        """
-        Lists, searches, and sorts an account’s email allow policies.
+        """Returns a paginated list of email allow policies.
+
+        These policies exempt matching
+        emails from security detection, allowing them to bypass disposition actions.
+        Supports filtering by pattern type and policy attributes.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           direction: The sorting direction.
 
-          order: The field to sort by.
+          is_acceptable_sender: Filter to show only policies where messages from the sender are exempted from
+              Spam, Spoof, and Bulk dispositions (not Malicious or Suspicious).
 
-          page: The page number of paginated results.
+          is_exempt_recipient: Filter to show only policies where messages to the recipient bypass all
+              detections.
 
-          per_page: The number of results per page.
+          is_trusted_sender: Filter to show only policies where messages from the sender bypass all
+              detections and link following.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          order: Field to sort by.
+
+          page: Current page within paginated list of results.
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
+
+          per_page: The number of results per page. Maximum value is 1000.
+
+          search: Search term for filtering records. Behavior may change.
+
+          verify_sender: Filter to show only policies that enforce DMARC, SPF, or DKIM authentication.
 
           extra_headers: Send extra headers
 
@@ -555,9 +638,6 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                         "direction": direction,
                         "is_acceptable_sender": is_acceptable_sender,
                         "is_exempt_recipient": is_exempt_recipient,
-                        "is_recipient": is_recipient,
-                        "is_sender": is_sender,
-                        "is_spoof": is_spoof,
                         "is_trusted_sender": is_trusted_sender,
                         "order": order,
                         "page": page,
@@ -575,7 +655,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -584,16 +664,16 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyDeleteResponse:
-        """Removes an email allow policy.
+    ) -> Optional[AllowPolicyDeleteResponse]:
+        """Removes an allow policy.
 
-        Previously allowed senders will be subject to
-        normal security scanning.
+        After deletion, emails matching this pattern will be
+        subject to normal security scanning and disposition actions.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           extra_headers: Send extra headers
 
@@ -605,6 +685,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._delete(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -616,47 +698,66 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyDeleteResponse], ResultWrapper[AllowPolicyDeleteResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyDeleteResponse]], ResultWrapper[AllowPolicyDeleteResponse]),
         )
 
     async def edit(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         comments: Optional[str] | Omit = omit,
-        is_acceptable_sender: Optional[bool] | Omit = omit,
-        is_exempt_recipient: Optional[bool] | Omit = omit,
-        is_regex: Optional[bool] | Omit = omit,
-        is_trusted_sender: Optional[bool] | Omit = omit,
-        pattern: Optional[str] | Omit = omit,
-        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | Omit = omit,
-        verify_sender: Optional[bool] | Omit = omit,
+        is_acceptable_sender: bool | Omit = omit,
+        is_exempt_recipient: bool | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
+        is_trusted_sender: bool | Omit = omit,
+        pattern: str | Omit = omit,
+        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
+        verify_sender: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyEditResponse:
-        """
-        Updates an existing email allow policy, modifying its matching criteria or
-        scope.
+    ) -> Optional[AllowPolicyEditResponse]:
+        """Updates an existing allow policy.
+
+        Only provided fields will be modified. Changes
+        take effect for new emails matching the pattern.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note: This will not exempt messages with Malicious or Suspicious
+              dispositions. Note - This will not exempt messages with Malicious or Suspicious
               dispositions.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections.
+          is_exempt_recipient: Messages to this recipient will bypass all detections
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following.
+          is_recipient:
+              Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
+              July 1, 2026.
+
+          is_sender:
+              Deprecated as of July 1, 2025. Use `is_trusted_sender` instead. End of life:
+              July 1, 2026.
+
+          is_spoof:
+              Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
+              July 1, 2026.
+
+          is_trusted_sender: Messages from this sender will bypass all detections and link following
+
+          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+              creating or updating policies, but may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -671,6 +772,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -682,7 +785,10 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                     "comments": comments,
                     "is_acceptable_sender": is_acceptable_sender,
                     "is_exempt_recipient": is_exempt_recipient,
+                    "is_recipient": is_recipient,
                     "is_regex": is_regex,
+                    "is_sender": is_sender,
+                    "is_spoof": is_spoof,
                     "is_trusted_sender": is_trusted_sender,
                     "pattern": pattern,
                     "pattern_type": pattern_type,
@@ -695,14 +801,14 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyEditResponse], ResultWrapper[AllowPolicyEditResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyEditResponse]], ResultWrapper[AllowPolicyEditResponse]),
         )
 
     async def get(
         self,
-        policy_id: int,
+        policy_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -711,15 +817,15 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AllowPolicyGetResponse:
+    ) -> Optional[AllowPolicyGetResponse]:
         """
-        Retrieves details for a specific email allow policy, including its matching
-        criteria and scope.
+        Retrieves details for a specific allow policy including its pattern,
+        dispositions that are exempted, and whether it applies to all detections.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          policy_id: The unique identifier for the allow policy.
+          policy_id: Allow policy identifier
 
           extra_headers: Send extra headers
 
@@ -731,6 +837,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
             path_template(
                 "/accounts/{account_id}/email-security/settings/allow_policies/{policy_id}",
@@ -742,9 +850,9 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AllowPolicyGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AllowPolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AllowPolicyGetResponse], ResultWrapper[AllowPolicyGetResponse]),
+            cast_to=cast(Type[Optional[AllowPolicyGetResponse]], ResultWrapper[AllowPolicyGetResponse]),
         )
 
 

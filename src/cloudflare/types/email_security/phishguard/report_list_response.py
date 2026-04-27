@@ -14,11 +14,14 @@ __all__ = ["ReportListResponse", "Fields", "Tag"]
 class Fields(BaseModel):
     to: List[str]
 
-    ts: datetime
-
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
+    occurred_at: Optional[datetime] = None
+
     postfix_id: Optional[str] = None
+
+    ts: Optional[datetime] = None
+    """Deprecated, use `occurred_at` instead"""
 
 
 class Tag(BaseModel):
@@ -32,8 +35,6 @@ class ReportListResponse(BaseModel):
 
     content: str
 
-    created_at: datetime
-
     disposition: Literal[
         "MALICIOUS", "MALICIOUS-BEC", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "ENCRYPTED", "EXTERNAL", "UNKNOWN", "NONE"
     ]
@@ -44,8 +45,11 @@ class ReportListResponse(BaseModel):
 
     title: str
 
-    ts: datetime
-
-    updated_at: datetime
+    created_at: Optional[datetime] = None
 
     tags: Optional[List[Tag]] = None
+
+    ts: Optional[datetime] = None
+    """Deprecated, use `created_at` instead"""
+
+    updated_at: Optional[datetime] = None

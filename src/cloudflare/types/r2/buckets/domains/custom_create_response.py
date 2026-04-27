@@ -17,6 +17,9 @@ class CustomCreateResponse(BaseModel):
     enabled: bool
     """Whether this bucket is publicly accessible at the specified custom domain."""
 
+    zone_id: str = FieldInfo(alias="zoneId")
+    """Zone ID of the custom domain."""
+
     ciphers: Optional[List[str]] = None
     """An allowlist of ciphers for TLS termination.
 

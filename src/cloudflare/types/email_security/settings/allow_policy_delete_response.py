@@ -6,5 +6,5 @@ __all__ = ["AllowPolicyDeleteResponse"]
 
 
 class AllowPolicyDeleteResponse(BaseModel):
-    id: int
-    """The unique identifier for the allow policy."""
+    id: str
+    """Allow policy identifier"""

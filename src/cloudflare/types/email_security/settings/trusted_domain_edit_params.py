@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["TrustedDomainEditParams"]
@@ -9,9 +10,9 @@ __all__ = ["TrustedDomainEditParams"]
 
 class TrustedDomainEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
-    comments: str
+    comments: Optional[str]
 
     is_recent: bool
     """

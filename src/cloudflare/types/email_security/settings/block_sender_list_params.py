@@ -9,27 +9,25 @@ __all__ = ["BlockSenderListParams"]
 
 class BlockSenderListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
     order: Literal["pattern", "created_at"]
-    """The field to sort by."""
+    """Field to sort by."""
 
     page: int
-    """The page number of paginated results."""
+    """Current page within paginated list of results."""
 
     pattern: str
+    """Filter by pattern value."""
 
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
+    """Filter by pattern type."""
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     search: str
-    """
-    Allows searching in multiple properties of a record simultaneously. This
-    parameter is intended for human users, not automation. Its exact behavior is
-    intentionally left unspecified and is subject to change in the future.
-    """
+    """Search term for filtering records. Behavior may change."""

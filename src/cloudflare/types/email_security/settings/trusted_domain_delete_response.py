@@ -6,5 +6,5 @@ __all__ = ["TrustedDomainDeleteResponse"]
 
 
 class TrustedDomainDeleteResponse(BaseModel):
-    id: int
-    """The unique identifier for the trusted domain."""
+    id: str
+    """Trusted domain identifier"""
