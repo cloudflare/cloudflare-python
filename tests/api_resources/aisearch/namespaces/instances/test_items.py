@@ -284,6 +284,18 @@ class TestItems:
         assert_matches_type(ItemCreateOrUpdateResponse, item, path=["response"])
 
     @parametrize
+    def test_method_create_or_update_with_all_params(self, client: Cloudflare) -> None:
+        item = client.aisearch.namespaces.instances.items.create_or_update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            key="key",
+            next_action="INDEX",
+            wait_for_completion=True,
+        )
+        assert_matches_type(ItemCreateOrUpdateResponse, item, path=["response"])
+
+    @parametrize
     def test_raw_response_create_or_update(self, client: Cloudflare) -> None:
         response = client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
             id="my-ai-search",
@@ -604,6 +616,18 @@ class TestItems:
             name="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
+        )
+        assert_matches_type(ItemSyncResponse, item, path=["response"])
+
+    @parametrize
+    def test_method_sync_with_all_params(self, client: Cloudflare) -> None:
+        item = client.aisearch.namespaces.instances.items.sync(
+            item_id="item_id",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            id="my-ai-search",
+            next_action="INDEX",
+            wait_for_completion=True,
         )
         assert_matches_type(ItemSyncResponse, item, path=["response"])
 
@@ -1012,6 +1036,18 @@ class TestAsyncItems:
         assert_matches_type(ItemCreateOrUpdateResponse, item, path=["response"])
 
     @parametrize
+    async def test_method_create_or_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        item = await async_client.aisearch.namespaces.instances.items.create_or_update(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            key="key",
+            next_action="INDEX",
+            wait_for_completion=True,
+        )
+        assert_matches_type(ItemCreateOrUpdateResponse, item, path=["response"])
+
+    @parametrize
     async def test_raw_response_create_or_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
             id="my-ai-search",
@@ -1332,6 +1368,18 @@ class TestAsyncItems:
             name="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
+        )
+        assert_matches_type(ItemSyncResponse, item, path=["response"])
+
+    @parametrize
+    async def test_method_sync_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        item = await async_client.aisearch.namespaces.instances.items.sync(
+            item_id="item_id",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            name="my-namespace",
+            id="my-ai-search",
+            next_action="INDEX",
+            wait_for_completion=True,
         )
         assert_matches_type(ItemSyncResponse, item, path=["response"])
 

@@ -280,6 +280,7 @@ class ItemsResource(SyncAPIResource):
         name: str,
         key: str,
         next_action: Literal["INDEX"],
+        wait_for_completion: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,6 +295,12 @@ class ItemsResource(SyncAPIResource):
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           key: Item key / filename. Must not exceed 128 characters.
+
+          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
+              indexing enabled, this additionally waits for Vectorize ingestion confirmation
+              (up to 40s) so the returned item reflects a queryable state. On timeout the item
+              is returned in `running` state and the background alarm continues polling.
+              Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -320,6 +327,7 @@ class ItemsResource(SyncAPIResource):
                 {
                     "key": key,
                     "next_action": next_action,
+                    "wait_for_completion": wait_for_completion,
                 },
                 item_create_or_update_params.ItemCreateOrUpdateParams,
             ),
@@ -510,6 +518,7 @@ class ItemsResource(SyncAPIResource):
         name: str,
         id: str,
         next_action: Literal["INDEX"],
+        wait_for_completion: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,6 +532,12 @@ class ItemsResource(SyncAPIResource):
           id: AI Search instance ID.
 
         Lowercase alphanumeric, hyphens, and underscores.
+
+          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
+              indexing enabled, this additionally waits for Vectorize ingestion confirmation
+              (up to 40s) so the returned item reflects a queryable state. On timeout the item
+              is returned in `running` state and the background alarm continues polling.
+              Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -548,7 +563,13 @@ class ItemsResource(SyncAPIResource):
                 id=id,
                 item_id=item_id,
             ),
-            body=maybe_transform({"next_action": next_action}, item_sync_params.ItemSyncParams),
+            body=maybe_transform(
+                {
+                    "next_action": next_action,
+                    "wait_for_completion": wait_for_completion,
+                },
+                item_sync_params.ItemSyncParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -852,6 +873,7 @@ class AsyncItemsResource(AsyncAPIResource):
         name: str,
         key: str,
         next_action: Literal["INDEX"],
+        wait_for_completion: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -866,6 +888,12 @@ class AsyncItemsResource(AsyncAPIResource):
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           key: Item key / filename. Must not exceed 128 characters.
+
+          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
+              indexing enabled, this additionally waits for Vectorize ingestion confirmation
+              (up to 40s) so the returned item reflects a queryable state. On timeout the item
+              is returned in `running` state and the background alarm continues polling.
+              Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -892,6 +920,7 @@ class AsyncItemsResource(AsyncAPIResource):
                 {
                     "key": key,
                     "next_action": next_action,
+                    "wait_for_completion": wait_for_completion,
                 },
                 item_create_or_update_params.ItemCreateOrUpdateParams,
             ),
@@ -1082,6 +1111,7 @@ class AsyncItemsResource(AsyncAPIResource):
         name: str,
         id: str,
         next_action: Literal["INDEX"],
+        wait_for_completion: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1095,6 +1125,12 @@ class AsyncItemsResource(AsyncAPIResource):
           id: AI Search instance ID.
 
         Lowercase alphanumeric, hyphens, and underscores.
+
+          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
+              indexing enabled, this additionally waits for Vectorize ingestion confirmation
+              (up to 40s) so the returned item reflects a queryable state. On timeout the item
+              is returned in `running` state and the background alarm continues polling.
+              Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -1120,7 +1156,13 @@ class AsyncItemsResource(AsyncAPIResource):
                 id=id,
                 item_id=item_id,
             ),
-            body=await async_maybe_transform({"next_action": next_action}, item_sync_params.ItemSyncParams),
+            body=await async_maybe_transform(
+                {
+                    "next_action": next_action,
+                    "wait_for_completion": wait_for_completion,
+                },
+                item_sync_params.ItemSyncParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -192,7 +192,7 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """Create a new instances.
+        """Create a new instance.
 
         Args:
           id: AI Search instance ID.
@@ -420,13 +420,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update instances.
+        """
+        Update instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -496,7 +493,7 @@ class InstancesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        namespace: Optional[str] | Omit = omit,
+        namespace: str | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -513,11 +510,17 @@ class InstancesResource(SyncAPIResource):
         List instances.
 
         Args:
-          order_by: Order By Column Name
+          namespace: Filter by namespace.
 
-          order_by_direction: Order By Direction
+          order_by: Field to order results by.
 
-          search: Search by id
+          order_by_direction: Order direction.
+
+          page: Page number (1-indexed).
+
+          per_page: Number of results per page.
+
+          search: Filter instances whose id contains this string (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -564,13 +567,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
-        """Delete instances.
+        """
+        Delete instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -693,13 +693,10 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
-        """Read instances.
+        """
+        Read instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -969,7 +966,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """Create a new instances.
+        """Create a new instance.
 
         Args:
           id: AI Search instance ID.
@@ -1197,13 +1194,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update instances.
+        """
+        Update instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -1273,7 +1267,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        namespace: Optional[str] | Omit = omit,
+        namespace: str | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -1290,11 +1284,17 @@ class AsyncInstancesResource(AsyncAPIResource):
         List instances.
 
         Args:
-          order_by: Order By Column Name
+          namespace: Filter by namespace.
 
-          order_by_direction: Order By Direction
+          order_by: Field to order results by.
 
-          search: Search by id
+          order_by_direction: Order direction.
+
+          page: Page number (1-indexed).
+
+          per_page: Number of results per page.
+
+          search: Filter instances whose id contains this string (case-insensitive).
 
           extra_headers: Send extra headers
 
@@ -1341,13 +1341,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
-        """Delete instances.
+        """
+        Delete instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1470,13 +1467,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
-        """Read instances.
+        """
+        Read instance.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
