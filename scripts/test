@@ -9,8 +9,10 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+MOCK_PORT="${MOCK_PORT:-4012}"
+
 function prism_is_running() {
-  curl --silent "http://localhost:4010" >/dev/null 2>&1
+  curl --silent "http://localhost:${MOCK_PORT}" >/dev/null 2>&1
 }
 
 kill_server_on_port() {
@@ -27,7 +29,7 @@ function is_overriding_api_base_url() {
 
 if ! is_overriding_api_base_url && ! prism_is_running ; then
   # When we exit this script, make sure to kill the background mock server process
-  trap 'kill_server_on_port 4010' EXIT
+  trap 'kill_server_on_port $MOCK_PORT' EXIT
 
   # Start the dev server
   ./scripts/mock --daemon
