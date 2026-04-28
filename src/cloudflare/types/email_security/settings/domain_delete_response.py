@@ -6,5 +6,5 @@ __all__ = ["DomainDeleteResponse"]
 
 
 class DomainDeleteResponse(BaseModel):
-    id: int
-    """The unique identifier for the domain."""
+    id: str
+    """Domain identifier"""

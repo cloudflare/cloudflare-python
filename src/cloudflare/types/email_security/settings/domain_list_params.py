@@ -11,35 +11,34 @@ __all__ = ["DomainListParams"]
 
 class DomainListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]
-    """Filters response to domains with the currently active delivery mode."""
+    """Currently active delivery mode to filter by."""
 
     allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]
-    """Filters response to domains with the provided delivery mode."""
+    """Delivery mode to filter by."""
 
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
     domain: SequenceNotStr[str]
-    """Filters results by the provided domains, allowing for multiple occurrences."""
+    """Domain names to filter by."""
 
     integration_id: str
-    """Filters response to domains with the provided integration ID."""
+    """Integration ID to filter by."""
 
     order: Literal["domain", "created_at"]
-    """The field to sort by."""
+    """Field to sort by."""
 
     page: int
-    """The page number of paginated results."""
+    """Current page within paginated list of results."""
 
     per_page: int
-    """The number of results per page."""
+    """The number of results per page. Maximum value is 1000."""
 
     search: str
-    """
-    Allows searching in multiple properties of a record simultaneously. This
-    parameter is intended for human users, not automation. Its exact behavior is
-    intentionally left unspecified and is subject to change in the future.
-    """
+    """Search term for filtering records. Behavior may change."""
+
+    status: Literal["pending", "active", "failed", "timeout"]
+    """Filters response to domains with the provided status."""

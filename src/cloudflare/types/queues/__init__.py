@@ -23,6 +23,7 @@ from .message_bulk_push_params import MessageBulkPushParams as MessageBulkPushPa
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .message_bulk_push_response import MessageBulkPushResponse as MessageBulkPushResponse
+from .queue_get_metrics_response import QueueGetMetricsResponse as QueueGetMetricsResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams

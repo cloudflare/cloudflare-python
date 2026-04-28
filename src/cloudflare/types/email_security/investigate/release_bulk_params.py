@@ -11,7 +11,6 @@ __all__ = ["ReleaseBulkParams"]
 
 class ReleaseBulkParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     body: Required[SequenceNotStr[str]]
-    """A list of messages identfied by their `postfix_id`s that should be released."""

@@ -20,16 +20,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security.settings import (
-    impersonation_registry_edit_params,
-    impersonation_registry_list_params,
-    impersonation_registry_create_params,
-)
-from ....types.email_security.settings.impersonation_registry_get_response import ImpersonationRegistryGetResponse
-from ....types.email_security.settings.impersonation_registry_edit_response import ImpersonationRegistryEditResponse
+from ....types.email_security.settings import impersonation_registry_list_params, impersonation_registry_create_params
 from ....types.email_security.settings.impersonation_registry_list_response import ImpersonationRegistryListResponse
 from ....types.email_security.settings.impersonation_registry_create_response import ImpersonationRegistryCreateResponse
-from ....types.email_security.settings.impersonation_registry_delete_response import ImpersonationRegistryDeleteResponse
 
 __all__ = ["ImpersonationRegistryResource", "AsyncImpersonationRegistryResource"]
 
@@ -61,18 +54,26 @@ class ImpersonationRegistryResource(SyncAPIResource):
         email: str,
         is_email_regex: bool,
         name: str,
+        comments: Optional[str] | Omit = omit,
+        directory_id: Optional[int] | Omit = omit,
+        directory_node_id: Optional[int] | Omit = omit,
+        external_directory_node_id: Optional[str] | Omit = omit,
+        provenance: Literal["A1S_INTERNAL", "SNOOPY-CASB_OFFICE_365", "SNOOPY-OFFICE_365", "SNOOPY-GOOGLE_DIRECTORY"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryCreateResponse:
+    ) -> Optional[ImpersonationRegistryCreateResponse]:
         """
-        Creates a display name entry for email security impersonation protection.
+        Creates a new entry in the impersonation registry to protect against
+        impersonation. Emails attempting to impersonate this identity will be flagged.
+        Supports regex patterns for flexible email matching.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -93,6 +94,11 @@ class ImpersonationRegistryResource(SyncAPIResource):
                     "email": email,
                     "is_email_regex": is_email_regex,
                     "name": name,
+                    "comments": comments,
+                    "directory_id": directory_id,
+                    "directory_node_id": directory_node_id,
+                    "external_directory_node_id": external_directory_node_id,
+                    "provenance": provenance,
                 },
                 impersonation_registry_create_params.ImpersonationRegistryCreateParams,
             ),
@@ -101,9 +107,11 @@ class ImpersonationRegistryResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[ImpersonationRegistryCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[ImpersonationRegistryCreateResponse], ResultWrapper[ImpersonationRegistryCreateResponse]),
+            cast_to=cast(
+                Type[Optional[ImpersonationRegistryCreateResponse]], ResultWrapper[ImpersonationRegistryCreateResponse]
+            ),
         )
 
     def list(
@@ -125,22 +133,23 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ImpersonationRegistryListResponse]:
         """
-        Lists, searches, and sorts entries in the impersonation registry.
+        Returns a paginated list of protected identities in the impersonation registry.
+        These entries define identities and email addresses to protect from
+        impersonation attacks. Can be manually added or automatically synced from
+        directory integrations.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           direction: The sorting direction.
 
-          order: The field to sort by.
+          order: Field to sort by.
 
-          page: The page number of paginated results.
+          page: Current page within paginated list of results.
 
-          per_page: The number of results per page.
+          per_page: The number of results per page. Maximum value is 1000.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          search: Search term for filtering records. Behavior may change.
 
           extra_headers: Send extra headers
 
@@ -177,149 +186,6 @@ class ImpersonationRegistryResource(SyncAPIResource):
             model=ImpersonationRegistryListResponse,
         )
 
-    def delete(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryDeleteResponse:
-        """
-        Removes a display name from impersonation protection monitoring.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._delete(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryDeleteResponse], ResultWrapper[ImpersonationRegistryDeleteResponse]),
-        )
-
-    def edit(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        email: Optional[str] | Omit = omit,
-        is_email_regex: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryEditResponse:
-        """
-        Updates a display name entry used for impersonation protection.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._patch(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            body=maybe_transform(
-                {
-                    "email": email,
-                    "is_email_regex": is_email_regex,
-                    "name": name,
-                },
-                impersonation_registry_edit_params.ImpersonationRegistryEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryEditResponse], ResultWrapper[ImpersonationRegistryEditResponse]),
-        )
-
-    def get(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryGetResponse:
-        """
-        Retrieves a display name entry used for impersonation protection.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryGetResponse], ResultWrapper[ImpersonationRegistryGetResponse]),
-        )
-
 
 class AsyncImpersonationRegistryResource(AsyncAPIResource):
     @cached_property
@@ -348,18 +214,26 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         email: str,
         is_email_regex: bool,
         name: str,
+        comments: Optional[str] | Omit = omit,
+        directory_id: Optional[int] | Omit = omit,
+        directory_node_id: Optional[int] | Omit = omit,
+        external_directory_node_id: Optional[str] | Omit = omit,
+        provenance: Literal["A1S_INTERNAL", "SNOOPY-CASB_OFFICE_365", "SNOOPY-OFFICE_365", "SNOOPY-GOOGLE_DIRECTORY"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryCreateResponse:
+    ) -> Optional[ImpersonationRegistryCreateResponse]:
         """
-        Creates a display name entry for email security impersonation protection.
+        Creates a new entry in the impersonation registry to protect against
+        impersonation. Emails attempting to impersonate this identity will be flagged.
+        Supports regex patterns for flexible email matching.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -380,6 +254,11 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
                     "email": email,
                     "is_email_regex": is_email_regex,
                     "name": name,
+                    "comments": comments,
+                    "directory_id": directory_id,
+                    "directory_node_id": directory_node_id,
+                    "external_directory_node_id": external_directory_node_id,
+                    "provenance": provenance,
                 },
                 impersonation_registry_create_params.ImpersonationRegistryCreateParams,
             ),
@@ -388,9 +267,11 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[ImpersonationRegistryCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[ImpersonationRegistryCreateResponse], ResultWrapper[ImpersonationRegistryCreateResponse]),
+            cast_to=cast(
+                Type[Optional[ImpersonationRegistryCreateResponse]], ResultWrapper[ImpersonationRegistryCreateResponse]
+            ),
         )
 
     def list(
@@ -414,22 +295,23 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         ImpersonationRegistryListResponse, AsyncV4PagePaginationArray[ImpersonationRegistryListResponse]
     ]:
         """
-        Lists, searches, and sorts entries in the impersonation registry.
+        Returns a paginated list of protected identities in the impersonation registry.
+        These entries define identities and email addresses to protect from
+        impersonation attacks. Can be manually added or automatically synced from
+        directory integrations.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
           direction: The sorting direction.
 
-          order: The field to sort by.
+          order: Field to sort by.
 
-          page: The page number of paginated results.
+          page: Current page within paginated list of results.
 
-          per_page: The number of results per page.
+          per_page: The number of results per page. Maximum value is 1000.
 
-          search: Allows searching in multiple properties of a record simultaneously. This
-              parameter is intended for human users, not automation. Its exact behavior is
-              intentionally left unspecified and is subject to change in the future.
+          search: Search term for filtering records. Behavior may change.
 
           extra_headers: Send extra headers
 
@@ -466,149 +348,6 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
             model=ImpersonationRegistryListResponse,
         )
 
-    async def delete(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryDeleteResponse:
-        """
-        Removes a display name from impersonation protection monitoring.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._delete(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryDeleteResponse], ResultWrapper[ImpersonationRegistryDeleteResponse]),
-        )
-
-    async def edit(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        email: Optional[str] | Omit = omit,
-        is_email_regex: Optional[bool] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryEditResponse:
-        """
-        Updates a display name entry used for impersonation protection.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._patch(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            body=await async_maybe_transform(
-                {
-                    "email": email,
-                    "is_email_regex": is_email_regex,
-                    "name": name,
-                },
-                impersonation_registry_edit_params.ImpersonationRegistryEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryEditResponse], ResultWrapper[ImpersonationRegistryEditResponse]),
-        )
-
-    async def get(
-        self,
-        display_name_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImpersonationRegistryGetResponse:
-        """
-        Retrieves a display name entry used for impersonation protection.
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}",
-                account_id=account_id,
-                display_name_id=display_name_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryGetResponse], ResultWrapper[ImpersonationRegistryGetResponse]),
-        )
-
 
 class ImpersonationRegistryResourceWithRawResponse:
     def __init__(self, impersonation_registry: ImpersonationRegistryResource) -> None:
@@ -619,15 +358,6 @@ class ImpersonationRegistryResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             impersonation_registry.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            impersonation_registry.delete,
-        )
-        self.edit = to_raw_response_wrapper(
-            impersonation_registry.edit,
-        )
-        self.get = to_raw_response_wrapper(
-            impersonation_registry.get,
         )
 
 
@@ -641,15 +371,6 @@ class AsyncImpersonationRegistryResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             impersonation_registry.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            impersonation_registry.delete,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            impersonation_registry.edit,
-        )
-        self.get = async_to_raw_response_wrapper(
-            impersonation_registry.get,
-        )
 
 
 class ImpersonationRegistryResourceWithStreamingResponse:
@@ -662,15 +383,6 @@ class ImpersonationRegistryResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             impersonation_registry.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            impersonation_registry.delete,
-        )
-        self.edit = to_streamed_response_wrapper(
-            impersonation_registry.edit,
-        )
-        self.get = to_streamed_response_wrapper(
-            impersonation_registry.get,
-        )
 
 
 class AsyncImpersonationRegistryResourceWithStreamingResponse:
@@ -682,13 +394,4 @@ class AsyncImpersonationRegistryResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             impersonation_registry.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            impersonation_registry.delete,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            impersonation_registry.edit,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            impersonation_registry.get,
         )

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -32,7 +32,7 @@ class TestBlockSenders:
             pattern="test@example.com",
             pattern_type="EMAIL",
         )
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -41,9 +41,9 @@ class TestBlockSenders:
             is_regex=False,
             pattern="test@example.com",
             pattern_type="EMAIL",
-            comments="block sender with email test@example.com",
+            comments="Block sender with email test@example.com",
         )
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -57,7 +57,7 @@ class TestBlockSenders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = response.parse()
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -71,7 +71,7 @@ class TestBlockSenders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = response.parse()
-            assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,7 +101,7 @@ class TestBlockSenders:
             page=1,
             pattern="pattern",
             pattern_type="EMAIL",
-            per_page=1,
+            per_page=20,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[BlockSenderListResponse], block_sender, path=["response"])
@@ -140,34 +140,34 @@ class TestBlockSenders:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         block_sender = client.email_security.settings.block_senders.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.email_security.settings.block_senders.with_raw_response.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = response.parse()
-        assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.email_security.settings.block_senders.with_streaming_response.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = response.parse()
-            assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -175,53 +175,59 @@ class TestBlockSenders:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.block_senders.with_raw_response.delete(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            client.email_security.settings.block_senders.with_raw_response.delete(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         block_sender = client.email_security.settings.block_senders.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         block_sender = client.email_security.settings.block_senders.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comments="comments",
-            is_regex=True,
-            pattern="x",
+            comments="Block sender with email test@example.com",
+            is_regex=False,
+            pattern="test@example.com",
             pattern_type="EMAIL",
         )
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.email_security.settings.block_senders.with_raw_response.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = response.parse()
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.email_security.settings.block_senders.with_streaming_response.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = response.parse()
-            assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,41 +235,47 @@ class TestBlockSenders:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.block_senders.with_raw_response.edit(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            client.email_security.settings.block_senders.with_raw_response.edit(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         block_sender = client.email_security.settings.block_senders.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.email_security.settings.block_senders.with_raw_response.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = response.parse()
-        assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.email_security.settings.block_senders.with_streaming_response.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = response.parse()
-            assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -271,8 +283,14 @@ class TestBlockSenders:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.block_senders.with_raw_response.get(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            client.email_security.settings.block_senders.with_raw_response.get(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -289,7 +307,7 @@ class TestAsyncBlockSenders:
             pattern="test@example.com",
             pattern_type="EMAIL",
         )
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -298,9 +316,9 @@ class TestAsyncBlockSenders:
             is_regex=False,
             pattern="test@example.com",
             pattern_type="EMAIL",
-            comments="block sender with email test@example.com",
+            comments="Block sender with email test@example.com",
         )
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -314,7 +332,7 @@ class TestAsyncBlockSenders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = await response.parse()
-        assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -328,7 +346,7 @@ class TestAsyncBlockSenders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = await response.parse()
-            assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -358,7 +376,7 @@ class TestAsyncBlockSenders:
             page=1,
             pattern="pattern",
             pattern_type="EMAIL",
-            per_page=1,
+            per_page=20,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[BlockSenderListResponse], block_sender, path=["response"])
@@ -397,34 +415,34 @@ class TestAsyncBlockSenders:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         block_sender = await async_client.email_security.settings.block_senders.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.block_senders.with_raw_response.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = await response.parse()
-        assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.block_senders.with_streaming_response.delete(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = await response.parse()
-            assert_matches_type(BlockSenderDeleteResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderDeleteResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -432,53 +450,59 @@ class TestAsyncBlockSenders:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.block_senders.with_raw_response.delete(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            await async_client.email_security.settings.block_senders.with_raw_response.delete(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         block_sender = await async_client.email_security.settings.block_senders.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         block_sender = await async_client.email_security.settings.block_senders.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comments="comments",
-            is_regex=True,
-            pattern="x",
+            comments="Block sender with email test@example.com",
+            is_regex=False,
+            pattern="test@example.com",
             pattern_type="EMAIL",
         )
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.block_senders.with_raw_response.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = await response.parse()
-        assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.block_senders.with_streaming_response.edit(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = await response.parse()
-            assert_matches_type(BlockSenderEditResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderEditResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -486,41 +510,47 @@ class TestAsyncBlockSenders:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.block_senders.with_raw_response.edit(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            await async_client.email_security.settings.block_senders.with_raw_response.edit(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         block_sender = await async_client.email_security.settings.block_senders.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.block_senders.with_raw_response.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         block_sender = await response.parse()
-        assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+        assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.block_senders.with_streaming_response.get(
-            pattern_id=2402,
+            pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             block_sender = await response.parse()
-            assert_matches_type(BlockSenderGetResponse, block_sender, path=["response"])
+            assert_matches_type(Optional[BlockSenderGetResponse], block_sender, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -528,6 +558,12 @@ class TestAsyncBlockSenders:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.block_senders.with_raw_response.get(
-                pattern_id=2402,
+                pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pattern_id` but received ''"):
+            await async_client.email_security.settings.block_senders.with_raw_response.get(
+                pattern_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

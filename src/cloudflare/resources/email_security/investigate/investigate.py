@@ -2,20 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from .raw import (
-    RawResource,
-    AsyncRawResource,
-    RawResourceWithRawResponse,
-    AsyncRawResourceWithRawResponse,
-    RawResourceWithStreamingResponse,
-    AsyncRawResourceWithStreamingResponse,
-)
 from .move import (
     MoveResource,
     AsyncMoveResource,
@@ -23,14 +15,6 @@ from .move import (
     AsyncMoveResourceWithRawResponse,
     MoveResourceWithStreamingResponse,
     AsyncMoveResourceWithStreamingResponse,
-)
-from .trace import (
-    TraceResource,
-    AsyncTraceResource,
-    TraceResourceWithRawResponse,
-    AsyncTraceResourceWithRawResponse,
-    TraceResourceWithStreamingResponse,
-    AsyncTraceResourceWithStreamingResponse,
 )
 from .preview import (
     PreviewResource,
@@ -49,24 +33,8 @@ from .release import (
     AsyncReleaseResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
-from .detections import (
-    DetectionsResource,
-    AsyncDetectionsResource,
-    DetectionsResourceWithRawResponse,
-    AsyncDetectionsResourceWithRawResponse,
-    DetectionsResourceWithStreamingResponse,
-    AsyncDetectionsResourceWithStreamingResponse,
-)
-from .reclassify import (
-    ReclassifyResource,
-    AsyncReclassifyResource,
-    ReclassifyResourceWithRawResponse,
-    AsyncReclassifyResourceWithRawResponse,
-    ReclassifyResourceWithStreamingResponse,
-    AsyncReclassifyResourceWithStreamingResponse,
-)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -74,11 +42,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security import investigate_get_params, investigate_list_params
-from ....types.email_security.investigate_get_response import InvestigateGetResponse
+from ....types.email_security import investigate_list_params
 from ....types.email_security.investigate_list_response import InvestigateListResponse
 
 __all__ = ["InvestigateResource", "AsyncInvestigateResource"]
@@ -86,28 +52,12 @@ __all__ = ["InvestigateResource", "AsyncInvestigateResource"]
 
 class InvestigateResource(SyncAPIResource):
     @cached_property
-    def detections(self) -> DetectionsResource:
-        return DetectionsResource(self._client)
-
-    @cached_property
     def preview(self) -> PreviewResource:
         return PreviewResource(self._client)
 
     @cached_property
-    def raw(self) -> RawResource:
-        return RawResource(self._client)
-
-    @cached_property
-    def trace(self) -> TraceResource:
-        return TraceResource(self._client)
-
-    @cached_property
     def move(self) -> MoveResource:
         return MoveResource(self._client)
-
-    @cached_property
-    def reclassify(self) -> ReclassifyResource:
-        return ReclassifyResource(self._client)
 
     @cached_property
     def release(self) -> ReleaseResource:
@@ -142,9 +92,8 @@ class InvestigateResource(SyncAPIResource):
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
-        exact_subject: str | Omit = omit,
         final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
-        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED", "SUBMITTED"] | Omit = omit,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
         metric: str | Omit = omit,
         page: Optional[int] | Omit = omit,
@@ -154,7 +103,6 @@ class InvestigateResource(SyncAPIResource):
         sender: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
-        submissions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,70 +110,31 @@ class InvestigateResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
-        """Returns information for each email that matches the search parameter(s).
-
-        If the
-        search takes too long, the endpoint returns 202 with a Location header pointing
-        to a polling endpoint where results can be retrieved once ready.
+        """
+        Returns information for each email that matches the search parameter(s).
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          action_log: Determines if the message action log is included in the response.
+          action_log: Whether to include the message action log in the response.
 
-          detections_only: Determines if the search results will include detections or not.
+          detections_only: Whether to include only detections in search results.
 
-          domain: Filter by a domain found in the email: sender domain, recipient domain, or a
-              domain in a link.
+          domain: Sender domains to filter by.
 
-          end: The end of the search date range. Defaults to `now` if not provided.
+          end: The end of the search date range. Defaults to `now`.
 
-          exact_subject: Search for messages with an exact subject match.
+          final_disposition: Dispositions to filter by.
 
-          final_disposition: The dispositions the search filters by.
+          message_action: Message actions to filter by.
 
-          message_action: The message actions the search filters by.
-
-          page: Deprecated: Use cursor pagination instead.
+          page: Deprecated: Use cursor pagination instead. End of life: November 1, 2026.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          query: The space-delimited term used in the query. The search is case-insensitive.
+          query: Space-delimited search term. Case-insensitive.
 
-              The content of the following email metadata fields are searched:
-
-              - alert_id
-              - CC
-              - From (envelope_from)
-              - From Name
-              - final_disposition
-              - md5 hash (of any attachment)
-              - sha1 hash (of any attachment)
-              - sha256 hash (of any attachment)
-              - name (of any attachment)
-              - Reason
-              - Received DateTime (yyyy-mm-ddThh:mm:ss)
-              - Sent DateTime (yyyy-mm-ddThh:mm:ss)
-              - ReplyTo
-              - To (envelope_to)
-              - To Name
-              - Message-ID
-              - smtp_helo_server_ip
-              - smtp_previous_hop_ip
-              - x_originating_ip
-              - Subject
-
-          recipient: Filter by recipient. Matches either an email address or a domain.
-
-          sender: Filter by sender. Matches either an email address or a domain.
-
-          start: The beginning of the search date range. Defaults to `now - 30 days` if not
-              provided.
-
-          subject: Search for messages containing individual keywords in any order within the
-              subject.
-
-          submissions: Search for submissions instead of original messages
+          start: The beginning of the search date range. Defaults to `now - 30 days`.
 
           extra_headers: Send extra headers
 
@@ -253,7 +162,6 @@ class InvestigateResource(SyncAPIResource):
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
-                        "exact_subject": exact_subject,
                         "final_disposition": final_disposition,
                         "message_action": message_action,
                         "message_id": message_id,
@@ -265,7 +173,6 @@ class InvestigateResource(SyncAPIResource):
                         "sender": sender,
                         "start": start,
                         "subject": subject,
-                        "submissions": submissions,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
@@ -273,85 +180,15 @@ class InvestigateResource(SyncAPIResource):
             model=InvestigateListResponse,
         )
 
-    def get(
-        self,
-        postfix_id: str,
-        *,
-        account_id: str,
-        submission: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InvestigateGetResponse:
-        """
-        Retrieves detailed information about a specific email message, including
-        headers, metadata, and security scan results.
-
-        Args:
-          account_id: Account Identifier
-
-          postfix_id: The identifier of the message.
-
-          submission: When true, search the submissions datastore only. When false or omitted, search
-              the regular datastore only.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not postfix_id:
-            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/investigate/{postfix_id}",
-                account_id=account_id,
-                postfix_id=postfix_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"submission": submission}, investigate_get_params.InvestigateGetParams),
-                post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),
-        )
-
 
 class AsyncInvestigateResource(AsyncAPIResource):
-    @cached_property
-    def detections(self) -> AsyncDetectionsResource:
-        return AsyncDetectionsResource(self._client)
-
     @cached_property
     def preview(self) -> AsyncPreviewResource:
         return AsyncPreviewResource(self._client)
 
     @cached_property
-    def raw(self) -> AsyncRawResource:
-        return AsyncRawResource(self._client)
-
-    @cached_property
-    def trace(self) -> AsyncTraceResource:
-        return AsyncTraceResource(self._client)
-
-    @cached_property
     def move(self) -> AsyncMoveResource:
         return AsyncMoveResource(self._client)
-
-    @cached_property
-    def reclassify(self) -> AsyncReclassifyResource:
-        return AsyncReclassifyResource(self._client)
 
     @cached_property
     def release(self) -> AsyncReleaseResource:
@@ -386,9 +223,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
-        exact_subject: str | Omit = omit,
         final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
-        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED", "SUBMITTED"] | Omit = omit,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
         metric: str | Omit = omit,
         page: Optional[int] | Omit = omit,
@@ -398,7 +234,6 @@ class AsyncInvestigateResource(AsyncAPIResource):
         sender: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
-        submissions: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -406,70 +241,31 @@ class AsyncInvestigateResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
-        """Returns information for each email that matches the search parameter(s).
-
-        If the
-        search takes too long, the endpoint returns 202 with a Location header pointing
-        to a polling endpoint where results can be retrieved once ready.
+        """
+        Returns information for each email that matches the search parameter(s).
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          action_log: Determines if the message action log is included in the response.
+          action_log: Whether to include the message action log in the response.
 
-          detections_only: Determines if the search results will include detections or not.
+          detections_only: Whether to include only detections in search results.
 
-          domain: Filter by a domain found in the email: sender domain, recipient domain, or a
-              domain in a link.
+          domain: Sender domains to filter by.
 
-          end: The end of the search date range. Defaults to `now` if not provided.
+          end: The end of the search date range. Defaults to `now`.
 
-          exact_subject: Search for messages with an exact subject match.
+          final_disposition: Dispositions to filter by.
 
-          final_disposition: The dispositions the search filters by.
+          message_action: Message actions to filter by.
 
-          message_action: The message actions the search filters by.
-
-          page: Deprecated: Use cursor pagination instead.
+          page: Deprecated: Use cursor pagination instead. End of life: November 1, 2026.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          query: The space-delimited term used in the query. The search is case-insensitive.
+          query: Space-delimited search term. Case-insensitive.
 
-              The content of the following email metadata fields are searched:
-
-              - alert_id
-              - CC
-              - From (envelope_from)
-              - From Name
-              - final_disposition
-              - md5 hash (of any attachment)
-              - sha1 hash (of any attachment)
-              - sha256 hash (of any attachment)
-              - name (of any attachment)
-              - Reason
-              - Received DateTime (yyyy-mm-ddThh:mm:ss)
-              - Sent DateTime (yyyy-mm-ddThh:mm:ss)
-              - ReplyTo
-              - To (envelope_to)
-              - To Name
-              - Message-ID
-              - smtp_helo_server_ip
-              - smtp_previous_hop_ip
-              - x_originating_ip
-              - Subject
-
-          recipient: Filter by recipient. Matches either an email address or a domain.
-
-          sender: Filter by sender. Matches either an email address or a domain.
-
-          start: The beginning of the search date range. Defaults to `now - 30 days` if not
-              provided.
-
-          subject: Search for messages containing individual keywords in any order within the
-              subject.
-
-          submissions: Search for submissions instead of original messages
+          start: The beginning of the search date range. Defaults to `now - 30 days`.
 
           extra_headers: Send extra headers
 
@@ -497,7 +293,6 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
-                        "exact_subject": exact_subject,
                         "final_disposition": final_disposition,
                         "message_action": message_action,
                         "message_id": message_id,
@@ -509,68 +304,11 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "sender": sender,
                         "start": start,
                         "subject": subject,
-                        "submissions": submissions,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
             ),
             model=InvestigateListResponse,
-        )
-
-    async def get(
-        self,
-        postfix_id: str,
-        *,
-        account_id: str,
-        submission: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InvestigateGetResponse:
-        """
-        Retrieves detailed information about a specific email message, including
-        headers, metadata, and security scan results.
-
-        Args:
-          account_id: Account Identifier
-
-          postfix_id: The identifier of the message.
-
-          submission: When true, search the submissions datastore only. When false or omitted, search
-              the regular datastore only.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not postfix_id:
-            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/investigate/{postfix_id}",
-                account_id=account_id,
-                postfix_id=postfix_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"submission": submission}, investigate_get_params.InvestigateGetParams
-                ),
-                post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),
         )
 
 
@@ -581,33 +319,14 @@ class InvestigateResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             investigate.list,
         )
-        self.get = to_raw_response_wrapper(
-            investigate.get,
-        )
-
-    @cached_property
-    def detections(self) -> DetectionsResourceWithRawResponse:
-        return DetectionsResourceWithRawResponse(self._investigate.detections)
 
     @cached_property
     def preview(self) -> PreviewResourceWithRawResponse:
         return PreviewResourceWithRawResponse(self._investigate.preview)
 
     @cached_property
-    def raw(self) -> RawResourceWithRawResponse:
-        return RawResourceWithRawResponse(self._investigate.raw)
-
-    @cached_property
-    def trace(self) -> TraceResourceWithRawResponse:
-        return TraceResourceWithRawResponse(self._investigate.trace)
-
-    @cached_property
     def move(self) -> MoveResourceWithRawResponse:
         return MoveResourceWithRawResponse(self._investigate.move)
-
-    @cached_property
-    def reclassify(self) -> ReclassifyResourceWithRawResponse:
-        return ReclassifyResourceWithRawResponse(self._investigate.reclassify)
 
     @cached_property
     def release(self) -> ReleaseResourceWithRawResponse:
@@ -621,33 +340,14 @@ class AsyncInvestigateResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             investigate.list,
         )
-        self.get = async_to_raw_response_wrapper(
-            investigate.get,
-        )
-
-    @cached_property
-    def detections(self) -> AsyncDetectionsResourceWithRawResponse:
-        return AsyncDetectionsResourceWithRawResponse(self._investigate.detections)
 
     @cached_property
     def preview(self) -> AsyncPreviewResourceWithRawResponse:
         return AsyncPreviewResourceWithRawResponse(self._investigate.preview)
 
     @cached_property
-    def raw(self) -> AsyncRawResourceWithRawResponse:
-        return AsyncRawResourceWithRawResponse(self._investigate.raw)
-
-    @cached_property
-    def trace(self) -> AsyncTraceResourceWithRawResponse:
-        return AsyncTraceResourceWithRawResponse(self._investigate.trace)
-
-    @cached_property
     def move(self) -> AsyncMoveResourceWithRawResponse:
         return AsyncMoveResourceWithRawResponse(self._investigate.move)
-
-    @cached_property
-    def reclassify(self) -> AsyncReclassifyResourceWithRawResponse:
-        return AsyncReclassifyResourceWithRawResponse(self._investigate.reclassify)
 
     @cached_property
     def release(self) -> AsyncReleaseResourceWithRawResponse:
@@ -661,33 +361,14 @@ class InvestigateResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             investigate.list,
         )
-        self.get = to_streamed_response_wrapper(
-            investigate.get,
-        )
-
-    @cached_property
-    def detections(self) -> DetectionsResourceWithStreamingResponse:
-        return DetectionsResourceWithStreamingResponse(self._investigate.detections)
 
     @cached_property
     def preview(self) -> PreviewResourceWithStreamingResponse:
         return PreviewResourceWithStreamingResponse(self._investigate.preview)
 
     @cached_property
-    def raw(self) -> RawResourceWithStreamingResponse:
-        return RawResourceWithStreamingResponse(self._investigate.raw)
-
-    @cached_property
-    def trace(self) -> TraceResourceWithStreamingResponse:
-        return TraceResourceWithStreamingResponse(self._investigate.trace)
-
-    @cached_property
     def move(self) -> MoveResourceWithStreamingResponse:
         return MoveResourceWithStreamingResponse(self._investigate.move)
-
-    @cached_property
-    def reclassify(self) -> ReclassifyResourceWithStreamingResponse:
-        return ReclassifyResourceWithStreamingResponse(self._investigate.reclassify)
 
     @cached_property
     def release(self) -> ReleaseResourceWithStreamingResponse:
@@ -701,33 +382,14 @@ class AsyncInvestigateResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             investigate.list,
         )
-        self.get = async_to_streamed_response_wrapper(
-            investigate.get,
-        )
-
-    @cached_property
-    def detections(self) -> AsyncDetectionsResourceWithStreamingResponse:
-        return AsyncDetectionsResourceWithStreamingResponse(self._investigate.detections)
 
     @cached_property
     def preview(self) -> AsyncPreviewResourceWithStreamingResponse:
         return AsyncPreviewResourceWithStreamingResponse(self._investigate.preview)
 
     @cached_property
-    def raw(self) -> AsyncRawResourceWithStreamingResponse:
-        return AsyncRawResourceWithStreamingResponse(self._investigate.raw)
-
-    @cached_property
-    def trace(self) -> AsyncTraceResourceWithStreamingResponse:
-        return AsyncTraceResourceWithStreamingResponse(self._investigate.trace)
-
-    @cached_property
     def move(self) -> AsyncMoveResourceWithStreamingResponse:
         return AsyncMoveResourceWithStreamingResponse(self._investigate.move)
-
-    @cached_property
-    def reclassify(self) -> AsyncReclassifyResourceWithStreamingResponse:
-        return AsyncReclassifyResourceWithStreamingResponse(self._investigate.reclassify)
 
     @cached_property
     def release(self) -> AsyncReleaseResourceWithStreamingResponse:

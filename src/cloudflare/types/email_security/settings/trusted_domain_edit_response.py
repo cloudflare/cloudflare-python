@@ -9,27 +9,32 @@ __all__ = ["TrustedDomainEditResponse"]
 
 
 class TrustedDomainEditResponse(BaseModel):
-    id: int
-    """The unique identifier for the trusted domain."""
+    """A trusted email domain"""
 
-    created_at: datetime
+    id: Optional[str] = None
+    """Trusted domain identifier"""
 
-    is_recent: bool
+    comments: Optional[str] = None
+
+    created_at: Optional[datetime] = None
+
+    is_recent: Optional[bool] = None
     """
     Select to prevent recently registered domains from triggering a Suspicious or
     Malicious disposition.
     """
 
-    is_regex: bool
+    is_regex: Optional[bool] = None
 
-    is_similarity: bool
+    is_similarity: Optional[bool] = None
     """
     Select for partner or other approved domains that have similar spelling to your
     connected domains. Prevents listed domains from triggering a Spoof disposition.
     """
 
-    last_modified: datetime
+    last_modified: Optional[datetime] = None
+    """Deprecated, use `modified_at` instead. End of life: November 1, 2026."""
 
-    pattern: str
+    modified_at: Optional[datetime] = None
 
-    comments: Optional[str] = None
+    pattern: Optional[str] = None

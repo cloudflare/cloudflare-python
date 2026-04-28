@@ -22,7 +22,7 @@ class TestRelease:
     def test_method_bulk(self, client: Cloudflare) -> None:
         release = client.email_security.investigate.release.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         )
         assert_matches_type(SyncSinglePage[ReleaseBulkResponse], release, path=["response"])
 
@@ -30,7 +30,7 @@ class TestRelease:
     def test_raw_response_bulk(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.release.with_raw_response.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         )
 
         assert response.is_closed is True
@@ -42,7 +42,7 @@ class TestRelease:
     def test_streaming_response_bulk(self, client: Cloudflare) -> None:
         with client.email_security.investigate.release.with_streaming_response.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -57,7 +57,7 @@ class TestRelease:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.investigate.release.with_raw_response.bulk(
                 account_id="",
-                body=["4Njp3P0STMz2c02Q"],
+                body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
             )
 
 
@@ -70,7 +70,7 @@ class TestAsyncRelease:
     async def test_method_bulk(self, async_client: AsyncCloudflare) -> None:
         release = await async_client.email_security.investigate.release.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         )
         assert_matches_type(AsyncSinglePage[ReleaseBulkResponse], release, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncRelease:
     async def test_raw_response_bulk(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.investigate.release.with_raw_response.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         )
 
         assert response.is_closed is True
@@ -90,7 +90,7 @@ class TestAsyncRelease:
     async def test_streaming_response_bulk(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.investigate.release.with_streaming_response.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["4Njp3P0STMz2c02Q"],
+            body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,5 +105,5 @@ class TestAsyncRelease:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.investigate.release.with_raw_response.bulk(
                 account_id="",
-                body=["4Njp3P0STMz2c02Q"],
+                body=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
             )

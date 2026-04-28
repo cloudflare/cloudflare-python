@@ -10,17 +10,26 @@ __all__ = ["BlockSenderEditResponse"]
 
 
 class BlockSenderEditResponse(BaseModel):
-    id: int
-    """The unique identifier for the allow policy."""
+    """A blocked sender pattern"""
 
-    created_at: datetime
-
-    is_regex: bool
-
-    last_modified: datetime
-
-    pattern: str
-
-    pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
+    id: Optional[str] = None
+    """Blocked sender pattern identifier"""
 
     comments: Optional[str] = None
+
+    created_at: Optional[datetime] = None
+
+    is_regex: Optional[bool] = None
+
+    last_modified: Optional[datetime] = None
+    """Deprecated, use `modified_at` instead. End of life: November 1, 2026."""
+
+    modified_at: Optional[datetime] = None
+
+    pattern: Optional[str] = None
+
+    pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] = None
+    """
+    Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+    creating or updating policies, but may be returned for existing entries.
+    """

@@ -11,14 +11,17 @@ __all__ = ["MoveBulkParams"]
 
 class MoveBulkParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     destination: Required[
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
 
     ids: SequenceNotStr[str]
-    """List of message IDs to move."""
+    """List of message IDs to move"""
 
     postfix_ids: SequenceNotStr[str]
-    """Deprecated: Use `ids` instead. List of message IDs to move."""
+    """Deprecated, use `ids` instead.
+
+    End of life: November 1, 2026. List of message IDs to move.
+    """

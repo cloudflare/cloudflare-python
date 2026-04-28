@@ -97,7 +97,8 @@ class IPSECTunnelsResource(SyncAPIResource):
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -208,7 +209,8 @@ class IPSECTunnelsResource(SyncAPIResource):
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -622,7 +624,8 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -733,7 +736,8 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.

@@ -62,7 +62,8 @@ class UsageResource(SyncAPIResource):
 
         When no query
         parameters are provided, returns usage for the current billing period. This
-        endpoint is currently in beta and access is restricted to select accounts.
+        endpoint is currently in alpha and access is restricted to select accounts.
+        While in alpha, the endpoint may get breaking changes.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
@@ -138,7 +139,8 @@ class AsyncUsageResource(AsyncAPIResource):
 
         When no query
         parameters are provided, returns usage for the current billing period. This
-        endpoint is currently in beta and access is restricted to select accounts.
+        endpoint is currently in alpha and access is restricted to select accounts.
+        While in alpha, the endpoint may get breaking changes.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.

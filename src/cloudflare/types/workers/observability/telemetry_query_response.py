@@ -120,16 +120,17 @@ class RunQueryParametersFilterUnionMember0(BaseModel):
 
 
 class RunQueryParametersFilterWorkersObservabilityFilterLeaf(BaseModel):
-    """
-    Filtering best practices: use observability_keys and observability_values to confirm available fields and values. If searching for errors, filter for $metadata.error exists.
+    """A filter condition applied to query results.
+
+    Use the keys and values endpoints to discover available fields and their values before constructing filters.
     """
 
     key: str
     """Filter field name.
 
-    IMPORTANT: do not guess keys. Always use verified keys from previous query
-    results or the observability_keys response. Preferred keys: $metadata.service,
-    $metadata.origin, $metadata.trigger, $metadata.message, $metadata.error.
+    Use verified keys from previous query results or the keys endpoint. Common keys
+    include $metadata.service, $metadata.origin, $metadata.trigger,
+    $metadata.message, and $metadata.error.
     """
 
     operation: Literal[
@@ -162,19 +163,32 @@ class RunQueryParametersFilterWorkersObservabilityFilterLeaf(BaseModel):
         "NOT_IN",
         "STARTS_WITH",
     ]
+    """Comparison operator.
+
+    String operators: includes, not_includes, starts_with, regex. Existence: exists,
+    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
+    gt, gte, lt, lte.
+    """
 
     type: Literal["string", "number", "boolean"]
+    """Data type of the filter field.
+
+    Must match the actual type of the key being filtered.
+    """
 
     kind: Optional[Literal["filter"]] = None
+    """Discriminator for leaf filter nodes.
+
+    Always 'filter' when present; may be omitted.
+    """
 
     value: Union[str, float, bool, None] = None
-    """Filter comparison value.
+    """Comparison value.
 
-    IMPORTANT: must match actual values in your logs. Verify using previous query
-    results or the /values endpoint. Ensure value type matches the field type.
-    String comparisons are case-sensitive unless using specific operations. Regex
-    uses ClickHouse RE2 syntax (no lookaheads/lookbehinds); examples: ^5\\dd{2}$ for
-    HTTP 5xx, \bERROR\b for word boundary.
+    Must match actual values in your data — verify with the values endpoint. Ensure
+    the value type (string/number/boolean) matches the field type. String
+    comparisons are case-sensitive. Regex uses RE2 syntax (no
+    lookaheads/lookbehinds).
     """
 
 
@@ -254,6 +268,10 @@ class RunQueryParameters(BaseModel):
 
 
 class RunQuery(BaseModel):
+    """
+    A saved query definition with its parameters, metadata, and ownership information.
+    """
+
     id: str
 
     adhoc: bool
@@ -286,6 +304,10 @@ class RunTimeframe(BaseModel):
 
 
 class RunStatistics(BaseModel):
+    """
+    Query performance statistics from the database (does not include network latency).
+    """
+
     bytes_read: float
     """Number of uncompressed bytes read from the table."""
 
@@ -303,35 +325,57 @@ class RunStatistics(BaseModel):
 
 
 class Run(BaseModel):
-    """A Workers Observability Query Object"""
+    """
+    The query run metadata including the query definition, execution status, and timeframe.
+    """
 
     id: str
+    """Unique identifier for this query run."""
 
     account_id: str = FieldInfo(alias="accountId")
+    """Cloudflare account ID that owns this query run."""
 
     dry: bool
+    """Whether this was a dry run (results not persisted)."""
 
     granularity: float
+    """Number of time-series buckets used for the query.
+
+    Higher values produce more detailed series data.
+    """
 
     query: RunQuery
+    """
+    A saved query definition with its parameters, metadata, and ownership
+    information.
+    """
 
     status: Literal["STARTED", "COMPLETED"]
+    """Current execution status of the query run."""
 
     timeframe: RunTimeframe
     """Time range for the query execution"""
 
     user_id: str = FieldInfo(alias="userId")
+    """ID of the user who initiated the query run."""
 
     created: Optional[str] = None
+    """ISO-8601 timestamp when the query run was created."""
 
     statistics: Optional[RunStatistics] = None
+    """
+    Query performance statistics from the database (does not include network
+    latency).
+    """
 
     updated: Optional[str] = None
+    """ISO-8601 timestamp when the query run was last updated."""
 
 
 class Statistics(BaseModel):
-    """
-    The statistics object contains information about query performance from the database, it does not include any network latency
+    """Query performance statistics from the database.
+
+    Includes execution time, rows scanned, and bytes read. Does not include network latency.
     """
 
     bytes_read: float
@@ -352,20 +396,31 @@ class Statistics(BaseModel):
 
 class Agent(BaseModel):
     agent_class: str = FieldInfo(alias="agentClass")
+    """Class name of the Durable Object agent."""
 
     event_type_counts: Dict[str, float] = FieldInfo(alias="eventTypeCounts")
+    """Breakdown of event counts by event type."""
 
     first_event_ms: float = FieldInfo(alias="firstEventMs")
+    """
+    Timestamp of the earliest event from this agent in the queried window (Unix
+    epoch ms).
+    """
 
     has_errors: bool = FieldInfo(alias="hasErrors")
+    """Whether the agent emitted any error events in the queried window."""
 
     last_event_ms: float = FieldInfo(alias="lastEventMs")
+    """Timestamp of the most recent event from this agent (Unix epoch ms)."""
 
     namespace: str
+    """Durable Object namespace the agent belongs to."""
 
     service: str
+    """Worker service name that hosts this agent."""
 
     total_events: float = FieldInfo(alias="totalEvents")
+    """Total number of events emitted by this agent in the queried window."""
 
 
 class CalculationAggregateGroup(BaseModel):
@@ -481,68 +536,103 @@ class Compare(BaseModel):
 
 
 class EventsEventMetadata(BaseModel):
+    """Structured metadata extracted from the event.
+
+    These fields are indexed and available for filtering and aggregation.
+    """
+
     id: str
-    """Unique event ID. Use as the cursor for offset-based pagination."""
+    """Unique event ID. Use as the cursor value for offset-based pagination."""
 
     account: Optional[str] = None
+    """Cloudflare account identifier."""
 
     cloud_service: Optional[str] = FieldInfo(alias="cloudService", default=None)
+    """Cloudflare product that generated this event (e.g. workers, pages)."""
 
     cold_start: Optional[int] = FieldInfo(alias="coldStart", default=None)
+    """Whether this was a cold start (1) or warm invocation (0)."""
 
     cost: Optional[int] = None
+    """Estimated cost units for this invocation."""
 
     duration: Optional[int] = None
+    """Span duration in milliseconds."""
 
     end_time: Optional[int] = FieldInfo(alias="endTime", default=None)
+    """Span end time as a Unix epoch in milliseconds."""
 
     error: Optional[str] = None
+    """Error message, present when the log represents an error."""
 
     error_template: Optional[str] = FieldInfo(alias="errorTemplate", default=None)
+    """Templatized version of the error message used for grouping similar errors."""
 
     fingerprint: Optional[str] = None
+    """Content-based fingerprint used to group similar events."""
 
     level: Optional[str] = None
+    """Log level (e.g. log, debug, info, warn, error)."""
 
     message: Optional[str] = None
+    """Log message text."""
 
     message_template: Optional[str] = FieldInfo(alias="messageTemplate", default=None)
+    """Templatized version of the log message used for grouping similar messages."""
 
     metric_name: Optional[str] = FieldInfo(alias="metricName", default=None)
+    """Metric name when the event represents a metric data point."""
 
     origin: Optional[str] = None
+    """Origin of the event (e.g. fetch, scheduled, queue)."""
 
     parent_span_id: Optional[str] = FieldInfo(alias="parentSpanId", default=None)
+    """Span ID of the parent span in the trace hierarchy."""
 
     provider: Optional[str] = None
+    """Infrastructure provider identifier."""
 
     region: Optional[str] = None
+    """Cloudflare data center / region that handled the request."""
 
     request_id: Optional[str] = FieldInfo(alias="requestId", default=None)
+    """Cloudflare request ID that ties all logs from a single invocation together."""
 
     service: Optional[str] = None
+    """Worker script name that produced this event."""
 
     span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+    """Span ID for this individual unit of work within a trace."""
 
     span_name: Optional[str] = FieldInfo(alias="spanName", default=None)
+    """Human-readable name for this span."""
 
     stack_id: Optional[str] = FieldInfo(alias="stackId", default=None)
+    """Stack / deployment identifier."""
 
     start_time: Optional[int] = FieldInfo(alias="startTime", default=None)
+    """Span start time as a Unix epoch in milliseconds."""
 
     status_code: Optional[int] = FieldInfo(alias="statusCode", default=None)
+    """HTTP response status code returned by the Worker."""
 
     trace_duration: Optional[int] = FieldInfo(alias="traceDuration", default=None)
+    """Total duration of the entire trace in milliseconds."""
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
+    """Distributed trace ID linking spans across services."""
 
     transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+    """Logical transaction name for this request."""
 
     trigger: Optional[str] = None
+    """What triggered the invocation (e.g. GET /users, POST /orders, queue message)."""
 
     type: Optional[str] = None
+    """Event type classifier (e.g. cf-worker-event, cf-worker-log)."""
 
     url: Optional[str] = None
+    """Request URL that triggered the Worker invocation."""
 
 
 class EventsEventWorkersUnionMember0ScriptVersion(BaseModel):
@@ -575,6 +665,10 @@ class EventsEventWorkersUnionMember0(BaseModel):
     script_version: Optional[EventsEventWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
+
+    span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+
+    trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
     truncated: Optional[bool] = None
 
@@ -628,6 +722,10 @@ class EventsEventWorkersUnionMember1(BaseModel):
         alias="scriptVersion", default=None
     )
 
+    span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+
+    trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
+
     truncated: Optional[bool] = None
 
 
@@ -635,33 +733,47 @@ EventsEventWorkers: TypeAlias = Union[EventsEventWorkersUnionMember0, EventsEven
 
 
 class EventsEvent(BaseModel):
-    """The data structure of a telemetry event"""
+    """
+    A single telemetry event representing a log line, span, or metric data point emitted by a Worker.
+    """
 
     metadata: EventsEventMetadata = FieldInfo(alias="$metadata")
+    """Structured metadata extracted from the event.
+
+    These fields are indexed and available for filtering and aggregation.
+    """
 
     dataset: str
+    """The dataset this event belongs to (e.g. cloudflare-workers)."""
 
     source: Union[str, object]
+    """Raw log payload.
+
+    May be a string or a structured object depending on how the log was emitted.
+    """
 
     timestamp: int
+    """Event timestamp as a Unix epoch in milliseconds."""
 
     containers: Optional[object] = FieldInfo(alias="$containers", default=None)
     """
-    Cloudflare Containers event information enriches your logs so you can easily
-    identify and debug issues.
+    Cloudflare Containers event information that enriches your logs for identifying
+    and debugging issues.
     """
 
     workers: Optional[EventsEventWorkers] = FieldInfo(alias="$workers", default=None)
     """
-    Cloudflare Workers event information enriches your logs so you can easily
-    identify and debug issues.
+    Cloudflare Workers event information that enriches your logs for identifying and
+    debugging issues.
     """
 
 
 class EventsField(BaseModel):
     key: str
+    """Field name present in the matched events."""
 
     type: str
+    """Data type of the field (string, number, or boolean)."""
 
 
 class EventsSeriesDataAggregates(BaseModel):
@@ -698,78 +810,128 @@ class EventsSeries(BaseModel):
 
 
 class Events(BaseModel):
+    """Individual event results.
+
+    Present when the query view is 'events'. Contains the matching log lines and their metadata.
+    """
+
     count: Optional[float] = None
+    """
+    Total number of events matching the query (may exceed the number returned due to
+    limits).
+    """
 
     events: Optional[List[EventsEvent]] = None
+    """List of individual telemetry events matching the query."""
 
     fields: Optional[List[EventsField]] = None
+    """List of fields discovered in the matched events.
+
+    Useful for building dynamic UIs.
+    """
 
     series: Optional[List[EventsSeries]] = None
+    """Time-series data for the matched events, bucketed by the query granularity."""
 
 
 class InvocationMetadata(BaseModel):
+    """Structured metadata extracted from the event.
+
+    These fields are indexed and available for filtering and aggregation.
+    """
+
     id: str
-    """Unique event ID. Use as the cursor for offset-based pagination."""
+    """Unique event ID. Use as the cursor value for offset-based pagination."""
 
     account: Optional[str] = None
+    """Cloudflare account identifier."""
 
     cloud_service: Optional[str] = FieldInfo(alias="cloudService", default=None)
+    """Cloudflare product that generated this event (e.g. workers, pages)."""
 
     cold_start: Optional[int] = FieldInfo(alias="coldStart", default=None)
+    """Whether this was a cold start (1) or warm invocation (0)."""
 
     cost: Optional[int] = None
+    """Estimated cost units for this invocation."""
 
     duration: Optional[int] = None
+    """Span duration in milliseconds."""
 
     end_time: Optional[int] = FieldInfo(alias="endTime", default=None)
+    """Span end time as a Unix epoch in milliseconds."""
 
     error: Optional[str] = None
+    """Error message, present when the log represents an error."""
 
     error_template: Optional[str] = FieldInfo(alias="errorTemplate", default=None)
+    """Templatized version of the error message used for grouping similar errors."""
 
     fingerprint: Optional[str] = None
+    """Content-based fingerprint used to group similar events."""
 
     level: Optional[str] = None
+    """Log level (e.g. log, debug, info, warn, error)."""
 
     message: Optional[str] = None
+    """Log message text."""
 
     message_template: Optional[str] = FieldInfo(alias="messageTemplate", default=None)
+    """Templatized version of the log message used for grouping similar messages."""
 
     metric_name: Optional[str] = FieldInfo(alias="metricName", default=None)
+    """Metric name when the event represents a metric data point."""
 
     origin: Optional[str] = None
+    """Origin of the event (e.g. fetch, scheduled, queue)."""
 
     parent_span_id: Optional[str] = FieldInfo(alias="parentSpanId", default=None)
+    """Span ID of the parent span in the trace hierarchy."""
 
     provider: Optional[str] = None
+    """Infrastructure provider identifier."""
 
     region: Optional[str] = None
+    """Cloudflare data center / region that handled the request."""
 
     request_id: Optional[str] = FieldInfo(alias="requestId", default=None)
+    """Cloudflare request ID that ties all logs from a single invocation together."""
 
     service: Optional[str] = None
+    """Worker script name that produced this event."""
 
     span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+    """Span ID for this individual unit of work within a trace."""
 
     span_name: Optional[str] = FieldInfo(alias="spanName", default=None)
+    """Human-readable name for this span."""
 
     stack_id: Optional[str] = FieldInfo(alias="stackId", default=None)
+    """Stack / deployment identifier."""
 
     start_time: Optional[int] = FieldInfo(alias="startTime", default=None)
+    """Span start time as a Unix epoch in milliseconds."""
 
     status_code: Optional[int] = FieldInfo(alias="statusCode", default=None)
+    """HTTP response status code returned by the Worker."""
 
     trace_duration: Optional[int] = FieldInfo(alias="traceDuration", default=None)
+    """Total duration of the entire trace in milliseconds."""
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
+    """Distributed trace ID linking spans across services."""
 
     transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+    """Logical transaction name for this request."""
 
     trigger: Optional[str] = None
+    """What triggered the invocation (e.g. GET /users, POST /orders, queue message)."""
 
     type: Optional[str] = None
+    """Event type classifier (e.g. cf-worker-event, cf-worker-log)."""
 
     url: Optional[str] = None
+    """Request URL that triggered the Worker invocation."""
 
 
 class InvocationWorkersUnionMember0ScriptVersion(BaseModel):
@@ -802,6 +964,10 @@ class InvocationWorkersUnionMember0(BaseModel):
     script_version: Optional[InvocationWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
+
+    span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+
+    trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
     truncated: Optional[bool] = None
 
@@ -855,6 +1021,10 @@ class InvocationWorkersUnionMember1(BaseModel):
         alias="scriptVersion", default=None
     )
 
+    span_id: Optional[str] = FieldInfo(alias="spanId", default=None)
+
+    trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
+
     truncated: Optional[bool] = None
 
 
@@ -862,67 +1032,126 @@ InvocationWorkers: TypeAlias = Union[InvocationWorkersUnionMember0, InvocationWo
 
 
 class Invocation(BaseModel):
-    """The data structure of a telemetry event"""
+    """
+    A single telemetry event representing a log line, span, or metric data point emitted by a Worker.
+    """
 
     metadata: InvocationMetadata = FieldInfo(alias="$metadata")
+    """Structured metadata extracted from the event.
+
+    These fields are indexed and available for filtering and aggregation.
+    """
 
     dataset: str
+    """The dataset this event belongs to (e.g. cloudflare-workers)."""
 
     source: Union[str, object]
+    """Raw log payload.
+
+    May be a string or a structured object depending on how the log was emitted.
+    """
 
     timestamp: int
+    """Event timestamp as a Unix epoch in milliseconds."""
 
     containers: Optional[object] = FieldInfo(alias="$containers", default=None)
     """
-    Cloudflare Containers event information enriches your logs so you can easily
-    identify and debug issues.
+    Cloudflare Containers event information that enriches your logs for identifying
+    and debugging issues.
     """
 
     workers: Optional[InvocationWorkers] = FieldInfo(alias="$workers", default=None)
     """
-    Cloudflare Workers event information enriches your logs so you can easily
-    identify and debug issues.
+    Cloudflare Workers event information that enriches your logs for identifying and
+    debugging issues.
     """
 
 
 class Trace(BaseModel):
     root_span_name: str = FieldInfo(alias="rootSpanName")
+    """Name of the root span that initiated the trace."""
 
     root_transaction_name: str = FieldInfo(alias="rootTransactionName")
+    """Logical transaction name for the root span."""
 
     service: List[str]
+    """List of Worker services involved in the trace."""
 
     spans: float
+    """Total number of spans in the trace."""
 
     trace_duration_ms: float = FieldInfo(alias="traceDurationMs")
+    """Total duration of the trace in milliseconds."""
 
     trace_end_ms: float = FieldInfo(alias="traceEndMs")
+    """Trace end time as a Unix epoch in milliseconds."""
 
     trace_id: str = FieldInfo(alias="traceId")
+    """Unique identifier for the distributed trace."""
 
     trace_start_ms: float = FieldInfo(alias="traceStartMs")
+    """Trace start time as a Unix epoch in milliseconds."""
 
     errors: Optional[List[str]] = None
+    """Error messages encountered during the trace, if any."""
 
 
 class TelemetryQueryResponse(BaseModel):
+    """Complete results of a query run.
+
+    The populated fields depend on the requested view type (events, calculations, invocations, traces, or agents).
+    """
+
     run: Run
-    """A Workers Observability Query Object"""
+    """
+    The query run metadata including the query definition, execution status, and
+    timeframe.
+    """
 
     statistics: Statistics
-    """
-    The statistics object contains information about query performance from the
-    database, it does not include any network latency
+    """Query performance statistics from the database.
+
+    Includes execution time, rows scanned, and bytes read. Does not include network
+    latency.
     """
 
     agents: Optional[List[Agent]] = None
+    """Durable Object agent summaries.
+
+    Present when the query view is 'agents'. Each entry represents an agent with its
+    event counts and status.
+    """
 
     calculations: Optional[List[Calculation]] = None
+    """Aggregated calculation results.
+
+    Present when the query view is 'calculations'. Contains computed metrics (count,
+    avg, p99, etc.) with optional group-by breakdowns and time-series data.
+    """
 
     compare: Optional[List[Compare]] = None
+    """Comparison calculation results from the previous time period.
+
+    Present when the compare option is enabled. Same structure as calculations.
+    """
 
     events: Optional[Events] = None
+    """Individual event results.
+
+    Present when the query view is 'events'. Contains the matching log lines and
+    their metadata.
+    """
 
     invocations: Optional[Dict[str, List[Invocation]]] = None
+    """Events grouped by invocation (request ID).
+
+    Present when the query view is 'invocations'. Each key is a request ID mapping
+    to all events from that invocation.
+    """
 
     traces: Optional[List[Trace]] = None
+    """Trace summaries matching the query.
+
+    Present when the query view is 'traces'. Each entry represents a distributed
+    trace with its spans, duration, and services involved.
+    """

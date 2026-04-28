@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -19,7 +19,6 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.email_security.investigate import preview_create_params
-from ....types.email_security.investigate.preview_get_response import PreviewGetResponse
 from ....types.email_security.investigate.preview_create_response import PreviewCreateResponse
 
 __all__ = ["PreviewResource", "AsyncPreviewResource"]
@@ -50,7 +49,6 @@ class PreviewResource(SyncAPIResource):
         *,
         account_id: str,
         postfix_id: str,
-        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,16 +57,14 @@ class PreviewResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
         """
-        Generates a preview of an email message for safe viewing without executing any
-        embedded content.
+        Generates a preview image for a message that was not flagged as a detection.
+        Useful for investigating benign messages. Returns a base64-encoded PNG
+        screenshot of the email body.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          postfix_id: The identifier of the message.
-
-          submission: When true, search the submissions datastore only. When false or omitted, search
-              the regular datastore only.
+          postfix_id: The identifier of the message
 
           extra_headers: Send extra headers
 
@@ -88,59 +84,9 @@ class PreviewResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"submission": submission}, preview_create_params.PreviewCreateParams),
                 post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
-        )
-
-    def get(
-        self,
-        postfix_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PreviewGetResponse:
-        """
-        Returns a preview of the message body as a base64 encoded PNG image for
-        non-benign messages.
-
-        Args:
-          account_id: Account Identifier
-
-          postfix_id: The identifier of the message.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not postfix_id:
-            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
-                account_id=account_id,
-                postfix_id=postfix_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PreviewGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
         )
 
 
@@ -169,7 +115,6 @@ class AsyncPreviewResource(AsyncAPIResource):
         *,
         account_id: str,
         postfix_id: str,
-        submission: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,16 +123,14 @@ class AsyncPreviewResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
         """
-        Generates a preview of an email message for safe viewing without executing any
-        embedded content.
+        Generates a preview image for a message that was not flagged as a detection.
+        Useful for investigating benign messages. Returns a base64-encoded PNG
+        screenshot of the email body.
 
         Args:
-          account_id: Account Identifier
+          account_id: Identifier.
 
-          postfix_id: The identifier of the message.
-
-          submission: When true, search the submissions datastore only. When false or omitted, search
-              the regular datastore only.
+          postfix_id: The identifier of the message
 
           extra_headers: Send extra headers
 
@@ -207,61 +150,9 @@ class AsyncPreviewResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"submission": submission}, preview_create_params.PreviewCreateParams
-                ),
                 post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
-        )
-
-    async def get(
-        self,
-        postfix_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PreviewGetResponse:
-        """
-        Returns a preview of the message body as a base64 encoded PNG image for
-        non-benign messages.
-
-        Args:
-          account_id: Account Identifier
-
-          postfix_id: The identifier of the message.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not postfix_id:
-            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
-                account_id=account_id,
-                postfix_id=postfix_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PreviewGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
         )
 
 
@@ -272,9 +163,6 @@ class PreviewResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             preview.create,
         )
-        self.get = to_raw_response_wrapper(
-            preview.get,
-        )
 
 
 class AsyncPreviewResourceWithRawResponse:
@@ -283,9 +171,6 @@ class AsyncPreviewResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             preview.create,
-        )
-        self.get = async_to_raw_response_wrapper(
-            preview.get,
         )
 
 
@@ -296,9 +181,6 @@ class PreviewResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             preview.create,
         )
-        self.get = to_streamed_response_wrapper(
-            preview.get,
-        )
 
 
 class AsyncPreviewResourceWithStreamingResponse:
@@ -307,7 +189,4 @@ class AsyncPreviewResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             preview.create,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            preview.get,
         )

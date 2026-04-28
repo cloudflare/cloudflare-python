@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from cloudflare.types.queues import Queue, QueueDeleteResponse
+from cloudflare.types.queues import Queue, QueueDeleteResponse, QueueGetMetricsResponse
 ```
 
 Methods:
@@ -14,6 +14,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/queue_delete_response.py">QueueDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">edit</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/queue_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}/metrics">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get_metrics</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/queue_get_metrics_response.py">Optional[QueueGetMetricsResponse]</a></code>
 
 ## Messages
 

@@ -92,7 +92,8 @@ class GRETunnelsResource(SyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the GRE tunnel.
 
@@ -199,7 +200,8 @@ class GRETunnelsResource(SyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the GRE tunnel.
 
@@ -554,7 +556,8 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the GRE tunnel.
 
@@ -661,7 +664,8 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the GRE tunnel.
 

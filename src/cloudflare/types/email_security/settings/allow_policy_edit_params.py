@@ -10,31 +10,53 @@ __all__ = ["AllowPolicyEditParams"]
 
 class AllowPolicyEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
+    """Identifier."""
 
     comments: Optional[str]
 
-    is_acceptable_sender: Optional[bool]
+    is_acceptable_sender: bool
     """
     Messages from this sender will be exempted from Spam, Spoof and Bulk
-    dispositions. Note: This will not exempt messages with Malicious or Suspicious
+    dispositions. Note - This will not exempt messages with Malicious or Suspicious
     dispositions.
     """
 
-    is_exempt_recipient: Optional[bool]
-    """Messages to this recipient will bypass all detections."""
+    is_exempt_recipient: bool
+    """Messages to this recipient will bypass all detections"""
 
-    is_regex: Optional[bool]
+    is_recipient: bool
+    """Deprecated as of July 1, 2025.
 
-    is_trusted_sender: Optional[bool]
-    """Messages from this sender will bypass all detections and link following."""
-
-    pattern: Optional[str]
-
-    pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]]
-
-    verify_sender: Optional[bool]
+    Use `is_exempt_recipient` instead. End of life: July 1, 2026.
     """
-    Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
-    policies that pass authentication.
+
+    is_regex: bool
+
+    is_sender: bool
+    """Deprecated as of July 1, 2025.
+
+    Use `is_trusted_sender` instead. End of life: July 1, 2026.
+    """
+
+    is_spoof: bool
+    """Deprecated as of July 1, 2025.
+
+    Use `is_acceptable_sender` instead. End of life: July 1, 2026.
+    """
+
+    is_trusted_sender: bool
+    """Messages from this sender will bypass all detections and link following"""
+
+    pattern: str
+
+    pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
+    """
+    Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
+    creating or updating policies, but may be returned for existing entries.
+    """
+
+    verify_sender: bool
+    """Enforce DMARC, SPF or DKIM authentication.
+
+    When on, Email Security only honors policies that pass authentication.
     """

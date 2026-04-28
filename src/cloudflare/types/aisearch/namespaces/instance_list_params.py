@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InstanceListParams"]
@@ -11,17 +10,20 @@ __all__ = ["InstanceListParams"]
 class InstanceListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    namespace: Optional[str]
+    namespace: str
+    """Filter by namespace."""
 
     order_by: Literal["created_at"]
-    """Order By Column Name"""
+    """Field to order results by."""
 
     order_by_direction: Literal["asc", "desc"]
-    """Order By Direction"""
+    """Order direction."""
 
     page: int
+    """Page number (1-indexed)."""
 
     per_page: int
+    """Number of results per page."""
 
     search: str
-    """Search by id"""
+    """Filter instances whose id contains this string (case-insensitive)."""

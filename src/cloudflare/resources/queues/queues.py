@@ -54,6 +54,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_edit_params, queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
 from ...types.queues.queue_delete_response import QueueDeleteResponse
+from ...types.queues.queue_get_metrics_response import QueueGetMetricsResponse
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
@@ -364,6 +365,52 @@ class QueuesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
+    def get_metrics(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[QueueGetMetricsResponse]:
+        """Return best-effort metrics for a queue.
+
+        Values may be approximate due to the
+        distributed nature of queues.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._get(
+            path_template("/accounts/{account_id}/queues/{queue_id}/metrics", account_id=account_id, queue_id=queue_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[QueueGetMetricsResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[QueueGetMetricsResponse]], ResultWrapper[QueueGetMetricsResponse]),
+        )
+
 
 class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
@@ -671,6 +718,52 @@ class AsyncQueuesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
+    async def get_metrics(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[QueueGetMetricsResponse]:
+        """Return best-effort metrics for a queue.
+
+        Values may be approximate due to the
+        distributed nature of queues.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._get(
+            path_template("/accounts/{account_id}/queues/{queue_id}/metrics", account_id=account_id, queue_id=queue_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[QueueGetMetricsResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[QueueGetMetricsResponse]], ResultWrapper[QueueGetMetricsResponse]),
+        )
+
 
 class QueuesResourceWithRawResponse:
     def __init__(self, queues: QueuesResource) -> None:
@@ -693,6 +786,9 @@ class QueuesResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             queues.get,
+        )
+        self.get_metrics = to_raw_response_wrapper(
+            queues.get_metrics,
         )
 
     @cached_property
@@ -734,6 +830,9 @@ class AsyncQueuesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             queues.get,
         )
+        self.get_metrics = async_to_raw_response_wrapper(
+            queues.get_metrics,
+        )
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
@@ -774,6 +873,9 @@ class QueuesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             queues.get,
         )
+        self.get_metrics = to_streamed_response_wrapper(
+            queues.get_metrics,
+        )
 
     @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
@@ -813,6 +915,9 @@ class AsyncQueuesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             queues.get,
+        )
+        self.get_metrics = async_to_streamed_response_wrapper(
+            queues.get_metrics,
         )
 
     @cached_property

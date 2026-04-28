@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestTrustedDomains:
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -34,24 +34,24 @@ class TestTrustedDomains:
             is_similarity=False,
             pattern="example.com",
         )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
             is_regex=False,
             is_similarity=False,
             pattern="example.com",
-            comments=None,
+            comments="Trusted partner domain",
         )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_security.settings.trusted_domains.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -63,11 +63,11 @@ class TestTrustedDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = response.parse()
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.email_security.settings.trusted_domains.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -79,13 +79,13 @@ class TestTrustedDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = response.parse()
-            assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.trusted_domains.with_raw_response.create(
                 account_id="",
@@ -93,80 +93,6 @@ class TestTrustedDomains:
                 is_regex=False,
                 is_similarity=False,
                 pattern="example.com",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    def test_method_create_overload_2(self, client: Cloudflare) -> None:
-        trusted_domain = client.email_security.settings.trusted_domains.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-        response = client.email_security.settings.trusted_domains.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        trusted_domain = response.parse()
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
-        with client.email_security.settings.trusted_domains.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            trusted_domain = response.parse()
-            assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.trusted_domains.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    }
-                ],
             )
 
     @parametrize
@@ -186,7 +112,7 @@ class TestTrustedDomains:
             order="pattern",
             page=1,
             pattern="pattern",
-            per_page=1,
+            per_page=20,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[TrustedDomainListResponse], trusted_domain, path=["response"])
@@ -225,34 +151,34 @@ class TestTrustedDomains:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.email_security.settings.trusted_domains.with_raw_response.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = response.parse()
-        assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.email_security.settings.trusted_domains.with_streaming_response.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = response.parse()
-            assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -260,54 +186,60 @@ class TestTrustedDomains:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.trusted_domains.with_raw_response.delete(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            client.email_security.settings.trusted_domains.with_raw_response.delete(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comments="comments",
+            comments="Trusted partner domain",
             is_recent=True,
-            is_regex=True,
-            is_similarity=True,
-            pattern="x",
+            is_regex=False,
+            is_similarity=False,
+            pattern="example.com",
         )
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.email_security.settings.trusted_domains.with_raw_response.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = response.parse()
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.email_security.settings.trusted_domains.with_streaming_response.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = response.parse()
-            assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -315,41 +247,47 @@ class TestTrustedDomains:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.trusted_domains.with_raw_response.edit(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            client.email_security.settings.trusted_domains.with_raw_response.edit(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         trusted_domain = client.email_security.settings.trusted_domains.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.email_security.settings.trusted_domains.with_raw_response.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = response.parse()
-        assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.email_security.settings.trusted_domains.with_streaming_response.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = response.parse()
-            assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,8 +295,14 @@ class TestTrustedDomains:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.trusted_domains.with_raw_response.get(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            client.email_security.settings.trusted_domains.with_raw_response.get(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -369,7 +313,7 @@ class TestAsyncTrustedDomains:
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -377,24 +321,24 @@ class TestAsyncTrustedDomains:
             is_similarity=False,
             pattern="example.com",
         )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
             is_regex=False,
             is_similarity=False,
             pattern="example.com",
-            comments=None,
+            comments="Trusted partner domain",
         )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.trusted_domains.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -406,11 +350,11 @@ class TestAsyncTrustedDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = await response.parse()
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.trusted_domains.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             is_recent=True,
@@ -422,13 +366,13 @@ class TestAsyncTrustedDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = await response.parse()
-            assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainCreateResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.trusted_domains.with_raw_response.create(
                 account_id="",
@@ -436,80 +380,6 @@ class TestAsyncTrustedDomains:
                 is_regex=False,
                 is_similarity=False,
                 pattern="example.com",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        trusted_domain = await async_client.email_security.settings.trusted_domains.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        )
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.email_security.settings.trusted_domains.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        trusted_domain = await response.parse()
-        assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.email_security.settings.trusted_domains.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                }
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            trusted_domain = await response.parse()
-            assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
-    @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.trusted_domains.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    }
-                ],
             )
 
     @parametrize
@@ -529,7 +399,7 @@ class TestAsyncTrustedDomains:
             order="pattern",
             page=1,
             pattern="pattern",
-            per_page=1,
+            per_page=20,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[TrustedDomainListResponse], trusted_domain, path=["response"])
@@ -570,34 +440,34 @@ class TestAsyncTrustedDomains:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.trusted_domains.with_raw_response.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = await response.parse()
-        assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.trusted_domains.with_streaming_response.delete(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = await response.parse()
-            assert_matches_type(TrustedDomainDeleteResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainDeleteResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -605,54 +475,60 @@ class TestAsyncTrustedDomains:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.trusted_domains.with_raw_response.delete(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            await async_client.email_security.settings.trusted_domains.with_raw_response.delete(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comments="comments",
+            comments="Trusted partner domain",
             is_recent=True,
-            is_regex=True,
-            is_similarity=True,
-            pattern="x",
+            is_regex=False,
+            is_similarity=False,
+            pattern="example.com",
         )
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.trusted_domains.with_raw_response.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = await response.parse()
-        assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.trusted_domains.with_streaming_response.edit(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = await response.parse()
-            assert_matches_type(TrustedDomainEditResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainEditResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -660,41 +536,47 @@ class TestAsyncTrustedDomains:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.trusted_domains.with_raw_response.edit(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            await async_client.email_security.settings.trusted_domains.with_raw_response.edit(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         trusted_domain = await async_client.email_security.settings.trusted_domains.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.trusted_domains.with_raw_response.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trusted_domain = await response.parse()
-        assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+        assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.trusted_domains.with_streaming_response.get(
-            trusted_domain_id=2401,
+            trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trusted_domain = await response.parse()
-            assert_matches_type(TrustedDomainGetResponse, trusted_domain, path=["response"])
+            assert_matches_type(Optional[TrustedDomainGetResponse], trusted_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -702,6 +584,12 @@ class TestAsyncTrustedDomains:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.trusted_domains.with_raw_response.get(
-                trusted_domain_id=2401,
+                trusted_domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `trusted_domain_id` but received ''"):
+            await async_client.email_security.settings.trusted_domains.with_raw_response.get(
+                trusted_domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
