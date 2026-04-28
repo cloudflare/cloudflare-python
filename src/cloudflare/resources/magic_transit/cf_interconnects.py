@@ -81,7 +81,8 @@ class CfInterconnectsResource(SyncAPIResource):
           cf_interconnect_id: Identifier
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the interconnect.
 
@@ -370,7 +371,8 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           cf_interconnect_id: Identifier
 
           automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
+              otherwise. Requires the `coupler_integration` account flag to be enabled;
+              requests setting this to `true` without that flag will be rejected.
 
           description: An optional description of the interconnect.
 
