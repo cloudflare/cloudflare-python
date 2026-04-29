@@ -173,6 +173,14 @@ class TestConnectors:
         assert_matches_type(SyncSinglePage[ConnectorListResponse], connector, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        connector = client.magic_transit.connectors.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            device_type="MANAGED",
+        )
+        assert_matches_type(SyncSinglePage[ConnectorListResponse], connector, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -513,6 +521,14 @@ class TestAsyncConnectors:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[ConnectorListResponse], connector, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        connector = await async_client.magic_transit.connectors.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            device_type="MANAGED",
         )
         assert_matches_type(AsyncSinglePage[ConnectorListResponse], connector, path=["response"])
 

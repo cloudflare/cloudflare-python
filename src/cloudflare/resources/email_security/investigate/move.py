@@ -18,8 +18,9 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security.investigate import move_bulk_params
+from ....types.email_security.investigate import move_bulk_params, move_create_params
 from ....types.email_security.investigate.move_bulk_response import MoveBulkResponse
+from ....types.email_security.investigate.move_create_response import MoveCreateResponse
 
 __all__ = ["MoveResource", "AsyncMoveResource"]
 
@@ -43,6 +44,58 @@ class MoveResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return MoveResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        investigate_id: str,
+        *,
+        account_id: str,
+        destination: Literal[
+            "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
+        ],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[MoveCreateResponse]:
+        """
+        Moves a single message to a specified mailbox folder (Inbox, JunkEmail,
+        DeletedItems, RecoverableItemsDeletions, or RecoverableItemsPurges). Requires
+        active integration.
+
+        Args:
+          account_id: Identifier.
+
+          investigate_id: Unique identifier for a message retrieved from investigation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not investigate_id:
+            raise ValueError(f"Expected a non-empty value for `investigate_id` but received {investigate_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{investigate_id}/move",
+                account_id=account_id,
+                investigate_id=investigate_id,
+            ),
+            page=SyncSinglePage[MoveCreateResponse],
+            body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=MoveCreateResponse,
+            method="post",
+        )
 
     def bulk(
         self,
@@ -122,6 +175,58 @@ class AsyncMoveResource(AsyncAPIResource):
         """
         return AsyncMoveResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        investigate_id: str,
+        *,
+        account_id: str,
+        destination: Literal[
+            "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
+        ],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[MoveCreateResponse, AsyncSinglePage[MoveCreateResponse]]:
+        """
+        Moves a single message to a specified mailbox folder (Inbox, JunkEmail,
+        DeletedItems, RecoverableItemsDeletions, or RecoverableItemsPurges). Requires
+        active integration.
+
+        Args:
+          account_id: Identifier.
+
+          investigate_id: Unique identifier for a message retrieved from investigation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not investigate_id:
+            raise ValueError(f"Expected a non-empty value for `investigate_id` but received {investigate_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{investigate_id}/move",
+                account_id=account_id,
+                investigate_id=investigate_id,
+            ),
+            page=AsyncSinglePage[MoveCreateResponse],
+            body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=MoveCreateResponse,
+            method="post",
+        )
+
     def bulk(
         self,
         *,
@@ -184,6 +289,9 @@ class MoveResourceWithRawResponse:
     def __init__(self, move: MoveResource) -> None:
         self._move = move
 
+        self.create = to_raw_response_wrapper(
+            move.create,
+        )
         self.bulk = to_raw_response_wrapper(
             move.bulk,
         )
@@ -193,6 +301,9 @@ class AsyncMoveResourceWithRawResponse:
     def __init__(self, move: AsyncMoveResource) -> None:
         self._move = move
 
+        self.create = async_to_raw_response_wrapper(
+            move.create,
+        )
         self.bulk = async_to_raw_response_wrapper(
             move.bulk,
         )
@@ -202,6 +313,9 @@ class MoveResourceWithStreamingResponse:
     def __init__(self, move: MoveResource) -> None:
         self._move = move
 
+        self.create = to_streamed_response_wrapper(
+            move.create,
+        )
         self.bulk = to_streamed_response_wrapper(
             move.bulk,
         )
@@ -211,6 +325,9 @@ class AsyncMoveResourceWithStreamingResponse:
     def __init__(self, move: AsyncMoveResource) -> None:
         self._move = move
 
+        self.create = async_to_streamed_response_wrapper(
+            move.create,
+        )
         self.bulk = async_to_streamed_response_wrapper(
             move.bulk,
         )

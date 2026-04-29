@@ -19,6 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.email_security.investigate import preview_create_params
+from ....types.email_security.investigate.preview_get_response import PreviewGetResponse
 from ....types.email_security.investigate.preview_create_response import PreviewCreateResponse
 
 __all__ = ["PreviewResource", "AsyncPreviewResource"]
@@ -89,6 +90,55 @@ class PreviewResource(SyncAPIResource):
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )
 
+    def get(
+        self,
+        investigate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PreviewGetResponse:
+        """
+        Returns a preview of the message body as a base64 encoded PNG image for
+        non-benign messages.
+
+        Args:
+          account_id: Identifier.
+
+          investigate_id: Unique identifier for a message retrieved from investigation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not investigate_id:
+            raise ValueError(f"Expected a non-empty value for `investigate_id` but received {investigate_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{investigate_id}/preview",
+                account_id=account_id,
+                investigate_id=investigate_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PreviewGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
+        )
+
 
 class AsyncPreviewResource(AsyncAPIResource):
     @cached_property
@@ -155,6 +205,55 @@ class AsyncPreviewResource(AsyncAPIResource):
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )
 
+    async def get(
+        self,
+        investigate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PreviewGetResponse:
+        """
+        Returns a preview of the message body as a base64 encoded PNG image for
+        non-benign messages.
+
+        Args:
+          account_id: Identifier.
+
+          investigate_id: Unique identifier for a message retrieved from investigation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not investigate_id:
+            raise ValueError(f"Expected a non-empty value for `investigate_id` but received {investigate_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/email-security/investigate/{investigate_id}/preview",
+                account_id=account_id,
+                investigate_id=investigate_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PreviewGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
+        )
+
 
 class PreviewResourceWithRawResponse:
     def __init__(self, preview: PreviewResource) -> None:
@@ -162,6 +261,9 @@ class PreviewResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             preview.create,
+        )
+        self.get = to_raw_response_wrapper(
+            preview.get,
         )
 
 
@@ -172,6 +274,9 @@ class AsyncPreviewResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             preview.create,
         )
+        self.get = async_to_raw_response_wrapper(
+            preview.get,
+        )
 
 
 class PreviewResourceWithStreamingResponse:
@@ -181,6 +286,9 @@ class PreviewResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             preview.create,
         )
+        self.get = to_streamed_response_wrapper(
+            preview.get,
+        )
 
 
 class AsyncPreviewResourceWithStreamingResponse:
@@ -189,4 +297,7 @@ class AsyncPreviewResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             preview.create,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            preview.get,
         )

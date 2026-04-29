@@ -36,7 +36,12 @@ from .snapshots.snapshots import (
     SnapshotsResourceWithStreamingResponse,
     AsyncSnapshotsResourceWithStreamingResponse,
 )
-from ....types.magic_transit import connector_edit_params, connector_create_params, connector_update_params
+from ....types.magic_transit import (
+    connector_edit_params,
+    connector_list_params,
+    connector_create_params,
+    connector_update_params,
+)
 from ....types.magic_transit.connector_get_response import ConnectorGetResponse
 from ....types.magic_transit.connector_edit_response import ConnectorEditResponse
 from ....types.magic_transit.connector_list_response import ConnectorListResponse
@@ -224,6 +229,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        device_type: Literal["MANAGED", "LICENSED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,6 +242,8 @@ class ConnectorsResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          device_type: Filter connectors by device type.
 
           extra_headers: Send extra headers
 
@@ -251,7 +259,11 @@ class ConnectorsResource(SyncAPIResource):
             path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=SyncSinglePage[ConnectorListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"device_type": device_type}, connector_list_params.ConnectorListParams),
             ),
             model=ConnectorListResponse,
         )
@@ -602,6 +614,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        device_type: Literal["MANAGED", "LICENSED"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -614,6 +627,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier
+
+          device_type: Filter connectors by device type.
 
           extra_headers: Send extra headers
 
@@ -629,7 +644,11 @@ class AsyncConnectorsResource(AsyncAPIResource):
             path_template("/accounts/{account_id}/magic/connectors", account_id=account_id),
             page=AsyncSinglePage[ConnectorListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"device_type": device_type}, connector_list_params.ConnectorListParams),
             ),
             model=ConnectorListResponse,
         )

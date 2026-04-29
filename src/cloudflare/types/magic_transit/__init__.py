@@ -37,6 +37,7 @@ from .site_location_param import SiteLocationParam as SiteLocationParam
 from .pcap_create_response import PCAPCreateResponse as PCAPCreateResponse
 from .route_empty_response import RouteEmptyResponse as RouteEmptyResponse
 from .connector_edit_params import ConnectorEditParams as ConnectorEditParams
+from .connector_list_params import ConnectorListParams as ConnectorListParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse
 from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .route_update_response import RouteUpdateResponse as RouteUpdateResponse

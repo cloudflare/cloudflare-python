@@ -13,6 +13,8 @@ class Device(BaseModel):
 
     serial_number: Optional[str] = None
 
+    type: Optional[Literal["MANAGED", "LICENSED"]] = None
+
 
 class ConnectorCreateResponse(BaseModel):
     id: str
