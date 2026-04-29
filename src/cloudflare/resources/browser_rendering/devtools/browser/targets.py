@@ -18,6 +18,7 @@ from ....._base_client import make_request_options
 from .....types.browser_rendering.devtools.browser import target_create_params
 from .....types.browser_rendering.devtools.browser.target_get_response import TargetGetResponse
 from .....types.browser_rendering.devtools.browser.target_list_response import TargetListResponse
+from .....types.browser_rendering.devtools.browser.target_close_response import TargetCloseResponse
 from .....types.browser_rendering.devtools.browser.target_create_response import TargetCreateResponse
 from .....types.browser_rendering.devtools.browser.target_activate_response import TargetActivateResponse
 
@@ -187,6 +188,58 @@ class TargetsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TargetActivateResponse,
+        )
+
+    def close(
+        self,
+        target_id: str,
+        *,
+        account_id: str,
+        session_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TargetCloseResponse:
+        """Closes a specific browser target (tab, page, etc.) by its ID.
+
+        Returns 'Target is
+        closing' on success or an error if the target is not found.
+
+        Args:
+          account_id: Account ID.
+
+          session_id: Browser session ID.
+
+          target_id: Target ID to close.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not session_id:
+            raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
+        if not target_id:
+            raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/close/{target_id}",
+                account_id=account_id,
+                session_id=session_id,
+                target_id=target_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TargetCloseResponse,
         )
 
     def get(
@@ -405,6 +458,58 @@ class AsyncTargetsResource(AsyncAPIResource):
             cast_to=TargetActivateResponse,
         )
 
+    async def close(
+        self,
+        target_id: str,
+        *,
+        account_id: str,
+        session_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TargetCloseResponse:
+        """Closes a specific browser target (tab, page, etc.) by its ID.
+
+        Returns 'Target is
+        closing' on success or an error if the target is not found.
+
+        Args:
+          account_id: Account ID.
+
+          session_id: Browser session ID.
+
+          target_id: Target ID to close.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not session_id:
+            raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
+        if not target_id:
+            raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/close/{target_id}",
+                account_id=account_id,
+                session_id=session_id,
+                target_id=target_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TargetCloseResponse,
+        )
+
     async def get(
         self,
         target_id: str,
@@ -469,6 +574,9 @@ class TargetsResourceWithRawResponse:
         self.activate = to_raw_response_wrapper(
             targets.activate,
         )
+        self.close = to_raw_response_wrapper(
+            targets.close,
+        )
         self.get = to_raw_response_wrapper(
             targets.get,
         )
@@ -486,6 +594,9 @@ class AsyncTargetsResourceWithRawResponse:
         )
         self.activate = async_to_raw_response_wrapper(
             targets.activate,
+        )
+        self.close = async_to_raw_response_wrapper(
+            targets.close,
         )
         self.get = async_to_raw_response_wrapper(
             targets.get,
@@ -505,6 +616,9 @@ class TargetsResourceWithStreamingResponse:
         self.activate = to_streamed_response_wrapper(
             targets.activate,
         )
+        self.close = to_streamed_response_wrapper(
+            targets.close,
+        )
         self.get = to_streamed_response_wrapper(
             targets.get,
         )
@@ -522,6 +636,9 @@ class AsyncTargetsResourceWithStreamingResponse:
         )
         self.activate = async_to_streamed_response_wrapper(
             targets.activate,
+        )
+        self.close = async_to_streamed_response_wrapper(
+            targets.close,
         )
         self.get = async_to_streamed_response_wrapper(
             targets.get,

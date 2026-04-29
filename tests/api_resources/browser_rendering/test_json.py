@@ -30,7 +30,7 @@ class TestJson:
         json = client.browser_rendering.json.create(
             account_id="account_id",
             html="<h1>Hello World!</h1>",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -159,7 +159,7 @@ class TestJson:
         json = client.browser_rendering.json.create(
             account_id="account_id",
             url="https://example.com/",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -294,7 +294,7 @@ class TestAsyncJson:
         json = await async_client.browser_rendering.json.create(
             account_id="account_id",
             html="<h1>Hello World!</h1>",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -423,7 +423,7 @@ class TestAsyncJson:
         json = await async_client.browser_rendering.json.create(
             account_id="account_id",
             url="https://example.com/",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {

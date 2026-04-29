@@ -32,7 +32,7 @@ class TestScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             html="<h1>Hello World!</h1>",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -155,7 +155,7 @@ class TestScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             url="https://example.com/",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -284,7 +284,7 @@ class TestAsyncScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             html="<h1>Hello World!</h1>",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -407,7 +407,7 @@ class TestAsyncScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             url="https://example.com/",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {

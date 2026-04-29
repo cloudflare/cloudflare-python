@@ -5,5 +5,6 @@ from __future__ import annotations
 from .target_get_response import TargetGetResponse as TargetGetResponse
 from .target_create_params import TargetCreateParams as TargetCreateParams
 from .target_list_response import TargetListResponse as TargetListResponse
+from .target_close_response import TargetCloseResponse as TargetCloseResponse
 from .target_create_response import TargetCreateResponse as TargetCreateResponse
 from .target_activate_response import TargetActivateResponse as TargetActivateResponse

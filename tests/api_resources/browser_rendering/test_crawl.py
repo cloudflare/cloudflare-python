@@ -33,7 +33,7 @@ class TestCrawl:
         crawl = client.browser_rendering.crawl.create(
             account_id="account_id",
             url="https://example.com",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -179,7 +179,7 @@ class TestCrawl:
             account_id="account_id",
             render=False,
             url="https://example.com",
-            cache_ttl=86400,
+            cache_ttl=0,
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],
@@ -307,7 +307,7 @@ class TestCrawl:
         crawl = client.browser_rendering.crawl.get(
             job_id="x",
             account_id="account_id",
-            cache_ttl=86400,
+            cache_ttl=0,
             cursor=0,
             limit=0,
             status="queued",
@@ -373,7 +373,7 @@ class TestAsyncCrawl:
         crawl = await async_client.browser_rendering.crawl.create(
             account_id="account_id",
             url="https://example.com",
-            cache_ttl=86400,
+            cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
                 {
@@ -519,7 +519,7 @@ class TestAsyncCrawl:
             account_id="account_id",
             render=False,
             url="https://example.com",
-            cache_ttl=86400,
+            cache_ttl=0,
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],
@@ -647,7 +647,7 @@ class TestAsyncCrawl:
         crawl = await async_client.browser_rendering.crawl.get(
             job_id="x",
             account_id="account_id",
-            cache_ttl=86400,
+            cache_ttl=0,
             cursor=0,
             limit=0,
             status="queued",

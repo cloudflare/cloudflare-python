@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.types.browser_rendering.devtools.browser import (
     TargetGetResponse,
     TargetListResponse,
+    TargetCloseResponse,
     TargetCreateResponse,
     TargetActivateResponse,
 )
@@ -182,6 +183,66 @@ class TestTargets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `target_id` but received ''"):
             client.browser_rendering.devtools.browser.targets.with_raw_response.activate(
+                target_id="",
+                account_id="account_id",
+                session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @parametrize
+    def test_method_close(self, client: Cloudflare) -> None:
+        target = client.browser_rendering.devtools.browser.targets.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+    @parametrize
+    def test_raw_response_close(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = response.parse()
+        assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+    @parametrize
+    def test_streaming_response_close(self, client: Cloudflare) -> None:
+        with client.browser_rendering.devtools.browser.targets.with_streaming_response.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = response.parse()
+            assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_close(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+                target_id="target_id",
+                account_id="",
+                session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `session_id` but received ''"):
+            client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+                target_id="target_id",
+                account_id="account_id",
+                session_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `target_id` but received ''"):
+            client.browser_rendering.devtools.browser.targets.with_raw_response.close(
                 target_id="",
                 account_id="account_id",
                 session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -413,6 +474,66 @@ class TestAsyncTargets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `target_id` but received ''"):
             await async_client.browser_rendering.devtools.browser.targets.with_raw_response.activate(
+                target_id="",
+                account_id="account_id",
+                session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @parametrize
+    async def test_method_close(self, async_client: AsyncCloudflare) -> None:
+        target = await async_client.browser_rendering.devtools.browser.targets.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+    @parametrize
+    async def test_raw_response_close(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        target = await response.parse()
+        assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_close(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.devtools.browser.targets.with_streaming_response.close(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            target = await response.parse()
+            assert_matches_type(TargetCloseResponse, target, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_close(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+                target_id="target_id",
+                account_id="",
+                session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `session_id` but received ''"):
+            await async_client.browser_rendering.devtools.browser.targets.with_raw_response.close(
+                target_id="target_id",
+                account_id="account_id",
+                session_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `target_id` but received ''"):
+            await async_client.browser_rendering.devtools.browser.targets.with_raw_response.close(
                 target_id="",
                 account_id="account_id",
                 session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
