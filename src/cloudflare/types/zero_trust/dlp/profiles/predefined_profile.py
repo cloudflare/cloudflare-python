@@ -14,6 +14,8 @@ __all__ = [
     "EntryPredefinedEntry",
     "EntryPredefinedEntryConfidence",
     "EntryPredefinedEntryVariant",
+    "EntryPredefinedEntryVariantUnionMember0",
+    "EntryPredefinedEntryVariantUnionMember1",
     "EntryIntegrationEntry",
     "EntryExactDataEntry",
     "EntryDocumentFingerprintEntry",
@@ -52,12 +54,32 @@ class EntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class EntryPredefinedEntryVariant(BaseModel):
+class EntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class EntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+EntryPredefinedEntryVariant: TypeAlias = Union[
+    EntryPredefinedEntryVariantUnionMember0, EntryPredefinedEntryVariantUnionMember1
+]
 
 
 class EntryPredefinedEntry(BaseModel):
@@ -74,6 +96,7 @@ class EntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[EntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class EntryIntegrationEntry(BaseModel):

@@ -13,6 +13,8 @@ __all__ = [
     "UnionMember1",
     "UnionMember1Confidence",
     "UnionMember1Variant",
+    "UnionMember1VariantUnionMember0",
+    "UnionMember1VariantUnionMember1",
     "UnionMember2",
     "UnionMember3",
     "UnionMember4",
@@ -53,12 +55,30 @@ class UnionMember1Confidence(BaseModel):
     """
 
 
-class UnionMember1Variant(BaseModel):
+class UnionMember1VariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class UnionMember1VariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+UnionMember1Variant: TypeAlias = Union[UnionMember1VariantUnionMember0, UnionMember1VariantUnionMember1]
 
 
 class UnionMember1(BaseModel):
@@ -77,6 +97,7 @@ class UnionMember1(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
     variant: Optional[UnionMember1Variant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class UnionMember2(BaseModel):

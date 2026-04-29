@@ -16,6 +16,8 @@ __all__ = [
     "CustomProfileEntryPredefinedEntry",
     "CustomProfileEntryPredefinedEntryConfidence",
     "CustomProfileEntryPredefinedEntryVariant",
+    "CustomProfileEntryPredefinedEntryVariantUnionMember0",
+    "CustomProfileEntryPredefinedEntryVariantUnionMember1",
     "CustomProfileEntryIntegrationEntry",
     "CustomProfileEntryExactDataEntry",
     "CustomProfileEntryDocumentFingerprintEntry",
@@ -26,6 +28,8 @@ __all__ = [
     "CustomProfileSharedEntryPredefinedEntry",
     "CustomProfileSharedEntryPredefinedEntryConfidence",
     "CustomProfileSharedEntryPredefinedEntryVariant",
+    "CustomProfileSharedEntryPredefinedEntryVariantUnionMember0",
+    "CustomProfileSharedEntryPredefinedEntryVariantUnionMember1",
     "CustomProfileSharedEntryIntegrationEntry",
     "CustomProfileSharedEntryExactDataEntry",
     "CustomProfileSharedEntryDocumentFingerprintEntry",
@@ -36,6 +40,8 @@ __all__ = [
     "PredefinedProfileEntryPredefinedEntry",
     "PredefinedProfileEntryPredefinedEntryConfidence",
     "PredefinedProfileEntryPredefinedEntryVariant",
+    "PredefinedProfileEntryPredefinedEntryVariantUnionMember0",
+    "PredefinedProfileEntryPredefinedEntryVariantUnionMember1",
     "PredefinedProfileEntryIntegrationEntry",
     "PredefinedProfileEntryExactDataEntry",
     "PredefinedProfileEntryDocumentFingerprintEntry",
@@ -46,6 +52,8 @@ __all__ = [
     "IntegrationProfileEntryPredefinedEntry",
     "IntegrationProfileEntryPredefinedEntryConfidence",
     "IntegrationProfileEntryPredefinedEntryVariant",
+    "IntegrationProfileEntryPredefinedEntryVariantUnionMember0",
+    "IntegrationProfileEntryPredefinedEntryVariantUnionMember1",
     "IntegrationProfileEntryIntegrationEntry",
     "IntegrationProfileEntryExactDataEntry",
     "IntegrationProfileEntryDocumentFingerprintEntry",
@@ -55,6 +63,8 @@ __all__ = [
     "IntegrationProfileSharedEntryPredefinedEntry",
     "IntegrationProfileSharedEntryPredefinedEntryConfidence",
     "IntegrationProfileSharedEntryPredefinedEntryVariant",
+    "IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember0",
+    "IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember1",
     "IntegrationProfileSharedEntryIntegrationEntry",
     "IntegrationProfileSharedEntryExactDataEntry",
     "IntegrationProfileSharedEntryDocumentFingerprintEntry",
@@ -93,12 +103,32 @@ class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class CustomProfileEntryPredefinedEntryVariant(BaseModel):
+class CustomProfileEntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class CustomProfileEntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+CustomProfileEntryPredefinedEntryVariant: TypeAlias = Union[
+    CustomProfileEntryPredefinedEntryVariantUnionMember0, CustomProfileEntryPredefinedEntryVariantUnionMember1
+]
 
 
 class CustomProfileEntryPredefinedEntry(BaseModel):
@@ -115,6 +145,7 @@ class CustomProfileEntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[CustomProfileEntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class CustomProfileEntryIntegrationEntry(BaseModel):
@@ -238,12 +269,33 @@ class CustomProfileSharedEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class CustomProfileSharedEntryPredefinedEntryVariant(BaseModel):
+class CustomProfileSharedEntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class CustomProfileSharedEntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+CustomProfileSharedEntryPredefinedEntryVariant: TypeAlias = Union[
+    CustomProfileSharedEntryPredefinedEntryVariantUnionMember0,
+    CustomProfileSharedEntryPredefinedEntryVariantUnionMember1,
+]
 
 
 class CustomProfileSharedEntryPredefinedEntry(BaseModel):
@@ -260,6 +312,7 @@ class CustomProfileSharedEntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[CustomProfileSharedEntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class CustomProfileSharedEntryIntegrationEntry(BaseModel):
@@ -420,12 +473,32 @@ class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class PredefinedProfileEntryPredefinedEntryVariant(BaseModel):
+class PredefinedProfileEntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class PredefinedProfileEntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+PredefinedProfileEntryPredefinedEntryVariant: TypeAlias = Union[
+    PredefinedProfileEntryPredefinedEntryVariantUnionMember0, PredefinedProfileEntryPredefinedEntryVariantUnionMember1
+]
 
 
 class PredefinedProfileEntryPredefinedEntry(BaseModel):
@@ -442,6 +515,7 @@ class PredefinedProfileEntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[PredefinedProfileEntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class PredefinedProfileEntryIntegrationEntry(BaseModel):
@@ -584,12 +658,32 @@ class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class IntegrationProfileEntryPredefinedEntryVariant(BaseModel):
+class IntegrationProfileEntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class IntegrationProfileEntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+IntegrationProfileEntryPredefinedEntryVariant: TypeAlias = Union[
+    IntegrationProfileEntryPredefinedEntryVariantUnionMember0, IntegrationProfileEntryPredefinedEntryVariantUnionMember1
+]
 
 
 class IntegrationProfileEntryPredefinedEntry(BaseModel):
@@ -606,6 +700,7 @@ class IntegrationProfileEntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[IntegrationProfileEntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class IntegrationProfileEntryIntegrationEntry(BaseModel):
@@ -719,12 +814,33 @@ class IntegrationProfileSharedEntryPredefinedEntryConfidence(BaseModel):
     """
 
 
-class IntegrationProfileSharedEntryPredefinedEntryVariant(BaseModel):
+class IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember0(BaseModel):
+    """A Predefined AI prompt classification topic entry."""
+
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
 
     description: Optional[str] = None
+    """
+    A customer-facing explanation of what this predefined AI prompt topic
+    represents.
+    """
+
+
+class IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember1(BaseModel):
+    """A general predefined entry."""
+
+    type: Literal["General"]
+
+    description: Optional[str] = None
+    """A customer-facing explanation of what this predefined entry represents."""
+
+
+IntegrationProfileSharedEntryPredefinedEntryVariant: TypeAlias = Union[
+    IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember0,
+    IntegrationProfileSharedEntryPredefinedEntryVariantUnionMember1,
+]
 
 
 class IntegrationProfileSharedEntryPredefinedEntry(BaseModel):
@@ -741,6 +857,7 @@ class IntegrationProfileSharedEntryPredefinedEntry(BaseModel):
     profile_id: Optional[str] = None
 
     variant: Optional[IntegrationProfileSharedEntryPredefinedEntryVariant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class IntegrationProfileSharedEntryIntegrationEntry(BaseModel):
