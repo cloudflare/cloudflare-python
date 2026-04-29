@@ -354,6 +354,7 @@ class OperationsResource(SyncAPIResource):
         *,
         zone_id: str,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,6 +374,10 @@ class OperationsResource(SyncAPIResource):
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description
               for more details on the specific meaning.
+
+          with_schemas: When true, includes OpenAPI schemas (both uploaded and learned) for the
+              operation in the response. Due to the conversion overhead, this parameter is
+              only supported on single-operation retrieval.
 
           extra_headers: Send extra headers
 
@@ -395,7 +400,13 @@ class OperationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
+                query=maybe_transform(
+                    {
+                        "feature": feature,
+                        "with_schemas": with_schemas,
+                    },
+                    operation_get_params.OperationGetParams,
+                ),
                 post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),
@@ -704,6 +715,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         *,
         zone_id: str,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -723,6 +735,10 @@ class AsyncOperationsResource(AsyncAPIResource):
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description
               for more details on the specific meaning.
+
+          with_schemas: When true, includes OpenAPI schemas (both uploaded and learned) for the
+              operation in the response. Due to the conversion overhead, this parameter is
+              only supported on single-operation retrieval.
 
           extra_headers: Send extra headers
 
@@ -745,7 +761,13 @@ class AsyncOperationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
+                query=await async_maybe_transform(
+                    {
+                        "feature": feature,
+                        "with_schemas": with_schemas,
+                    },
+                    operation_get_params.OperationGetParams,
+                ),
                 post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),

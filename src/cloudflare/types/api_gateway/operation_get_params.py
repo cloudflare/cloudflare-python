@@ -19,3 +19,10 @@ class OperationGetParams(TypedDict, total=False):
     Have a look at the top-level object description for more details on the specific
     meaning.
     """
+
+    with_schemas: bool
+    """
+    When true, includes OpenAPI schemas (both uploaded and learned) for the
+    operation in the response. Due to the conversion overhead, this parameter is
+    only supported on single-operation retrieval.
+    """

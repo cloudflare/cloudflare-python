@@ -69,6 +69,10 @@ class TestCustom:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
             tunnel_protocol="wireguard",
+            virtual_networks={
+                "allowed": ["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
+                "default": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            },
         )
         assert_matches_type(Optional[SettingsPolicy], custom, path=["response"])
 
@@ -251,6 +255,10 @@ class TestCustom:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
             tunnel_protocol="wireguard",
+            virtual_networks={
+                "allowed": ["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
+                "default": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            },
         )
         assert_matches_type(Optional[SettingsPolicy], custom, path=["response"])
 
@@ -406,6 +414,10 @@ class TestAsyncCustom:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
             tunnel_protocol="wireguard",
+            virtual_networks={
+                "allowed": ["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
+                "default": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            },
         )
         assert_matches_type(Optional[SettingsPolicy], custom, path=["response"])
 
@@ -588,6 +600,10 @@ class TestAsyncCustom:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
             tunnel_protocol="wireguard",
+            virtual_networks={
+                "allowed": ["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
+                "default": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            },
         )
         assert_matches_type(Optional[SettingsPolicy], custom, path=["response"])
 

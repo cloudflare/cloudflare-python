@@ -109,6 +109,7 @@ class CustomResource(SyncAPIResource):
         support_url: str | Omit = omit,
         switch_locked: bool | Omit = omit,
         tunnel_protocol: str | Omit = omit,
+        virtual_networks: Optional[custom_create_params.VirtualNetworks] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,6 +179,8 @@ class CustomResource(SyncAPIResource):
 
           tunnel_protocol: Determines which tunnel protocol to use.
 
+          virtual_networks: Virtual network access settings for the device.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -214,6 +217,7 @@ class CustomResource(SyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                     "tunnel_protocol": tunnel_protocol,
+                    "virtual_networks": virtual_networks,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -329,6 +333,7 @@ class CustomResource(SyncAPIResource):
         support_url: str | Omit = omit,
         switch_locked: bool | Omit = omit,
         tunnel_protocol: str | Omit = omit,
+        virtual_networks: Optional[custom_edit_params.VirtualNetworks] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,6 +402,8 @@ class CustomResource(SyncAPIResource):
 
           tunnel_protocol: Determines which tunnel protocol to use.
 
+          virtual_networks: Virtual network access settings for the device.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -437,6 +444,7 @@ class CustomResource(SyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                     "tunnel_protocol": tunnel_protocol,
+                    "virtual_networks": virtual_networks,
                 },
                 custom_edit_params.CustomEditParams,
             ),
@@ -551,6 +559,7 @@ class AsyncCustomResource(AsyncAPIResource):
         support_url: str | Omit = omit,
         switch_locked: bool | Omit = omit,
         tunnel_protocol: str | Omit = omit,
+        virtual_networks: Optional[custom_create_params.VirtualNetworks] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -620,6 +629,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           tunnel_protocol: Determines which tunnel protocol to use.
 
+          virtual_networks: Virtual network access settings for the device.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -656,6 +667,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                     "tunnel_protocol": tunnel_protocol,
+                    "virtual_networks": virtual_networks,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -771,6 +783,7 @@ class AsyncCustomResource(AsyncAPIResource):
         support_url: str | Omit = omit,
         switch_locked: bool | Omit = omit,
         tunnel_protocol: str | Omit = omit,
+        virtual_networks: Optional[custom_edit_params.VirtualNetworks] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,6 +852,8 @@ class AsyncCustomResource(AsyncAPIResource):
 
           tunnel_protocol: Determines which tunnel protocol to use.
 
+          virtual_networks: Virtual network access settings for the device.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -879,6 +894,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                     "tunnel_protocol": tunnel_protocol,
+                    "virtual_networks": virtual_networks,
                 },
                 custom_edit_params.CustomEditParams,
             ),

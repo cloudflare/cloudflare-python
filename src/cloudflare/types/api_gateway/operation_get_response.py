@@ -1,8 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
+
+from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
@@ -26,6 +28,9 @@ __all__ = [
     "FeaturesAPIShieldOperationFeatureSchemaInfo",
     "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo",
     "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema",
+    "Schemas",
+    "SchemasLearned",
+    "SchemasUploaded",
 ]
 
 
@@ -216,6 +221,50 @@ Features: TypeAlias = Union[
 ]
 
 
+class SchemasLearned(BaseModel):
+    """
+    An OpenAPI operation object fragment containing schema information for an operation. May include parameter definitions, request body specifications, and a component schema extension.
+    """
+
+    parameters: Optional[List[Dict[str, object]]] = None
+    """OpenAPI parameter objects describing path, query, header, or cookie parameters."""
+
+    request_body: Optional[Dict[str, object]] = FieldInfo(alias="requestBody", default=None)
+    """OpenAPI request body object describing the expected request payload."""
+
+
+class SchemasUploaded(BaseModel):
+    """
+    An OpenAPI operation object fragment containing schema information for an operation. May include parameter definitions, request body specifications, and a component schema extension.
+    """
+
+    parameters: Optional[List[Dict[str, object]]] = None
+    """OpenAPI parameter objects describing path, query, header, or cookie parameters."""
+
+    request_body: Optional[Dict[str, object]] = FieldInfo(alias="requestBody", default=None)
+    """OpenAPI request body object describing the expected request payload."""
+
+
+class Schemas(BaseModel):
+    """
+    OpenAPI JSON schemas for an operation, including both user-uploaded and Cloudflare-learned schemas.
+    """
+
+    learned: Optional[SchemasLearned] = None
+    """
+    An OpenAPI operation object fragment containing schema information for an
+    operation. May include parameter definitions, request body specifications, and a
+    component schema extension.
+    """
+
+    uploaded: Optional[SchemasUploaded] = None
+    """
+    An OpenAPI operation object fragment containing schema information for an
+    operation. May include parameter definitions, request body specifications, and a
+    component schema extension.
+    """
+
+
 class OperationGetResponse(BaseModel):
     endpoint: str
     """
@@ -237,3 +286,9 @@ class OperationGetResponse(BaseModel):
     """UUID."""
 
     features: Optional[Features] = None
+
+    schemas: Optional[Schemas] = None
+    """
+    OpenAPI JSON schemas for an operation, including both user-uploaded and
+    Cloudflare-learned schemas.
+    """

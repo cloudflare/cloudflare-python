@@ -7,7 +7,7 @@ from ..fallback_domain import FallbackDomain
 from ..split_tunnel_exclude import SplitTunnelExclude
 from ..split_tunnel_include import SplitTunnelInclude
 
-__all__ = ["DefaultEditResponse", "ServiceModeV2"]
+__all__ = ["DefaultEditResponse", "ServiceModeV2", "VirtualNetworks"]
 
 
 class ServiceModeV2(BaseModel):
@@ -16,6 +16,19 @@ class ServiceModeV2(BaseModel):
 
     port: Optional[float] = None
     """The port number when used with proxy mode."""
+
+
+class VirtualNetworks(BaseModel):
+    """Virtual network access settings for the device."""
+
+    allowed: List[str]
+    """List of virtual network IDs the device is allowed to access.
+
+    When virtual_networks is set, at least one entry is required.
+    """
+
+    default: str
+    """The default virtual network ID. Must be included in the `allowed` list."""
 
 
 class DefaultEditResponse(BaseModel):
@@ -89,3 +102,6 @@ class DefaultEditResponse(BaseModel):
 
     tunnel_protocol: Optional[str] = None
     """Determines which tunnel protocol to use."""
+
+    virtual_networks: Optional[VirtualNetworks] = None
+    """Virtual network access settings for the device."""

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ....._types import SequenceNotStr
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 from ..split_tunnel_include_param import SplitTunnelIncludeParam
 
-__all__ = ["CustomCreateParams", "ServiceModeV2"]
+__all__ = ["CustomCreateParams", "ServiceModeV2", "VirtualNetworks"]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -117,6 +118,9 @@ class CustomCreateParams(TypedDict, total=False):
     tunnel_protocol: str
     """Determines which tunnel protocol to use."""
 
+    virtual_networks: Optional[VirtualNetworks]
+    """Virtual network access settings for the device."""
+
 
 class ServiceModeV2(TypedDict, total=False):
     mode: str
@@ -124,3 +128,16 @@ class ServiceModeV2(TypedDict, total=False):
 
     port: float
     """The port number when used with proxy mode."""
+
+
+class VirtualNetworks(TypedDict, total=False):
+    """Virtual network access settings for the device."""
+
+    allowed: Required[SequenceNotStr[str]]
+    """List of virtual network IDs the device is allowed to access.
+
+    When virtual_networks is set, at least one entry is required.
+    """
+
+    default: Required[str]
+    """The default virtual network ID. Must be included in the `allowed` list."""
