@@ -20,19 +20,15 @@ jobs:
           # Ensure we can check out the pull request base in the script below.
           fetch-depth: ${{ env.FETCH_DEPTH }}
 
-      - name: Install Rye
-        run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
-        env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: '0.10.2'
       - name: Install dependencies
-        run: |
-          rye sync --all-features
+        run: uv sync --all-extras
       - name: Detect removed symbols
         run: |
-          rye run python scripts/detect-breaking-changes.py "${{ github.event.pull_request.base.sha }}"
+          uv run python scripts/detect-breaking-changes.py "${{ github.event.pull_request.base.sha }}"
 
       - name: Detect breaking changes
         run: |
