@@ -15,7 +15,6 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
-    "MetadataSearchForAgents",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -62,18 +61,8 @@ class IndexingOptions(BaseModel):
     """
 
 
-class MetadataSearchForAgents(BaseModel):
-    hostname: str
-
-    zone_id: str
-
-    zone_name: str
-
-
 class Metadata(BaseModel):
     created_from_aisearch_wizard: Optional[bool] = None
-
-    search_for_agents: Optional[MetadataSearchForAgents] = None
 
     worker_domain: Optional[str] = None
 

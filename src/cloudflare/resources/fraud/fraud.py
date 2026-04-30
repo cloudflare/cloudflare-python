@@ -49,6 +49,7 @@ class FraudResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        authentication_settings: fraud_update_params.AuthenticationSettings | Omit = omit,
         user_profiles: Literal["enabled", "disabled"] | Omit = omit,
         username_expressions: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,6 +69,14 @@ class FraudResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          authentication_settings: Configuration for classifying login authentication outcomes based on the origin
+              response. Requires `user_profiles` to be enabled.
+
+              - Success and failure criteria are independently updatable — sending only
+                `success_criteria` leaves failure codes untouched, and vice versa.
+              - Omit `authentication_settings` entirely to leave both unchanged.
+              - Status codes must not overlap between success and failure criteria.
 
           user_profiles: Whether Fraud User Profiles is enabled for the zone.
 
@@ -93,6 +102,7 @@ class FraudResource(SyncAPIResource):
             path_template("/zones/{zone_id}/fraud_detection/settings", zone_id=zone_id),
             body=maybe_transform(
                 {
+                    "authentication_settings": authentication_settings,
                     "user_profiles": user_profiles,
                     "username_expressions": username_expressions,
                 },
@@ -172,6 +182,7 @@ class AsyncFraudResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        authentication_settings: fraud_update_params.AuthenticationSettings | Omit = omit,
         user_profiles: Literal["enabled", "disabled"] | Omit = omit,
         username_expressions: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -191,6 +202,14 @@ class AsyncFraudResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          authentication_settings: Configuration for classifying login authentication outcomes based on the origin
+              response. Requires `user_profiles` to be enabled.
+
+              - Success and failure criteria are independently updatable — sending only
+                `success_criteria` leaves failure codes untouched, and vice versa.
+              - Omit `authentication_settings` entirely to leave both unchanged.
+              - Status codes must not overlap between success and failure criteria.
 
           user_profiles: Whether Fraud User Profiles is enabled for the zone.
 
@@ -216,6 +235,7 @@ class AsyncFraudResource(AsyncAPIResource):
             path_template("/zones/{zone_id}/fraud_detection/settings", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
+                    "authentication_settings": authentication_settings,
                     "user_profiles": user_profiles,
                     "username_expressions": username_expressions,
                 },

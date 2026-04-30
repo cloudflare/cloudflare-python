@@ -28,6 +28,16 @@ class TestFraud:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         fraud = client.fraud.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            authentication_settings={
+                "failure_criteria": {
+                    "kind": "status_code",
+                    "status_codes": [200, 201],
+                },
+                "success_criteria": {
+                    "kind": "status_code",
+                    "status_codes": [200, 201],
+                },
+            },
             user_profiles="disabled",
             username_expressions=["string"],
         )
@@ -119,6 +129,16 @@ class TestAsyncFraud:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         fraud = await async_client.fraud.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            authentication_settings={
+                "failure_criteria": {
+                    "kind": "status_code",
+                    "status_codes": [200, 201],
+                },
+                "success_criteria": {
+                    "kind": "status_code",
+                    "status_codes": [200, 201],
+                },
+            },
             user_profiles="disabled",
             username_expressions=["string"],
         )

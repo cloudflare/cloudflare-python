@@ -64,11 +64,6 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
-                "search_for_agents": {
-                    "hostname": "hostname",
-                    "zone_id": "zone_id",
-                    "zone_name": "zone_name",
-                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -213,11 +208,6 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
-                "search_for_agents": {
-                    "hostname": "hostname",
-                    "zone_id": "zone_id",
-                    "zone_name": "zone_name",
-                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
@@ -795,11 +785,6 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
-                "search_for_agents": {
-                    "hostname": "hostname",
-                    "zone_id": "zone_id",
-                    "zone_name": "zone_name",
-                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -944,11 +929,6 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
-                "search_for_agents": {
-                    "hostname": "hostname",
-                    "zone_id": "zone_id",
-                    "zone_name": "zone_name",
-                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
