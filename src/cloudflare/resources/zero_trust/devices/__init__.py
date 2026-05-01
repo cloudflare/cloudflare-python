@@ -104,6 +104,14 @@ from .override_codes import (
     OverrideCodesResourceWithStreamingResponse,
     AsyncOverrideCodesResourceWithStreamingResponse,
 )
+from .deployment_groups import (
+    DeploymentGroupsResource,
+    AsyncDeploymentGroupsResource,
+    DeploymentGroupsResourceWithRawResponse,
+    AsyncDeploymentGroupsResourceWithRawResponse,
+    DeploymentGroupsResourceWithStreamingResponse,
+    AsyncDeploymentGroupsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ResilienceResource",
@@ -130,6 +138,12 @@ __all__ = [
     "AsyncIPProfilesResourceWithRawResponse",
     "IPProfilesResourceWithStreamingResponse",
     "AsyncIPProfilesResourceWithStreamingResponse",
+    "DeploymentGroupsResource",
+    "AsyncDeploymentGroupsResource",
+    "DeploymentGroupsResourceWithRawResponse",
+    "AsyncDeploymentGroupsResourceWithRawResponse",
+    "DeploymentGroupsResourceWithStreamingResponse",
+    "AsyncDeploymentGroupsResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

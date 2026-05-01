@@ -14,6 +14,7 @@ from .firewall_input import FirewallInput as FirewallInput
 from .device_settings import DeviceSettings as DeviceSettings
 from .fallback_domain import FallbackDomain as FallbackDomain
 from .settings_policy import SettingsPolicy as SettingsPolicy
+from .deployment_group import DeploymentGroup as DeploymentGroup
 from .file_input_param import FileInputParam as FileInputParam
 from .os_version_input import OSVersionInput as OSVersionInput
 from .carbonblack_input import CarbonblackInput as CarbonblackInput
@@ -80,7 +81,11 @@ from .split_tunnel_exclude_param import SplitTunnelExcludeParam as SplitTunnelEx
 from .split_tunnel_include_param import SplitTunnelIncludeParam as SplitTunnelIncludeParam
 from .disk_encryption_input_param import DiskEncryptionInputParam as DiskEncryptionInputParam
 from .sentinelone_s2s_input_param import SentineloneS2sInputParam as SentineloneS2sInputParam
+from .deployment_group_edit_params import DeploymentGroupEditParams as DeploymentGroupEditParams
+from .deployment_group_list_params import DeploymentGroupListParams as DeploymentGroupListParams
 from .registration_unrevoke_params import RegistrationUnrevokeParams as RegistrationUnrevokeParams
 from .unique_client_id_input_param import UniqueClientIDInputParam as UniqueClientIDInputParam
 from .client_certificate_input_param import ClientCertificateInputParam as ClientCertificateInputParam
+from .deployment_group_create_params import DeploymentGroupCreateParams as DeploymentGroupCreateParams
 from .registration_bulk_delete_params import RegistrationBulkDeleteParams as RegistrationBulkDeleteParams
+from .deployment_group_delete_response import DeploymentGroupDeleteResponse as DeploymentGroupDeleteResponse

@@ -101,6 +101,14 @@ from .posture.posture import (
     PostureResourceWithStreamingResponse,
     AsyncPostureResourceWithStreamingResponse,
 )
+from .deployment_groups import (
+    DeploymentGroupsResource,
+    AsyncDeploymentGroupsResource,
+    DeploymentGroupsResourceWithRawResponse,
+    AsyncDeploymentGroupsResourceWithRawResponse,
+    DeploymentGroupsResourceWithStreamingResponse,
+    AsyncDeploymentGroupsResourceWithStreamingResponse,
+)
 from .policies.policies import (
     PoliciesResource,
     AsyncPoliciesResource,
@@ -143,6 +151,10 @@ class DevicesResource(SyncAPIResource):
     @cached_property
     def ip_profiles(self) -> IPProfilesResource:
         return IPProfilesResource(self._client)
+
+    @cached_property
+    def deployment_groups(self) -> DeploymentGroupsResource:
+        return DeploymentGroupsResource(self._client)
 
     @cached_property
     def networks(self) -> NetworksResource:
@@ -311,6 +323,10 @@ class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def ip_profiles(self) -> AsyncIPProfilesResource:
         return AsyncIPProfilesResource(self._client)
+
+    @cached_property
+    def deployment_groups(self) -> AsyncDeploymentGroupsResource:
+        return AsyncDeploymentGroupsResource(self._client)
 
     @cached_property
     def networks(self) -> AsyncNetworksResource:
@@ -495,6 +511,10 @@ class DevicesResourceWithRawResponse:
         return IPProfilesResourceWithRawResponse(self._devices.ip_profiles)
 
     @cached_property
+    def deployment_groups(self) -> DeploymentGroupsResourceWithRawResponse:
+        return DeploymentGroupsResourceWithRawResponse(self._devices.deployment_groups)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._devices.networks)
 
@@ -561,6 +581,10 @@ class AsyncDevicesResourceWithRawResponse:
     @cached_property
     def ip_profiles(self) -> AsyncIPProfilesResourceWithRawResponse:
         return AsyncIPProfilesResourceWithRawResponse(self._devices.ip_profiles)
+
+    @cached_property
+    def deployment_groups(self) -> AsyncDeploymentGroupsResourceWithRawResponse:
+        return AsyncDeploymentGroupsResourceWithRawResponse(self._devices.deployment_groups)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
@@ -631,6 +655,10 @@ class DevicesResourceWithStreamingResponse:
         return IPProfilesResourceWithStreamingResponse(self._devices.ip_profiles)
 
     @cached_property
+    def deployment_groups(self) -> DeploymentGroupsResourceWithStreamingResponse:
+        return DeploymentGroupsResourceWithStreamingResponse(self._devices.deployment_groups)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
@@ -697,6 +725,10 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def ip_profiles(self) -> AsyncIPProfilesResourceWithStreamingResponse:
         return AsyncIPProfilesResourceWithStreamingResponse(self._devices.ip_profiles)
+
+    @cached_property
+    def deployment_groups(self) -> AsyncDeploymentGroupsResourceWithStreamingResponse:
+        return AsyncDeploymentGroupsResourceWithStreamingResponse(self._devices.deployment_groups)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:

@@ -103,6 +103,22 @@ Methods:
 - <code title="delete /accounts/{account_id}/devices/ip-profiles/{profile_id}">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">delete</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile_delete_response.py">IPProfileDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/devices/ip-profiles/{profile_id}">client.zero_trust.devices.ip_profiles.<a href="./src/cloudflare/resources/zero_trust/devices/ip_profiles.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/ip_profile.py">IPProfile</a></code>
 
+### DeploymentGroups
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices import DeploymentGroup, DeploymentGroupDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/devices/deployment-groups">client.zero_trust.devices.deployment_groups.<a href="./src/cloudflare/resources/zero_trust/devices/deployment_groups.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/deployment_group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/deployment_group.py">DeploymentGroup</a></code>
+- <code title="get /accounts/{account_id}/devices/deployment-groups">client.zero_trust.devices.deployment_groups.<a href="./src/cloudflare/resources/zero_trust/devices/deployment_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/deployment_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/deployment_group.py">SyncV4PagePaginationArray[DeploymentGroup]</a></code>
+- <code title="delete /accounts/{account_id}/devices/deployment-groups/{group_id}">client.zero_trust.devices.deployment_groups.<a href="./src/cloudflare/resources/zero_trust/devices/deployment_groups.py">delete</a>(group_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/deployment_group_delete_response.py">DeploymentGroupDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/devices/deployment-groups/{group_id}">client.zero_trust.devices.deployment_groups.<a href="./src/cloudflare/resources/zero_trust/devices/deployment_groups.py">edit</a>(group_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/deployment_group_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/deployment_group.py">DeploymentGroup</a></code>
+- <code title="get /accounts/{account_id}/devices/deployment-groups/{group_id}">client.zero_trust.devices.deployment_groups.<a href="./src/cloudflare/resources/zero_trust/devices/deployment_groups.py">get</a>(group_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/deployment_group.py">DeploymentGroup</a></code>
+
 ### Networks
 
 Types:
