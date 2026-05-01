@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["ZoneListParams", "Account"]
@@ -42,6 +43,14 @@ class ZoneListParams(TypedDict, total=False):
 
     status: Literal["initializing", "pending", "active", "moved"]
     """Specify a zone status to filter by."""
+
+    type: List[Literal["full", "partial", "secondary", "internal"]]
+    """Zone types to filter by.
+
+    Multiple types can be specified as a comma-separated list (e.g.,
+    ?type=full,partial,secondary). When this parameter is not provided, zones with
+    type "internal" are excluded from the results.
+    """
 
 
 class Account(TypedDict, total=False):

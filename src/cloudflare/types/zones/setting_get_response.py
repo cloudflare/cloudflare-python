@@ -63,6 +63,7 @@ __all__ = [
     "ZonesSchemasResponseBuffering",
     "ZonesSchemasRocketLoader",
     "ZonesSchemasAutomaticPlatformOptimization",
+    "ZonesSearchForAgents",
     "ZonesSchemasSecurityLevel",
     "ZonesSha1Support",
     "ZonesSchemasSortQueryStringForCache",
@@ -616,6 +617,30 @@ class ZonesSchemasAutomaticPlatformOptimization(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesSearchForAgents(BaseModel):
+    """
+    When enabled, Cloudflare provisions an AI Search instance for the zone
+    and exposes a /.well-known/ai-search endpoint that AI agents can query.
+    Markdown responses also receive an agent: YAML capability block advertising
+    the search endpoint.
+    """
+
+    id: Literal["search_for_agents"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "on"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 class ZonesSchemasSecurityLevel(BaseModel):
     """
     Choose the appropriate security profile for your website, which will automatically adjust each of the security settings. If you choose to customize an individual security setting, the profile will become Custom. (https://support.cloudflare.com/hc/en-us/articles/200170056).
@@ -855,6 +880,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesSchemasResponseBuffering,
     ZonesSchemasRocketLoader,
     ZonesSchemasAutomaticPlatformOptimization,
+    ZonesSearchForAgents,
     SecurityHeaders,
     ZonesSchemasSecurityLevel,
     ServerSideExcludes,

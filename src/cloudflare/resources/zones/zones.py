@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type as TypingType, Optional, cast
+from typing import List, Type as TypingType, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -209,6 +209,7 @@ class ZonesResource(SyncAPIResource):
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         status: Literal["initializing", "pending", "active", "moved"] | Omit = omit,
+        type: List[Literal["full", "partial", "secondary", "internal"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +247,10 @@ class ZonesResource(SyncAPIResource):
 
           status: Specify a zone status to filter by.
 
+          type: Zone types to filter by. Multiple types can be specified as a comma-separated
+              list (e.g., ?type=full,partial,secondary). When this parameter is not provided,
+              zones with type "internal" are excluded from the results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -272,6 +277,7 @@ class ZonesResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "status": status,
+                        "type": type,
                     },
                     zone_list_params.ZoneListParams,
                 ),
@@ -537,6 +543,7 @@ class AsyncZonesResource(AsyncAPIResource):
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         status: Literal["initializing", "pending", "active", "moved"] | Omit = omit,
+        type: List[Literal["full", "partial", "secondary", "internal"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -574,6 +581,10 @@ class AsyncZonesResource(AsyncAPIResource):
 
           status: Specify a zone status to filter by.
 
+          type: Zone types to filter by. Multiple types can be specified as a comma-separated
+              list (e.g., ?type=full,partial,secondary). When this parameter is not provided,
+              zones with type "internal" are excluded from the results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -600,6 +611,7 @@ class AsyncZonesResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "status": status,
+                        "type": type,
                     },
                     zone_list_params.ZoneListParams,
                 ),

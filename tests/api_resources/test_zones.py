@@ -83,6 +83,7 @@ class TestZones:
             page=1,
             per_page=5,
             status="initializing",
+            type=["full"],
         )
         assert_matches_type(SyncV4PagePaginationArray[Zone], zone, path=["response"])
 
@@ -302,6 +303,7 @@ class TestAsyncZones:
             page=1,
             per_page=5,
             status="initializing",
+            type=["full"],
         )
         assert_matches_type(AsyncV4PagePaginationArray[Zone], zone, path=["response"])
 
