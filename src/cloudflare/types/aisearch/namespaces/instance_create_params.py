@@ -81,6 +81,13 @@ class InstanceCreateParams(TypedDict, total=False):
 
     cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
 
+    cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400]
+    """Cache entry TTL in seconds.
+
+    Allowed values: 600 (10min), 1800 (30min), 3600 (1h), 7200 (2h), 21600 (6h),
+    43200 (12h), 86400 (24h), 172800 (48h), 259200 (72h), 518400 (6d).
+    """
+
     chunk: bool
 
     chunk_overlap: int

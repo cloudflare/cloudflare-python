@@ -128,6 +128,7 @@ class InstancesResource(SyncAPIResource):
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
+        cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400] | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
@@ -212,6 +213,10 @@ class InstancesResource(SyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
+              (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
+              (72h), 518400 (6d).
+
           hybrid_search_enabled: Deprecated — use index_method instead.
 
           index_method: Controls which storage backends are used during indexing. Defaults to
@@ -243,6 +248,7 @@ class InstancesResource(SyncAPIResource):
                     "aisearch_model": aisearch_model,
                     "cache": cache,
                     "cache_threshold": cache_threshold,
+                    "cache_ttl": cache_ttl,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
@@ -324,6 +330,7 @@ class InstancesResource(SyncAPIResource):
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
+        cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400] | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
@@ -438,10 +445,15 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """
-        Update instance.
+        """Update instance.
 
         Args:
+          cache_ttl: Cache entry TTL in seconds.
+
+        Allowed values: 600 (10min), 1800 (30min), 3600
+              (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
+              (72h), 518400 (6d).
+
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -475,6 +487,7 @@ class InstancesResource(SyncAPIResource):
                     "aisearch_model": aisearch_model,
                     "cache": cache,
                     "cache_threshold": cache_threshold,
+                    "cache_ttl": cache_ttl,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
@@ -962,6 +975,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
+        cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400] | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
@@ -1046,6 +1060,10 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
+          cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
+              (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
+              (72h), 518400 (6d).
+
           hybrid_search_enabled: Deprecated — use index_method instead.
 
           index_method: Controls which storage backends are used during indexing. Defaults to
@@ -1077,6 +1095,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "aisearch_model": aisearch_model,
                     "cache": cache,
                     "cache_threshold": cache_threshold,
+                    "cache_ttl": cache_ttl,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
@@ -1158,6 +1177,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
+        cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400] | Omit = omit,
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
@@ -1272,10 +1292,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """
-        Update instance.
+        """Update instance.
 
         Args:
+          cache_ttl: Cache entry TTL in seconds.
+
+        Allowed values: 600 (10min), 1800 (30min), 3600
+              (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
+              (72h), 518400 (6d).
+
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
 
@@ -1309,6 +1334,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "aisearch_model": aisearch_model,
                     "cache": cache,
                     "cache_threshold": cache_threshold,
+                    "cache_ttl": cache_ttl,
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
