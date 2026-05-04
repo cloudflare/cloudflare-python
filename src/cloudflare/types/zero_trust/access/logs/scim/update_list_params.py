@@ -19,14 +19,24 @@ class UpdateListParams(TypedDict, total=False):
     idp_id: Required[SequenceNotStr[str]]
     """The unique Id of the IdP that has SCIM enabled."""
 
-    cf_resource_id: str
-    """The unique Cloudflare-generated Id of the SCIM resource."""
+    cf_resource_id: SequenceNotStr[str]
+    """The unique Cloudflare-generated Id of the SCIM resource.
+
+    Pass once for a single lookup (`?cf_resource_id=A`) or repeat the parameter
+    (`?cf_resource_id=A&cf_resource_id=B`) to filter by multiple resources in one
+    request.
+    """
 
     direction: Literal["desc", "asc"]
     """The chronological order used to sort the logs."""
 
-    idp_resource_id: str
-    """The IdP-generated Id of the SCIM resource."""
+    idp_resource_id: SequenceNotStr[str]
+    """The IdP-generated Id of the SCIM resource.
+
+    Pass once for a single lookup (`?idp_resource_id=A`) or repeat the parameter
+    (`?idp_resource_id=A&idp_resource_id=B`) to filter by multiple resources in one
+    request.
+    """
 
     limit: int
     """The maximum number of update logs to retrieve."""
@@ -40,14 +50,24 @@ class UpdateListParams(TypedDict, total=False):
     request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]]
     """The request method of the SCIM request."""
 
-    resource_group_name: str
-    """The display name of the SCIM Group resource."""
+    resource_group_name: SequenceNotStr[str]
+    """The display name of the SCIM Group resource.
+
+    Pass once for a single lookup (`?resource_group_name=A`) or repeat the parameter
+    (`?resource_group_name=A&resource_group_name=B`) to filter by multiple group
+    names in one request.
+    """
 
     resource_type: List[Literal["USER", "GROUP"]]
     """The resource type of the SCIM request."""
 
-    resource_user_email: str
-    """The email address of the SCIM User resource."""
+    resource_user_email: SequenceNotStr[str]
+    """The email address of the SCIM User resource.
+
+    Pass once for a single lookup (`?resource_user_email=A`) or repeat the parameter
+    (`?resource_user_email=A&resource_user_email=B`) to filter by multiple emails in
+    one request.
+    """
 
     since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """the timestamp of the earliest update log."""

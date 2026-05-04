@@ -31,9 +31,9 @@ class TestUsers:
         user = client.zero_trust.identity_providers.scim.users.list(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_resource_id="bd97ef8d-7986-43e3-9ee0-c25dda33e4b0",
+            cf_resource_id=["bd97ef8d-7986-43e3-9ee0-c25dda33e4b0"],
             email="john.smith@example.com",
-            idp_resource_id="john_smith_01",
+            idp_resource_id=["john_smith_01"],
             name="John Smith",
             page=0,
             per_page=0,
@@ -100,9 +100,9 @@ class TestAsyncUsers:
         user = await async_client.zero_trust.identity_providers.scim.users.list(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_resource_id="bd97ef8d-7986-43e3-9ee0-c25dda33e4b0",
+            cf_resource_id=["bd97ef8d-7986-43e3-9ee0-c25dda33e4b0"],
             email="john.smith@example.com",
-            idp_resource_id="john_smith_01",
+            idp_resource_id=["john_smith_01"],
             name="John Smith",
             page=0,
             per_page=0,

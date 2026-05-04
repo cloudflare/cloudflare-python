@@ -57,7 +57,7 @@ class AccessRequestsResource(SyncAPIResource):
         direction: Literal["desc", "asc"] | Omit = omit,
         email: str | Omit = omit,
         email_exact: bool | Omit = omit,
-        email_op: Literal["eq", "neq"] | Omit = omit,
+        email_op: Literal["eq", "neq", "contains"] | Omit = omit,
         fields: str | Omit = omit,
         idp_op: Literal["eq", "neq"] | Omit = omit,
         limit: int | Omit = omit,
@@ -92,14 +92,23 @@ class AccessRequestsResource(SyncAPIResource):
 
           direction: The chronological sorting order for the logs.
 
-          email: Filter by user email. Defaults to substring matching. To force exact matching,
-              set `email_exact=true`. Example (default): `email=@example.com` returns all
-              events with that domain. Example (exact):
-              `email=user@example.com&email_exact=true` returns only that user.
+          email: Filter by user email. Match mode is controlled by `emailOp` (preferred) or the
+              legacy `email_exact` flag.
+
+              - Default (no `emailOp`, `email_exact=false` or unset): substring match —
+                `email=@example.com` returns all events with that domain.
+              - Exact match: set `emailOp=eq` (preferred) or `email_exact=true` — e.g.
+                `email=user@example.com&email_exact=true` returns only that user.
+              - Explicit substring match: set `emailOp=contains` (without `email_exact=true`).
+                When both are set, `email_exact=true` takes precedence and the match is exact.
+              - Exclusion: set `emailOp=neq`. With `email_exact=true` this is an exact-value
+                exclusion; without it, a fuzzy substring exclusion.
 
           email_exact: When true, `email` is matched exactly instead of substring matching.
 
-          email_op: Operator for the `email` filter.
+          email_op: Operator for the `email` filter. `contains` performs a substring
+              (case-sensitive) match. When `email_exact=true` is also set, `email_exact` takes
+              precedence and `contains` is ignored.
 
           fields: Comma-separated list of fields to include in the response. When omitted, all
               fields are returned.
@@ -120,9 +129,11 @@ class AccessRequestsResource(SyncAPIResource):
 
           until: The latest event timestamp to query.
 
-          user_id: Filter by user UUID.
+          user_id: Deprecated. Accepted for backward compatibility but no longer applied as a
+              filter. Use `email` instead.
 
-          user_id_op: Operator for the `user_id` filter.
+          user_id_op: Deprecated. Accepted for backward compatibility but no longer applied as a
+              filter (the `user_id` parameter is itself deprecated).
 
           extra_headers: Send extra headers
 
@@ -202,7 +213,7 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         direction: Literal["desc", "asc"] | Omit = omit,
         email: str | Omit = omit,
         email_exact: bool | Omit = omit,
-        email_op: Literal["eq", "neq"] | Omit = omit,
+        email_op: Literal["eq", "neq", "contains"] | Omit = omit,
         fields: str | Omit = omit,
         idp_op: Literal["eq", "neq"] | Omit = omit,
         limit: int | Omit = omit,
@@ -237,14 +248,23 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           direction: The chronological sorting order for the logs.
 
-          email: Filter by user email. Defaults to substring matching. To force exact matching,
-              set `email_exact=true`. Example (default): `email=@example.com` returns all
-              events with that domain. Example (exact):
-              `email=user@example.com&email_exact=true` returns only that user.
+          email: Filter by user email. Match mode is controlled by `emailOp` (preferred) or the
+              legacy `email_exact` flag.
+
+              - Default (no `emailOp`, `email_exact=false` or unset): substring match —
+                `email=@example.com` returns all events with that domain.
+              - Exact match: set `emailOp=eq` (preferred) or `email_exact=true` — e.g.
+                `email=user@example.com&email_exact=true` returns only that user.
+              - Explicit substring match: set `emailOp=contains` (without `email_exact=true`).
+                When both are set, `email_exact=true` takes precedence and the match is exact.
+              - Exclusion: set `emailOp=neq`. With `email_exact=true` this is an exact-value
+                exclusion; without it, a fuzzy substring exclusion.
 
           email_exact: When true, `email` is matched exactly instead of substring matching.
 
-          email_op: Operator for the `email` filter.
+          email_op: Operator for the `email` filter. `contains` performs a substring
+              (case-sensitive) match. When `email_exact=true` is also set, `email_exact` takes
+              precedence and `contains` is ignored.
 
           fields: Comma-separated list of fields to include in the response. When omitted, all
               fields are returned.
@@ -265,9 +285,11 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           until: The latest event timestamp to query.
 
-          user_id: Filter by user UUID.
+          user_id: Deprecated. Accepted for backward compatibility but no longer applied as a
+              filter. Use `email` instead.
 
-          user_id_op: Operator for the `user_id` filter.
+          user_id_op: Deprecated. Accepted for backward compatibility but no longer applied as a
+              filter (the `user_id` parameter is itself deprecated).
 
           extra_headers: Send extra headers
 

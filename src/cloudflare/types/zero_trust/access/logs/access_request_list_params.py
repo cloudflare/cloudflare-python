@@ -33,17 +33,28 @@ class AccessRequestListParams(TypedDict, total=False):
     email: str
     """Filter by user email.
 
-    Defaults to substring matching. To force exact matching, set `email_exact=true`.
-    Example (default): `email=@example.com` returns all events with that domain.
-    Example (exact): `email=user@example.com&email_exact=true` returns only that
-    user.
+    Match mode is controlled by `emailOp` (preferred) or the legacy `email_exact`
+    flag.
+
+    - Default (no `emailOp`, `email_exact=false` or unset): substring match —
+      `email=@example.com` returns all events with that domain.
+    - Exact match: set `emailOp=eq` (preferred) or `email_exact=true` — e.g.
+      `email=user@example.com&email_exact=true` returns only that user.
+    - Explicit substring match: set `emailOp=contains` (without `email_exact=true`).
+      When both are set, `email_exact=true` takes precedence and the match is exact.
+    - Exclusion: set `emailOp=neq`. With `email_exact=true` this is an exact-value
+      exclusion; without it, a fuzzy substring exclusion.
     """
 
     email_exact: bool
     """When true, `email` is matched exactly instead of substring matching."""
 
-    email_op: Annotated[Literal["eq", "neq"], PropertyInfo(alias="emailOp")]
-    """Operator for the `email` filter."""
+    email_op: Annotated[Literal["eq", "neq", "contains"], PropertyInfo(alias="emailOp")]
+    """
+    Operator for the `email` filter. `contains` performs a substring
+    (case-sensitive) match. When `email_exact=true` is also set, `email_exact` takes
+    precedence and `contains` is ignored.
+    """
 
     fields: str
     """
@@ -76,7 +87,15 @@ class AccessRequestListParams(TypedDict, total=False):
     """The latest event timestamp to query."""
 
     user_id: str
-    """Filter by user UUID."""
+    """Deprecated.
+
+    Accepted for backward compatibility but no longer applied as a filter. Use
+    `email` instead.
+    """
 
     user_id_op: Annotated[Literal["eq", "neq"], PropertyInfo(alias="user_idOp")]
-    """Operator for the `user_id` filter."""
+    """Deprecated.
+
+    Accepted for backward compatibility but no longer applied as a filter (the
+    `user_id` parameter is itself deprecated).
+    """

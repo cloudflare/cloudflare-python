@@ -51,16 +51,16 @@ class UpdatesResource(SyncAPIResource):
         *,
         account_id: str,
         idp_id: SequenceNotStr[str],
-        cf_resource_id: str | Omit = omit,
+        cf_resource_id: SequenceNotStr[str] | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
-        idp_resource_id: str | Omit = omit,
+        idp_resource_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | Omit = omit,
-        resource_group_name: str | Omit = omit,
+        resource_group_name: SequenceNotStr[str] | Omit = omit,
         resource_type: List[Literal["USER", "GROUP"]] | Omit = omit,
-        resource_user_email: str | Omit = omit,
+        resource_user_email: SequenceNotStr[str] | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         status: List[Literal["FAILURE", "SUCCESS"]] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
@@ -81,11 +81,17 @@ class UpdatesResource(SyncAPIResource):
 
           idp_id: The unique Id of the IdP that has SCIM enabled.
 
-          cf_resource_id: The unique Cloudflare-generated Id of the SCIM resource.
+          cf_resource_id: The unique Cloudflare-generated Id of the SCIM resource. Pass once for a single
+              lookup (`?cf_resource_id=A`) or repeat the parameter
+              (`?cf_resource_id=A&cf_resource_id=B`) to filter by multiple resources in one
+              request.
 
           direction: The chronological order used to sort the logs.
 
-          idp_resource_id: The IdP-generated Id of the SCIM resource.
+          idp_resource_id: The IdP-generated Id of the SCIM resource. Pass once for a single lookup
+              (`?idp_resource_id=A`) or repeat the parameter
+              (`?idp_resource_id=A&idp_resource_id=B`) to filter by multiple resources in one
+              request.
 
           limit: The maximum number of update logs to retrieve.
 
@@ -95,11 +101,17 @@ class UpdatesResource(SyncAPIResource):
 
           request_method: The request method of the SCIM request.
 
-          resource_group_name: The display name of the SCIM Group resource.
+          resource_group_name: The display name of the SCIM Group resource. Pass once for a single lookup
+              (`?resource_group_name=A`) or repeat the parameter
+              (`?resource_group_name=A&resource_group_name=B`) to filter by multiple group
+              names in one request.
 
           resource_type: The resource type of the SCIM request.
 
-          resource_user_email: The email address of the SCIM User resource.
+          resource_user_email: The email address of the SCIM User resource. Pass once for a single lookup
+              (`?resource_user_email=A`) or repeat the parameter
+              (`?resource_user_email=A&resource_user_email=B`) to filter by multiple emails in
+              one request.
 
           since: the timestamp of the earliest update log.
 
@@ -174,16 +186,16 @@ class AsyncUpdatesResource(AsyncAPIResource):
         *,
         account_id: str,
         idp_id: SequenceNotStr[str],
-        cf_resource_id: str | Omit = omit,
+        cf_resource_id: SequenceNotStr[str] | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
-        idp_resource_id: str | Omit = omit,
+        idp_resource_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | Omit = omit,
-        resource_group_name: str | Omit = omit,
+        resource_group_name: SequenceNotStr[str] | Omit = omit,
         resource_type: List[Literal["USER", "GROUP"]] | Omit = omit,
-        resource_user_email: str | Omit = omit,
+        resource_user_email: SequenceNotStr[str] | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         status: List[Literal["FAILURE", "SUCCESS"]] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
@@ -204,11 +216,17 @@ class AsyncUpdatesResource(AsyncAPIResource):
 
           idp_id: The unique Id of the IdP that has SCIM enabled.
 
-          cf_resource_id: The unique Cloudflare-generated Id of the SCIM resource.
+          cf_resource_id: The unique Cloudflare-generated Id of the SCIM resource. Pass once for a single
+              lookup (`?cf_resource_id=A`) or repeat the parameter
+              (`?cf_resource_id=A&cf_resource_id=B`) to filter by multiple resources in one
+              request.
 
           direction: The chronological order used to sort the logs.
 
-          idp_resource_id: The IdP-generated Id of the SCIM resource.
+          idp_resource_id: The IdP-generated Id of the SCIM resource. Pass once for a single lookup
+              (`?idp_resource_id=A`) or repeat the parameter
+              (`?idp_resource_id=A&idp_resource_id=B`) to filter by multiple resources in one
+              request.
 
           limit: The maximum number of update logs to retrieve.
 
@@ -218,11 +236,17 @@ class AsyncUpdatesResource(AsyncAPIResource):
 
           request_method: The request method of the SCIM request.
 
-          resource_group_name: The display name of the SCIM Group resource.
+          resource_group_name: The display name of the SCIM Group resource. Pass once for a single lookup
+              (`?resource_group_name=A`) or repeat the parameter
+              (`?resource_group_name=A&resource_group_name=B`) to filter by multiple group
+              names in one request.
 
           resource_type: The resource type of the SCIM request.
 
-          resource_user_email: The email address of the SCIM User resource.
+          resource_user_email: The email address of the SCIM User resource. Pass once for a single lookup
+              (`?resource_user_email=A`) or repeat the parameter
+              (`?resource_user_email=A&resource_user_email=B`) to filter by multiple emails in
+              one request.
 
           since: the timestamp of the earliest update log.
 

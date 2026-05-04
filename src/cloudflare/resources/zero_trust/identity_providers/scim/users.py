@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -47,9 +47,9 @@ class UsersResource(SyncAPIResource):
         identity_provider_id: str,
         *,
         account_id: str,
-        cf_resource_id: str | Omit = omit,
+        cf_resource_id: SequenceNotStr[str] | Omit = omit,
         email: str | Omit = omit,
-        idp_resource_id: str | Omit = omit,
+        idp_resource_id: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -71,11 +71,18 @@ class UsersResource(SyncAPIResource):
           identity_provider_id: UUID.
 
           cf_resource_id: The unique Cloudflare-generated Id of the SCIM User resource; also known as the
-              "Id".
+              "Id". Pass once for a single lookup (`?cf_resource_id=A`) or repeat the
+              parameter (`?cf_resource_id=A&cf_resource_id=B`) to look up multiple users in
+              one request, up to 50 values. Mutually exclusive with `idp_resource_id`,
+              `username`, `email`, `name`, `search_contains`, and `search_starts_with`.
 
           email: The email address of the SCIM User resource.
 
           idp_resource_id: The IdP-generated Id of the SCIM User resource; also known as the "external Id".
+              Pass once for a single lookup (`?idp_resource_id=A`) or repeat the parameter
+              (`?idp_resource_id=A&idp_resource_id=B`) to look up multiple users in one
+              request, up to 50 values. Mutually exclusive with `cf_resource_id`, `username`,
+              `email`, `name`, `search_contains`, and `search_starts_with`.
 
           name: The name of the SCIM User resource.
 
@@ -153,9 +160,9 @@ class AsyncUsersResource(AsyncAPIResource):
         identity_provider_id: str,
         *,
         account_id: str,
-        cf_resource_id: str | Omit = omit,
+        cf_resource_id: SequenceNotStr[str] | Omit = omit,
         email: str | Omit = omit,
-        idp_resource_id: str | Omit = omit,
+        idp_resource_id: SequenceNotStr[str] | Omit = omit,
         name: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -177,11 +184,18 @@ class AsyncUsersResource(AsyncAPIResource):
           identity_provider_id: UUID.
 
           cf_resource_id: The unique Cloudflare-generated Id of the SCIM User resource; also known as the
-              "Id".
+              "Id". Pass once for a single lookup (`?cf_resource_id=A`) or repeat the
+              parameter (`?cf_resource_id=A&cf_resource_id=B`) to look up multiple users in
+              one request, up to 50 values. Mutually exclusive with `idp_resource_id`,
+              `username`, `email`, `name`, `search_contains`, and `search_starts_with`.
 
           email: The email address of the SCIM User resource.
 
           idp_resource_id: The IdP-generated Id of the SCIM User resource; also known as the "external Id".
+              Pass once for a single lookup (`?idp_resource_id=A`) or repeat the parameter
+              (`?idp_resource_id=A&idp_resource_id=B`) to look up multiple users in one
+              request, up to 50 values. Mutually exclusive with `cf_resource_id`, `username`,
+              `email`, `name`, `search_contains`, and `search_starts_with`.
 
           name: The name of the SCIM User resource.
 
