@@ -7,4 +7,11 @@ from .class_get_params import ClassGetParams as ClassGetParams
 from .type_get_response import TypeGetResponse as TypeGetResponse
 from .class_get_response import ClassGetResponse as ClassGetResponse
 from .severity_get_params import SeverityGetParams as SeverityGetParams
+from .context_get_response import ContextGetResponse as ContextGetResponse
+from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .severity_get_response import SeverityGetResponse as SeverityGetResponse
+from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
+from .classification_update_params import ClassificationUpdateParams as ClassificationUpdateParams
+from .classification_update_response import ClassificationUpdateResponse as ClassificationUpdateResponse
+from .audit_log_list_by_insight_params import AuditLogListByInsightParams as AuditLogListByInsightParams
+from .audit_log_list_by_insight_response import AuditLogListByInsightResponse as AuditLogListByInsightResponse

@@ -16,6 +16,14 @@ from .class_ import (
     ClassResourceWithStreamingResponse,
     AsyncClassResourceWithStreamingResponse,
 )
+from .context import (
+    ContextResource,
+    AsyncContextResource,
+    ContextResourceWithRawResponse,
+    AsyncContextResourceWithRawResponse,
+    ContextResourceWithStreamingResponse,
+    AsyncContextResourceWithStreamingResponse,
+)
 from .insights import (
     InsightsResource,
     AsyncInsightsResource,
@@ -31,6 +39,22 @@ from .severity import (
     AsyncSeverityResourceWithRawResponse,
     SeverityResourceWithStreamingResponse,
     AsyncSeverityResourceWithStreamingResponse,
+)
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
+from .classification import (
+    ClassificationResource,
+    AsyncClassificationResource,
+    ClassificationResourceWithRawResponse,
+    AsyncClassificationResourceWithRawResponse,
+    ClassificationResourceWithStreamingResponse,
+    AsyncClassificationResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -52,6 +76,24 @@ __all__ = [
     "AsyncTypeResourceWithRawResponse",
     "TypeResourceWithStreamingResponse",
     "AsyncTypeResourceWithStreamingResponse",
+    "AuditLogsResource",
+    "AsyncAuditLogsResource",
+    "AuditLogsResourceWithRawResponse",
+    "AsyncAuditLogsResourceWithRawResponse",
+    "AuditLogsResourceWithStreamingResponse",
+    "AsyncAuditLogsResourceWithStreamingResponse",
+    "ClassificationResource",
+    "AsyncClassificationResource",
+    "ClassificationResourceWithRawResponse",
+    "AsyncClassificationResourceWithRawResponse",
+    "ClassificationResourceWithStreamingResponse",
+    "AsyncClassificationResourceWithStreamingResponse",
+    "ContextResource",
+    "AsyncContextResource",
+    "ContextResourceWithRawResponse",
+    "AsyncContextResourceWithRawResponse",
+    "ContextResourceWithStreamingResponse",
+    "AsyncContextResourceWithStreamingResponse",
     "InsightsResource",
     "AsyncInsightsResource",
     "InsightsResourceWithRawResponse",

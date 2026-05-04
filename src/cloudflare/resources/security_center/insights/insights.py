@@ -22,6 +22,14 @@ from .class_ import (
     ClassResourceWithStreamingResponse,
     AsyncClassResourceWithStreamingResponse,
 )
+from .context import (
+    ContextResource,
+    AsyncContextResource,
+    ContextResourceWithRawResponse,
+    AsyncContextResourceWithRawResponse,
+    ContextResourceWithStreamingResponse,
+    AsyncContextResourceWithStreamingResponse,
+)
 from .severity import (
     SeverityResource,
     AsyncSeverityResource,
@@ -33,6 +41,14 @@ from .severity import (
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -41,6 +57,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
+from .classification import (
+    ClassificationResource,
+    AsyncClassificationResource,
+    ClassificationResourceWithRawResponse,
+    AsyncClassificationResourceWithRawResponse,
+    ClassificationResourceWithStreamingResponse,
+    AsyncClassificationResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.security_center import insight_list_params, insight_dismiss_params
 from ....types.security_center.insight_list_response import InsightListResponse
@@ -63,6 +87,18 @@ class InsightsResource(SyncAPIResource):
     @cached_property
     def type(self) -> TypeResource:
         return TypeResource(self._client)
+
+    @cached_property
+    def audit_logs(self) -> AuditLogsResource:
+        return AuditLogsResource(self._client)
+
+    @cached_property
+    def classification(self) -> ClassificationResource:
+        return ClassificationResource(self._client)
+
+    @cached_property
+    def context(self) -> ContextResource:
+        return ContextResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InsightsResourceWithRawResponse:
@@ -247,6 +283,18 @@ class AsyncInsightsResource(AsyncAPIResource):
     @cached_property
     def type(self) -> AsyncTypeResource:
         return AsyncTypeResource(self._client)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResource:
+        return AsyncAuditLogsResource(self._client)
+
+    @cached_property
+    def classification(self) -> AsyncClassificationResource:
+        return AsyncClassificationResource(self._client)
+
+    @cached_property
+    def context(self) -> AsyncContextResource:
+        return AsyncContextResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInsightsResourceWithRawResponse:
@@ -442,6 +490,18 @@ class InsightsResourceWithRawResponse:
     def type(self) -> TypeResourceWithRawResponse:
         return TypeResourceWithRawResponse(self._insights.type)
 
+    @cached_property
+    def audit_logs(self) -> AuditLogsResourceWithRawResponse:
+        return AuditLogsResourceWithRawResponse(self._insights.audit_logs)
+
+    @cached_property
+    def classification(self) -> ClassificationResourceWithRawResponse:
+        return ClassificationResourceWithRawResponse(self._insights.classification)
+
+    @cached_property
+    def context(self) -> ContextResourceWithRawResponse:
+        return ContextResourceWithRawResponse(self._insights.context)
+
 
 class AsyncInsightsResourceWithRawResponse:
     def __init__(self, insights: AsyncInsightsResource) -> None:
@@ -465,6 +525,18 @@ class AsyncInsightsResourceWithRawResponse:
     @cached_property
     def type(self) -> AsyncTypeResourceWithRawResponse:
         return AsyncTypeResourceWithRawResponse(self._insights.type)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
+        return AsyncAuditLogsResourceWithRawResponse(self._insights.audit_logs)
+
+    @cached_property
+    def classification(self) -> AsyncClassificationResourceWithRawResponse:
+        return AsyncClassificationResourceWithRawResponse(self._insights.classification)
+
+    @cached_property
+    def context(self) -> AsyncContextResourceWithRawResponse:
+        return AsyncContextResourceWithRawResponse(self._insights.context)
 
 
 class InsightsResourceWithStreamingResponse:
@@ -490,6 +562,18 @@ class InsightsResourceWithStreamingResponse:
     def type(self) -> TypeResourceWithStreamingResponse:
         return TypeResourceWithStreamingResponse(self._insights.type)
 
+    @cached_property
+    def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
+        return AuditLogsResourceWithStreamingResponse(self._insights.audit_logs)
+
+    @cached_property
+    def classification(self) -> ClassificationResourceWithStreamingResponse:
+        return ClassificationResourceWithStreamingResponse(self._insights.classification)
+
+    @cached_property
+    def context(self) -> ContextResourceWithStreamingResponse:
+        return ContextResourceWithStreamingResponse(self._insights.context)
+
 
 class AsyncInsightsResourceWithStreamingResponse:
     def __init__(self, insights: AsyncInsightsResource) -> None:
@@ -513,3 +597,15 @@ class AsyncInsightsResourceWithStreamingResponse:
     @cached_property
     def type(self) -> AsyncTypeResourceWithStreamingResponse:
         return AsyncTypeResourceWithStreamingResponse(self._insights.type)
+
+    @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        return AsyncAuditLogsResourceWithStreamingResponse(self._insights.audit_logs)
+
+    @cached_property
+    def classification(self) -> AsyncClassificationResourceWithStreamingResponse:
+        return AsyncClassificationResourceWithStreamingResponse(self._insights.classification)
+
+    @cached_property
+    def context(self) -> AsyncContextResourceWithStreamingResponse:
+        return AsyncContextResourceWithStreamingResponse(self._insights.context)
