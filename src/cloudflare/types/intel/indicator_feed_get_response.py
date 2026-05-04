@@ -39,7 +39,7 @@ class IndicatorFeedGetResponse(BaseModel):
     name: Optional[str] = None
     """The name of the indicator feed"""
 
-    provider_id: Optional[str] = None
+    provider_id: Optional[int] = None
     """The unique identifier for the provider"""
 
     provider_name: Optional[str] = None

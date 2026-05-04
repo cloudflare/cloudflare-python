@@ -628,6 +628,7 @@ class DNSResource(SyncAPIResource):
             "RESPONSE_CODE",
             "RESPONSE_TTL",
             "TLD",
+            "TLD_DNS_MAGNITUDE",
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
@@ -647,7 +648,7 @@ class DNSResource(SyncAPIResource):
         matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         nodata: Iterable[bool] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "RANK"] | Omit = omit,
         protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
         query_type: List[
             Optional[
@@ -1473,6 +1474,7 @@ class AsyncDNSResource(AsyncAPIResource):
             "RESPONSE_CODE",
             "RESPONSE_TTL",
             "TLD",
+            "TLD_DNS_MAGNITUDE",
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
@@ -1492,7 +1494,7 @@ class AsyncDNSResource(AsyncAPIResource):
         matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         nodata: Iterable[bool] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "RANK"] | Omit = omit,
         protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
         query_type: List[
             Optional[

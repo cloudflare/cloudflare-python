@@ -94,7 +94,7 @@ class DNSTimeseriesGroupsV2Params(TypedDict, total=False):
     nodata: Iterable[bool]
     """Specifies whether the response includes empty DNS responses (NODATA)."""
 
-    normalization: Literal["PERCENTAGE", "MIN0_MAX"]
+    normalization: Literal["PERCENTAGE", "MIN0_MAX", "RANK"]
     """Normalization method applied to the results.
 
     Refer to
