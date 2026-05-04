@@ -31,6 +31,7 @@ class TestSubmissions:
         submission = client.email_security.submissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            escalated_from_user=True,
             original_disposition="MALICIOUS",
             outcome_disposition="MALICIOUS",
             page=1,
@@ -93,6 +94,7 @@ class TestAsyncSubmissions:
         submission = await async_client.email_security.submissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            escalated_from_user=True,
             original_disposition="MALICIOUS",
             outcome_disposition="MALICIOUS",
             page=1,

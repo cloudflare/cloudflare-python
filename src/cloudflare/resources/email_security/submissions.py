@@ -51,6 +51,7 @@ class SubmissionsResource(SyncAPIResource):
         *,
         account_id: str,
         end: Union[str, datetime] | Omit = omit,
+        escalated_from_user: bool | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         page: int | Omit = omit,
@@ -79,6 +80,10 @@ class SubmissionsResource(SyncAPIResource):
 
           end: The end of the search date range. Defaults to `now`.
 
+          escalated_from_user: When true, return only submissions that were escalated by an end user (vs. by
+              the security team). When false, return only submissions that were not escalated
+              by an end user. When omitted, no filter is applied.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
@@ -106,6 +111,7 @@ class SubmissionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "end": end,
+                        "escalated_from_user": escalated_from_user,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,
                         "page": page,
@@ -149,6 +155,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         *,
         account_id: str,
         end: Union[str, datetime] | Omit = omit,
+        escalated_from_user: bool | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         page: int | Omit = omit,
@@ -177,6 +184,10 @@ class AsyncSubmissionsResource(AsyncAPIResource):
 
           end: The end of the search date range. Defaults to `now`.
 
+          escalated_from_user: When true, return only submissions that were escalated by an end user (vs. by
+              the security team). When false, return only submissions that were not escalated
+              by an end user. When omitted, no filter is applied.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
@@ -204,6 +215,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "end": end,
+                        "escalated_from_user": escalated_from_user,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,
                         "page": page,

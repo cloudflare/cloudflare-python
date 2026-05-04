@@ -30,7 +30,11 @@ class UsagePaygoResponseItem(BaseModel):
     """Specifies the quantity consumed during this charge period."""
 
     consumed_unit: str = FieldInfo(alias="ConsumedUnit")
-    """Specifies the unit of measurement for consumed quantity."""
+    """
+    A display name for the unit of measurement used for the product (for example,
+    "GB-months", "GB-seconds"). May be empty when the unit is implicit in the
+    service name.
+    """
 
     contracted_cost: float = FieldInfo(alias="ContractedCost")
     """Specifies the cost for this charge period in the billing currency."""

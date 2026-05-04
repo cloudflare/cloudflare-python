@@ -18,6 +18,13 @@ class SubmissionListParams(TypedDict, total=False):
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
 
+    escalated_from_user: bool
+    """When true, return only submissions that were escalated by an end user (vs.
+
+    by the security team). When false, return only submissions that were not
+    escalated by an end user. When omitted, no filter is applied.
+    """
+
     original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 
     outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
