@@ -1,5 +1,62 @@
 # Changelog
 
+## 5.0.0-beta.3 (2026-05-05)
+
+Full Changelog: [v5.0.0-beta.2...v5.0.0-beta.3](https://github.com/cloudflare/cloudflare-python/compare/v5.0.0-beta.2...v5.0.0-beta.3)
+
+### Features
+
+* **api:** api update ([3b83baa](https://github.com/cloudflare/cloudflare-python/commit/3b83baa3be725513c98c33e678886f83f5c6b2ce))
+* chore: remove account_id and zone_id client options ([988df86](https://github.com/cloudflare/cloudflare-python/commit/988df8632b0b531c5b1117ecd7ed7d77925dd5ac))
+* feat: add organization audit logs endpoint ([6810580](https://github.com/cloudflare/cloudflare-python/commit/681058048aedeb0983d182b1168b131c332e1477))
+* feat(cache): Add origin cloud regions resource to docs/sdk for new API ([c7b5b51](https://github.com/cloudflare/cloudflare-python/commit/c7b5b51764e7c343140d91d4fd86cf7275eec271))
+* feat(iam): add user_groups and user_group_members terraform resources ([cb00d08](https://github.com/cloudflare/cloudflare-python/commit/cb00d08d86197bddbd55bd3107473c1e363c12c4))
+* **security_center:** update generated types and methods ([ed7d261](https://github.com/cloudflare/cloudflare-python/commit/ed7d261e696fd629101ec2c9197597287d12f479))
+* **zero_trust:** update generated types and methods ([7121a55](https://github.com/cloudflare/cloudflare-python/commit/7121a55d36569da5f7058a749952032c66687d67))
+
+
+### Bug Fixes
+
+* **_models:** add polymorphic_serialization parameter to model_dump overrides ([342b5a8](https://github.com/cloudflare/cloudflare-python/commit/342b5a84daaf5c09e3e1612809d956d916a43621))
+* **ci:** pin single Python version to match pre-uv test behavior ([86676bc](https://github.com/cloudflare/cloudflare-python/commit/86676bca670d38d5947041bc5677138640dd6d92))
+* **ci:** run tests with single Python version and pydantic v2 only ([3259115](https://github.com/cloudflare/cloudflare-python/commit/3259115d9c1c5e2f116adda878851afc86ce5239))
+* **pipelines:** add BaseModel base to response SchemaFieldStruct/SchemaFieldList stubs ([d33af8b](https://github.com/cloudflare/cloudflare-python/commit/d33af8b5d5c1705fde4ae73efdbe3bfe3ba321df))
+* **radar:** move type: ignore[call-arg] to call site for mypy ([fac9404](https://github.com/cloudflare/cloudflare-python/commit/fac9404ebfa1eb5383a3d3c54f49e4120eb8cd11))
+* resolve pre-existing codegen type errors ([fed88d6](https://github.com/cloudflare/cloudflare-python/commit/fed88d6c5a5e482a9de595a1431915320fa11d23))
+
+
+### Chores
+
+* **accounts:** update generated types ([7ff4adf](https://github.com/cloudflare/cloudflare-python/commit/7ff4adf1cf53aae127ffcf059dbfd60620c661e5))
+* **aisearch:** update generated types and methods ([54b8775](https://github.com/cloudflare/cloudflare-python/commit/54b87759b6046cbd0e3330f3e32c80170fe9de61))
+* **aisearch:** update generated types and methods ([f22897e](https://github.com/cloudflare/cloudflare-python/commit/f22897e1ec7ac175278e5481c4855b44fe093a9d))
+* **aisearch:** update generated types, remove unused tests ([e20c138](https://github.com/cloudflare/cloudflare-python/commit/e20c1386bec9181c3dd6dae42a6dee58fc62f1fb))
+* **api:** update composite API spec ([511b508](https://github.com/cloudflare/cloudflare-python/commit/511b508a3dcdbce558c32bee20a2d2e2edefa689))
+* **api:** update composite API spec ([0ee5719](https://github.com/cloudflare/cloudflare-python/commit/0ee571927b0b9656256ed22d76a412b262241f44))
+* **api:** update composite API spec ([6bf05ea](https://github.com/cloudflare/cloudflare-python/commit/6bf05ea320bcbdf1d9fd30edc6d9a19a626a7d22))
+* **api:** update composite API spec ([fd0fca0](https://github.com/cloudflare/cloudflare-python/commit/fd0fca0667e9ca3837629d1aeb1ede7134f0253d))
+* **api:** update composite API spec ([67db9e9](https://github.com/cloudflare/cloudflare-python/commit/67db9e976b1f31e0a4526c76b8149390be128bd8))
+* **api:** update composite API spec ([0fd3baf](https://github.com/cloudflare/cloudflare-python/commit/0fd3baf76be724534d7693eb5a2c3da1b5144c57))
+* **api:** update composite API spec ([42c4dbf](https://github.com/cloudflare/cloudflare-python/commit/42c4dbfa49e879c59dd5e1100c9d5c0191c968d2))
+* **api:** upload stainless config from cloudflare-config ([0d64642](https://github.com/cloudflare/cloudflare-python/commit/0d646425898be57e654301e98c37beeb69d541c4))
+* apply shared infrastructure changes (rye -&gt; uv migration) ([2f283c2](https://github.com/cloudflare/cloudflare-python/commit/2f283c29584b49e7c000f5e04aa5edc62db36ab9))
+* **email_security:** remove deprecated type definitions ([878e3d4](https://github.com/cloudflare/cloudflare-python/commit/878e3d461cc5704a76665cb47e73b0f153f10546))
+* **email_security:** update generated types and methods ([23a979d](https://github.com/cloudflare/cloudflare-python/commit/23a979df28a8e2dedbf0ea83b7f6bfa69e48c61b))
+* **fraud:** update generated types and methods ([771c7e4](https://github.com/cloudflare/cloudflare-python/commit/771c7e45ce91554f4897bdc8cdea0ceedc2c48ab))
+* **internal:** version bump ([0a576fa](https://github.com/cloudflare/cloudflare-python/commit/0a576fa0cbe15e8ebee4ff4ca489d8362885231e))
+* **r2:** update generated types ([2e7856d](https://github.com/cloudflare/cloudflare-python/commit/2e7856d879a82674f6f141c6eef33576694cca0a))
+* **radar:** update generated types and methods ([b48274e](https://github.com/cloudflare/cloudflare-python/commit/b48274ef74a2ac8f58444cbbeb220ba1a425b5b9))
+* **radar:** update to_markdown type ignore comments ([d721964](https://github.com/cloudflare/cloudflare-python/commit/d721964e85978708190d31ba12a15b05f840c0b7))
+* sync shared codegen files from staging-next ([b8078b3](https://github.com/cloudflare/cloudflare-python/commit/b8078b3ac389f386263fb3d5c9d8c6a3b7db6be0))
+* sync shared codegen files from staging-next ([2802feb](https://github.com/cloudflare/cloudflare-python/commit/2802feb0090eb951a2393b7677b2601ed279d85f))
+* **workers_for_platforms:** update generated types ([f342310](https://github.com/cloudflare/cloudflare-python/commit/f3423103c48ad1308775105be71e2243ab1865ed))
+* **zones:** update generated types and methods ([f0a5409](https://github.com/cloudflare/cloudflare-python/commit/f0a540997c0a39a2a86227b71836542db258cc18))
+
+
+### Documentation
+
+* add Authentication section to README ([70d934a](https://github.com/cloudflare/cloudflare-python/commit/70d934abd91cfa8f8444e0651ac97012c1d0edcf))
+
 ## 5.0.0-beta.2 (2026-04-20)
 
 Full Changelog: [v5.0.0-beta.1...v5.0.0-beta.2](https://github.com/cloudflare/cloudflare-python/compare/v5.0.0-beta.1...v5.0.0-beta.2)
