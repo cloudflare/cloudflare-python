@@ -85,12 +85,24 @@ from cloudflare.types.load_balancers import MonitorGroup
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/monitor_groups">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
-- <code title="put /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">update</a>(monitor_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/monitor_groups">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">SyncSinglePage[MonitorGroup]</a></code>
-- <code title="delete /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">delete</a>(monitor_group_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
-- <code title="patch /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">edit</a>(monitor_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups.py">get</a>(monitor_group_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/monitor_groups">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+- <code title="put /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">update</a>(monitor_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitor_groups">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">SyncSinglePage[MonitorGroup]</a></code>
+- <code title="delete /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">delete</a>(monitor_group_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+- <code title="patch /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">edit</a>(monitor_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_group_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}">client.load_balancers.monitor_groups.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/monitor_groups.py">get</a>(monitor_group_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_group.py">MonitorGroup</a></code>
+
+### References
+
+Types:
+
+```python
+from cloudflare.types.load_balancers.monitor_groups import ReferenceGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/load_balancers/monitor_groups/{monitor_group_id}/references">client.load_balancers.monitor_groups.references.<a href="./src/cloudflare/resources/load_balancers/monitor_groups/references.py">get</a>(monitor_group_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_groups/reference_get_response.py">SyncSinglePage[ReferenceGetResponse]</a></code>
 
 ## Pools
 

@@ -51,14 +51,6 @@ from .pools.pools import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from .monitor_groups import (
-    MonitorGroupsResource,
-    AsyncMonitorGroupsResource,
-    MonitorGroupsResourceWithRawResponse,
-    AsyncMonitorGroupsResourceWithRawResponse,
-    MonitorGroupsResourceWithStreamingResponse,
-    AsyncMonitorGroupsResourceWithStreamingResponse,
-)
 from .monitors.monitors import (
     MonitorsResource,
     AsyncMonitorsResource,
@@ -73,6 +65,14 @@ from ...types.load_balancers import (
     load_balancer_edit_params,
     load_balancer_create_params,
     load_balancer_update_params,
+)
+from .monitor_groups.monitor_groups import (
+    MonitorGroupsResource,
+    AsyncMonitorGroupsResource,
+    MonitorGroupsResourceWithRawResponse,
+    AsyncMonitorGroupsResourceWithRawResponse,
+    MonitorGroupsResourceWithStreamingResponse,
+    AsyncMonitorGroupsResourceWithStreamingResponse,
 )
 from ...types.load_balancers.rules_param import RulesParam
 from ...types.load_balancers.default_pools import DefaultPools

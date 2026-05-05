@@ -6,26 +6,38 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from .references import (
+    ReferencesResource,
+    AsyncReferencesResource,
+    ReferencesResourceWithRawResponse,
+    AsyncReferencesResourceWithRawResponse,
+    ReferencesResourceWithStreamingResponse,
+    AsyncReferencesResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.load_balancers import monitor_group_edit_params, monitor_group_create_params, monitor_group_update_params
-from ...types.load_balancers.monitor_group import MonitorGroup
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.load_balancers import monitor_group_edit_params, monitor_group_create_params, monitor_group_update_params
+from ....types.load_balancers.monitor_group import MonitorGroup
 
 __all__ = ["MonitorGroupsResource", "AsyncMonitorGroupsResource"]
 
 
 class MonitorGroupsResource(SyncAPIResource):
+    @cached_property
+    def references(self) -> ReferencesResource:
+        return ReferencesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> MonitorGroupsResourceWithRawResponse:
         """
@@ -360,6 +372,10 @@ class MonitorGroupsResource(SyncAPIResource):
 
 
 class AsyncMonitorGroupsResource(AsyncAPIResource):
+    @cached_property
+    def references(self) -> AsyncReferencesResource:
+        return AsyncReferencesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncMonitorGroupsResourceWithRawResponse:
         """
@@ -716,6 +732,10 @@ class MonitorGroupsResourceWithRawResponse:
             monitor_groups.get,
         )
 
+    @cached_property
+    def references(self) -> ReferencesResourceWithRawResponse:
+        return ReferencesResourceWithRawResponse(self._monitor_groups.references)
+
 
 class AsyncMonitorGroupsResourceWithRawResponse:
     def __init__(self, monitor_groups: AsyncMonitorGroupsResource) -> None:
@@ -739,6 +759,10 @@ class AsyncMonitorGroupsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             monitor_groups.get,
         )
+
+    @cached_property
+    def references(self) -> AsyncReferencesResourceWithRawResponse:
+        return AsyncReferencesResourceWithRawResponse(self._monitor_groups.references)
 
 
 class MonitorGroupsResourceWithStreamingResponse:
@@ -764,6 +788,10 @@ class MonitorGroupsResourceWithStreamingResponse:
             monitor_groups.get,
         )
 
+    @cached_property
+    def references(self) -> ReferencesResourceWithStreamingResponse:
+        return ReferencesResourceWithStreamingResponse(self._monitor_groups.references)
+
 
 class AsyncMonitorGroupsResourceWithStreamingResponse:
     def __init__(self, monitor_groups: AsyncMonitorGroupsResource) -> None:
@@ -787,3 +815,7 @@ class AsyncMonitorGroupsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             monitor_groups.get,
         )
+
+    @cached_property
+    def references(self) -> AsyncReferencesResourceWithStreamingResponse:
+        return AsyncReferencesResourceWithStreamingResponse(self._monitor_groups.references)
