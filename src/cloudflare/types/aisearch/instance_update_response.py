@@ -166,8 +166,9 @@ class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     selector: str
     """CSS selector to extract content from pages matching the path pattern.
 
-    Supports standard CSS selectors including class, ID, element, and attribute
-    selectors.
+    Must not contain disallowed characters (;, `, $, {, }, \\)). Must target a single
+    element; if multiple elements match, the selector is ignored and the full page
+    is used.
     """
 
 
@@ -176,10 +177,16 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
     """
     List of path-to-selector mappings for extracting specific content from crawled
     pages. Each entry pairs a URL glob pattern with a CSS selector. The first
-    matching path wins. Only the matched HTML fragment is stored and indexed.
+    matching path wins. Only the matched HTML fragment is stored and indexed. Omit
+    the field to disable content selection — empty arrays are rejected.
     """
 
     include_headers: Optional[Dict[str, str]] = None
+    """Up to 5 custom HTTP headers sent with each crawl request.
+
+    Names must be RFC-7230 token characters (no spaces, colons, or control
+    characters); values must be HTAB + printable ASCII (no CR/LF).
+    """
 
     include_images: Optional[bool] = None
 

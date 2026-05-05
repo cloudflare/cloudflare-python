@@ -114,10 +114,14 @@ class TestInstances:
                         "content_selector": [
                             {
                                 "path": "**/blog/**",
-                                "selector": "article .post-body",
-                            }
+                                "selector": "article div.post-body",
+                            },
+                            {
+                                "path": "**/docs/**",
+                                "selector": "main",
+                            },
                         ],
-                        "include_headers": {"foo": "string"},
+                        "include_headers": {"cache-control": "no-cache, no-store"},
                         "include_images": True,
                         "specific_sitemaps": [
                             "https://example.com/sitemap.xml",
@@ -259,10 +263,14 @@ class TestInstances:
                         "content_selector": [
                             {
                                 "path": "**/blog/**",
-                                "selector": "article .post-body",
-                            }
+                                "selector": "article div.post-body",
+                            },
+                            {
+                                "path": "**/docs/**",
+                                "selector": "main",
+                            },
                         ],
-                        "include_headers": {"foo": "string"},
+                        "include_headers": {"cache-control": "no-cache, no-store"},
                         "include_images": True,
                         "specific_sitemaps": [
                             "https://example.com/sitemap.xml",
@@ -837,10 +845,14 @@ class TestAsyncInstances:
                         "content_selector": [
                             {
                                 "path": "**/blog/**",
-                                "selector": "article .post-body",
-                            }
+                                "selector": "article div.post-body",
+                            },
+                            {
+                                "path": "**/docs/**",
+                                "selector": "main",
+                            },
                         ],
-                        "include_headers": {"foo": "string"},
+                        "include_headers": {"cache-control": "no-cache, no-store"},
                         "include_images": True,
                         "specific_sitemaps": [
                             "https://example.com/sitemap.xml",
@@ -982,10 +994,14 @@ class TestAsyncInstances:
                         "content_selector": [
                             {
                                 "path": "**/blog/**",
-                                "selector": "article .post-body",
-                            }
+                                "selector": "article div.post-body",
+                            },
+                            {
+                                "path": "**/docs/**",
+                                "selector": "main",
+                            },
                         ],
-                        "include_headers": {"foo": "string"},
+                        "include_headers": {"cache-control": "no-cache, no-store"},
                         "include_images": True,
                         "specific_sitemaps": [
                             "https://example.com/sitemap.xml",
