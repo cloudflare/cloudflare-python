@@ -18,10 +18,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import smart_tiered_cache_edit_params
+from ...types.cache import smart_tiered_cache_edit_params, smart_tiered_cache_create_params
 from ..._base_client import make_request_options
 from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
 from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
+from ...types.cache.smart_tiered_cache_create_response import SmartTieredCacheCreateResponse
 from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
 
 __all__ = ["SmartTieredCacheResource", "AsyncSmartTieredCacheResource"]
@@ -46,6 +47,54 @@ class SmartTieredCacheResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return SmartTieredCacheResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SmartTieredCacheCreateResponse]:
+        """
+        Smart Tiered Cache dynamically selects the single closest upper tier for each of
+        your website's origins with no configuration required, using our in-house
+        performance and routing data. Cloudflare collects latency data for each request
+        to an origin, and uses the latency data to determine how well any upper-tier
+        data center is connected with an origin. As a result, Cloudflare can select the
+        data center with the lowest latency to be the upper-tier for an origin.
+
+        Args:
+          zone_id: Identifier.
+
+          value: Enable or disable the Smart Tiered Cache.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
+            body=maybe_transform({"value": value}, smart_tiered_cache_create_params.SmartTieredCacheCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SmartTieredCacheCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SmartTieredCacheCreateResponse]], ResultWrapper[SmartTieredCacheCreateResponse]),
+        )
 
     def delete(
         self,
@@ -204,6 +253,56 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         """
         return AsyncSmartTieredCacheResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SmartTieredCacheCreateResponse]:
+        """
+        Smart Tiered Cache dynamically selects the single closest upper tier for each of
+        your website's origins with no configuration required, using our in-house
+        performance and routing data. Cloudflare collects latency data for each request
+        to an origin, and uses the latency data to determine how well any upper-tier
+        data center is connected with an origin. As a result, Cloudflare can select the
+        data center with the lowest latency to be the upper-tier for an origin.
+
+        Args:
+          zone_id: Identifier.
+
+          value: Enable or disable the Smart Tiered Cache.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            path_template("/zones/{zone_id}/cache/tiered_cache_smart_topology_enable", zone_id=zone_id),
+            body=await async_maybe_transform(
+                {"value": value}, smart_tiered_cache_create_params.SmartTieredCacheCreateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SmartTieredCacheCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SmartTieredCacheCreateResponse]], ResultWrapper[SmartTieredCacheCreateResponse]),
+        )
+
     async def delete(
         self,
         *,
@@ -347,6 +446,9 @@ class SmartTieredCacheResourceWithRawResponse:
     def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
+        self.create = to_raw_response_wrapper(
+            smart_tiered_cache.create,
+        )
         self.delete = to_raw_response_wrapper(
             smart_tiered_cache.delete,
         )
@@ -362,6 +464,9 @@ class AsyncSmartTieredCacheResourceWithRawResponse:
     def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
+        self.create = async_to_raw_response_wrapper(
+            smart_tiered_cache.create,
+        )
         self.delete = async_to_raw_response_wrapper(
             smart_tiered_cache.delete,
         )
@@ -377,6 +482,9 @@ class SmartTieredCacheResourceWithStreamingResponse:
     def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
+        self.create = to_streamed_response_wrapper(
+            smart_tiered_cache.create,
+        )
         self.delete = to_streamed_response_wrapper(
             smart_tiered_cache.delete,
         )
@@ -392,6 +500,9 @@ class AsyncSmartTieredCacheResourceWithStreamingResponse:
     def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
+        self.create = async_to_streamed_response_wrapper(
+            smart_tiered_cache.create,
+        )
         self.delete = async_to_streamed_response_wrapper(
             smart_tiered_cache.delete,
         )

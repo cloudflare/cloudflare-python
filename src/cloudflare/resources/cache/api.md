@@ -39,6 +39,7 @@ Types:
 
 ```python
 from cloudflare.types.cache import (
+    SmartTieredCacheCreateResponse,
     SmartTieredCacheDeleteResponse,
     SmartTieredCacheEditResponse,
     SmartTieredCacheGetResponse,
@@ -47,6 +48,7 @@ from cloudflare.types.cache import (
 
 Methods:
 
+- <code title="post /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/smart_tiered_cache_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_create_response.py">Optional[SmartTieredCacheCreateResponse]</a></code>
 - <code title="delete /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_delete_response.py">Optional[SmartTieredCacheDeleteResponse]</a></code>
 - <code title="patch /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/smart_tiered_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_edit_response.py">Optional[SmartTieredCacheEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_get_response.py">Optional[SmartTieredCacheGetResponse]</a></code>
