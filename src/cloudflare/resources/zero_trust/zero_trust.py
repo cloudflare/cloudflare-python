@@ -92,6 +92,14 @@ from .organizations.organizations import (
     OrganizationsResourceWithStreamingResponse,
     AsyncOrganizationsResourceWithStreamingResponse,
 )
+from .resource_library.resource_library import (
+    ResourceLibraryResource,
+    AsyncResourceLibraryResource,
+    ResourceLibraryResourceWithRawResponse,
+    AsyncResourceLibraryResourceWithRawResponse,
+    ResourceLibraryResourceWithStreamingResponse,
+    AsyncResourceLibraryResourceWithStreamingResponse,
+)
 from .identity_providers.identity_providers import (
     IdentityProvidersResource,
     AsyncIdentityProvidersResource,
@@ -152,6 +160,10 @@ class ZeroTrustResource(SyncAPIResource):
     @cached_property
     def risk_scoring(self) -> RiskScoringResource:
         return RiskScoringResource(self._client)
+
+    @cached_property
+    def resource_library(self) -> ResourceLibraryResource:
+        return ResourceLibraryResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZeroTrustResourceWithRawResponse:
@@ -221,6 +233,10 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def risk_scoring(self) -> AsyncRiskScoringResource:
         return AsyncRiskScoringResource(self._client)
+
+    @cached_property
+    def resource_library(self) -> AsyncResourceLibraryResource:
+        return AsyncResourceLibraryResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZeroTrustResourceWithRawResponse:
@@ -294,6 +310,10 @@ class ZeroTrustResourceWithRawResponse:
     def risk_scoring(self) -> RiskScoringResourceWithRawResponse:
         return RiskScoringResourceWithRawResponse(self._zero_trust.risk_scoring)
 
+    @cached_property
+    def resource_library(self) -> ResourceLibraryResourceWithRawResponse:
+        return ResourceLibraryResourceWithRawResponse(self._zero_trust.resource_library)
+
 
 class AsyncZeroTrustResourceWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:
@@ -346,6 +366,10 @@ class AsyncZeroTrustResourceWithRawResponse:
     @cached_property
     def risk_scoring(self) -> AsyncRiskScoringResourceWithRawResponse:
         return AsyncRiskScoringResourceWithRawResponse(self._zero_trust.risk_scoring)
+
+    @cached_property
+    def resource_library(self) -> AsyncResourceLibraryResourceWithRawResponse:
+        return AsyncResourceLibraryResourceWithRawResponse(self._zero_trust.resource_library)
 
 
 class ZeroTrustResourceWithStreamingResponse:
@@ -400,6 +424,10 @@ class ZeroTrustResourceWithStreamingResponse:
     def risk_scoring(self) -> RiskScoringResourceWithStreamingResponse:
         return RiskScoringResourceWithStreamingResponse(self._zero_trust.risk_scoring)
 
+    @cached_property
+    def resource_library(self) -> ResourceLibraryResourceWithStreamingResponse:
+        return ResourceLibraryResourceWithStreamingResponse(self._zero_trust.resource_library)
+
 
 class AsyncZeroTrustResourceWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:
@@ -452,3 +480,7 @@ class AsyncZeroTrustResourceWithStreamingResponse:
     @cached_property
     def risk_scoring(self) -> AsyncRiskScoringResourceWithStreamingResponse:
         return AsyncRiskScoringResourceWithStreamingResponse(self._zero_trust.risk_scoring)
+
+    @cached_property
+    def resource_library(self) -> AsyncResourceLibraryResourceWithStreamingResponse:
+        return AsyncResourceLibraryResourceWithStreamingResponse(self._zero_trust.resource_library)

@@ -1978,3 +1978,34 @@ from cloudflare.types.zero_trust.risk_scoring.integrations import ReferenceGetRe
 Methods:
 
 - <code title="get /accounts/{account_id}/zt_risk_scoring/integrations/reference_id/{reference_id}">client.zero_trust.risk_scoring.integrations.references.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/references.py">get</a>(reference_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integrations/reference_get_response.py">Optional[ReferenceGetResponse]</a></code>
+
+## ResourceLibrary
+
+### Applications
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.resource_library import (
+    ApplicationListResponse,
+    ApplicationGetResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/resource-library/applications">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_list_response.py">SyncSinglePage[ApplicationListResponse]</a></code>
+- <code title="get /accounts/{account_id}/resource-library/applications/{id}">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_get_response.py">Optional[ApplicationGetResponse]</a></code>
+
+### Categories
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.resource_library import CategoryListResponse, CategoryGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/resource-library/categories">client.zero_trust.resource_library.categories.<a href="./src/cloudflare/resources/zero_trust/resource_library/categories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/category_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/category_list_response.py">SyncSinglePage[CategoryListResponse]</a></code>
+- <code title="get /accounts/{account_id}/resource-library/categories/{id}">client.zero_trust.resource_library.categories.<a href="./src/cloudflare/resources/zero_trust/resource_library/categories.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/resource_library/category_get_response.py">Optional[CategoryGetResponse]</a></code>
