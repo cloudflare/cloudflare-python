@@ -175,6 +175,7 @@ class TestResourceSharing:
             per_page=20,
             resource_types=["custom-ruleset"],
             status="active",
+            tag=["env=production"],
             target_type="account",
         )
         assert_matches_type(SyncV4PagePaginationArray[ResourceSharingListResponse], resource_sharing, path=["response"])
@@ -477,6 +478,7 @@ class TestAsyncResourceSharing:
             per_page=20,
             resource_types=["custom-ruleset"],
             status="active",
+            tag=["env=production"],
             target_type="account",
         )
         assert_matches_type(
