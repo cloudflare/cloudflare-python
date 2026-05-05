@@ -9,8 +9,11 @@ __all__ = ["UserEditResponse"]
 
 
 class UserEditResponse(BaseModel):
-    id: Optional[str] = None
+    id: str
     """Identifier of the user."""
+
+    email: str
+    """Current email address of the user."""
 
     betas: Optional[List[str]] = None
     """Lists the betas that the user is participating in."""
