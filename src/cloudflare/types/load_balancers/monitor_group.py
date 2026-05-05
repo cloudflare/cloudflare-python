@@ -44,8 +44,8 @@ class MonitorGroup(BaseModel):
     members: List[Member]
     """List of monitors in this group"""
 
-    created_at: Optional[datetime] = None
+    created_on: Optional[datetime] = None
     """The timestamp of when the monitor group was created"""
 
-    updated_at: Optional[datetime] = None
+    modified_on: Optional[datetime] = None
     """The timestamp of when the monitor group was last updated"""

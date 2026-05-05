@@ -42,6 +42,7 @@ class ResourceSharingListParams(TypedDict, total=False):
             "gateway-destination-ip",
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
+            "idp-federation-grant",
         ]
     ]
     """Filter share resources by resource_types."""

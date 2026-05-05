@@ -24,7 +24,6 @@ class TestMonitorGroups:
     def test_method_create(self, client: Cloudflare) -> None:
         monitor_group = client.load_balancers.monitor_groups.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -41,7 +40,6 @@ class TestMonitorGroups:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitor_groups.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -62,7 +60,6 @@ class TestMonitorGroups:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.monitor_groups.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -86,7 +83,6 @@ class TestMonitorGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitor_groups.with_raw_response.create(
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -103,7 +99,6 @@ class TestMonitorGroups:
         monitor_group = client.load_balancers.monitor_groups.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -121,7 +116,6 @@ class TestMonitorGroups:
         response = client.load_balancers.monitor_groups.with_raw_response.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -143,7 +137,6 @@ class TestMonitorGroups:
         with client.load_balancers.monitor_groups.with_streaming_response.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -168,7 +161,6 @@ class TestMonitorGroups:
             client.load_balancers.monitor_groups.with_raw_response.update(
                 monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -184,7 +176,6 @@ class TestMonitorGroups:
             client.load_balancers.monitor_groups.with_raw_response.update(
                 monitor_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -287,7 +278,6 @@ class TestMonitorGroups:
         monitor_group = client.load_balancers.monitor_groups.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -305,7 +295,6 @@ class TestMonitorGroups:
         response = client.load_balancers.monitor_groups.with_raw_response.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -327,7 +316,6 @@ class TestMonitorGroups:
         with client.load_balancers.monitor_groups.with_streaming_response.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -352,7 +340,6 @@ class TestMonitorGroups:
             client.load_balancers.monitor_groups.with_raw_response.edit(
                 monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -368,7 +355,6 @@ class TestMonitorGroups:
             client.load_balancers.monitor_groups.with_raw_response.edit(
                 monitor_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -438,7 +424,6 @@ class TestAsyncMonitorGroups:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         monitor_group = await async_client.load_balancers.monitor_groups.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -455,7 +440,6 @@ class TestAsyncMonitorGroups:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitor_groups.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -476,7 +460,6 @@ class TestAsyncMonitorGroups:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitor_groups.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -500,7 +483,6 @@ class TestAsyncMonitorGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitor_groups.with_raw_response.create(
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -517,7 +499,6 @@ class TestAsyncMonitorGroups:
         monitor_group = await async_client.load_balancers.monitor_groups.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -535,7 +516,6 @@ class TestAsyncMonitorGroups:
         response = await async_client.load_balancers.monitor_groups.with_raw_response.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -557,7 +537,6 @@ class TestAsyncMonitorGroups:
         async with async_client.load_balancers.monitor_groups.with_streaming_response.update(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -582,7 +561,6 @@ class TestAsyncMonitorGroups:
             await async_client.load_balancers.monitor_groups.with_raw_response.update(
                 monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -598,7 +576,6 @@ class TestAsyncMonitorGroups:
             await async_client.load_balancers.monitor_groups.with_raw_response.update(
                 monitor_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -701,7 +678,6 @@ class TestAsyncMonitorGroups:
         monitor_group = await async_client.load_balancers.monitor_groups.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -719,7 +695,6 @@ class TestAsyncMonitorGroups:
         response = await async_client.load_balancers.monitor_groups.with_raw_response.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -741,7 +716,6 @@ class TestAsyncMonitorGroups:
         async with async_client.load_balancers.monitor_groups.with_streaming_response.edit(
             monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="id",
             description="Primary datacenter monitors",
             members=[
                 {
@@ -766,7 +740,6 @@ class TestAsyncMonitorGroups:
             await async_client.load_balancers.monitor_groups.with_raw_response.edit(
                 monitor_group_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {
@@ -782,7 +755,6 @@ class TestAsyncMonitorGroups:
             await async_client.load_balancers.monitor_groups.with_raw_response.edit(
                 monitor_group_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="id",
                 description="Primary datacenter monitors",
                 members=[
                     {

@@ -33,6 +33,7 @@ class ResourceGetResponse(BaseModel):
         "gateway-destination-ip",
         "gateway-block-page-settings",
         "gateway-extended-email-matching",
+        "idp-federation-grant",
     ]
     """Resource Type."""
 

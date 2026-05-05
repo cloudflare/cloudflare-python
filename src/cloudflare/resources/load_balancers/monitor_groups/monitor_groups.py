@@ -61,7 +61,6 @@ class MonitorGroupsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -76,9 +75,6 @@ class MonitorGroupsResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -98,7 +94,6 @@ class MonitorGroupsResource(SyncAPIResource):
             path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             body=maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
@@ -119,7 +114,6 @@ class MonitorGroupsResource(SyncAPIResource):
         monitor_group_id: str,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,9 +128,6 @@ class MonitorGroupsResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -162,7 +153,6 @@ class MonitorGroupsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
@@ -265,7 +255,6 @@ class MonitorGroupsResource(SyncAPIResource):
         monitor_group_id: str,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_edit_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -280,9 +269,6 @@ class MonitorGroupsResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -308,7 +294,6 @@ class MonitorGroupsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
@@ -399,7 +384,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_create_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -414,9 +398,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -436,7 +417,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
             path_template("/accounts/{account_id}/load_balancers/monitor_groups", account_id=account_id),
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
@@ -457,7 +437,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         monitor_group_id: str,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_update_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -472,9 +451,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -500,7 +476,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
@@ -603,7 +578,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
         monitor_group_id: str,
         *,
         account_id: str,
-        id: str,
         description: str,
         members: Iterable[monitor_group_edit_params.Member],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -618,9 +592,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          id: The ID of the Monitor Group to use for checking the health of origins within
-              this pool.
 
           description: A short description of the monitor group
 
@@ -646,7 +617,6 @@ class AsyncMonitorGroupsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "description": description,
                     "members": members,
                 },
