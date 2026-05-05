@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["OriginCloudRegionBulkDeleteResponse", "Failed", "Succeeded"]
+__all__ = ["OriginCloudRegionBulkUpdateResponse", "Failed", "Succeeded"]
 
 
 class Failed(BaseModel):
@@ -55,7 +55,7 @@ class Succeeded(BaseModel):
     """
 
 
-class OriginCloudRegionBulkDeleteResponse(BaseModel):
+class OriginCloudRegionBulkUpdateResponse(BaseModel):
     """Response result for a batch origin cloud region operation."""
 
     failed: List[Failed]

@@ -2,19 +2,29 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["OriginCloudRegionEditParams"]
+__all__ = ["OriginCloudRegionBulkUpdateParams", "Body"]
 
 
-class OriginCloudRegionEditParams(TypedDict, total=False):
+class OriginCloudRegionBulkUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ip: Required[str]
+    body: Required[Iterable[Body]]
+
+
+class Body(TypedDict, total=False):
+    """Request body for creating or replacing an origin cloud region mapping."""
+
+    origin_ip: Required[str]
     """Origin IP address (IPv4 or IPv6).
 
-    Normalized to canonical form before storage (RFC 5952 for IPv6).
+    For the single PUT endpoint (`PUT /origin/cloud_regions/{origin_ip}`), this
+    field must match the path parameter or the request will be rejected with a 400
+    error. For the batch PUT endpoint, this field identifies which mapping to
+    upsert.
     """
 
     region: Required[str]

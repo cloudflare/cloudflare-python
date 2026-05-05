@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -18,19 +18,17 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...types.cache import (
-    origin_cloud_region_edit_params,
-    origin_cloud_region_create_params,
-    origin_cloud_region_bulk_edit_params,
+    origin_cloud_region_list_params,
+    origin_cloud_region_update_params,
+    origin_cloud_region_bulk_update_params,
 )
-from ..._base_client import make_request_options
-from ...types.cache.origin_cloud_region_get_response import OriginCloudRegionGetResponse
-from ...types.cache.origin_cloud_region_edit_response import OriginCloudRegionEditResponse
-from ...types.cache.origin_cloud_region_list_response import OriginCloudRegionListResponse
-from ...types.cache.origin_cloud_region_create_response import OriginCloudRegionCreateResponse
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.cache.origin_cloud_region import OriginCloudRegion
 from ...types.cache.origin_cloud_region_delete_response import OriginCloudRegionDeleteResponse
-from ...types.cache.origin_cloud_region_bulk_edit_response import OriginCloudRegionBulkEditResponse
 from ...types.cache.origin_cloud_region_bulk_delete_response import OriginCloudRegionBulkDeleteResponse
+from ...types.cache.origin_cloud_region_bulk_update_response import OriginCloudRegionBulkUpdateResponse
 from ...types.cache.origin_cloud_region_supported_regions_response import OriginCloudRegionSupportedRegionsResponse
 
 __all__ = ["OriginCloudRegionsResource", "AsyncOriginCloudRegionsResource"]
@@ -56,11 +54,12 @@ class OriginCloudRegionsResource(SyncAPIResource):
         """
         return OriginCloudRegionsResourceWithStreamingResponse(self)
 
-    def create(
+    def update(
         self,
+        path_origin_ip: str,
         *,
         zone_id: str,
-        ip: str,
+        body_origin_ip: str,
         region: str,
         vendor: Literal["aws", "azure", "gcp", "oci"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,21 +68,24 @@ class OriginCloudRegionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionCreateResponse]:
-        """Adds a single IP-to-cloud-region mapping for the zone.
-
-        The IP must be a valid
-        IPv4 or IPv6 address and is normalized to canonical form before storage (RFC
-        5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists
-        — use PATCH to update an existing entry. The vendor and region are validated
-        against the list from
-        `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`.
+    ) -> Optional[OriginCloudRegion]:
+        """
+        Creates a new IP-to-cloud-region mapping or replaces the existing mapping for
+        the specified IP. PUT is idempotent — calling it repeatedly with the same body
+        produces the same result. The IP path parameter is normalized to canonical form
+        (RFC 5952 for IPv6) before storage. The vendor and region are validated against
+        the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.
+        Returns 400 if the `origin_ip` in the body does not match the URL path
+        parameter. Returns 403 (code 1164) when the zone has reached the limit of 3,500
+        IP mappings.
 
         Args:
           zone_id: Identifier.
 
-          ip: Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage
-              (RFC 5952 for IPv6).
+          body_origin_ip: Origin IP address (IPv4 or IPv6). For the single PUT endpoint
+              (`PUT /origin/cloud_regions/{origin_ip}`), this field must match the path
+              parameter or the request will be rejected with a 400 error. For the batch PUT
+              endpoint, this field identifies which mapping to upsert.
 
           region: Cloud vendor region identifier. Must be a valid region for the specified vendor
               as returned by the supported_regions endpoint.
@@ -100,48 +102,56 @@ class OriginCloudRegionsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
+        if not path_origin_ip:
+            raise ValueError(f"Expected a non-empty value for `path_origin_ip` but received {path_origin_ip!r}")
+        return self._put(
+            path_template(
+                "/zones/{zone_id}/origin/cloud_regions/{path_origin_ip}", zone_id=zone_id, path_origin_ip=path_origin_ip
+            ),
             body=maybe_transform(
                 {
-                    "ip": ip,
+                    "body_origin_ip": body_origin_ip,
                     "region": region,
                     "vendor": vendor,
                 },
-                origin_cloud_region_create_params.OriginCloudRegionCreateParams,
+                origin_cloud_region_update_params.OriginCloudRegionUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegion]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginCloudRegionCreateResponse]], ResultWrapper[OriginCloudRegionCreateResponse]
-            ),
+            cast_to=cast(Type[Optional[OriginCloudRegion]], ResultWrapper[OriginCloudRegion]),
         )
 
     def list(
         self,
         *,
         zone_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionListResponse]:
-        """Returns all IP-to-cloud-region mappings configured for the zone.
-
-        Each mapping
-        tells Cloudflare which cloud vendor and region hosts the origin at that IP,
-        enabling the edge to route via the nearest Tiered Cache upper-tier co-located
-        with that cloud provider. Returns an empty array when no mappings exist.
+    ) -> SyncV4PagePaginationArray[OriginCloudRegion]:
+        """
+        Returns all IP-to-cloud-region mappings configured for the zone with pagination
+        support. Each mapping tells Cloudflare which cloud vendor and region hosts the
+        origin at that IP, enabling the edge to route via the nearest Tiered Cache
+        upper-tier co-located with that cloud provider. Returns an empty array when no
+        mappings exist.
 
         Args:
           zone_id: Identifier.
+
+          page: Page number of paginated results.
+
+          per_page: Number of items per page.
 
           extra_headers: Send extra headers
 
@@ -153,16 +163,23 @@ class OriginCloudRegionsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
+        return self._get_api_list(
+            path_template("/zones/{zone_id}/origin/cloud_regions", zone_id=zone_id),
+            page=SyncV4PagePaginationArray[OriginCloudRegion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionListResponse]]._unwrapper,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_cloud_region_list_params.OriginCloudRegionListParams,
+                ),
             ),
-            cast_to=cast(Type[Optional[OriginCloudRegionListResponse]], ResultWrapper[OriginCloudRegionListResponse]),
+            model=OriginCloudRegion,
         )
 
     def delete(
@@ -180,9 +197,9 @@ class OriginCloudRegionsResource(SyncAPIResource):
         """Removes the cloud region mapping for a single origin IP address.
 
         The IP path
-        parameter is normalized before lookup. Returns the deleted entry on success.
-        Returns 404 (code 1163) if no mapping exists for the specified IP. When the last
-        mapping for the zone is removed the underlying rule record is also deleted.
+        parameter is normalized before lookup. Returns the deleted IP on success.
+        Returns 404 if no mapping exists for the specified IP. When the last mapping for
+        the zone is removed the underlying rule record is also deleted.
 
         Args:
           zone_id: Identifier.
@@ -200,9 +217,7 @@ class OriginCloudRegionsResource(SyncAPIResource):
         if not origin_ip:
             raise ValueError(f"Expected a non-empty value for `origin_ip` but received {origin_ip!r}")
         return self._delete(
-            path_template(
-                "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip
-            ),
+            path_template("/zones/{zone_id}/origin/cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +262,7 @@ class OriginCloudRegionsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/batch", zone_id=zone_id),
+            path_template("/zones/{zone_id}/origin/cloud_regions/batch", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -260,25 +275,27 @@ class OriginCloudRegionsResource(SyncAPIResource):
             ),
         )
 
-    def bulk_edit(
+    def bulk_update(
         self,
         *,
         zone_id: str,
-        body: Iterable[origin_cloud_region_bulk_edit_params.Body],
+        body: Iterable[origin_cloud_region_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionBulkEditResponse]:
-        """Adds or updates up to 100 IP-to-cloud-region mappings in a single request.
+    ) -> Optional[OriginCloudRegionBulkUpdateResponse]:
+        """Upserts up to 100 IP-to-cloud-region mappings in a single request.
 
-        Each
-        item is validated independently — valid items are applied and invalid items are
-        returned in the `failed` array. The vendor and region for every item are
-        validated against the list from
-        `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`.
+        Items in the
+        request body are created or replaced; mappings not included in the request body
+        are preserved unchanged (this is a merge operation, not a full collection
+        replacement). Each item is validated independently — valid items are applied and
+        invalid items are returned in the `failed` array. The vendor and region for
+        every item are validated against the list from
+        `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.
 
         Args:
           zone_id: Identifier.
@@ -293,82 +310,19 @@ class OriginCloudRegionsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._patch(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/batch", zone_id=zone_id),
-            body=maybe_transform(body, Iterable[origin_cloud_region_bulk_edit_params.Body]),
+        return self._put(
+            path_template("/zones/{zone_id}/origin/cloud_regions/batch", zone_id=zone_id),
+            body=maybe_transform(body, Iterable[origin_cloud_region_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionBulkEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegionBulkUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[OriginCloudRegionBulkEditResponse]], ResultWrapper[OriginCloudRegionBulkEditResponse]
+                Type[Optional[OriginCloudRegionBulkUpdateResponse]], ResultWrapper[OriginCloudRegionBulkUpdateResponse]
             ),
-        )
-
-    def edit(
-        self,
-        *,
-        zone_id: str,
-        ip: str,
-        region: str,
-        vendor: Literal["aws", "azure", "gcp", "oci"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionEditResponse]:
-        """Adds or updates a single IP-to-cloud-region mapping for the zone.
-
-        Unlike POST,
-        this operation is idempotent — if a mapping for the IP already exists it is
-        overwritten. Returns the complete updated list of all mappings for the zone.
-        Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP
-        mappings.
-
-        Args:
-          zone_id: Identifier.
-
-          ip: Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage
-              (RFC 5952 for IPv6).
-
-          region: Cloud vendor region identifier. Must be a valid region for the specified vendor
-              as returned by the supported_regions endpoint.
-
-          vendor: Cloud vendor hosting the origin. Must be one of the supported vendors.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._patch(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
-            body=maybe_transform(
-                {
-                    "ip": ip,
-                    "region": region,
-                    "vendor": vendor,
-                },
-                origin_cloud_region_edit_params.OriginCloudRegionEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionEditResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[OriginCloudRegionEditResponse]], ResultWrapper[OriginCloudRegionEditResponse]),
         )
 
     def get(
@@ -382,12 +336,12 @@ class OriginCloudRegionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionGetResponse]:
+    ) -> Optional[OriginCloudRegion]:
         """Returns the cloud region mapping for a single origin IP address.
 
         The IP path
-        parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404
-        (code 1142) if the zone has no mappings or if the specified IP has no mapping.
+        parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 if the
+        zone has no mappings or if the specified IP has no mapping.
 
         Args:
           zone_id: Identifier.
@@ -405,17 +359,15 @@ class OriginCloudRegionsResource(SyncAPIResource):
         if not origin_ip:
             raise ValueError(f"Expected a non-empty value for `origin_ip` but received {origin_ip!r}")
         return self._get(
-            path_template(
-                "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip
-            ),
+            path_template("/zones/{zone_id}/origin/cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegion]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OriginCloudRegionGetResponse]], ResultWrapper[OriginCloudRegionGetResponse]),
+            cast_to=cast(Type[Optional[OriginCloudRegion]], ResultWrapper[OriginCloudRegion]),
         )
 
     def supported_regions(
@@ -449,7 +401,7 @@ class OriginCloudRegionsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/supported_regions", zone_id=zone_id),
+            path_template("/zones/{zone_id}/origin/cloud_regions/supported_regions", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,11 +436,12 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         """
         return AsyncOriginCloudRegionsResourceWithStreamingResponse(self)
 
-    async def create(
+    async def update(
         self,
+        path_origin_ip: str,
         *,
         zone_id: str,
-        ip: str,
+        body_origin_ip: str,
         region: str,
         vendor: Literal["aws", "azure", "gcp", "oci"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -497,21 +450,24 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionCreateResponse]:
-        """Adds a single IP-to-cloud-region mapping for the zone.
-
-        The IP must be a valid
-        IPv4 or IPv6 address and is normalized to canonical form before storage (RFC
-        5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists
-        — use PATCH to update an existing entry. The vendor and region are validated
-        against the list from
-        `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`.
+    ) -> Optional[OriginCloudRegion]:
+        """
+        Creates a new IP-to-cloud-region mapping or replaces the existing mapping for
+        the specified IP. PUT is idempotent — calling it repeatedly with the same body
+        produces the same result. The IP path parameter is normalized to canonical form
+        (RFC 5952 for IPv6) before storage. The vendor and region are validated against
+        the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.
+        Returns 400 if the `origin_ip` in the body does not match the URL path
+        parameter. Returns 403 (code 1164) when the zone has reached the limit of 3,500
+        IP mappings.
 
         Args:
           zone_id: Identifier.
 
-          ip: Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage
-              (RFC 5952 for IPv6).
+          body_origin_ip: Origin IP address (IPv4 or IPv6). For the single PUT endpoint
+              (`PUT /origin/cloud_regions/{origin_ip}`), this field must match the path
+              parameter or the request will be rejected with a 400 error. For the batch PUT
+              endpoint, this field identifies which mapping to upsert.
 
           region: Cloud vendor region identifier. Must be a valid region for the specified vendor
               as returned by the supported_regions endpoint.
@@ -528,48 +484,56 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
+        if not path_origin_ip:
+            raise ValueError(f"Expected a non-empty value for `path_origin_ip` but received {path_origin_ip!r}")
+        return await self._put(
+            path_template(
+                "/zones/{zone_id}/origin/cloud_regions/{path_origin_ip}", zone_id=zone_id, path_origin_ip=path_origin_ip
+            ),
             body=await async_maybe_transform(
                 {
-                    "ip": ip,
+                    "body_origin_ip": body_origin_ip,
                     "region": region,
                     "vendor": vendor,
                 },
-                origin_cloud_region_create_params.OriginCloudRegionCreateParams,
+                origin_cloud_region_update_params.OriginCloudRegionUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegion]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginCloudRegionCreateResponse]], ResultWrapper[OriginCloudRegionCreateResponse]
-            ),
+            cast_to=cast(Type[Optional[OriginCloudRegion]], ResultWrapper[OriginCloudRegion]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionListResponse]:
-        """Returns all IP-to-cloud-region mappings configured for the zone.
-
-        Each mapping
-        tells Cloudflare which cloud vendor and region hosts the origin at that IP,
-        enabling the edge to route via the nearest Tiered Cache upper-tier co-located
-        with that cloud provider. Returns an empty array when no mappings exist.
+    ) -> AsyncPaginator[OriginCloudRegion, AsyncV4PagePaginationArray[OriginCloudRegion]]:
+        """
+        Returns all IP-to-cloud-region mappings configured for the zone with pagination
+        support. Each mapping tells Cloudflare which cloud vendor and region hosts the
+        origin at that IP, enabling the edge to route via the nearest Tiered Cache
+        upper-tier co-located with that cloud provider. Returns an empty array when no
+        mappings exist.
 
         Args:
           zone_id: Identifier.
+
+          page: Page number of paginated results.
+
+          per_page: Number of items per page.
 
           extra_headers: Send extra headers
 
@@ -581,16 +545,23 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
+        return self._get_api_list(
+            path_template("/zones/{zone_id}/origin/cloud_regions", zone_id=zone_id),
+            page=AsyncV4PagePaginationArray[OriginCloudRegion],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionListResponse]]._unwrapper,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_cloud_region_list_params.OriginCloudRegionListParams,
+                ),
             ),
-            cast_to=cast(Type[Optional[OriginCloudRegionListResponse]], ResultWrapper[OriginCloudRegionListResponse]),
+            model=OriginCloudRegion,
         )
 
     async def delete(
@@ -608,9 +579,9 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         """Removes the cloud region mapping for a single origin IP address.
 
         The IP path
-        parameter is normalized before lookup. Returns the deleted entry on success.
-        Returns 404 (code 1163) if no mapping exists for the specified IP. When the last
-        mapping for the zone is removed the underlying rule record is also deleted.
+        parameter is normalized before lookup. Returns the deleted IP on success.
+        Returns 404 if no mapping exists for the specified IP. When the last mapping for
+        the zone is removed the underlying rule record is also deleted.
 
         Args:
           zone_id: Identifier.
@@ -628,9 +599,7 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         if not origin_ip:
             raise ValueError(f"Expected a non-empty value for `origin_ip` but received {origin_ip!r}")
         return await self._delete(
-            path_template(
-                "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip
-            ),
+            path_template("/zones/{zone_id}/origin/cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -675,7 +644,7 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/batch", zone_id=zone_id),
+            path_template("/zones/{zone_id}/origin/cloud_regions/batch", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -688,25 +657,27 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
             ),
         )
 
-    async def bulk_edit(
+    async def bulk_update(
         self,
         *,
         zone_id: str,
-        body: Iterable[origin_cloud_region_bulk_edit_params.Body],
+        body: Iterable[origin_cloud_region_bulk_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionBulkEditResponse]:
-        """Adds or updates up to 100 IP-to-cloud-region mappings in a single request.
+    ) -> Optional[OriginCloudRegionBulkUpdateResponse]:
+        """Upserts up to 100 IP-to-cloud-region mappings in a single request.
 
-        Each
-        item is validated independently — valid items are applied and invalid items are
-        returned in the `failed` array. The vendor and region for every item are
-        validated against the list from
-        `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`.
+        Items in the
+        request body are created or replaced; mappings not included in the request body
+        are preserved unchanged (this is a merge operation, not a full collection
+        replacement). Each item is validated independently — valid items are applied and
+        invalid items are returned in the `failed` array. The vendor and region for
+        every item are validated against the list from
+        `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.
 
         Args:
           zone_id: Identifier.
@@ -721,82 +692,19 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._patch(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/batch", zone_id=zone_id),
-            body=await async_maybe_transform(body, Iterable[origin_cloud_region_bulk_edit_params.Body]),
+        return await self._put(
+            path_template("/zones/{zone_id}/origin/cloud_regions/batch", zone_id=zone_id),
+            body=await async_maybe_transform(body, Iterable[origin_cloud_region_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionBulkEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegionBulkUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[OriginCloudRegionBulkEditResponse]], ResultWrapper[OriginCloudRegionBulkEditResponse]
+                Type[Optional[OriginCloudRegionBulkUpdateResponse]], ResultWrapper[OriginCloudRegionBulkUpdateResponse]
             ),
-        )
-
-    async def edit(
-        self,
-        *,
-        zone_id: str,
-        ip: str,
-        region: str,
-        vendor: Literal["aws", "azure", "gcp", "oci"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionEditResponse]:
-        """Adds or updates a single IP-to-cloud-region mapping for the zone.
-
-        Unlike POST,
-        this operation is idempotent — if a mapping for the IP already exists it is
-        overwritten. Returns the complete updated list of all mappings for the zone.
-        Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP
-        mappings.
-
-        Args:
-          zone_id: Identifier.
-
-          ip: Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage
-              (RFC 5952 for IPv6).
-
-          region: Cloud vendor region identifier. Must be a valid region for the specified vendor
-              as returned by the supported_regions endpoint.
-
-          vendor: Cloud vendor hosting the origin. Must be one of the supported vendors.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._patch(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions", zone_id=zone_id),
-            body=await async_maybe_transform(
-                {
-                    "ip": ip,
-                    "region": region,
-                    "vendor": vendor,
-                },
-                origin_cloud_region_edit_params.OriginCloudRegionEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionEditResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[OriginCloudRegionEditResponse]], ResultWrapper[OriginCloudRegionEditResponse]),
         )
 
     async def get(
@@ -810,12 +718,12 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[OriginCloudRegionGetResponse]:
+    ) -> Optional[OriginCloudRegion]:
         """Returns the cloud region mapping for a single origin IP address.
 
         The IP path
-        parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404
-        (code 1142) if the zone has no mappings or if the specified IP has no mapping.
+        parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 if the
+        zone has no mappings or if the specified IP has no mapping.
 
         Args:
           zone_id: Identifier.
@@ -833,17 +741,15 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         if not origin_ip:
             raise ValueError(f"Expected a non-empty value for `origin_ip` but received {origin_ip!r}")
         return await self._get(
-            path_template(
-                "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip
-            ),
+            path_template("/zones/{zone_id}/origin/cloud_regions/{origin_ip}", zone_id=zone_id, origin_ip=origin_ip),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OriginCloudRegionGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginCloudRegion]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OriginCloudRegionGetResponse]], ResultWrapper[OriginCloudRegionGetResponse]),
+            cast_to=cast(Type[Optional[OriginCloudRegion]], ResultWrapper[OriginCloudRegion]),
         )
 
     async def supported_regions(
@@ -877,7 +783,7 @@ class AsyncOriginCloudRegionsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            path_template("/zones/{zone_id}/cache/origin_cloud_regions/supported_regions", zone_id=zone_id),
+            path_template("/zones/{zone_id}/origin/cloud_regions/supported_regions", zone_id=zone_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -896,8 +802,8 @@ class OriginCloudRegionsResourceWithRawResponse:
     def __init__(self, origin_cloud_regions: OriginCloudRegionsResource) -> None:
         self._origin_cloud_regions = origin_cloud_regions
 
-        self.create = to_raw_response_wrapper(
-            origin_cloud_regions.create,
+        self.update = to_raw_response_wrapper(
+            origin_cloud_regions.update,
         )
         self.list = to_raw_response_wrapper(
             origin_cloud_regions.list,
@@ -908,11 +814,8 @@ class OriginCloudRegionsResourceWithRawResponse:
         self.bulk_delete = to_raw_response_wrapper(
             origin_cloud_regions.bulk_delete,
         )
-        self.bulk_edit = to_raw_response_wrapper(
-            origin_cloud_regions.bulk_edit,
-        )
-        self.edit = to_raw_response_wrapper(
-            origin_cloud_regions.edit,
+        self.bulk_update = to_raw_response_wrapper(
+            origin_cloud_regions.bulk_update,
         )
         self.get = to_raw_response_wrapper(
             origin_cloud_regions.get,
@@ -926,8 +829,8 @@ class AsyncOriginCloudRegionsResourceWithRawResponse:
     def __init__(self, origin_cloud_regions: AsyncOriginCloudRegionsResource) -> None:
         self._origin_cloud_regions = origin_cloud_regions
 
-        self.create = async_to_raw_response_wrapper(
-            origin_cloud_regions.create,
+        self.update = async_to_raw_response_wrapper(
+            origin_cloud_regions.update,
         )
         self.list = async_to_raw_response_wrapper(
             origin_cloud_regions.list,
@@ -938,11 +841,8 @@ class AsyncOriginCloudRegionsResourceWithRawResponse:
         self.bulk_delete = async_to_raw_response_wrapper(
             origin_cloud_regions.bulk_delete,
         )
-        self.bulk_edit = async_to_raw_response_wrapper(
-            origin_cloud_regions.bulk_edit,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            origin_cloud_regions.edit,
+        self.bulk_update = async_to_raw_response_wrapper(
+            origin_cloud_regions.bulk_update,
         )
         self.get = async_to_raw_response_wrapper(
             origin_cloud_regions.get,
@@ -956,8 +856,8 @@ class OriginCloudRegionsResourceWithStreamingResponse:
     def __init__(self, origin_cloud_regions: OriginCloudRegionsResource) -> None:
         self._origin_cloud_regions = origin_cloud_regions
 
-        self.create = to_streamed_response_wrapper(
-            origin_cloud_regions.create,
+        self.update = to_streamed_response_wrapper(
+            origin_cloud_regions.update,
         )
         self.list = to_streamed_response_wrapper(
             origin_cloud_regions.list,
@@ -968,11 +868,8 @@ class OriginCloudRegionsResourceWithStreamingResponse:
         self.bulk_delete = to_streamed_response_wrapper(
             origin_cloud_regions.bulk_delete,
         )
-        self.bulk_edit = to_streamed_response_wrapper(
-            origin_cloud_regions.bulk_edit,
-        )
-        self.edit = to_streamed_response_wrapper(
-            origin_cloud_regions.edit,
+        self.bulk_update = to_streamed_response_wrapper(
+            origin_cloud_regions.bulk_update,
         )
         self.get = to_streamed_response_wrapper(
             origin_cloud_regions.get,
@@ -986,8 +883,8 @@ class AsyncOriginCloudRegionsResourceWithStreamingResponse:
     def __init__(self, origin_cloud_regions: AsyncOriginCloudRegionsResource) -> None:
         self._origin_cloud_regions = origin_cloud_regions
 
-        self.create = async_to_streamed_response_wrapper(
-            origin_cloud_regions.create,
+        self.update = async_to_streamed_response_wrapper(
+            origin_cloud_regions.update,
         )
         self.list = async_to_streamed_response_wrapper(
             origin_cloud_regions.list,
@@ -998,11 +895,8 @@ class AsyncOriginCloudRegionsResourceWithStreamingResponse:
         self.bulk_delete = async_to_streamed_response_wrapper(
             origin_cloud_regions.bulk_delete,
         )
-        self.bulk_edit = async_to_streamed_response_wrapper(
-            origin_cloud_regions.bulk_edit,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            origin_cloud_regions.edit,
+        self.bulk_update = async_to_streamed_response_wrapper(
+            origin_cloud_regions.bulk_update,
         )
         self.get = async_to_streamed_response_wrapper(
             origin_cloud_regions.get,

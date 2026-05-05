@@ -2,19 +2,24 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-__all__ = ["OriginCloudRegionCreateParams"]
+from ..._utils import PropertyInfo
+
+__all__ = ["OriginCloudRegionUpdateParams"]
 
 
-class OriginCloudRegionCreateParams(TypedDict, total=False):
+class OriginCloudRegionUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ip: Required[str]
+    body_origin_ip: Required[Annotated[str, PropertyInfo(alias="origin_ip")]]
     """Origin IP address (IPv4 or IPv6).
 
-    Normalized to canonical form before storage (RFC 5952 for IPv6).
+    For the single PUT endpoint (`PUT /origin/cloud_regions/{origin_ip}`), this
+    field must match the path parameter or the request will be rejected with a 400
+    error. For the batch PUT endpoint, this field identifies which mapping to
+    upsert.
     """
 
     region: Required[str]
