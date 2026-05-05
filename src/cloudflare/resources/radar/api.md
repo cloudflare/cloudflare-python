@@ -305,7 +305,19 @@ from cloudflare.types.radar.bgp import IPTimeseriesResponse
 
 Methods:
 
-- <code title="get /radar/bgp/ips/timeseries">client.radar.bgp.ips.<a href="./src/cloudflare/resources/radar/bgp/ips.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/ip_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/ip_timeseries_response.py">IPTimeseriesResponse</a></code>
+- <code title="get /radar/bgp/ips/timeseries">client.radar.bgp.ips.<a href="./src/cloudflare/resources/radar/bgp/ips/ips.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/ip_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/ip_timeseries_response.py">IPTimeseriesResponse</a></code>
+
+#### Top
+
+Types:
+
+```python
+from cloudflare.types.radar.bgp.ips import TopAsesResponse
+```
+
+Methods:
+
+- <code title="get /radar/bgp/ips/top/ases">client.radar.bgp.ips.top.<a href="./src/cloudflare/resources/radar/bgp/ips/top.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/bgp/ips/top_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/ips/top_ases_response.py">TopAsesResponse</a></code>
 
 ### RPKI
 
@@ -326,6 +338,18 @@ Methods:
 - <code title="get /radar/bgp/rpki/aspa/changes">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">changes</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_changes_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_changes_response.py">ASPAChangesResponse</a></code>
 - <code title="get /radar/bgp/rpki/aspa/snapshot">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">snapshot</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_snapshot_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_snapshot_response.py">ASPASnapshotResponse</a></code>
 - <code title="get /radar/bgp/rpki/aspa/timeseries">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_timeseries_response.py">ASPATimeseriesResponse</a></code>
+
+#### Roas
+
+Types:
+
+```python
+from cloudflare.types.radar.bgp.rpki import RoaTimeseriesResponse
+```
+
+Methods:
+
+- <code title="get /radar/bgp/rpki/roas/timeseries">client.radar.bgp.rpki.roas.<a href="./src/cloudflare/resources/radar/bgp/rpki/roas.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/roa_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/roa_timeseries_response.py">RoaTimeseriesResponse</a></code>
 
 ## Bots
 

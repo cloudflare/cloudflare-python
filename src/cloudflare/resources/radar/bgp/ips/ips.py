@@ -8,25 +8,37 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.radar.bgp import ip_timeseries_params
-from ....types.radar.bgp.ip_timeseries_response import IPTimeseriesResponse
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.bgp import ip_timeseries_params
+from .....types.radar.bgp.ip_timeseries_response import IPTimeseriesResponse
 
 __all__ = ["IPsResource", "AsyncIPsResource"]
 
 
 class IPsResource(SyncAPIResource):
+    @cached_property
+    def top(self) -> TopResource:
+        return TopResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> IPsResourceWithRawResponse:
         """
@@ -130,6 +142,10 @@ class IPsResource(SyncAPIResource):
 
 
 class AsyncIPsResource(AsyncAPIResource):
+    @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
         """
@@ -240,6 +256,10 @@ class IPsResourceWithRawResponse:
             ips.timeseries,
         )
 
+    @cached_property
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._ips.top)
+
 
 class AsyncIPsResourceWithRawResponse:
     def __init__(self, ips: AsyncIPsResource) -> None:
@@ -248,6 +268,10 @@ class AsyncIPsResourceWithRawResponse:
         self.timeseries = async_to_raw_response_wrapper(
             ips.timeseries,
         )
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._ips.top)
 
 
 class IPsResourceWithStreamingResponse:
@@ -258,6 +282,10 @@ class IPsResourceWithStreamingResponse:
             ips.timeseries,
         )
 
+    @cached_property
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._ips.top)
+
 
 class AsyncIPsResourceWithStreamingResponse:
     def __init__(self, ips: AsyncIPsResource) -> None:
@@ -266,3 +294,7 @@ class AsyncIPsResourceWithStreamingResponse:
         self.timeseries = async_to_streamed_response_wrapper(
             ips.timeseries,
         )
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._ips.top)
