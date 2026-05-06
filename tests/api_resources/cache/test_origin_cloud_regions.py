@@ -24,6 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOriginCloudRegions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         origin_cloud_region = client.cache.origin_cloud_regions.update(
@@ -35,6 +36,7 @@ class TestOriginCloudRegions:
         )
         assert_matches_type(Optional[OriginCloudRegion], origin_cloud_region, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.cache.origin_cloud_regions.with_raw_response.update(
@@ -50,6 +52,7 @@ class TestOriginCloudRegions:
         origin_cloud_region = response.parse()
         assert_matches_type(Optional[OriginCloudRegion], origin_cloud_region, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.cache.origin_cloud_regions.with_streaming_response.update(
@@ -67,6 +70,7 @@ class TestOriginCloudRegions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -400,6 +404,7 @@ class TestAsyncOriginCloudRegions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         origin_cloud_region = await async_client.cache.origin_cloud_regions.update(
@@ -411,6 +416,7 @@ class TestAsyncOriginCloudRegions:
         )
         assert_matches_type(Optional[OriginCloudRegion], origin_cloud_region, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.origin_cloud_regions.with_raw_response.update(
@@ -426,6 +432,7 @@ class TestAsyncOriginCloudRegions:
         origin_cloud_region = await response.parse()
         assert_matches_type(Optional[OriginCloudRegion], origin_cloud_region, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.origin_cloud_regions.with_streaming_response.update(
@@ -443,6 +450,7 @@ class TestAsyncOriginCloudRegions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism -- route not in spec")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
