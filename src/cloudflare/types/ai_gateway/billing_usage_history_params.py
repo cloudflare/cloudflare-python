@@ -15,7 +15,7 @@ class BillingUsageHistoryParams(TypedDict, total=False):
     """Grouping window for usage data."""
 
     end_time: Optional[float]
-    """End time (Unix timestamp)."""
+    """End time as Unix timestamp in milliseconds."""
 
     start_time: Optional[float]
-    """Start time (Unix timestamp)."""
+    """Start time as Unix timestamp in milliseconds."""

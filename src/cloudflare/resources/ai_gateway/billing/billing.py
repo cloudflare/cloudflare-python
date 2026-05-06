@@ -208,9 +208,9 @@ class BillingResource(SyncAPIResource):
         Args:
           value_grouping_window: Grouping window for usage data.
 
-          end_time: End time (Unix timestamp).
+          end_time: End time as Unix timestamp in milliseconds.
 
-          start_time: Start time (Unix timestamp).
+          start_time: Start time as Unix timestamp in milliseconds.
 
           extra_headers: Send extra headers
 
@@ -409,9 +409,9 @@ class AsyncBillingResource(AsyncAPIResource):
         Args:
           value_grouping_window: Grouping window for usage data.
 
-          end_time: End time (Unix timestamp).
+          end_time: End time as Unix timestamp in milliseconds.
 
-          start_time: Start time (Unix timestamp).
+          start_time: Start time as Unix timestamp in milliseconds.
 
           extra_headers: Send extra headers
 
