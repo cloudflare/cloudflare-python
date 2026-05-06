@@ -33,7 +33,7 @@ class ThreatEventListParams(TypedDict, total=False):
 
     force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
 
-    format: Literal["json", "stix2"]
+    format: Literal["json", "stix2", "taxii"]
 
     order: Literal["asc", "desc"]
 

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
@@ -46,6 +47,9 @@ class ApplicationGetResponse(BaseModel):
 
     support_domains: List[str]
     """Returns the list of support domains for the application."""
+
+    supported: List[Literal["GATEWAY", "ACCESS", "CASB"]]
+    """Cloudflare products that support this application."""
 
     updated_at: str
     """Returns the application update time."""

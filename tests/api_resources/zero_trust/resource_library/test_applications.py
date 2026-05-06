@@ -36,6 +36,7 @@ class TestApplications:
             limit=0,
             offset=0,
             order_by="order_by",
+            search="xx",
         )
         assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -139,6 +140,7 @@ class TestAsyncApplications:
             limit=0,
             offset=0,
             order_by="order_by",
+            search="xx",
         )
         assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 

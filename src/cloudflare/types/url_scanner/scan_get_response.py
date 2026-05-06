@@ -76,6 +76,11 @@ __all__ = [
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceMpp",
+    "MetaProcessorsAgentReadinessChecksCommerceMppEvidence",
+    "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksCommerceUcp",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidence",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceFinding",
@@ -875,6 +880,58 @@ class MetaProcessorsAgentReadinessChecksCommerceAp2(BaseModel):
     message: Optional[str] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceMppEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksCommerceMppEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksCommerceMppEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksCommerceMppEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksCommerceMppEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksCommerceMppEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksCommerceMppEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksCommerceMpp(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceMppEvidence]] = None
+
+    message: Optional[str] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceFinding(BaseModel):
     outcome: str
 
@@ -983,6 +1040,8 @@ class MetaProcessorsAgentReadinessChecksCommerce(BaseModel):
     acp: MetaProcessorsAgentReadinessChecksCommerceAcp
 
     ap2: MetaProcessorsAgentReadinessChecksCommerceAp2
+
+    mpp: MetaProcessorsAgentReadinessChecksCommerceMpp
 
     ucp: MetaProcessorsAgentReadinessChecksCommerceUcp
 
