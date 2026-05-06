@@ -52,6 +52,14 @@ from .evaluations import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from .billing.billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .dynamic_routing import (
     DynamicRoutingResource,
     AsyncDynamicRoutingResource,
@@ -114,6 +122,10 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def urls(self) -> URLsResource:
         return URLsResource(self._client)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        return BillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
@@ -480,6 +492,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
     def urls(self) -> AsyncURLsResource:
         return AsyncURLsResource(self._client)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResource:
+        return AsyncBillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
@@ -866,6 +882,10 @@ class AIGatewayResourceWithRawResponse:
     def urls(self) -> URLsResourceWithRawResponse:
         return URLsResourceWithRawResponse(self._ai_gateway.urls)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self._ai_gateway.billing)
+
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -914,6 +934,10 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def urls(self) -> AsyncURLsResourceWithRawResponse:
         return AsyncURLsResourceWithRawResponse(self._ai_gateway.urls)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self._ai_gateway.billing)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -964,6 +988,10 @@ class AIGatewayResourceWithStreamingResponse:
     def urls(self) -> URLsResourceWithStreamingResponse:
         return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self._ai_gateway.billing)
+
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -1012,3 +1040,7 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def urls(self) -> AsyncURLsResourceWithStreamingResponse:
         return AsyncURLsResourceWithStreamingResponse(self._ai_gateway.urls)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self._ai_gateway.billing)
