@@ -9,7 +9,6 @@ jobs:
   detect_breaking_changes:
     runs-on: 'ubuntu-latest'
     name: detect-breaking-changes
-    if: false
     permissions:
       contents: read
     steps:
