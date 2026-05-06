@@ -26,7 +26,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import cache_purge_params
+from ...types.cache import cache_purge_params, cache_purge_environment_params
 from .cache_reserve import (
     CacheReserveResource,
     AsyncCacheReserveResource,
@@ -61,6 +61,7 @@ from .regional_tiered_cache import (
     AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
 from ...types.cache.cache_purge_response import CachePurgeResponse
+from ...types.cache.cache_purge_environment_response import CachePurgeEnvironmentResponse
 
 __all__ = ["CacheResource", "AsyncCacheResource"]
 
@@ -154,12 +155,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -190,7 +191,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -256,12 +257,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -292,7 +293,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -358,12 +359,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -394,7 +395,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -460,12 +461,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -496,7 +497,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -562,12 +563,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -598,7 +599,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -664,12 +665,12 @@ class CacheResource(SyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -700,7 +701,7 @@ class CacheResource(SyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -758,6 +759,290 @@ class CacheResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[CachePurgeResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CachePurgeResponse]], ResultWrapper[CachePurgeResponse]),
+        )
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: For more information on cache tags and purging by tags, please refer to
+              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: For more information purging by hostnames, please refer to
+              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: For more information on purging by prefixes, please refer to
+              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: For more information, please refer to
+              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: For more information on purging files, please refer to
+              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: Iterable[cache_purge_environment_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: For more information on purging files with URL and headers, please refer to
+              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_purge_environment_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not environment_id:
+            raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
+        return self._post(
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/purge_cache",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
+            body=maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_purge_environment_params.CachePurgeEnvironmentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CachePurgeEnvironmentResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CachePurgeEnvironmentResponse]], ResultWrapper[CachePurgeEnvironmentResponse]),
         )
 
 
@@ -850,12 +1135,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -886,7 +1171,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -952,12 +1237,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -988,7 +1273,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -1054,12 +1339,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -1090,7 +1375,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -1156,12 +1441,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -1192,7 +1477,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -1258,12 +1543,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -1294,7 +1579,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -1360,12 +1645,12 @@ class AsyncCacheResource(AsyncAPIResource):
         {
             "files": [
                 {
-                    url: "http://www.example.com/cat_picture.jpg",
-                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                    "url": "http://www.example.com/cat_picture.jpg",
+                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
                 },
                 {
-                    url: "http://www.example.com/dog_picture.jpg",
-                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                    "url": "http://www.example.com/dog_picture.jpg",
+                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
                 },
             ]
         }
@@ -1396,7 +1681,7 @@ class AsyncCacheResource(AsyncAPIResource):
 
         ### Availability and limits
 
-        please refer to
+        Please refer to
         [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
@@ -1456,6 +1741,290 @@ class AsyncCacheResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CachePurgeResponse]], ResultWrapper[CachePurgeResponse]),
         )
 
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: For more information on cache tags and purging by tags, please refer to
+              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: For more information purging by hostnames, please refer to
+              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: For more information on purging by prefixes, please refer to
+              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: For more information, please refer to
+              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: For more information on purging files, please refer to
+              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: Iterable[cache_purge_environment_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        """Purge cached content scoped to a specific environment.
+
+        Supports the same purge
+        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
+        prefix).
+
+        ### Availability and limits
+
+        Please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: For more information on purging files with URL and headers, please refer to
+              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    async def purge_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_purge_environment_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CachePurgeEnvironmentResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not environment_id:
+            raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
+        return await self._post(
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/purge_cache",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_purge_environment_params.CachePurgeEnvironmentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CachePurgeEnvironmentResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CachePurgeEnvironmentResponse]], ResultWrapper[CachePurgeEnvironmentResponse]),
+        )
+
 
 class CacheResourceWithRawResponse:
     def __init__(self, cache: CacheResource) -> None:
@@ -1463,6 +2032,9 @@ class CacheResourceWithRawResponse:
 
         self.purge = to_raw_response_wrapper(
             cache.purge,
+        )
+        self.purge_environment = to_raw_response_wrapper(
+            cache.purge_environment,
         )
 
     @cached_property
@@ -1493,6 +2065,9 @@ class AsyncCacheResourceWithRawResponse:
         self.purge = async_to_raw_response_wrapper(
             cache.purge,
         )
+        self.purge_environment = async_to_raw_response_wrapper(
+            cache.purge_environment,
+        )
 
     @cached_property
     def cache_reserve(self) -> AsyncCacheReserveResourceWithRawResponse:
@@ -1522,6 +2097,9 @@ class CacheResourceWithStreamingResponse:
         self.purge = to_streamed_response_wrapper(
             cache.purge,
         )
+        self.purge_environment = to_streamed_response_wrapper(
+            cache.purge_environment,
+        )
 
     @cached_property
     def cache_reserve(self) -> CacheReserveResourceWithStreamingResponse:
@@ -1550,6 +2128,9 @@ class AsyncCacheResourceWithStreamingResponse:
 
         self.purge = async_to_streamed_response_wrapper(
             cache.purge,
+        )
+        self.purge_environment = async_to_streamed_response_wrapper(
+            cache.purge_environment,
         )
 
     @cached_property

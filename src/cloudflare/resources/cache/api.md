@@ -3,12 +3,13 @@
 Types:
 
 ```python
-from cloudflare.types.cache import CachePurgeResponse
+from cloudflare.types.cache import CachePurgeResponse, CachePurgeEnvironmentResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_purge_response.py">Optional[CachePurgeResponse]</a></code>
+- <code title="post /zones/{zone_id}/environments/{environment_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge_environment</a>(environment_id, \*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_purge_environment_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_purge_environment_response.py">Optional[CachePurgeEnvironmentResponse]</a></code>
 
 ## CacheReserve
 
