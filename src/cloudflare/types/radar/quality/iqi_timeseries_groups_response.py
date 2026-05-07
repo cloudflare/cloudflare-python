@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import TYPE_CHECKING, Dict, List
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -129,13 +129,19 @@ class Meta(BaseModel):
 
 
 class Serie0(BaseModel):
-    p25: List[str]
+    timestamps: List[datetime]
 
-    p50: List[str]
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, List[str]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
-    p75: List[str]
-
-    timestamps: List[str]
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> List[str]: ...
+    else:
+        __pydantic_extra__: Dict[str, List[str]]
 
 
 class IQITimeseriesGroupsResponse(BaseModel):
