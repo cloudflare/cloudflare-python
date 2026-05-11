@@ -12,19 +12,21 @@ __all__ = [
     "UnionMember0",
     "UnionMember0Profile",
     "UnionMember1",
-    "UnionMember1Confidence",
     "UnionMember1Profile",
-    "UnionMember1Variant",
-    "UnionMember1VariantUnionMember0",
-    "UnionMember1VariantUnionMember1",
     "UnionMember2",
+    "UnionMember2Confidence",
     "UnionMember2Profile",
+    "UnionMember2Variant",
+    "UnionMember2VariantUnionMember0",
+    "UnionMember2VariantUnionMember1",
     "UnionMember3",
     "UnionMember3Profile",
     "UnionMember4",
     "UnionMember4Profile",
     "UnionMember5",
     "UnionMember5Profile",
+    "UnionMember6",
+    "UnionMember6Profile",
 ]
 
 
@@ -60,7 +62,33 @@ class UnionMember0(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class UnionMember1Confidence(BaseModel):
+class UnionMember1Profile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
+    id: str
+
+    name: str
+
+
+class UnionMember1(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
+
+    profiles: Optional[List[UnionMember1Profile]] = None
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+
+class UnionMember2Confidence(BaseModel):
     ai_context_available: bool
     """Indicates whether this entry has AI remote service validation."""
 
@@ -71,7 +99,7 @@ class UnionMember1Confidence(BaseModel):
     """
 
 
-class UnionMember1Profile(BaseModel):
+class UnionMember2Profile(BaseModel):
     """Computed entry field for a profile that an entry is shared into."""
 
     id: str
@@ -79,7 +107,7 @@ class UnionMember1Profile(BaseModel):
     name: str
 
 
-class UnionMember1VariantUnionMember0(BaseModel):
+class UnionMember2VariantUnionMember0(BaseModel):
     """A Predefined AI prompt classification topic entry."""
 
     topic_type: Literal["Intent", "Content"]
@@ -93,7 +121,7 @@ class UnionMember1VariantUnionMember0(BaseModel):
     """
 
 
-class UnionMember1VariantUnionMember1(BaseModel):
+class UnionMember2VariantUnionMember1(BaseModel):
     """A general predefined entry."""
 
     type: Literal["General"]
@@ -102,13 +130,13 @@ class UnionMember1VariantUnionMember1(BaseModel):
     """A customer-facing explanation of what this predefined entry represents."""
 
 
-UnionMember1Variant: TypeAlias = Union[UnionMember1VariantUnionMember0, UnionMember1VariantUnionMember1]
+UnionMember2Variant: TypeAlias = Union[UnionMember2VariantUnionMember0, UnionMember2VariantUnionMember1]
 
 
-class UnionMember1(BaseModel):
+class UnionMember2(BaseModel):
     id: str
 
-    confidence: UnionMember1Confidence
+    confidence: UnionMember2Confidence
 
     enabled: bool
 
@@ -118,40 +146,12 @@ class UnionMember1(BaseModel):
 
     profile_id: Optional[str] = None
 
-    profiles: Optional[List[UnionMember1Profile]] = None
-
-    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
-
-    variant: Optional[UnionMember1Variant] = None
-    """A Predefined AI prompt classification topic entry."""
-
-
-class UnionMember2Profile(BaseModel):
-    """Computed entry field for a profile that an entry is shared into."""
-
-    id: str
-
-    name: str
-
-
-class UnionMember2(BaseModel):
-    id: str
-
-    created_at: datetime
-
-    enabled: bool
-
-    name: str
-
-    type: Literal["integration"]
-
-    updated_at: datetime
-
-    profile_id: Optional[str] = None
-
     profiles: Optional[List[UnionMember2Profile]] = None
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+    variant: Optional[UnionMember2Variant] = None
+    """A Predefined AI prompt classification topic entry."""
 
 
 class UnionMember3Profile(BaseModel):
@@ -165,23 +165,17 @@ class UnionMember3Profile(BaseModel):
 class UnionMember3(BaseModel):
     id: str
 
-    case_sensitive: bool
-    """
-    Only applies to custom word lists. Determines if the words should be matched in
-    a case-sensitive manner Cannot be set to false if secret is true
-    """
-
     created_at: datetime
 
     enabled: bool
 
     name: str
 
-    secret: bool
-
-    type: Literal["exact_data"]
+    type: Literal["integration"]
 
     updated_at: datetime
+
+    profile_id: Optional[str] = None
 
     profiles: Optional[List[UnionMember3Profile]] = None
 
@@ -199,13 +193,21 @@ class UnionMember4Profile(BaseModel):
 class UnionMember4(BaseModel):
     id: str
 
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
+
     created_at: datetime
 
     enabled: bool
 
     name: str
 
-    type: Literal["document_fingerprint"]
+    secret: bool
+
+    type: Literal["exact_data"]
 
     updated_at: datetime
 
@@ -231,6 +233,32 @@ class UnionMember5(BaseModel):
 
     name: str
 
+    type: Literal["document_fingerprint"]
+
+    updated_at: datetime
+
+    profiles: Optional[List[UnionMember5Profile]] = None
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+
+class UnionMember6Profile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
+    id: str
+
+    name: str
+
+
+class UnionMember6(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
     type: Literal["word_list"]
 
     updated_at: datetime
@@ -239,9 +267,11 @@ class UnionMember5(BaseModel):
 
     profile_id: Optional[str] = None
 
-    profiles: Optional[List[UnionMember5Profile]] = None
+    profiles: Optional[List[UnionMember6Profile]] = None
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-CustomGetResponse: TypeAlias = Union[UnionMember0, UnionMember1, UnionMember2, UnionMember3, UnionMember4, UnionMember5]
+CustomGetResponse: TypeAlias = Union[
+    UnionMember0, UnionMember1, UnionMember2, UnionMember3, UnionMember4, UnionMember5, UnionMember6
+]
