@@ -83,6 +83,7 @@ if TYPE_CHECKING:
         hyperdrive,
         page_rules,
         zero_trust,
+        ai_security,
         api_gateway,
         botnet_feed,
         diagnostics,
@@ -190,6 +191,7 @@ if TYPE_CHECKING:
     from .resources.hyperdrive.hyperdrive import HyperdriveResource, AsyncHyperdriveResource
     from .resources.page_rules.page_rules import PageRulesResource, AsyncPageRulesResource
     from .resources.zero_trust.zero_trust import ZeroTrustResource, AsyncZeroTrustResource
+    from .resources.ai_security.ai_security import AISecurityResource, AsyncAISecurityResource
     from .resources.api_gateway.api_gateway import APIGatewayResource, AsyncAPIGatewayResource
     from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
@@ -952,6 +954,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.content_scanning import ContentScanningResource
 
         return ContentScanningResource(self)
+
+    @cached_property
+    def ai_security(self) -> AISecurityResource:
+        from .resources.ai_security import AISecurityResource
+
+        return AISecurityResource(self)
 
     @cached_property
     def abuse_reports(self) -> AbuseReportsResource:
@@ -1829,6 +1837,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncContentScanningResource(self)
 
     @cached_property
+    def ai_security(self) -> AsyncAISecurityResource:
+        from .resources.ai_security import AsyncAISecurityResource
+
+        return AsyncAISecurityResource(self)
+
+    @cached_property
     def abuse_reports(self) -> AsyncAbuseReportsResource:
         from .resources.abuse_reports import AsyncAbuseReportsResource
 
@@ -2639,6 +2653,12 @@ class CloudflareWithRawResponse:
         return ContentScanningResourceWithRawResponse(self._client.content_scanning)
 
     @cached_property
+    def ai_security(self) -> ai_security.AISecurityResourceWithRawResponse:
+        from .resources.ai_security import AISecurityResourceWithRawResponse
+
+        return AISecurityResourceWithRawResponse(self._client.ai_security)
+
+    @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithRawResponse:
         from .resources.abuse_reports import AbuseReportsResourceWithRawResponse
 
@@ -3284,6 +3304,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncContentScanningResourceWithRawResponse(self._client.content_scanning)
 
     @cached_property
+    def ai_security(self) -> ai_security.AsyncAISecurityResourceWithRawResponse:
+        from .resources.ai_security import AsyncAISecurityResourceWithRawResponse
+
+        return AsyncAISecurityResourceWithRawResponse(self._client.ai_security)
+
+    @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithRawResponse:
         from .resources.abuse_reports import AsyncAbuseReportsResourceWithRawResponse
 
@@ -3927,6 +3953,12 @@ class CloudflareWithStreamedResponse:
         from .resources.content_scanning import ContentScanningResourceWithStreamingResponse
 
         return ContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AISecurityResourceWithStreamingResponse:
+        from .resources.ai_security import AISecurityResourceWithStreamingResponse
+
+        return AISecurityResourceWithStreamingResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithStreamingResponse:
@@ -4582,6 +4614,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.content_scanning import AsyncContentScanningResourceWithStreamingResponse
 
         return AsyncContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AsyncAISecurityResourceWithStreamingResponse:
+        from .resources.ai_security import AsyncAISecurityResourceWithStreamingResponse
+
+        return AsyncAISecurityResourceWithStreamingResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithStreamingResponse:

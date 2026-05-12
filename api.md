@@ -221,6 +221,8 @@ from cloudflare.types import (
 
 # [ContentScanning](src/cloudflare/resources/content_scanning/api.md)
 
+# [AISecurity](src/cloudflare/resources/ai_security/api.md)
+
 # [AbuseReports](src/cloudflare/resources/abuse_reports/api.md)
 
 # [AI](src/cloudflare/resources/ai/api.md)
