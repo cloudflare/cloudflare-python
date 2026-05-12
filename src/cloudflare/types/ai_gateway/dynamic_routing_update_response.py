@@ -202,6 +202,8 @@ class RouteVersion(BaseModel):
 
     version_id: str
 
+    is_valid: Optional[bool] = None
+
 
 class Route(BaseModel):
     id: str

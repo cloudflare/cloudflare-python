@@ -40,6 +40,7 @@ class TestDatabase:
             name="my-database",
             jurisdiction="eu",
             primary_location_hint="wnam",
+            read_replication={"mode": "auto"},
         )
         assert_matches_type(D1, database, path=["response"])
 
@@ -831,6 +832,7 @@ class TestAsyncDatabase:
             name="my-database",
             jurisdiction="eu",
             primary_location_hint="wnam",
+            read_replication={"mode": "auto"},
         )
         assert_matches_type(D1, database, path=["response"])
 

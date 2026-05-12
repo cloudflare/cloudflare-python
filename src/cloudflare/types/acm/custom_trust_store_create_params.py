@@ -12,4 +12,8 @@ class CustomTrustStoreCreateParams(TypedDict, total=False):
     """Identifier."""
 
     certificate: Required[str]
-    """The zone's SSL certificate or certificate and the intermediate(s)."""
+    """The root CA certificate in PEM format.
+
+    Only root CA certificates are accepted; intermediate and leaf certificates are
+    not supported.
+    """

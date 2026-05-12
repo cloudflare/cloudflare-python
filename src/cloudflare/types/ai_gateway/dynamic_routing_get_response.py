@@ -201,6 +201,8 @@ class Version(BaseModel):
 
     version_id: str
 
+    is_valid: Optional[bool] = None
+
 
 class DynamicRoutingGetResponse(BaseModel):
     id: str

@@ -79,6 +79,7 @@ class DatabaseResource(SyncAPIResource):
         name: str,
         jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
+        read_replication: database_create_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,6 +101,8 @@ class DatabaseResource(SyncAPIResource):
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
 
+          read_replication: Configuration for D1 read replication.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -117,6 +120,7 @@ class DatabaseResource(SyncAPIResource):
                     "name": name,
                     "jurisdiction": jurisdiction,
                     "primary_location_hint": primary_location_hint,
+                    "read_replication": read_replication,
                 },
                 database_create_params.DatabaseCreateParams,
             ),
@@ -871,6 +875,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         name: str,
         jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
+        read_replication: database_create_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -892,6 +897,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
 
+          read_replication: Configuration for D1 read replication.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -909,6 +916,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
                     "name": name,
                     "jurisdiction": jurisdiction,
                     "primary_location_hint": primary_location_hint,
+                    "read_replication": read_replication,
                 },
                 database_create_params.DatabaseCreateParams,
             ),

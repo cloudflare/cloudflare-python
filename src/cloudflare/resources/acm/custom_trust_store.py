@@ -58,13 +58,16 @@ class CustomTrustStoreResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStore]:
-        """
-        Add Custom Origin Trust Store for a Zone.
+        """Upload a root CA certificate to the Custom Origin Trust Store for a Zone.
+
+        Only
+        root CA certificates are accepted.
 
         Args:
           zone_id: Identifier.
 
-          certificate: The zone's SSL certificate or certificate and the intermediate(s).
+          certificate: The root CA certificate in PEM format. Only root CA certificates are accepted;
+              intermediate and leaf certificates are not supported.
 
           extra_headers: Send extra headers
 
@@ -163,7 +166,7 @@ class CustomTrustStoreResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStoreDeleteResponse]:
-        """Removes a CA certificate from the custom origin trust store.
+        """Removes a root CA certificate from the custom origin trust store.
 
         Origins using
         certificates signed by this CA will no longer be trusted.
@@ -216,8 +219,8 @@ class CustomTrustStoreResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStore]:
         """
-        Retrieves details about a specific certificate in the custom origin trust store,
-        including expiration and subject information.
+        Retrieves details about a specific root CA certificate in the custom origin
+        trust store, including expiration and subject information.
 
         Args:
           zone_id: Identifier.
@@ -287,13 +290,16 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStore]:
-        """
-        Add Custom Origin Trust Store for a Zone.
+        """Upload a root CA certificate to the Custom Origin Trust Store for a Zone.
+
+        Only
+        root CA certificates are accepted.
 
         Args:
           zone_id: Identifier.
 
-          certificate: The zone's SSL certificate or certificate and the intermediate(s).
+          certificate: The root CA certificate in PEM format. Only root CA certificates are accepted;
+              intermediate and leaf certificates are not supported.
 
           extra_headers: Send extra headers
 
@@ -392,7 +398,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStoreDeleteResponse]:
-        """Removes a CA certificate from the custom origin trust store.
+        """Removes a root CA certificate from the custom origin trust store.
 
         Origins using
         certificates signed by this CA will no longer be trusted.
@@ -445,8 +451,8 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomTrustStore]:
         """
-        Retrieves details about a specific certificate in the custom origin trust store,
-        including expiration and subject information.
+        Retrieves details about a specific root CA certificate in the custom origin
+        trust store, including expiration and subject information.
 
         Args:
           zone_id: Identifier.
