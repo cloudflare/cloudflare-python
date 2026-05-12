@@ -64,6 +64,7 @@ class TestBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_invoice_history(self, client: Cloudflare) -> None:
         billing = client.ai_gateway.billing.invoice_history(
@@ -71,6 +72,7 @@ class TestBilling:
         )
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_invoice_history_with_all_params(self, client: Cloudflare) -> None:
         billing = client.ai_gateway.billing.invoice_history(
@@ -79,6 +81,7 @@ class TestBilling:
         )
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_invoice_history(self, client: Cloudflare) -> None:
         response = client.ai_gateway.billing.with_raw_response.invoice_history(
@@ -90,6 +93,7 @@ class TestBilling:
         billing = response.parse()
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_invoice_history(self, client: Cloudflare) -> None:
         with client.ai_gateway.billing.with_streaming_response.invoice_history(
@@ -103,6 +107,7 @@ class TestBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_invoice_history(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -110,6 +115,7 @@ class TestBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_invoice_preview(self, client: Cloudflare) -> None:
         billing = client.ai_gateway.billing.invoice_preview(
@@ -117,6 +123,7 @@ class TestBilling:
         )
         assert_matches_type(BillingInvoicePreviewResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_invoice_preview(self, client: Cloudflare) -> None:
         response = client.ai_gateway.billing.with_raw_response.invoice_preview(
@@ -128,6 +135,7 @@ class TestBilling:
         billing = response.parse()
         assert_matches_type(BillingInvoicePreviewResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_invoice_preview(self, client: Cloudflare) -> None:
         with client.ai_gateway.billing.with_streaming_response.invoice_preview(
@@ -141,6 +149,7 @@ class TestBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_invoice_preview(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -148,6 +157,7 @@ class TestBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_usage_history(self, client: Cloudflare) -> None:
         billing = client.ai_gateway.billing.usage_history(
@@ -156,6 +166,7 @@ class TestBilling:
         )
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_usage_history_with_all_params(self, client: Cloudflare) -> None:
         billing = client.ai_gateway.billing.usage_history(
@@ -166,6 +177,7 @@ class TestBilling:
         )
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_usage_history(self, client: Cloudflare) -> None:
         response = client.ai_gateway.billing.with_raw_response.usage_history(
@@ -178,6 +190,7 @@ class TestBilling:
         billing = response.parse()
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_usage_history(self, client: Cloudflare) -> None:
         with client.ai_gateway.billing.with_streaming_response.usage_history(
@@ -192,6 +205,7 @@ class TestBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_usage_history(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -248,6 +262,7 @@ class TestAsyncBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_invoice_history(self, async_client: AsyncCloudflare) -> None:
         billing = await async_client.ai_gateway.billing.invoice_history(
@@ -255,6 +270,7 @@ class TestAsyncBilling:
         )
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_invoice_history_with_all_params(self, async_client: AsyncCloudflare) -> None:
         billing = await async_client.ai_gateway.billing.invoice_history(
@@ -263,6 +279,7 @@ class TestAsyncBilling:
         )
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_invoice_history(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.billing.with_raw_response.invoice_history(
@@ -274,6 +291,7 @@ class TestAsyncBilling:
         billing = await response.parse()
         assert_matches_type(BillingInvoiceHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_invoice_history(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.billing.with_streaming_response.invoice_history(
@@ -287,6 +305,7 @@ class TestAsyncBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_invoice_history(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -294,6 +313,7 @@ class TestAsyncBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_invoice_preview(self, async_client: AsyncCloudflare) -> None:
         billing = await async_client.ai_gateway.billing.invoice_preview(
@@ -301,6 +321,7 @@ class TestAsyncBilling:
         )
         assert_matches_type(BillingInvoicePreviewResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_invoice_preview(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.billing.with_raw_response.invoice_preview(
@@ -312,6 +333,7 @@ class TestAsyncBilling:
         billing = await response.parse()
         assert_matches_type(BillingInvoicePreviewResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_invoice_preview(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.billing.with_streaming_response.invoice_preview(
@@ -325,6 +347,7 @@ class TestAsyncBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_invoice_preview(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -332,6 +355,7 @@ class TestAsyncBilling:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_usage_history(self, async_client: AsyncCloudflare) -> None:
         billing = await async_client.ai_gateway.billing.usage_history(
@@ -340,6 +364,7 @@ class TestAsyncBilling:
         )
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_usage_history_with_all_params(self, async_client: AsyncCloudflare) -> None:
         billing = await async_client.ai_gateway.billing.usage_history(
@@ -350,6 +375,7 @@ class TestAsyncBilling:
         )
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_usage_history(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.billing.with_raw_response.usage_history(
@@ -362,6 +388,7 @@ class TestAsyncBilling:
         billing = await response.parse()
         assert_matches_type(BillingUsageHistoryResponse, billing, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_usage_history(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.billing.with_streaming_response.usage_history(
@@ -376,6 +403,7 @@ class TestAsyncBilling:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_usage_history(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

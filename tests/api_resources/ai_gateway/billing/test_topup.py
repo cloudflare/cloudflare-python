@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTopup:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         topup = client.ai_gateway.billing.topup.create(
@@ -28,6 +29,7 @@ class TestTopup:
         )
         assert_matches_type(TopupCreateResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ai_gateway.billing.topup.with_raw_response.create(
@@ -40,6 +42,7 @@ class TestTopup:
         topup = response.parse()
         assert_matches_type(TopupCreateResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ai_gateway.billing.topup.with_streaming_response.create(
@@ -54,6 +57,7 @@ class TestTopup:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -62,6 +66,7 @@ class TestTopup:
                 amount=5000,
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_status(self, client: Cloudflare) -> None:
         topup = client.ai_gateway.billing.topup.status(
@@ -70,6 +75,7 @@ class TestTopup:
         )
         assert_matches_type(TopupStatusResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_status(self, client: Cloudflare) -> None:
         response = client.ai_gateway.billing.topup.with_raw_response.status(
@@ -82,6 +88,7 @@ class TestTopup:
         topup = response.parse()
         assert_matches_type(TopupStatusResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_status(self, client: Cloudflare) -> None:
         with client.ai_gateway.billing.topup.with_streaming_response.status(
@@ -96,6 +103,7 @@ class TestTopup:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_status(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -110,6 +118,7 @@ class TestAsyncTopup:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         topup = await async_client.ai_gateway.billing.topup.create(
@@ -118,6 +127,7 @@ class TestAsyncTopup:
         )
         assert_matches_type(TopupCreateResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.billing.topup.with_raw_response.create(
@@ -130,6 +140,7 @@ class TestAsyncTopup:
         topup = await response.parse()
         assert_matches_type(TopupCreateResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.billing.topup.with_streaming_response.create(
@@ -144,6 +155,7 @@ class TestAsyncTopup:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -152,6 +164,7 @@ class TestAsyncTopup:
                 amount=5000,
             )
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_status(self, async_client: AsyncCloudflare) -> None:
         topup = await async_client.ai_gateway.billing.topup.status(
@@ -160,6 +173,7 @@ class TestAsyncTopup:
         )
         assert_matches_type(TopupStatusResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_status(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.billing.topup.with_raw_response.status(
@@ -172,6 +186,7 @@ class TestAsyncTopup:
         topup = await response.parse()
         assert_matches_type(TopupStatusResponse, topup, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_status(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.billing.topup.with_streaming_response.status(
@@ -186,6 +201,7 @@ class TestAsyncTopup:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_status(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
