@@ -28,7 +28,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.secrets_store import store_list_params, store_create_params
+from ....types.secrets_store import store_list_params, store_create_params, store_delete_params
 from ....types.secrets_store.store_list_response import StoreListResponse
 from ....types.secrets_store.store_create_response import StoreCreateResponse
 
@@ -167,6 +167,7 @@ class StoresResource(SyncAPIResource):
         store_id: str,
         *,
         account_id: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,13 +175,21 @@ class StoresResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes a single store
+        """Deletes a single store.
+
+        By default, a store that still contains secrets cannot
+        be deleted and returns HTTP 409 (Conflict) with the "store_not_empty" error.
+        Pass `force=true` to cascade-delete all secrets in the store. Empty stores are
+        always deleted regardless of the force parameter.
 
         Args:
           account_id: Account Identifier
 
           store_id: Store Identifier
+
+          force: When true, cascade-deletes all secrets in the store before deleting the store
+              itself. Required when deleting a non-empty store. Without this parameter,
+              attempting to delete a non-empty store returns 409.
 
           extra_headers: Send extra headers
 
@@ -203,6 +212,7 @@ class StoresResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"force": force}, store_delete_params.StoreDeleteParams),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -341,6 +351,7 @@ class AsyncStoresResource(AsyncAPIResource):
         store_id: str,
         *,
         account_id: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,13 +359,21 @@ class AsyncStoresResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes a single store
+        """Deletes a single store.
+
+        By default, a store that still contains secrets cannot
+        be deleted and returns HTTP 409 (Conflict) with the "store_not_empty" error.
+        Pass `force=true` to cascade-delete all secrets in the store. Empty stores are
+        always deleted regardless of the force parameter.
 
         Args:
           account_id: Account Identifier
 
           store_id: Store Identifier
+
+          force: When true, cascade-deletes all secrets in the store before deleting the store
+              itself. Required when deleting a non-empty store. Without this parameter,
+              attempting to delete a non-empty store returns 409.
 
           extra_headers: Send extra headers
 
@@ -377,6 +396,7 @@ class AsyncStoresResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"force": force}, store_delete_params.StoreDeleteParams),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
