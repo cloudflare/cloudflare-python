@@ -64,6 +64,12 @@ class StepUnionMember0Config(BaseModel):
     timeout: Union[str, float]
     """Specifies the timeout duration."""
 
+    sensitive: Optional[Literal["output"]] = None
+    """
+    When set to 'output', step output is redacted from log and step output
+    responses.
+    """
+
 
 class StepUnionMember0(BaseModel):
     attempts: List[StepUnionMember0Attempt]

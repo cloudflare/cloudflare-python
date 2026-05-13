@@ -134,6 +134,18 @@ class IndicatorFeedGetResponse(BaseModel):
     etc.) without reading loader logs.
     """
 
+    latest_upload_error: Optional[str] = None
+    """Human-readable error message describing why the latest upload failed.
+
+    Populated only when `latest_upload_status` is `Error`. Returns one of a small
+    fixed set of category-level messages (invalid domain / IP / URL entries,
+    malformed row or header, invalid valid_until timestamp, etc.) or the generic
+    `Upload failed` for unknown or infrastructure-level errors. Never echoes raw
+    error text from the underlying loader. Intel accounts receive the verbatim
+    loader/API error text (including specific offending values) instead of these
+    category-level messages.
+    """
+
     latest_upload_status: Optional[Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]] = (
         None
     )
