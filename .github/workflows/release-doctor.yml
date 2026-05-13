@@ -13,6 +13,8 @@ concurrency:
 jobs:
   release_doctor:
     name: release doctor
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 2
     if: github.repository == 'cloudflare/cloudflare-python' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'release-please') || github.head_ref == 'next')
