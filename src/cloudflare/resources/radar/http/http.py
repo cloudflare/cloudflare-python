@@ -112,6 +112,7 @@ class HTTPResource(SyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "API_TRAFFIC",
             "AS",
             "BOT_CLASS",
             "BROWSER",
@@ -126,6 +127,7 @@ class HTTPResource(SyncAPIResource):
             "TLS_VERSION",
         ],
         *,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -155,6 +157,9 @@ class HTTPResource(SyncAPIResource):
 
         Args:
           dimension: Specifies the HTTP attribute by which to group the results.
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -224,6 +229,7 @@ class HTTPResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "continent": continent,
@@ -253,6 +259,7 @@ class HTTPResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
@@ -285,6 +292,9 @@ class HTTPResource(SyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -354,6 +364,7 @@ class HTTPResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "browser_family": browser_family,
@@ -384,6 +395,7 @@ class HTTPResource(SyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "API_TRAFFIC",
             "AS",
             "BOT_CLASS",
             "BROWSER",
@@ -399,6 +411,7 @@ class HTTPResource(SyncAPIResource):
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -433,6 +446,9 @@ class HTTPResource(SyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -506,6 +522,7 @@ class HTTPResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "continent": continent,
@@ -577,6 +594,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "API_TRAFFIC",
             "AS",
             "BOT_CLASS",
             "BROWSER",
@@ -591,6 +609,7 @@ class AsyncHTTPResource(AsyncAPIResource):
             "TLS_VERSION",
         ],
         *,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -620,6 +639,9 @@ class AsyncHTTPResource(AsyncAPIResource):
 
         Args:
           dimension: Specifies the HTTP attribute by which to group the results.
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -689,6 +711,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "continent": continent,
@@ -718,6 +741,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | Omit = omit,
@@ -750,6 +774,9 @@ class AsyncHTTPResource(AsyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -819,6 +846,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "browser_family": browser_family,
@@ -849,6 +877,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         self,
         dimension: Literal[
             "ADM1",
+            "API_TRAFFIC",
             "AS",
             "BOT_CLASS",
             "BROWSER",
@@ -864,6 +893,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
@@ -898,6 +928,9 @@ class AsyncHTTPResource(AsyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          api_traffic: Filters results by API traffic classification. API traffic is identified by JSON
+              or XML response content types on dynamic (non-cacheable) HTTP requests.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -971,6 +1004,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
+                        "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
                         "continent": continent,

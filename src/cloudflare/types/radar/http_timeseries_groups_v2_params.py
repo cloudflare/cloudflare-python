@@ -20,6 +20,13 @@ class HTTPTimeseriesGroupsV2Params(TypedDict, total=False):
     [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
     """
 
+    api_traffic: Annotated[List[Literal["API", "NON_API"]], PropertyInfo(alias="apiTraffic")]
+    """Filters results by API traffic classification.
+
+    API traffic is identified by JSON or XML response content types on dynamic
+    (non-cacheable) HTTP requests.
+    """
+
     asn: SequenceNotStr[str]
     """Filters results by Autonomous System.
 

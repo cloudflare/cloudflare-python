@@ -139,6 +139,8 @@ class InvestigateResource(SyncAPIResource):
         action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
@@ -167,6 +169,8 @@ class InvestigateResource(SyncAPIResource):
           account_id: Identifier.
 
           action_log: Whether to include the message action log in the response.
+
+          delivery_status: Delivery status to filter by.
 
           detections_only: Whether to include only detections in search results.
 
@@ -209,6 +213,7 @@ class InvestigateResource(SyncAPIResource):
                         "action_log": action_log,
                         "alert_id": alert_id,
                         "cursor": cursor,
+                        "delivery_status": delivery_status,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
@@ -341,6 +346,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
         action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
@@ -369,6 +376,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
           account_id: Identifier.
 
           action_log: Whether to include the message action log in the response.
+
+          delivery_status: Delivery status to filter by.
 
           detections_only: Whether to include only detections in search results.
 
@@ -411,6 +420,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "action_log": action_log,
                         "alert_id": alert_id,
                         "cursor": cursor,
+                        "delivery_status": delivery_status,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
