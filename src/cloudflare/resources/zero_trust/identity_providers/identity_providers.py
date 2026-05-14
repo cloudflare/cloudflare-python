@@ -28,6 +28,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
+from .saml_certificate import (
+    SAMLCertificateResource,
+    AsyncSAMLCertificateResource,
+    SAMLCertificateResourceWithRawResponse,
+    AsyncSAMLCertificateResourceWithRawResponse,
+    SAMLCertificateResourceWithStreamingResponse,
+    AsyncSAMLCertificateResourceWithStreamingResponse,
+)
 from ....types.zero_trust import (
     IdentityProviderType,
     identity_provider_list_params,
@@ -48,6 +56,10 @@ class IdentityProvidersResource(SyncAPIResource):
     @cached_property
     def scim(self) -> SCIMResource:
         return SCIMResource(self._client)
+
+    @cached_property
+    def saml_certificate(self) -> SAMLCertificateResource:
+        return SAMLCertificateResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> IdentityProvidersResourceWithRawResponse:
@@ -77,6 +89,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,6 +115,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -125,6 +143,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -150,6 +169,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -173,6 +197,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -198,6 +223,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -221,6 +251,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -246,6 +277,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -269,6 +305,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -294,6 +331,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -317,6 +359,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -342,6 +385,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -365,6 +413,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,6 +439,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -413,6 +467,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -438,6 +493,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -461,6 +521,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -486,6 +547,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -509,6 +575,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -534,6 +601,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -557,6 +629,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -582,6 +655,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -605,6 +683,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -630,6 +709,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -653,6 +737,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -678,6 +763,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -701,6 +791,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -726,6 +817,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -759,6 +855,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -792,6 +889,7 @@ class IdentityProvidersResource(SyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
+                        "saml_certificate_set_id": saml_certificate_set_id,
                         "scim_config": scim_config,
                     },
                     identity_provider_create_params.IdentityProviderCreateParams,
@@ -819,6 +917,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -846,6 +945,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -870,6 +974,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -897,6 +1002,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -921,6 +1031,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -948,6 +1059,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -972,6 +1088,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -999,6 +1116,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1023,6 +1145,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1050,6 +1173,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1074,6 +1202,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1101,6 +1230,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1125,6 +1259,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1152,6 +1287,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1176,6 +1316,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1203,6 +1344,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1227,6 +1373,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1254,6 +1401,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1278,6 +1430,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1305,6 +1458,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1329,6 +1487,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1356,6 +1515,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1380,6 +1544,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1407,6 +1572,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1431,6 +1601,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1458,6 +1629,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1482,6 +1658,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1509,6 +1686,11 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1543,6 +1725,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1581,6 +1764,7 @@ class IdentityProvidersResource(SyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
+                        "saml_certificate_set_id": saml_certificate_set_id,
                         "scim_config": scim_config,
                     },
                     identity_provider_update_params.IdentityProviderUpdateParams,
@@ -1814,6 +1998,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return AsyncSCIMResource(self._client)
 
     @cached_property
+    def saml_certificate(self) -> AsyncSAMLCertificateResource:
+        return AsyncSAMLCertificateResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncIdentityProvidersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -1841,6 +2029,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1866,6 +2055,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1889,6 +2083,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1914,6 +2109,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1937,6 +2137,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1962,6 +2163,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1985,6 +2191,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2010,6 +2217,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2033,6 +2245,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2058,6 +2271,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2081,6 +2299,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2106,6 +2325,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2129,6 +2353,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2154,6 +2379,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2177,6 +2407,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2202,6 +2433,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2225,6 +2461,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2250,6 +2487,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2273,6 +2515,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2298,6 +2541,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2321,6 +2569,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2346,6 +2595,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2369,6 +2623,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2394,6 +2649,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2417,6 +2677,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2442,6 +2703,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2465,6 +2731,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2490,6 +2757,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2523,6 +2795,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2556,6 +2829,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
+                        "saml_certificate_set_id": saml_certificate_set_id,
                         "scim_config": scim_config,
                     },
                     identity_provider_create_params.IdentityProviderCreateParams,
@@ -2583,6 +2857,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2610,6 +2885,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2634,6 +2914,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2661,6 +2942,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2685,6 +2971,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2712,6 +2999,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2736,6 +3028,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2763,6 +3056,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2787,6 +3085,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2814,6 +3113,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2838,6 +3142,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2865,6 +3170,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2889,6 +3199,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2916,6 +3227,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2940,6 +3256,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2967,6 +3284,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2991,6 +3313,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3018,6 +3341,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3042,6 +3370,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3069,6 +3398,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3093,6 +3427,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3120,6 +3455,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3144,6 +3484,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3171,6 +3512,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3195,6 +3541,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3222,6 +3569,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3246,6 +3598,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3273,6 +3626,11 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3307,6 +3665,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
         scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3345,6 +3704,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
+                        "saml_certificate_set_id": saml_certificate_set_id,
                         "scim_config": scim_config,
                     },
                     identity_provider_update_params.IdentityProviderUpdateParams,
@@ -3596,6 +3956,10 @@ class IdentityProvidersResourceWithRawResponse:
     def scim(self) -> SCIMResourceWithRawResponse:
         return SCIMResourceWithRawResponse(self._identity_providers.scim)
 
+    @cached_property
+    def saml_certificate(self) -> SAMLCertificateResourceWithRawResponse:
+        return SAMLCertificateResourceWithRawResponse(self._identity_providers.saml_certificate)
+
 
 class AsyncIdentityProvidersResourceWithRawResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
@@ -3620,6 +3984,10 @@ class AsyncIdentityProvidersResourceWithRawResponse:
     @cached_property
     def scim(self) -> AsyncSCIMResourceWithRawResponse:
         return AsyncSCIMResourceWithRawResponse(self._identity_providers.scim)
+
+    @cached_property
+    def saml_certificate(self) -> AsyncSAMLCertificateResourceWithRawResponse:
+        return AsyncSAMLCertificateResourceWithRawResponse(self._identity_providers.saml_certificate)
 
 
 class IdentityProvidersResourceWithStreamingResponse:
@@ -3646,6 +4014,10 @@ class IdentityProvidersResourceWithStreamingResponse:
     def scim(self) -> SCIMResourceWithStreamingResponse:
         return SCIMResourceWithStreamingResponse(self._identity_providers.scim)
 
+    @cached_property
+    def saml_certificate(self) -> SAMLCertificateResourceWithStreamingResponse:
+        return SAMLCertificateResourceWithStreamingResponse(self._identity_providers.saml_certificate)
+
 
 class AsyncIdentityProvidersResourceWithStreamingResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
@@ -3670,3 +4042,7 @@ class AsyncIdentityProvidersResourceWithStreamingResponse:
     @cached_property
     def scim(self) -> AsyncSCIMResourceWithStreamingResponse:
         return AsyncSCIMResourceWithStreamingResponse(self._identity_providers.scim)
+
+    @cached_property
+    def saml_certificate(self) -> AsyncSAMLCertificateResourceWithStreamingResponse:
+        return AsyncSAMLCertificateResourceWithStreamingResponse(self._identity_providers.saml_certificate)

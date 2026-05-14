@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .identity_provider_type import IdentityProviderType
 from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
-__all__ = ["AzureAD", "Config"]
+__all__ = ["AzureAD", "Config", "SAMLCertificateSet", "SAMLCertificateSetCurrentCertificate"]
 
 
 class Config(BaseModel):
@@ -51,6 +52,53 @@ class Config(BaseModel):
     """Should Cloudflare try to load groups from your account"""
 
 
+class SAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class SAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[SAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AzureAD(BaseModel):
     config: Config
     """The configuration parameters for the identity provider.
@@ -71,6 +119,21 @@ class AzureAD(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[SAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """

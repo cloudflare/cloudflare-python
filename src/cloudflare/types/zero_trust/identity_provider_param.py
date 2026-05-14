@@ -82,6 +82,14 @@ class AccessCentrify(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -107,6 +115,14 @@ class AccessFacebook(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -130,6 +146,14 @@ class AccessGitHub(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam
@@ -174,6 +198,14 @@ class AccessGoogle(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam
@@ -223,6 +255,14 @@ class AccessGoogleApps(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -246,6 +286,14 @@ class AccessLinkedin(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam
@@ -307,6 +355,14 @@ class AccessOIDC(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -357,6 +413,14 @@ class AccessOkta(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -402,6 +466,14 @@ class AccessOnelogin(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam
@@ -451,6 +523,14 @@ class AccessPingone(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -480,6 +560,23 @@ class AccessSAMLConfig(TypedDict, total=False):
 
     email_attribute_name: str
     """The attribute name for email in the SAML response."""
+
+    enable_encryption: bool
+    """Enable SAML assertion encryption.
+
+    When enabled, the Identity Provider will encrypt SAML assertions using the
+    certificate from the assigned certificate set.
+
+    To enable encryption:
+
+    1. Create a certificate set via POST to
+       `/identity_providers/{id}/saml_certificate`
+    2. Set this field to `true` and include `saml_certificate_set_id` in the PUT
+       request
+    3. Configure the public certificate in your external Identity Provider
+
+    Note: Requires `saml_certificate_set_id` to be set when `true`.
+    """
 
     header_attributes: Iterable[AccessSAMLConfigHeaderAttribute]
     """
@@ -521,6 +618,14 @@ class AccessSAML(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -544,6 +649,14 @@ class AccessYandex(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam
@@ -578,6 +691,14 @@ class AccessOnetimepin(TypedDict, total=False):
 
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
     """
 
     scim_config: IdentityProviderSCIMConfigParam

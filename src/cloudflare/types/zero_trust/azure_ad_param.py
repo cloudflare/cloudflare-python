@@ -70,6 +70,14 @@ class AzureADParam(TypedDict, total=False):
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
 
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
