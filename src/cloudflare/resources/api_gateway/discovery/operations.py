@@ -20,9 +20,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.api_gateway.discovery import operation_edit_params, operation_list_params, operation_bulk_edit_params
+from ....types.api_gateway.discovery import operation_list_params, operation_bulk_edit_params
 from ....types.api_gateway.discovery_operation import DiscoveryOperation
-from ....types.api_gateway.discovery.operation_edit_response import OperationEditResponse
 from ....types.api_gateway.discovery.operation_bulk_edit_response import OperationBulkEditResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
@@ -187,61 +186,6 @@ class OperationsResource(SyncAPIResource):
             cast_to=cast(Type[OperationBulkEditResponse], ResultWrapper[OperationBulkEditResponse]),
         )
 
-    def edit(
-        self,
-        operation_id: str,
-        *,
-        zone_id: str,
-        state: Literal["review", "ignored"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OperationEditResponse:
-        """
-        Update the `state` on a discovered operation
-
-        Args:
-          zone_id: Identifier.
-
-          operation_id: UUID.
-
-          state: Mark state of operation in API Discovery
-
-              - `review` - Mark operation as for review
-              - `ignored` - Mark operation as ignored
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not operation_id:
-            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return self._patch(
-            path_template(
-                "/zones/{zone_id}/api_gateway/discovery/operations/{operation_id}",
-                zone_id=zone_id,
-                operation_id=operation_id,
-            ),
-            body=maybe_transform({"state": state}, operation_edit_params.OperationEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OperationEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[OperationEditResponse], ResultWrapper[OperationEditResponse]),
-        )
-
 
 class AsyncOperationsResource(AsyncAPIResource):
     @cached_property
@@ -402,61 +346,6 @@ class AsyncOperationsResource(AsyncAPIResource):
             cast_to=cast(Type[OperationBulkEditResponse], ResultWrapper[OperationBulkEditResponse]),
         )
 
-    async def edit(
-        self,
-        operation_id: str,
-        *,
-        zone_id: str,
-        state: Literal["review", "ignored"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OperationEditResponse:
-        """
-        Update the `state` on a discovered operation
-
-        Args:
-          zone_id: Identifier.
-
-          operation_id: UUID.
-
-          state: Mark state of operation in API Discovery
-
-              - `review` - Mark operation as for review
-              - `ignored` - Mark operation as ignored
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not operation_id:
-            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return await self._patch(
-            path_template(
-                "/zones/{zone_id}/api_gateway/discovery/operations/{operation_id}",
-                zone_id=zone_id,
-                operation_id=operation_id,
-            ),
-            body=await async_maybe_transform({"state": state}, operation_edit_params.OperationEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OperationEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[OperationEditResponse], ResultWrapper[OperationEditResponse]),
-        )
-
 
 class OperationsResourceWithRawResponse:
     def __init__(self, operations: OperationsResource) -> None:
@@ -467,9 +356,6 @@ class OperationsResourceWithRawResponse:
         )
         self.bulk_edit = to_raw_response_wrapper(
             operations.bulk_edit,
-        )
-        self.edit = to_raw_response_wrapper(
-            operations.edit,
         )
 
 
@@ -483,9 +369,6 @@ class AsyncOperationsResourceWithRawResponse:
         self.bulk_edit = async_to_raw_response_wrapper(
             operations.bulk_edit,
         )
-        self.edit = async_to_raw_response_wrapper(
-            operations.edit,
-        )
 
 
 class OperationsResourceWithStreamingResponse:
@@ -498,9 +381,6 @@ class OperationsResourceWithStreamingResponse:
         self.bulk_edit = to_streamed_response_wrapper(
             operations.bulk_edit,
         )
-        self.edit = to_streamed_response_wrapper(
-            operations.edit,
-        )
 
 
 class AsyncOperationsResourceWithStreamingResponse:
@@ -512,7 +392,4 @@ class AsyncOperationsResourceWithStreamingResponse:
         )
         self.bulk_edit = async_to_streamed_response_wrapper(
             operations.bulk_edit,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            operations.edit,
         )
