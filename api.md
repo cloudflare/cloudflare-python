@@ -131,6 +131,8 @@ from cloudflare.types import (
 
 # [MagicTransit](src/cloudflare/resources/magic_transit/api.md)
 
+# [DDoSProtection](src/cloudflare/resources/ddos_protection/api.md)
+
 # [MagicNetworkMonitoring](src/cloudflare/resources/magic_network_monitoring/api.md)
 
 # [MagicCloudNetworking](src/cloudflare/resources/magic_cloud_networking/api.md)

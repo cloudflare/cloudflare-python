@@ -110,6 +110,7 @@ if TYPE_CHECKING:
         email_security,
         load_balancers,
         cloud_connector,
+        ddos_protection,
         durable_objects,
         r2_data_catalog,
         request_tracers,
@@ -218,6 +219,7 @@ if TYPE_CHECKING:
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
+    from .resources.ddos_protection.ddos_protection import DDoSProtectionResource, AsyncDDoSProtectionResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.r2_data_catalog.r2_data_catalog import R2DataCatalogResource, AsyncR2DataCatalogResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
@@ -684,6 +686,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.magic_transit import MagicTransitResource
 
         return MagicTransitResource(self)
+
+    @cached_property
+    def ddos_protection(self) -> DDoSProtectionResource:
+        from .resources.ddos_protection import DDoSProtectionResource
+
+        return DDoSProtectionResource(self)
 
     @cached_property
     def magic_network_monitoring(self) -> MagicNetworkMonitoringResource:
@@ -1567,6 +1575,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicTransitResource(self)
 
     @cached_property
+    def ddos_protection(self) -> AsyncDDoSProtectionResource:
+        from .resources.ddos_protection import AsyncDDoSProtectionResource
+
+        return AsyncDDoSProtectionResource(self)
+
+    @cached_property
     def magic_network_monitoring(self) -> AsyncMagicNetworkMonitoringResource:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResource
 
@@ -2381,6 +2395,12 @@ class CloudflareWithRawResponse:
         return MagicTransitResourceWithRawResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.DDoSProtectionResourceWithRawResponse:
+        from .resources.ddos_protection import DDoSProtectionResourceWithRawResponse
+
+        return DDoSProtectionResourceWithRawResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.MagicNetworkMonitoringResourceWithRawResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithRawResponse
 
@@ -3030,6 +3050,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.magic_transit import AsyncMagicTransitResourceWithRawResponse
 
         return AsyncMagicTransitResourceWithRawResponse(self._client.magic_transit)
+
+    @cached_property
+    def ddos_protection(self) -> ddos_protection.AsyncDDoSProtectionResourceWithRawResponse:
+        from .resources.ddos_protection import AsyncDDoSProtectionResourceWithRawResponse
+
+        return AsyncDDoSProtectionResourceWithRawResponse(self._client.ddos_protection)
 
     @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.AsyncMagicNetworkMonitoringResourceWithRawResponse:
@@ -3683,6 +3709,12 @@ class CloudflareWithStreamedResponse:
         return MagicTransitResourceWithStreamingResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.DDoSProtectionResourceWithStreamingResponse:
+        from .resources.ddos_protection import DDoSProtectionResourceWithStreamingResponse
+
+        return DDoSProtectionResourceWithStreamingResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.MagicNetworkMonitoringResourceWithStreamingResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithStreamingResponse
 
@@ -4334,6 +4366,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.magic_transit import AsyncMagicTransitResourceWithStreamingResponse
 
         return AsyncMagicTransitResourceWithStreamingResponse(self._client.magic_transit)
+
+    @cached_property
+    def ddos_protection(self) -> ddos_protection.AsyncDDoSProtectionResourceWithStreamingResponse:
+        from .resources.ddos_protection import AsyncDDoSProtectionResourceWithStreamingResponse
+
+        return AsyncDDoSProtectionResourceWithStreamingResponse(self._client.ddos_protection)
 
     @cached_property
     def magic_network_monitoring(
