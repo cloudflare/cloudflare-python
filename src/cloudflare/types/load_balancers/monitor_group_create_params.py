@@ -12,12 +12,6 @@ class MonitorGroupCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    id: Required[str]
-    """
-    The ID of the Monitor Group to use for checking the health of origins within
-    this pool.
-    """
-
     description: Required[str]
     """A short description of the monitor group"""
 
