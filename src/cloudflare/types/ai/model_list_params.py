@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ModelListParams"]
 
@@ -12,6 +12,12 @@ class ModelListParams(TypedDict, total=False):
 
     author: str
     """Filter by Author"""
+
+    format: Literal["openrouter"]
+    """
+    If set, return models in the requested marketplace format instead of the default
+    response.
+    """
 
     hide_experimental: bool
     """Filter to hide experimental models"""
