@@ -132,6 +132,16 @@ class TestStores:
 
     @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        store = client.secrets_store.stores.delete(
+            store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="985e105f4ecef8ad9ca31a8372d0c353",
+            force=True,
+        )
+        assert_matches_type(object, store, path=["response"])
+
+    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secrets_store.stores.with_raw_response.delete(
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -285,6 +295,16 @@ class TestAsyncStores:
         store = await async_client.secrets_store.stores.delete(
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(object, store, path=["response"])
+
+    @pytest.mark.skip(reason="SKIP: prism error for 422 Unprocessable Entity")
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        store = await async_client.secrets_store.stores.delete(
+            store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="985e105f4ecef8ad9ca31a8372d0c353",
+            force=True,
         )
         assert_matches_type(object, store, path=["response"])
 
