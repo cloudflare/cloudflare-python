@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .resources import (
@@ -199,10 +199,12 @@ class ResourceSharingResource(SyncAPIResource):
                 "gateway-destination-ip",
                 "gateway-block-page-settings",
                 "gateway-extended-email-matching",
+                "idp-federation-grant",
             ]
         ]
         | Omit = omit,
         status: Literal["active", "deleting", "deleted"] | Omit = omit,
+        tag: SequenceNotStr[str] | Omit = omit,
         target_type: Literal["account", "organization"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,6 +237,11 @@ class ResourceSharingResource(SyncAPIResource):
 
           status: Filter shares by status.
 
+          tag: Filter shares by tag. Each value is either `key=value` (matches shares whose
+              tags contain that key/value pair) or `key` alone (matches shares that have any
+              value for that key). May be repeated; multiple `tag` parameters are ANDed
+              together. Maximum 20 `tag` parameters per request.
+
           target_type: Filter shares by target_type.
 
           extra_headers: Send extra headers
@@ -266,6 +273,7 @@ class ResourceSharingResource(SyncAPIResource):
                         "per_page": per_page,
                         "resource_types": resource_types,
                         "status": status,
+                        "tag": tag,
                         "target_type": target_type,
                     },
                     resource_sharing_list_params.ResourceSharingListParams,
@@ -527,10 +535,12 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 "gateway-destination-ip",
                 "gateway-block-page-settings",
                 "gateway-extended-email-matching",
+                "idp-federation-grant",
             ]
         ]
         | Omit = omit,
         status: Literal["active", "deleting", "deleted"] | Omit = omit,
+        tag: SequenceNotStr[str] | Omit = omit,
         target_type: Literal["account", "organization"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -563,6 +573,11 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           status: Filter shares by status.
 
+          tag: Filter shares by tag. Each value is either `key=value` (matches shares whose
+              tags contain that key/value pair) or `key` alone (matches shares that have any
+              value for that key). May be repeated; multiple `tag` parameters are ANDed
+              together. Maximum 20 `tag` parameters per request.
+
           target_type: Filter shares by target_type.
 
           extra_headers: Send extra headers
@@ -594,6 +609,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                         "per_page": per_page,
                         "resource_types": resource_types,
                         "status": status,
+                        "tag": tag,
                         "target_type": target_type,
                     },
                     resource_sharing_list_params.ResourceSharingListParams,

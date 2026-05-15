@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["ResourceSharingListParams"]
 
 
@@ -40,12 +42,22 @@ class ResourceSharingListParams(TypedDict, total=False):
             "gateway-destination-ip",
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
+            "idp-federation-grant",
         ]
     ]
     """Filter share resources by resource_types."""
 
     status: Literal["active", "deleting", "deleted"]
     """Filter shares by status."""
+
+    tag: SequenceNotStr[str]
+    """Filter shares by tag.
+
+    Each value is either `key=value` (matches shares whose tags contain that
+    key/value pair) or `key` alone (matches shares that have any value for that
+    key). May be repeated; multiple `tag` parameters are ANDed together. Maximum 20
+    `tag` parameters per request.
+    """
 
     target_type: Literal["account", "organization"]
     """Filter shares by target_type."""
