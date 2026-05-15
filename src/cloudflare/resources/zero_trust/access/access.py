@@ -84,6 +84,14 @@ from .service_tokens import (
     ServiceTokensResourceWithStreamingResponse,
     AsyncServiceTokensResourceWithStreamingResponse,
 )
+from .saml_certificates import (
+    SAMLCertificatesResource,
+    AsyncSAMLCertificatesResource,
+    SAMLCertificatesResourceWithRawResponse,
+    AsyncSAMLCertificatesResourceWithRawResponse,
+    SAMLCertificatesResourceWithStreamingResponse,
+    AsyncSAMLCertificatesResourceWithStreamingResponse,
+)
 from .ai_controls.ai_controls import (
     AIControlsResource,
     AsyncAIControlsResource,
@@ -128,6 +136,10 @@ class AccessResource(SyncAPIResource):
     @cached_property
     def gateway_ca(self) -> GatewayCAResource:
         return GatewayCAResource(self._client)
+
+    @cached_property
+    def saml_certificates(self) -> SAMLCertificatesResource:
+        return SAMLCertificatesResource(self._client)
 
     @cached_property
     def infrastructure(self) -> InfrastructureResource:
@@ -205,6 +217,10 @@ class AsyncAccessResource(AsyncAPIResource):
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResource:
         return AsyncGatewayCAResource(self._client)
+
+    @cached_property
+    def saml_certificates(self) -> AsyncSAMLCertificatesResource:
+        return AsyncSAMLCertificatesResource(self._client)
 
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResource:
@@ -287,6 +303,10 @@ class AccessResourceWithRawResponse:
         return GatewayCAResourceWithRawResponse(self._access.gateway_ca)
 
     @cached_property
+    def saml_certificates(self) -> SAMLCertificatesResourceWithRawResponse:
+        return SAMLCertificatesResourceWithRawResponse(self._access.saml_certificates)
+
+    @cached_property
     def infrastructure(self) -> InfrastructureResourceWithRawResponse:
         return InfrastructureResourceWithRawResponse(self._access.infrastructure)
 
@@ -346,6 +366,10 @@ class AsyncAccessResourceWithRawResponse:
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithRawResponse:
         return AsyncGatewayCAResourceWithRawResponse(self._access.gateway_ca)
+
+    @cached_property
+    def saml_certificates(self) -> AsyncSAMLCertificatesResourceWithRawResponse:
+        return AsyncSAMLCertificatesResourceWithRawResponse(self._access.saml_certificates)
 
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResourceWithRawResponse:
@@ -409,6 +433,10 @@ class AccessResourceWithStreamingResponse:
         return GatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
 
     @cached_property
+    def saml_certificates(self) -> SAMLCertificatesResourceWithStreamingResponse:
+        return SAMLCertificatesResourceWithStreamingResponse(self._access.saml_certificates)
+
+    @cached_property
     def infrastructure(self) -> InfrastructureResourceWithStreamingResponse:
         return InfrastructureResourceWithStreamingResponse(self._access.infrastructure)
 
@@ -468,6 +496,10 @@ class AsyncAccessResourceWithStreamingResponse:
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithStreamingResponse:
         return AsyncGatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
+
+    @cached_property
+    def saml_certificates(self) -> AsyncSAMLCertificatesResourceWithStreamingResponse:
+        return AsyncSAMLCertificatesResourceWithStreamingResponse(self._access.saml_certificates)
 
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResourceWithStreamingResponse:

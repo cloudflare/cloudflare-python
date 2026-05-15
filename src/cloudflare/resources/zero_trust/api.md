@@ -376,6 +376,18 @@ Methods:
 
 - <code title="get /accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users">client.zero_trust.identity_providers.scim.users.<a href="./src/cloudflare/resources/zero_trust/identity_providers/scim/users.py">list</a>(identity_provider_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/identity_providers/scim/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/access_user.py">SyncV4PagePaginationArray[AccessUser]</a></code>
 
+### SAMLCertificate
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.identity_providers import SAMLCertificateCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/access/identity_providers/{identity_provider_id}/saml_certificate">client.zero_trust.identity_providers.saml_certificate.<a href="./src/cloudflare/resources/zero_trust/identity_providers/saml_certificate.py">create</a>(identity_provider_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/identity_providers/saml_certificate_create_response.py">Optional[SAMLCertificateCreateResponse]</a></code>
+
 ## Organizations
 
 Types:
@@ -484,6 +496,25 @@ Methods:
 - <code title="post /accounts/{account_id}/access/gateway_ca">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_create_response.py">Optional[GatewayCACreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/access/gateway_ca">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_list_response.py">SyncSinglePage[GatewayCAListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/access/gateway_ca/{certificate_id}">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">delete</a>(certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_delete_response.py">Optional[GatewayCADeleteResponse]</a></code>
+
+### SAMLCertificates
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.access import (
+    SAMLCertificateListResponse,
+    SAMLCertificateGetResponse,
+    SAMLCertificateRotateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/access/saml_certificates">client.zero_trust.access.saml_certificates.<a href="./src/cloudflare/resources/zero_trust/access/saml_certificates.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/saml_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/saml_certificate_list_response.py">SyncV4PagePaginationArray[SAMLCertificateListResponse]</a></code>
+- <code title="get /accounts/{account_id}/access/saml_certificates/{saml_cert_set_id}">client.zero_trust.access.saml_certificates.<a href="./src/cloudflare/resources/zero_trust/access/saml_certificates.py">get</a>(saml_cert_set_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/saml_certificate_get_response.py">Optional[SAMLCertificateGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/access/saml_certificates/{saml_cert_set_id}/pem">client.zero_trust.access.saml_certificates.<a href="./src/cloudflare/resources/zero_trust/access/saml_certificates.py">get_pem</a>(saml_cert_set_id, \*, account_id) -> BinaryAPIResponse</code>
+- <code title="post /accounts/{account_id}/access/saml_certificates/{saml_cert_set_id}/rotate">client.zero_trust.access.saml_certificates.<a href="./src/cloudflare/resources/zero_trust/access/saml_certificates.py">rotate</a>(saml_cert_set_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/saml_certificate_rotate_response.py">Optional[SAMLCertificateRotateResponse]</a></code>
 
 ### Infrastructure
 
@@ -1978,3 +2009,34 @@ from cloudflare.types.zero_trust.risk_scoring.integrations import ReferenceGetRe
 Methods:
 
 - <code title="get /accounts/{account_id}/zt_risk_scoring/integrations/reference_id/{reference_id}">client.zero_trust.risk_scoring.integrations.references.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/references.py">get</a>(reference_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integrations/reference_get_response.py">Optional[ReferenceGetResponse]</a></code>
+
+## ResourceLibrary
+
+### Applications
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.resource_library import (
+    ApplicationListResponse,
+    ApplicationGetResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/resource-library/applications">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_list_response.py">SyncSinglePage[ApplicationListResponse]</a></code>
+- <code title="get /accounts/{account_id}/resource-library/applications/{id}">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_get_response.py">Optional[ApplicationGetResponse]</a></code>
+
+### Categories
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.resource_library import CategoryListResponse, CategoryGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/resource-library/categories">client.zero_trust.resource_library.categories.<a href="./src/cloudflare/resources/zero_trust/resource_library/categories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/category_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/category_list_response.py">SyncSinglePage[CategoryListResponse]</a></code>
+- <code title="get /accounts/{account_id}/resource-library/categories/{id}">client.zero_trust.resource_library.categories.<a href="./src/cloudflare/resources/zero_trust/resource_library/categories.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/resource_library/category_get_response.py">Optional[CategoryGetResponse]</a></code>

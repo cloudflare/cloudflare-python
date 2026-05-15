@@ -11,14 +11,15 @@ __all__ = [
     "IntegrationListResponse",
     "UnionMember0",
     "UnionMember1",
-    "UnionMember1Confidence",
-    "UnionMember1Variant",
-    "UnionMember1VariantUnionMember0",
-    "UnionMember1VariantUnionMember1",
     "UnionMember2",
+    "UnionMember2Confidence",
+    "UnionMember2Variant",
+    "UnionMember2VariantUnionMember0",
+    "UnionMember2VariantUnionMember1",
     "UnionMember3",
     "UnionMember4",
     "UnionMember5",
+    "UnionMember6",
 ]
 
 
@@ -44,7 +45,23 @@ class UnionMember0(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class UnionMember1Confidence(BaseModel):
+class UnionMember1(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
+
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+
+class UnionMember2Confidence(BaseModel):
     ai_context_available: bool
     """Indicates whether this entry has AI remote service validation."""
 
@@ -55,7 +72,7 @@ class UnionMember1Confidence(BaseModel):
     """
 
 
-class UnionMember1VariantUnionMember0(BaseModel):
+class UnionMember2VariantUnionMember0(BaseModel):
     """A Predefined AI prompt classification topic entry."""
 
     topic_type: Literal["Intent", "Content"]
@@ -69,7 +86,7 @@ class UnionMember1VariantUnionMember0(BaseModel):
     """
 
 
-class UnionMember1VariantUnionMember1(BaseModel):
+class UnionMember2VariantUnionMember1(BaseModel):
     """A general predefined entry."""
 
     type: Literal["General"]
@@ -78,13 +95,13 @@ class UnionMember1VariantUnionMember1(BaseModel):
     """A customer-facing explanation of what this predefined entry represents."""
 
 
-UnionMember1Variant: TypeAlias = Union[UnionMember1VariantUnionMember0, UnionMember1VariantUnionMember1]
+UnionMember2Variant: TypeAlias = Union[UnionMember2VariantUnionMember0, UnionMember2VariantUnionMember1]
 
 
-class UnionMember1(BaseModel):
+class UnionMember2(BaseModel):
     id: str
 
-    confidence: UnionMember1Confidence
+    confidence: UnionMember2Confidence
 
     enabled: bool
 
@@ -96,11 +113,11 @@ class UnionMember1(BaseModel):
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-    variant: Optional[UnionMember1Variant] = None
+    variant: Optional[UnionMember2Variant] = None
     """A Predefined AI prompt classification topic entry."""
 
 
-class UnionMember2(BaseModel):
+class UnionMember3(BaseModel):
     id: str
 
     created_at: datetime
@@ -118,7 +135,7 @@ class UnionMember2(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class UnionMember3(BaseModel):
+class UnionMember4(BaseModel):
     id: str
 
     case_sensitive: bool
@@ -142,7 +159,7 @@ class UnionMember3(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class UnionMember4(BaseModel):
+class UnionMember5(BaseModel):
     id: str
 
     created_at: datetime
@@ -158,7 +175,7 @@ class UnionMember4(BaseModel):
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
-class UnionMember5(BaseModel):
+class UnionMember6(BaseModel):
     id: str
 
     created_at: datetime
@@ -179,5 +196,5 @@ class UnionMember5(BaseModel):
 
 
 IntegrationListResponse: TypeAlias = Union[
-    UnionMember0, UnionMember1, UnionMember2, UnionMember3, UnionMember4, UnionMember5
+    UnionMember0, UnionMember1, UnionMember2, UnionMember3, UnionMember4, UnionMember5, UnionMember6
 ]

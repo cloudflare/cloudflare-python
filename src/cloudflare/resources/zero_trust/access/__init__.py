@@ -120,6 +120,14 @@ from .service_tokens import (
     ServiceTokensResourceWithStreamingResponse,
     AsyncServiceTokensResourceWithStreamingResponse,
 )
+from .saml_certificates import (
+    SAMLCertificatesResource,
+    AsyncSAMLCertificatesResource,
+    SAMLCertificatesResourceWithRawResponse,
+    AsyncSAMLCertificatesResourceWithRawResponse,
+    SAMLCertificatesResourceWithStreamingResponse,
+    AsyncSAMLCertificatesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AIControlsResource",
@@ -134,6 +142,12 @@ __all__ = [
     "AsyncGatewayCAResourceWithRawResponse",
     "GatewayCAResourceWithStreamingResponse",
     "AsyncGatewayCAResourceWithStreamingResponse",
+    "SAMLCertificatesResource",
+    "AsyncSAMLCertificatesResource",
+    "SAMLCertificatesResourceWithRawResponse",
+    "AsyncSAMLCertificatesResourceWithRawResponse",
+    "SAMLCertificatesResourceWithStreamingResponse",
+    "AsyncSAMLCertificatesResourceWithStreamingResponse",
     "InfrastructureResource",
     "AsyncInfrastructureResource",
     "InfrastructureResourceWithRawResponse",

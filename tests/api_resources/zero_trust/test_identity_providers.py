@@ -50,6 +50,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -136,6 +137,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -218,6 +220,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -300,6 +303,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -384,6 +388,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -469,6 +474,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -551,6 +557,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -640,6 +647,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -726,6 +734,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -811,6 +820,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -896,6 +906,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -974,6 +985,7 @@ class TestIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
+                "enable_encryption": True,
                 "header_attributes": [
                     {
                         "attribute_name": "attribute_name",
@@ -988,6 +1000,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1070,6 +1083,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1149,6 +1163,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1239,6 +1254,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1340,6 +1356,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1437,6 +1454,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1534,6 +1552,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1633,6 +1652,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1733,6 +1753,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1830,6 +1851,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -1934,6 +1956,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2035,6 +2058,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2135,6 +2159,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2235,6 +2260,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2328,6 +2354,7 @@ class TestIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
+                "enable_encryption": True,
                 "header_attributes": [
                     {
                         "attribute_name": "attribute_name",
@@ -2342,6 +2369,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2439,6 +2467,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2533,6 +2562,7 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2840,6 +2870,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -2926,6 +2957,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3008,6 +3040,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3090,6 +3123,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3174,6 +3208,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3259,6 +3294,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3341,6 +3377,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3430,6 +3467,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3516,6 +3554,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3601,6 +3640,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3686,6 +3726,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3764,6 +3805,7 @@ class TestAsyncIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
+                "enable_encryption": True,
                 "header_attributes": [
                     {
                         "attribute_name": "attribute_name",
@@ -3778,6 +3820,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3860,6 +3903,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -3939,6 +3983,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4029,6 +4074,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4130,6 +4176,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4227,6 +4274,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4324,6 +4372,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4423,6 +4472,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4523,6 +4573,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4620,6 +4671,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4724,6 +4776,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4825,6 +4878,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -4925,6 +4979,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -5025,6 +5080,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -5118,6 +5174,7 @@ class TestAsyncIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
+                "enable_encryption": True,
                 "header_attributes": [
                     {
                         "attribute_name": "attribute_name",
@@ -5132,6 +5189,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -5229,6 +5287,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",
@@ -5323,6 +5382,7 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
             scim_config={
                 "enabled": True,
                 "identity_update_behavior": "automatic",

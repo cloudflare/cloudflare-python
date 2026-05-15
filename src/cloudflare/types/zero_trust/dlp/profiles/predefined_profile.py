@@ -11,6 +11,7 @@ __all__ = [
     "PredefinedProfile",
     "Entry",
     "EntryCustomEntry",
+    "EntryCustomPromptTopicEntry",
     "EntryPredefinedEntry",
     "EntryPredefinedEntryConfidence",
     "EntryPredefinedEntryVariant",
@@ -41,6 +42,20 @@ class EntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class EntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class EntryPredefinedEntryConfidence(BaseModel):
@@ -171,6 +186,7 @@ class EntryWordListEntry(BaseModel):
 
 Entry: TypeAlias = Union[
     EntryCustomEntry,
+    EntryCustomPromptTopicEntry,
     EntryPredefinedEntry,
     EntryIntegrationEntry,
     EntryExactDataEntry,

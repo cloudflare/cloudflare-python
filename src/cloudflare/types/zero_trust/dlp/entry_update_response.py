@@ -10,6 +10,7 @@ from .profiles.pattern import Pattern
 __all__ = [
     "EntryUpdateResponse",
     "CustomEntry",
+    "CustomPromptTopicEntry",
     "PredefinedEntry",
     "PredefinedEntryConfidence",
     "PredefinedEntryVariant",
@@ -40,6 +41,20 @@ class CustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class CustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class PredefinedEntryConfidence(BaseModel):
@@ -167,5 +182,11 @@ class WordListEntry(BaseModel):
 
 
 EntryUpdateResponse: TypeAlias = Union[
-    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentFingerprintEntry, WordListEntry
+    CustomEntry,
+    CustomPromptTopicEntry,
+    PredefinedEntry,
+    IntegrationEntry,
+    ExactDataEntry,
+    DocumentFingerprintEntry,
+    WordListEntry,
 ]

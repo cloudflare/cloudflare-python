@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import TypeAlias
 
 from .azure_ad import AzureAD
@@ -13,25 +14,49 @@ __all__ = [
     "IdentityProviderListResponse",
     "AccessCentrify",
     "AccessCentrifyConfig",
+    "AccessCentrifySAMLCertificateSet",
+    "AccessCentrifySAMLCertificateSetCurrentCertificate",
     "AccessFacebook",
+    "AccessFacebookSAMLCertificateSet",
+    "AccessFacebookSAMLCertificateSetCurrentCertificate",
     "AccessGitHub",
+    "AccessGitHubSAMLCertificateSet",
+    "AccessGitHubSAMLCertificateSetCurrentCertificate",
     "AccessGoogle",
     "AccessGoogleConfig",
+    "AccessGoogleSAMLCertificateSet",
+    "AccessGoogleSAMLCertificateSetCurrentCertificate",
     "AccessGoogleApps",
     "AccessGoogleAppsConfig",
+    "AccessGoogleAppsSAMLCertificateSet",
+    "AccessGoogleAppsSAMLCertificateSetCurrentCertificate",
     "AccessLinkedin",
+    "AccessLinkedinSAMLCertificateSet",
+    "AccessLinkedinSAMLCertificateSetCurrentCertificate",
     "AccessOIDC",
     "AccessOIDCConfig",
+    "AccessOIDCSAMLCertificateSet",
+    "AccessOIDCSAMLCertificateSetCurrentCertificate",
     "AccessOkta",
     "AccessOktaConfig",
+    "AccessOktaSAMLCertificateSet",
+    "AccessOktaSAMLCertificateSetCurrentCertificate",
     "AccessOnelogin",
     "AccessOneloginConfig",
+    "AccessOneloginSAMLCertificateSet",
+    "AccessOneloginSAMLCertificateSetCurrentCertificate",
     "AccessPingone",
     "AccessPingoneConfig",
+    "AccessPingoneSAMLCertificateSet",
+    "AccessPingoneSAMLCertificateSetCurrentCertificate",
     "AccessSAML",
     "AccessSAMLConfig",
     "AccessSAMLConfigHeaderAttribute",
+    "AccessSAMLSAMLCertificateSet",
+    "AccessSAMLSAMLCertificateSetCurrentCertificate",
     "AccessYandex",
+    "AccessYandexSAMLCertificateSet",
+    "AccessYandexSAMLCertificateSetCurrentCertificate",
 ]
 
 
@@ -60,6 +85,53 @@ class AccessCentrifyConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
+class AccessCentrifySAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessCentrifySAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessCentrifySAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessCentrify(BaseModel):
     config: AccessCentrifyConfig
     """The configuration parameters for the identity provider.
@@ -81,10 +153,72 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    saml_certificate_set: Optional[AccessCentrifySAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
+    """
+
+
+class AccessFacebookSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessFacebookSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessFacebookSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
     """
 
 
@@ -109,10 +243,72 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    saml_certificate_set: Optional[AccessFacebookSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
+    """
+
+
+class AccessGitHubSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessGitHubSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessGitHubSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
     """
 
 
@@ -136,6 +332,21 @@ class AccessGitHub(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessGitHubSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -163,6 +374,53 @@ class AccessGoogleConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
+class AccessGoogleSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessGoogleSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessGoogleSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessGoogle(BaseModel):
     config: AccessGoogleConfig
     """The configuration parameters for the identity provider.
@@ -183,6 +441,21 @@ class AccessGoogle(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessGoogleSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -213,6 +486,53 @@ class AccessGoogleAppsConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
+class AccessGoogleAppsSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessGoogleAppsSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessGoogleAppsSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessGoogleApps(BaseModel):
     config: AccessGoogleAppsConfig
     """The configuration parameters for the identity provider.
@@ -234,10 +554,72 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    saml_certificate_set: Optional[AccessGoogleAppsSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
+    """
+
+
+class AccessLinkedinSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessLinkedinSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessLinkedinSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
     """
 
 
@@ -261,6 +643,21 @@ class AccessLinkedin(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessLinkedinSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -303,6 +700,53 @@ class AccessOIDCConfig(BaseModel):
     """The token_endpoint URL of your IdP"""
 
 
+class AccessOIDCSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessOIDCSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessOIDCSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessOIDC(BaseModel):
     config: AccessOIDCConfig
     """The configuration parameters for the identity provider.
@@ -323,6 +767,21 @@ class AccessOIDC(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessOIDCSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -356,6 +815,53 @@ class AccessOktaConfig(BaseModel):
     """Your okta account url"""
 
 
+class AccessOktaSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessOktaSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessOktaSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessOkta(BaseModel):
     config: AccessOktaConfig
     """The configuration parameters for the identity provider.
@@ -376,6 +882,21 @@ class AccessOkta(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessOktaSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -406,6 +927,53 @@ class AccessOneloginConfig(BaseModel):
     """Your OneLogin account url"""
 
 
+class AccessOneloginSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessOneloginSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessOneloginSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessOnelogin(BaseModel):
     config: AccessOneloginConfig
     """The configuration parameters for the identity provider.
@@ -426,6 +994,21 @@ class AccessOnelogin(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessOneloginSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -456,6 +1039,53 @@ class AccessPingoneConfig(BaseModel):
     """Your PingOne environment identifier"""
 
 
+class AccessPingoneSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessPingoneSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessPingoneSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
+
+
 class AccessPingone(BaseModel):
     config: AccessPingoneConfig
     """The configuration parameters for the identity provider.
@@ -476,6 +1106,21 @@ class AccessPingone(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessPingoneSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -507,6 +1152,23 @@ class AccessSAMLConfig(BaseModel):
     email_attribute_name: Optional[str] = None
     """The attribute name for email in the SAML response."""
 
+    enable_encryption: Optional[bool] = None
+    """Enable SAML assertion encryption.
+
+    When enabled, the Identity Provider will encrypt SAML assertions using the
+    certificate from the assigned certificate set.
+
+    To enable encryption:
+
+    1. Create a certificate set via POST to
+       `/identity_providers/{id}/saml_certificate`
+    2. Set this field to `true` and include `saml_certificate_set_id` in the PUT
+       request
+    3. Configure the public certificate in your external Identity Provider
+
+    Note: Requires `saml_certificate_set_id` to be set when `true`.
+    """
+
     header_attributes: Optional[List[AccessSAMLConfigHeaderAttribute]] = None
     """
     Add a list of attribute names that will be returned in the response header from
@@ -527,6 +1189,53 @@ class AccessSAMLConfig(BaseModel):
 
     sso_target_url: Optional[str] = None
     """URL to send the SAML authentication requests to"""
+
+
+class AccessSAMLSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessSAMLSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessSAMLSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
+    """
 
 
 class AccessSAML(BaseModel):
@@ -550,10 +1259,72 @@ class AccessSAML(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    saml_certificate_set: Optional[AccessSAMLSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
+    """
+
+
+class AccessYandexSAMLCertificateSetCurrentCertificate(BaseModel):
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    is_current: bool
+    """Indicates whether this is the currently active certificate"""
+
+    not_after: datetime
+    """Certificate expiration date.
+
+    Certificates are automatically rotated 30 days before expiration.
+    """
+
+    public_certificate: str
+    """
+    PEM-encoded X.509 certificate containing the public key. Configure this
+    certificate in your external SAML Identity Provider to enable encryption.
+    """
+
+    uid: str
+    """Unique identifier for the certificate"""
+
+
+class AccessYandexSAMLCertificateSet(BaseModel):
+    """
+    The SAML encryption certificate set details, including current and previous certificates.
+    Only present for SAML identity providers with a certificate set assigned.
+    """
+
+    created_at: datetime
+    """Timestamp when the certificate set was created"""
+
+    uid: str
+    """Unique identifier for the certificate set"""
+
+    updated_at: datetime
+    """Timestamp when the certificate set was last updated (e.g., during rotation)"""
+
+    current_certificate: Optional[AccessYandexSAMLCertificateSetCurrentCertificate] = None
+    """The currently active certificate used for encrypting SAML assertions"""
+
+    previous_certificate: Optional[object] = None
+    """The previous certificate, maintained during rotation to ensure continuity.
+
+    Null if no rotation has occurred. Mirrors the structure of `saml_certificate`.
     """
 
 
@@ -577,6 +1348,21 @@ class AccessYandex(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    saml_certificate_set: Optional[AccessYandexSAMLCertificateSet] = None
+    """
+    The SAML encryption certificate set details, including current and previous
+    certificates. Only present for SAML identity providers with a certificate set
+    assigned.
+    """
+
+    saml_certificate_set_id: Optional[str] = None
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """

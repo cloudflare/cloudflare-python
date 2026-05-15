@@ -88,6 +88,14 @@ from .organizations import (
     OrganizationsResourceWithStreamingResponse,
     AsyncOrganizationsResourceWithStreamingResponse,
 )
+from .resource_library import (
+    ResourceLibraryResource,
+    AsyncResourceLibraryResource,
+    ResourceLibraryResourceWithRawResponse,
+    AsyncResourceLibraryResourceWithRawResponse,
+    ResourceLibraryResourceWithStreamingResponse,
+    AsyncResourceLibraryResourceWithStreamingResponse,
+)
 from .identity_providers import (
     IdentityProvidersResource,
     AsyncIdentityProvidersResource,
@@ -178,6 +186,12 @@ __all__ = [
     "AsyncRiskScoringResourceWithRawResponse",
     "RiskScoringResourceWithStreamingResponse",
     "AsyncRiskScoringResourceWithStreamingResponse",
+    "ResourceLibraryResource",
+    "AsyncResourceLibraryResource",
+    "ResourceLibraryResourceWithRawResponse",
+    "AsyncResourceLibraryResourceWithRawResponse",
+    "ResourceLibraryResourceWithStreamingResponse",
+    "AsyncResourceLibraryResourceWithStreamingResponse",
     "ZeroTrustResource",
     "AsyncZeroTrustResource",
     "ZeroTrustResourceWithRawResponse",

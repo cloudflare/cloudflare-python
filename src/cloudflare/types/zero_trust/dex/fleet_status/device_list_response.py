@@ -224,6 +224,9 @@ class DeviceListResponse(BaseModel):
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
     """Device identifier (human readable)"""
 
+    device_registration: Optional[str] = FieldInfo(alias="deviceRegistration", default=None)
+    """Deprecated: use registrationId. Device registration identifier (UUID v4)."""
+
     disk_read_bps: Optional[int] = FieldInfo(alias="diskReadBps", default=None)
 
     disk_usage_pct: Optional[float] = FieldInfo(alias="diskUsagePct", default=None)

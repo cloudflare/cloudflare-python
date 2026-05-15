@@ -16,6 +16,7 @@ __all__ = [
     "CustomProfile",
     "CustomProfileEntry",
     "CustomProfileEntryCustomEntry",
+    "CustomProfileEntryCustomPromptTopicEntry",
     "CustomProfileEntryPredefinedEntry",
     "CustomProfileEntryPredefinedEntryConfidence",
     "CustomProfileEntryPredefinedEntryVariant",
@@ -28,6 +29,7 @@ __all__ = [
     "CustomProfileSensitivityLevel",
     "CustomProfileSharedEntry",
     "CustomProfileSharedEntryCustomEntry",
+    "CustomProfileSharedEntryCustomPromptTopicEntry",
     "CustomProfileSharedEntryPredefinedEntry",
     "CustomProfileSharedEntryPredefinedEntryConfidence",
     "CustomProfileSharedEntryPredefinedEntryVariant",
@@ -40,6 +42,7 @@ __all__ = [
     "PredefinedProfile",
     "PredefinedProfileEntry",
     "PredefinedProfileEntryCustomEntry",
+    "PredefinedProfileEntryCustomPromptTopicEntry",
     "PredefinedProfileEntryPredefinedEntry",
     "PredefinedProfileEntryPredefinedEntryConfidence",
     "PredefinedProfileEntryPredefinedEntryVariant",
@@ -52,6 +55,7 @@ __all__ = [
     "IntegrationProfile",
     "IntegrationProfileEntry",
     "IntegrationProfileEntryCustomEntry",
+    "IntegrationProfileEntryCustomPromptTopicEntry",
     "IntegrationProfileEntryPredefinedEntry",
     "IntegrationProfileEntryPredefinedEntryConfidence",
     "IntegrationProfileEntryPredefinedEntryVariant",
@@ -63,6 +67,7 @@ __all__ = [
     "IntegrationProfileEntryWordListEntry",
     "IntegrationProfileSharedEntry",
     "IntegrationProfileSharedEntryCustomEntry",
+    "IntegrationProfileSharedEntryCustomPromptTopicEntry",
     "IntegrationProfileSharedEntryPredefinedEntry",
     "IntegrationProfileSharedEntryPredefinedEntryConfidence",
     "IntegrationProfileSharedEntryPredefinedEntryVariant",
@@ -93,6 +98,20 @@ class CustomProfileEntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class CustomProfileEntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
@@ -223,6 +242,7 @@ class CustomProfileEntryWordListEntry(BaseModel):
 
 CustomProfileEntry: TypeAlias = Union[
     CustomProfileEntryCustomEntry,
+    CustomProfileEntryCustomPromptTopicEntry,
     CustomProfileEntryPredefinedEntry,
     CustomProfileEntryIntegrationEntry,
     CustomProfileEntryExactDataEntry,
@@ -259,6 +279,20 @@ class CustomProfileSharedEntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class CustomProfileSharedEntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class CustomProfileSharedEntryPredefinedEntryConfidence(BaseModel):
@@ -390,6 +424,7 @@ class CustomProfileSharedEntryWordListEntry(BaseModel):
 
 CustomProfileSharedEntry: TypeAlias = Union[
     CustomProfileSharedEntryCustomEntry,
+    CustomProfileSharedEntryCustomPromptTopicEntry,
     CustomProfileSharedEntryPredefinedEntry,
     CustomProfileSharedEntryIntegrationEntry,
     CustomProfileSharedEntryExactDataEntry,
@@ -463,6 +498,20 @@ class PredefinedProfileEntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class PredefinedProfileEntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
@@ -593,6 +642,7 @@ class PredefinedProfileEntryWordListEntry(BaseModel):
 
 PredefinedProfileEntry: TypeAlias = Union[
     PredefinedProfileEntryCustomEntry,
+    PredefinedProfileEntryCustomPromptTopicEntry,
     PredefinedProfileEntryPredefinedEntry,
     PredefinedProfileEntryIntegrationEntry,
     PredefinedProfileEntryExactDataEntry,
@@ -648,6 +698,20 @@ class IntegrationProfileEntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class IntegrationProfileEntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
@@ -778,6 +842,7 @@ class IntegrationProfileEntryWordListEntry(BaseModel):
 
 IntegrationProfileEntry: TypeAlias = Union[
     IntegrationProfileEntryCustomEntry,
+    IntegrationProfileEntryCustomPromptTopicEntry,
     IntegrationProfileEntryPredefinedEntry,
     IntegrationProfileEntryIntegrationEntry,
     IntegrationProfileEntryExactDataEntry,
@@ -804,6 +869,20 @@ class IntegrationProfileSharedEntryCustomEntry(BaseModel):
     description: Optional[str] = None
 
     profile_id: Optional[str] = None
+
+
+class IntegrationProfileSharedEntryCustomPromptTopicEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["custom_prompt_topic"]
+
+    updated_at: datetime
 
 
 class IntegrationProfileSharedEntryPredefinedEntryConfidence(BaseModel):
@@ -935,6 +1014,7 @@ class IntegrationProfileSharedEntryWordListEntry(BaseModel):
 
 IntegrationProfileSharedEntry: TypeAlias = Union[
     IntegrationProfileSharedEntryCustomEntry,
+    IntegrationProfileSharedEntryCustomPromptTopicEntry,
     IntegrationProfileSharedEntryPredefinedEntry,
     IntegrationProfileSharedEntryIntegrationEntry,
     IntegrationProfileSharedEntryExactDataEntry,

@@ -8,6 +8,14 @@ from .scim import (
     SCIMResourceWithStreamingResponse,
     AsyncSCIMResourceWithStreamingResponse,
 )
+from .saml_certificate import (
+    SAMLCertificateResource,
+    AsyncSAMLCertificateResource,
+    SAMLCertificateResourceWithRawResponse,
+    AsyncSAMLCertificateResourceWithRawResponse,
+    SAMLCertificateResourceWithStreamingResponse,
+    AsyncSAMLCertificateResourceWithStreamingResponse,
+)
 from .identity_providers import (
     IdentityProvidersResource,
     AsyncIdentityProvidersResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncSCIMResourceWithRawResponse",
     "SCIMResourceWithStreamingResponse",
     "AsyncSCIMResourceWithStreamingResponse",
+    "SAMLCertificateResource",
+    "AsyncSAMLCertificateResource",
+    "SAMLCertificateResourceWithRawResponse",
+    "AsyncSAMLCertificateResourceWithRawResponse",
+    "SAMLCertificateResourceWithStreamingResponse",
+    "AsyncSAMLCertificateResourceWithStreamingResponse",
     "IdentityProvidersResource",
     "AsyncIdentityProvidersResource",
     "IdentityProvidersResourceWithRawResponse",
