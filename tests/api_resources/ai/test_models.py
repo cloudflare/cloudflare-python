@@ -29,6 +29,7 @@ class TestModels:
         model = client.ai.models.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             author="author",
+            format="openrouter",
             hide_experimental=True,
             page=0,
             per_page=0,
@@ -87,6 +88,7 @@ class TestAsyncModels:
         model = await async_client.ai.models.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             author="author",
+            format="openrouter",
             hide_experimental=True,
             page=0,
             per_page=0,

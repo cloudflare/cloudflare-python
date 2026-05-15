@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from .schema import (
@@ -58,6 +60,7 @@ class ModelsResource(SyncAPIResource):
         *,
         account_id: str,
         author: str | Omit = omit,
+        format: Literal["openrouter"] | Omit = omit,
         hide_experimental: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -76,6 +79,9 @@ class ModelsResource(SyncAPIResource):
 
         Args:
           author: Filter by Author
+
+          format: If set, return models in the requested marketplace format instead of the default
+              response.
 
           hide_experimental: Filter to hide experimental models
 
@@ -106,6 +112,7 @@ class ModelsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "author": author,
+                        "format": format,
                         "hide_experimental": hide_experimental,
                         "page": page,
                         "per_page": per_page,
@@ -149,6 +156,7 @@ class AsyncModelsResource(AsyncAPIResource):
         *,
         account_id: str,
         author: str | Omit = omit,
+        format: Literal["openrouter"] | Omit = omit,
         hide_experimental: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -167,6 +175,9 @@ class AsyncModelsResource(AsyncAPIResource):
 
         Args:
           author: Filter by Author
+
+          format: If set, return models in the requested marketplace format instead of the default
+              response.
 
           hide_experimental: Filter to hide experimental models
 
@@ -197,6 +208,7 @@ class AsyncModelsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "author": author,
+                        "format": format,
                         "hide_experimental": hide_experimental,
                         "page": page,
                         "per_page": per_page,
