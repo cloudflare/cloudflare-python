@@ -52,6 +52,14 @@ from .evaluations import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from .billing.billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .dynamic_routing import (
     DynamicRoutingResource,
     AsyncDynamicRoutingResource,
@@ -114,6 +122,10 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def urls(self) -> URLsResource:
         return URLsResource(self._client)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        return BillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
@@ -233,6 +245,7 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_limit: Optional[int],
         authentication: bool | Omit = omit,
         dlp: ai_gateway_update_params.DLP | Omit = omit,
+        guardrails: Optional[ai_gateway_update_params.Guardrails] | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
@@ -291,6 +304,7 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_limit": rate_limiting_limit,
                     "authentication": authentication,
                     "dlp": dlp,
+                    "guardrails": guardrails,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
@@ -482,6 +496,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         return AsyncURLsResource(self._client)
 
     @cached_property
+    def billing(self) -> AsyncBillingResource:
+        return AsyncBillingResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -599,6 +617,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_limit: Optional[int],
         authentication: bool | Omit = omit,
         dlp: ai_gateway_update_params.DLP | Omit = omit,
+        guardrails: Optional[ai_gateway_update_params.Guardrails] | Omit = omit,
         log_management: Optional[int] | Omit = omit,
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
@@ -657,6 +676,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_limit": rate_limiting_limit,
                     "authentication": authentication,
                     "dlp": dlp,
+                    "guardrails": guardrails,
                     "log_management": log_management,
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
@@ -866,6 +886,10 @@ class AIGatewayResourceWithRawResponse:
     def urls(self) -> URLsResourceWithRawResponse:
         return URLsResourceWithRawResponse(self._ai_gateway.urls)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self._ai_gateway.billing)
+
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -914,6 +938,10 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def urls(self) -> AsyncURLsResourceWithRawResponse:
         return AsyncURLsResourceWithRawResponse(self._ai_gateway.urls)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self._ai_gateway.billing)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -964,6 +992,10 @@ class AIGatewayResourceWithStreamingResponse:
     def urls(self) -> URLsResourceWithStreamingResponse:
         return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self._ai_gateway.billing)
+
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -1012,3 +1044,7 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def urls(self) -> AsyncURLsResourceWithStreamingResponse:
         return AsyncURLsResourceWithStreamingResponse(self._ai_gateway.urls)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self._ai_gateway.billing)

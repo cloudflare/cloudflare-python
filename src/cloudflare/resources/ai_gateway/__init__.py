@@ -16,6 +16,14 @@ from .urls import (
     URLsResourceWithStreamingResponse,
     AsyncURLsResourceWithStreamingResponse,
 )
+from .billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncURLsResourceWithRawResponse",
     "URLsResourceWithStreamingResponse",
     "AsyncURLsResourceWithStreamingResponse",
+    "BillingResource",
+    "AsyncBillingResource",
+    "BillingResourceWithRawResponse",
+    "AsyncBillingResourceWithRawResponse",
+    "BillingResourceWithStreamingResponse",
+    "AsyncBillingResourceWithStreamingResponse",
     "AIGatewayResource",
     "AsyncAIGatewayResource",
     "AIGatewayResourceWithRawResponse",

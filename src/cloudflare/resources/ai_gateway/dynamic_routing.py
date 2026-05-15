@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -19,6 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.ai_gateway import (
+    dynamic_routing_list_params,
     dynamic_routing_create_params,
     dynamic_routing_update_params,
     dynamic_routing_create_version_params,
@@ -162,6 +163,8 @@ class DynamicRoutingResource(SyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,6 +176,10 @@ class DynamicRoutingResource(SyncAPIResource):
         List all AI Gateway Dynamic Routes.
 
         Args:
+          page: Page number
+
+          per_page: Number of routes per page
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -192,7 +199,17 @@ class DynamicRoutingResource(SyncAPIResource):
                 gateway_id=gateway_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    dynamic_routing_list_params.DynamicRoutingListParams,
+                ),
             ),
             cast_to=DynamicRoutingListResponse,
         )
@@ -665,6 +682,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -676,6 +695,10 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         List all AI Gateway Dynamic Routes.
 
         Args:
+          page: Page number
+
+          per_page: Number of routes per page
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -695,7 +718,17 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
                 gateway_id=gateway_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    dynamic_routing_list_params.DynamicRoutingListParams,
+                ),
             ),
             cast_to=DynamicRoutingListResponse,
         )

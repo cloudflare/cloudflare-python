@@ -191,6 +191,16 @@ class TestDynamicRouting:
         assert_matches_type(DynamicRoutingListResponse, dynamic_routing, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        dynamic_routing = client.ai_gateway.dynamic_routing.list(
+            gateway_id="54442216",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            page=1,
+            per_page=20,
+        )
+        assert_matches_type(DynamicRoutingListResponse, dynamic_routing, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ai_gateway.dynamic_routing.with_raw_response.list(
             gateway_id="54442216",
@@ -877,6 +887,16 @@ class TestAsyncDynamicRouting:
         dynamic_routing = await async_client.ai_gateway.dynamic_routing.list(
             gateway_id="54442216",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
+        )
+        assert_matches_type(DynamicRoutingListResponse, dynamic_routing, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        dynamic_routing = await async_client.ai_gateway.dynamic_routing.list(
+            gateway_id="54442216",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            page=1,
+            per_page=20,
         )
         assert_matches_type(DynamicRoutingListResponse, dynamic_routing, path=["response"])
 

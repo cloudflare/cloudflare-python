@@ -4,6 +4,8 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 
 __all__ = [
@@ -12,6 +14,9 @@ __all__ = [
     "DLPUnionMember0",
     "DLPUnionMember1",
     "DLPUnionMember1Policy",
+    "Guardrails",
+    "GuardrailsPrompt",
+    "GuardrailsResponse",
     "Otel",
     "Stripe",
     "StripeUsageEvent",
@@ -45,6 +50,72 @@ class DLPUnionMember1(BaseModel):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class GuardrailsPrompt(BaseModel):
+    p1: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="P1", default=None)
+
+    s1: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S1", default=None)
+
+    s10: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S10", default=None)
+
+    s11: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S11", default=None)
+
+    s12: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S12", default=None)
+
+    s13: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S13", default=None)
+
+    s2: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S2", default=None)
+
+    s3: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S3", default=None)
+
+    s4: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S4", default=None)
+
+    s5: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S5", default=None)
+
+    s6: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S6", default=None)
+
+    s7: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S7", default=None)
+
+    s8: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S8", default=None)
+
+    s9: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S9", default=None)
+
+
+class GuardrailsResponse(BaseModel):
+    p1: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="P1", default=None)
+
+    s1: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S1", default=None)
+
+    s10: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S10", default=None)
+
+    s11: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S11", default=None)
+
+    s12: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S12", default=None)
+
+    s13: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S13", default=None)
+
+    s2: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S2", default=None)
+
+    s3: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S3", default=None)
+
+    s4: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S4", default=None)
+
+    s5: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S5", default=None)
+
+    s6: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S6", default=None)
+
+    s7: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S7", default=None)
+
+    s8: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S8", default=None)
+
+    s9: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S9", default=None)
+
+
+class Guardrails(BaseModel):
+    prompt: GuardrailsPrompt
+
+    response: GuardrailsResponse
 
 
 class Otel(BaseModel):
@@ -88,6 +159,8 @@ class AIGatewayDeleteResponse(BaseModel):
     authentication: Optional[bool] = None
 
     dlp: Optional[DLP] = None
+
+    guardrails: Optional[Guardrails] = None
 
     is_default: Optional[bool] = None
 

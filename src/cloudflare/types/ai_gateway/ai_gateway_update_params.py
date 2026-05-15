@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 
 __all__ = [
     "AIGatewayUpdateParams",
@@ -13,6 +14,9 @@ __all__ = [
     "DLPUnionMember0",
     "DLPUnionMember1",
     "DLPUnionMember1Policy",
+    "Guardrails",
+    "GuardrailsPrompt",
+    "GuardrailsResponse",
     "Otel",
     "Stripe",
     "StripeUsageEvent",
@@ -35,6 +39,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     authentication: bool
 
     dlp: DLP
+
+    guardrails: Optional[Guardrails]
 
     log_management: Optional[int]
 
@@ -97,6 +103,72 @@ class DLPUnionMember1(TypedDict, total=False):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class GuardrailsPrompt(TypedDict, total=False):
+    p1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="P1")]
+
+    s1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S1")]
+
+    s10: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S10")]
+
+    s11: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S11")]
+
+    s12: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S12")]
+
+    s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
+
+    s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
+
+    s3: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S3")]
+
+    s4: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S4")]
+
+    s5: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S5")]
+
+    s6: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S6")]
+
+    s7: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S7")]
+
+    s8: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S8")]
+
+    s9: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S9")]
+
+
+class GuardrailsResponse(TypedDict, total=False):
+    p1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="P1")]
+
+    s1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S1")]
+
+    s10: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S10")]
+
+    s11: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S11")]
+
+    s12: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S12")]
+
+    s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
+
+    s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
+
+    s3: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S3")]
+
+    s4: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S4")]
+
+    s5: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S5")]
+
+    s6: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S6")]
+
+    s7: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S7")]
+
+    s8: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S8")]
+
+    s9: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S9")]
+
+
+class Guardrails(TypedDict, total=False):
+    prompt: Required[GuardrailsPrompt]
+
+    response: Required[GuardrailsResponse]
 
 
 class Otel(TypedDict, total=False):

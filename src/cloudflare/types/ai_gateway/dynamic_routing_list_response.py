@@ -203,6 +203,8 @@ class DataRouteVersion(BaseModel):
 
     version_id: str
 
+    is_valid: Optional[bool] = None
+
 
 class DataRoute(BaseModel):
     id: str
