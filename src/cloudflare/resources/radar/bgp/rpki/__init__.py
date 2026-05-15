@@ -8,6 +8,14 @@ from .aspa import (
     ASPAResourceWithStreamingResponse,
     AsyncASPAResourceWithStreamingResponse,
 )
+from .roas import (
+    RoasResource,
+    AsyncRoasResource,
+    RoasResourceWithRawResponse,
+    AsyncRoasResourceWithRawResponse,
+    RoasResourceWithStreamingResponse,
+    AsyncRoasResourceWithStreamingResponse,
+)
 from .rpki import (
     RPKIResource,
     AsyncRPKIResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncASPAResourceWithRawResponse",
     "ASPAResourceWithStreamingResponse",
     "AsyncASPAResourceWithStreamingResponse",
+    "RoasResource",
+    "AsyncRoasResource",
+    "RoasResourceWithRawResponse",
+    "AsyncRoasResourceWithRawResponse",
+    "RoasResourceWithStreamingResponse",
+    "AsyncRoasResourceWithStreamingResponse",
     "RPKIResource",
     "AsyncRPKIResource",
     "RPKIResourceWithRawResponse",

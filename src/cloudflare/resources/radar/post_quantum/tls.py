@@ -57,8 +57,9 @@ class TLSResource(SyncAPIResource):
     ) -> TLSSupportResponse:
         """
         Tests whether a hostname or IP address supports Post-Quantum (PQ) TLS key
-        exchange. Returns information about the negotiated key exchange algorithm and
-        whether it uses PQ cryptography.
+        exchange. Returns information about the negotiated key exchange algorithm,
+        whether it uses PQ cryptography, and any detected TLS implementation bugs (Split
+        ClientHello, HRR failure, etc.).
 
         Args:
           host: Hostname or IP address to test for Post-Quantum TLS support, optionally with
@@ -119,8 +120,9 @@ class AsyncTLSResource(AsyncAPIResource):
     ) -> TLSSupportResponse:
         """
         Tests whether a hostname or IP address supports Post-Quantum (PQ) TLS key
-        exchange. Returns information about the negotiated key exchange algorithm and
-        whether it uses PQ cryptography.
+        exchange. Returns information about the negotiated key exchange algorithm,
+        whether it uses PQ cryptography, and any detected TLS implementation bugs (Split
+        ClientHello, HRR failure, etc.).
 
         Args:
           host: Hostname or IP address to test for Post-Quantum TLS support, optionally with

@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .ips import (
-    IPsResource,
-    AsyncIPsResource,
-    IPsResourceWithRawResponse,
-    AsyncIPsResourceWithRawResponse,
-    IPsResourceWithStreamingResponse,
-    AsyncIPsResourceWithStreamingResponse,
-)
 from .routes import (
     RoutesResource,
     AsyncRoutesResource,
@@ -23,6 +15,14 @@ from .routes import (
     AsyncRoutesResourceWithRawResponse,
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
+)
+from .ips.ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
 )
 from .top.top import (
     TopResource,

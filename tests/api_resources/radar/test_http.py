@@ -33,6 +33,7 @@ class TestHTTP:
     def test_method_summary_v2_with_all_params(self, client: Cloudflare) -> None:
         http = client.radar.http.summary_v2(
             dimension="ADM1",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
@@ -86,6 +87,7 @@ class TestHTTP:
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         http = client.radar.http.timeseries(
             agg_interval="1h",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -139,6 +141,7 @@ class TestHTTP:
         http = client.radar.http.timeseries_groups_v2(
             dimension="ADM1",
             agg_interval="1h",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
@@ -201,6 +204,7 @@ class TestAsyncHTTP:
     async def test_method_summary_v2_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http = await async_client.radar.http.summary_v2(
             dimension="ADM1",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
@@ -254,6 +258,7 @@ class TestAsyncHTTP:
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http = await async_client.radar.http.timeseries(
             agg_interval="1h",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -307,6 +312,7 @@ class TestAsyncHTTP:
         http = await async_client.radar.http.timeseries_groups_v2(
             dimension="ADM1",
             agg_interval="1h",
+            api_traffic=["API"],
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
