@@ -3,12 +3,13 @@
 Types:
 
 ```python
-from cloudflare.types.cache import CachePurgeResponse
+from cloudflare.types.cache import CachePurgeResponse, CachePurgeEnvironmentResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_purge_response.py">Optional[CachePurgeResponse]</a></code>
+- <code title="post /zones/{zone_id}/environments/{environment_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge_environment</a>(environment_id, \*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_purge_environment_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_purge_environment_response.py">Optional[CachePurgeEnvironmentResponse]</a></code>
 
 ## CacheReserve
 
@@ -39,6 +40,7 @@ Types:
 
 ```python
 from cloudflare.types.cache import (
+    SmartTieredCacheCreateResponse,
     SmartTieredCacheDeleteResponse,
     SmartTieredCacheEditResponse,
     SmartTieredCacheGetResponse,
@@ -47,6 +49,7 @@ from cloudflare.types.cache import (
 
 Methods:
 
+- <code title="post /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/smart_tiered_cache_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_create_response.py">Optional[SmartTieredCacheCreateResponse]</a></code>
 - <code title="delete /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_delete_response.py">Optional[SmartTieredCacheDeleteResponse]</a></code>
 - <code title="patch /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/smart_tiered_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_edit_response.py">Optional[SmartTieredCacheEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.smart_tiered_cache.<a href="./src/cloudflare/resources/cache/smart_tiered_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/smart_tiered_cache_get_response.py">Optional[SmartTieredCacheGetResponse]</a></code>
@@ -94,24 +97,19 @@ Types:
 ```python
 from cloudflare.types.cache import (
     OriginCloudRegion,
-    OriginCloudRegionCreateResponse,
-    OriginCloudRegionListResponse,
     OriginCloudRegionDeleteResponse,
     OriginCloudRegionBulkDeleteResponse,
-    OriginCloudRegionBulkEditResponse,
-    OriginCloudRegionEditResponse,
-    OriginCloudRegionGetResponse,
+    OriginCloudRegionBulkUpdateResponse,
     OriginCloudRegionSupportedRegionsResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_create_response.py">Optional[OriginCloudRegionCreateResponse]</a></code>
-- <code title="get /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_list_response.py">Optional[OriginCloudRegionListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">delete</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_delete_response.py">Optional[OriginCloudRegionDeleteResponse]</a></code>
-- <code title="delete /zones/{zone_id}/cache/origin_cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_delete_response.py">Optional[OriginCloudRegionBulkDeleteResponse]</a></code>
-- <code title="patch /zones/{zone_id}/cache/origin_cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_edit_response.py">Optional[OriginCloudRegionBulkEditResponse]</a></code>
-- <code title="patch /zones/{zone_id}/cache/origin_cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_edit_response.py">Optional[OriginCloudRegionEditResponse]</a></code>
-- <code title="get /zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">get</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_get_response.py">Optional[OriginCloudRegionGetResponse]</a></code>
-- <code title="get /zones/{zone_id}/cache/origin_cloud_regions/supported_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">supported_regions</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_supported_regions_response.py">Optional[OriginCloudRegionSupportedRegionsResponse]</a></code>
+- <code title="put /zones/{zone_id}/origin/cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">update</a>(path_origin_ip, \*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region.py">Optional[OriginCloudRegion]</a></code>
+- <code title="get /zones/{zone_id}/origin/cloud_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region.py">SyncV4PagePaginationArray[OriginCloudRegion]</a></code>
+- <code title="delete /zones/{zone_id}/origin/cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">delete</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_delete_response.py">Optional[OriginCloudRegionDeleteResponse]</a></code>
+- <code title="delete /zones/{zone_id}/origin/cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_delete_response.py">Optional[OriginCloudRegionBulkDeleteResponse]</a></code>
+- <code title="put /zones/{zone_id}/origin/cloud_regions/batch">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">bulk_update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/origin_cloud_region_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_bulk_update_response.py">Optional[OriginCloudRegionBulkUpdateResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin/cloud_regions/{origin_ip}">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">get</a>(origin_ip, \*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region.py">Optional[OriginCloudRegion]</a></code>
+- <code title="get /zones/{zone_id}/origin/cloud_regions/supported_regions">client.cache.origin_cloud_regions.<a href="./src/cloudflare/resources/cache/origin_cloud_regions.py">supported_regions</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/origin_cloud_region_supported_regions_response.py">Optional[OriginCloudRegionSupportedRegionsResponse]</a></code>

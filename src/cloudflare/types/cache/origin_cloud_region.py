@@ -4,8 +4,6 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 
 __all__ = ["OriginCloudRegion"]
@@ -14,8 +12,11 @@ __all__ = ["OriginCloudRegion"]
 class OriginCloudRegion(BaseModel):
     """A single origin IP-to-cloud-region mapping."""
 
-    origin_ip: str = FieldInfo(alias="origin-ip")
-    """The origin IP address (IPv4 or IPv6, canonicalized)."""
+    origin_ip: str
+    """The origin IP address (IPv4 or IPv6).
+
+    Normalized to canonical form (RFC 5952 for IPv6).
+    """
 
     region: str
     """Cloud vendor region identifier."""
