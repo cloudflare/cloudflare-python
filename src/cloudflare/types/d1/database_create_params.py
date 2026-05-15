@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["DatabaseCreateParams"]
+__all__ = ["DatabaseCreateParams", "ReadReplication"]
 
 
 class DatabaseCreateParams(TypedDict, total=False):
@@ -25,4 +25,19 @@ class DatabaseCreateParams(TypedDict, total=False):
 
     If this option is omitted, the D1 will be created as close as possible to the
     current user.
+    """
+
+    read_replication: ReadReplication
+    """Configuration for D1 read replication."""
+
+
+class ReadReplication(TypedDict, total=False):
+    """Configuration for D1 read replication."""
+
+    mode: Required[Literal["auto", "disabled"]]
+    """The read replication mode for the database.
+
+    Use 'auto' to create replicas and allow D1 automatically place them around the
+    world, or 'disabled' to not use any database replicas (it can take a few hours
+    for all replicas to be deleted).
     """
