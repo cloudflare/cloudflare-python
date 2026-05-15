@@ -13,7 +13,11 @@ class CustomTrustStore(BaseModel):
     """Identifier."""
 
     certificate: str
-    """The zone's SSL certificate or certificate and the intermediate(s)."""
+    """The root CA certificate in PEM format.
+
+    Only root CA certificates are accepted; intermediate and leaf certificates are
+    not supported.
+    """
 
     expires_on: datetime
     """When the certificate expires."""
