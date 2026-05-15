@@ -16,5 +16,7 @@ from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .content_update_params import ContentUpdateParams as ContentUpdateParams
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .secret_update_response import SecretUpdateResponse as SecretUpdateResponse
+from .secret_bulk_update_params import SecretBulkUpdateParams as SecretBulkUpdateParams
 from .asset_upload_create_params import AssetUploadCreateParams as AssetUploadCreateParams
+from .secret_bulk_update_response import SecretBulkUpdateResponse as SecretBulkUpdateResponse
 from .asset_upload_create_response import AssetUploadCreateResponse as AssetUploadCreateResponse
