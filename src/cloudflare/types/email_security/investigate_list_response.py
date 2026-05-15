@@ -222,6 +222,10 @@ class InvestigateListResponse(BaseModel):
 
     sent_date: Optional[str] = None
 
+    smtp_helo_server_ip: Optional[str] = None
+
+    smtp_previous_hop_ip: Optional[str] = None
+
     subject: Optional[str] = None
 
     threat_categories: Optional[List[str]] = None
@@ -231,3 +235,5 @@ class InvestigateListResponse(BaseModel):
     to_name: Optional[List[str]] = None
 
     validation: Optional[Validation] = None
+
+    x_originating_ip: Optional[str] = None

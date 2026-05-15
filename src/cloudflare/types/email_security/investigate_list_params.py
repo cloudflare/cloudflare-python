@@ -22,6 +22,9 @@ class InvestigateListParams(TypedDict, total=False):
 
     cursor: str
 
+    delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+    """Delivery status to filter by."""
+
     detections_only: bool
     """Whether to include only detections in search results."""
 
