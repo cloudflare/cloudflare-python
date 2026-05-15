@@ -39,6 +39,14 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
+from .objects import (
+    ObjectsResource,
+    AsyncObjectsResource,
+    ObjectsResourceWithRawResponse,
+    AsyncObjectsResourceWithRawResponse,
+    ObjectsResourceWithStreamingResponse,
+    AsyncObjectsResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .lifecycle import (
@@ -110,6 +118,10 @@ class BucketsResource(SyncAPIResource):
     @cached_property
     def sippy(self) -> SippyResource:
         return SippyResource(self._client)
+
+    @cached_property
+    def objects(self) -> ObjectsResource:
+        return ObjectsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BucketsResourceWithRawResponse:
@@ -466,6 +478,10 @@ class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
     def sippy(self) -> AsyncSippyResource:
         return AsyncSippyResource(self._client)
+
+    @cached_property
+    def objects(self) -> AsyncObjectsResource:
+        return AsyncObjectsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
@@ -842,6 +858,10 @@ class BucketsResourceWithRawResponse:
     def sippy(self) -> SippyResourceWithRawResponse:
         return SippyResourceWithRawResponse(self._buckets.sippy)
 
+    @cached_property
+    def objects(self) -> ObjectsResourceWithRawResponse:
+        return ObjectsResourceWithRawResponse(self._buckets.objects)
+
 
 class AsyncBucketsResourceWithRawResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
@@ -890,6 +910,10 @@ class AsyncBucketsResourceWithRawResponse:
     @cached_property
     def sippy(self) -> AsyncSippyResourceWithRawResponse:
         return AsyncSippyResourceWithRawResponse(self._buckets.sippy)
+
+    @cached_property
+    def objects(self) -> AsyncObjectsResourceWithRawResponse:
+        return AsyncObjectsResourceWithRawResponse(self._buckets.objects)
 
 
 class BucketsResourceWithStreamingResponse:
@@ -940,6 +964,10 @@ class BucketsResourceWithStreamingResponse:
     def sippy(self) -> SippyResourceWithStreamingResponse:
         return SippyResourceWithStreamingResponse(self._buckets.sippy)
 
+    @cached_property
+    def objects(self) -> ObjectsResourceWithStreamingResponse:
+        return ObjectsResourceWithStreamingResponse(self._buckets.objects)
+
 
 class AsyncBucketsResourceWithStreamingResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
@@ -988,3 +1016,7 @@ class AsyncBucketsResourceWithStreamingResponse:
     @cached_property
     def sippy(self) -> AsyncSippyResourceWithStreamingResponse:
         return AsyncSippyResourceWithStreamingResponse(self._buckets.sippy)
+
+    @cached_property
+    def objects(self) -> AsyncObjectsResourceWithStreamingResponse:
+        return AsyncObjectsResourceWithStreamingResponse(self._buckets.objects)

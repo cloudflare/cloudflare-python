@@ -48,6 +48,14 @@ from .metrics import (
     MetricsResourceWithStreamingResponse,
     AsyncMetricsResourceWithStreamingResponse,
 )
+from .objects import (
+    ObjectsResource,
+    AsyncObjectsResource,
+    ObjectsResourceWithRawResponse,
+    AsyncObjectsResourceWithRawResponse,
+    ObjectsResourceWithStreamingResponse,
+    AsyncObjectsResourceWithStreamingResponse,
+)
 from .lifecycle import (
     LifecycleResource,
     AsyncLifecycleResource,
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncSippyResourceWithRawResponse",
     "SippyResourceWithStreamingResponse",
     "AsyncSippyResourceWithStreamingResponse",
+    "ObjectsResource",
+    "AsyncObjectsResource",
+    "ObjectsResourceWithRawResponse",
+    "AsyncObjectsResourceWithRawResponse",
+    "ObjectsResourceWithStreamingResponse",
+    "AsyncObjectsResourceWithStreamingResponse",
     "BucketsResource",
     "AsyncBucketsResource",
     "BucketsResourceWithRawResponse",

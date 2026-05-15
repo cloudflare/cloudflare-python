@@ -8,10 +8,15 @@ from .cors_get_response import CORSGetResponse as CORSGetResponse
 from .lock_get_response import LockGetResponse as LockGetResponse
 from .cors_update_params import CORSUpdateParams as CORSUpdateParams
 from .lock_update_params import LockUpdateParams as LockUpdateParams
+from .object_list_params import ObjectListParams as ObjectListParams
 from .sippy_update_params import SippyUpdateParams as SippyUpdateParams
 from .metric_list_response import MetricListResponse as MetricListResponse
+from .object_list_response import ObjectListResponse as ObjectListResponse
+from .object_upload_params import ObjectUploadParams as ObjectUploadParams
 from .sippy_delete_response import SippyDeleteResponse as SippyDeleteResponse
 from .lifecycle_get_response import LifecycleGetResponse as LifecycleGetResponse
+from .object_delete_response import ObjectDeleteResponse as ObjectDeleteResponse
+from .object_upload_response import ObjectUploadResponse as ObjectUploadResponse
 from .lifecycle_update_params import LifecycleUpdateParams as LifecycleUpdateParams
 from .event_notification_get_response import EventNotificationGetResponse as EventNotificationGetResponse
 from .event_notification_list_response import EventNotificationListResponse as EventNotificationListResponse

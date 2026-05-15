@@ -134,6 +134,25 @@ Methods:
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.buckets.sippy.<a href="./src/cloudflare/resources/r2/buckets/sippy.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/sippy_delete_response.py">SippyDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.buckets.sippy.<a href="./src/cloudflare/resources/r2/buckets/sippy.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/sippy.py">Sippy</a></code>
 
+### Objects
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets import (
+    ObjectListResponse,
+    ObjectDeleteResponse,
+    ObjectUploadResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/objects">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">list</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/object_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/object_list_response.py">SyncCursorPagination[ObjectListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_key}">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">delete</a>(object_key, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/object_delete_response.py">ObjectDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_key}">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">get</a>(object_key, \*, account_id, bucket_name) -> BinaryAPIResponse</code>
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_key}">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">upload</a>(object_key, body, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/object_upload_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/object_upload_response.py">ObjectUploadResponse</a></code>
+
 ## TemporaryCredentials
 
 Types:
