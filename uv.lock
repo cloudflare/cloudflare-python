@@ -259,7 +259,7 @@ wheels = [
 
 [[package]]
 name = "cloudflare"
-version = "5.0.0b2"
+version = "5.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "anyio", version = "4.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10' or (extra == 'group-10-cloudflare-pydantic-v1' and extra == 'group-10-cloudflare-pydantic-v2')" },

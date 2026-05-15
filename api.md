@@ -131,6 +131,8 @@ from cloudflare.types import (
 
 # [MagicTransit](src/cloudflare/resources/magic_transit/api.md)
 
+# [DDoSProtection](src/cloudflare/resources/ddos_protection/api.md)
+
 # [MagicNetworkMonitoring](src/cloudflare/resources/magic_network_monitoring/api.md)
 
 # [MagicCloudNetworking](src/cloudflare/resources/magic_cloud_networking/api.md)
@@ -220,6 +222,8 @@ from cloudflare.types import (
 # [LeakedCredentialChecks](src/cloudflare/resources/leaked_credential_checks/api.md)
 
 # [ContentScanning](src/cloudflare/resources/content_scanning/api.md)
+
+# [AISecurity](src/cloudflare/resources/ai_security/api.md)
 
 # [AbuseReports](src/cloudflare/resources/abuse_reports/api.md)
 

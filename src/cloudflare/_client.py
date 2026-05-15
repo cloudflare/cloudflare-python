@@ -84,6 +84,7 @@ if TYPE_CHECKING:
         hyperdrive,
         page_rules,
         zero_trust,
+        ai_security,
         api_gateway,
         botnet_feed,
         diagnostics,
@@ -110,6 +111,7 @@ if TYPE_CHECKING:
         email_security,
         load_balancers,
         cloud_connector,
+        ddos_protection,
         durable_objects,
         r2_data_catalog,
         request_tracers,
@@ -191,6 +193,7 @@ if TYPE_CHECKING:
     from .resources.hyperdrive.hyperdrive import HyperdriveResource, AsyncHyperdriveResource
     from .resources.page_rules.page_rules import PageRulesResource, AsyncPageRulesResource
     from .resources.zero_trust.zero_trust import ZeroTrustResource, AsyncZeroTrustResource
+    from .resources.ai_security.ai_security import AISecurityResource, AsyncAISecurityResource
     from .resources.api_gateway.api_gateway import APIGatewayResource, AsyncAPIGatewayResource
     from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
@@ -217,6 +220,7 @@ if TYPE_CHECKING:
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
+    from .resources.ddos_protection.ddos_protection import DDoSProtectionResource, AsyncDDoSProtectionResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.r2_data_catalog.r2_data_catalog import R2DataCatalogResource, AsyncR2DataCatalogResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
@@ -690,6 +694,12 @@ class Cloudflare(SyncAPIClient):
         return MagicTransitResource(self)
 
     @cached_property
+    def ddos_protection(self) -> DDoSProtectionResource:
+        from .resources.ddos_protection import DDoSProtectionResource
+
+        return DDoSProtectionResource(self)
+
+    @cached_property
     def magic_network_monitoring(self) -> MagicNetworkMonitoringResource:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResource
 
@@ -958,6 +968,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.content_scanning import ContentScanningResource
 
         return ContentScanningResource(self)
+
+    @cached_property
+    def ai_security(self) -> AISecurityResource:
+        from .resources.ai_security import AISecurityResource
+
+        return AISecurityResource(self)
 
     @cached_property
     def abuse_reports(self) -> AbuseReportsResource:
@@ -1580,6 +1596,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicTransitResource(self)
 
     @cached_property
+    def ddos_protection(self) -> AsyncDDoSProtectionResource:
+        from .resources.ddos_protection import AsyncDDoSProtectionResource
+
+        return AsyncDDoSProtectionResource(self)
+
+    @cached_property
     def magic_network_monitoring(self) -> AsyncMagicNetworkMonitoringResource:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResource
 
@@ -1848,6 +1870,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.content_scanning import AsyncContentScanningResource
 
         return AsyncContentScanningResource(self)
+
+    @cached_property
+    def ai_security(self) -> AsyncAISecurityResource:
+        from .resources.ai_security import AsyncAISecurityResource
+
+        return AsyncAISecurityResource(self)
 
     @cached_property
     def abuse_reports(self) -> AsyncAbuseReportsResource:
@@ -2398,6 +2426,12 @@ class CloudflareWithRawResponse:
         return MagicTransitResourceWithRawResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.DDoSProtectionResourceWithRawResponse:
+        from .resources.ddos_protection import DDoSProtectionResourceWithRawResponse
+
+        return DDoSProtectionResourceWithRawResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.MagicNetworkMonitoringResourceWithRawResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithRawResponse
 
@@ -2668,6 +2702,12 @@ class CloudflareWithRawResponse:
         from .resources.content_scanning import ContentScanningResourceWithRawResponse
 
         return ContentScanningResourceWithRawResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AISecurityResourceWithRawResponse:
+        from .resources.ai_security import AISecurityResourceWithRawResponse
+
+        return AISecurityResourceWithRawResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithRawResponse:
@@ -3043,6 +3083,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMagicTransitResourceWithRawResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.AsyncDDoSProtectionResourceWithRawResponse:
+        from .resources.ddos_protection import AsyncDDoSProtectionResourceWithRawResponse
+
+        return AsyncDDoSProtectionResourceWithRawResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.AsyncMagicNetworkMonitoringResourceWithRawResponse:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResourceWithRawResponse
 
@@ -3313,6 +3359,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.content_scanning import AsyncContentScanningResourceWithRawResponse
 
         return AsyncContentScanningResourceWithRawResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AsyncAISecurityResourceWithRawResponse:
+        from .resources.ai_security import AsyncAISecurityResourceWithRawResponse
+
+        return AsyncAISecurityResourceWithRawResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithRawResponse:
@@ -3688,6 +3740,12 @@ class CloudflareWithStreamedResponse:
         return MagicTransitResourceWithStreamingResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.DDoSProtectionResourceWithStreamingResponse:
+        from .resources.ddos_protection import DDoSProtectionResourceWithStreamingResponse
+
+        return DDoSProtectionResourceWithStreamingResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(self) -> magic_network_monitoring.MagicNetworkMonitoringResourceWithStreamingResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithStreamingResponse
 
@@ -3958,6 +4016,12 @@ class CloudflareWithStreamedResponse:
         from .resources.content_scanning import ContentScanningResourceWithStreamingResponse
 
         return ContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AISecurityResourceWithStreamingResponse:
+        from .resources.ai_security import AISecurityResourceWithStreamingResponse
+
+        return AISecurityResourceWithStreamingResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithStreamingResponse:
@@ -4335,6 +4399,12 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncMagicTransitResourceWithStreamingResponse(self._client.magic_transit)
 
     @cached_property
+    def ddos_protection(self) -> ddos_protection.AsyncDDoSProtectionResourceWithStreamingResponse:
+        from .resources.ddos_protection import AsyncDDoSProtectionResourceWithStreamingResponse
+
+        return AsyncDDoSProtectionResourceWithStreamingResponse(self._client.ddos_protection)
+
+    @cached_property
     def magic_network_monitoring(
         self,
     ) -> magic_network_monitoring.AsyncMagicNetworkMonitoringResourceWithStreamingResponse:
@@ -4613,6 +4683,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.content_scanning import AsyncContentScanningResourceWithStreamingResponse
 
         return AsyncContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def ai_security(self) -> ai_security.AsyncAISecurityResourceWithStreamingResponse:
+        from .resources.ai_security import AsyncAISecurityResourceWithStreamingResponse
+
+        return AsyncAISecurityResourceWithStreamingResponse(self._client.ai_security)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithStreamingResponse:
