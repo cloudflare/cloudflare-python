@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import Any, Dict, List, Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -20,10 +20,16 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workers.scripts import secret_get_params, secret_delete_params, secret_update_params
+from ....types.workers.scripts import (
+    secret_get_params,
+    secret_delete_params,
+    secret_update_params,
+    secret_bulk_update_params,
+)
 from ....types.workers.scripts.secret_get_response import SecretGetResponse
 from ....types.workers.scripts.secret_list_response import SecretListResponse
 from ....types.workers.scripts.secret_update_response import SecretUpdateResponse
+from ....types.workers.scripts.secret_bulk_update_response import SecretBulkUpdateResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
 
@@ -310,6 +316,79 @@ class SecretsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def bulk_update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        secrets: Dict[str, Optional[secret_bulk_update_params.Secrets]] | Omit = omit,
+        version_tags: Dict[str, object] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SecretBulkUpdateResponse]:
+        """
+        Create, update, or delete multiple secrets on a script in a single operation
+        using JSON Merge Patch (RFC 7396).
+
+        Usage:
+
+        - To create or update a secret, set its value to a secret object.
+        - To delete a secret, set its value to `null`.
+        - Secrets not included in the request are left unchanged.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          secrets:
+              Map of secret names to secret values:
+
+              - Set to a secret object to create or update.
+              - Set to `null` to delete.
+              - Omit to leave unchanged.
+
+          version_tags: Optional version tags to apply to the new script version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return self._patch(
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/secrets-bulk",
+                account_id=account_id,
+                script_name=script_name,
+            ),
+            body=maybe_transform(
+                {
+                    "secrets": secrets,
+                    "version_tags": version_tags,
+                },
+                secret_bulk_update_params.SecretBulkUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SecretBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SecretBulkUpdateResponse]], ResultWrapper[SecretBulkUpdateResponse]),
         )
 
     def get(
@@ -662,6 +741,79 @@ class AsyncSecretsResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def bulk_update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        secrets: Dict[str, Optional[secret_bulk_update_params.Secrets]] | Omit = omit,
+        version_tags: Dict[str, object] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SecretBulkUpdateResponse]:
+        """
+        Create, update, or delete multiple secrets on a script in a single operation
+        using JSON Merge Patch (RFC 7396).
+
+        Usage:
+
+        - To create or update a secret, set its value to a secret object.
+        - To delete a secret, set its value to `null`.
+        - Secrets not included in the request are left unchanged.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          secrets:
+              Map of secret names to secret values:
+
+              - Set to a secret object to create or update.
+              - Set to `null` to delete.
+              - Omit to leave unchanged.
+
+          version_tags: Optional version tags to apply to the new script version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return await self._patch(
+            path_template(
+                "/accounts/{account_id}/workers/scripts/{script_name}/secrets-bulk",
+                account_id=account_id,
+                script_name=script_name,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "secrets": secrets,
+                    "version_tags": version_tags,
+                },
+                secret_bulk_update_params.SecretBulkUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SecretBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SecretBulkUpdateResponse]], ResultWrapper[SecretBulkUpdateResponse]),
+        )
+
     async def get(
         self,
         secret_name: str,
@@ -739,6 +891,9 @@ class SecretsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             secrets.delete,
         )
+        self.bulk_update = to_raw_response_wrapper(
+            secrets.bulk_update,
+        )
         self.get = to_raw_response_wrapper(
             secrets.get,
         )
@@ -756,6 +911,9 @@ class AsyncSecretsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             secrets.delete,
+        )
+        self.bulk_update = async_to_raw_response_wrapper(
+            secrets.bulk_update,
         )
         self.get = async_to_raw_response_wrapper(
             secrets.get,
@@ -775,6 +933,9 @@ class SecretsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             secrets.delete,
         )
+        self.bulk_update = to_streamed_response_wrapper(
+            secrets.bulk_update,
+        )
         self.get = to_streamed_response_wrapper(
             secrets.get,
         )
@@ -792,6 +953,9 @@ class AsyncSecretsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             secrets.delete,
+        )
+        self.bulk_update = async_to_streamed_response_wrapper(
+            secrets.bulk_update,
         )
         self.get = async_to_streamed_response_wrapper(
             secrets.get,

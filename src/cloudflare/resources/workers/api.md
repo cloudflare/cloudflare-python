@@ -222,6 +222,7 @@ Types:
 from cloudflare.types.workers.scripts import (
     SecretUpdateResponse,
     SecretListResponse,
+    SecretBulkUpdateResponse,
     SecretGetResponse,
 )
 ```
@@ -231,6 +232,7 @@ Methods:
 - <code title="put /accounts/{account_id}/workers/scripts/{script_name}/secrets">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/secret_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/secret_update_response.py">Optional[SecretUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/secrets">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/secret_list_response.py">SyncSinglePage[SecretListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/secrets/{secret_name}">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">delete</a>(secret_name, \*, account_id, script_name, \*\*<a href="src/cloudflare/types/workers/scripts/secret_delete_params.py">params</a>) -> object</code>
+- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/secrets-bulk">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">bulk_update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/secret_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/secret_bulk_update_response.py">Optional[SecretBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/secrets/{secret_name}">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">get</a>(secret_name, \*, account_id, script_name, \*\*<a href="src/cloudflare/types/workers/scripts/secret_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/secret_get_response.py">Optional[SecretGetResponse]</a></code>
 
 ### ScriptAndVersionSettings

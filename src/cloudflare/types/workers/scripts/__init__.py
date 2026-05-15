@@ -29,9 +29,11 @@ from .version_create_response import VersionCreateResponse as VersionCreateRespo
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
 from .deployment_list_response import DeploymentListResponse as DeploymentListResponse
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
+from .secret_bulk_update_params import SecretBulkUpdateParams as SecretBulkUpdateParams
 from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
 from .subdomain_delete_response import SubdomainDeleteResponse as SubdomainDeleteResponse
 from .deployment_delete_response import DeploymentDeleteResponse as DeploymentDeleteResponse
+from .secret_bulk_update_response import SecretBulkUpdateResponse as SecretBulkUpdateResponse
 from .script_and_version_setting_edit_params import (
     ScriptAndVersionSettingEditParams as ScriptAndVersionSettingEditParams,
 )
