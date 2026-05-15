@@ -65,6 +65,11 @@ class MiscategorizationsResource(SyncAPIResource):
         """
         Allows you to submit requests to change a domain’s category.
 
+        Requests that include category `169` (New Domains) or category `177` (Newly
+        Seen) in any of `content_adds`, `content_removes`, `security_adds`, or
+        `security_removes` will be rejected with a `400 Bad Request`. These categories
+        are automatically managed and fall off 30 days after they are applied.
+
         Args:
           account_id: Identifier.
 
@@ -153,6 +158,11 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
     ) -> MiscategorizationCreateResponse:
         """
         Allows you to submit requests to change a domain’s category.
+
+        Requests that include category `169` (New Domains) or category `177` (Newly
+        Seen) in any of `content_adds`, `content_removes`, `security_adds`, or
+        `security_removes` will be rejected with a `400 Bad Request`. These categories
+        are automatically managed and fall off 30 days after they are applied.
 
         Args:
           account_id: Identifier.
