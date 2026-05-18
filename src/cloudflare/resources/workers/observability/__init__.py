@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .queries import (
+    QueriesResource,
+    AsyncQueriesResource,
+    QueriesResourceWithRawResponse,
+    AsyncQueriesResourceWithRawResponse,
+    QueriesResourceWithStreamingResponse,
+    AsyncQueriesResourceWithStreamingResponse,
+)
 from .telemetry import (
     TelemetryResource,
     AsyncTelemetryResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncDestinationsResourceWithRawResponse",
     "DestinationsResourceWithStreamingResponse",
     "AsyncDestinationsResourceWithStreamingResponse",
+    "QueriesResource",
+    "AsyncQueriesResource",
+    "QueriesResourceWithRawResponse",
+    "AsyncQueriesResourceWithRawResponse",
+    "QueriesResourceWithStreamingResponse",
+    "AsyncQueriesResourceWithStreamingResponse",
     "ObservabilityResource",
     "AsyncObservabilityResource",
     "ObservabilityResourceWithRawResponse",

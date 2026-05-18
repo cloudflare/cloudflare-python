@@ -337,3 +337,16 @@ Methods:
 - <code title="patch /accounts/{account_id}/workers/observability/destinations/{slug}">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">update</a>(slug, \*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/destination_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/destination_update_response.py">DestinationUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/workers/observability/destinations">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/destination_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/destination_list_response.py">SyncSinglePage[DestinationListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/workers/observability/destinations/{slug}">client.workers.observability.destinations.<a href="./src/cloudflare/resources/workers/observability/destinations.py">delete</a>(slug, \*, account_id) -> <a href="./src/cloudflare/types/workers/observability/destination_delete_response.py">Optional[DestinationDeleteResponse]</a></code>
+
+### Queries
+
+Types:
+
+```python
+from cloudflare.types.workers.observability import QueryCreateResponse, QueryListResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/queries">client.workers.observability.queries.<a href="./src/cloudflare/resources/workers/observability/queries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/query_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/query_create_response.py">QueryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/observability/queries">client.workers.observability.queries.<a href="./src/cloudflare/resources/workers/observability/queries.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/query_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/query_list_response.py">SyncSinglePage[QueryListResponse]</a></code>
