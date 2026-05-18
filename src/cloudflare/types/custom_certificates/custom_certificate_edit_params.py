@@ -58,4 +58,8 @@ class CustomCertificateEditParams(TypedDict, total=False):
     """
 
     private_key: str
-    """The zone's private key."""
+    """The zone's private key.
+
+    Not required if custom_csr_id is provided, in which case the private key is
+    retrieved from the CSR record held by Cloudflare.
+    """
