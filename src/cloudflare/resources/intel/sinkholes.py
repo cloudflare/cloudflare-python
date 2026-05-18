@@ -53,10 +53,10 @@ class SinkholesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Sinkhole]:
         """
-        List sinkholes owned by this account
+        Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -110,10 +110,10 @@ class AsyncSinkholesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Sinkhole, AsyncSinglePage[Sinkhole]]:
         """
-        List sinkholes owned by this account
+        Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
