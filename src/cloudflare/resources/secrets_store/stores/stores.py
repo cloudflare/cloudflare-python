@@ -29,6 +29,7 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.secrets_store import store_list_params, store_create_params, store_delete_params
+from ....types.secrets_store.store_get_response import StoreGetResponse
 from ....types.secrets_store.store_list_response import StoreListResponse
 from ....types.secrets_store.store_create_response import StoreCreateResponse
 
@@ -218,6 +219,52 @@ class StoresResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def get(
+        self,
+        store_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[StoreGetResponse]:
+        """
+        Returns details of a single store
+
+        Args:
+          account_id: Account Identifier
+
+          store_id: Store Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not store_id:
+            raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}", account_id=account_id, store_id=store_id
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[StoreGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[StoreGetResponse]], ResultWrapper[StoreGetResponse]),
+        )
+
 
 class AsyncStoresResource(AsyncAPIResource):
     @cached_property
@@ -402,6 +449,52 @@ class AsyncStoresResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        store_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[StoreGetResponse]:
+        """
+        Returns details of a single store
+
+        Args:
+          account_id: Account Identifier
+
+          store_id: Store Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not store_id:
+            raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/secrets_store/stores/{store_id}", account_id=account_id, store_id=store_id
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[StoreGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[StoreGetResponse]], ResultWrapper[StoreGetResponse]),
+        )
+
 
 class StoresResourceWithRawResponse:
     def __init__(self, stores: StoresResource) -> None:
@@ -415,6 +508,9 @@ class StoresResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             stores.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            stores.get,
         )
 
     @cached_property
@@ -435,6 +531,9 @@ class AsyncStoresResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             stores.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            stores.get,
+        )
 
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
@@ -454,6 +553,9 @@ class StoresResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             stores.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            stores.get,
+        )
 
     @cached_property
     def secrets(self) -> SecretsResourceWithStreamingResponse:
@@ -472,6 +574,9 @@ class AsyncStoresResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             stores.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            stores.get,
         )
 
     @cached_property
