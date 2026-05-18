@@ -70,6 +70,7 @@ class AppsResource(SyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,6 +121,9 @@ class AppsResource(SyncAPIResource):
               Proxy Protocol.
 
           tls: The type of TLS termination associated with the application.
+
+          virtual_network_id: Optional UUID of a virtual network for routing origin traffic through tunnel
+              virtual networks.
 
           extra_headers: Send extra headers
 
@@ -187,6 +191,7 @@ class AppsResource(SyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -213,6 +218,7 @@ class AppsResource(SyncAPIResource):
                         "origin_port": origin_port,
                         "proxy_protocol": proxy_protocol,
                         "tls": tls,
+                        "virtual_network_id": virtual_network_id,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -246,6 +252,7 @@ class AppsResource(SyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -298,6 +305,9 @@ class AppsResource(SyncAPIResource):
               Proxy Protocol.
 
           tls: The type of TLS termination associated with the application.
+
+          virtual_network_id: Optional UUID of a virtual network for routing origin traffic through tunnel
+              virtual networks.
 
           extra_headers: Send extra headers
 
@@ -369,6 +379,7 @@ class AppsResource(SyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,6 +408,7 @@ class AppsResource(SyncAPIResource):
                         "origin_port": origin_port,
                         "proxy_protocol": proxy_protocol,
                         "tls": tls,
+                        "virtual_network_id": virtual_network_id,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -605,6 +617,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -655,6 +668,9 @@ class AsyncAppsResource(AsyncAPIResource):
               Proxy Protocol.
 
           tls: The type of TLS termination associated with the application.
+
+          virtual_network_id: Optional UUID of a virtual network for routing origin traffic through tunnel
+              virtual networks.
 
           extra_headers: Send extra headers
 
@@ -722,6 +738,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -748,6 +765,7 @@ class AsyncAppsResource(AsyncAPIResource):
                         "origin_port": origin_port,
                         "proxy_protocol": proxy_protocol,
                         "tls": tls,
+                        "virtual_network_id": virtual_network_id,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -781,6 +799,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -833,6 +852,9 @@ class AsyncAppsResource(AsyncAPIResource):
               Proxy Protocol.
 
           tls: The type of TLS termination associated with the application.
+
+          virtual_network_id: Optional UUID of a virtual network for routing origin traffic through tunnel
+              virtual networks.
 
           extra_headers: Send extra headers
 
@@ -904,6 +926,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_port: OriginPortParam | Omit = omit,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
         tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -932,6 +955,7 @@ class AsyncAppsResource(AsyncAPIResource):
                         "origin_port": origin_port,
                         "proxy_protocol": proxy_protocol,
                         "tls": tls,
+                        "virtual_network_id": virtual_network_id,
                     },
                     app_update_params.AppUpdateParams,
                 ),

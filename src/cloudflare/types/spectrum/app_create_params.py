@@ -83,6 +83,12 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     tls: Literal["off", "flexible", "full", "strict"]
     """The type of TLS termination associated with the application."""
 
+    virtual_network_id: str
+    """
+    Optional UUID of a virtual network for routing origin traffic through tunnel
+    virtual networks.
+    """
+
 
 class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
     zone_id: Required[str]

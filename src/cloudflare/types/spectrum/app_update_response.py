@@ -88,6 +88,12 @@ class SpectrumConfigAppConfig(BaseModel):
     tls: Optional[Literal["off", "flexible", "full", "strict"]] = None
     """The type of TLS termination associated with the application."""
 
+    virtual_network_id: Optional[str] = None
+    """
+    Optional UUID of a virtual network for routing origin traffic through tunnel
+    virtual networks.
+    """
+
 
 class SpectrumConfigPaygoAppConfig(BaseModel):
     id: str
