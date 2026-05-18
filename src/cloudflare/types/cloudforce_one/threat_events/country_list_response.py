@@ -9,6 +9,8 @@ __all__ = ["CountryListResponse", "CountryListResponseItem", "CountryListRespons
 
 
 class CountryListResponseItemResult(BaseModel):
+    alpha2: str
+
     alpha3: str
 
     name: str
