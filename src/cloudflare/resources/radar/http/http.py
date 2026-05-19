@@ -117,6 +117,7 @@ class HTTPResource(SyncAPIResource):
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
+            "CONTENT_TYPE",
             "DEVICE_TYPE",
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
@@ -130,6 +131,27 @@ class HTTPResource(SyncAPIResource):
         api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -168,6 +190,8 @@ class HTTPResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -232,6 +256,7 @@ class HTTPResource(SyncAPIResource):
                         "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "content_type": content_type,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -400,6 +425,7 @@ class HTTPResource(SyncAPIResource):
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
+            "CONTENT_TYPE",
             "DEVICE_TYPE",
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
@@ -414,6 +440,27 @@ class HTTPResource(SyncAPIResource):
         api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -457,6 +504,8 @@ class HTTPResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -525,6 +574,7 @@ class HTTPResource(SyncAPIResource):
                         "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "content_type": content_type,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -599,6 +649,7 @@ class AsyncHTTPResource(AsyncAPIResource):
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
+            "CONTENT_TYPE",
             "DEVICE_TYPE",
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
@@ -612,6 +663,27 @@ class AsyncHTTPResource(AsyncAPIResource):
         api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -650,6 +722,8 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -714,6 +788,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "content_type": content_type,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -882,6 +957,7 @@ class AsyncHTTPResource(AsyncAPIResource):
             "BOT_CLASS",
             "BROWSER",
             "BROWSER_FAMILY",
+            "CONTENT_TYPE",
             "DEVICE_TYPE",
             "HTTP_PROTOCOL",
             "HTTP_VERSION",
@@ -896,6 +972,27 @@ class AsyncHTTPResource(AsyncAPIResource):
         api_traffic: List[Literal["API", "NON_API"]] | Omit = omit,
         asn: SequenceNotStr[str] | Omit = omit,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | Omit = omit,
+        content_type: List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ]
+        | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
@@ -939,6 +1036,8 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          content_type: Filters results by content type category.
 
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
@@ -1007,6 +1106,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "api_traffic": api_traffic,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "content_type": content_type,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

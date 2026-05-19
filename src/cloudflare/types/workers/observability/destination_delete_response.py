@@ -13,7 +13,9 @@ __all__ = ["DestinationDeleteResponse", "Configuration"]
 class Configuration(BaseModel):
     destination_conf: str
 
-    logpush_dataset: Literal["opentelemetry-traces", "opentelemetry-logs"] = FieldInfo(alias="logpushDataset")
+    logpush_dataset: Literal["opentelemetry-traces", "opentelemetry-logs", "opentelemetry-metrics"] = FieldInfo(
+        alias="logpushDataset"
+    )
 
     logpush_job: float = FieldInfo(alias="logpushJob")
 

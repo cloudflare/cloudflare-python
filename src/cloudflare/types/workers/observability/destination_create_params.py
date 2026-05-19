@@ -26,7 +26,10 @@ class Configuration(TypedDict, total=False):
     headers: Required[Dict[str, str]]
 
     logpush_dataset: Required[
-        Annotated[Literal["opentelemetry-traces", "opentelemetry-logs"], PropertyInfo(alias="logpushDataset")]
+        Annotated[
+            Literal["opentelemetry-traces", "opentelemetry-logs", "opentelemetry-metrics"],
+            PropertyInfo(alias="logpushDataset"),
+        ]
     ]
 
     type: Required[Literal["logpush"]]

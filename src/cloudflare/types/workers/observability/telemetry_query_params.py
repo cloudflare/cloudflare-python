@@ -174,7 +174,8 @@ class ParametersCalculation(TypedDict, total=False):
     ]
     """Aggregation operator to apply.
 
-    Examples: count, avg, sum, min, max, p50, p90, p95, p99, uniq, stddev, variance.
+    Examples: count, avg, sum, min, max, median, p90, p95, p99, uniq, stddev,
+    variance.
     """
 
     alias: str
@@ -224,6 +225,7 @@ class ParametersFilterUnionMember0FilterWorkersObservabilityFilterLeaf(TypedDict
             "includes",
             "not_includes",
             "starts_with",
+            "ends_with",
             "regex",
             "exists",
             "is_null",
@@ -249,13 +251,14 @@ class ParametersFilterUnionMember0FilterWorkersObservabilityFilterLeaf(TypedDict
             "IN",
             "NOT_IN",
             "STARTS_WITH",
+            "ENDS_WITH",
         ]
     ]
     """Comparison operator.
 
-    String operators: includes, not_includes, starts_with, regex. Existence: exists,
-    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
-    gt, gte, lt, lte.
+    String operators: includes, not_includes, starts_with, ends_with, regex.
+    Existence: exists, is_null. Set membership: in, not_in (comma-separated values).
+    Numeric: eq, neq, gt, gte, lt, lte.
     """
 
     type: Required[Literal["string", "number", "boolean"]]
@@ -312,6 +315,7 @@ class ParametersFilterWorkersObservabilityFilterLeaf(TypedDict, total=False):
             "includes",
             "not_includes",
             "starts_with",
+            "ends_with",
             "regex",
             "exists",
             "is_null",
@@ -337,13 +341,14 @@ class ParametersFilterWorkersObservabilityFilterLeaf(TypedDict, total=False):
             "IN",
             "NOT_IN",
             "STARTS_WITH",
+            "ENDS_WITH",
         ]
     ]
     """Comparison operator.
 
-    String operators: includes, not_includes, starts_with, regex. Existence: exists,
-    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
-    gt, gte, lt, lte.
+    String operators: includes, not_includes, starts_with, ends_with, regex.
+    Existence: exists, is_null. Set membership: in, not_in (comma-separated values).
+    Numeric: eq, neq, gt, gte, lt, lte.
     """
 
     type: Required[Literal["string", "number", "boolean"]]
