@@ -62,7 +62,7 @@ class OrganizationProfileResource(SyncAPIResource):
     ) -> None:
         """Modify organization profile.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -108,7 +108,7 @@ class OrganizationProfileResource(SyncAPIResource):
     ) -> Result:
         """Get an organizations profile if it exists.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -173,7 +173,7 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
     ) -> None:
         """Modify organization profile.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -219,7 +219,7 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
     ) -> Result:
         """Get an organizations profile if it exists.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:

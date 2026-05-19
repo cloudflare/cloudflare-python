@@ -85,7 +85,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -133,7 +133,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Modify organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -186,7 +186,7 @@ class OrganizationsResource(SyncAPIResource):
         """Retrieve a list of organizations a particular user has access to.
 
         (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -246,7 +246,7 @@ class OrganizationsResource(SyncAPIResource):
 
         The organization MUST be empty before deleting. It must
         not contain any sub-organizations, accounts, members or users. (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +284,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Retrieve the details of a certain organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -354,7 +354,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -402,7 +402,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Modify organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -455,7 +455,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """Retrieve a list of organizations a particular user has access to.
 
         (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -515,7 +515,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
         The organization MUST be empty before deleting. It must
         not contain any sub-organizations, accounts, members or users. (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -553,7 +553,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Retrieve the details of a certain organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
