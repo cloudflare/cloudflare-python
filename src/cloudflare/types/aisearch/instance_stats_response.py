@@ -41,6 +41,13 @@ class Engine(BaseModel):
 class InstanceStatsResponse(BaseModel):
     completed: Optional[int] = None
 
+    degraded: Optional[bool] = None
+    """True when status counts are unavailable (e.g.
+
+    legacy stats query exceeded D1 statement-size limit). Counts are omitted in this
+    case.
+    """
+
     engine: Optional[Engine] = None
     """Engine-specific metadata. Present only for managed (v3) instances."""
 
