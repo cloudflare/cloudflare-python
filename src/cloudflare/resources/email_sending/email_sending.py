@@ -98,11 +98,13 @@ class EmailSendingResource(SyncAPIResource):
 
           headers: Custom email headers as key-value pairs.
 
-          html: HTML body of the email. At least one of text or html must be provided.
+          html: HTML body of the email. At least one of text or html must be provided
+              (non-empty).
 
           reply_to: Reply-to address. Either a plain string or an object with address and name.
 
-          text: Plain text body of the email. At least one of text or html must be provided.
+          text: Plain text body of the email. At least one of text or html must be provided
+              (non-empty).
 
           extra_headers: Send extra headers
 
@@ -266,11 +268,13 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           headers: Custom email headers as key-value pairs.
 
-          html: HTML body of the email. At least one of text or html must be provided.
+          html: HTML body of the email. At least one of text or html must be provided
+              (non-empty).
 
           reply_to: Reply-to address. Either a plain string or an object with address and name.
 
-          text: Plain text body of the email. At least one of text or html must be provided.
+          text: Plain text body of the email. At least one of text or html must be provided
+              (non-empty).
 
           extra_headers: Send extra headers
 
