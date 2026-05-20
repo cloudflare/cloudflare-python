@@ -37,6 +37,8 @@ __all__ = [
     "AccessYandex",
     "AccessOnetimepin",
     "AccessOnetimepinConfig",
+    "AccessCloudflare",
+    "AccessCloudflareConfig",
 ]
 
 
@@ -867,6 +869,59 @@ class AccessOnetimepinConfig(TypedDict, total=False):
     pass
 
 
+class AccessCloudflare(TypedDict, total=False):
+    config: Required[AccessCloudflareConfig]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    name: Required[str]
+    """The name of the identity provider, shown to users on the login page."""
+
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
+
+
+class AccessCloudflareConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    restrict_to_account_members: bool
+    """
+    When enabled, only users who are members of your Cloudflare account can
+    authenticate through this identity provider. When disabled, any user with a
+    Cloudflare account can authenticate, subject to your Access policies.
+    """
+
+
 IdentityProviderUpdateParams: TypeAlias = Union[
     AzureAD,
     AccessCentrify,
@@ -882,4 +937,5 @@ IdentityProviderUpdateParams: TypeAlias = Union[
     AccessSAML,
     AccessYandex,
     AccessOnetimepin,
+    AccessCloudflare,
 ]
