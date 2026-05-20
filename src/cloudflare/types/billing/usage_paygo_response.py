@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import TypeAlias
 
@@ -50,6 +50,9 @@ class UsagePaygoResponseItem(BaseModel):
 
     service_name: str = FieldInfo(alias="ServiceName")
     """Identifies the Cloudflare service."""
+
+    service_family_name: Optional[str] = FieldInfo(alias="ServiceFamilyName", default=None)
+    """Identifies the product family for the Cloudflare service."""
 
 
 UsagePaygoResponse: TypeAlias = List[UsagePaygoResponseItem]
