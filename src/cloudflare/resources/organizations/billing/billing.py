@@ -10,25 +10,13 @@ from .usage import (
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
 )
-from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
-    ProfilesResourceWithRawResponse,
-    AsyncProfilesResourceWithRawResponse,
-    ProfilesResourceWithStreamingResponse,
-    AsyncProfilesResourceWithStreamingResponse,
-)
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["BillingResource", "AsyncBillingResource"]
 
 
 class BillingResource(SyncAPIResource):
-    @cached_property
-    def profiles(self) -> ProfilesResource:
-        return ProfilesResource(self._client)
-
     @cached_property
     def usage(self) -> UsageResource:
         return UsageResource(self._client)
@@ -54,10 +42,6 @@ class BillingResource(SyncAPIResource):
 
 
 class AsyncBillingResource(AsyncAPIResource):
-    @cached_property
-    def profiles(self) -> AsyncProfilesResource:
-        return AsyncProfilesResource(self._client)
-
     @cached_property
     def usage(self) -> AsyncUsageResource:
         return AsyncUsageResource(self._client)
@@ -87,10 +71,6 @@ class BillingResourceWithRawResponse:
         self._billing = billing
 
     @cached_property
-    def profiles(self) -> ProfilesResourceWithRawResponse:
-        return ProfilesResourceWithRawResponse(self._billing.profiles)
-
-    @cached_property
     def usage(self) -> UsageResourceWithRawResponse:
         return UsageResourceWithRawResponse(self._billing.usage)
 
@@ -98,10 +78,6 @@ class BillingResourceWithRawResponse:
 class AsyncBillingResourceWithRawResponse:
     def __init__(self, billing: AsyncBillingResource) -> None:
         self._billing = billing
-
-    @cached_property
-    def profiles(self) -> AsyncProfilesResourceWithRawResponse:
-        return AsyncProfilesResourceWithRawResponse(self._billing.profiles)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
@@ -113,10 +89,6 @@ class BillingResourceWithStreamingResponse:
         self._billing = billing
 
     @cached_property
-    def profiles(self) -> ProfilesResourceWithStreamingResponse:
-        return ProfilesResourceWithStreamingResponse(self._billing.profiles)
-
-    @cached_property
     def usage(self) -> UsageResourceWithStreamingResponse:
         return UsageResourceWithStreamingResponse(self._billing.usage)
 
@@ -124,10 +96,6 @@ class BillingResourceWithStreamingResponse:
 class AsyncBillingResourceWithStreamingResponse:
     def __init__(self, billing: AsyncBillingResource) -> None:
         self._billing = billing
-
-    @cached_property
-    def profiles(self) -> AsyncProfilesResourceWithStreamingResponse:
-        return AsyncProfilesResourceWithStreamingResponse(self._billing.profiles)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:

@@ -27,6 +27,14 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from .billing.billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .organization_profile import (
     OrganizationProfileResource,
     AsyncOrganizationProfileResource,
@@ -50,6 +58,10 @@ class OrganizationsResource(SyncAPIResource):
     @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        return BillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
@@ -319,6 +331,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
     def logs(self) -> AsyncLogsResource:
         return AsyncLogsResource(self._client)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResource:
+        return AsyncBillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
@@ -608,6 +624,10 @@ class OrganizationsResourceWithRawResponse:
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._organizations.logs)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self._organizations.billing)
+
 
 class AsyncOrganizationsResourceWithRawResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -636,6 +656,10 @@ class AsyncOrganizationsResourceWithRawResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._organizations.logs)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self._organizations.billing)
 
 
 class OrganizationsResourceWithStreamingResponse:
@@ -666,6 +690,10 @@ class OrganizationsResourceWithStreamingResponse:
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._organizations.logs)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self._organizations.billing)
+
 
 class AsyncOrganizationsResourceWithStreamingResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -694,3 +722,7 @@ class AsyncOrganizationsResourceWithStreamingResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self._organizations.logs)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self._organizations.billing)

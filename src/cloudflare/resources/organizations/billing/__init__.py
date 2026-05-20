@@ -16,22 +16,8 @@ from .billing import (
     BillingResourceWithStreamingResponse,
     AsyncBillingResourceWithStreamingResponse,
 )
-from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
-    ProfilesResourceWithRawResponse,
-    AsyncProfilesResourceWithRawResponse,
-    ProfilesResourceWithStreamingResponse,
-    AsyncProfilesResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "ProfilesResource",
-    "AsyncProfilesResource",
-    "ProfilesResourceWithRawResponse",
-    "AsyncProfilesResourceWithRawResponse",
-    "ProfilesResourceWithStreamingResponse",
-    "AsyncProfilesResourceWithStreamingResponse",
     "UsageResource",
     "AsyncUsageResource",
     "UsageResourceWithRawResponse",
