@@ -45,6 +45,31 @@ class HTTPTimeseriesParams(TypedDict, total=False):
     browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
     """Filters results by browser family."""
 
+    content_type: Annotated[
+        List[
+            Literal[
+                "HTML",
+                "IMAGES",
+                "JSON",
+                "JAVASCRIPT",
+                "CSS",
+                "PLAIN_TEXT",
+                "FONTS",
+                "XML",
+                "YAML",
+                "VIDEO",
+                "AUDIO",
+                "MARKDOWN",
+                "DOCUMENTS",
+                "BINARY",
+                "SERIALIZATION",
+                "OTHER",
+            ]
+        ],
+        PropertyInfo(alias="contentType"),
+    ]
+    """Filters results by content type category."""
+
     continent: SequenceNotStr[str]
     """Filters results by continent.
 
