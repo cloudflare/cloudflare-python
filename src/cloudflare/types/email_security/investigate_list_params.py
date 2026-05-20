@@ -15,9 +15,6 @@ class InvestigateListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    action_log: bool
-    """Whether to include the message action log in the response."""
-
     alert_id: str
 
     cursor: str

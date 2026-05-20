@@ -136,7 +136,6 @@ class InvestigateResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
         delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
@@ -167,8 +166,6 @@ class InvestigateResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          action_log: Whether to include the message action log in the response.
 
           delivery_status: Delivery status to filter by.
 
@@ -210,7 +207,6 @@ class InvestigateResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "action_log": action_log,
                         "alert_id": alert_id,
                         "cursor": cursor,
                         "delivery_status": delivery_status,
@@ -343,7 +339,6 @@ class AsyncInvestigateResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
         delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
@@ -374,8 +369,6 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
-
-          action_log: Whether to include the message action log in the response.
 
           delivery_status: Delivery status to filter by.
 
@@ -417,7 +410,6 @@ class AsyncInvestigateResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "action_log": action_log,
                         "alert_id": alert_id,
                         "cursor": cursor,
                         "delivery_status": delivery_status,
