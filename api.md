@@ -117,6 +117,8 @@ from cloudflare.types import (
 
 # [Addressing](src/cloudflare/resources/addressing/api.md)
 
+# [DLS](src/cloudflare/resources/dls/api.md)
+
 # [AuditLogs](src/cloudflare/resources/audit_logs/api.md)
 
 # [Billing](src/cloudflare/resources/billing/api.md)
