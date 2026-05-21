@@ -467,6 +467,7 @@ from cloudflare.types.zero_trust.access.ai_controls.mcp import (
     ServerListResponse,
     ServerDeleteResponse,
     ServerReadResponse,
+    ServerSyncResponse,
 )
 ```
 
@@ -477,7 +478,7 @@ Methods:
 - <code title="get /accounts/{account_id}/access/ai-controls/mcp/servers">client.zero_trust.access.ai_controls.mcp.servers.<a href="./src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_list_response.py">SyncV4PagePaginationArray[ServerListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/access/ai-controls/mcp/servers/{id}">client.zero_trust.access.ai_controls.mcp.servers.<a href="./src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_delete_response.py">ServerDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/access/ai-controls/mcp/servers/{id}">client.zero_trust.access.ai_controls.mcp.servers.<a href="./src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_read_response.py">ServerReadResponse</a></code>
-- <code title="post /accounts/{account_id}/access/ai-controls/mcp/servers/{id}/sync">client.zero_trust.access.ai_controls.mcp.servers.<a href="./src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py">sync</a>(id, \*, account_id) -> object</code>
+- <code title="post /accounts/{account_id}/access/ai-controls/mcp/servers/{id}/sync">client.zero_trust.access.ai_controls.mcp.servers.<a href="./src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py">sync</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_sync_response.py">ServerSyncResponse</a></code>
 
 ### GatewayCA
 

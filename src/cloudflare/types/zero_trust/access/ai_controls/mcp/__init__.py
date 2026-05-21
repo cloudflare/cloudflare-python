@@ -11,6 +11,7 @@ from .portal_update_params import PortalUpdateParams as PortalUpdateParams
 from .server_create_params import ServerCreateParams as ServerCreateParams
 from .server_list_response import ServerListResponse as ServerListResponse
 from .server_read_response import ServerReadResponse as ServerReadResponse
+from .server_sync_response import ServerSyncResponse as ServerSyncResponse
 from .server_update_params import ServerUpdateParams as ServerUpdateParams
 from .portal_create_response import PortalCreateResponse as PortalCreateResponse
 from .portal_delete_response import PortalDeleteResponse as PortalDeleteResponse
