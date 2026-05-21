@@ -77,6 +77,7 @@ class MeetingsResource(SyncAPIResource):
         session_keep_alive_time_in_secs: float | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: Optional[str] | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,6 +116,8 @@ class MeetingsResource(SyncAPIResource):
 
           title: Title of the meeting
 
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -141,6 +144,7 @@ class MeetingsResource(SyncAPIResource):
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_create_params.MeetingCreateParams,
             ),
@@ -351,6 +355,7 @@ class MeetingsResource(SyncAPIResource):
         per_page: float | Omit = omit,
         search: str | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
+        status: Literal["ACTIVE", "INACTIVE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -377,6 +382,8 @@ class MeetingsResource(SyncAPIResource):
 
           start_time: The start time range for which you want to retrieve the meetings. The time must
               be specified in ISO format.
+
+          status: Filter meetings by status.
 
           extra_headers: Send extra headers
 
@@ -406,6 +413,7 @@ class MeetingsResource(SyncAPIResource):
                         "per_page": per_page,
                         "search": search,
                         "start_time": start_time,
+                        "status": status,
                     },
                     meeting_get_params.MeetingGetParams,
                 ),
@@ -649,6 +657,7 @@ class MeetingsResource(SyncAPIResource):
         session_keep_alive_time_in_secs: float | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: Optional[str] | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -687,6 +696,8 @@ class MeetingsResource(SyncAPIResource):
 
           title: Title of the meeting
 
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -718,6 +729,7 @@ class MeetingsResource(SyncAPIResource):
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_replace_meeting_by_id_params.MeetingReplaceMeetingByIDParams,
             ),
@@ -737,10 +749,12 @@ class MeetingsResource(SyncAPIResource):
         live_stream_on_start: bool | Omit = omit,
         persist_chat: bool | Omit = omit,
         record_on_start: bool | Omit = omit,
+        recording_config: meeting_update_meeting_by_id_params.RecordingConfig | Omit = omit,
         session_keep_alive_time_in_secs: float | Omit = omit,
         status: Literal["ACTIVE", "INACTIVE"] | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: str | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -767,6 +781,10 @@ class MeetingsResource(SyncAPIResource):
           record_on_start: Specifies if the meeting should start getting recorded as soon as someone joins
               the meeting.
 
+          recording_config: Recording Configurations to be used for this meeting. This level of configs
+              takes higher preference over App level configs on the RealtimeKit developer
+              portal.
+
           session_keep_alive_time_in_secs: Time in seconds, for which a session remains active, after the last participant
               has left the meeting.
 
@@ -777,6 +795,8 @@ class MeetingsResource(SyncAPIResource):
               Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.
 
           title: Title of the meeting
+
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
 
           extra_headers: Send extra headers
 
@@ -805,10 +825,12 @@ class MeetingsResource(SyncAPIResource):
                     "live_stream_on_start": live_stream_on_start,
                     "persist_chat": persist_chat,
                     "record_on_start": record_on_start,
+                    "recording_config": recording_config,
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "status": status,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_update_meeting_by_id_params.MeetingUpdateMeetingByIDParams,
             ),
@@ -852,6 +874,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         session_keep_alive_time_in_secs: float | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: Optional[str] | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -890,6 +913,8 @@ class AsyncMeetingsResource(AsyncAPIResource):
 
           title: Title of the meeting
 
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -916,6 +941,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_create_params.MeetingCreateParams,
             ),
@@ -1126,6 +1152,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         per_page: float | Omit = omit,
         search: str | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
+        status: Literal["ACTIVE", "INACTIVE"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1152,6 +1179,8 @@ class AsyncMeetingsResource(AsyncAPIResource):
 
           start_time: The start time range for which you want to retrieve the meetings. The time must
               be specified in ISO format.
+
+          status: Filter meetings by status.
 
           extra_headers: Send extra headers
 
@@ -1181,6 +1210,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
                         "per_page": per_page,
                         "search": search,
                         "start_time": start_time,
+                        "status": status,
                     },
                     meeting_get_params.MeetingGetParams,
                 ),
@@ -1426,6 +1456,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         session_keep_alive_time_in_secs: float | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: Optional[str] | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1464,6 +1495,8 @@ class AsyncMeetingsResource(AsyncAPIResource):
 
           title: Title of the meeting
 
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1495,6 +1528,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_replace_meeting_by_id_params.MeetingReplaceMeetingByIDParams,
             ),
@@ -1514,10 +1548,12 @@ class AsyncMeetingsResource(AsyncAPIResource):
         live_stream_on_start: bool | Omit = omit,
         persist_chat: bool | Omit = omit,
         record_on_start: bool | Omit = omit,
+        recording_config: meeting_update_meeting_by_id_params.RecordingConfig | Omit = omit,
         session_keep_alive_time_in_secs: float | Omit = omit,
         status: Literal["ACTIVE", "INACTIVE"] | Omit = omit,
         summarize_on_end: bool | Omit = omit,
         title: str | Omit = omit,
+        transcribe_on_end: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1544,6 +1580,10 @@ class AsyncMeetingsResource(AsyncAPIResource):
           record_on_start: Specifies if the meeting should start getting recorded as soon as someone joins
               the meeting.
 
+          recording_config: Recording Configurations to be used for this meeting. This level of configs
+              takes higher preference over App level configs on the RealtimeKit developer
+              portal.
+
           session_keep_alive_time_in_secs: Time in seconds, for which a session remains active, after the last participant
               has left the meeting.
 
@@ -1554,6 +1594,8 @@ class AsyncMeetingsResource(AsyncAPIResource):
               Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.
 
           title: Title of the meeting
+
+          transcribe_on_end: Automatically generate transcripts when the meeting ends.
 
           extra_headers: Send extra headers
 
@@ -1582,10 +1624,12 @@ class AsyncMeetingsResource(AsyncAPIResource):
                     "live_stream_on_start": live_stream_on_start,
                     "persist_chat": persist_chat,
                     "record_on_start": record_on_start,
+                    "recording_config": recording_config,
                     "session_keep_alive_time_in_secs": session_keep_alive_time_in_secs,
                     "status": status,
                     "summarize_on_end": summarize_on_end,
                     "title": title,
+                    "transcribe_on_end": transcribe_on_end,
                 },
                 meeting_update_meeting_by_id_params.MeetingUpdateMeetingByIDParams,
             ),

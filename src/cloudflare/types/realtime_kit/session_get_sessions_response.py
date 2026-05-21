@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SessionGetSessionsResponse", "Data", "DataSession"]
+__all__ = ["SessionGetSessionsResponse", "Data", "DataSession", "Paging"]
 
 
 class DataSession(BaseModel):
@@ -62,7 +62,17 @@ class Data(BaseModel):
     sessions: Optional[List[DataSession]] = None
 
 
+class Paging(BaseModel):
+    end_offset: Optional[float] = None
+
+    start_offset: Optional[float] = None
+
+    total_count: Optional[float] = None
+
+
 class SessionGetSessionsResponse(BaseModel):
     data: Optional[Data] = None
+
+    paging: Optional[Paging] = None
 
     success: Optional[bool] = None

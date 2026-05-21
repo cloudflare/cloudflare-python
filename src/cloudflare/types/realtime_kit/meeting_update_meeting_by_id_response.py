@@ -275,6 +275,9 @@ class Data(BaseModel):
     title: Optional[str] = None
     """Title of the meeting."""
 
+    transcribe_on_end: Optional[bool] = None
+    """Automatically generate transcripts when the meeting ends."""
+
 
 class MeetingUpdateMeetingByIDResponse(BaseModel):
     success: bool

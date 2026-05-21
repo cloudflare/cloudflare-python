@@ -9,5 +9,6 @@ __all__ = ["AppPostParams"]
 
 class AppPostParams(TypedDict, total=False):
     account_id: Required[str]
+    """The account identifier tag."""
 
     name: Required[str]

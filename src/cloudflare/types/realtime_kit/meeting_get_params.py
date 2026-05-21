@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -35,3 +35,6 @@ class MeetingGetParams(TypedDict, total=False):
 
     The time must be specified in ISO format.
     """
+
+    status: Literal["ACTIVE", "INACTIVE"]
+    """Filter meetings by status."""

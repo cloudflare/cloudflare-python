@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SessionGetSessionDetailsResponse", "Data", "DataSession"]
+__all__ = ["SessionGetSessionDetailsResponse", "Data"]
 
 
-class DataSession(BaseModel):
+class Data(BaseModel):
     id: str
     """ID of the session"""
 
@@ -56,10 +56,6 @@ class DataSession(BaseModel):
 
     meta: Optional[object] = None
     """Any meta data about session."""
-
-
-class Data(BaseModel):
-    session: Optional[DataSession] = None
 
 
 class SessionGetSessionDetailsResponse(BaseModel):

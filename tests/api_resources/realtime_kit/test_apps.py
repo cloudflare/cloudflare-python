@@ -27,6 +27,18 @@ class TestApps:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        app = client.realtime_kit.apps.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page_no=1,
+            per_page=1,
+            search="search",
+            sort_order="ASC",
+        )
+        assert_matches_type(AppGetResponse, app, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.realtime_kit.apps.with_raw_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -63,8 +75,8 @@ class TestApps:
     @parametrize
     def test_method_post(self, client: Cloudflare) -> None:
         app = client.realtime_kit.apps.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         )
         assert_matches_type(AppPostResponse, app, path=["response"])
 
@@ -72,8 +84,8 @@ class TestApps:
     @parametrize
     def test_raw_response_post(self, client: Cloudflare) -> None:
         response = client.realtime_kit.apps.with_raw_response.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -85,8 +97,8 @@ class TestApps:
     @parametrize
     def test_streaming_response_post(self, client: Cloudflare) -> None:
         with client.realtime_kit.apps.with_streaming_response.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,7 +114,7 @@ class TestApps:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.realtime_kit.apps.with_raw_response.post(
                 account_id="",
-                name="name",
+                name="x",
             )
 
 
@@ -116,6 +128,18 @@ class TestAsyncApps:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.realtime_kit.apps.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AppGetResponse, app, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        app = await async_client.realtime_kit.apps.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page_no=1,
+            per_page=1,
+            search="search",
+            sort_order="ASC",
         )
         assert_matches_type(AppGetResponse, app, path=["response"])
 
@@ -157,8 +181,8 @@ class TestAsyncApps:
     @parametrize
     async def test_method_post(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.realtime_kit.apps.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         )
         assert_matches_type(AppPostResponse, app, path=["response"])
 
@@ -166,8 +190,8 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_post(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.apps.with_raw_response.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -179,8 +203,8 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_post(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.apps.with_streaming_response.post(
-            account_id="account_id",
-            name="name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,5 +220,5 @@ class TestAsyncApps:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.realtime_kit.apps.with_raw_response.post(
                 account_id="",
-                name="name",
+                name="x",
             )
