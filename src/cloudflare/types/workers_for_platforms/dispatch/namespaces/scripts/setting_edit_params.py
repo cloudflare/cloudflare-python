@@ -737,6 +737,15 @@ class SettingsObservabilityTraces(TypedDict, total=False):
     persist: bool
     """Whether trace persistence is enabled for the Worker."""
 
+    propagation_policy: Literal["authenticated", "accept"]
+    """
+    Controls how inbound trace context (traceparent/tracestate) headers on incoming
+    requests are handled. "authenticated" (default) honors inbound trace context
+    only when accompanied by a valid trace auth token. "accept" unconditionally
+    accepts inbound trace context. Requires the trace propagation feature to be
+    enabled.
+    """
+
 
 class SettingsObservability(TypedDict, total=False):
     """Observability settings for the Worker."""

@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
@@ -58,6 +59,15 @@ class ObservabilityTraces(BaseModel):
 
     persist: Optional[bool] = None
     """Whether trace persistence is enabled for the Worker."""
+
+    propagation_policy: Optional[Literal["authenticated", "accept"]] = None
+    """
+    Controls how inbound trace context (traceparent/tracestate) headers on incoming
+    requests are handled. "authenticated" (default) honors inbound trace context
+    only when accompanied by a valid trace auth token. "accept" unconditionally
+    accepts inbound trace context. Requires the trace propagation feature to be
+    enabled.
+    """
 
 
 class Observability(BaseModel):
