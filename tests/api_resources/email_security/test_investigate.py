@@ -33,7 +33,6 @@ class TestInvestigate:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         investigate = client.email_security.investigate.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            action_log=True,
             alert_id="alert_id",
             cursor="cursor",
             delivery_status="delivered",
@@ -159,7 +158,6 @@ class TestAsyncInvestigate:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         investigate = await async_client.email_security.investigate.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            action_log=True,
             alert_id="alert_id",
             cursor="cursor",
             delivery_status="delivered",
