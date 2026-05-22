@@ -12,10 +12,18 @@ class ResourceListParams(TypedDict, total=False):
     """Account identifier."""
 
     page: int
-    """Page number."""
+    """Page number.
+
+    Defaults to `1` when `per_page` is supplied without `page`. May be omitted
+    entirely along with `per_page` to receive a non-paginated response.
+    """
 
     per_page: int
-    """Number of objects to return per page."""
+    """Number of objects to return per page.
+
+    Defaults to `20` when `page` is supplied without `per_page`. May be omitted
+    entirely along with `page` to receive a non-paginated response.
+    """
 
     resource_type: Literal[
         "custom-ruleset",

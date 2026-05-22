@@ -135,9 +135,12 @@ class RecipientsResource(SyncAPIResource):
 
           include_resources: Include resources in the response.
 
-          page: Page number.
+          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
+              omitted entirely along with `per_page` to receive a non-paginated response.
 
-          per_page: Number of objects to return per page.
+          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
+              without `per_page`. May be omitted entirely along with `page` to receive a
+              non-paginated response.
 
           extra_headers: Send extra headers
 
@@ -396,9 +399,12 @@ class AsyncRecipientsResource(AsyncAPIResource):
 
           include_resources: Include resources in the response.
 
-          page: Page number.
+          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
+              omitted entirely along with `per_page` to receive a non-paginated response.
 
-          per_page: Number of objects to return per page.
+          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
+              without `per_page`. May be omitted entirely along with `page` to receive a
+              non-paginated response.
 
           extra_headers: Send extra headers
 

@@ -215,9 +215,12 @@ class ResourcesResource(SyncAPIResource):
 
           share_id: Share identifier tag.
 
-          page: Page number.
+          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
+              omitted entirely along with `per_page` to receive a non-paginated response.
 
-          per_page: Number of objects to return per page.
+          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
+              without `per_page`. May be omitted entirely along with `page` to receive a
+              non-paginated response.
 
           resource_type: Filter share resources by resource_type.
 
@@ -553,9 +556,12 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           share_id: Share identifier tag.
 
-          page: Page number.
+          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
+              omitted entirely along with `per_page` to receive a non-paginated response.
 
-          per_page: Number of objects to return per page.
+          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
+              without `per_page`. May be omitted entirely along with `page` to receive a
+              non-paginated response.
 
           resource_type: Filter share resources by resource_type.
 
