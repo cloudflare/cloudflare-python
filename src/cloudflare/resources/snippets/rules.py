@@ -164,6 +164,45 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Fetches all snippet rules belonging to the zone.
+
+        Args:
+          zone_id: Use this field to specify the unique ID of the zone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            path_template("/zones/{zone_id}/snippets/snippet_rules", zone_id=zone_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -306,6 +345,45 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Fetches all snippet rules belonging to the zone.
+
+        Args:
+          zone_id: Use this field to specify the unique ID of the zone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            path_template("/zones/{zone_id}/snippets/snippet_rules", zone_id=zone_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -319,6 +397,9 @@ class RulesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             rules.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            rules.get,
         )
 
 
@@ -335,6 +416,9 @@ class AsyncRulesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            rules.get,
+        )
 
 
 class RulesResourceWithStreamingResponse:
@@ -350,6 +434,9 @@ class RulesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            rules.get,
+        )
 
 
 class AsyncRulesResourceWithStreamingResponse:
@@ -364,4 +451,7 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            rules.get,
         )
