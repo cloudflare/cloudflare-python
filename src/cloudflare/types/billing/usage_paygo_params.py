@@ -16,7 +16,7 @@ class UsagePaygoParams(TypedDict, total=False):
     """Represents a Cloudflare resource identifier tag."""
 
     from_: Annotated[Union[str, date], PropertyInfo(alias="from", format="iso8601")]
-    """Defines the start date for the usage query (e.g., 2025-02-01)."""
+    """Start date for the usage query (ISO 8601)."""
 
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """Defines the end date for the usage query (e.g., 2025-03-01)."""
+    """End date for the usage query (ISO 8601)."""

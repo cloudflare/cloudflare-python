@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import TypeAlias
 
@@ -30,7 +30,11 @@ class UsagePaygoResponseItem(BaseModel):
     """Specifies the quantity consumed during this charge period."""
 
     consumed_unit: str = FieldInfo(alias="ConsumedUnit")
-    """Specifies the unit of measurement for consumed quantity."""
+    """
+    A display name for the unit of measurement used for the product (for example,
+    "GB-months", "GB-seconds"). May be empty when the unit is implicit in the
+    service name.
+    """
 
     contracted_cost: float = FieldInfo(alias="ContractedCost")
     """Specifies the cost for this charge period in the billing currency."""
@@ -46,6 +50,9 @@ class UsagePaygoResponseItem(BaseModel):
 
     service_name: str = FieldInfo(alias="ServiceName")
     """Identifies the Cloudflare service."""
+
+    service_family_name: Optional[str] = FieldInfo(alias="ServiceFamilyName", default=None)
+    """Identifies the product family for the Cloudflare service."""
 
 
 UsagePaygoResponse: TypeAlias = List[UsagePaygoResponseItem]
