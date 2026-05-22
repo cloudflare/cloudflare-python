@@ -61,6 +61,7 @@ class TestApps:
             origin_port=22,
             proxy_protocol="off",
             tls="off",
+            virtual_network_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -210,6 +211,7 @@ class TestApps:
             origin_port=22,
             proxy_protocol="off",
             tls="off",
+            virtual_network_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -538,6 +540,7 @@ class TestAsyncApps:
             origin_port=22,
             proxy_protocol="off",
             tls="off",
+            virtual_network_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -687,6 +690,7 @@ class TestAsyncApps:
             origin_port=22,
             proxy_protocol="off",
             tls="off",
+            virtual_network_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
