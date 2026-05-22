@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .queries import (
+    QueriesResource,
+    AsyncQueriesResource,
+    QueriesResourceWithRawResponse,
+    AsyncQueriesResourceWithRawResponse,
+    QueriesResourceWithStreamingResponse,
+    AsyncQueriesResourceWithStreamingResponse,
+)
 from .telemetry import (
     TelemetryResource,
     AsyncTelemetryResource,
@@ -34,6 +42,10 @@ class ObservabilityResource(SyncAPIResource):
         return DestinationsResource(self._client)
 
     @cached_property
+    def queries(self) -> QueriesResource:
+        return QueriesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ObservabilityResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -61,6 +73,10 @@ class AsyncObservabilityResource(AsyncAPIResource):
     @cached_property
     def destinations(self) -> AsyncDestinationsResource:
         return AsyncDestinationsResource(self._client)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResource:
+        return AsyncQueriesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncObservabilityResourceWithRawResponse:
@@ -94,6 +110,10 @@ class ObservabilityResourceWithRawResponse:
     def destinations(self) -> DestinationsResourceWithRawResponse:
         return DestinationsResourceWithRawResponse(self._observability.destinations)
 
+    @cached_property
+    def queries(self) -> QueriesResourceWithRawResponse:
+        return QueriesResourceWithRawResponse(self._observability.queries)
+
 
 class AsyncObservabilityResourceWithRawResponse:
     def __init__(self, observability: AsyncObservabilityResource) -> None:
@@ -106,6 +126,10 @@ class AsyncObservabilityResourceWithRawResponse:
     @cached_property
     def destinations(self) -> AsyncDestinationsResourceWithRawResponse:
         return AsyncDestinationsResourceWithRawResponse(self._observability.destinations)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithRawResponse:
+        return AsyncQueriesResourceWithRawResponse(self._observability.queries)
 
 
 class ObservabilityResourceWithStreamingResponse:
@@ -120,6 +144,10 @@ class ObservabilityResourceWithStreamingResponse:
     def destinations(self) -> DestinationsResourceWithStreamingResponse:
         return DestinationsResourceWithStreamingResponse(self._observability.destinations)
 
+    @cached_property
+    def queries(self) -> QueriesResourceWithStreamingResponse:
+        return QueriesResourceWithStreamingResponse(self._observability.queries)
+
 
 class AsyncObservabilityResourceWithStreamingResponse:
     def __init__(self, observability: AsyncObservabilityResource) -> None:
@@ -132,3 +160,7 @@ class AsyncObservabilityResourceWithStreamingResponse:
     @cached_property
     def destinations(self) -> AsyncDestinationsResourceWithStreamingResponse:
         return AsyncDestinationsResourceWithStreamingResponse(self._observability.destinations)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithStreamingResponse:
+        return AsyncQueriesResourceWithStreamingResponse(self._observability.queries)

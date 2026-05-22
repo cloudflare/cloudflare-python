@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
 from .consumer_script_param import ConsumerScriptParam
@@ -65,6 +65,15 @@ class ObservabilityTraces(TypedDict, total=False):
 
     persist: bool
     """Whether trace persistence is enabled for the Worker."""
+
+    propagation_policy: Literal["authenticated", "accept"]
+    """
+    Controls how inbound trace context (traceparent/tracestate) headers on incoming
+    requests are handled. "authenticated" (default) honors inbound trace context
+    only when accompanied by a valid trace auth token. "accept" unconditionally
+    accepts inbound trace context. Requires the trace propagation feature to be
+    enabled.
+    """
 
 
 class Observability(TypedDict, total=False):

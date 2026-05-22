@@ -52,6 +52,7 @@ class TestWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={
@@ -133,6 +134,7 @@ class TestWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={
@@ -324,6 +326,7 @@ class TestWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={
@@ -484,6 +487,7 @@ class TestAsyncWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={
@@ -565,6 +569,7 @@ class TestAsyncWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={
@@ -756,6 +761,7 @@ class TestAsyncWorkers:
                     "enabled": True,
                     "head_sampling_rate": 1,
                     "persist": True,
+                    "propagation_policy": "authenticated",
                 },
             },
             subdomain={

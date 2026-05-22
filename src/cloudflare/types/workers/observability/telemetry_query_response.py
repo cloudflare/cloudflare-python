@@ -42,9 +42,11 @@ __all__ = [
     "EventsEventMetadata",
     "EventsEventWorkers",
     "EventsEventWorkersUnionMember0",
+    "EventsEventWorkersUnionMember0Preview",
     "EventsEventWorkersUnionMember0ScriptVersion",
     "EventsEventWorkersUnionMember1",
     "EventsEventWorkersUnionMember1DiagnosticsChannelEvent",
+    "EventsEventWorkersUnionMember1Preview",
     "EventsEventWorkersUnionMember1ScriptVersion",
     "EventsField",
     "EventsSeries",
@@ -54,9 +56,11 @@ __all__ = [
     "InvocationMetadata",
     "InvocationWorkers",
     "InvocationWorkersUnionMember0",
+    "InvocationWorkersUnionMember0Preview",
     "InvocationWorkersUnionMember0ScriptVersion",
     "InvocationWorkersUnionMember1",
     "InvocationWorkersUnionMember1DiagnosticsChannelEvent",
+    "InvocationWorkersUnionMember1Preview",
     "InvocationWorkersUnionMember1ScriptVersion",
     "Trace",
 ]
@@ -137,6 +141,7 @@ class RunQueryParametersFilterWorkersObservabilityFilterLeaf(BaseModel):
         "includes",
         "not_includes",
         "starts_with",
+        "ends_with",
         "regex",
         "exists",
         "is_null",
@@ -162,12 +167,13 @@ class RunQueryParametersFilterWorkersObservabilityFilterLeaf(BaseModel):
         "IN",
         "NOT_IN",
         "STARTS_WITH",
+        "ENDS_WITH",
     ]
     """Comparison operator.
 
-    String operators: includes, not_includes, starts_with, regex. Existence: exists,
-    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
-    gt, gte, lt, lte.
+    String operators: includes, not_includes, starts_with, ends_with, regex.
+    Existence: exists, is_null. Set membership: in, not_in (comma-separated values).
+    Numeric: eq, neq, gt, gte, lt, lte.
     """
 
     type: Literal["string", "number", "boolean"]
@@ -326,7 +332,7 @@ class RunStatistics(BaseModel):
 
 class Run(BaseModel):
     """
-    The query run metadata including the query definition, execution status, and timeframe.
+    Represents a single execution of a query against Workers Observability data, including the query definition, execution status, and performance statistics.
     """
 
     id: str
@@ -551,7 +557,6 @@ class EventsEventMetadata(BaseModel):
     """Cloudflare product that generated this event (e.g. workers, pages)."""
 
     cold_start: Optional[int] = FieldInfo(alias="coldStart", default=None)
-    """Whether this was a cold start (1) or warm invocation (0)."""
 
     cost: Optional[int] = None
     """Estimated cost units for this invocation."""
@@ -635,6 +640,14 @@ class EventsEventMetadata(BaseModel):
     """Request URL that triggered the Worker invocation."""
 
 
+class EventsEventWorkersUnionMember0Preview(BaseModel):
+    id: Optional[str] = None
+
+    name: Optional[str] = None
+
+    slug: Optional[str] = None
+
+
 class EventsEventWorkersUnionMember0ScriptVersion(BaseModel):
     id: Optional[str] = None
 
@@ -662,6 +675,8 @@ class EventsEventWorkersUnionMember0(BaseModel):
 
     outcome: Optional[str] = None
 
+    preview: Optional[EventsEventWorkersUnionMember0Preview] = None
+
     script_version: Optional[EventsEventWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
@@ -679,6 +694,14 @@ class EventsEventWorkersUnionMember1DiagnosticsChannelEvent(BaseModel):
     message: str
 
     timestamp: float
+
+
+class EventsEventWorkersUnionMember1Preview(BaseModel):
+    id: Optional[str] = None
+
+    name: Optional[str] = None
+
+    slug: Optional[str] = None
 
 
 class EventsEventWorkersUnionMember1ScriptVersion(BaseModel):
@@ -718,6 +741,8 @@ class EventsEventWorkersUnionMember1(BaseModel):
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
 
+    preview: Optional[EventsEventWorkersUnionMember1Preview] = None
+
     script_version: Optional[EventsEventWorkersUnionMember1ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
@@ -746,7 +771,7 @@ class EventsEvent(BaseModel):
     dataset: str
     """The dataset this event belongs to (e.g. cloudflare-workers)."""
 
-    source: Union[str, object]
+    source: Union[str, Dict[str, object]]
     """Raw log payload.
 
     May be a string or a structured object depending on how the log was emitted.
@@ -755,7 +780,7 @@ class EventsEvent(BaseModel):
     timestamp: int
     """Event timestamp as a Unix epoch in milliseconds."""
 
-    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    containers: Optional[Dict[str, object]] = FieldInfo(alias="$containers", default=None)
     """
     Cloudflare Containers event information that enriches your logs for identifying
     and debugging issues.
@@ -850,7 +875,6 @@ class InvocationMetadata(BaseModel):
     """Cloudflare product that generated this event (e.g. workers, pages)."""
 
     cold_start: Optional[int] = FieldInfo(alias="coldStart", default=None)
-    """Whether this was a cold start (1) or warm invocation (0)."""
 
     cost: Optional[int] = None
     """Estimated cost units for this invocation."""
@@ -934,6 +958,14 @@ class InvocationMetadata(BaseModel):
     """Request URL that triggered the Worker invocation."""
 
 
+class InvocationWorkersUnionMember0Preview(BaseModel):
+    id: Optional[str] = None
+
+    name: Optional[str] = None
+
+    slug: Optional[str] = None
+
+
 class InvocationWorkersUnionMember0ScriptVersion(BaseModel):
     id: Optional[str] = None
 
@@ -961,6 +993,8 @@ class InvocationWorkersUnionMember0(BaseModel):
 
     outcome: Optional[str] = None
 
+    preview: Optional[InvocationWorkersUnionMember0Preview] = None
+
     script_version: Optional[InvocationWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
@@ -978,6 +1012,14 @@ class InvocationWorkersUnionMember1DiagnosticsChannelEvent(BaseModel):
     message: str
 
     timestamp: float
+
+
+class InvocationWorkersUnionMember1Preview(BaseModel):
+    id: Optional[str] = None
+
+    name: Optional[str] = None
+
+    slug: Optional[str] = None
 
 
 class InvocationWorkersUnionMember1ScriptVersion(BaseModel):
@@ -1017,6 +1059,8 @@ class InvocationWorkersUnionMember1(BaseModel):
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
 
+    preview: Optional[InvocationWorkersUnionMember1Preview] = None
+
     script_version: Optional[InvocationWorkersUnionMember1ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
     )
@@ -1045,7 +1089,7 @@ class Invocation(BaseModel):
     dataset: str
     """The dataset this event belongs to (e.g. cloudflare-workers)."""
 
-    source: Union[str, object]
+    source: Union[str, Dict[str, object]]
     """Raw log payload.
 
     May be a string or a structured object depending on how the log was emitted.
@@ -1054,7 +1098,7 @@ class Invocation(BaseModel):
     timestamp: int
     """Event timestamp as a Unix epoch in milliseconds."""
 
-    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    containers: Optional[Dict[str, object]] = FieldInfo(alias="$containers", default=None)
     """
     Cloudflare Containers event information that enriches your logs for identifying
     and debugging issues.
@@ -1104,8 +1148,8 @@ class TelemetryQueryResponse(BaseModel):
 
     run: Run
     """
-    The query run metadata including the query definition, execution status, and
-    timeframe.
+    Represents a single execution of a query against Workers Observability data,
+    including the query definition, execution status, and performance statistics.
     """
 
     statistics: Statistics

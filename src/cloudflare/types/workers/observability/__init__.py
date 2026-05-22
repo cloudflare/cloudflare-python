@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from .query_list_params import QueryListParams as QueryListParams
+from .query_create_params import QueryCreateParams as QueryCreateParams
+from .query_list_response import QueryListResponse as QueryListResponse
+from .query_create_response import QueryCreateResponse as QueryCreateResponse
 from .telemetry_keys_params import TelemetryKeysParams as TelemetryKeysParams
 from .telemetry_query_params import TelemetryQueryParams as TelemetryQueryParams
 from .destination_list_params import DestinationListParams as DestinationListParams

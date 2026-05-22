@@ -80,6 +80,7 @@ class FilterUnionMember0FilterWorkersObservabilityFilterLeaf(TypedDict, total=Fa
             "includes",
             "not_includes",
             "starts_with",
+            "ends_with",
             "regex",
             "exists",
             "is_null",
@@ -105,13 +106,14 @@ class FilterUnionMember0FilterWorkersObservabilityFilterLeaf(TypedDict, total=Fa
             "IN",
             "NOT_IN",
             "STARTS_WITH",
+            "ENDS_WITH",
         ]
     ]
     """Comparison operator.
 
-    String operators: includes, not_includes, starts_with, regex. Existence: exists,
-    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
-    gt, gte, lt, lte.
+    String operators: includes, not_includes, starts_with, ends_with, regex.
+    Existence: exists, is_null. Set membership: in, not_in (comma-separated values).
+    Numeric: eq, neq, gt, gte, lt, lte.
     """
 
     type: Required[Literal["string", "number", "boolean"]]
@@ -168,6 +170,7 @@ class FilterWorkersObservabilityFilterLeaf(TypedDict, total=False):
             "includes",
             "not_includes",
             "starts_with",
+            "ends_with",
             "regex",
             "exists",
             "is_null",
@@ -193,13 +196,14 @@ class FilterWorkersObservabilityFilterLeaf(TypedDict, total=False):
             "IN",
             "NOT_IN",
             "STARTS_WITH",
+            "ENDS_WITH",
         ]
     ]
     """Comparison operator.
 
-    String operators: includes, not_includes, starts_with, regex. Existence: exists,
-    is_null. Set membership: in, not_in (comma-separated values). Numeric: eq, neq,
-    gt, gte, lt, lte.
+    String operators: includes, not_includes, starts_with, ends_with, regex.
+    Existence: exists, is_null. Set membership: in, not_in (comma-separated values).
+    Numeric: eq, neq, gt, gte, lt, lte.
     """
 
     type: Required[Literal["string", "number", "boolean"]]

@@ -25,7 +25,9 @@ class Configuration(BaseModel):
 
     job_status: ConfigurationJobStatus = FieldInfo(alias="jobStatus")
 
-    logpush_dataset: Literal["opentelemetry-traces", "opentelemetry-logs"] = FieldInfo(alias="logpushDataset")
+    logpush_dataset: Literal["opentelemetry-traces", "opentelemetry-logs", "opentelemetry-metrics"] = FieldInfo(
+        alias="logpushDataset"
+    )
 
     type: Literal["logpush"]
 
