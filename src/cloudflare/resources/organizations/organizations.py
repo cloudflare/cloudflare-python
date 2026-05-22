@@ -27,6 +27,14 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from .billing.billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .organization_profile import (
     OrganizationProfileResource,
     AsyncOrganizationProfileResource,
@@ -50,6 +58,10 @@ class OrganizationsResource(SyncAPIResource):
     @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        return BillingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
@@ -85,7 +97,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -133,7 +145,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Modify organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -186,7 +198,7 @@ class OrganizationsResource(SyncAPIResource):
         """Retrieve a list of organizations a particular user has access to.
 
         (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -246,7 +258,7 @@ class OrganizationsResource(SyncAPIResource):
 
         The organization MUST be empty before deleting. It must
         not contain any sub-organizations, accounts, members or users. (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +296,7 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Retrieve the details of a certain organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -321,6 +333,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         return AsyncLogsResource(self._client)
 
     @cached_property
+    def billing(self) -> AsyncBillingResource:
+        return AsyncBillingResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -354,7 +370,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -402,7 +418,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Modify organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -455,7 +471,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """Retrieve a list of organizations a particular user has access to.
 
         (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -515,7 +531,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
         The organization MUST be empty before deleting. It must
         not contain any sub-organizations, accounts, members or users. (Currently in
-        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -553,7 +569,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Retrieve the details of a certain organization.
 
-        (Currently in Closed Beta - see
+        (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -608,6 +624,10 @@ class OrganizationsResourceWithRawResponse:
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._organizations.logs)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self._organizations.billing)
+
 
 class AsyncOrganizationsResourceWithRawResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -636,6 +656,10 @@ class AsyncOrganizationsResourceWithRawResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._organizations.logs)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self._organizations.billing)
 
 
 class OrganizationsResourceWithStreamingResponse:
@@ -666,6 +690,10 @@ class OrganizationsResourceWithStreamingResponse:
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._organizations.logs)
 
+    @cached_property
+    def billing(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self._organizations.billing)
+
 
 class AsyncOrganizationsResourceWithStreamingResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
@@ -694,3 +722,7 @@ class AsyncOrganizationsResourceWithStreamingResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self._organizations.logs)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self._organizations.billing)
