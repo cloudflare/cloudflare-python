@@ -13,6 +13,7 @@ from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginati
 from cloudflare.types.zero_trust.access.ai_controls.mcp import (
     ServerListResponse,
     ServerReadResponse,
+    ServerSyncResponse,
     ServerCreateResponse,
     ServerDeleteResponse,
     ServerUpdateResponse,
@@ -45,6 +46,7 @@ class TestServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            is_shared_oauth_callback_enabled=True,
             updated_prompts=[
                 {
                     "name": "name",
@@ -122,6 +124,7 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             updated_prompts=[
                 {
@@ -332,7 +335,7 @@ class TestServers:
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
-        assert_matches_type(object, server, path=["response"])
+        assert_matches_type(ServerSyncResponse, server, path=["response"])
 
     @parametrize
     def test_raw_response_sync(self, client: Cloudflare) -> None:
@@ -344,7 +347,7 @@ class TestServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         server = response.parse()
-        assert_matches_type(object, server, path=["response"])
+        assert_matches_type(ServerSyncResponse, server, path=["response"])
 
     @parametrize
     def test_streaming_response_sync(self, client: Cloudflare) -> None:
@@ -356,7 +359,7 @@ class TestServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             server = response.parse()
-            assert_matches_type(object, server, path=["response"])
+            assert_matches_type(ServerSyncResponse, server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,6 +404,7 @@ class TestAsyncServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            is_shared_oauth_callback_enabled=True,
             updated_prompts=[
                 {
                     "name": "name",
@@ -478,6 +482,7 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
+            is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             updated_prompts=[
                 {
@@ -688,7 +693,7 @@ class TestAsyncServers:
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
-        assert_matches_type(object, server, path=["response"])
+        assert_matches_type(ServerSyncResponse, server, path=["response"])
 
     @parametrize
     async def test_raw_response_sync(self, async_client: AsyncCloudflare) -> None:
@@ -700,7 +705,7 @@ class TestAsyncServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         server = await response.parse()
-        assert_matches_type(object, server, path=["response"])
+        assert_matches_type(ServerSyncResponse, server, path=["response"])
 
     @parametrize
     async def test_streaming_response_sync(self, async_client: AsyncCloudflare) -> None:
@@ -712,7 +717,7 @@ class TestAsyncServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             server = await response.parse()
-            assert_matches_type(object, server, path=["response"])
+            assert_matches_type(ServerSyncResponse, server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

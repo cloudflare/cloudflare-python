@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
+from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from .ip_rule import IPRule
@@ -38,6 +38,8 @@ __all__ = [
     "AccessLinkedAppTokenRuleLinkedAppToken",
     "AccessUserRiskScoreRule",
     "AccessUserRiskScoreRuleUserRiskScore",
+    "AccessCloudflareAccountMemberRule",
+    "AccessCloudflareAccountMemberRuleCloudflareAccountMember",
 ]
 
 
@@ -130,6 +132,20 @@ class AccessUserRiskScoreRule(BaseModel):
     user_risk_score: AccessUserRiskScoreRuleUserRiskScore
 
 
+class AccessCloudflareAccountMemberRuleCloudflareAccountMember(BaseModel):
+    account_id: Optional[str] = None
+    """Identifier."""
+
+
+class AccessCloudflareAccountMemberRule(BaseModel):
+    """
+    Matches users who are members of a specific Cloudflare account.
+    Requires a Cloudflare identity provider.
+    """
+
+    cloudflare_account_member: AccessCloudflareAccountMemberRuleCloudflareAccountMember
+
+
 AccessRule: TypeAlias = Union[
     GroupRule,
     AnyValidServiceTokenRule,
@@ -156,4 +172,5 @@ AccessRule: TypeAlias = Union[
     ServiceTokenRule,
     AccessLinkedAppTokenRule,
     AccessUserRiskScoreRule,
+    AccessCloudflareAccountMemberRule,
 ]

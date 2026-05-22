@@ -19,4 +19,5 @@ IdentityProviderType: TypeAlias = Literal[
     "onelogin",
     "pingone",
     "yandex",
+    "cloudflare",
 ]

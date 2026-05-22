@@ -39,6 +39,8 @@ __all__ = [
     "AccessLinkedAppTokenRuleLinkedAppToken",
     "AccessUserRiskScoreRule",
     "AccessUserRiskScoreRuleUserRiskScore",
+    "AccessCloudflareAccountMemberRule",
+    "AccessCloudflareAccountMemberRuleCloudflareAccountMember",
 ]
 
 
@@ -131,6 +133,20 @@ class AccessUserRiskScoreRule(TypedDict, total=False):
     user_risk_score: Required[AccessUserRiskScoreRuleUserRiskScore]
 
 
+class AccessCloudflareAccountMemberRuleCloudflareAccountMember(TypedDict, total=False):
+    account_id: str
+    """Identifier."""
+
+
+class AccessCloudflareAccountMemberRule(TypedDict, total=False):
+    """
+    Matches users who are members of a specific Cloudflare account.
+    Requires a Cloudflare identity provider.
+    """
+
+    cloudflare_account_member: Required[AccessCloudflareAccountMemberRuleCloudflareAccountMember]
+
+
 AccessRuleParam: TypeAlias = Union[
     GroupRuleParam,
     AnyValidServiceTokenRuleParam,
@@ -157,4 +173,5 @@ AccessRuleParam: TypeAlias = Union[
     ServiceTokenRuleParam,
     AccessLinkedAppTokenRule,
     AccessUserRiskScoreRule,
+    AccessCloudflareAccountMemberRule,
 ]

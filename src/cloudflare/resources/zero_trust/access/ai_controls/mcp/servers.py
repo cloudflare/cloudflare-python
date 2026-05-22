@@ -23,6 +23,7 @@ from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.access.ai_controls.mcp import server_list_params, server_create_params, server_update_params
 from ......types.zero_trust.access.ai_controls.mcp.server_list_response import ServerListResponse
 from ......types.zero_trust.access.ai_controls.mcp.server_read_response import ServerReadResponse
+from ......types.zero_trust.access.ai_controls.mcp.server_sync_response import ServerSyncResponse
 from ......types.zero_trust.access.ai_controls.mcp.server_create_response import ServerCreateResponse
 from ......types.zero_trust.access.ai_controls.mcp.server_delete_response import ServerDeleteResponse
 from ......types.zero_trust.access.ai_controls.mcp.server_update_response import ServerUpdateResponse
@@ -60,6 +61,7 @@ class ServersResource(SyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,6 +76,12 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New servers default to true; existing servers default
+              to false. Effective behavior is gated by the gateway worker's per-env rollout
+              mode KV key.
 
           extra_headers: Send extra headers
 
@@ -95,6 +103,7 @@ class ServersResource(SyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -117,6 +126,7 @@ class ServersResource(SyncAPIResource):
         account_id: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
@@ -132,6 +142,12 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New servers default to true; existing servers default
+              to false. Effective behavior is gated by the gateway worker's per-env rollout
+              mode KV key.
 
           extra_headers: Send extra headers
 
@@ -151,6 +167,7 @@ class ServersResource(SyncAPIResource):
                 {
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
@@ -312,9 +329,10 @@ class ServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ServerSyncResponse:
         """
-        Syncs an MCP server's tool catalog with the portal.
+        Syncs an MCP server's capabilities and returns the updated server state,
+        including any connection errors.
 
         Args:
           id: portal id
@@ -340,9 +358,9 @@ class ServersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[ServerSyncResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[ServerSyncResponse], ResultWrapper[ServerSyncResponse]),
         )
 
 
@@ -376,6 +394,7 @@ class AsyncServersResource(AsyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -390,6 +409,12 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New servers default to true; existing servers default
+              to false. Effective behavior is gated by the gateway worker's per-env rollout
+              mode KV key.
 
           extra_headers: Send extra headers
 
@@ -411,6 +436,7 @@ class AsyncServersResource(AsyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -433,6 +459,7 @@ class AsyncServersResource(AsyncAPIResource):
         account_id: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
@@ -448,6 +475,12 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New servers default to true; existing servers default
+              to false. Effective behavior is gated by the gateway worker's per-env rollout
+              mode KV key.
 
           extra_headers: Send extra headers
 
@@ -467,6 +500,7 @@ class AsyncServersResource(AsyncAPIResource):
                 {
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
@@ -628,9 +662,10 @@ class AsyncServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ServerSyncResponse:
         """
-        Syncs an MCP server's tool catalog with the portal.
+        Syncs an MCP server's capabilities and returns the updated server state,
+        including any connection errors.
 
         Args:
           id: portal id
@@ -656,9 +691,9 @@ class AsyncServersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[ServerSyncResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[ServerSyncResponse], ResultWrapper[ServerSyncResponse]),
         )
 
 
