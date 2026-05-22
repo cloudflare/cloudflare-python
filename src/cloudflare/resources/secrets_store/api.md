@@ -5,7 +5,7 @@
 Types:
 
 ```python
-from cloudflare.types.secrets_store import StoreCreateResponse, StoreListResponse
+from cloudflare.types.secrets_store import StoreCreateResponse, StoreListResponse, StoreGetResponse
 ```
 
 Methods:
@@ -13,6 +13,7 @@ Methods:
 - <code title="post /accounts/{account_id}/secrets_store/stores">client.secrets_store.stores.<a href="./src/cloudflare/resources/secrets_store/stores/stores.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secrets_store/store_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/store_create_response.py">Optional[StoreCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/secrets_store/stores">client.secrets_store.stores.<a href="./src/cloudflare/resources/secrets_store/stores/stores.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secrets_store/store_list_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/store_list_response.py">SyncV4PagePaginationArray[StoreListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/secrets_store/stores/{store_id}">client.secrets_store.stores.<a href="./src/cloudflare/resources/secrets_store/stores/stores.py">delete</a>(store_id, \*, account_id, \*\*<a href="src/cloudflare/types/secrets_store/store_delete_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/secrets_store/stores/{store_id}">client.secrets_store.stores.<a href="./src/cloudflare/resources/secrets_store/stores/stores.py">get</a>(store_id, \*, account_id) -> <a href="./src/cloudflare/types/secrets_store/store_get_response.py">Optional[StoreGetResponse]</a></code>
 
 ### Secrets
 
