@@ -39,6 +39,7 @@ if TYPE_CHECKING:
         kv,
         r2,
         acm,
+        dls,
         dns,
         iam,
         ips,
@@ -148,6 +149,7 @@ if TYPE_CHECKING:
     from .resources.kv.kv import KVResource, AsyncKVResource
     from .resources.r2.r2 import R2Resource, AsyncR2Resource
     from .resources.acm.acm import ACMResource, AsyncACMResource
+    from .resources.dls.dls import DLSResource, AsyncDLSResource
     from .resources.dns.dns import DNSResource, AsyncDNSResource
     from .resources.iam.iam import IAMResource, AsyncIAMResource
     from .resources.ips.ips import IPsResource, AsyncIPsResource
@@ -650,6 +652,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.addressing import AddressingResource
 
         return AddressingResource(self)
+
+    @cached_property
+    def dls(self) -> DLSResource:
+        from .resources.dls import DLSResource
+
+        return DLSResource(self)
 
     @cached_property
     def audit_logs(self) -> AuditLogsResource:
@@ -1554,6 +1562,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncAddressingResource(self)
 
     @cached_property
+    def dls(self) -> AsyncDLSResource:
+        from .resources.dls import AsyncDLSResource
+
+        return AsyncDLSResource(self)
+
+    @cached_property
     def audit_logs(self) -> AsyncAuditLogsResource:
         from .resources.audit_logs import AsyncAuditLogsResource
 
@@ -2384,6 +2398,12 @@ class CloudflareWithRawResponse:
         return AddressingResourceWithRawResponse(self._client.addressing)
 
     @cached_property
+    def dls(self) -> dls.DLSResourceWithRawResponse:
+        from .resources.dls import DLSResourceWithRawResponse
+
+        return DLSResourceWithRawResponse(self._client.dls)
+
+    @cached_property
     def audit_logs(self) -> audit_logs.AuditLogsResourceWithRawResponse:
         from .resources.audit_logs import AuditLogsResourceWithRawResponse
 
@@ -3039,6 +3059,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.addressing import AsyncAddressingResourceWithRawResponse
 
         return AsyncAddressingResourceWithRawResponse(self._client.addressing)
+
+    @cached_property
+    def dls(self) -> dls.AsyncDLSResourceWithRawResponse:
+        from .resources.dls import AsyncDLSResourceWithRawResponse
+
+        return AsyncDLSResourceWithRawResponse(self._client.dls)
 
     @cached_property
     def audit_logs(self) -> audit_logs.AsyncAuditLogsResourceWithRawResponse:
@@ -3698,6 +3724,12 @@ class CloudflareWithStreamedResponse:
         return AddressingResourceWithStreamingResponse(self._client.addressing)
 
     @cached_property
+    def dls(self) -> dls.DLSResourceWithStreamingResponse:
+        from .resources.dls import DLSResourceWithStreamingResponse
+
+        return DLSResourceWithStreamingResponse(self._client.dls)
+
+    @cached_property
     def audit_logs(self) -> audit_logs.AuditLogsResourceWithStreamingResponse:
         from .resources.audit_logs import AuditLogsResourceWithStreamingResponse
 
@@ -4355,6 +4387,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.addressing import AsyncAddressingResourceWithStreamingResponse
 
         return AsyncAddressingResourceWithStreamingResponse(self._client.addressing)
+
+    @cached_property
+    def dls(self) -> dls.AsyncDLSResourceWithStreamingResponse:
+        from .resources.dls import AsyncDLSResourceWithStreamingResponse
+
+        return AsyncDLSResourceWithStreamingResponse(self._client.dls)
 
     @cached_property
     def audit_logs(self) -> audit_logs.AsyncAuditLogsResourceWithStreamingResponse:

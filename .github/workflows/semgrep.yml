@@ -6,8 +6,6 @@ name: Semgrep config
 jobs:
   semgrep:
     name: semgrep/ci
-    permissions:
-      contents: read
     runs-on: ubuntu-latest
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}

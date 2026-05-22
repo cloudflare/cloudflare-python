@@ -26,7 +26,7 @@ The REST API documentation can be found on [developers.cloudflare.com](https://d
 
 ```sh
 # install from PyPI
-pip install cloudflare
+pip install --pre cloudflare
 ```
 
 ## Usage
@@ -90,7 +90,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install cloudflare[aiohttp]
+pip install --pre cloudflare[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:

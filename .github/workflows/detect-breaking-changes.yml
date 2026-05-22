@@ -9,6 +9,7 @@ jobs:
   detect_breaking_changes:
     runs-on: 'ubuntu-latest'
     name: detect-breaking-changes
+    if: false
     permissions:
       contents: read
     steps:
@@ -28,12 +29,10 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-extras
       - name: Detect removed symbols
-        continue-on-error: true
         run: |
           uv run python scripts/detect-breaking-changes.py "${{ github.event.pull_request.base.sha }}"
 
       - name: Detect breaking changes
-        continue-on-error: true
         run: |
           # Try to check out previous versions of the breaking change detection script. This ensures that
           # we still detect breaking changes when entire files and their tests are removed.

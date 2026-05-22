@@ -11,8 +11,6 @@ on:
 jobs:
   publish:
     name: publish
-    permissions:
-      contents: read
     runs-on: ubuntu-latest
 
     steps:
