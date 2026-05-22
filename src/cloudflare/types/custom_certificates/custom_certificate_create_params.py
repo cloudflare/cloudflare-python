@@ -17,9 +17,6 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     certificate: Required[str]
     """The zone's SSL certificate or certificate and the intermediate(s)."""
 
-    private_key: Required[str]
-    """The zone's private key."""
-
     bundle_method: BundleMethod
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
@@ -58,6 +55,13 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     be rejected. Note: The API accepts this field as either "policy" or
     "policy_restrictions" in requests. Responses return this field as
     "policy_restrictions".
+    """
+
+    private_key: str
+    """The zone's private key.
+
+    Not required if custom_csr_id is provided, in which case the private key is
+    retrieved from the CSR record held by Cloudflare.
     """
 
     type: Literal["legacy_custom", "sni_custom"]
