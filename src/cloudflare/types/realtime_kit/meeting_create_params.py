@@ -71,6 +71,9 @@ class MeetingCreateParams(TypedDict, total=False):
     title: Optional[str]
     """Title of the meeting"""
 
+    transcribe_on_end: bool
+    """Automatically generate transcripts when the meeting ends."""
+
 
 class AIConfigSummarization(TypedDict, total=False):
     """Summary Config"""

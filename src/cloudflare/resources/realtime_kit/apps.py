@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -15,7 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.realtime_kit import app_post_params
+from ...types.realtime_kit import app_get_params, app_post_params
 from ...types.realtime_kit.app_get_response import AppGetResponse
 from ...types.realtime_kit.app_post_response import AppPostResponse
 
@@ -46,6 +48,10 @@ class AppsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page_no: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,6 +64,14 @@ class AppsResource(SyncAPIResource):
 
         Args:
           account_id: The account identifier tag.
+
+          page_no: The page number from which you want your page search results to be displayed.
+
+          per_page: Number of results per page.
+
+          search: Search string that matches apps by name.
+
+          sort_order: Sort order for apps by creation time.
 
           extra_headers: Send extra headers
 
@@ -72,7 +86,19 @@ class AppsResource(SyncAPIResource):
         return self._get(
             path_template("/accounts/{account_id}/realtime/kit/apps", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_no": page_no,
+                        "per_page": per_page,
+                        "search": search,
+                        "sort_order": sort_order,
+                    },
+                    app_get_params.AppGetParams,
+                ),
             ),
             cast_to=AppGetResponse,
         )
@@ -93,6 +119,8 @@ class AppsResource(SyncAPIResource):
         Create new app for your account
 
         Args:
+          account_id: The account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -137,6 +165,10 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page_no: int | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,6 +181,14 @@ class AsyncAppsResource(AsyncAPIResource):
 
         Args:
           account_id: The account identifier tag.
+
+          page_no: The page number from which you want your page search results to be displayed.
+
+          per_page: Number of results per page.
+
+          search: Search string that matches apps by name.
+
+          sort_order: Sort order for apps by creation time.
 
           extra_headers: Send extra headers
 
@@ -163,7 +203,19 @@ class AsyncAppsResource(AsyncAPIResource):
         return await self._get(
             path_template("/accounts/{account_id}/realtime/kit/apps", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page_no": page_no,
+                        "per_page": per_page,
+                        "search": search,
+                        "sort_order": sort_order,
+                    },
+                    app_get_params.AppGetParams,
+                ),
             ),
             cast_to=AppGetResponse,
         )
@@ -184,6 +236,8 @@ class AsyncAppsResource(AsyncAPIResource):
         Create new app for your account
 
         Args:
+          account_id: The account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

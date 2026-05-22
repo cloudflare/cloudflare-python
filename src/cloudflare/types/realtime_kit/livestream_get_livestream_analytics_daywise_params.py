@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["LivestreamGetLivestreamAnalyticsCompleteParams"]
+__all__ = ["LivestreamGetLivestreamAnalyticsDaywiseParams"]
 
 
-class LivestreamGetLivestreamAnalyticsCompleteParams(TypedDict, total=False):
+class LivestreamGetLivestreamAnalyticsDaywiseParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 

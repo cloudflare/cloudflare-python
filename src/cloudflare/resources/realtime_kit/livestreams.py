@@ -24,6 +24,7 @@ from ...types.realtime_kit import (
     livestream_get_all_livestreams_params,
     livestream_create_independent_livestream_params,
     livestream_start_livestreaming_a_meeting_params,
+    livestream_get_livestream_analytics_daywise_params,
     livestream_get_livestream_analytics_complete_params,
     livestream_get_livestream_session_for_livestream_id_params,
 )
@@ -40,6 +41,9 @@ from ...types.realtime_kit.livestream_start_livestreaming_a_meeting_response imp
 )
 from ...types.realtime_kit.livestream_get_meeting_active_livestreams_response import (
     LivestreamGetMeetingActiveLivestreamsResponse,
+)
+from ...types.realtime_kit.livestream_get_livestream_analytics_daywise_response import (
+    LivestreamGetLivestreamAnalyticsDaywiseResponse,
 )
 from ...types.realtime_kit.livestream_get_livestream_analytics_complete_response import (
     LivestreamGetLivestreamAnalyticsCompleteResponse,
@@ -266,8 +270,9 @@ class LivestreamsResource(SyncAPIResource):
         app_id: str,
         *,
         account_id: str,
-        end_time: Union[str, datetime] | Omit = omit,
-        start_time: Union[str, datetime] | Omit = omit,
+        end_time: int | Omit = omit,
+        filters: str | Omit = omit,
+        start_time: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,9 +288,13 @@ class LivestreamsResource(SyncAPIResource):
 
           app_id: The app identifier tag.
 
-          end_time: Specify the end time range in ISO format to access the livestream analytics.
+          end_time: Specify the end time as a Unix timestamp in seconds to access the livestream
+              analytics.
 
-          start_time: Specify the start time range in ISO format to access the livestream analytics.
+          filters: Optional filters for livestream analytics.
+
+          start_time: Specify the start time as a Unix timestamp in seconds to access the livestream
+              analytics.
 
           extra_headers: Send extra headers
 
@@ -313,12 +322,79 @@ class LivestreamsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "end_time": end_time,
+                        "filters": filters,
                         "start_time": start_time,
                     },
                     livestream_get_livestream_analytics_complete_params.LivestreamGetLivestreamAnalyticsCompleteParams,
                 ),
             ),
             cast_to=LivestreamGetLivestreamAnalyticsCompleteResponse,
+        )
+
+    def get_livestream_analytics_daywise(
+        self,
+        app_id: str,
+        *,
+        account_id: str,
+        end_time: int | Omit = omit,
+        filters: str | Omit = omit,
+        start_time: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LivestreamGetLivestreamAnalyticsDaywiseResponse:
+        """
+        Returns day-wise livestream analytics for the specified time range.
+
+        Args:
+          account_id: The account identifier tag.
+
+          app_id: The app identifier tag.
+
+          end_time: Specify the end time as a Unix timestamp in seconds to access the livestream
+              analytics.
+
+          filters: Optional filters for livestream analytics.
+
+          start_time: Specify the start time as a Unix timestamp in seconds to access the livestream
+              analytics.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/daywise",
+                account_id=account_id,
+                app_id=app_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "end_time": end_time,
+                        "filters": filters,
+                        "start_time": start_time,
+                    },
+                    livestream_get_livestream_analytics_daywise_params.LivestreamGetLivestreamAnalyticsDaywiseParams,
+                ),
+            ),
+            cast_to=LivestreamGetLivestreamAnalyticsDaywiseResponse,
         )
 
     def get_livestream_session_details_for_session_id(
@@ -865,8 +941,9 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         app_id: str,
         *,
         account_id: str,
-        end_time: Union[str, datetime] | Omit = omit,
-        start_time: Union[str, datetime] | Omit = omit,
+        end_time: int | Omit = omit,
+        filters: str | Omit = omit,
+        start_time: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -882,9 +959,13 @@ class AsyncLivestreamsResource(AsyncAPIResource):
 
           app_id: The app identifier tag.
 
-          end_time: Specify the end time range in ISO format to access the livestream analytics.
+          end_time: Specify the end time as a Unix timestamp in seconds to access the livestream
+              analytics.
 
-          start_time: Specify the start time range in ISO format to access the livestream analytics.
+          filters: Optional filters for livestream analytics.
+
+          start_time: Specify the start time as a Unix timestamp in seconds to access the livestream
+              analytics.
 
           extra_headers: Send extra headers
 
@@ -912,12 +993,79 @@ class AsyncLivestreamsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "end_time": end_time,
+                        "filters": filters,
                         "start_time": start_time,
                     },
                     livestream_get_livestream_analytics_complete_params.LivestreamGetLivestreamAnalyticsCompleteParams,
                 ),
             ),
             cast_to=LivestreamGetLivestreamAnalyticsCompleteResponse,
+        )
+
+    async def get_livestream_analytics_daywise(
+        self,
+        app_id: str,
+        *,
+        account_id: str,
+        end_time: int | Omit = omit,
+        filters: str | Omit = omit,
+        start_time: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LivestreamGetLivestreamAnalyticsDaywiseResponse:
+        """
+        Returns day-wise livestream analytics for the specified time range.
+
+        Args:
+          account_id: The account identifier tag.
+
+          app_id: The app identifier tag.
+
+          end_time: Specify the end time as a Unix timestamp in seconds to access the livestream
+              analytics.
+
+          filters: Optional filters for livestream analytics.
+
+          start_time: Specify the start time as a Unix timestamp in seconds to access the livestream
+              analytics.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/daywise",
+                account_id=account_id,
+                app_id=app_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "end_time": end_time,
+                        "filters": filters,
+                        "start_time": start_time,
+                    },
+                    livestream_get_livestream_analytics_daywise_params.LivestreamGetLivestreamAnalyticsDaywiseParams,
+                ),
+            ),
+            cast_to=LivestreamGetLivestreamAnalyticsDaywiseResponse,
         )
 
     async def get_livestream_session_details_for_session_id(
@@ -1271,6 +1419,9 @@ class LivestreamsResourceWithRawResponse:
         self.get_livestream_analytics_complete = to_raw_response_wrapper(
             livestreams.get_livestream_analytics_complete,
         )
+        self.get_livestream_analytics_daywise = to_raw_response_wrapper(
+            livestreams.get_livestream_analytics_daywise,
+        )
         self.get_livestream_session_details_for_session_id = to_raw_response_wrapper(
             livestreams.get_livestream_session_details_for_session_id,
         )
@@ -1306,6 +1457,9 @@ class AsyncLivestreamsResourceWithRawResponse:
         )
         self.get_livestream_analytics_complete = async_to_raw_response_wrapper(
             livestreams.get_livestream_analytics_complete,
+        )
+        self.get_livestream_analytics_daywise = async_to_raw_response_wrapper(
+            livestreams.get_livestream_analytics_daywise,
         )
         self.get_livestream_session_details_for_session_id = async_to_raw_response_wrapper(
             livestreams.get_livestream_session_details_for_session_id,
@@ -1343,6 +1497,9 @@ class LivestreamsResourceWithStreamingResponse:
         self.get_livestream_analytics_complete = to_streamed_response_wrapper(
             livestreams.get_livestream_analytics_complete,
         )
+        self.get_livestream_analytics_daywise = to_streamed_response_wrapper(
+            livestreams.get_livestream_analytics_daywise,
+        )
         self.get_livestream_session_details_for_session_id = to_streamed_response_wrapper(
             livestreams.get_livestream_session_details_for_session_id,
         )
@@ -1378,6 +1535,9 @@ class AsyncLivestreamsResourceWithStreamingResponse:
         )
         self.get_livestream_analytics_complete = async_to_streamed_response_wrapper(
             livestreams.get_livestream_analytics_complete,
+        )
+        self.get_livestream_analytics_daywise = async_to_streamed_response_wrapper(
+            livestreams.get_livestream_analytics_daywise,
         )
         self.get_livestream_session_details_for_session_id = async_to_streamed_response_wrapper(
             livestreams.get_livestream_session_details_for_session_id,
