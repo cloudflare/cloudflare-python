@@ -46,13 +46,19 @@ class EmailSendingSendParams(TypedDict, total=False):
     """Custom email headers as key-value pairs."""
 
     html: str
-    """HTML body of the email. At least one of text or html must be provided."""
+    """HTML body of the email.
+
+    At least one of text or html must be provided (non-empty).
+    """
 
     reply_to: ReplyTo
     """Reply-to address. Either a plain string or an object with address and name."""
 
     text: str
-    """Plain text body of the email. At least one of text or html must be provided."""
+    """Plain text body of the email.
+
+    At least one of text or html must be provided (non-empty).
+    """
 
 
 class FromEmailSendingEmailAddressObject(TypedDict, total=False):
