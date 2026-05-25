@@ -58,6 +58,13 @@ class WebCrawlerTimeseriesGroupsParams(TypedDict, total=False):
     name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
+    normalization: Literal["PERCENTAGE", "MIN0_MAX", "PERCENTAGE_CHANGE"]
+    """Normalization method applied to the results.
+
+    Refer to
+    [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+    """
+
     response_status: Annotated[SequenceNotStr[str], PropertyInfo(alias="responseStatus")]
     """Filters results by HTTP response status code (e.g.
 

@@ -181,6 +181,7 @@ class WebCrawlersResource(SyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "PERCENTAGE_CHANGE"] | Omit = omit,
         response_status: SequenceNotStr[str] | Omit = omit,
         response_status_category: List[
             Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
@@ -227,6 +228,9 @@ class WebCrawlersResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          normalization: Normalization method applied to the results. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
               [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
               are accepted.
@@ -264,6 +268,7 @@ class WebCrawlersResource(SyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "normalization": normalization,
                         "response_status": response_status,
                         "response_status_category": response_status_category,
                         "vertical": vertical,
@@ -430,6 +435,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         industry: SequenceNotStr[str] | Omit = omit,
         limit_per_group: int | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "PERCENTAGE_CHANGE"] | Omit = omit,
         response_status: SequenceNotStr[str] | Omit = omit,
         response_status_category: List[
             Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
@@ -476,6 +482,9 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
+          normalization: Normalization method applied to the results. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           response_status: Filters results by HTTP response status code (e.g. 200, 403, 404). Only
               [IANA-registered codes](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
               are accepted.
@@ -513,6 +522,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                         "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "normalization": normalization,
                         "response_status": response_status,
                         "response_status_category": response_status_category,
                         "vertical": vertical,

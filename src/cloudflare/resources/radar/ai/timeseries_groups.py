@@ -407,7 +407,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "PERCENTAGE_CHANGE"] | Omit = omit,
         response_status: SequenceNotStr[str] | Omit = omit,
         response_status_category: List[
             Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
@@ -996,7 +996,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         limit_per_group: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX", "PERCENTAGE_CHANGE"] | Omit = omit,
         response_status: SequenceNotStr[str] | Omit = omit,
         response_status_category: List[
             Literal["INFORMATIONAL", "SUCCESS", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR"]
