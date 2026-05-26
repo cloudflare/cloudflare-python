@@ -11,6 +11,9 @@ class SinkListParams(TypedDict, total=False):
     account_id: Required[str]
     """Specifies the public ID of the account."""
 
+    name: str
+    """Filters sinks by name (case-insensitive substring)."""
+
     page: float
 
     per_page: float

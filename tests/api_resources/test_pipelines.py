@@ -625,6 +625,7 @@ class TestPipelines:
     def test_method_list_v1_with_all_params(self, client: Cloudflare) -> None:
         pipeline = client.pipelines.list_v1(
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="x",
             page=0,
             per_page=0,
         )
@@ -1305,6 +1306,7 @@ class TestAsyncPipelines:
     async def test_method_list_v1_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pipeline = await async_client.pipelines.list_v1(
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="x",
             page=0,
             per_page=0,
         )

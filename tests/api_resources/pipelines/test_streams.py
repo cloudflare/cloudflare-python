@@ -176,6 +176,7 @@ class TestStreams:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         stream = client.pipelines.streams.list(
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="x",
             page=0,
             per_page=0,
             pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
@@ -477,6 +478,7 @@ class TestAsyncStreams:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         stream = await async_client.pipelines.streams.list(
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="x",
             page=0,
             per_page=0,
             pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",

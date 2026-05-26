@@ -506,6 +506,7 @@ class PipelinesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -520,6 +521,8 @@ class PipelinesResource(SyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters pipelines by name (case-insensitive substring).
 
           extra_headers: Send extra headers
 
@@ -541,6 +544,7 @@ class PipelinesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -1044,6 +1048,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1058,6 +1063,8 @@ class AsyncPipelinesResource(AsyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters pipelines by name (case-insensitive substring).
 
           extra_headers: Send extra headers
 
@@ -1079,6 +1086,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                     },

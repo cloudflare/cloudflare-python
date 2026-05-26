@@ -11,6 +11,9 @@ class StreamListParams(TypedDict, total=False):
     account_id: Required[str]
     """Specifies the public ID of the account."""
 
+    name: str
+    """Filters streams by name (case-insensitive substring)."""
+
     page: float
 
     per_page: float

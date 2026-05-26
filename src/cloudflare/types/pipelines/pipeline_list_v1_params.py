@@ -11,6 +11,9 @@ class PipelineListV1Params(TypedDict, total=False):
     account_id: Required[str]
     """Specifies the public ID of the account."""
 
+    name: str
+    """Filters pipelines by name (case-insensitive substring)."""
+
     page: float
 
     per_page: float

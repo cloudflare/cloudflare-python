@@ -112,6 +112,7 @@ class SinksResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -127,6 +128,8 @@ class SinksResource(SyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters sinks by name (case-insensitive substring).
 
           extra_headers: Send extra headers
 
@@ -148,6 +151,7 @@ class SinksResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                         "pipeline_id": pipeline_id,
@@ -339,6 +343,7 @@ class AsyncSinksResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -354,6 +359,8 @@ class AsyncSinksResource(AsyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters sinks by name (case-insensitive substring).
 
           extra_headers: Send extra headers
 
@@ -375,6 +382,7 @@ class AsyncSinksResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                         "pipeline_id": pipeline_id,

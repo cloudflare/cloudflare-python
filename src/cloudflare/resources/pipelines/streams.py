@@ -163,6 +163,7 @@ class StreamsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -178,6 +179,8 @@ class StreamsResource(SyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters streams by name (case-insensitive substring).
 
           pipeline_id: Specifies the public ID of the pipeline.
 
@@ -201,6 +204,7 @@ class StreamsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                         "pipeline_id": pipeline_id,
@@ -443,6 +447,7 @@ class AsyncStreamsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         pipeline_id: str | Omit = omit,
@@ -458,6 +463,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
         Args:
           account_id: Specifies the public ID of the account.
+
+          name: Filters streams by name (case-insensitive substring).
 
           pipeline_id: Specifies the public ID of the pipeline.
 
@@ -481,6 +488,7 @@ class AsyncStreamsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                         "pipeline_id": pipeline_id,
