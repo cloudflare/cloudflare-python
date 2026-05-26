@@ -16,7 +16,7 @@ from ....._response import (
 )
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.gateway.lists.item_list_response import ItemListResponse
+from .....types.zero_trust.gateway.gateway_item import GatewayItem
 
 __all__ = ["ItemsResource", "AsyncItemsResource"]
 
@@ -52,7 +52,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ItemListResponse]:
+    ) -> SyncSinglePage[GatewayItem]:
         """
         Fetch all items in a single Zero Trust list.
 
@@ -75,11 +75,11 @@ class ItemsResource(SyncAPIResource):
             path_template(
                 "/accounts/{account_id}/gateway/lists/{list_id}/items", account_id=account_id, list_id=list_id
             ),
-            page=SyncSinglePage[ItemListResponse],
+            page=SyncSinglePage[GatewayItem],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ItemListResponse,
+            model=GatewayItem,
         )
 
 
@@ -114,7 +114,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ItemListResponse, AsyncSinglePage[ItemListResponse]]:
+    ) -> AsyncPaginator[GatewayItem, AsyncSinglePage[GatewayItem]]:
         """
         Fetch all items in a single Zero Trust list.
 
@@ -137,11 +137,11 @@ class AsyncItemsResource(AsyncAPIResource):
             path_template(
                 "/accounts/{account_id}/gateway/lists/{list_id}/items", account_id=account_id, list_id=list_id
             ),
-            page=AsyncSinglePage[ItemListResponse],
+            page=AsyncSinglePage[GatewayItem],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ItemListResponse,
+            model=GatewayItem,
         )
 
 

@@ -55,6 +55,7 @@ class LocationsResource(SyncAPIResource):
         dns_destination_ips_id: str | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
+        max_ttl_secs: Optional[int] | Omit = omit,
         networks: Optional[Iterable[location_create_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,6 +82,10 @@ class LocationsResource(SyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
+          max_ttl_secs: Specify the maximum TTL, in seconds, applied to DNS response records. Records
+              whose upstream TTL exceeds this value are served with the capped value. When
+              null or absent, no cap is applied at this tier.
+
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
               is enabled for this location.
@@ -104,6 +109,7 @@ class LocationsResource(SyncAPIResource):
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
+                    "max_ttl_secs": max_ttl_secs,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -128,6 +134,7 @@ class LocationsResource(SyncAPIResource):
         dns_destination_ips_id: str | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
+        max_ttl_secs: Optional[int] | Omit = omit,
         networks: Optional[Iterable[location_update_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -153,6 +160,10 @@ class LocationsResource(SyncAPIResource):
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
           endpoints: Configure the destination endpoints for this location.
+
+          max_ttl_secs: Specify the maximum TTL, in seconds, applied to DNS response records. Records
+              whose upstream TTL exceeds this value are served with the capped value. When
+              null or absent, no cap is applied at this tier.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
@@ -181,6 +192,7 @@ class LocationsResource(SyncAPIResource):
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
+                    "max_ttl_secs": max_ttl_secs,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,
@@ -343,6 +355,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         dns_destination_ips_id: str | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
+        max_ttl_secs: Optional[int] | Omit = omit,
         networks: Optional[Iterable[location_create_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,6 +382,10 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
+          max_ttl_secs: Specify the maximum TTL, in seconds, applied to DNS response records. Records
+              whose upstream TTL exceeds this value are served with the capped value. When
+              null or absent, no cap is applied at this tier.
+
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
               is enabled for this location.
@@ -392,6 +409,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
+                    "max_ttl_secs": max_ttl_secs,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -416,6 +434,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         dns_destination_ips_id: str | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
+        max_ttl_secs: Optional[int] | Omit = omit,
         networks: Optional[Iterable[location_update_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -441,6 +460,10 @@ class AsyncLocationsResource(AsyncAPIResource):
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
           endpoints: Configure the destination endpoints for this location.
+
+          max_ttl_secs: Specify the maximum TTL, in seconds, applied to DNS response records. Records
+              whose upstream TTL exceeds this value are served with the capped value. When
+              null or absent, no cap is applied at this tier.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
@@ -469,6 +492,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
+                    "max_ttl_secs": max_ttl_secs,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,

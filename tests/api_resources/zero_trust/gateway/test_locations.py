@@ -50,6 +50,7 @@ class TestLocations:
                     "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
+            max_ttl_secs=3600,
             networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -122,6 +123,7 @@ class TestLocations:
                     "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
+            max_ttl_secs=3600,
             networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -342,6 +344,7 @@ class TestAsyncLocations:
                     "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
+            max_ttl_secs=3600,
             networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -414,6 +417,7 @@ class TestAsyncLocations:
                     "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
+            max_ttl_secs=3600,
             networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
