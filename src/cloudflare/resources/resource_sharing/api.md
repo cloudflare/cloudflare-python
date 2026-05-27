@@ -45,19 +45,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.resource_sharing import (
-    ResourceCreateResponse,
-    ResourceUpdateResponse,
-    ResourceListResponse,
-    ResourceDeleteResponse,
-    ResourceGetResponse,
-)
+from cloudflare.types.resource_sharing import ResourceCreateResponse, ResourceListResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/shares/{share_id}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">create</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_create_response.py">Optional[ResourceCreateResponse]</a></code>
-- <code title="put /accounts/{account_id}/shares/{share_id}/resources/{resource_id}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">update</a>(resource_id, \*, account_id, share_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_update_response.py">Optional[ResourceUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/shares/{share_id}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">list</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_list_response.py">SyncV4PagePaginationArray[ResourceListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/shares/{share_id}/resources/{resource_id}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">delete</a>(resource_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_delete_response.py">Optional[ResourceDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/shares/{share_id}/resources/{resource_id}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">get</a>(resource_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_get_response.py">Optional[ResourceGetResponse]</a></code>
