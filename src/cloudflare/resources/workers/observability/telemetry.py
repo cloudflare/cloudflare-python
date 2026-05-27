@@ -20,10 +20,17 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workers.observability import telemetry_keys_params, telemetry_query_params, telemetry_values_params
+from ....types.workers.observability import (
+    telemetry_keys_params,
+    telemetry_query_params,
+    telemetry_values_params,
+    telemetry_live_tail_params,
+    telemetry_live_tail_heartbeat_params,
+)
 from ....types.workers.observability.telemetry_keys_response import TelemetryKeysResponse
 from ....types.workers.observability.telemetry_query_response import TelemetryQueryResponse
 from ....types.workers.observability.telemetry_values_response import TelemetryValuesResponse
+from ....types.workers.observability.telemetry_live_tail_response import TelemetryLiveTailResponse
 
 __all__ = ["TelemetryResource", "AsyncTelemetryResource"]
 
@@ -113,6 +120,101 @@ class TelemetryResource(SyncAPIResource):
             ),
             model=TelemetryKeysResponse,
             method="post",
+        )
+
+    def live_tail(
+        self,
+        *,
+        account_id: str,
+        filter_combination: Literal["and", "or", "AND", "OR"] | Omit = omit,
+        filters: Iterable[telemetry_live_tail_params.Filter] | Omit = omit,
+        script_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelemetryLiveTailResponse:
+        """
+        Prepare websocket server for live tail.
+
+        Args:
+          filter_combination: Set a flag to describe how to combine the filters on the query.
+
+          filters: Apply filters to the query. Supports nested groups via kind: 'group'.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/workers/observability/telemetry/live-tail", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "filter_combination": filter_combination,
+                    "filters": filters,
+                    "script_id": script_id,
+                },
+                telemetry_live_tail_params.TelemetryLiveTailParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TelemetryLiveTailResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TelemetryLiveTailResponse], ResultWrapper[TelemetryLiveTailResponse]),
+        )
+
+    def live_tail_heartbeat(
+        self,
+        *,
+        account_id: str,
+        script_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Notify live tail that user is still eligible to receive live events.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/workers/observability/telemetry/live-tail/heartbeat", account_id=account_id
+            ),
+            body=maybe_transform(
+                {"script_id": script_id}, telemetry_live_tail_heartbeat_params.TelemetryLiveTailHeartbeatParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def query(
@@ -377,6 +479,101 @@ class AsyncTelemetryResource(AsyncAPIResource):
             method="post",
         )
 
+    async def live_tail(
+        self,
+        *,
+        account_id: str,
+        filter_combination: Literal["and", "or", "AND", "OR"] | Omit = omit,
+        filters: Iterable[telemetry_live_tail_params.Filter] | Omit = omit,
+        script_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelemetryLiveTailResponse:
+        """
+        Prepare websocket server for live tail.
+
+        Args:
+          filter_combination: Set a flag to describe how to combine the filters on the query.
+
+          filters: Apply filters to the query. Supports nested groups via kind: 'group'.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/workers/observability/telemetry/live-tail", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "filter_combination": filter_combination,
+                    "filters": filters,
+                    "script_id": script_id,
+                },
+                telemetry_live_tail_params.TelemetryLiveTailParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TelemetryLiveTailResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TelemetryLiveTailResponse], ResultWrapper[TelemetryLiveTailResponse]),
+        )
+
+    async def live_tail_heartbeat(
+        self,
+        *,
+        account_id: str,
+        script_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Notify live tail that user is still eligible to receive live events.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/workers/observability/telemetry/live-tail/heartbeat", account_id=account_id
+            ),
+            body=await async_maybe_transform(
+                {"script_id": script_id}, telemetry_live_tail_heartbeat_params.TelemetryLiveTailHeartbeatParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
     async def query(
         self,
         *,
@@ -559,6 +756,12 @@ class TelemetryResourceWithRawResponse:
         self.keys = to_raw_response_wrapper(
             telemetry.keys,
         )
+        self.live_tail = to_raw_response_wrapper(
+            telemetry.live_tail,
+        )
+        self.live_tail_heartbeat = to_raw_response_wrapper(
+            telemetry.live_tail_heartbeat,
+        )
         self.query = to_raw_response_wrapper(
             telemetry.query,
         )
@@ -573,6 +776,12 @@ class AsyncTelemetryResourceWithRawResponse:
 
         self.keys = async_to_raw_response_wrapper(
             telemetry.keys,
+        )
+        self.live_tail = async_to_raw_response_wrapper(
+            telemetry.live_tail,
+        )
+        self.live_tail_heartbeat = async_to_raw_response_wrapper(
+            telemetry.live_tail_heartbeat,
         )
         self.query = async_to_raw_response_wrapper(
             telemetry.query,
@@ -589,6 +798,12 @@ class TelemetryResourceWithStreamingResponse:
         self.keys = to_streamed_response_wrapper(
             telemetry.keys,
         )
+        self.live_tail = to_streamed_response_wrapper(
+            telemetry.live_tail,
+        )
+        self.live_tail_heartbeat = to_streamed_response_wrapper(
+            telemetry.live_tail_heartbeat,
+        )
         self.query = to_streamed_response_wrapper(
             telemetry.query,
         )
@@ -603,6 +818,12 @@ class AsyncTelemetryResourceWithStreamingResponse:
 
         self.keys = async_to_streamed_response_wrapper(
             telemetry.keys,
+        )
+        self.live_tail = async_to_streamed_response_wrapper(
+            telemetry.live_tail,
+        )
+        self.live_tail_heartbeat = async_to_streamed_response_wrapper(
+            telemetry.live_tail_heartbeat,
         )
         self.query = async_to_streamed_response_wrapper(
             telemetry.query,

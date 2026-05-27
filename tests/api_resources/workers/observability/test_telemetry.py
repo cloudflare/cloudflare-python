@@ -14,6 +14,7 @@ from cloudflare.types.workers.observability import (
     TelemetryKeysResponse,
     TelemetryQueryResponse,
     TelemetryValuesResponse,
+    TelemetryLiveTailResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -96,6 +97,122 @@ class TestTelemetry:
     def test_path_params_keys(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.observability.telemetry.with_raw_response.keys(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_method_live_tail(self, client: Cloudflare) -> None:
+        telemetry = client.workers.observability.telemetry.live_tail(
+            account_id="account_id",
+        )
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_method_live_tail_with_all_params(self, client: Cloudflare) -> None:
+        telemetry = client.workers.observability.telemetry.live_tail(
+            account_id="account_id",
+            filter_combination="and",
+            filters=[
+                {
+                    "filter_combination": "and",
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
+                    "kind": "group",
+                }
+            ],
+            script_id="scriptId",
+        )
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_raw_response_live_tail(self, client: Cloudflare) -> None:
+        response = client.workers.observability.telemetry.with_raw_response.live_tail(
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telemetry = response.parse()
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_streaming_response_live_tail(self, client: Cloudflare) -> None:
+        with client.workers.observability.telemetry.with_streaming_response.live_tail(
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telemetry = response.parse()
+            assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_path_params_live_tail(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.observability.telemetry.with_raw_response.live_tail(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_method_live_tail_heartbeat(self, client: Cloudflare) -> None:
+        telemetry = client.workers.observability.telemetry.live_tail_heartbeat(
+            account_id="account_id",
+        )
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_method_live_tail_heartbeat_with_all_params(self, client: Cloudflare) -> None:
+        telemetry = client.workers.observability.telemetry.live_tail_heartbeat(
+            account_id="account_id",
+            script_id="scriptId",
+        )
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_raw_response_live_tail_heartbeat(self, client: Cloudflare) -> None:
+        response = client.workers.observability.telemetry.with_raw_response.live_tail_heartbeat(
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telemetry = response.parse()
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_streaming_response_live_tail_heartbeat(self, client: Cloudflare) -> None:
+        with client.workers.observability.telemetry.with_streaming_response.live_tail_heartbeat(
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telemetry = response.parse()
+            assert_matches_type(object, telemetry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    def test_path_params_live_tail_heartbeat(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.observability.telemetry.with_raw_response.live_tail_heartbeat(
                 account_id="",
             )
 
@@ -416,6 +533,122 @@ class TestAsyncTelemetry:
     async def test_path_params_keys(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.observability.telemetry.with_raw_response.keys(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_method_live_tail(self, async_client: AsyncCloudflare) -> None:
+        telemetry = await async_client.workers.observability.telemetry.live_tail(
+            account_id="account_id",
+        )
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_method_live_tail_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        telemetry = await async_client.workers.observability.telemetry.live_tail(
+            account_id="account_id",
+            filter_combination="and",
+            filters=[
+                {
+                    "filter_combination": "and",
+                    "filters": [
+                        {
+                            "filter_combination": "and",
+                            "filters": [{}],
+                            "kind": "group",
+                        }
+                    ],
+                    "kind": "group",
+                }
+            ],
+            script_id="scriptId",
+        )
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_raw_response_live_tail(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.observability.telemetry.with_raw_response.live_tail(
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telemetry = await response.parse()
+        assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_streaming_response_live_tail(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.observability.telemetry.with_streaming_response.live_tail(
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telemetry = await response.parse()
+            assert_matches_type(TelemetryLiveTailResponse, telemetry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_path_params_live_tail(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.observability.telemetry.with_raw_response.live_tail(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_method_live_tail_heartbeat(self, async_client: AsyncCloudflare) -> None:
+        telemetry = await async_client.workers.observability.telemetry.live_tail_heartbeat(
+            account_id="account_id",
+        )
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_method_live_tail_heartbeat_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        telemetry = await async_client.workers.observability.telemetry.live_tail_heartbeat(
+            account_id="account_id",
+            script_id="scriptId",
+        )
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_raw_response_live_tail_heartbeat(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.observability.telemetry.with_raw_response.live_tail_heartbeat(
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telemetry = await response.parse()
+        assert_matches_type(object, telemetry, path=["response"])
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_streaming_response_live_tail_heartbeat(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.observability.telemetry.with_streaming_response.live_tail_heartbeat(
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telemetry = await response.parse()
+            assert_matches_type(object, telemetry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="HTTP 400 error from prism")
+    @parametrize
+    async def test_path_params_live_tail_heartbeat(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.observability.telemetry.with_raw_response.live_tail_heartbeat(
                 account_id="",
             )
 
