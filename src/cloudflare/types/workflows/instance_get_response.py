@@ -86,7 +86,7 @@ class StepUnionMember0(BaseModel):
 
     success: Optional[bool] = None
 
-    type: Literal["step"]
+    type: Literal["step", "rollback"]
 
 
 class StepUnionMember1Error(BaseModel):
