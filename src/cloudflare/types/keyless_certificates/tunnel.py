@@ -6,10 +6,10 @@ __all__ = ["Tunnel"]
 
 
 class Tunnel(BaseModel):
-    """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
+    """Configuration for using Keyless SSL through a Cloudflare Tunnel."""
 
     private_ip: str
-    """Private IP of the Key Server Host"""
+    """Private IP of the Key Server Host."""
 
     vnet_id: str
-    """Cloudflare Tunnel Virtual Network ID"""
+    """Cloudflare Tunnel Virtual Network ID."""

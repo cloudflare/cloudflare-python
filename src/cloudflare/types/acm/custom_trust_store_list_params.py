@@ -15,7 +15,7 @@ class CustomTrustStoreListParams(TypedDict, total=False):
     """Limit to the number of records returned."""
 
     offset: int
-    """Offset the results"""
+    """Offset the results."""
 
     page: float
     """Page number of paginated results."""

@@ -100,7 +100,7 @@ class CustomCertificatesResource(SyncAPIResource):
 
           custom_csr_id: The identifier for the Custom CSR that was used.
 
-          deploy: The environment to deploy the certificate to, defaults to production
+          deploy: The environment to deploy the certificate to, defaults to production.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
@@ -317,7 +317,7 @@ class CustomCertificatesResource(SyncAPIResource):
 
           custom_csr_id: The identifier for the Custom CSR that was used.
 
-          deploy: The environment to deploy the certificate to, defaults to production
+          deploy: The environment to deploy the certificate to, defaults to production.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
@@ -495,7 +495,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           custom_csr_id: The identifier for the Custom CSR that was used.
 
-          deploy: The environment to deploy the certificate to, defaults to production
+          deploy: The environment to deploy the certificate to, defaults to production.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
@@ -712,7 +712,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
 
           custom_csr_id: The identifier for the Custom CSR that was used.
 
-          deploy: The environment to deploy the certificate to, defaults to production
+          deploy: The environment to deploy the certificate to, defaults to production.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully

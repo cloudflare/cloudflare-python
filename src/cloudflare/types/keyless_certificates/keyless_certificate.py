@@ -45,4 +45,4 @@ class KeylessCertificate(BaseModel):
     """Status of the Keyless SSL."""
 
     tunnel: Optional[Tunnel] = None
-    """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
+    """Configuration for using Keyless SSL through a Cloudflare Tunnel."""

@@ -29,7 +29,7 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     """The identifier for the Custom CSR that was used."""
 
     deploy: Literal["staging", "production"]
-    """The environment to deploy the certificate to, defaults to production"""
+    """The environment to deploy the certificate to, defaults to production."""
 
     geo_restrictions: GeoRestrictionsParam
     """

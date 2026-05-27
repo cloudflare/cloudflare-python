@@ -164,7 +164,7 @@ class SSL(BaseModel):
     """
 
     certificate_authority: Optional[CertificateCA] = None
-    """The Certificate Authority that will issue the certificate"""
+    """The Certificate Authority that will issue the certificate."""
 
     custom_certificate: Optional[str] = None
     """If a custom uploaded certificate is used."""

@@ -16,5 +16,6 @@ class ClientCertificateCreateParams(TypedDict, total=False):
 
     validity_days: Required[int]
     """
-    The number of days the Client Certificate will be valid after the issued_on date
+    The number of days the Client Certificate will be valid after the issued_on
+    date.
     """

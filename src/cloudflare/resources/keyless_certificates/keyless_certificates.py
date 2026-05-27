@@ -87,7 +87,7 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           name: The keyless SSL name.
 
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel.
 
           extra_headers: Send extra headers
 
@@ -248,7 +248,7 @@ class KeylessCertificatesResource(SyncAPIResource):
           port: The keyless SSL port used to communicate between Cloudflare and the client's
               Keyless SSL server.
 
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel.
 
           extra_headers: Send extra headers
 
@@ -399,7 +399,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           name: The keyless SSL name.
 
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel.
 
           extra_headers: Send extra headers
 
@@ -560,7 +560,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           port: The keyless SSL port used to communicate between Cloudflare and the client's
               Keyless SSL server.
 
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel.
 
           extra_headers: Send extra headers
 

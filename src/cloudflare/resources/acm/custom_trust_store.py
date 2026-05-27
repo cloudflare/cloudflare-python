@@ -117,7 +117,7 @@ class CustomTrustStoreResource(SyncAPIResource):
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 
@@ -349,7 +349,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 

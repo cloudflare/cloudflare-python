@@ -64,14 +64,15 @@ class ClientCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
-        Create a new API Shield mTLS Client Certificate
+        Create a new API Shield mTLS Client Certificate.
 
         Args:
           zone_id: Identifier.
 
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
 
-          validity_days: The number of days the Client Certificate will be valid after the issued_on date
+          validity_days: The number of days the Client Certificate will be valid after the issued_on
+              date.
 
           extra_headers: Send extra headers
 
@@ -120,14 +121,14 @@ class ClientCertificatesResource(SyncAPIResource):
     ) -> SyncV4PagePaginationArray[ClientCertificate]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
-        using Pagination
+        using Pagination.
 
         Args:
           zone_id: Identifier.
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 
@@ -286,7 +287,7 @@ class ClientCertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
-        Get Details for a single mTLS API Shield Client Certificate
+        Get Details for a single mTLS API Shield Client Certificate.
 
         Args:
           zone_id: Identifier.
@@ -358,14 +359,15 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
-        Create a new API Shield mTLS Client Certificate
+        Create a new API Shield mTLS Client Certificate.
 
         Args:
           zone_id: Identifier.
 
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
 
-          validity_days: The number of days the Client Certificate will be valid after the issued_on date
+          validity_days: The number of days the Client Certificate will be valid after the issued_on
+              date.
 
           extra_headers: Send extra headers
 
@@ -414,14 +416,14 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
     ) -> AsyncPaginator[ClientCertificate, AsyncV4PagePaginationArray[ClientCertificate]]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
-        using Pagination
+        using Pagination.
 
         Args:
           zone_id: Identifier.
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 
@@ -580,7 +582,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ClientCertificate]:
         """
-        Get Details for a single mTLS API Shield Client Certificate
+        Get Details for a single mTLS API Shield Client Certificate.
 
         Args:
           zone_id: Identifier.

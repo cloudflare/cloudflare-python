@@ -60,7 +60,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameAssociationUpdateResponse]:
         """
-        Replace Hostname Associations
+        Replace Hostname Associations.
 
         Args:
           zone_id: Identifier.
@@ -113,7 +113,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameAssociationGetResponse]:
         """
-        List Hostname Associations
+        List Hostname Associations.
 
         Args:
           zone_id: Identifier.
@@ -183,7 +183,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameAssociationUpdateResponse]:
         """
-        Replace Hostname Associations
+        Replace Hostname Associations.
 
         Args:
           zone_id: Identifier.
@@ -236,7 +236,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[HostnameAssociationGetResponse]:
         """
-        List Hostname Associations
+        List Hostname Associations.
 
         Args:
           zone_id: Identifier.

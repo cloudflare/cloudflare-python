@@ -29,4 +29,4 @@ class KeylessCertificateEditParams(TypedDict, total=False):
     """
 
     tunnel: TunnelParam
-    """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
+    """Configuration for using Keyless SSL through a Cloudflare Tunnel."""

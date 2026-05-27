@@ -140,7 +140,7 @@ class OriginCACertificatesResource(SyncAPIResource):
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 
@@ -374,7 +374,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
 
           limit: Limit to the number of records returned.
 
-          offset: Offset the results
+          offset: Offset the results.
 
           page: Page number of paginated results.
 
