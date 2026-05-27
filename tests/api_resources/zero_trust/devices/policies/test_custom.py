@@ -44,6 +44,12 @@ class TestCustom:
             captive_portal=180,
             description="Policy for test teams.",
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             enabled=True,
             exclude=[
                 {
@@ -227,6 +233,12 @@ class TestCustom:
             captive_portal=180,
             description="Policy for test teams.",
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             enabled=True,
             exclude=[
                 {
@@ -389,6 +401,12 @@ class TestAsyncCustom:
             captive_portal=180,
             description="Policy for test teams.",
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             enabled=True,
             exclude=[
                 {
@@ -572,6 +590,12 @@ class TestAsyncCustom:
             captive_portal=180,
             description="Policy for test teams.",
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             enabled=True,
             exclude=[
                 {

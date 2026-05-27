@@ -7,7 +7,15 @@ from ..fallback_domain import FallbackDomain
 from ..split_tunnel_exclude import SplitTunnelExclude
 from ..split_tunnel_include import SplitTunnelInclude
 
-__all__ = ["DefaultEditResponse", "ServiceModeV2", "VirtualNetworks"]
+__all__ = ["DefaultEditResponse", "DNSSearchSuffix", "ServiceModeV2", "VirtualNetworks"]
+
+
+class DNSSearchSuffix(BaseModel):
+    suffix: str
+    """The DNS search suffix to append when resolving short hostnames."""
+
+    description: Optional[str] = None
+    """A description of the DNS search suffix."""
 
 
 class ServiceModeV2(BaseModel):
@@ -58,6 +66,12 @@ class DefaultEditResponse(BaseModel):
     If the `dns_server` field of a fallback domain is not present, the client will
     fall back to a best guess of the default/system DNS resolvers unless this policy
     option is set to `true`.
+    """
+
+    dns_search_suffixes: Optional[List[DNSSearchSuffix]] = None
+    """List of DNS search suffixes to apply to clients.
+
+    Suffixes are evaluated in order. Use an empty array to clear.
     """
 
     enabled: Optional[bool] = None

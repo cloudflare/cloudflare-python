@@ -9,7 +9,7 @@ from ....._types import SequenceNotStr
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 from ..split_tunnel_include_param import SplitTunnelIncludeParam
 
-__all__ = ["CustomCreateParams", "ServiceModeV2", "VirtualNetworks"]
+__all__ = ["CustomCreateParams", "DNSSearchSuffix", "ServiceModeV2", "VirtualNetworks"]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -59,6 +59,12 @@ class CustomCreateParams(TypedDict, total=False):
     If the `dns_server` field of a fallback domain is not present, the client will
     fall back to a best guess of the default/system DNS resolvers unless this policy
     option is set to `true`.
+    """
+
+    dns_search_suffixes: Iterable[DNSSearchSuffix]
+    """List of DNS search suffixes to apply to clients.
+
+    Suffixes are evaluated in order. Use an empty array to clear.
     """
 
     enabled: bool
@@ -120,6 +126,14 @@ class CustomCreateParams(TypedDict, total=False):
 
     virtual_networks: Optional[VirtualNetworks]
     """Virtual network access settings for the device."""
+
+
+class DNSSearchSuffix(TypedDict, total=False):
+    suffix: Required[str]
+    """The DNS search suffix to append when resolving short hostnames."""
+
+    description: str
+    """A description of the DNS search suffix."""
 
 
 class ServiceModeV2(TypedDict, total=False):

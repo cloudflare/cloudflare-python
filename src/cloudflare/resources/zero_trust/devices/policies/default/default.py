@@ -105,6 +105,7 @@ class DefaultResource(SyncAPIResource):
         auto_connect: float | Omit = omit,
         captive_portal: float | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[default_edit_params.DNSSearchSuffix] | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
@@ -142,6 +143,9 @@ class DefaultResource(SyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -193,6 +197,7 @@ class DefaultResource(SyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,
@@ -302,6 +307,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         auto_connect: float | Omit = omit,
         captive_portal: float | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[default_edit_params.DNSSearchSuffix] | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
@@ -339,6 +345,9 @@ class AsyncDefaultResource(AsyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -390,6 +399,7 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,

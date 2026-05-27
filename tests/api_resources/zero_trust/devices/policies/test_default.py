@@ -34,6 +34,12 @@ class TestDefault:
             auto_connect=0,
             captive_portal=180,
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             exclude=[
                 {
                     "address": "192.0.2.0/24",
@@ -157,6 +163,12 @@ class TestAsyncDefault:
             auto_connect=0,
             captive_portal=180,
             disable_auto_fallback=True,
+            dns_search_suffixes=[
+                {
+                    "suffix": "internal.corp",
+                    "description": "Example internal domains",
+                }
+            ],
             exclude=[
                 {
                     "address": "192.0.2.0/24",

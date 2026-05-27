@@ -97,6 +97,7 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | Omit = omit,
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[custom_create_params.DNSSearchSuffix] | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -148,6 +149,9 @@ class CustomResource(SyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -205,6 +209,7 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -318,6 +323,7 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | Omit = omit,
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[custom_edit_params.DNSSearchSuffix] | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -361,6 +367,9 @@ class CustomResource(SyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -429,6 +438,7 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -547,6 +557,7 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | Omit = omit,
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[custom_create_params.DNSSearchSuffix] | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -598,6 +609,9 @@ class AsyncCustomResource(AsyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -655,6 +669,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -768,6 +783,7 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | Omit = omit,
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
+        dns_search_suffixes: Iterable[custom_edit_params.DNSSearchSuffix] | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -811,6 +827,9 @@ class AsyncCustomResource(AsyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
+
+          dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
+              order. Use an empty array to clear.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -879,6 +898,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "dns_search_suffixes": dns_search_suffixes,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
