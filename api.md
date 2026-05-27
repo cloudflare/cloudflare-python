@@ -231,6 +231,8 @@ from cloudflare.types import (
 
 # [AI](src/cloudflare/resources/ai/api.md)
 
+# [AIAudit](src/cloudflare/resources/ai_audit/api.md)
+
 # [AISearch](src/cloudflare/resources/aisearch/api.md)
 
 # [SecurityCenter](src/cloudflare/resources/security_center/api.md)
