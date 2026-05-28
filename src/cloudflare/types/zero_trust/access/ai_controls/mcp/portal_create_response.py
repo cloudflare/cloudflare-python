@@ -29,13 +29,6 @@ class ServerErrorDetails(BaseModel):
 class ServerUpdatedPrompt(BaseModel):
     name: str
 
-    description: Optional[str] = None
-    """Deprecated: use `portal_description` or `server_description` instead.
-
-    Populated for backward compatibility — portal-level wins when present, otherwise
-    falls back to server-level. Will be removed after the deprecation window.
-    """
-
     enabled: Optional[bool] = None
 
     portal_alias: Optional[str] = None
@@ -49,13 +42,6 @@ class ServerUpdatedPrompt(BaseModel):
 
 class ServerUpdatedTool(BaseModel):
     name: str
-
-    description: Optional[str] = None
-    """Deprecated: use `portal_description` or `server_description` instead.
-
-    Populated for backward compatibility — portal-level wins when present, otherwise
-    falls back to server-level. Will be removed after the deprecation window.
-    """
 
     enabled: Optional[bool] = None
 
