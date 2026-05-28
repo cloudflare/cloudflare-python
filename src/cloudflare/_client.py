@@ -87,6 +87,7 @@ if TYPE_CHECKING:
         ai_security,
         api_gateway,
         botnet_feed,
+        custom_csrs,
         diagnostics,
         memberships,
         page_shield,
@@ -197,6 +198,7 @@ if TYPE_CHECKING:
     from .resources.ai_security.ai_security import AISecurityResource, AsyncAISecurityResource
     from .resources.api_gateway.api_gateway import APIGatewayResource, AsyncAPIGatewayResource
     from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
+    from .resources.custom_csrs.custom_csrs import CustomCsrsResource, AsyncCustomCsrsResource
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
     from .resources.memberships.memberships import MembershipsResource, AsyncMembershipsResource
     from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
@@ -472,6 +474,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.custom_certificates import CustomCertificatesResource
 
         return CustomCertificatesResource(self)
+
+    @cached_property
+    def custom_csrs(self) -> CustomCsrsResource:
+        from .resources.custom_csrs import CustomCsrsResource
+
+        return CustomCsrsResource(self)
 
     @cached_property
     def custom_hostnames(self) -> CustomHostnamesResource:
@@ -1367,6 +1375,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCustomCertificatesResource(self)
 
     @cached_property
+    def custom_csrs(self) -> AsyncCustomCsrsResource:
+        from .resources.custom_csrs import AsyncCustomCsrsResource
+
+        return AsyncCustomCsrsResource(self)
+
+    @cached_property
     def custom_hostnames(self) -> AsyncCustomHostnamesResource:
         from .resources.custom_hostnames import AsyncCustomHostnamesResource
 
@@ -2193,6 +2207,12 @@ class CloudflareWithRawResponse:
         return CustomCertificatesResourceWithRawResponse(self._client.custom_certificates)
 
     @cached_property
+    def custom_csrs(self) -> custom_csrs.CustomCsrsResourceWithRawResponse:
+        from .resources.custom_csrs import CustomCsrsResourceWithRawResponse
+
+        return CustomCsrsResourceWithRawResponse(self._client.custom_csrs)
+
+    @cached_property
     def custom_hostnames(self) -> custom_hostnames.CustomHostnamesResourceWithRawResponse:
         from .resources.custom_hostnames import CustomHostnamesResourceWithRawResponse
 
@@ -2854,6 +2874,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.custom_certificates import AsyncCustomCertificatesResourceWithRawResponse
 
         return AsyncCustomCertificatesResourceWithRawResponse(self._client.custom_certificates)
+
+    @cached_property
+    def custom_csrs(self) -> custom_csrs.AsyncCustomCsrsResourceWithRawResponse:
+        from .resources.custom_csrs import AsyncCustomCsrsResourceWithRawResponse
+
+        return AsyncCustomCsrsResourceWithRawResponse(self._client.custom_csrs)
 
     @cached_property
     def custom_hostnames(self) -> custom_hostnames.AsyncCustomHostnamesResourceWithRawResponse:
@@ -3519,6 +3545,12 @@ class CloudflareWithStreamedResponse:
         return CustomCertificatesResourceWithStreamingResponse(self._client.custom_certificates)
 
     @cached_property
+    def custom_csrs(self) -> custom_csrs.CustomCsrsResourceWithStreamingResponse:
+        from .resources.custom_csrs import CustomCsrsResourceWithStreamingResponse
+
+        return CustomCsrsResourceWithStreamingResponse(self._client.custom_csrs)
+
+    @cached_property
     def custom_hostnames(self) -> custom_hostnames.CustomHostnamesResourceWithStreamingResponse:
         from .resources.custom_hostnames import CustomHostnamesResourceWithStreamingResponse
 
@@ -4182,6 +4214,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.custom_certificates import AsyncCustomCertificatesResourceWithStreamingResponse
 
         return AsyncCustomCertificatesResourceWithStreamingResponse(self._client.custom_certificates)
+
+    @cached_property
+    def custom_csrs(self) -> custom_csrs.AsyncCustomCsrsResourceWithStreamingResponse:
+        from .resources.custom_csrs import AsyncCustomCsrsResourceWithStreamingResponse
+
+        return AsyncCustomCsrsResourceWithStreamingResponse(self._client.custom_csrs)
 
     @cached_property
     def custom_hostnames(self) -> custom_hostnames.AsyncCustomHostnamesResourceWithStreamingResponse:

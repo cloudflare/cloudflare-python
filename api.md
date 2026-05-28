@@ -59,6 +59,8 @@ from cloudflare.types import (
 
 # [CustomCertificates](src/cloudflare/resources/custom_certificates/api.md)
 
+# [CustomCsrs](src/cloudflare/resources/custom_csrs/api.md)
+
 # [CustomHostnames](src/cloudflare/resources/custom_hostnames/api.md)
 
 # [CustomNameservers](src/cloudflare/resources/custom_nameservers/api.md)
