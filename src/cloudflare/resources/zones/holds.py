@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -58,7 +58,7 @@ class HoldsResource(SyncAPIResource):
     ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
-        with this zone's hostname.
+        with this zone's hostname. Zone holds cannot be enabled on CDN-only zones.
 
         Args:
           zone_id: Identifier.
@@ -106,6 +106,9 @@ class HoldsResource(SyncAPIResource):
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
+        Existing zone holds can be removed from CDN-only zones when `hold_after` is not
+        provided. Active holds are automatically disabled when a zone transitions to
+        CDN-only mode.
 
         Args:
           zone_id: Identifier.
@@ -113,6 +116,7 @@ class HoldsResource(SyncAPIResource):
           hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
               automatically re-enabled by the system at the time specified in this
               RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
+              `hold_after` cannot be provided for CDN-only zones.
 
           extra_headers: Send extra headers
 
@@ -141,7 +145,7 @@ class HoldsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | Omit = omit,
+        hold_after: Optional[str] | Omit = omit,
         include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -153,6 +157,9 @@ class HoldsResource(SyncAPIResource):
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
+        Existing zone holds can be removed from CDN-only zones by setting `hold_after`
+        to `null`. Other zone hold updates cannot be made on CDN-only zones. Active
+        holds are automatically disabled when a zone transitions to CDN-only mode.
 
         Args:
           zone_id: Identifier.
@@ -161,7 +168,7 @@ class HoldsResource(SyncAPIResource):
               disabled, then automatically re-enabled by the system at the time specified in
               this RFC3339-formatted timestamp. A past-dated `hold_after` value will have no
               effect on an existing, enabled hold. Providing an empty string will set its
-              value to the current time.
+              value to the current time. Providing `null` will disable the hold indefinitely.
 
           include_subdomains: If `true`, the zone hold will extend to block any subdomain of the given zone,
               as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with
@@ -272,7 +279,7 @@ class AsyncHoldsResource(AsyncAPIResource):
     ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
-        with this zone's hostname.
+        with this zone's hostname. Zone holds cannot be enabled on CDN-only zones.
 
         Args:
           zone_id: Identifier.
@@ -322,6 +329,9 @@ class AsyncHoldsResource(AsyncAPIResource):
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
+        Existing zone holds can be removed from CDN-only zones when `hold_after` is not
+        provided. Active holds are automatically disabled when a zone transitions to
+        CDN-only mode.
 
         Args:
           zone_id: Identifier.
@@ -329,6 +339,7 @@ class AsyncHoldsResource(AsyncAPIResource):
           hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
               automatically re-enabled by the system at the time specified in this
               RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
+              `hold_after` cannot be provided for CDN-only zones.
 
           extra_headers: Send extra headers
 
@@ -357,7 +368,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | Omit = omit,
+        hold_after: Optional[str] | Omit = omit,
         include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,6 +380,9 @@ class AsyncHoldsResource(AsyncAPIResource):
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
+        Existing zone holds can be removed from CDN-only zones by setting `hold_after`
+        to `null`. Other zone hold updates cannot be made on CDN-only zones. Active
+        holds are automatically disabled when a zone transitions to CDN-only mode.
 
         Args:
           zone_id: Identifier.
@@ -377,7 +391,7 @@ class AsyncHoldsResource(AsyncAPIResource):
               disabled, then automatically re-enabled by the system at the time specified in
               this RFC3339-formatted timestamp. A past-dated `hold_after` value will have no
               effect on an existing, enabled hold. Providing an empty string will set its
-              value to the current time.
+              value to the current time. Providing `null` will disable the hold indefinitely.
 
           include_subdomains: If `true`, the zone hold will extend to block any subdomain of the given zone,
               as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with

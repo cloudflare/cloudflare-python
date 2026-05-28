@@ -16,4 +16,5 @@ class HoldDeleteParams(TypedDict, total=False):
     If `hold_after` is provided, the hold will be temporarily disabled, then
     automatically re-enabled by the system at the time specified in this
     RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
+    `hold_after` cannot be provided for CDN-only zones.
     """
