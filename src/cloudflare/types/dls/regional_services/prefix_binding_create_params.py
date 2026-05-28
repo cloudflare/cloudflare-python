@@ -8,7 +8,8 @@ __all__ = ["PrefixBindingCreateParams"]
 
 
 class PrefixBindingCreateParams(TypedDict, total=False):
-    account_id: Required[int]
+    account_id: Required[str]
+    """Identifier of a Cloudflare account."""
 
     cidr: Required[str]
     """IP prefix in CIDR notation to bind."""

@@ -8,7 +8,8 @@ __all__ = ["PrefixBindingEditParams"]
 
 
 class PrefixBindingEditParams(TypedDict, total=False):
-    account_id: Required[int]
+    account_id: Required[str]
+    """Identifier of a Cloudflare account."""
 
     region_key: Required[str]
     """New region key to assign (e.g., "us", "eu", "cfcanary")."""

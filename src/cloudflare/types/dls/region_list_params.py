@@ -8,7 +8,8 @@ __all__ = ["RegionListParams"]
 
 
 class RegionListParams(TypedDict, total=False):
-    account_id: Required[int]
+    account_id: Required[str]
+    """Identifier of a Cloudflare account."""
 
     cursor: str
     """Opaque token for cursor-based pagination.

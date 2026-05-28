@@ -56,7 +56,7 @@ class PrefixBindingsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cidr: str,
         prefix_id: str,
         region_key: str,
@@ -71,6 +71,8 @@ class PrefixBindingsResource(SyncAPIResource):
         Create a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cidr: IP prefix in CIDR notation to bind.
 
           prefix_id: The ID of the parent IP prefix that contains the CIDR.
@@ -85,6 +87,8 @@ class PrefixBindingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             path_template("/accounts/{account_id}/dls/regional_services/prefix_bindings", account_id=account_id),
             body=maybe_transform(
@@ -108,7 +112,7 @@ class PrefixBindingsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -122,6 +126,8 @@ class PrefixBindingsResource(SyncAPIResource):
         List DLS prefix bindings for an account
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cursor: Opaque token for cursor-based pagination. Omit for the first page. Pass the
               value from a previous response to fetch the next page.
 
@@ -133,6 +139,8 @@ class PrefixBindingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dls/regional_services/prefix_bindings", account_id=account_id),
             page=SyncCursorPagination[PrefixBindingListResponse],
@@ -156,7 +164,7 @@ class PrefixBindingsResource(SyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,6 +176,8 @@ class PrefixBindingsResource(SyncAPIResource):
         Delete a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           extra_headers: Send extra headers
@@ -178,6 +188,8 @@ class PrefixBindingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return self._delete(
@@ -196,7 +208,7 @@ class PrefixBindingsResource(SyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         region_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -209,6 +221,8 @@ class PrefixBindingsResource(SyncAPIResource):
         Update a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           region_key: New region key to assign (e.g., "us", "eu", "cfcanary").
@@ -221,6 +235,8 @@ class PrefixBindingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return self._patch(
@@ -244,7 +260,7 @@ class PrefixBindingsResource(SyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,6 +272,8 @@ class PrefixBindingsResource(SyncAPIResource):
         Get a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           extra_headers: Send extra headers
@@ -266,6 +284,8 @@ class PrefixBindingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return self._get(
@@ -308,7 +328,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cidr: str,
         prefix_id: str,
         region_key: str,
@@ -323,6 +343,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         Create a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cidr: IP prefix in CIDR notation to bind.
 
           prefix_id: The ID of the parent IP prefix that contains the CIDR.
@@ -337,6 +359,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             path_template("/accounts/{account_id}/dls/regional_services/prefix_bindings", account_id=account_id),
             body=await async_maybe_transform(
@@ -360,7 +384,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -374,6 +398,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         List DLS prefix bindings for an account
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cursor: Opaque token for cursor-based pagination. Omit for the first page. Pass the
               value from a previous response to fetch the next page.
 
@@ -385,6 +411,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dls/regional_services/prefix_bindings", account_id=account_id),
             page=AsyncCursorPagination[PrefixBindingListResponse],
@@ -408,7 +436,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -420,6 +448,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         Delete a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           extra_headers: Send extra headers
@@ -430,6 +460,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return await self._delete(
@@ -448,7 +480,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         region_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -461,6 +493,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         Update a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           region_key: New region key to assign (e.g., "us", "eu", "cfcanary").
@@ -473,6 +507,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return await self._patch(
@@ -498,7 +534,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         self,
         binding_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -510,6 +546,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         Get a DLS prefix binding
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           binding_id: Unique identifier for the prefix binding.
 
           extra_headers: Send extra headers
@@ -520,6 +558,8 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return await self._get(

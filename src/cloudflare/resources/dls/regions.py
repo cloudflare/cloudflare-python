@@ -50,7 +50,7 @@ class RegionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         type: Literal["managed", "custom"] | Omit = omit,
@@ -65,6 +65,8 @@ class RegionsResource(SyncAPIResource):
         List DLS regions for an account
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cursor: Opaque token for cursor-based pagination. Omit for the first page. Pass the
               value from a previous response to fetch the next page.
 
@@ -78,6 +80,8 @@ class RegionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dls/regions", account_id=account_id),
             page=SyncCursorPagination[RegionListResponse],
@@ -102,7 +106,7 @@ class RegionsResource(SyncAPIResource):
         self,
         region_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -114,6 +118,8 @@ class RegionsResource(SyncAPIResource):
         Get a DLS region
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           region_id: UUID of the region (custom or managed) or region_key of a managed region.
 
           extra_headers: Send extra headers
@@ -124,6 +130,8 @@ class RegionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not region_id:
             raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         return self._get(
@@ -162,7 +170,7 @@ class AsyncRegionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: int,
+        account_id: str,
         cursor: str | Omit = omit,
         per_page: int | Omit = omit,
         type: Literal["managed", "custom"] | Omit = omit,
@@ -177,6 +185,8 @@ class AsyncRegionsResource(AsyncAPIResource):
         List DLS regions for an account
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           cursor: Opaque token for cursor-based pagination. Omit for the first page. Pass the
               value from a previous response to fetch the next page.
 
@@ -190,6 +200,8 @@ class AsyncRegionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dls/regions", account_id=account_id),
             page=AsyncCursorPagination[RegionListResponse],
@@ -214,7 +226,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         self,
         region_id: str,
         *,
-        account_id: int,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +238,8 @@ class AsyncRegionsResource(AsyncAPIResource):
         Get a DLS region
 
         Args:
+          account_id: Identifier of a Cloudflare account.
+
           region_id: UUID of the region (custom or managed) or region_key of a managed region.
 
           extra_headers: Send extra headers
@@ -236,6 +250,8 @@ class AsyncRegionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not region_id:
             raise ValueError(f"Expected a non-empty value for `region_id` but received {region_id!r}")
         return await self._get(
