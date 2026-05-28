@@ -353,3 +353,16 @@ Methods:
 
 - <code title="post /accounts/{account_id}/workers/observability/queries">client.workers.observability.queries.<a href="./src/cloudflare/resources/workers/observability/queries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/query_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/query_create_response.py">QueryCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/workers/observability/queries">client.workers.observability.queries.<a href="./src/cloudflare/resources/workers/observability/queries.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/query_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/query_list_response.py">SyncSinglePage[QueryListResponse]</a></code>
+
+### SharedQueries
+
+Types:
+
+```python
+from cloudflare.types.workers.observability import SharedQueryCreateResponse, SharedQueryGetResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/shared/query">client.workers.observability.shared_queries.<a href="./src/cloudflare/resources/workers/observability/shared_queries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/shared_query_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/shared_query_create_response.py">SharedQueryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/observability/shared/query/{id}">client.workers.observability.shared_queries.<a href="./src/cloudflare/resources/workers/observability/shared_queries.py">get</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/shared_query_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/shared_query_get_response.py">SharedQueryGetResponse</a></code>

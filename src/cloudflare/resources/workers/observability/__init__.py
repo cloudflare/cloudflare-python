@@ -32,6 +32,14 @@ from .observability import (
     ObservabilityResourceWithStreamingResponse,
     AsyncObservabilityResourceWithStreamingResponse,
 )
+from .shared_queries import (
+    SharedQueriesResource,
+    AsyncSharedQueriesResource,
+    SharedQueriesResourceWithRawResponse,
+    AsyncSharedQueriesResourceWithRawResponse,
+    SharedQueriesResourceWithStreamingResponse,
+    AsyncSharedQueriesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "TelemetryResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncQueriesResourceWithRawResponse",
     "QueriesResourceWithStreamingResponse",
     "AsyncQueriesResourceWithStreamingResponse",
+    "SharedQueriesResource",
+    "AsyncSharedQueriesResource",
+    "SharedQueriesResourceWithRawResponse",
+    "AsyncSharedQueriesResourceWithRawResponse",
+    "SharedQueriesResourceWithStreamingResponse",
+    "AsyncSharedQueriesResourceWithStreamingResponse",
     "ObservabilityResource",
     "AsyncObservabilityResource",
     "ObservabilityResourceWithRawResponse",
