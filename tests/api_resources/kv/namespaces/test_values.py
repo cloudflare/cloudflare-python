@@ -110,6 +110,40 @@ class TestValues:
             )
 
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_update_uses_multipart_form_data(self, client: Cloudflare, respx_mock: MockRouter) -> None:
+        """Test that values.update sends data as multipart/form-data, not JSON.
+
+        This is a regression test for https://github.com/cloudflare/cloudflare-python/issues/2519
+        """
+        respx_mock.put(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"success": True, "result": {}}))
+
+        client.kv.namespaces.values.update(
+            key_name="My-Key",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
+            value="Some Value",
+        )
+
+        # Verify the request was made
+        assert respx_mock.calls.call_count == 1
+        request: httpx.Request = cast(Any, respx_mock.calls[0]).request
+
+        # Verify Content-Type is multipart/form-data (with boundary)
+        content_type = request.headers.get("content-type", "")
+        assert content_type.startswith("multipart/form-data"), (
+            f"Expected Content-Type to start with 'multipart/form-data', got '{content_type}'"
+        )
+
+        # Verify the body contains separate form fields for value and metadata
+        body = request.content.decode("utf-8")
+        assert "Some Value" in body, "Value should be in the multipart body"
+        assert "someMetadataKey" in body, "Metadata should be in the multipart body"
+
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         value = client.kv.namespaces.values.delete(
             key_name="My-Key",
@@ -340,6 +374,40 @@ class TestAsyncValues:
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 value="Some Value",
             )
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_update_uses_multipart_form_data(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
+        """Test that values.update sends data as multipart/form-data, not JSON.
+
+        This is a regression test for https://github.com/cloudflare/cloudflare-python/issues/2519
+        """
+        respx_mock.put(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"success": True, "result": {}}))
+
+        await async_client.kv.namespaces.values.update(
+            key_name="My-Key",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
+            value="Some Value",
+        )
+
+        # Verify the request was made
+        assert respx_mock.calls.call_count == 1
+        request: httpx.Request = cast(Any, respx_mock.calls[0]).request
+
+        # Verify Content-Type is multipart/form-data (with boundary)
+        content_type = request.headers.get("content-type", "")
+        assert content_type.startswith("multipart/form-data"), (
+            f"Expected Content-Type to start with 'multipart/form-data', got '{content_type}'"
+        )
+
+        # Verify the body contains separate form fields for value and metadata
+        body = request.content.decode("utf-8")
+        assert "Some Value" in body, "Value should be in the multipart body"
+        assert "someMetadataKey" in body, "Metadata should be in the multipart body"
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:

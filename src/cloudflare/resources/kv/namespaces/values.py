@@ -112,9 +112,10 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        body_value: Union[bytes, FileTypes] = value.encode("utf-8") if isinstance(value, str) else value
         body = deepcopy_minimal(
             {
-                "value": value,
+                "value": body_value,
                 "metadata": metadata,
             }
         )
@@ -344,9 +345,10 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        body_value: Union[bytes, FileTypes] = value.encode("utf-8") if isinstance(value, str) else value
         body = deepcopy_minimal(
             {
-                "value": value,
+                "value": body_value,
                 "metadata": metadata,
             }
         )
