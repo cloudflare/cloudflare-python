@@ -40,6 +40,14 @@ from .trusted_domains import (
     TrustedDomainsResourceWithStreamingResponse,
     AsyncTrustedDomainsResourceWithStreamingResponse,
 )
+from .url_ignore_patterns import (
+    URLIgnorePatternsResource,
+    AsyncURLIgnorePatternsResource,
+    URLIgnorePatternsResourceWithRawResponse,
+    AsyncURLIgnorePatternsResourceWithRawResponse,
+    URLIgnorePatternsResourceWithStreamingResponse,
+    AsyncURLIgnorePatternsResourceWithStreamingResponse,
+)
 from .impersonation_registry import (
     ImpersonationRegistryResource,
     AsyncImpersonationRegistryResource,
@@ -47,6 +55,14 @@ from .impersonation_registry import (
     AsyncImpersonationRegistryResourceWithRawResponse,
     ImpersonationRegistryResourceWithStreamingResponse,
     AsyncImpersonationRegistryResourceWithStreamingResponse,
+)
+from .sending_domain_restrictions import (
+    SendingDomainRestrictionsResource,
+    AsyncSendingDomainRestrictionsResource,
+    SendingDomainRestrictionsResourceWithRawResponse,
+    AsyncSendingDomainRestrictionsResourceWithRawResponse,
+    SendingDomainRestrictionsResourceWithStreamingResponse,
+    AsyncSendingDomainRestrictionsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -74,12 +90,24 @@ __all__ = [
     "AsyncImpersonationRegistryResourceWithRawResponse",
     "ImpersonationRegistryResourceWithStreamingResponse",
     "AsyncImpersonationRegistryResourceWithStreamingResponse",
+    "SendingDomainRestrictionsResource",
+    "AsyncSendingDomainRestrictionsResource",
+    "SendingDomainRestrictionsResourceWithRawResponse",
+    "AsyncSendingDomainRestrictionsResourceWithRawResponse",
+    "SendingDomainRestrictionsResourceWithStreamingResponse",
+    "AsyncSendingDomainRestrictionsResourceWithStreamingResponse",
     "TrustedDomainsResource",
     "AsyncTrustedDomainsResource",
     "TrustedDomainsResourceWithRawResponse",
     "AsyncTrustedDomainsResourceWithRawResponse",
     "TrustedDomainsResourceWithStreamingResponse",
     "AsyncTrustedDomainsResourceWithStreamingResponse",
+    "URLIgnorePatternsResource",
+    "AsyncURLIgnorePatternsResource",
+    "URLIgnorePatternsResourceWithRawResponse",
+    "AsyncURLIgnorePatternsResourceWithRawResponse",
+    "URLIgnorePatternsResourceWithStreamingResponse",
+    "AsyncURLIgnorePatternsResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",

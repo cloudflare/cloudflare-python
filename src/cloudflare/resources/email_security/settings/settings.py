@@ -36,6 +36,14 @@ from .trusted_domains import (
     TrustedDomainsResourceWithStreamingResponse,
     AsyncTrustedDomainsResourceWithStreamingResponse,
 )
+from .url_ignore_patterns import (
+    URLIgnorePatternsResource,
+    AsyncURLIgnorePatternsResource,
+    URLIgnorePatternsResourceWithRawResponse,
+    AsyncURLIgnorePatternsResourceWithRawResponse,
+    URLIgnorePatternsResourceWithStreamingResponse,
+    AsyncURLIgnorePatternsResourceWithStreamingResponse,
+)
 from .impersonation_registry import (
     ImpersonationRegistryResource,
     AsyncImpersonationRegistryResource,
@@ -43,6 +51,14 @@ from .impersonation_registry import (
     AsyncImpersonationRegistryResourceWithRawResponse,
     ImpersonationRegistryResourceWithStreamingResponse,
     AsyncImpersonationRegistryResourceWithStreamingResponse,
+)
+from .sending_domain_restrictions import (
+    SendingDomainRestrictionsResource,
+    AsyncSendingDomainRestrictionsResource,
+    SendingDomainRestrictionsResourceWithRawResponse,
+    AsyncSendingDomainRestrictionsResourceWithRawResponse,
+    SendingDomainRestrictionsResourceWithStreamingResponse,
+    AsyncSendingDomainRestrictionsResourceWithStreamingResponse,
 )
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
@@ -66,8 +82,16 @@ class SettingsResource(SyncAPIResource):
         return ImpersonationRegistryResource(self._client)
 
     @cached_property
+    def sending_domain_restrictions(self) -> SendingDomainRestrictionsResource:
+        return SendingDomainRestrictionsResource(self._client)
+
+    @cached_property
     def trusted_domains(self) -> TrustedDomainsResource:
         return TrustedDomainsResource(self._client)
+
+    @cached_property
+    def url_ignore_patterns(self) -> URLIgnorePatternsResource:
+        return URLIgnorePatternsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
@@ -107,8 +131,16 @@ class AsyncSettingsResource(AsyncAPIResource):
         return AsyncImpersonationRegistryResource(self._client)
 
     @cached_property
+    def sending_domain_restrictions(self) -> AsyncSendingDomainRestrictionsResource:
+        return AsyncSendingDomainRestrictionsResource(self._client)
+
+    @cached_property
     def trusted_domains(self) -> AsyncTrustedDomainsResource:
         return AsyncTrustedDomainsResource(self._client)
+
+    @cached_property
+    def url_ignore_patterns(self) -> AsyncURLIgnorePatternsResource:
+        return AsyncURLIgnorePatternsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
@@ -151,8 +183,16 @@ class SettingsResourceWithRawResponse:
         return ImpersonationRegistryResourceWithRawResponse(self._settings.impersonation_registry)
 
     @cached_property
+    def sending_domain_restrictions(self) -> SendingDomainRestrictionsResourceWithRawResponse:
+        return SendingDomainRestrictionsResourceWithRawResponse(self._settings.sending_domain_restrictions)
+
+    @cached_property
     def trusted_domains(self) -> TrustedDomainsResourceWithRawResponse:
         return TrustedDomainsResourceWithRawResponse(self._settings.trusted_domains)
+
+    @cached_property
+    def url_ignore_patterns(self) -> URLIgnorePatternsResourceWithRawResponse:
+        return URLIgnorePatternsResourceWithRawResponse(self._settings.url_ignore_patterns)
 
 
 class AsyncSettingsResourceWithRawResponse:
@@ -176,8 +216,16 @@ class AsyncSettingsResourceWithRawResponse:
         return AsyncImpersonationRegistryResourceWithRawResponse(self._settings.impersonation_registry)
 
     @cached_property
+    def sending_domain_restrictions(self) -> AsyncSendingDomainRestrictionsResourceWithRawResponse:
+        return AsyncSendingDomainRestrictionsResourceWithRawResponse(self._settings.sending_domain_restrictions)
+
+    @cached_property
     def trusted_domains(self) -> AsyncTrustedDomainsResourceWithRawResponse:
         return AsyncTrustedDomainsResourceWithRawResponse(self._settings.trusted_domains)
+
+    @cached_property
+    def url_ignore_patterns(self) -> AsyncURLIgnorePatternsResourceWithRawResponse:
+        return AsyncURLIgnorePatternsResourceWithRawResponse(self._settings.url_ignore_patterns)
 
 
 class SettingsResourceWithStreamingResponse:
@@ -201,8 +249,16 @@ class SettingsResourceWithStreamingResponse:
         return ImpersonationRegistryResourceWithStreamingResponse(self._settings.impersonation_registry)
 
     @cached_property
+    def sending_domain_restrictions(self) -> SendingDomainRestrictionsResourceWithStreamingResponse:
+        return SendingDomainRestrictionsResourceWithStreamingResponse(self._settings.sending_domain_restrictions)
+
+    @cached_property
     def trusted_domains(self) -> TrustedDomainsResourceWithStreamingResponse:
         return TrustedDomainsResourceWithStreamingResponse(self._settings.trusted_domains)
+
+    @cached_property
+    def url_ignore_patterns(self) -> URLIgnorePatternsResourceWithStreamingResponse:
+        return URLIgnorePatternsResourceWithStreamingResponse(self._settings.url_ignore_patterns)
 
 
 class AsyncSettingsResourceWithStreamingResponse:
@@ -226,5 +282,13 @@ class AsyncSettingsResourceWithStreamingResponse:
         return AsyncImpersonationRegistryResourceWithStreamingResponse(self._settings.impersonation_registry)
 
     @cached_property
+    def sending_domain_restrictions(self) -> AsyncSendingDomainRestrictionsResourceWithStreamingResponse:
+        return AsyncSendingDomainRestrictionsResourceWithStreamingResponse(self._settings.sending_domain_restrictions)
+
+    @cached_property
     def trusted_domains(self) -> AsyncTrustedDomainsResourceWithStreamingResponse:
         return AsyncTrustedDomainsResourceWithStreamingResponse(self._settings.trusted_domains)
+
+    @cached_property
+    def url_ignore_patterns(self) -> AsyncURLIgnorePatternsResourceWithStreamingResponse:
+        return AsyncURLIgnorePatternsResourceWithStreamingResponse(self._settings.url_ignore_patterns)

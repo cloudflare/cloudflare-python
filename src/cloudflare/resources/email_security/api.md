@@ -195,6 +195,28 @@ Methods:
 - <code title="patch /accounts/{account_id}/email-security/settings/impersonation_registry/{impersonation_registry_id}">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">edit</a>(impersonation_registry_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/impersonation_registry_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_edit_response.py">Optional[ImpersonationRegistryEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/impersonation_registry/{impersonation_registry_id}">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">get</a>(impersonation_registry_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_get_response.py">Optional[ImpersonationRegistryGetResponse]</a></code>
 
+### SendingDomainRestrictions
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    SendingDomainRestrictionCreateResponse,
+    SendingDomainRestrictionListResponse,
+    SendingDomainRestrictionDeleteResponse,
+    SendingDomainRestrictionEditResponse,
+    SendingDomainRestrictionGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/sending_domain_restrictions">client.email_security.settings.sending_domain_restrictions.<a href="./src/cloudflare/resources/email_security/settings/sending_domain_restrictions.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/sending_domain_restriction_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/sending_domain_restriction_create_response.py">Optional[SendingDomainRestrictionCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/sending_domain_restrictions">client.email_security.settings.sending_domain_restrictions.<a href="./src/cloudflare/resources/email_security/settings/sending_domain_restrictions.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/sending_domain_restriction_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/sending_domain_restriction_list_response.py">SyncV4PagePaginationArray[SendingDomainRestrictionListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/sending_domain_restrictions/{sending_domain_restriction_id}">client.email_security.settings.sending_domain_restrictions.<a href="./src/cloudflare/resources/email_security/settings/sending_domain_restrictions.py">delete</a>(sending_domain_restriction_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/sending_domain_restriction_delete_response.py">Optional[SendingDomainRestrictionDeleteResponse]</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/sending_domain_restrictions/{sending_domain_restriction_id}">client.email_security.settings.sending_domain_restrictions.<a href="./src/cloudflare/resources/email_security/settings/sending_domain_restrictions.py">edit</a>(sending_domain_restriction_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/sending_domain_restriction_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/sending_domain_restriction_edit_response.py">Optional[SendingDomainRestrictionEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/sending_domain_restrictions/{sending_domain_restriction_id}">client.email_security.settings.sending_domain_restrictions.<a href="./src/cloudflare/resources/email_security/settings/sending_domain_restrictions.py">get</a>(sending_domain_restriction_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/sending_domain_restriction_get_response.py">Optional[SendingDomainRestrictionGetResponse]</a></code>
+
 ### TrustedDomains
 
 Types:
@@ -216,6 +238,28 @@ Methods:
 - <code title="delete /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">delete</a>(trusted_domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_delete_response.py">Optional[TrustedDomainDeleteResponse]</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">edit</a>(trusted_domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_edit_response.py">Optional[TrustedDomainEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">get</a>(trusted_domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_get_response.py">Optional[TrustedDomainGetResponse]</a></code>
+
+### URLIgnorePatterns
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    URLIgnorePatternCreateResponse,
+    URLIgnorePatternListResponse,
+    URLIgnorePatternDeleteResponse,
+    URLIgnorePatternEditResponse,
+    URLIgnorePatternGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/url_ignore_patterns">client.email_security.settings.url_ignore_patterns.<a href="./src/cloudflare/resources/email_security/settings/url_ignore_patterns.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/url_ignore_pattern_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/url_ignore_pattern_create_response.py">Optional[URLIgnorePatternCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/url_ignore_patterns">client.email_security.settings.url_ignore_patterns.<a href="./src/cloudflare/resources/email_security/settings/url_ignore_patterns.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/url_ignore_pattern_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/url_ignore_pattern_list_response.py">SyncV4PagePaginationArray[URLIgnorePatternListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/url_ignore_patterns/{pattern_id}">client.email_security.settings.url_ignore_patterns.<a href="./src/cloudflare/resources/email_security/settings/url_ignore_patterns.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/url_ignore_pattern_delete_response.py">Optional[URLIgnorePatternDeleteResponse]</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/url_ignore_patterns/{pattern_id}">client.email_security.settings.url_ignore_patterns.<a href="./src/cloudflare/resources/email_security/settings/url_ignore_patterns.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/url_ignore_pattern_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/url_ignore_pattern_edit_response.py">Optional[URLIgnorePatternEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/url_ignore_patterns/{pattern_id}">client.email_security.settings.url_ignore_patterns.<a href="./src/cloudflare/resources/email_security/settings/url_ignore_patterns.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/url_ignore_pattern_get_response.py">Optional[URLIgnorePatternGetResponse]</a></code>
 
 ## Submissions
 

@@ -32,8 +32,16 @@ from .trusted_domain_edit_response import TrustedDomainEditResponse as TrustedDo
 from .trusted_domain_list_response import TrustedDomainListResponse as TrustedDomainListResponse
 from .trusted_domain_create_response import TrustedDomainCreateResponse as TrustedDomainCreateResponse
 from .trusted_domain_delete_response import TrustedDomainDeleteResponse as TrustedDomainDeleteResponse
+from .url_ignore_pattern_edit_params import URLIgnorePatternEditParams as URLIgnorePatternEditParams
+from .url_ignore_pattern_list_params import URLIgnorePatternListParams as URLIgnorePatternListParams
+from .url_ignore_pattern_get_response import URLIgnorePatternGetResponse as URLIgnorePatternGetResponse
+from .url_ignore_pattern_create_params import URLIgnorePatternCreateParams as URLIgnorePatternCreateParams
+from .url_ignore_pattern_edit_response import URLIgnorePatternEditResponse as URLIgnorePatternEditResponse
+from .url_ignore_pattern_list_response import URLIgnorePatternListResponse as URLIgnorePatternListResponse
 from .impersonation_registry_edit_params import ImpersonationRegistryEditParams as ImpersonationRegistryEditParams
 from .impersonation_registry_list_params import ImpersonationRegistryListParams as ImpersonationRegistryListParams
+from .url_ignore_pattern_create_response import URLIgnorePatternCreateResponse as URLIgnorePatternCreateResponse
+from .url_ignore_pattern_delete_response import URLIgnorePatternDeleteResponse as URLIgnorePatternDeleteResponse
 from .impersonation_registry_get_response import ImpersonationRegistryGetResponse as ImpersonationRegistryGetResponse
 from .impersonation_registry_create_params import ImpersonationRegistryCreateParams as ImpersonationRegistryCreateParams
 from .impersonation_registry_edit_response import ImpersonationRegistryEditResponse as ImpersonationRegistryEditResponse
@@ -43,4 +51,28 @@ from .impersonation_registry_create_response import (
 )
 from .impersonation_registry_delete_response import (
     ImpersonationRegistryDeleteResponse as ImpersonationRegistryDeleteResponse,
+)
+from .sending_domain_restriction_edit_params import (
+    SendingDomainRestrictionEditParams as SendingDomainRestrictionEditParams,
+)
+from .sending_domain_restriction_list_params import (
+    SendingDomainRestrictionListParams as SendingDomainRestrictionListParams,
+)
+from .sending_domain_restriction_get_response import (
+    SendingDomainRestrictionGetResponse as SendingDomainRestrictionGetResponse,
+)
+from .sending_domain_restriction_create_params import (
+    SendingDomainRestrictionCreateParams as SendingDomainRestrictionCreateParams,
+)
+from .sending_domain_restriction_edit_response import (
+    SendingDomainRestrictionEditResponse as SendingDomainRestrictionEditResponse,
+)
+from .sending_domain_restriction_list_response import (
+    SendingDomainRestrictionListResponse as SendingDomainRestrictionListResponse,
+)
+from .sending_domain_restriction_create_response import (
+    SendingDomainRestrictionCreateResponse as SendingDomainRestrictionCreateResponse,
+)
+from .sending_domain_restriction_delete_response import (
+    SendingDomainRestrictionDeleteResponse as SendingDomainRestrictionDeleteResponse,
 )
