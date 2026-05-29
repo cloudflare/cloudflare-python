@@ -10,6 +10,7 @@ from .dataset_creation import DatasetCreation as DatasetCreation
 from .context_awareness import ContextAwareness as ContextAwareness
 from .entry_get_response import EntryGetResponse as EntryGetResponse
 from .skip_configuration import SkipConfiguration as SkipConfiguration
+from .custom_prompt_topic import CustomPromptTopic as CustomPromptTopic
 from .entry_create_params import EntryCreateParams as EntryCreateParams
 from .entry_list_response import EntryListResponse as EntryListResponse
 from .entry_update_params import EntryUpdateParams as EntryUpdateParams
@@ -28,3 +29,5 @@ from .skip_configuration_param import SkipConfigurationParam as SkipConfiguratio
 from .pattern_validate_response import PatternValidateResponse as PatternValidateResponse
 from .payload_log_update_params import PayloadLogUpdateParams as PayloadLogUpdateParams
 from .payload_log_update_response import PayloadLogUpdateResponse as PayloadLogUpdateResponse
+from .custom_prompt_topic_create_params import CustomPromptTopicCreateParams as CustomPromptTopicCreateParams
+from .custom_prompt_topic_update_params import CustomPromptTopicUpdateParams as CustomPromptTopicUpdateParams

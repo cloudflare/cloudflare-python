@@ -72,8 +72,22 @@ from .payload_logs import (
     PayloadLogsResourceWithStreamingResponse,
     AsyncPayloadLogsResourceWithStreamingResponse,
 )
+from .custom_prompt_topics import (
+    CustomPromptTopicsResource,
+    AsyncCustomPromptTopicsResource,
+    CustomPromptTopicsResourceWithRawResponse,
+    AsyncCustomPromptTopicsResourceWithRawResponse,
+    CustomPromptTopicsResourceWithStreamingResponse,
+    AsyncCustomPromptTopicsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "CustomPromptTopicsResource",
+    "AsyncCustomPromptTopicsResource",
+    "CustomPromptTopicsResourceWithRawResponse",
+    "AsyncCustomPromptTopicsResourceWithRawResponse",
+    "CustomPromptTopicsResourceWithStreamingResponse",
+    "AsyncCustomPromptTopicsResourceWithStreamingResponse",
     "DatasetsResource",
     "AsyncDatasetsResource",
     "DatasetsResourceWithRawResponse",

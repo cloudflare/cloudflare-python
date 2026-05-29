@@ -1336,6 +1336,22 @@ Methods:
 
 ## DLP
 
+### CustomPromptTopics
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import CustomPromptTopic
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/custom_prompt_topics">client.zero_trust.dlp.custom_prompt_topics.<a href="./src/cloudflare/resources/zero_trust/dlp/custom_prompt_topics.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/custom_prompt_topic_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/custom_prompt_topic.py">Optional[CustomPromptTopic]</a></code>
+- <code title="put /accounts/{account_id}/dlp/custom_prompt_topics/{entry_id}">client.zero_trust.dlp.custom_prompt_topics.<a href="./src/cloudflare/resources/zero_trust/dlp/custom_prompt_topics.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/custom_prompt_topic_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/custom_prompt_topic.py">Optional[CustomPromptTopic]</a></code>
+- <code title="get /accounts/{account_id}/dlp/custom_prompt_topics">client.zero_trust.dlp.custom_prompt_topics.<a href="./src/cloudflare/resources/zero_trust/dlp/custom_prompt_topics.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/custom_prompt_topic.py">SyncSinglePage[CustomPromptTopic]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/custom_prompt_topics/{entry_id}">client.zero_trust.dlp.custom_prompt_topics.<a href="./src/cloudflare/resources/zero_trust/dlp/custom_prompt_topics.py">delete</a>(entry_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/custom_prompt_topics/{entry_id}">client.zero_trust.dlp.custom_prompt_topics.<a href="./src/cloudflare/resources/zero_trust/dlp/custom_prompt_topics.py">get</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/custom_prompt_topic.py">Optional[CustomPromptTopic]</a></code>
+
 ### Datasets
 
 Types:

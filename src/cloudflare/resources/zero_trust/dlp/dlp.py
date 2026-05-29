@@ -68,11 +68,23 @@ from .profiles.profiles import (
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
 )
+from .custom_prompt_topics import (
+    CustomPromptTopicsResource,
+    AsyncCustomPromptTopicsResource,
+    CustomPromptTopicsResourceWithRawResponse,
+    AsyncCustomPromptTopicsResourceWithRawResponse,
+    CustomPromptTopicsResourceWithStreamingResponse,
+    AsyncCustomPromptTopicsResourceWithStreamingResponse,
+)
 
 __all__ = ["DLPResource", "AsyncDLPResource"]
 
 
 class DLPResource(SyncAPIResource):
+    @cached_property
+    def custom_prompt_topics(self) -> CustomPromptTopicsResource:
+        return CustomPromptTopicsResource(self._client)
+
     @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
@@ -126,6 +138,10 @@ class DLPResource(SyncAPIResource):
 
 
 class AsyncDLPResource(AsyncAPIResource):
+    @cached_property
+    def custom_prompt_topics(self) -> AsyncCustomPromptTopicsResource:
+        return AsyncCustomPromptTopicsResource(self._client)
+
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
@@ -183,6 +199,10 @@ class DLPResourceWithRawResponse:
         self._dlp = dlp
 
     @cached_property
+    def custom_prompt_topics(self) -> CustomPromptTopicsResourceWithRawResponse:
+        return CustomPromptTopicsResourceWithRawResponse(self._dlp.custom_prompt_topics)
+
+    @cached_property
     def datasets(self) -> DatasetsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._dlp.datasets)
 
@@ -218,6 +238,10 @@ class DLPResourceWithRawResponse:
 class AsyncDLPResourceWithRawResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
         self._dlp = dlp
+
+    @cached_property
+    def custom_prompt_topics(self) -> AsyncCustomPromptTopicsResourceWithRawResponse:
+        return AsyncCustomPromptTopicsResourceWithRawResponse(self._dlp.custom_prompt_topics)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
@@ -257,6 +281,10 @@ class DLPResourceWithStreamingResponse:
         self._dlp = dlp
 
     @cached_property
+    def custom_prompt_topics(self) -> CustomPromptTopicsResourceWithStreamingResponse:
+        return CustomPromptTopicsResourceWithStreamingResponse(self._dlp.custom_prompt_topics)
+
+    @cached_property
     def datasets(self) -> DatasetsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._dlp.datasets)
 
@@ -292,6 +320,10 @@ class DLPResourceWithStreamingResponse:
 class AsyncDLPResourceWithStreamingResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
         self._dlp = dlp
+
+    @cached_property
+    def custom_prompt_topics(self) -> AsyncCustomPromptTopicsResourceWithStreamingResponse:
+        return AsyncCustomPromptTopicsResourceWithStreamingResponse(self._dlp.custom_prompt_topics)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
