@@ -47,6 +47,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
+from ...._files import deepcopy_with_paths
 from ...._types import (
     Body,
     Omit,
@@ -58,7 +59,7 @@ from ...._types import (
     omit,
     not_given,
 )
-from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from .schedules import (
     SchedulesResource,
     AsyncSchedulesResource,
@@ -230,11 +231,12 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "metadata": metadata,
                 "files": files,
-            }
+            },
+            [["files", "<array>"]],
         )
         extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         if extracted_files:
@@ -578,11 +580,12 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "metadata": metadata,
                 "files": files,
-            }
+            },
+            [["files", "<array>"]],
         )
         extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         if extracted_files:

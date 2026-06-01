@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.organizations import organization_profile_update_params
-from ...types.organizations.organization_profile_get_params import Result
+from ...types.organizations.organization_profile import OrganizationProfile
 
 __all__ = ["OrganizationProfileResource", "AsyncOrganizationProfileResource"]
 
@@ -105,7 +105,7 @@ class OrganizationProfileResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Result:
+    ) -> OrganizationProfile:
         """Get an organizations profile if it exists.
 
         (Currently in Public Beta - see
@@ -129,9 +129,9 @@ class OrganizationProfileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Result]._unwrapper,
+                post_parser=ResultWrapper[OrganizationProfile]._unwrapper,
             ),
-            cast_to=cast(Type[Result], ResultWrapper[Result]),
+            cast_to=cast(Type[OrganizationProfile], ResultWrapper[OrganizationProfile]),
         )
 
 
@@ -216,7 +216,7 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Result:
+    ) -> OrganizationProfile:
         """Get an organizations profile if it exists.
 
         (Currently in Public Beta - see
@@ -240,9 +240,9 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Result]._unwrapper,
+                post_parser=ResultWrapper[OrganizationProfile]._unwrapper,
             ),
-            cast_to=cast(Type[Result], ResultWrapper[Result]),
+            cast_to=cast(Type[OrganizationProfile], ResultWrapper[OrganizationProfile]),
         )
 
 

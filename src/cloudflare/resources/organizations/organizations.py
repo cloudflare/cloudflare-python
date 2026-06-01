@@ -43,8 +43,13 @@ from .organization_profile import (
     OrganizationProfileResourceWithStreamingResponse,
     AsyncOrganizationProfileResourceWithStreamingResponse,
 )
-from ...types.organizations import organization_list_params, organization_create_params, organization_update_params
+from ...types.organizations import (
+    organization_list_params,
+    organization_create_params,
+    organization_update_params,
+)
 from ...types.organizations.organization import Organization
+from ...types.organizations.organization_profile_param import OrganizationProfileParam
 from ...types.organizations.organization_delete_response import OrganizationDeleteResponse
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
@@ -87,7 +92,7 @@ class OrganizationsResource(SyncAPIResource):
         *,
         name: str,
         parent: organization_create_params.Parent | Omit = omit,
-        profile: organization_create_params.Profile | Omit = omit,
+        profile: OrganizationProfileParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,7 +140,7 @@ class OrganizationsResource(SyncAPIResource):
         *,
         name: str,
         parent: organization_update_params.Parent | Omit = omit,
-        profile: organization_update_params.Profile | Omit = omit,
+        profile: OrganizationProfileParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,7 +368,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         *,
         name: str,
         parent: organization_create_params.Parent | Omit = omit,
-        profile: organization_create_params.Profile | Omit = omit,
+        profile: OrganizationProfileParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -411,7 +416,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         *,
         name: str,
         parent: organization_update_params.Parent | Omit = omit,
-        profile: organization_update_params.Profile | Omit = omit,
+        profile: OrganizationProfileParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

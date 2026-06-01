@@ -25,7 +25,7 @@ from cloudflare.types.organizations import OrganizationProfile
 Methods:
 
 - <code title="put /organizations/{organization_id}/profile">client.organizations.organization_profile.<a href="./src/cloudflare/resources/organizations/organization_profile.py">update</a>(organization_id, \*\*<a href="src/cloudflare/types/organizations/organization_profile_update_params.py">params</a>) -> None</code>
-- <code title="get /organizations/{organization_id}/profile">client.organizations.organization_profile.<a href="./src/cloudflare/resources/organizations/organization_profile.py">get</a>(organization_id) -> Result</code>
+- <code title="get /organizations/{organization_id}/profile">client.organizations.organization_profile.<a href="./src/cloudflare/resources/organizations/organization_profile.py">get</a>(organization_id) -> <a href="./src/cloudflare/types/organizations/organization_profile.py">OrganizationProfile</a></code>
 
 ## Logs
 

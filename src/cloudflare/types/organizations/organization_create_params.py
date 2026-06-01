@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["OrganizationCreateParams", "Parent", "Profile"]
+from .organization_profile_param import OrganizationProfileParam
+
+__all__ = ["OrganizationCreateParams", "Parent"]
 
 
 class OrganizationCreateParams(TypedDict, total=False):
@@ -12,20 +14,8 @@ class OrganizationCreateParams(TypedDict, total=False):
 
     parent: Parent
 
-    profile: Profile
+    profile: OrganizationProfileParam
 
 
 class Parent(TypedDict, total=False):
     id: Required[str]
-
-
-class Profile(TypedDict, total=False):
-    business_address: Required[str]
-
-    business_email: Required[str]
-
-    business_name: Required[str]
-
-    business_phone: Required[str]
-
-    external_metadata: Required[str]

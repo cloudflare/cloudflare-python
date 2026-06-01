@@ -6,8 +6,9 @@ from typing import Mapping, cast
 
 import httpx
 
+from ..._files import deepcopy_with_paths
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal
+from ..._utils import extract_files, path_template, maybe_transform
 from ..._compat import cached_property
 from ...types.ai import to_markdown_transform_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -105,7 +106,7 @@ class ToMarkdownResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        body = deepcopy_minimal(file)
+        body = deepcopy_with_paths(file, [["files", "<array>"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -204,7 +205,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        body = deepcopy_minimal(file)
+        body = deepcopy_with_paths(file, [["files", "<array>"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.

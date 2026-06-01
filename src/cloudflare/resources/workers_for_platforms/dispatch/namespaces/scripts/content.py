@@ -6,6 +6,7 @@ from typing import Type, Mapping, cast
 
 import httpx
 
+from ......_files import deepcopy_with_paths
 from ......_types import (
     Body,
     Omit,
@@ -17,14 +18,7 @@ from ......_types import (
     omit,
     not_given,
 )
-from ......_utils import (
-    extract_files,
-    path_template,
-    maybe_transform,
-    strip_not_given,
-    deepcopy_minimal,
-    async_maybe_transform,
-)
+from ......_utils import extract_files, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -130,11 +124,12 @@ class ContentResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "metadata": metadata,
                 "files": files,
-            }
+            },
+            [["files", "<array>"]],
         )
         extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
@@ -293,11 +288,12 @@ class AsyncContentResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "metadata": metadata,
                 "files": files,
-            }
+            },
+            [["files", "<array>"]],
         )
         extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be

@@ -6,8 +6,9 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .organization_profile import OrganizationProfile
 
-__all__ = ["Organization", "Meta", "MetaFlags", "Parent", "Profile"]
+__all__ = ["Organization", "Meta", "MetaFlags", "Parent"]
 
 
 class MetaFlags(BaseModel):
@@ -49,18 +50,6 @@ class Parent(BaseModel):
     name: str
 
 
-class Profile(BaseModel):
-    business_address: str
-
-    business_email: str
-
-    business_name: str
-
-    business_phone: str
-
-    external_metadata: str
-
-
 class Organization(BaseModel):
     """References an Organization in the Cloudflare data model."""
 
@@ -74,4 +63,4 @@ class Organization(BaseModel):
 
     parent: Optional[Parent] = None
 
-    profile: Optional[Profile] = None
+    profile: Optional[OrganizationProfile] = None

@@ -6,8 +6,9 @@ from typing import Type, Union, Mapping, Optional, cast
 
 import httpx
 
+from ...._files import deepcopy_with_paths
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -112,11 +113,12 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "value": value,
                 "metadata": metadata,
-            }
+            },
+            [["value"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["value"]])
         # It should be noted that the actual Content-Type header that will be
@@ -343,11 +345,12 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "value": value,
                 "metadata": metadata,
-            }
+            },
+            [["value"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["value"]])
         # It should be noted that the actual Content-Type header that will be

@@ -7,8 +7,9 @@ from typing_extensions import Literal
 
 import httpx
 
+from ....._files import deepcopy_with_paths
 from ....._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ....._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ....._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -136,7 +137,7 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "_headers": _headers,
                 "_redirects": _redirects,
@@ -151,7 +152,15 @@ class DeploymentsResource(SyncAPIResource):
                 "manifest": manifest,
                 "pages_build_output_dir": pages_build_output_dir,
                 "wrangler_config_hash": wrangler_config_hash,
-            }
+            },
+            [
+                ["_headers"],
+                ["_redirects"],
+                ["_routes.json"],
+                ["_worker.bundle"],
+                ["_worker.js"],
+                ["functions-filepath-routing-config.json"],
+            ],
         )
         files = extract_files(
             cast(Mapping[str, object], body),
@@ -577,7 +586,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "_headers": _headers,
                 "_redirects": _redirects,
@@ -592,7 +601,15 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 "manifest": manifest,
                 "pages_build_output_dir": pages_build_output_dir,
                 "wrangler_config_hash": wrangler_config_hash,
-            }
+            },
+            [
+                ["_headers"],
+                ["_redirects"],
+                ["_routes.json"],
+                ["_worker.bundle"],
+                ["_worker.js"],
+                ["functions-filepath-routing-config.json"],
+            ],
         )
         files = extract_files(
             cast(Mapping[str, object], body),
