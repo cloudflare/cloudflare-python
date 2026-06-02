@@ -57,6 +57,9 @@ class EntryCustomPromptTopicEntry(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+    """The optional description of the custom prompt topic entry."""
+
 
 class EntryPredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
@@ -151,6 +154,9 @@ class EntryExactDataEntry(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+    """The optional description of the exact data entry."""
+
 
 class EntryDocumentFingerprintEntry(BaseModel):
     id: str
@@ -164,6 +170,9 @@ class EntryDocumentFingerprintEntry(BaseModel):
     type: Literal["document_fingerprint"]
 
     updated_at: datetime
+
+    description: Optional[str] = None
+    """The optional description of the document fingerprint entry."""
 
 
 class EntryWordListEntry(BaseModel):

@@ -58,6 +58,9 @@ class UnionMember1(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+    """The optional description of the custom prompt topic entry."""
+
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
@@ -156,6 +159,9 @@ class UnionMember4(BaseModel):
 
     updated_at: datetime
 
+    description: Optional[str] = None
+    """The optional description of the exact data entry."""
+
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
 
@@ -171,6 +177,9 @@ class UnionMember5(BaseModel):
     type: Literal["document_fingerprint"]
 
     updated_at: datetime
+
+    description: Optional[str] = None
+    """The optional description of the document fingerprint entry."""
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 

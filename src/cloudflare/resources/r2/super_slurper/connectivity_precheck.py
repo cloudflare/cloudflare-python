@@ -71,6 +71,8 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         Check whether tokens are valid against the source bucket
 
         Args:
+          endpoint: Custom S3-compatible endpoint that must use https://.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -291,6 +293,8 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         Check whether tokens are valid against the source bucket
 
         Args:
+          endpoint: Custom S3-compatible endpoint that must use https://.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -30,6 +30,7 @@ class R2SlurperS3SourceSchema(TypedDict, total=False):
     vendor: Required[Literal["s3"]]
 
     endpoint: Optional[str]
+    """Custom S3-compatible endpoint that must use https://."""
 
     keys: Optional[SequenceNotStr[str]]
 
