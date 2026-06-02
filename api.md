@@ -65,6 +65,8 @@ from cloudflare.types import (
 
 # [CustomNameservers](src/cloudflare/resources/custom_nameservers/api.md)
 
+# [TenantCustomNameservers](src/cloudflare/resources/tenant_custom_nameservers/api.md)
+
 # [DNSFirewall](src/cloudflare/resources/dns_firewall/api.md)
 
 # [DNS](src/cloudflare/resources/dns/api.md)
