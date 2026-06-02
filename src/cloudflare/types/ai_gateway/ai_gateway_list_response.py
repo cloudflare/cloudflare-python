@@ -119,11 +119,11 @@ class Guardrails(BaseModel):
 
 
 class Otel(BaseModel):
-    authorization: str
-
     headers: Dict[str, str]
 
     url: str
+
+    authorization: Optional[str] = None
 
     content_type: Optional[Literal["json", "protobuf"]] = None
 

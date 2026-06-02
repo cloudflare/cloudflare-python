@@ -54,13 +54,13 @@ class TestPDF:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -220,13 +220,13 @@ class TestPDF:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -394,13 +394,13 @@ class TestAsyncPDF:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -564,13 +564,13 @@ class TestAsyncPDF:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],

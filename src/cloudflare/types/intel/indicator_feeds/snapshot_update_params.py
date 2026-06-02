@@ -12,4 +12,8 @@ class SnapshotUpdateParams(TypedDict, total=False):
     """Identifier"""
 
     source: str
-    """The file to upload"""
+    """The file to upload.
+
+    Either a plain STIX2/CRDF body or a gzipped one (recognised by `0x1f 0x8b` magic
+    bytes or a `.gz` filename suffix).
+    """

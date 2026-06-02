@@ -9,7 +9,9 @@ __all__ = ["StatusEditResponse"]
 
 
 class StatusEditResponse(BaseModel):
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "rollingBack"
+    ]
 
     timestamp: datetime
     """Accepts ISO 8601 with no timezone offsets and in UTC."""

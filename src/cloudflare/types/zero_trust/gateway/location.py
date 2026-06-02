@@ -65,13 +65,6 @@ class Location(BaseModel):
     dns_destination_ips_id. This field read-only.
     """
 
-    max_ttl_secs: Optional[int] = None
-    """
-    Specify the maximum TTL, in seconds, applied to DNS response records. Records
-    whose upstream TTL exceeds this value are served with the capped value. When
-    null or absent, no cap is applied at this tier.
-    """
-
     name: Optional[str] = None
     """Specify the location name."""
 

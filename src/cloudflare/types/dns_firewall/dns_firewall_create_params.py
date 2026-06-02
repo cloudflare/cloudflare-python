@@ -27,6 +27,12 @@ class DNSFirewallCreateParams(TypedDict, total=False):
     deprecate_any_requests: bool
     """Whether to refuse to answer queries for the ANY type"""
 
+    dns_firewall_ip_count: int
+    """Number of IPv4 addresses to assign to the DNS Firewall cluster.
+
+    Only used during cluster creation and cannot be changed later.
+    """
+
     ecs_fallback: bool
     """Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent"""
 
@@ -70,8 +76,11 @@ class DNSFirewallCreateParams(TypedDict, total=False):
 
     ratelimit: Optional[float]
     """
-    Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-    the upstream nameservers configured on the cluster)
+    Maximum number of DNS queries per second that will be forwarded to your upstream
+    nameservers. The limit is enforced per server, where each server receives a
+    fraction of the configured value. The actual aggregate rate for a data center
+    may vary depending on how many servers are present. Responses served from cache
+    do not count toward this limit. Set to null to disable rate limiting.
     """
 
     retries: float

@@ -87,6 +87,7 @@ class DNSFirewallResource(SyncAPIResource):
         upstream_ips: SequenceNotStr[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
         deprecate_any_requests: bool | Omit = omit,
+        dns_firewall_ip_count: int | Omit = omit,
         ecs_fallback: bool | Omit = omit,
         maximum_cache_ttl: float | Omit = omit,
         minimum_cache_ttl: float | Omit = omit,
@@ -111,6 +112,9 @@ class DNSFirewallResource(SyncAPIResource):
           attack_mitigation: Attack mitigation settings
 
           deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+
+          dns_firewall_ip_count: Number of IPv4 addresses to assign to the DNS Firewall cluster. Only used during
+              cluster creation and cannot be changed later.
 
           ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
@@ -143,8 +147,11 @@ class DNSFirewallResource(SyncAPIResource):
               returns to clients. Cloudflare will always forward the TTL value received from
               upstream nameservers.
 
-          ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+          ratelimit: Maximum number of DNS queries per second that will be forwarded to your upstream
+              nameservers. The limit is enforced per server, where each server receives a
+              fraction of the configured value. The actual aggregate rate for a data center
+              may vary depending on how many servers are present. Responses served from cache
+              do not count toward this limit. Set to null to disable rate limiting.
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
               counting the initial attempt)
@@ -167,6 +174,7 @@ class DNSFirewallResource(SyncAPIResource):
                     "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
+                    "dns_firewall_ip_count": dns_firewall_ip_count,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
@@ -353,8 +361,11 @@ class DNSFirewallResource(SyncAPIResource):
               returns to clients. Cloudflare will always forward the TTL value received from
               upstream nameservers.
 
-          ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+          ratelimit: Maximum number of DNS queries per second that will be forwarded to your upstream
+              nameservers. The limit is enforced per server, where each server receives a
+              fraction of the configured value. The actual aggregate rate for a data center
+              may vary depending on how many servers are present. Responses served from cache
+              do not count toward this limit. Set to null to disable rate limiting.
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
               counting the initial attempt)
@@ -487,6 +498,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         upstream_ips: SequenceNotStr[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
         deprecate_any_requests: bool | Omit = omit,
+        dns_firewall_ip_count: int | Omit = omit,
         ecs_fallback: bool | Omit = omit,
         maximum_cache_ttl: float | Omit = omit,
         minimum_cache_ttl: float | Omit = omit,
@@ -511,6 +523,9 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
           attack_mitigation: Attack mitigation settings
 
           deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+
+          dns_firewall_ip_count: Number of IPv4 addresses to assign to the DNS Firewall cluster. Only used during
+              cluster creation and cannot be changed later.
 
           ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
@@ -543,8 +558,11 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
               returns to clients. Cloudflare will always forward the TTL value received from
               upstream nameservers.
 
-          ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+          ratelimit: Maximum number of DNS queries per second that will be forwarded to your upstream
+              nameservers. The limit is enforced per server, where each server receives a
+              fraction of the configured value. The actual aggregate rate for a data center
+              may vary depending on how many servers are present. Responses served from cache
+              do not count toward this limit. Set to null to disable rate limiting.
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
               counting the initial attempt)
@@ -567,6 +585,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
                     "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
+                    "dns_firewall_ip_count": dns_firewall_ip_count,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
@@ -753,8 +772,11 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
               returns to clients. Cloudflare will always forward the TTL value received from
               upstream nameservers.
 
-          ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+          ratelimit: Maximum number of DNS queries per second that will be forwarded to your upstream
+              nameservers. The limit is enforced per server, where each server receives a
+              fraction of the configured value. The actual aggregate rate for a data center
+              may vary depending on how many servers are present. Responses served from cache
+              do not count toward this limit. Set to null to disable rate limiting.
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
               counting the initial attempt)

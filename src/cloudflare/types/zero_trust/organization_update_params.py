@@ -67,7 +67,9 @@ class OrganizationUpdateParams(TypedDict, total=False):
     """Determines whether global MFA settings apply to applications by default.
 
     The organization must have MFA enabled with at least one authentication method
-    and a session duration configured.
+    and a session duration configured. Note: 'allowed_authenticators' cannot only
+    contain 'ssh_piv_key' if the organization has any non-infrastructure
+    applications because PIV keys are only compatible with infrastructure apps.
     """
 
     mfa_ssh_piv_key_requirements: MfaSSHPivKeyRequirements

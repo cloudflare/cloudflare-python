@@ -37,13 +37,13 @@ class TestScreenshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -174,13 +174,13 @@ class TestScreenshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -317,13 +317,13 @@ class TestAsyncScreenshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -454,13 +454,13 @@ class TestAsyncScreenshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],

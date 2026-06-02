@@ -25,7 +25,7 @@ class Command(BaseModel):
     """Current status of the command"""
 
     type: Optional[str] = None
-    """Type of the command (e.g., "pcap" or "warp-diag")"""
+    """Type of the command (e.g., "pcap", "speed-test", or "warp-diag")"""
 
 
 class CommandCreateResponse(BaseModel):

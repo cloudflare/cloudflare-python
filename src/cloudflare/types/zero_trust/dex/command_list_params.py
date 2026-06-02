@@ -20,7 +20,7 @@ class CommandListParams(TypedDict, total=False):
     per_page: Required[float]
     """Number of results per page"""
 
-    command_type: str
+    command_type: Literal["pcap", "speed-test", "warp-diag"]
     """Optionally filter executed commands by command type"""
 
     device_id: str

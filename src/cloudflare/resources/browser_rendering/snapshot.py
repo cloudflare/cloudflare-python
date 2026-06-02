@@ -83,6 +83,7 @@ class SnapshotResource(SyncAPIResource):
         best_attempt: bool | Omit = omit,
         cookies: Iterable[snapshot_create_params.Variant0Cookie] | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant0GotoOptions | Omit = omit,
         reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
@@ -219,6 +220,7 @@ class SnapshotResource(SyncAPIResource):
         best_attempt: bool | Omit = omit,
         cookies: Iterable[snapshot_create_params.Variant1Cookie] | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant1GotoOptions | Omit = omit,
         reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
@@ -362,6 +364,7 @@ class SnapshotResource(SyncAPIResource):
         | Iterable[snapshot_create_params.Variant1Cookie]
         | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant0GotoOptions
         | snapshot_create_params.Variant1GotoOptions
         | Omit = omit,
@@ -424,6 +427,7 @@ class SnapshotResource(SyncAPIResource):
                     "best_attempt": best_attempt,
                     "cookies": cookies,
                     "emulate_media_type": emulate_media_type,
+                    "formats": formats,
                     "goto_options": goto_options,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,
@@ -508,6 +512,7 @@ class AsyncSnapshotResource(AsyncAPIResource):
         best_attempt: bool | Omit = omit,
         cookies: Iterable[snapshot_create_params.Variant0Cookie] | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant0GotoOptions | Omit = omit,
         reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
@@ -644,6 +649,7 @@ class AsyncSnapshotResource(AsyncAPIResource):
         best_attempt: bool | Omit = omit,
         cookies: Iterable[snapshot_create_params.Variant1Cookie] | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant1GotoOptions | Omit = omit,
         reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
@@ -787,6 +793,7 @@ class AsyncSnapshotResource(AsyncAPIResource):
         | Iterable[snapshot_create_params.Variant1Cookie]
         | Omit = omit,
         emulate_media_type: str | Omit = omit,
+        formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]] | Omit = omit,
         goto_options: snapshot_create_params.Variant0GotoOptions
         | snapshot_create_params.Variant1GotoOptions
         | Omit = omit,
@@ -849,6 +856,7 @@ class AsyncSnapshotResource(AsyncAPIResource):
                     "best_attempt": best_attempt,
                     "cookies": cookies,
                     "emulate_media_type": emulate_media_type,
+                    "formats": formats,
                     "goto_options": goto_options,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,

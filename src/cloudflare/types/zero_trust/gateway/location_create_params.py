@@ -34,13 +34,6 @@ class LocationCreateParams(TypedDict, total=False):
     endpoints: Optional[EndpointParam]
     """Configure the destination endpoints for this location."""
 
-    max_ttl_secs: Optional[int]
-    """
-    Specify the maximum TTL, in seconds, applied to DNS response records. Records
-    whose upstream TTL exceeds this value are served with the capped value. When
-    null or absent, no cap is applied at this tier.
-    """
-
     networks: Optional[Iterable[Network]]
     """
     Specify the list of network ranges from which requests at this location

@@ -15,15 +15,6 @@ class ServerUpdateParams(TypedDict, total=False):
 
     description: Optional[str]
 
-    is_shared_oauth_callback_enabled: bool
-    """
-    When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
-    endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
-    customer portal hostname. New servers default to true; existing servers default
-    to false. Effective behavior is gated by the gateway worker's per-env rollout
-    mode KV key.
-    """
-
     name: str
 
     updated_prompts: Iterable[UpdatedPrompt]

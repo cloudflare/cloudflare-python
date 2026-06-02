@@ -52,8 +52,6 @@ class Server(TypedDict, total=False):
 
     default_disabled: bool
 
-    is_shared_oauth_callback_enabled: bool
-
     on_behalf: bool
 
     updated_prompts: Iterable[ServerUpdatedPrompt]

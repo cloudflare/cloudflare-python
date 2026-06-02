@@ -46,7 +46,6 @@ class TestServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
-            is_shared_oauth_callback_enabled=True,
             updated_prompts=[
                 {
                     "name": "name",
@@ -124,7 +123,6 @@ class TestServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
-            is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             updated_prompts=[
                 {
@@ -404,7 +402,6 @@ class TestAsyncServers:
             name="My MCP Server",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
-            is_shared_oauth_callback_enabled=True,
             updated_prompts=[
                 {
                     "name": "name",
@@ -482,7 +479,6 @@ class TestAsyncServers:
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             auth_credentials="auth_credentials",
             description="This is one remote mcp server",
-            is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             updated_prompts=[
                 {

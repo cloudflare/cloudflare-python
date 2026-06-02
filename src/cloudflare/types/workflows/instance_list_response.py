@@ -20,7 +20,9 @@ class InstanceListResponse(BaseModel):
 
     started_on: Optional[datetime] = None
 
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "rollingBack"
+    ]
 
     version_id: str
 

@@ -10,7 +10,9 @@ __all__ = ["InstanceCreateResponse"]
 class InstanceCreateResponse(BaseModel):
     id: str
 
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "rollingBack"
+    ]
 
     version_id: str
 

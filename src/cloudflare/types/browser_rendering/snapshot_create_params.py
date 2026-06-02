@@ -106,6 +106,8 @@ class Variant0(TypedDict, total=False):
 
     emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
 
+    formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]]
+
     goto_options: Annotated[Variant0GotoOptions, PropertyInfo(alias="gotoOptions")]
     """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
 
@@ -369,6 +371,8 @@ class Variant1(TypedDict, total=False):
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
 
     emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
+
+    formats: List[Literal["content", "screenshot", "markdown", "accessibilityTree"]]
 
     goto_options: Annotated[Variant1GotoOptions, PropertyInfo(alias="gotoOptions")]
     """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""

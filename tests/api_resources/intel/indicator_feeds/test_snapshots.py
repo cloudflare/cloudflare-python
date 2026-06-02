@@ -32,7 +32,7 @@ class TestSnapshots:
         snapshot = client.intel.indicator_feeds.snapshots.update(
             feed_id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            source="@/Users/me/test.stix2",
+            source="@/Users/me/test.stix2.gz",
         )
         assert_matches_type(Optional[SnapshotUpdateResponse], snapshot, path=["response"])
 
@@ -94,7 +94,7 @@ class TestAsyncSnapshots:
         snapshot = await async_client.intel.indicator_feeds.snapshots.update(
             feed_id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            source="@/Users/me/test.stix2",
+            source="@/Users/me/test.stix2.gz",
         )
         assert_matches_type(Optional[SnapshotUpdateResponse], snapshot, path=["response"])
 

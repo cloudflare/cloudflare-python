@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
@@ -26,6 +27,9 @@ class HostnameRoute(BaseModel):
 
     hostname: Optional[str] = None
     """The hostname of the route."""
+
+    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]] = None
+    """The type of tunnel."""
 
     tunnel_id: Optional[str] = None
     """UUID of the tunnel."""

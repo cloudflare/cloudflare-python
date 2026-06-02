@@ -19,6 +19,8 @@ class Instances(BaseModel):
 
     queued: Optional[float] = None
 
+    rolling_back: Optional[float] = FieldInfo(alias="rollingBack", default=None)
+
     running: Optional[float] = None
 
     terminated: Optional[float] = None

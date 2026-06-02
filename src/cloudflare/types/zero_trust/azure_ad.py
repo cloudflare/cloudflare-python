@@ -120,6 +120,12 @@ class AzureAD(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[SAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous

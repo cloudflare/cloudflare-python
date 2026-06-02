@@ -18,7 +18,73 @@ class TestStatus:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_edit(self, client: Cloudflare) -> None:
+    def test_method_edit_overload_1(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
+        response = client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit_overload_1(self, client: Cloudflare) -> None:
+        with client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="pause",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="pause",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="pause",
+            )
+
+    @parametrize
+    def test_method_edit_overload_2(self, client: Cloudflare) -> None:
         status = client.workflows.instances.status.edit(
             instance_id="x",
             account_id="account_id",
@@ -28,22 +94,7 @@ class TestStatus:
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
-    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        status = client.workflows.instances.status.edit(
-            instance_id="x",
-            account_id="account_id",
-            workflow_name="x",
-            status="resume",
-            from_={
-                "name": "x",
-                "count": 1,
-                "type": "do",
-            },
-        )
-        assert_matches_type(StatusEditResponse, status, path=["response"])
-
-    @parametrize
-    def test_raw_response_edit(self, client: Cloudflare) -> None:
+    def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
         response = client.workflows.instances.status.with_raw_response.edit(
             instance_id="x",
             account_id="account_id",
@@ -57,7 +108,7 @@ class TestStatus:
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
-    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+    def test_streaming_response_edit_overload_2(self, client: Cloudflare) -> None:
         with client.workflows.instances.status.with_streaming_response.edit(
             instance_id="x",
             account_id="account_id",
@@ -73,7 +124,7 @@ class TestStatus:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_edit(self, client: Cloudflare) -> None:
+    def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workflows.instances.status.with_raw_response.edit(
                 instance_id="x",
@@ -98,29 +149,100 @@ class TestStatus:
                 status="resume",
             )
 
-
-class TestAsyncStatus:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
-
     @parametrize
-    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        status = await async_client.workflows.instances.status.edit(
+    def test_method_edit_overload_3(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
             instance_id="x",
             account_id="account_id",
             workflow_name="x",
-            status="resume",
+            status="terminate",
         )
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
-    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        status = await async_client.workflows.instances.status.edit(
+    def test_method_edit_with_all_params_overload_3(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
             instance_id="x",
             account_id="account_id",
             workflow_name="x",
-            status="resume",
+            status="terminate",
+            rollback=True,
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
+        response = client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit_overload_3(self, client: Cloudflare) -> None:
+        with client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="terminate",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="terminate",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="terminate",
+            )
+
+    @parametrize
+    def test_method_edit_overload_4(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params_overload_4(self, client: Cloudflare) -> None:
+        status = client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
             from_={
                 "name": "x",
                 "count": 1,
@@ -130,7 +252,145 @@ class TestAsyncStatus:
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
-    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+    def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
+        response = client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit_overload_4(self, client: Cloudflare) -> None:
+        with client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="restart",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="restart",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="restart",
+            )
+
+
+class TestAsyncStatus:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @parametrize
+    async def test_method_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = await response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="pause",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = await response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="pause",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="pause",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="pause",
+            )
+
+    @parametrize
+    async def test_method_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="resume",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workflows.instances.status.with_raw_response.edit(
             instance_id="x",
             account_id="account_id",
@@ -144,7 +404,7 @@ class TestAsyncStatus:
         assert_matches_type(StatusEditResponse, status, path=["response"])
 
     @parametrize
-    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workflows.instances.status.with_streaming_response.edit(
             instance_id="x",
             account_id="account_id",
@@ -160,7 +420,7 @@ class TestAsyncStatus:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workflows.instances.status.with_raw_response.edit(
                 instance_id="x",
@@ -183,4 +443,162 @@ class TestAsyncStatus:
                 account_id="account_id",
                 workflow_name="x",
                 status="resume",
+            )
+
+    @parametrize
+    async def test_method_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+            rollback=True,
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = await response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="terminate",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = await response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="terminate",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="terminate",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="terminate",
+            )
+
+    @parametrize
+    async def test_method_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
+        status = await async_client.workflows.instances.status.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+            from_={
+                "name": "x",
+                "count": 1,
+                "type": "do",
+            },
+        )
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workflows.instances.status.with_raw_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        status = await response.parse()
+        assert_matches_type(StatusEditResponse, status, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workflows.instances.status.with_streaming_response.edit(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            status="restart",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            status = await response.parse()
+            assert_matches_type(StatusEditResponse, status, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                status="restart",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                status="restart",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            await async_client.workflows.instances.status.with_raw_response.edit(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                status="restart",
             )

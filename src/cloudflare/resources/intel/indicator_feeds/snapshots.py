@@ -60,12 +60,21 @@ class SnapshotsResource(SyncAPIResource):
         """
         Revises the raw data entries in a custom threat indicator feed.
 
+        Accepts both plain and gzipped STIX2/CRDF bodies. Gzip is detected by RFC 1952
+        magic bytes (`0x1f 0x8b`) and/or a `.gz` filename suffix (case-insensitive) —
+        either signal alone is sufficient to trigger the gzip path; if the body is not
+        valid gzip, the upload fails fast. Customers are encouraged to gzip larger
+        uploads — the api-gateway 500 MB body cap applies to the on-the-wire
+        (compressed) size, so gzip lets a single upload carry several GiB of
+        decompressed STIX.
+
         Args:
           account_id: Identifier
 
           feed_id: Indicator feed ID
 
-          source: The file to upload
+          source: The file to upload. Either a plain STIX2/CRDF body or a gzipped one (recognised
+              by `0x1f 0x8b` magic bytes or a `.gz` filename suffix).
 
           extra_headers: Send extra headers
 
@@ -135,12 +144,21 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         """
         Revises the raw data entries in a custom threat indicator feed.
 
+        Accepts both plain and gzipped STIX2/CRDF bodies. Gzip is detected by RFC 1952
+        magic bytes (`0x1f 0x8b`) and/or a `.gz` filename suffix (case-insensitive) —
+        either signal alone is sufficient to trigger the gzip path; if the body is not
+        valid gzip, the upload fails fast. Customers are encouraged to gzip larger
+        uploads — the api-gateway 500 MB body cap applies to the on-the-wire
+        (compressed) size, so gzip lets a single upload carry several GiB of
+        decompressed STIX.
+
         Args:
           account_id: Identifier
 
           feed_id: Indicator feed ID
 
-          source: The file to upload
+          source: The file to upload. Either a plain STIX2/CRDF body or a gzipped one (recognised
+              by `0x1f 0x8b` magic bytes or a `.gz` filename suffix).
 
           extra_headers: Send extra headers
 

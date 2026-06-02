@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from typing import Type, cast
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -45,14 +45,14 @@ class StatusResource(SyncAPIResource):
         """
         return StatusResourceWithStreamingResponse(self)
 
+    @overload
     def edit(
         self,
         instance_id: str,
         *,
         account_id: str,
         workflow_name: str,
-        status: Literal["resume", "pause", "terminate", "restart"],
-        from_: status_edit_params.From | Omit = omit,
+        status: Literal["pause"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,9 +65,68 @@ class StatusResource(SyncAPIResource):
         terminate).
 
         Args:
-          status: Apply action to instance.
+          extra_headers: Send extra headers
 
-          from_: Step to restart from. Only applicable when status is "restart".
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["resume"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["terminate"],
+        rollback: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          rollback: Run rollback before terminating.
 
           extra_headers: Send extra headers
 
@@ -77,6 +136,58 @@ class StatusResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["restart"],
+        from_: status_edit_params.Variant3From | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          from_: Step to restart from.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "workflow_name", "status"])
+    def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["pause"] | Literal["resume"] | Literal["terminate"] | Literal["restart"],
+        rollback: bool | Omit = omit,
+        from_: status_edit_params.Variant3From | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -93,6 +204,7 @@ class StatusResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "status": status,
+                    "rollback": rollback,
                     "from_": from_,
                 },
                 status_edit_params.StatusEditParams,
@@ -128,14 +240,14 @@ class AsyncStatusResource(AsyncAPIResource):
         """
         return AsyncStatusResourceWithStreamingResponse(self)
 
+    @overload
     async def edit(
         self,
         instance_id: str,
         *,
         account_id: str,
         workflow_name: str,
-        status: Literal["resume", "pause", "terminate", "restart"],
-        from_: status_edit_params.From | Omit = omit,
+        status: Literal["pause"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -148,9 +260,68 @@ class AsyncStatusResource(AsyncAPIResource):
         terminate).
 
         Args:
-          status: Apply action to instance.
+          extra_headers: Send extra headers
 
-          from_: Step to restart from. Only applicable when status is "restart".
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["resume"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["terminate"],
+        rollback: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          rollback: Run rollback before terminating.
 
           extra_headers: Send extra headers
 
@@ -160,6 +331,58 @@ class AsyncStatusResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["restart"],
+        from_: status_edit_params.Variant3From | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
+        """
+        Changes the execution status of a workflow instance (e.g., pause, resume,
+        terminate).
+
+        Args:
+          from_: Step to restart from.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "workflow_name", "status"])
+    async def edit(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        status: Literal["pause"] | Literal["resume"] | Literal["terminate"] | Literal["restart"],
+        rollback: bool | Omit = omit,
+        from_: status_edit_params.Variant3From | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> StatusEditResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not workflow_name:
@@ -176,6 +399,7 @@ class AsyncStatusResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "status": status,
+                    "rollback": rollback,
                     "from_": from_,
                 },
                 status_edit_params.StatusEditParams,

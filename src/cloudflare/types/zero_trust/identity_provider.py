@@ -161,6 +161,12 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessCentrifySAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -251,6 +257,12 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessFacebookSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -340,6 +352,12 @@ class AccessGitHub(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessGitHubSAMLCertificateSet] = None
     """
@@ -449,6 +467,12 @@ class AccessGoogle(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessGoogleSAMLCertificateSet] = None
     """
@@ -562,6 +586,12 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessGoogleAppsSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -651,6 +681,12 @@ class AccessLinkedin(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessLinkedinSAMLCertificateSet] = None
     """
@@ -776,6 +812,12 @@ class AccessOIDC(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessOIDCSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -891,6 +933,12 @@ class AccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessOktaSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -1003,6 +1051,12 @@ class AccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessOneloginSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -1114,6 +1168,12 @@ class AccessPingone(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessPingoneSAMLCertificateSet] = None
     """
@@ -1267,6 +1327,12 @@ class AccessSAML(BaseModel):
     id: Optional[str] = None
     """UUID."""
 
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
+
     saml_certificate_set: Optional[AccessSAMLSAMLCertificateSet] = None
     """
     The SAML encryption certificate set details, including current and previous
@@ -1356,6 +1422,12 @@ class AccessYandex(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessYandexSAMLCertificateSet] = None
     """
@@ -1455,6 +1527,12 @@ class AccessOnetimepin(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessOnetimepinSAMLCertificateSet] = None
     """
@@ -1561,6 +1639,12 @@ class AccessCloudflare(BaseModel):
 
     id: Optional[str] = None
     """UUID."""
+
+    read_only: Optional[bool] = None
+    """
+    Indicates that the identity provider is immutable and cannot be updated or
+    deleted via the API.
+    """
 
     saml_certificate_set: Optional[AccessCloudflareSAMLCertificateSet] = None
     """

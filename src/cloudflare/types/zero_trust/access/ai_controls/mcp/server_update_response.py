@@ -74,9 +74,9 @@ class ServerUpdateResponse(BaseModel):
     """
     When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
     endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
-    customer portal hostname. New servers default to true; existing servers default
-    to false. Effective behavior is gated by the gateway worker's per-env rollout
-    mode KV key.
+    customer portal hostname. Operators manage this internal rollout flag through
+    admin endpoints. Effective behavior is gated by the gateway worker's per-env
+    rollout mode KV key.
     """
 
     last_successful_sync: Optional[datetime] = None

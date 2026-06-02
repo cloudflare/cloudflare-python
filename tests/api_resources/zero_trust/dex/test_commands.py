@@ -28,8 +28,8 @@ class TestCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -42,8 +42,8 @@ class TestCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -60,8 +60,8 @@ class TestCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -81,8 +81,8 @@ class TestCommands:
                 account_id="",
                 commands=[
                     {
-                        "command_type": "pcap",
                         "device_id": "device_id",
+                        "type": "pcap",
                         "user_email": "user_email",
                     }
                 ],
@@ -103,7 +103,7 @@ class TestCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
             per_page=50,
-            command_type="command_type",
+            command_type="pcap",
             device_id="device_id",
             from_=parse_datetime("2023-08-20T20:45:00Z"),
             status="PENDING_EXEC",
@@ -161,8 +161,8 @@ class TestAsyncCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -175,8 +175,8 @@ class TestAsyncCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -193,8 +193,8 @@ class TestAsyncCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             commands=[
                 {
-                    "command_type": "pcap",
                     "device_id": "device_id",
+                    "type": "pcap",
                     "user_email": "user_email",
                 }
             ],
@@ -214,8 +214,8 @@ class TestAsyncCommands:
                 account_id="",
                 commands=[
                     {
-                        "command_type": "pcap",
                         "device_id": "device_id",
+                        "type": "pcap",
                         "user_email": "user_email",
                     }
                 ],
@@ -236,7 +236,7 @@ class TestAsyncCommands:
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
             per_page=50,
-            command_type="command_type",
+            command_type="pcap",
             device_id="device_id",
             from_=parse_datetime("2023-08-20T20:45:00Z"),
             status="PENDING_EXEC",

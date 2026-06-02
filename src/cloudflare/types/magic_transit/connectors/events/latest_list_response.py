@@ -26,6 +26,11 @@ __all__ = [
     "ItemEFinishUpgradeFailure",
     "ItemEReconcile",
     "ItemEConfigureCloudflaredTunnel",
+    "ItemERekeyInstallBoth",
+    "ItemERekeyStart",
+    "ItemERekeyAdvance",
+    "ItemERekeyComplete",
+    "ItemERekeyReset",
 ]
 
 
@@ -112,6 +117,46 @@ class ItemEConfigureCloudflaredTunnel(BaseModel):
     """Configured Cloudflared tunnel"""
 
 
+class ItemERekeyInstallBoth(BaseModel):
+    k: Literal["RekeyInstallBoth"]
+    """Installed initial inbound and outbound keys"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+
+class ItemERekeyStart(BaseModel):
+    k: Literal["RekeyStart"]
+    """Installed new inbound key, kept old outbound"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+
+class ItemERekeyAdvance(BaseModel):
+    k: Literal["RekeyAdvance"]
+    """Confirmed traffic on new inbound key, swapped outbound to new"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+
+class ItemERekeyComplete(BaseModel):
+    k: Literal["RekeyComplete"]
+    """Deleted old keys"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+
+class ItemERekeyReset(BaseModel):
+    k: Literal["RekeyReset"]
+    """Deleted all keys after receiving an unexpected key"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+
 ItemE: TypeAlias = Annotated[
     Union[
         ItemEInit,
@@ -130,6 +175,11 @@ ItemE: TypeAlias = Annotated[
         ItemEFinishUpgradeFailure,
         ItemEReconcile,
         ItemEConfigureCloudflaredTunnel,
+        ItemERekeyInstallBoth,
+        ItemERekeyStart,
+        ItemERekeyAdvance,
+        ItemERekeyComplete,
+        ItemERekeyReset,
     ],
     PropertyInfo(discriminator="k"),
 ]

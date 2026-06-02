@@ -48,7 +48,6 @@ class TestPortals:
                 {
                     "server_id": "my-mcp-server",
                     "default_disabled": True,
-                    "is_shared_oauth_callback_enabled": True,
                     "on_behalf": True,
                     "updated_prompts": [
                         {
@@ -133,7 +132,6 @@ class TestPortals:
                 {
                     "server_id": "my-mcp-server",
                     "default_disabled": True,
-                    "is_shared_oauth_callback_enabled": True,
                     "on_behalf": True,
                     "updated_prompts": [
                         {
@@ -370,7 +368,6 @@ class TestAsyncPortals:
                 {
                     "server_id": "my-mcp-server",
                     "default_disabled": True,
-                    "is_shared_oauth_callback_enabled": True,
                     "on_behalf": True,
                     "updated_prompts": [
                         {
@@ -455,7 +452,6 @@ class TestAsyncPortals:
                 {
                     "server_id": "my-mcp-server",
                     "default_disabled": True,
-                    "is_shared_oauth_callback_enabled": True,
                     "on_behalf": True,
                     "updated_prompts": [
                         {

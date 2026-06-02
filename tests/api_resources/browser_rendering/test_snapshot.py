@@ -37,13 +37,13 @@ class TestSnapshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -72,6 +72,7 @@ class TestSnapshot:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            formats=["content"],
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",
@@ -171,13 +172,13 @@ class TestSnapshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -206,6 +207,7 @@ class TestSnapshot:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            formats=["content"],
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",
@@ -311,13 +313,13 @@ class TestAsyncSnapshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -346,6 +348,7 @@ class TestAsyncSnapshot:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            formats=["content"],
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",
@@ -445,13 +448,13 @@ class TestAsyncSnapshot:
                     "id": "id",
                     "content": "content",
                     "type": "type",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             add_style_tag=[
                 {
                     "content": "content",
-                    "url": "url",
+                    "url": "https://example.com",
                 }
             ],
             allow_request_pattern=["string"],
@@ -480,6 +483,7 @@ class TestAsyncSnapshot:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            formats=["content"],
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",

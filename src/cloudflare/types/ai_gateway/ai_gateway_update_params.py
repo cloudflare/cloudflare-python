@@ -172,11 +172,11 @@ class Guardrails(TypedDict, total=False):
 
 
 class Otel(TypedDict, total=False):
-    authorization: Required[str]
-
     headers: Required[Dict[str, str]]
 
     url: Required[str]
+
+    authorization: str
 
     content_type: Literal["json", "protobuf"]
 
