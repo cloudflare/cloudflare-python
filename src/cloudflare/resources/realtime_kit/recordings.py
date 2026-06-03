@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -29,6 +29,7 @@ from ...types.realtime_kit.recording_get_recordings_response import RecordingGet
 from ...types.realtime_kit.recording_start_recordings_response import RecordingStartRecordingsResponse
 from ...types.realtime_kit.recording_get_one_recording_response import RecordingGetOneRecordingResponse
 from ...types.realtime_kit.recording_get_active_recordings_response import RecordingGetActiveRecordingsResponse
+from ...types.realtime_kit.recording_start_track_recording_response import RecordingStartTrackRecordingResponse
 from ...types.realtime_kit.recording_pause_resume_stop_recording_response import (
     RecordingPauseResumeStopRecordingResponse,
 )
@@ -392,22 +393,22 @@ class RecordingsResource(SyncAPIResource):
         app_id: str,
         *,
         account_id: str,
-        layers: Dict[str, recording_start_track_recording_params.Layers],
         meeting_id: str,
-        max_seconds: float | Omit = omit,
+        layers: Dict[str, recording_start_track_recording_params.Layers] | Omit = omit,
+        user_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Starts a track recording in a meeting.
+    ) -> RecordingStartTrackRecordingResponse:
+        """Starts track recording for a meeting.
 
-        Track recordings consist of "layers".
-        Layers are used to map audio/video tracks in a meeting to output destinations.
-        More information about track recordings is available in the
-        [Track Recordings Guide Page](https://docs.realtime.cloudflare.com/guides/capabilities/recording/recording-overview).
+        Track recording currently records separate
+        participant audio tracks as WebM files in the RealtimeKit bucket. Video track
+        recording is in development. For more information, refer to
+        [Track recording](/realtime/realtimekit/recording-guide/track-recording/).
 
         Args:
           account_id: The account identifier tag.
@@ -416,7 +417,11 @@ class RecordingsResource(SyncAPIResource):
 
           meeting_id: ID of the meeting to record.
 
-          max_seconds: Maximum seconds this recording should be active for (beta)
+          layers: Optional audio layer configuration. If omitted, RealtimeKit records all
+              participant audio using the default file name prefix.
+
+          user_ids: Optional list of participant user IDs to record. Selective track recording
+              (`user_ids`) is in early beta contact support to use this feature.
 
           extra_headers: Send extra headers
 
@@ -430,23 +435,22 @@ class RecordingsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             path_template(
                 "/accounts/{account_id}/realtime/kit/{app_id}/recordings/track", account_id=account_id, app_id=app_id
             ),
             body=maybe_transform(
                 {
-                    "layers": layers,
                     "meeting_id": meeting_id,
-                    "max_seconds": max_seconds,
+                    "layers": layers,
+                    "user_ids": user_ids,
                 },
                 recording_start_track_recording_params.RecordingStartTrackRecordingParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=RecordingStartTrackRecordingResponse,
         )
 
 
@@ -806,22 +810,22 @@ class AsyncRecordingsResource(AsyncAPIResource):
         app_id: str,
         *,
         account_id: str,
-        layers: Dict[str, recording_start_track_recording_params.Layers],
         meeting_id: str,
-        max_seconds: float | Omit = omit,
+        layers: Dict[str, recording_start_track_recording_params.Layers] | Omit = omit,
+        user_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Starts a track recording in a meeting.
+    ) -> RecordingStartTrackRecordingResponse:
+        """Starts track recording for a meeting.
 
-        Track recordings consist of "layers".
-        Layers are used to map audio/video tracks in a meeting to output destinations.
-        More information about track recordings is available in the
-        [Track Recordings Guide Page](https://docs.realtime.cloudflare.com/guides/capabilities/recording/recording-overview).
+        Track recording currently records separate
+        participant audio tracks as WebM files in the RealtimeKit bucket. Video track
+        recording is in development. For more information, refer to
+        [Track recording](/realtime/realtimekit/recording-guide/track-recording/).
 
         Args:
           account_id: The account identifier tag.
@@ -830,7 +834,11 @@ class AsyncRecordingsResource(AsyncAPIResource):
 
           meeting_id: ID of the meeting to record.
 
-          max_seconds: Maximum seconds this recording should be active for (beta)
+          layers: Optional audio layer configuration. If omitted, RealtimeKit records all
+              participant audio using the default file name prefix.
+
+          user_ids: Optional list of participant user IDs to record. Selective track recording
+              (`user_ids`) is in early beta contact support to use this feature.
 
           extra_headers: Send extra headers
 
@@ -844,23 +852,22 @@ class AsyncRecordingsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             path_template(
                 "/accounts/{account_id}/realtime/kit/{app_id}/recordings/track", account_id=account_id, app_id=app_id
             ),
             body=await async_maybe_transform(
                 {
-                    "layers": layers,
                     "meeting_id": meeting_id,
-                    "max_seconds": max_seconds,
+                    "layers": layers,
+                    "user_ids": user_ids,
                 },
                 recording_start_track_recording_params.RecordingStartTrackRecordingParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=RecordingStartTrackRecordingResponse,
         )
 
 

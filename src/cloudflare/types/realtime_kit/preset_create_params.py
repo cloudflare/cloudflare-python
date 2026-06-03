@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing import Dict, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -15,11 +15,6 @@ __all__ = [
     "ConfigMediaScreenshare",
     "ConfigMediaVideo",
     "ConfigMediaAudio",
-    "UI",
-    "UIDesignTokens",
-    "UIDesignTokensColors",
-    "UIDesignTokensColorsBackground",
-    "UIDesignTokensColorsBrand",
     "Permissions",
     "PermissionsChat",
     "PermissionsChatPrivate",
@@ -31,8 +26,12 @@ __all__ = [
     "PermissionsMediaVideo",
     "PermissionsPlugins",
     "PermissionsPluginsConfig",
-    "PermissionsPluginsConfigUnionMember1",
     "PermissionsPolls",
+    "UI",
+    "UIDesignTokens",
+    "UIDesignTokensColors",
+    "UIDesignTokensColorsBackground",
+    "UIDesignTokensColorsBrand",
 ]
 
 
@@ -45,39 +44,42 @@ class PresetCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the preset"""
 
-    ui: Required[UI]
+    permissions: Required[Permissions]
 
-    permissions: Permissions
+    ui: Required[UI]
 
 
 class ConfigMaxVideoStreams(TypedDict, total=False):
     """Maximum number of streams that are visible on a device"""
 
-    desktop: Required[int]
+    desktop: Required[float]
     """Maximum number of video streams visible on desktop devices"""
 
-    mobile: Required[int]
+    mobile: Required[float]
     """Maximum number of streams visible on mobile devices"""
 
 
 class ConfigMediaScreenshare(TypedDict, total=False):
     """Configuration options for participant screen shares"""
 
-    frame_rate: Required[int]
+    frame_rate: Required[float]
     """Frame rate of screen share"""
 
-    quality: Required[Literal["hd", "vga", "qvga"]]
+    quality: Required[Literal["hd", "vga", "qvga", "fhd", "uhd"]]
     """Quality of screen share"""
 
 
 class ConfigMediaVideo(TypedDict, total=False):
     """Configuration options for participant videos"""
 
-    frame_rate: Required[int]
+    frame_rate: Required[float]
     """Frame rate of participants' video"""
 
-    quality: Required[Literal["hd", "vga", "qvga"]]
+    quality: Required[Literal["hd", "vga", "qvga", "fhd", "uhd"]]
     """Video quality of participants"""
+
+    simulcast: bool
+    """Enable simulcast for participant videos."""
 
 
 class ConfigMediaAudio(TypedDict, total=False):
@@ -104,7 +106,7 @@ class ConfigMedia(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    max_screenshare_count: Required[int]
+    max_screenshare_count: Required[float]
     """Maximum number of screen shares that can be active at a given time"""
 
     max_video_streams: Required[ConfigMaxVideoStreams]
@@ -113,70 +115,11 @@ class Config(TypedDict, total=False):
     media: Required[ConfigMedia]
     """Media configuration options. eg: Video quality"""
 
-    view_type: Required[Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM"]]
+    view_type: Required[Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM", "LIVESTREAM"]]
     """Type of the meeting"""
 
-
-class UIDesignTokensColorsBackground(TypedDict, total=False):
-    _1000: Required[Annotated[str, PropertyInfo(alias="1000")]]
-
-    _600: Required[Annotated[str, PropertyInfo(alias="600")]]
-
-    _700: Required[Annotated[str, PropertyInfo(alias="700")]]
-
-    _800: Required[Annotated[str, PropertyInfo(alias="800")]]
-
-    _900: Required[Annotated[str, PropertyInfo(alias="900")]]
-
-
-class UIDesignTokensColorsBrand(TypedDict, total=False):
-    _300: Required[Annotated[str, PropertyInfo(alias="300")]]
-
-    _400: Required[Annotated[str, PropertyInfo(alias="400")]]
-
-    _500: Required[Annotated[str, PropertyInfo(alias="500")]]
-
-    _600: Required[Annotated[str, PropertyInfo(alias="600")]]
-
-    _700: Required[Annotated[str, PropertyInfo(alias="700")]]
-
-
-class UIDesignTokensColors(TypedDict, total=False):
-    background: Required[UIDesignTokensColorsBackground]
-
-    brand: Required[UIDesignTokensColorsBrand]
-
-    danger: Required[str]
-
-    success: Required[str]
-
-    text: Required[str]
-
-    text_on_brand: Required[str]
-
-    video_bg: Required[str]
-
-    warning: Required[str]
-
-
-class UIDesignTokens(TypedDict, total=False):
-    border_radius: Required[Literal["rounded"]]
-
-    border_width: Required[Literal["thin"]]
-
-    colors: Required[UIDesignTokensColors]
-
-    logo: Required[str]
-
-    spacing_base: Required[float]
-
-    theme: Required[Literal["dark"]]
-
-
-class UI(TypedDict, total=False):
-    design_tokens: Required[UIDesignTokens]
-
-    config_diff: object
+    livestream_viewer_qualities: Optional[Iterable[int]]
+    """Livestream viewer quality levels."""
 
 
 class PermissionsChatPrivate(TypedDict, total=False):
@@ -201,8 +144,6 @@ class PermissionsChatPublic(TypedDict, total=False):
 
 
 class PermissionsChat(TypedDict, total=False):
-    """Chat permissions"""
-
     private: Required[PermissionsChatPrivate]
 
     public: Required[PermissionsChatPublic]
@@ -250,13 +191,10 @@ class PermissionsMedia(TypedDict, total=False):
     """Video permissions"""
 
 
-class PermissionsPluginsConfigUnionMember1(TypedDict, total=False):
-    access_control: Required[Literal["FULL_ACCESS", "VIEW_ONLY"]]
+class PermissionsPluginsConfig(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+    access_control: Literal["FULL_ACCESS", "VIEW_ONLY"]
 
-    handles_view_only: Required[bool]
-
-
-PermissionsPluginsConfig: TypeAlias = Union[str, PermissionsPluginsConfigUnionMember1]
+    handles_view_only: bool
 
 
 class PermissionsPlugins(TypedDict, total=False):
@@ -271,7 +209,8 @@ class PermissionsPlugins(TypedDict, total=False):
     can_start: Required[bool]
     """Can start plugins"""
 
-    config: Required[PermissionsPluginsConfig]
+    config: Required[Dict[str, PermissionsPluginsConfig]]
+    """Plugin configuration keyed by plugin UUID."""
 
 
 class PermissionsPolls(TypedDict, total=False):
@@ -304,7 +243,6 @@ class Permissions(TypedDict, total=False):
     can_spotlight: Required[bool]
 
     chat: Required[PermissionsChat]
-    """Chat permissions"""
 
     connected_meetings: Required[PermissionsConnectedMeetings]
 
@@ -338,4 +276,76 @@ class Permissions(TypedDict, total=False):
     waiting_room_type: Required[Literal["SKIP", "ON_PRIVILEGED_USER_ENTRY", "SKIP_ON_ACCEPT"]]
     """Waiting room type"""
 
+    accept_stage_requests: bool
+
     is_recorder: bool
+
+    stage_access: Literal["ALLOWED", "NOT_ALLOWED", "CAN_REQUEST"]
+
+    stage_enabled: bool
+
+    transcription_enabled: bool
+
+
+class UIDesignTokensColorsBackground(TypedDict, total=False):
+    _1000: Required[Annotated[str, PropertyInfo(alias="1000")]]
+
+    _600: Required[Annotated[str, PropertyInfo(alias="600")]]
+
+    _700: Required[Annotated[str, PropertyInfo(alias="700")]]
+
+    _800: Required[Annotated[str, PropertyInfo(alias="800")]]
+
+    _900: Required[Annotated[str, PropertyInfo(alias="900")]]
+
+
+class UIDesignTokensColorsBrand(TypedDict, total=False):
+    _300: Required[Annotated[str, PropertyInfo(alias="300")]]
+
+    _400: Required[Annotated[str, PropertyInfo(alias="400")]]
+
+    _500: Required[Annotated[str, PropertyInfo(alias="500")]]
+
+    _600: Required[Annotated[str, PropertyInfo(alias="600")]]
+
+    _700: Required[Annotated[str, PropertyInfo(alias="700")]]
+
+
+class UIDesignTokensColors(TypedDict, total=False):
+    background: Required[UIDesignTokensColorsBackground]
+
+    brand: Required[UIDesignTokensColorsBrand]
+
+    danger: Required[str]
+
+    success: Required[str]
+
+    text: Required[str]
+
+    text_on_brand: Required[str]
+
+    video_bg: Required[str]
+
+    warning: Required[str]
+
+
+class UIDesignTokens(TypedDict, total=False):
+    border_radius: Required[Literal["sharp", "rounded", "extra-rounded", "circular"]]
+
+    border_width: Required[Literal["none", "thin", "fat"]]
+
+    colors: Required[UIDesignTokensColors]
+
+    spacing_base: Required[float]
+
+    theme: Required[Literal["darkest", "dark", "light"]]
+
+    font_family: str
+
+    google_font: str
+
+    logo: str
+
+
+class UI(TypedDict, total=False):
+    design_tokens: Required[UIDesignTokens]

@@ -17,6 +17,7 @@ from cloudflare.types.realtime_kit import (
     SessionGetSessionSummaryResponse,
     SessionGetSessionTranscriptsResponse,
     SessionGetSessionParticipantsResponse,
+    SessionGenerateSummaryOfTranscriptsResponse,
     SessionGetParticipantDataFromPeerIDResponse,
     SessionGetSessionParticipantDetailsResponse,
 )
@@ -35,7 +36,7 @@ class TestSessions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
-        assert session is None
+        assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -49,7 +50,7 @@ class TestSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert session is None
+        assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -63,7 +64,7 @@ class TestSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert session is None
+            assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -109,6 +110,7 @@ class TestSessions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             filters="device_info",
+            include_peer_events=True,
         )
         assert_matches_type(SessionGetParticipantDataFromPeerIDResponse, session, path=["response"])
 
@@ -553,6 +555,17 @@ class TestSessions:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
+    def test_method_get_session_transcripts_with_all_params(self, client: Cloudflare) -> None:
+        session = client.realtime_kit.sessions.get_session_transcripts(
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="app_id",
+            format="SRT",
+        )
+        assert_matches_type(SessionGetSessionTranscriptsResponse, session, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
     def test_raw_response_get_session_transcripts(self, client: Cloudflare) -> None:
         response = client.realtime_kit.sessions.with_raw_response.get_session_transcripts(
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -690,7 +703,7 @@ class TestAsyncSessions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
-        assert session is None
+        assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -704,7 +717,7 @@ class TestAsyncSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert session is None
+        assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -718,7 +731,7 @@ class TestAsyncSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert session is None
+            assert_matches_type(SessionGenerateSummaryOfTranscriptsResponse, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -766,6 +779,7 @@ class TestAsyncSessions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             filters="device_info",
+            include_peer_events=True,
         )
         assert_matches_type(SessionGetParticipantDataFromPeerIDResponse, session, path=["response"])
 
@@ -1205,6 +1219,17 @@ class TestAsyncSessions:
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
+        )
+        assert_matches_type(SessionGetSessionTranscriptsResponse, session, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
+    async def test_method_get_session_transcripts_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        session = await async_client.realtime_kit.sessions.get_session_transcripts(
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="app_id",
+            format="SRT",
         )
         assert_matches_type(SessionGetSessionTranscriptsResponse, session, path=["response"])
 

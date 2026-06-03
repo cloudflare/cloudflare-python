@@ -1,7 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import TYPE_CHECKING, Dict, List, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -16,11 +17,6 @@ __all__ = [
     "DataConfigMediaScreenshare",
     "DataConfigMediaVideo",
     "DataConfigMediaAudio",
-    "DataUI",
-    "DataUIDesignTokens",
-    "DataUIDesignTokensColors",
-    "DataUIDesignTokensColorsBackground",
-    "DataUIDesignTokensColorsBrand",
     "DataPermissions",
     "DataPermissionsChat",
     "DataPermissionsChatPrivate",
@@ -32,39 +28,46 @@ __all__ = [
     "DataPermissionsMediaVideo",
     "DataPermissionsPlugins",
     "DataPermissionsPluginsConfig",
-    "DataPermissionsPluginsConfigUnionMember1",
     "DataPermissionsPolls",
+    "DataUI",
+    "DataUIDesignTokens",
+    "DataUIDesignTokensColors",
+    "DataUIDesignTokensColorsBackground",
+    "DataUIDesignTokensColorsBrand",
 ]
 
 
 class DataConfigMaxVideoStreams(BaseModel):
     """Maximum number of streams that are visible on a device"""
 
-    desktop: int
+    desktop: float
     """Maximum number of video streams visible on desktop devices"""
 
-    mobile: int
+    mobile: float
     """Maximum number of streams visible on mobile devices"""
 
 
 class DataConfigMediaScreenshare(BaseModel):
     """Configuration options for participant screen shares"""
 
-    frame_rate: int
+    frame_rate: float
     """Frame rate of screen share"""
 
-    quality: Literal["hd", "vga", "qvga"]
+    quality: Literal["hd", "vga", "qvga", "fhd", "uhd"]
     """Quality of screen share"""
 
 
 class DataConfigMediaVideo(BaseModel):
     """Configuration options for participant videos"""
 
-    frame_rate: int
+    frame_rate: float
     """Frame rate of participants' video"""
 
-    quality: Literal["hd", "vga", "qvga"]
+    quality: Literal["hd", "vga", "qvga", "fhd", "uhd"]
     """Video quality of participants"""
+
+    simulcast: Optional[bool] = None
+    """Enable simulcast for participant videos."""
 
 
 class DataConfigMediaAudio(BaseModel):
@@ -91,7 +94,7 @@ class DataConfigMedia(BaseModel):
 
 
 class DataConfig(BaseModel):
-    max_screenshare_count: int
+    max_screenshare_count: float
     """Maximum number of screen shares that can be active at a given time"""
 
     max_video_streams: DataConfigMaxVideoStreams
@@ -100,70 +103,11 @@ class DataConfig(BaseModel):
     media: DataConfigMedia
     """Media configuration options. eg: Video quality"""
 
-    view_type: Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM"]
+    view_type: Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM", "LIVESTREAM"]
     """Type of the meeting"""
 
-
-class DataUIDesignTokensColorsBackground(BaseModel):
-    api_1000: str = FieldInfo(alias="1000")
-
-    api_600: str = FieldInfo(alias="600")
-
-    api_700: str = FieldInfo(alias="700")
-
-    api_800: str = FieldInfo(alias="800")
-
-    api_900: str = FieldInfo(alias="900")
-
-
-class DataUIDesignTokensColorsBrand(BaseModel):
-    api_300: str = FieldInfo(alias="300")
-
-    api_400: str = FieldInfo(alias="400")
-
-    api_500: str = FieldInfo(alias="500")
-
-    api_600: str = FieldInfo(alias="600")
-
-    api_700: str = FieldInfo(alias="700")
-
-
-class DataUIDesignTokensColors(BaseModel):
-    background: DataUIDesignTokensColorsBackground
-
-    brand: DataUIDesignTokensColorsBrand
-
-    danger: str
-
-    success: str
-
-    text: str
-
-    text_on_brand: str
-
-    video_bg: str
-
-    warning: str
-
-
-class DataUIDesignTokens(BaseModel):
-    border_radius: Literal["rounded"]
-
-    border_width: Literal["thin"]
-
-    colors: DataUIDesignTokensColors
-
-    logo: str
-
-    spacing_base: float
-
-    theme: Literal["dark"]
-
-
-class DataUI(BaseModel):
-    design_tokens: DataUIDesignTokens
-
-    config_diff: Optional[object] = None
+    livestream_viewer_qualities: Optional[List[int]] = None
+    """Livestream viewer quality levels."""
 
 
 class DataPermissionsChatPrivate(BaseModel):
@@ -188,8 +132,6 @@ class DataPermissionsChatPublic(BaseModel):
 
 
 class DataPermissionsChat(BaseModel):
-    """Chat permissions"""
-
     private: DataPermissionsChatPrivate
 
     public: DataPermissionsChatPublic
@@ -237,13 +179,22 @@ class DataPermissionsMedia(BaseModel):
     """Video permissions"""
 
 
-class DataPermissionsPluginsConfigUnionMember1(BaseModel):
-    access_control: Literal["FULL_ACCESS", "VIEW_ONLY"]
+class DataPermissionsPluginsConfig(BaseModel):
+    access_control: Optional[Literal["FULL_ACCESS", "VIEW_ONLY"]] = None
 
-    handles_view_only: bool
+    handles_view_only: Optional[bool] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
-DataPermissionsPluginsConfig: TypeAlias = Union[str, DataPermissionsPluginsConfigUnionMember1]
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
 
 
 class DataPermissionsPlugins(BaseModel):
@@ -258,7 +209,8 @@ class DataPermissionsPlugins(BaseModel):
     can_start: bool
     """Can start plugins"""
 
-    config: DataPermissionsPluginsConfig
+    config: Dict[str, DataPermissionsPluginsConfig]
+    """Plugin configuration keyed by plugin UUID."""
 
 
 class DataPermissionsPolls(BaseModel):
@@ -291,7 +243,6 @@ class DataPermissions(BaseModel):
     can_spotlight: bool
 
     chat: DataPermissionsChat
-    """Chat permissions"""
 
     connected_meetings: DataPermissionsConnectedMeetings
 
@@ -325,7 +276,79 @@ class DataPermissions(BaseModel):
     waiting_room_type: Literal["SKIP", "ON_PRIVILEGED_USER_ENTRY", "SKIP_ON_ACCEPT"]
     """Waiting room type"""
 
+    accept_stage_requests: Optional[bool] = None
+
     is_recorder: Optional[bool] = None
+
+    stage_access: Optional[Literal["ALLOWED", "NOT_ALLOWED", "CAN_REQUEST"]] = None
+
+    stage_enabled: Optional[bool] = None
+
+    transcription_enabled: Optional[bool] = None
+
+
+class DataUIDesignTokensColorsBackground(BaseModel):
+    api_1000: str = FieldInfo(alias="1000")
+
+    api_600: str = FieldInfo(alias="600")
+
+    api_700: str = FieldInfo(alias="700")
+
+    api_800: str = FieldInfo(alias="800")
+
+    api_900: str = FieldInfo(alias="900")
+
+
+class DataUIDesignTokensColorsBrand(BaseModel):
+    api_300: str = FieldInfo(alias="300")
+
+    api_400: str = FieldInfo(alias="400")
+
+    api_500: str = FieldInfo(alias="500")
+
+    api_600: str = FieldInfo(alias="600")
+
+    api_700: str = FieldInfo(alias="700")
+
+
+class DataUIDesignTokensColors(BaseModel):
+    background: DataUIDesignTokensColorsBackground
+
+    brand: DataUIDesignTokensColorsBrand
+
+    danger: str
+
+    success: str
+
+    text: str
+
+    text_on_brand: str
+
+    video_bg: str
+
+    warning: str
+
+
+class DataUIDesignTokens(BaseModel):
+    border_radius: Literal["sharp", "rounded", "extra-rounded", "circular"]
+
+    border_width: Literal["none", "thin", "fat"]
+
+    colors: DataUIDesignTokensColors
+
+    spacing_base: float
+
+    theme: Literal["darkest", "dark", "light"]
+
+    font_family: Optional[str] = None
+
+    google_font: Optional[str] = None
+
+    logo: Optional[str] = None
+
+
+class DataUI(BaseModel):
+    design_tokens: DataUIDesignTokens
 
 
 class Data(BaseModel):
@@ -336,12 +359,18 @@ class Data(BaseModel):
 
     config: DataConfig
 
+    created_at: datetime
+    """Timestamp this preset was created at"""
+
     name: str
     """Name of the preset"""
 
+    permissions: DataPermissions
+
     ui: DataUI
 
-    permissions: Optional[DataPermissions] = None
+    updated_at: datetime
+    """Timestamp this preset was last updated"""
 
 
 class PresetCreateResponse(BaseModel):

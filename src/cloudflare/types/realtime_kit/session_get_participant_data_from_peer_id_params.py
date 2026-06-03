@@ -19,3 +19,6 @@ class SessionGetParticipantDataFromPeerIDParams(TypedDict, total=False):
 
     Note that there must be no spaces between the filters.
     """
+
+    include_peer_events: bool
+    """if true, response includes all the peer events of participant."""

@@ -15,6 +15,7 @@ from cloudflare.types.realtime_kit import (
     RecordingGetOneRecordingResponse,
     RecordingStartRecordingsResponse,
     RecordingGetActiveRecordingsResponse,
+    RecordingStartTrackRecordingResponse,
     RecordingPauseResumeStopRecordingResponse,
 )
 
@@ -401,13 +402,9 @@ class TestRecordings:
         recording = client.realtime_kit.recordings.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         )
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -415,56 +412,16 @@ class TestRecordings:
         recording = client.realtime_kit.recordings.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             layers={
-                "default": {
-                    "file_name_prefix": "string",
-                    "outputs": [
-                        {
-                            "storage_config": {
-                                "type": "aws",
-                                "access_key": "access_key",
-                                "auth_method": "KEY",
-                                "bucket": "bucket",
-                                "host": "host",
-                                "password": "password",
-                                "path": "path",
-                                "port": 0,
-                                "private_key": "private_key",
-                                "region": "us-east-1",
-                                "secret": "secret",
-                                "username": "username",
-                            },
-                            "type": "REALTIMEKIT_BUCKET",
-                        }
-                    ],
-                },
-                "default-video": {
-                    "file_name_prefix": "string",
-                    "outputs": [
-                        {
-                            "storage_config": {
-                                "type": "aws",
-                                "access_key": "access_key",
-                                "auth_method": "KEY",
-                                "bucket": "bucket",
-                                "host": "host",
-                                "password": "password",
-                                "path": "path",
-                                "port": 0,
-                                "private_key": "private_key",
-                                "region": "us-east-1",
-                                "secret": "secret",
-                                "username": "username",
-                            },
-                            "type": "REALTIMEKIT_BUCKET",
-                        }
-                    ],
-                },
+                "foo": {
+                    "file_name_prefix": "file_name_prefix",
+                    "media_kind": "audio",
+                }
             },
-            meeting_id="string",
-            max_seconds=60,
+            user_ids=["x"],
         )
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -472,17 +429,13 @@ class TestRecordings:
         response = client.realtime_kit.recordings.with_raw_response.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = response.parse()
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -490,17 +443,13 @@ class TestRecordings:
         with client.realtime_kit.recordings.with_streaming_response.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = response.parse()
-            assert recording is None
+            assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,22 +460,14 @@ class TestRecordings:
             client.realtime_kit.recordings.with_raw_response.start_track_recording(
                 app_id="app_id",
                 account_id="",
-                layers={
-                    "default": {},
-                    "default-video": {},
-                },
-                meeting_id="string",
+                meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.realtime_kit.recordings.with_raw_response.start_track_recording(
                 app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                layers={
-                    "default": {},
-                    "default-video": {},
-                },
-                meeting_id="string",
+                meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             )
 
 
@@ -912,13 +853,9 @@ class TestAsyncRecordings:
         recording = await async_client.realtime_kit.recordings.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         )
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -926,56 +863,16 @@ class TestAsyncRecordings:
         recording = await async_client.realtime_kit.recordings.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             layers={
-                "default": {
-                    "file_name_prefix": "string",
-                    "outputs": [
-                        {
-                            "storage_config": {
-                                "type": "aws",
-                                "access_key": "access_key",
-                                "auth_method": "KEY",
-                                "bucket": "bucket",
-                                "host": "host",
-                                "password": "password",
-                                "path": "path",
-                                "port": 0,
-                                "private_key": "private_key",
-                                "region": "us-east-1",
-                                "secret": "secret",
-                                "username": "username",
-                            },
-                            "type": "REALTIMEKIT_BUCKET",
-                        }
-                    ],
-                },
-                "default-video": {
-                    "file_name_prefix": "string",
-                    "outputs": [
-                        {
-                            "storage_config": {
-                                "type": "aws",
-                                "access_key": "access_key",
-                                "auth_method": "KEY",
-                                "bucket": "bucket",
-                                "host": "host",
-                                "password": "password",
-                                "path": "path",
-                                "port": 0,
-                                "private_key": "private_key",
-                                "region": "us-east-1",
-                                "secret": "secret",
-                                "username": "username",
-                            },
-                            "type": "REALTIMEKIT_BUCKET",
-                        }
-                    ],
-                },
+                "foo": {
+                    "file_name_prefix": "file_name_prefix",
+                    "media_kind": "audio",
+                }
             },
-            meeting_id="string",
-            max_seconds=60,
+            user_ids=["x"],
         )
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -983,17 +880,13 @@ class TestAsyncRecordings:
         response = await async_client.realtime_kit.recordings.with_raw_response.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = await response.parse()
-        assert recording is None
+        assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
@@ -1001,17 +894,13 @@ class TestAsyncRecordings:
         async with async_client.realtime_kit.recordings.with_streaming_response.start_track_recording(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            layers={
-                "default": {},
-                "default-video": {},
-            },
-            meeting_id="string",
+            meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = await response.parse()
-            assert recording is None
+            assert_matches_type(RecordingStartTrackRecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1022,20 +911,12 @@ class TestAsyncRecordings:
             await async_client.realtime_kit.recordings.with_raw_response.start_track_recording(
                 app_id="app_id",
                 account_id="",
-                layers={
-                    "default": {},
-                    "default-video": {},
-                },
-                meeting_id="string",
+                meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.realtime_kit.recordings.with_raw_response.start_track_recording(
                 app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                layers={
-                    "default": {},
-                    "default-video": {},
-                },
-                meeting_id="string",
+                meeting_id="97440c6a-140b-40a9-9499-b23fd7a3868a",
             )

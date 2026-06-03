@@ -75,6 +75,7 @@ Types:
 
 ```python
 from cloudflare.types.realtime_kit import (
+    SessionGenerateSummaryOfTranscriptsResponse,
     SessionGetParticipantDataFromPeerIDResponse,
     SessionGetSessionChatResponse,
     SessionGetSessionDetailsResponse,
@@ -88,14 +89,14 @@ from cloudflare.types.realtime_kit import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">generate_summary_of_transcripts</a>(session_id, \*, account_id, app_id) -> None</code>
+- <code title="post /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">generate_summary_of_transcripts</a>(session_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/session_generate_summary_of_transcripts_response.py">SessionGenerateSummaryOfTranscriptsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/peer-report/{peer_id}">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_participant_data_from_peer_id</a>(peer_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_participant_data_from_peer_id_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_participant_data_from_peer_id_response.py">SessionGetParticipantDataFromPeerIDResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/chat">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_chat</a>(session_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_chat_response.py">SessionGetSessionChatResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_details</a>(session_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_session_details_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_details_response.py">SessionGetSessionDetailsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants/{participant_id}">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_participant_details</a>(participant_id, \*, account_id, app_id, session_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_session_participant_details_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_participant_details_response.py">SessionGetSessionParticipantDetailsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/participants">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_participants</a>(session_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_session_participants_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_participants_response.py">SessionGetSessionParticipantsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_summary</a>(session_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_summary_response.py">SessionGetSessionSummaryResponse</a></code>
-- <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_transcripts</a>(session_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_transcripts_response.py">SessionGetSessionTranscriptsResponse</a></code>
+- <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/transcript">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_session_transcripts</a>(session_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_session_transcripts_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_session_transcripts_response.py">SessionGetSessionTranscriptsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/sessions">client.realtime_kit.sessions.<a href="./src/cloudflare/resources/realtime_kit/sessions.py">get_sessions</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/session_get_sessions_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/session_get_sessions_response.py">SessionGetSessionsResponse</a></code>
 
 ## Recordings
@@ -109,6 +110,7 @@ from cloudflare.types.realtime_kit import (
     RecordingGetRecordingsResponse,
     RecordingPauseResumeStopRecordingResponse,
     RecordingStartRecordingsResponse,
+    RecordingStartTrackRecordingResponse,
 )
 ```
 
@@ -119,7 +121,7 @@ Methods:
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/recordings">client.realtime_kit.recordings.<a href="./src/cloudflare/resources/realtime_kit/recordings.py">get_recordings</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/recording_get_recordings_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/recording_get_recordings_response.py">RecordingGetRecordingsResponse</a></code>
 - <code title="put /accounts/{account_id}/realtime/kit/{app_id}/recordings/{recording_id}">client.realtime_kit.recordings.<a href="./src/cloudflare/resources/realtime_kit/recordings.py">pause_resume_stop_recording</a>(recording_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/recording_pause_resume_stop_recording_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/recording_pause_resume_stop_recording_response.py">RecordingPauseResumeStopRecordingResponse</a></code>
 - <code title="post /accounts/{account_id}/realtime/kit/{app_id}/recordings">client.realtime_kit.recordings.<a href="./src/cloudflare/resources/realtime_kit/recordings.py">start_recordings</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/recording_start_recordings_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/recording_start_recordings_response.py">RecordingStartRecordingsResponse</a></code>
-- <code title="post /accounts/{account_id}/realtime/kit/{app_id}/recordings/track">client.realtime_kit.recordings.<a href="./src/cloudflare/resources/realtime_kit/recordings.py">start_track_recording</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/recording_start_track_recording_params.py">params</a>) -> None</code>
+- <code title="post /accounts/{account_id}/realtime/kit/{app_id}/recordings/track">client.realtime_kit.recordings.<a href="./src/cloudflare/resources/realtime_kit/recordings.py">start_track_recording</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/recording_start_track_recording_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/recording_start_track_recording_response.py">RecordingStartTrackRecordingResponse</a></code>
 
 ## Webhooks
 

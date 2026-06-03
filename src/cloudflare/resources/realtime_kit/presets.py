@@ -52,8 +52,8 @@ class PresetsResource(SyncAPIResource):
         account_id: str,
         config: preset_create_params.Config,
         name: str,
+        permissions: preset_create_params.Permissions,
         ui: preset_create_params.UI,
-        permissions: preset_create_params.Permissions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,8 +89,8 @@ class PresetsResource(SyncAPIResource):
                 {
                     "config": config,
                     "name": name,
-                    "ui": ui,
                     "permissions": permissions,
+                    "ui": ui,
                 },
                 preset_create_params.PresetCreateParams,
             ),
@@ -218,6 +218,7 @@ class PresetsResource(SyncAPIResource):
         account_id: str,
         page_no: float | Omit = omit,
         per_page: float | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,6 +237,8 @@ class PresetsResource(SyncAPIResource):
           page_no: The page number from which you want your page search results to be displayed.
 
           per_page: Number of results per page
+
+          search: Search presets by name.
 
           extra_headers: Send extra headers
 
@@ -260,6 +263,7 @@ class PresetsResource(SyncAPIResource):
                     {
                         "page_no": page_no,
                         "per_page": per_page,
+                        "search": search,
                     },
                     preset_get_params.PresetGetParams,
                 ),
@@ -343,8 +347,8 @@ class AsyncPresetsResource(AsyncAPIResource):
         account_id: str,
         config: preset_create_params.Config,
         name: str,
+        permissions: preset_create_params.Permissions,
         ui: preset_create_params.UI,
-        permissions: preset_create_params.Permissions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,8 +384,8 @@ class AsyncPresetsResource(AsyncAPIResource):
                 {
                     "config": config,
                     "name": name,
-                    "ui": ui,
                     "permissions": permissions,
+                    "ui": ui,
                 },
                 preset_create_params.PresetCreateParams,
             ),
@@ -509,6 +513,7 @@ class AsyncPresetsResource(AsyncAPIResource):
         account_id: str,
         page_no: float | Omit = omit,
         per_page: float | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -527,6 +532,8 @@ class AsyncPresetsResource(AsyncAPIResource):
           page_no: The page number from which you want your page search results to be displayed.
 
           per_page: Number of results per page
+
+          search: Search presets by name.
 
           extra_headers: Send extra headers
 
@@ -551,6 +558,7 @@ class AsyncPresetsResource(AsyncAPIResource):
                     {
                         "page_no": page_no,
                         "per_page": per_page,
+                        "search": search,
                     },
                     preset_get_params.PresetGetParams,
                 ),

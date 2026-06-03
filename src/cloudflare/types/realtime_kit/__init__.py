@@ -64,6 +64,9 @@ from .meeting_replace_meeting_by_id_response import (
 from .recording_start_track_recording_params import (
     RecordingStartTrackRecordingParams as RecordingStartTrackRecordingParams,
 )
+from .session_get_session_transcripts_params import (
+    SessionGetSessionTranscriptsParams as SessionGetSessionTranscriptsParams,
+)
 from .active_session_kick_participants_params import (
     ActiveSessionKickParticipantsParams as ActiveSessionKickParticipantsParams,
 )
@@ -81,6 +84,9 @@ from .meeting_get_meeting_participant_response import (
 )
 from .recording_get_active_recordings_response import (
     RecordingGetActiveRecordingsResponse as RecordingGetActiveRecordingsResponse,
+)
+from .recording_start_track_recording_response import (
+    RecordingStartTrackRecordingResponse as RecordingStartTrackRecordingResponse,
 )
 from .session_get_session_transcripts_response import (
     SessionGetSessionTranscriptsResponse as SessionGetSessionTranscriptsResponse,
@@ -123,6 +129,9 @@ from .livestream_start_livestreaming_a_meeting_params import (
 )
 from .livestream_stop_livestreaming_a_meeting_response import (
     LivestreamStopLivestreamingAMeetingResponse as LivestreamStopLivestreamingAMeetingResponse,
+)
+from .session_generate_summary_of_transcripts_response import (
+    SessionGenerateSummaryOfTranscriptsResponse as SessionGenerateSummaryOfTranscriptsResponse,
 )
 from .session_get_participant_data_from_peer_id_params import (
     SessionGetParticipantDataFromPeerIDParams as SessionGetParticipantDataFromPeerIDParams,

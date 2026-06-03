@@ -16,3 +16,6 @@ class PresetGetParams(TypedDict, total=False):
 
     per_page: float
     """Number of results per page"""
+
+    search: str
+    """Search presets by name."""

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing import Dict, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,6 +12,7 @@ __all__ = [
     "Config",
     "ConfigMaxVideoStreams",
     "ConfigMedia",
+    "ConfigMediaAudio",
     "ConfigMediaScreenshare",
     "ConfigMediaVideo",
     "Permissions",
@@ -25,7 +26,6 @@ __all__ = [
     "PermissionsMediaVideo",
     "PermissionsPlugins",
     "PermissionsPluginsConfig",
-    "PermissionsPluginsConfigUnionMember1",
     "PermissionsPolls",
     "UI",
     "UIDesignTokens",
@@ -55,35 +55,51 @@ class PresetUpdateParams(TypedDict, total=False):
 class ConfigMaxVideoStreams(TypedDict, total=False):
     """Maximum number of streams that are visible on a device"""
 
-    desktop: int
+    desktop: float
     """Maximum number of video streams visible on desktop devices"""
 
-    mobile: int
+    mobile: float
     """Maximum number of streams visible on mobile devices"""
+
+
+class ConfigMediaAudio(TypedDict, total=False):
+    """Control options for Audio quality."""
+
+    enable_high_bitrate: bool
+    """Enable High Quality Audio for your meetings"""
+
+    enable_stereo: bool
+    """Enable Stereo for your meetings"""
 
 
 class ConfigMediaScreenshare(TypedDict, total=False):
     """Configuration options for participant screen shares"""
 
-    frame_rate: int
+    frame_rate: float
     """Frame rate of screen share"""
 
-    quality: Literal["hd", "vga", "qvga"]
+    quality: Literal["hd", "vga", "qvga", "fhd", "uhd"]
     """Quality of screen share"""
 
 
 class ConfigMediaVideo(TypedDict, total=False):
     """Configuration options for participant videos"""
 
-    frame_rate: int
+    frame_rate: float
     """Frame rate of participants' video"""
 
-    quality: Literal["hd", "vga", "qvga"]
+    quality: Literal["hd", "vga", "qvga", "fhd", "uhd"]
     """Video quality of participants"""
+
+    simulcast: bool
+    """Enable simulcast for participant videos."""
 
 
 class ConfigMedia(TypedDict, total=False):
     """Media configuration options. eg: Video quality"""
+
+    audio: ConfigMediaAudio
+    """Control options for Audio quality."""
 
     screenshare: ConfigMediaScreenshare
     """Configuration options for participant screen shares"""
@@ -93,7 +109,10 @@ class ConfigMedia(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    max_screenshare_count: int
+    livestream_viewer_qualities: Optional[Iterable[int]]
+    """Livestream viewer quality levels."""
+
+    max_screenshare_count: float
     """Maximum number of screen shares that can be active at a given time"""
 
     max_video_streams: ConfigMaxVideoStreams
@@ -102,7 +121,7 @@ class Config(TypedDict, total=False):
     media: ConfigMedia
     """Media configuration options. eg: Video quality"""
 
-    view_type: Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM"]
+    view_type: Literal["GROUP_CALL", "WEBINAR", "AUDIO_ROOM", "LIVESTREAM"]
     """Type of the meeting"""
 
 
@@ -128,8 +147,6 @@ class PermissionsChatPublic(TypedDict, total=False):
 
 
 class PermissionsChat(TypedDict, total=False):
-    """Chat permissions"""
-
     private: PermissionsChatPrivate
 
     public: PermissionsChatPublic
@@ -177,13 +194,10 @@ class PermissionsMedia(TypedDict, total=False):
     """Video permissions"""
 
 
-class PermissionsPluginsConfigUnionMember1(TypedDict, total=False):
+class PermissionsPluginsConfig(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     access_control: Literal["FULL_ACCESS", "VIEW_ONLY"]
 
     handles_view_only: bool
-
-
-PermissionsPluginsConfig: TypeAlias = Union[str, PermissionsPluginsConfigUnionMember1]
 
 
 class PermissionsPlugins(TypedDict, total=False):
@@ -198,7 +212,8 @@ class PermissionsPlugins(TypedDict, total=False):
     can_start: bool
     """Can start plugins"""
 
-    config: PermissionsPluginsConfig
+    config: Dict[str, PermissionsPluginsConfig]
+    """Plugin configuration keyed by plugin UUID."""
 
 
 class PermissionsPolls(TypedDict, total=False):
@@ -215,6 +230,8 @@ class PermissionsPolls(TypedDict, total=False):
 
 
 class Permissions(TypedDict, total=False):
+    accept_stage_requests: bool
+
     accept_waiting_requests: bool
     """Whether this participant can accept waiting requests"""
 
@@ -231,7 +248,6 @@ class Permissions(TypedDict, total=False):
     can_spotlight: bool
 
     chat: PermissionsChat
-    """Chat permissions"""
 
     connected_meetings: PermissionsConnectedMeetings
 
@@ -263,6 +279,12 @@ class Permissions(TypedDict, total=False):
     """Type of the recording peer"""
 
     show_participant_list: bool
+
+    stage_access: Literal["ALLOWED", "NOT_ALLOWED", "CAN_REQUEST"]
+
+    stage_enabled: bool
+
+    transcription_enabled: bool
 
     waiting_room_type: Literal["SKIP", "ON_PRIVILEGED_USER_ENTRY", "SKIP_ON_ACCEPT"]
     """Waiting room type"""
@@ -311,20 +333,22 @@ class UIDesignTokensColors(TypedDict, total=False):
 
 
 class UIDesignTokens(TypedDict, total=False):
-    border_radius: Literal["rounded"]
+    border_radius: Literal["sharp", "rounded", "extra-rounded", "circular"]
 
-    border_width: Literal["thin"]
+    border_width: Literal["none", "thin", "fat"]
 
     colors: UIDesignTokensColors
+
+    font_family: str
+
+    google_font: str
 
     logo: str
 
     spacing_base: float
 
-    theme: Literal["dark"]
+    theme: Literal["darkest", "dark", "light"]
 
 
 class UI(TypedDict, total=False):
-    config_diff: object
-
     design_tokens: UIDesignTokens

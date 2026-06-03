@@ -24,7 +24,10 @@ class SessionGetSessionParticipantsParams(TypedDict, total=False):
     """Number of results per page"""
 
     search: str
-    """The search query string. You can search using the meeting ID or title."""
+    """The search query string.
+
+    You can search using participant ID, custom participant ID, or display name.
+    """
 
     sort_by: Literal["joinedAt", "duration"]
 

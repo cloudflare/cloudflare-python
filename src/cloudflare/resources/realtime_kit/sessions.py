@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -22,6 +22,7 @@ from ..._base_client import make_request_options
 from ...types.realtime_kit import (
     session_get_sessions_params,
     session_get_session_details_params,
+    session_get_session_transcripts_params,
     session_get_session_participants_params,
     session_get_session_participant_details_params,
     session_get_participant_data_from_peer_id_params,
@@ -32,6 +33,9 @@ from ...types.realtime_kit.session_get_session_details_response import SessionGe
 from ...types.realtime_kit.session_get_session_summary_response import SessionGetSessionSummaryResponse
 from ...types.realtime_kit.session_get_session_transcripts_response import SessionGetSessionTranscriptsResponse
 from ...types.realtime_kit.session_get_session_participants_response import SessionGetSessionParticipantsResponse
+from ...types.realtime_kit.session_generate_summary_of_transcripts_response import (
+    SessionGenerateSummaryOfTranscriptsResponse,
+)
 from ...types.realtime_kit.session_get_session_participant_details_response import (
     SessionGetSessionParticipantDetailsResponse,
 )
@@ -74,7 +78,7 @@ class SessionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SessionGenerateSummaryOfTranscriptsResponse:
         """
         Trigger Summary generation of Transcripts for the session ID.
 
@@ -97,7 +101,6 @@ class SessionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             path_template(
                 "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
@@ -108,7 +111,7 @@ class SessionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SessionGenerateSummaryOfTranscriptsResponse,
         )
 
     def get_participant_data_from_peer_id(
@@ -119,6 +122,7 @@ class SessionsResource(SyncAPIResource):
         app_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
         | Omit = omit,
+        include_peer_events: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,6 +141,8 @@ class SessionsResource(SyncAPIResource):
 
           filters: Comma separated list of filters to apply. Note that there must be no spaces
               between the filters.
+
+          include_peer_events: if true, response includes all the peer events of participant.
 
           extra_headers: Send extra headers
 
@@ -165,7 +171,10 @@ class SessionsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"filters": filters},
+                    {
+                        "filters": filters,
+                        "include_peer_events": include_peer_events,
+                    },
                     session_get_participant_data_from_peer_id_params.SessionGetParticipantDataFromPeerIDParams,
                 ),
             ),
@@ -383,7 +392,8 @@ class SessionsResource(SyncAPIResource):
 
           per_page: Number of results per page
 
-          search: The search query string. You can search using the meeting ID or title.
+          search: The search query string. You can search using participant ID, custom participant
+              ID, or display name.
 
           view: In breakout room sessions, the view parameter can be set to `raw` for session
               specific duration for participants or `consolidated` to accumulate breakout room
@@ -486,6 +496,7 @@ class SessionsResource(SyncAPIResource):
         *,
         account_id: str,
         app_id: str,
+        format: Literal["SRT", "VTT", "JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -500,6 +511,8 @@ class SessionsResource(SyncAPIResource):
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
+
+          format: Transcript file format to fetch.
 
           extra_headers: Send extra headers
 
@@ -523,7 +536,13 @@ class SessionsResource(SyncAPIResource):
                 session_id=session_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"format": format}, session_get_session_transcripts_params.SessionGetSessionTranscriptsParams
+                ),
             ),
             cast_to=SessionGetSessionTranscriptsResponse,
         )
@@ -646,7 +665,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SessionGenerateSummaryOfTranscriptsResponse:
         """
         Trigger Summary generation of Transcripts for the session ID.
 
@@ -669,7 +688,6 @@ class AsyncSessionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             path_template(
                 "/accounts/{account_id}/realtime/kit/{app_id}/sessions/{session_id}/summary",
@@ -680,7 +698,7 @@ class AsyncSessionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SessionGenerateSummaryOfTranscriptsResponse,
         )
 
     async def get_participant_data_from_peer_id(
@@ -691,6 +709,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         app_id: str,
         filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
         | Omit = omit,
+        include_peer_events: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -709,6 +728,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           filters: Comma separated list of filters to apply. Note that there must be no spaces
               between the filters.
+
+          include_peer_events: if true, response includes all the peer events of participant.
 
           extra_headers: Send extra headers
 
@@ -737,7 +758,10 @@ class AsyncSessionsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"filters": filters},
+                    {
+                        "filters": filters,
+                        "include_peer_events": include_peer_events,
+                    },
                     session_get_participant_data_from_peer_id_params.SessionGetParticipantDataFromPeerIDParams,
                 ),
             ),
@@ -955,7 +979,8 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           per_page: Number of results per page
 
-          search: The search query string. You can search using the meeting ID or title.
+          search: The search query string. You can search using participant ID, custom participant
+              ID, or display name.
 
           view: In breakout room sessions, the view parameter can be set to `raw` for session
               specific duration for participants or `consolidated` to accumulate breakout room
@@ -1058,6 +1083,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         *,
         account_id: str,
         app_id: str,
+        format: Literal["SRT", "VTT", "JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1072,6 +1098,8 @@ class AsyncSessionsResource(AsyncAPIResource):
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
+
+          format: Transcript file format to fetch.
 
           extra_headers: Send extra headers
 
@@ -1095,7 +1123,13 @@ class AsyncSessionsResource(AsyncAPIResource):
                 session_id=session_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"format": format}, session_get_session_transcripts_params.SessionGetSessionTranscriptsParams
+                ),
             ),
             cast_to=SessionGetSessionTranscriptsResponse,
         )
