@@ -98,6 +98,7 @@ if TYPE_CHECKING:
         rate_limits,
         url_scanner,
         connectivity,
+        csam_scanner,
         custom_pages,
         dns_firewall,
         healthchecks,
@@ -210,6 +211,7 @@ if TYPE_CHECKING:
     from .resources.rate_limits.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
     from .resources.connectivity.connectivity import ConnectivityResource, AsyncConnectivityResource
+    from .resources.csam_scanner.csam_scanner import CsamScannerResource, AsyncCsamScannerResource
     from .resources.custom_pages.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
@@ -1008,6 +1010,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.ai_security import AISecurityResource
 
         return AISecurityResource(self)
+
+    @cached_property
+    def csam_scanner(self) -> CsamScannerResource:
+        from .resources.csam_scanner import CsamScannerResource
+
+        return CsamScannerResource(self)
 
     @cached_property
     def abuse_reports(self) -> AbuseReportsResource:
@@ -1924,6 +1932,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncAISecurityResource(self)
 
     @cached_property
+    def csam_scanner(self) -> AsyncCsamScannerResource:
+        from .resources.csam_scanner import AsyncCsamScannerResource
+
+        return AsyncCsamScannerResource(self)
+
+    @cached_property
     def abuse_reports(self) -> AsyncAbuseReportsResource:
         from .resources.abuse_reports import AsyncAbuseReportsResource
 
@@ -2764,6 +2778,12 @@ class CloudflareWithRawResponse:
         return AISecurityResourceWithRawResponse(self._client.ai_security)
 
     @cached_property
+    def csam_scanner(self) -> csam_scanner.CsamScannerResourceWithRawResponse:
+        from .resources.csam_scanner import CsamScannerResourceWithRawResponse
+
+        return CsamScannerResourceWithRawResponse(self._client.csam_scanner)
+
+    @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithRawResponse:
         from .resources.abuse_reports import AbuseReportsResourceWithRawResponse
 
@@ -3441,6 +3461,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncAISecurityResourceWithRawResponse(self._client.ai_security)
 
     @cached_property
+    def csam_scanner(self) -> csam_scanner.AsyncCsamScannerResourceWithRawResponse:
+        from .resources.csam_scanner import AsyncCsamScannerResourceWithRawResponse
+
+        return AsyncCsamScannerResourceWithRawResponse(self._client.csam_scanner)
+
+    @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithRawResponse:
         from .resources.abuse_reports import AsyncAbuseReportsResourceWithRawResponse
 
@@ -4116,6 +4142,12 @@ class CloudflareWithStreamedResponse:
         from .resources.ai_security import AISecurityResourceWithStreamingResponse
 
         return AISecurityResourceWithStreamingResponse(self._client.ai_security)
+
+    @cached_property
+    def csam_scanner(self) -> csam_scanner.CsamScannerResourceWithStreamingResponse:
+        from .resources.csam_scanner import CsamScannerResourceWithStreamingResponse
+
+        return CsamScannerResourceWithStreamingResponse(self._client.csam_scanner)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithStreamingResponse:
@@ -4803,6 +4835,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.ai_security import AsyncAISecurityResourceWithStreamingResponse
 
         return AsyncAISecurityResourceWithStreamingResponse(self._client.ai_security)
+
+    @cached_property
+    def csam_scanner(self) -> csam_scanner.AsyncCsamScannerResourceWithStreamingResponse:
+        from .resources.csam_scanner import AsyncCsamScannerResourceWithStreamingResponse
+
+        return AsyncCsamScannerResourceWithStreamingResponse(self._client.csam_scanner)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithStreamingResponse:
