@@ -102,3 +102,5 @@ Methods:
 - <code title="delete /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">delete</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_delete_response.py">Optional[SSODeleteResponse]</a></code>
 - <code title="post /accounts/{account_id}/sso_connectors/{sso_connector_id}/begin_verification">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">begin_verification</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_begin_verification_response.py">SSOBeginVerificationResponse</a></code>
 - <code title="get /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">get</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_get_response.py">Optional[SSOGetResponse]</a></code>
+
+## [OAuthScopes](src/cloudflare/resources/iam/api.md)
