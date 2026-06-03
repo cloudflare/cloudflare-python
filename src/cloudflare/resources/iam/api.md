@@ -103,4 +103,30 @@ Methods:
 - <code title="post /accounts/{account_id}/sso_connectors/{sso_connector_id}/begin_verification">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">begin_verification</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_begin_verification_response.py">SSOBeginVerificationResponse</a></code>
 - <code title="get /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">get</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_get_response.py">Optional[SSOGetResponse]</a></code>
 
+## OAuthClients
+
+Types:
+
+```python
+from cloudflare.types.iam import (
+    OAuthClientCreateResponse,
+    OAuthClientUpdateResponse,
+    OAuthClientListResponse,
+    OAuthClientDeleteResponse,
+    OAuthClientDeleteRotatedSecretResponse,
+    OAuthClientGetResponse,
+    OAuthClientRotateSecretResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/oauth_clients">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/oauth_client_create_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/oauth_client_create_response.py">Optional[OAuthClientCreateResponse]</a></code>
+- <code title="patch /accounts/{account_id}/oauth_clients/{oauth_client_id}">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">update</a>(oauth_client_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/oauth_client_update_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/oauth_client_update_response.py">Optional[OAuthClientUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/oauth_clients">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_list_response.py">SyncSinglePage[OAuthClientListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/oauth_clients/{oauth_client_id}">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">delete</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_delete_response.py">Optional[OAuthClientDeleteResponse]</a></code>
+- <code title="delete /accounts/{account_id}/oauth_clients/{oauth_client_id}/rotate_secret">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">delete_rotated_secret</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_delete_rotated_secret_response.py">Optional[OAuthClientDeleteRotatedSecretResponse]</a></code>
+- <code title="get /accounts/{account_id}/oauth_clients/{oauth_client_id}">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">get</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_get_response.py">Optional[OAuthClientGetResponse]</a></code>
+- <code title="post /accounts/{account_id}/oauth_clients/{oauth_client_id}/rotate_secret">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">rotate_secret</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_rotate_secret_response.py">Optional[OAuthClientRotateSecretResponse]</a></code>
+
 ## [OAuthScopes](src/cloudflare/resources/iam/api.md)

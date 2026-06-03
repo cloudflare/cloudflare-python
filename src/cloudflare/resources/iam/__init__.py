@@ -24,6 +24,14 @@ from .user_groups import (
     UserGroupsResourceWithStreamingResponse,
     AsyncUserGroupsResourceWithStreamingResponse,
 )
+from .oauth_clients import (
+    OAuthClientsResource,
+    AsyncOAuthClientsResource,
+    OAuthClientsResourceWithRawResponse,
+    AsyncOAuthClientsResourceWithRawResponse,
+    OAuthClientsResourceWithStreamingResponse,
+    AsyncOAuthClientsResourceWithStreamingResponse,
+)
 from .resource_groups import (
     ResourceGroupsResource,
     AsyncResourceGroupsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncSSOResourceWithRawResponse",
     "SSOResourceWithStreamingResponse",
     "AsyncSSOResourceWithStreamingResponse",
+    "OAuthClientsResource",
+    "AsyncOAuthClientsResource",
+    "OAuthClientsResourceWithRawResponse",
+    "AsyncOAuthClientsResourceWithRawResponse",
+    "OAuthClientsResourceWithStreamingResponse",
+    "AsyncOAuthClientsResourceWithStreamingResponse",
     "IAMResource",
     "AsyncIAMResource",
     "IAMResourceWithRawResponse",

@@ -12,6 +12,14 @@ from .sso import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .oauth_clients import (
+    OAuthClientsResource,
+    AsyncOAuthClientsResource,
+    OAuthClientsResourceWithRawResponse,
+    AsyncOAuthClientsResourceWithRawResponse,
+    OAuthClientsResourceWithStreamingResponse,
+    AsyncOAuthClientsResourceWithStreamingResponse,
+)
 from .resource_groups import (
     ResourceGroupsResource,
     AsyncResourceGroupsResource,
@@ -36,6 +44,14 @@ from .user_groups.user_groups import (
     UserGroupsResourceWithStreamingResponse,
     AsyncUserGroupsResourceWithStreamingResponse,
 )
+from .oauth_scopes.oauth_scopes import (
+    OAuthScopesResource,
+    AsyncOAuthScopesResource,
+    OAuthScopesResourceWithRawResponse,
+    AsyncOAuthScopesResourceWithRawResponse,
+    OAuthScopesResourceWithStreamingResponse,
+    AsyncOAuthScopesResourceWithStreamingResponse,
+)
 
 __all__ = ["IAMResource", "AsyncIAMResource"]
 
@@ -56,6 +72,14 @@ class IAMResource(SyncAPIResource):
     @cached_property
     def sso(self) -> SSOResource:
         return SSOResource(self._client)
+
+    @cached_property
+    def oauth_clients(self) -> OAuthClientsResource:
+        return OAuthClientsResource(self._client)
+
+    @cached_property
+    def oauth_scopes(self) -> OAuthScopesResource:
+        return OAuthScopesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> IAMResourceWithRawResponse:
@@ -93,6 +117,14 @@ class AsyncIAMResource(AsyncAPIResource):
     @cached_property
     def sso(self) -> AsyncSSOResource:
         return AsyncSSOResource(self._client)
+
+    @cached_property
+    def oauth_clients(self) -> AsyncOAuthClientsResource:
+        return AsyncOAuthClientsResource(self._client)
+
+    @cached_property
+    def oauth_scopes(self) -> AsyncOAuthScopesResource:
+        return AsyncOAuthScopesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncIAMResourceWithRawResponse:
@@ -134,6 +166,14 @@ class IAMResourceWithRawResponse:
     def sso(self) -> SSOResourceWithRawResponse:
         return SSOResourceWithRawResponse(self._iam.sso)
 
+    @cached_property
+    def oauth_clients(self) -> OAuthClientsResourceWithRawResponse:
+        return OAuthClientsResourceWithRawResponse(self._iam.oauth_clients)
+
+    @cached_property
+    def oauth_scopes(self) -> OAuthScopesResourceWithRawResponse:
+        return OAuthScopesResourceWithRawResponse(self._iam.oauth_scopes)
+
 
 class AsyncIAMResourceWithRawResponse:
     def __init__(self, iam: AsyncIAMResource) -> None:
@@ -154,6 +194,14 @@ class AsyncIAMResourceWithRawResponse:
     @cached_property
     def sso(self) -> AsyncSSOResourceWithRawResponse:
         return AsyncSSOResourceWithRawResponse(self._iam.sso)
+
+    @cached_property
+    def oauth_clients(self) -> AsyncOAuthClientsResourceWithRawResponse:
+        return AsyncOAuthClientsResourceWithRawResponse(self._iam.oauth_clients)
+
+    @cached_property
+    def oauth_scopes(self) -> AsyncOAuthScopesResourceWithRawResponse:
+        return AsyncOAuthScopesResourceWithRawResponse(self._iam.oauth_scopes)
 
 
 class IAMResourceWithStreamingResponse:
@@ -176,6 +224,14 @@ class IAMResourceWithStreamingResponse:
     def sso(self) -> SSOResourceWithStreamingResponse:
         return SSOResourceWithStreamingResponse(self._iam.sso)
 
+    @cached_property
+    def oauth_clients(self) -> OAuthClientsResourceWithStreamingResponse:
+        return OAuthClientsResourceWithStreamingResponse(self._iam.oauth_clients)
+
+    @cached_property
+    def oauth_scopes(self) -> OAuthScopesResourceWithStreamingResponse:
+        return OAuthScopesResourceWithStreamingResponse(self._iam.oauth_scopes)
+
 
 class AsyncIAMResourceWithStreamingResponse:
     def __init__(self, iam: AsyncIAMResource) -> None:
@@ -196,3 +252,11 @@ class AsyncIAMResourceWithStreamingResponse:
     @cached_property
     def sso(self) -> AsyncSSOResourceWithStreamingResponse:
         return AsyncSSOResourceWithStreamingResponse(self._iam.sso)
+
+    @cached_property
+    def oauth_clients(self) -> AsyncOAuthClientsResourceWithStreamingResponse:
+        return AsyncOAuthClientsResourceWithStreamingResponse(self._iam.oauth_clients)
+
+    @cached_property
+    def oauth_scopes(self) -> AsyncOAuthScopesResourceWithStreamingResponse:
+        return AsyncOAuthScopesResourceWithStreamingResponse(self._iam.oauth_scopes)
