@@ -189,6 +189,22 @@ class TestAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            spend_limits={
+                "enabled": True,
+                "rules": [
+                    {
+                        "id": "x",
+                        "limit": 1,
+                        "limit_type": "cost",
+                        "window": 1,
+                        "enabled": True,
+                        "metadata": {"foo": {"mode": "partition"}},
+                        "model": "partition",
+                        "provider": "partition",
+                        "technique": "fixed",
+                    }
+                ],
+            },
             store_id="store_id",
             stripe={
                 "authorization": "authorization",
@@ -574,6 +590,22 @@ class TestAsyncAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            spend_limits={
+                "enabled": True,
+                "rules": [
+                    {
+                        "id": "x",
+                        "limit": 1,
+                        "limit_type": "cost",
+                        "window": 1,
+                        "enabled": True,
+                        "metadata": {"foo": {"mode": "partition"}},
+                        "model": "partition",
+                        "provider": "partition",
+                        "technique": "fixed",
+                    }
+                ],
+            },
             store_id="store_id",
             stripe={
                 "authorization": "authorization",

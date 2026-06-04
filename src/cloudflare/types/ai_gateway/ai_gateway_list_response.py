@@ -18,6 +18,15 @@ __all__ = [
     "GuardrailsPrompt",
     "GuardrailsResponse",
     "Otel",
+    "SpendLimits",
+    "SpendLimitsRule",
+    "SpendLimitsRuleMetadata",
+    "SpendLimitsRuleMetadataMode",
+    "SpendLimitsRuleMetadataUnionMember1",
+    "SpendLimitsRuleModel",
+    "SpendLimitsRuleModelMatch",
+    "SpendLimitsRuleProvider",
+    "SpendLimitsRuleProviderMatch",
     "Stripe",
     "StripeUsageEvent",
 ]
@@ -128,6 +137,59 @@ class Otel(BaseModel):
     content_type: Optional[Literal["json", "protobuf"]] = None
 
 
+class SpendLimitsRuleMetadataMode(BaseModel):
+    mode: Literal["partition"]
+
+
+class SpendLimitsRuleMetadataUnionMember1(BaseModel):
+    mode: Literal["match"]
+
+    value: str
+
+
+SpendLimitsRuleMetadata: TypeAlias = Union[SpendLimitsRuleMetadataMode, SpendLimitsRuleMetadataUnionMember1]
+
+
+class SpendLimitsRuleModelMatch(BaseModel):
+    match: str
+
+
+SpendLimitsRuleModel: TypeAlias = Union[Literal["partition"], SpendLimitsRuleModelMatch]
+
+
+class SpendLimitsRuleProviderMatch(BaseModel):
+    match: str
+
+
+SpendLimitsRuleProvider: TypeAlias = Union[Literal["partition"], SpendLimitsRuleProviderMatch]
+
+
+class SpendLimitsRule(BaseModel):
+    id: str
+
+    limit: float
+
+    limit_type: Literal["cost"] = FieldInfo(alias="limitType")
+
+    window: int
+
+    enabled: Optional[bool] = None
+
+    metadata: Optional[Dict[str, SpendLimitsRuleMetadata]] = None
+
+    model: Optional[SpendLimitsRuleModel] = None
+
+    provider: Optional[SpendLimitsRuleProvider] = None
+
+    technique: Optional[Literal["fixed", "sliding"]] = None
+
+
+class SpendLimits(BaseModel):
+    enabled: Optional[bool] = None
+
+    rules: Optional[List[SpendLimitsRule]] = None
+
+
 class StripeUsageEvent(BaseModel):
     payload: str
 
@@ -184,6 +246,8 @@ class AIGatewayListResponse(BaseModel):
 
     retry_max_attempts: Optional[int] = None
     """Maximum number of retry attempts for failed requests (1-5)"""
+
+    spend_limits: Optional[SpendLimits] = None
 
     store_id: Optional[str] = None
 
