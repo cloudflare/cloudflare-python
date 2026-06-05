@@ -61,6 +61,7 @@ class ServersResource(SyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,6 +76,12 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New public server creates default to true; existing
+              servers default to false from migration until explicitly updated. Effective
+              behavior is gated by the gateway worker's per-env rollout mode KV key.
 
           extra_headers: Send extra headers
 
@@ -96,6 +103,7 @@ class ServersResource(SyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -118,6 +126,7 @@ class ServersResource(SyncAPIResource):
         account_id: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
@@ -133,6 +142,12 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New public server creates default to true; existing
+              servers default to false from migration until explicitly updated. Effective
+              behavior is gated by the gateway worker's per-env rollout mode KV key.
 
           extra_headers: Send extra headers
 
@@ -152,6 +167,7 @@ class ServersResource(SyncAPIResource):
                 {
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
@@ -378,6 +394,7 @@ class AsyncServersResource(AsyncAPIResource):
         name: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -392,6 +409,12 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New public server creates default to true; existing
+              servers default to false from migration until explicitly updated. Effective
+              behavior is gated by the gateway worker's per-env rollout mode KV key.
 
           extra_headers: Send extra headers
 
@@ -413,6 +436,7 @@ class AsyncServersResource(AsyncAPIResource):
                     "name": name,
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -435,6 +459,7 @@ class AsyncServersResource(AsyncAPIResource):
         account_id: str,
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
+        is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
@@ -450,6 +475,12 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
+              endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
+              customer portal hostname. New public server creates default to true; existing
+              servers default to false from migration until explicitly updated. Effective
+              behavior is gated by the gateway worker's per-env rollout mode KV key.
 
           extra_headers: Send extra headers
 
@@ -469,6 +500,7 @@ class AsyncServersResource(AsyncAPIResource):
                 {
                     "auth_credentials": auth_credentials,
                     "description": description,
+                    "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,

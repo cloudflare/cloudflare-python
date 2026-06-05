@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -17,3 +18,5 @@ class InstanceBulkResponse(BaseModel):
     version_id: str
 
     workflow_id: str
+
+    trigger_source: Optional[Literal["unknown", "api", "binding", "event", "cron"]] = None

@@ -27,3 +27,5 @@ class InstanceListResponse(BaseModel):
     version_id: str
 
     workflow_id: str
+
+    trigger_source: Optional[Literal["unknown", "api", "binding", "event", "cron"]] = None

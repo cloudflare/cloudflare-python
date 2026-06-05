@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["WorkflowGetResponse", "Instances"]
+__all__ = ["WorkflowGetResponse", "Instances", "Schedule"]
 
 
 class Instances(BaseModel):
@@ -30,6 +30,12 @@ class Instances(BaseModel):
     waiting_for_pause: Optional[float] = FieldInfo(alias="waitingForPause", default=None)
 
 
+class Schedule(BaseModel):
+    cron: str
+
+    next_instance: str
+
+
 class WorkflowGetResponse(BaseModel):
     id: str
 
@@ -46,3 +52,5 @@ class WorkflowGetResponse(BaseModel):
     script_name: str
 
     triggered_on: Optional[datetime] = None
+
+    schedules: Optional[List[Schedule]] = None

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -80,6 +80,7 @@ class WorkflowsResource(SyncAPIResource):
         class_name: str,
         script_name: str,
         limits: workflow_update_params.Limits | Omit = omit,
+        schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -112,6 +113,7 @@ class WorkflowsResource(SyncAPIResource):
                     "class_name": class_name,
                     "script_name": script_name,
                     "limits": limits,
+                    "schedules": schedules,
                 },
                 workflow_update_params.WorkflowUpdateParams,
             ),
@@ -298,6 +300,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         class_name: str,
         script_name: str,
         limits: workflow_update_params.Limits | Omit = omit,
+        schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -330,6 +333,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     "class_name": class_name,
                     "script_name": script_name,
                     "limits": limits,
+                    "schedules": schedules,
                 },
                 workflow_update_params.WorkflowUpdateParams,
             ),

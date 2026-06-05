@@ -26,6 +26,7 @@ __all__ = [
     "StepUnionMember3",
     "StepUnionMember3Error",
     "Trigger",
+    "Schedule",
 ]
 
 
@@ -162,6 +163,12 @@ class Trigger(BaseModel):
     source: Literal["unknown", "api", "binding", "event", "cron"]
 
 
+class Schedule(BaseModel):
+    cron: str
+
+    scheduled_time: float = FieldInfo(alias="scheduledTime")
+
+
 class InstanceGetResponse(BaseModel):
     end: Optional[datetime] = None
 
@@ -190,3 +197,5 @@ class InstanceGetResponse(BaseModel):
     trigger: Trigger
 
     version_id: str = FieldInfo(alias="versionId")
+
+    schedule: Optional[Schedule] = None

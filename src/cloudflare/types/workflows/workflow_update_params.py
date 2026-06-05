@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WorkflowUpdateParams", "Limits"]
+__all__ = ["WorkflowUpdateParams", "Limits", "Schedule"]
 
 
 class WorkflowUpdateParams(TypedDict, total=False):
@@ -16,6 +17,12 @@ class WorkflowUpdateParams(TypedDict, total=False):
 
     limits: Limits
 
+    schedules: Iterable[Schedule]
+
 
 class Limits(TypedDict, total=False):
     steps: int
+
+
+class Schedule(TypedDict, total=False):
+    cron: Required[str]

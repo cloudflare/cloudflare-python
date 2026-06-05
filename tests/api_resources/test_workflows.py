@@ -41,6 +41,7 @@ class TestWorkflows:
             class_name="x",
             script_name="x",
             limits={"steps": 1},
+            schedules=[{"cron": "x"}],
         )
         assert_matches_type(WorkflowUpdateResponse, workflow, path=["response"])
 
@@ -260,6 +261,7 @@ class TestAsyncWorkflows:
             class_name="x",
             script_name="x",
             limits={"steps": 1},
+            schedules=[{"cron": "x"}],
         )
         assert_matches_type(WorkflowUpdateResponse, workflow, path=["response"])
 
