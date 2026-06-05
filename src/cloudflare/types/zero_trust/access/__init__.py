@@ -47,6 +47,7 @@ from .self_hosted_domains import SelfHostedDomains as SelfHostedDomains
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .approval_group_param import ApprovalGroupParam as ApprovalGroupParam
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
+from .idp_federation_grant import IdPFederationGrant as IdPFederationGrant
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
@@ -94,6 +95,9 @@ from .service_token_rotate_response import ServiceTokenRotateResponse as Service
 from .saml_certificate_list_response import SAMLCertificateListResponse as SAMLCertificateListResponse
 from .saml_certificate_rotate_response import SAMLCertificateRotateResponse as SAMLCertificateRotateResponse
 from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2 as SCIMConfigAuthenticationOauth2
+from .idp_federation_grant_create_params import IdPFederationGrantCreateParams as IdPFederationGrantCreateParams
+from .idp_federation_grant_list_response import IdPFederationGrantListResponse as IdPFederationGrantListResponse
+from .idp_federation_grant_delete_response import IdPFederationGrantDeleteResponse as IdPFederationGrantDeleteResponse
 from .scim_config_authentication_http_basic import (
     SCIMConfigAuthenticationHTTPBasic as SCIMConfigAuthenticationHTTPBasic,
 )

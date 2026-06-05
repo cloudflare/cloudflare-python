@@ -128,6 +128,14 @@ from .saml_certificates import (
     SAMLCertificatesResourceWithStreamingResponse,
     AsyncSAMLCertificatesResourceWithStreamingResponse,
 )
+from .idp_federation_grants import (
+    IdPFederationGrantsResource,
+    AsyncIdPFederationGrantsResource,
+    IdPFederationGrantsResourceWithRawResponse,
+    AsyncIdPFederationGrantsResourceWithRawResponse,
+    IdPFederationGrantsResourceWithStreamingResponse,
+    AsyncIdPFederationGrantsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AIControlsResource",
@@ -142,6 +150,12 @@ __all__ = [
     "AsyncGatewayCAResourceWithRawResponse",
     "GatewayCAResourceWithStreamingResponse",
     "AsyncGatewayCAResourceWithStreamingResponse",
+    "IdPFederationGrantsResource",
+    "AsyncIdPFederationGrantsResource",
+    "IdPFederationGrantsResourceWithRawResponse",
+    "AsyncIdPFederationGrantsResourceWithRawResponse",
+    "IdPFederationGrantsResourceWithStreamingResponse",
+    "AsyncIdPFederationGrantsResourceWithStreamingResponse",
     "SAMLCertificatesResource",
     "AsyncSAMLCertificatesResource",
     "SAMLCertificatesResourceWithRawResponse",

@@ -92,6 +92,14 @@ from .saml_certificates import (
     SAMLCertificatesResourceWithStreamingResponse,
     AsyncSAMLCertificatesResourceWithStreamingResponse,
 )
+from .idp_federation_grants import (
+    IdPFederationGrantsResource,
+    AsyncIdPFederationGrantsResource,
+    IdPFederationGrantsResourceWithRawResponse,
+    AsyncIdPFederationGrantsResourceWithRawResponse,
+    IdPFederationGrantsResourceWithStreamingResponse,
+    AsyncIdPFederationGrantsResourceWithStreamingResponse,
+)
 from .ai_controls.ai_controls import (
     AIControlsResource,
     AsyncAIControlsResource,
@@ -136,6 +144,10 @@ class AccessResource(SyncAPIResource):
     @cached_property
     def gateway_ca(self) -> GatewayCAResource:
         return GatewayCAResource(self._client)
+
+    @cached_property
+    def idp_federation_grants(self) -> IdPFederationGrantsResource:
+        return IdPFederationGrantsResource(self._client)
 
     @cached_property
     def saml_certificates(self) -> SAMLCertificatesResource:
@@ -217,6 +229,10 @@ class AsyncAccessResource(AsyncAPIResource):
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResource:
         return AsyncGatewayCAResource(self._client)
+
+    @cached_property
+    def idp_federation_grants(self) -> AsyncIdPFederationGrantsResource:
+        return AsyncIdPFederationGrantsResource(self._client)
 
     @cached_property
     def saml_certificates(self) -> AsyncSAMLCertificatesResource:
@@ -303,6 +319,10 @@ class AccessResourceWithRawResponse:
         return GatewayCAResourceWithRawResponse(self._access.gateway_ca)
 
     @cached_property
+    def idp_federation_grants(self) -> IdPFederationGrantsResourceWithRawResponse:
+        return IdPFederationGrantsResourceWithRawResponse(self._access.idp_federation_grants)
+
+    @cached_property
     def saml_certificates(self) -> SAMLCertificatesResourceWithRawResponse:
         return SAMLCertificatesResourceWithRawResponse(self._access.saml_certificates)
 
@@ -366,6 +386,10 @@ class AsyncAccessResourceWithRawResponse:
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithRawResponse:
         return AsyncGatewayCAResourceWithRawResponse(self._access.gateway_ca)
+
+    @cached_property
+    def idp_federation_grants(self) -> AsyncIdPFederationGrantsResourceWithRawResponse:
+        return AsyncIdPFederationGrantsResourceWithRawResponse(self._access.idp_federation_grants)
 
     @cached_property
     def saml_certificates(self) -> AsyncSAMLCertificatesResourceWithRawResponse:
@@ -433,6 +457,10 @@ class AccessResourceWithStreamingResponse:
         return GatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
 
     @cached_property
+    def idp_federation_grants(self) -> IdPFederationGrantsResourceWithStreamingResponse:
+        return IdPFederationGrantsResourceWithStreamingResponse(self._access.idp_federation_grants)
+
+    @cached_property
     def saml_certificates(self) -> SAMLCertificatesResourceWithStreamingResponse:
         return SAMLCertificatesResourceWithStreamingResponse(self._access.saml_certificates)
 
@@ -496,6 +524,10 @@ class AsyncAccessResourceWithStreamingResponse:
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithStreamingResponse:
         return AsyncGatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
+
+    @cached_property
+    def idp_federation_grants(self) -> AsyncIdPFederationGrantsResourceWithStreamingResponse:
+        return AsyncIdPFederationGrantsResourceWithStreamingResponse(self._access.idp_federation_grants)
 
     @cached_property
     def saml_certificates(self) -> AsyncSAMLCertificatesResourceWithStreamingResponse:

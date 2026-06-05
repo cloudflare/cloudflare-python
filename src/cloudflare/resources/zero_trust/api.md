@@ -498,6 +498,25 @@ Methods:
 - <code title="get /accounts/{account_id}/access/gateway_ca">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_list_response.py">SyncSinglePage[GatewayCAListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/access/gateway_ca/{certificate_id}">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">delete</a>(certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_delete_response.py">Optional[GatewayCADeleteResponse]</a></code>
 
+### IdPFederationGrants
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.access import (
+    IdPFederationGrant,
+    IdPFederationGrantListResponse,
+    IdPFederationGrantDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/access/idp_federation_grants">client.zero_trust.access.idp_federation_grants.<a href="./src/cloudflare/resources/zero_trust/access/idp_federation_grants.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/idp_federation_grant_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/idp_federation_grant.py">Optional[IdPFederationGrant]</a></code>
+- <code title="get /accounts/{account_id}/access/idp_federation_grants">client.zero_trust.access.idp_federation_grants.<a href="./src/cloudflare/resources/zero_trust/access/idp_federation_grants.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/idp_federation_grant_list_response.py">Optional[IdPFederationGrantListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/access/idp_federation_grants/{grant_id}">client.zero_trust.access.idp_federation_grants.<a href="./src/cloudflare/resources/zero_trust/access/idp_federation_grants.py">delete</a>(grant_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/idp_federation_grant_delete_response.py">Optional[IdPFederationGrantDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/access/idp_federation_grants/{grant_id}">client.zero_trust.access.idp_federation_grants.<a href="./src/cloudflare/resources/zero_trust/access/idp_federation_grants.py">get</a>(grant_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/idp_federation_grant.py">Optional[IdPFederationGrant]</a></code>
+
 ### SAMLCertificates
 
 Types:
