@@ -131,16 +131,14 @@ class SessionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionGetParticipantDataFromPeerIDResponse:
         """
-        Returns details of the given peer ID along with call statistics for the given
-        session ID.
+        Returns participant details for the given peer ID along with call statistics.
 
         Args:
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
 
-          filters: Comma separated list of filters to apply. Note that there must be no spaces
-              between the filters.
+          filters: Filter to apply to the peer report.
 
           include_peer_events: if true, response includes all the peer events of participant.
 
@@ -718,16 +716,14 @@ class AsyncSessionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionGetParticipantDataFromPeerIDResponse:
         """
-        Returns details of the given peer ID along with call statistics for the given
-        session ID.
+        Returns participant details for the given peer ID along with call statistics.
 
         Args:
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
 
-          filters: Comma separated list of filters to apply. Note that there must be no spaces
-              between the filters.
+          filters: Filter to apply to the peer report.
 
           include_peer_events: if true, response includes all the peer events of participant.
 

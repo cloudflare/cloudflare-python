@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SessionGetParticipantDataFromPeerIDResponse", "Data", "DataPeerReport"]
+__all__ = ["SessionGetParticipantDataFromPeerIDResponse", "Data", "DataParticipant", "DataParticipantPeerReport"]
 
 
-class DataPeerReport(BaseModel):
+class DataParticipantPeerReport(BaseModel):
     """Peer call statistics report."""
 
     metadata: Optional[Dict[str, object]] = None
@@ -29,9 +29,9 @@ class DataPeerReport(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
-class Data(BaseModel):
+class DataParticipant(BaseModel):
     id: Optional[str] = None
-    """Participant ID. This maps to the corresponding peerId."""
+    """ID of the participant."""
 
     created_at: Optional[str] = None
     """timestamp when this participant was created."""
@@ -53,10 +53,10 @@ class Data(BaseModel):
 
     peer_events: Optional[List[Dict[str, object]]] = None
 
-    peer_report: Optional[DataPeerReport] = None
+    peer_report: Optional[DataParticipantPeerReport] = None
     """Peer call statistics report."""
 
-    preset_name: Optional[str] = None
+    role: Optional[str] = None
     """Name of the preset associated with the participant."""
 
     session_id: Optional[str] = None
@@ -66,6 +66,10 @@ class Data(BaseModel):
 
     user_id: Optional[str] = None
     """User id for this participant."""
+
+
+class Data(BaseModel):
+    participant: Optional[DataParticipant] = None
 
 
 class SessionGetParticipantDataFromPeerIDResponse(BaseModel):

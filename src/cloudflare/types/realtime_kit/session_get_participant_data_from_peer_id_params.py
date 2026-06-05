@@ -15,10 +15,7 @@ class SessionGetParticipantDataFromPeerIDParams(TypedDict, total=False):
     """The app identifier tag."""
 
     filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
-    """Comma separated list of filters to apply.
-
-    Note that there must be no spaces between the filters.
-    """
+    """Filter to apply to the peer report."""
 
     include_peer_events: bool
     """if true, response includes all the peer events of participant."""
