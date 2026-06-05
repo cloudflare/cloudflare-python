@@ -72,6 +72,32 @@ Methods:
 - <code title="post /zones/{zone_id}/dns_records/scan/review">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan_review</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_scan_review_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_scan_review_response.py">Optional[RecordScanReviewResponse]</a></code>
 - <code title="post /zones/{zone_id}/dns_records/scan/trigger">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan_trigger</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_trigger_response.py">RecordScanTriggerResponse</a></code>
 
+## Usage
+
+### Zone
+
+Types:
+
+```python
+from cloudflare.types.dns.usage import ZoneGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/dns_records/usage">client.dns.usage.zone.<a href="./src/cloudflare/resources/dns/usage/zone.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/usage/zone_get_response.py">Optional[ZoneGetResponse]</a></code>
+
+### Account
+
+Types:
+
+```python
+from cloudflare.types.dns.usage import AccountGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dns_records/usage">client.dns.usage.account.<a href="./src/cloudflare/resources/dns/usage/account.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/usage/account_get_response.py">Optional[AccountGetResponse]</a></code>
+
 ## Settings
 
 ### Zone

@@ -20,6 +20,14 @@ from .records import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .usage.usage import (
+    UsageResource,
+    AsyncUsageResource,
+    UsageResourceWithRawResponse,
+    AsyncUsageResourceWithRawResponse,
+    UsageResourceWithStreamingResponse,
+    AsyncUsageResourceWithStreamingResponse,
+)
 from .settings.settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -56,6 +64,10 @@ class DNSResource(SyncAPIResource):
     @cached_property
     def records(self) -> RecordsResource:
         return RecordsResource(self._client)
+
+    @cached_property
+    def usage(self) -> UsageResource:
+        return UsageResource(self._client)
 
     @cached_property
     def settings(self) -> SettingsResource:
@@ -97,6 +109,10 @@ class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def records(self) -> AsyncRecordsResource:
         return AsyncRecordsResource(self._client)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResource:
+        return AsyncUsageResource(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
@@ -143,6 +159,10 @@ class DNSResourceWithRawResponse:
         return RecordsResourceWithRawResponse(self._dns.records)
 
     @cached_property
+    def usage(self) -> UsageResourceWithRawResponse:
+        return UsageResourceWithRawResponse(self._dns.usage)
+
+    @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._dns.settings)
 
@@ -166,6 +186,10 @@ class AsyncDNSResourceWithRawResponse:
     @cached_property
     def records(self) -> AsyncRecordsResourceWithRawResponse:
         return AsyncRecordsResourceWithRawResponse(self._dns.records)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithRawResponse:
+        return AsyncUsageResourceWithRawResponse(self._dns.usage)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -193,6 +217,10 @@ class DNSResourceWithStreamingResponse:
         return RecordsResourceWithStreamingResponse(self._dns.records)
 
     @cached_property
+    def usage(self) -> UsageResourceWithStreamingResponse:
+        return UsageResourceWithStreamingResponse(self._dns.usage)
+
+    @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._dns.settings)
 
@@ -216,6 +244,10 @@ class AsyncDNSResourceWithStreamingResponse:
     @cached_property
     def records(self) -> AsyncRecordsResourceWithStreamingResponse:
         return AsyncRecordsResourceWithStreamingResponse(self._dns.records)
+
+    @cached_property
+    def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        return AsyncUsageResourceWithStreamingResponse(self._dns.usage)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:

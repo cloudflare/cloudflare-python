@@ -8,6 +8,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .usage import (
+    UsageResource,
+    AsyncUsageResource,
+    UsageResourceWithRawResponse,
+    AsyncUsageResourceWithRawResponse,
+    UsageResourceWithStreamingResponse,
+    AsyncUsageResourceWithStreamingResponse,
+)
 from .dnssec import (
     DNSSECResource,
     AsyncDNSSECResource,
@@ -62,6 +70,12 @@ __all__ = [
     "AsyncRecordsResourceWithRawResponse",
     "RecordsResourceWithStreamingResponse",
     "AsyncRecordsResourceWithStreamingResponse",
+    "UsageResource",
+    "AsyncUsageResource",
+    "UsageResourceWithRawResponse",
+    "AsyncUsageResourceWithRawResponse",
+    "UsageResourceWithStreamingResponse",
+    "AsyncUsageResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",
