@@ -54,6 +54,7 @@ class JobCreateParams(TypedDict, total=False):
             "sinkhole_http_logs",
             "spectrum_events",
             "ssh_logs",
+            "turnstile_events",
             "warp_config_changes",
             "warp_toggle_changes",
             "workers_trace_events",
