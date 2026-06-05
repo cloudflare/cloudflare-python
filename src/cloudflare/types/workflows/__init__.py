@@ -6,6 +6,7 @@ from .instance_get_params import InstanceGetParams as InstanceGetParams
 from .version_list_params import VersionListParams as VersionListParams
 from .instance_bulk_params import InstanceBulkParams as InstanceBulkParams
 from .instance_list_params import InstanceListParams as InstanceListParams
+from .instance_step_params import InstanceStepParams as InstanceStepParams
 from .version_get_response import VersionGetResponse as VersionGetResponse
 from .workflow_list_params import WorkflowListParams as WorkflowListParams
 from .instance_get_response import InstanceGetResponse as InstanceGetResponse
@@ -14,6 +15,8 @@ from .workflow_get_response import WorkflowGetResponse as WorkflowGetResponse
 from .instance_bulk_response import InstanceBulkResponse as InstanceBulkResponse
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_list_response import InstanceListResponse as InstanceListResponse
+from .instance_step_response import InstanceStepResponse as InstanceStepResponse
+from .version_graph_response import VersionGraphResponse as VersionGraphResponse
 from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
 from .workflow_update_params import WorkflowUpdateParams as WorkflowUpdateParams
 from .instance_create_response import InstanceCreateResponse as InstanceCreateResponse

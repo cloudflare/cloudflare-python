@@ -37,10 +37,17 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workflows import instance_get_params, instance_bulk_params, instance_list_params, instance_create_params
+from ....types.workflows import (
+    instance_get_params,
+    instance_bulk_params,
+    instance_list_params,
+    instance_step_params,
+    instance_create_params,
+)
 from ....types.workflows.instance_get_response import InstanceGetResponse
 from ....types.workflows.instance_bulk_response import InstanceBulkResponse
 from ....types.workflows.instance_list_response import InstanceListResponse
+from ....types.workflows.instance_step_response import InstanceStepResponse
 from ....types.workflows.instance_create_response import InstanceCreateResponse
 
 __all__ = ["InstancesResource", "AsyncInstancesResource"]
@@ -318,6 +325,80 @@ class InstancesResource(SyncAPIResource):
             cast_to=cast(Type[InstanceGetResponse], ResultWrapper[InstanceGetResponse]),
         )
 
+    def step(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        name: str,
+        type: Literal["step", "waitForEvent"],
+        attempt: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceStepResponse:
+        """
+        Retrieves the full, untruncated output for a specific step on a workflow
+        instance. Returns a flat status-shaped JSON body with step `status` ('running' |
+        'waiting' | 'complete' | 'errored'), `error` (nullable), and `output` (the step
+        value, or null while running/waiting/errored). When the step returned a
+        ReadableStream from step.do, the response is served as
+        'application/octet-stream' with the raw bytes as the body instead of JSON. A
+        `status='running'` response with non-null `error` indicates the step is
+        currently retrying after a prior attempt failed.
+
+        Args:
+          name: Exact step name from the instance logs response, including the generated counter
+              suffix.
+
+          type: Step type to disambiguate step.do and waitForEvent entries that share the same
+              name.
+
+          attempt: Specific attempt number to retrieve output or error for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/step",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "type": type,
+                        "attempt": attempt,
+                    },
+                    instance_step_params.InstanceStepParams,
+                ),
+                post_parser=ResultWrapper[InstanceStepResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[InstanceStepResponse], ResultWrapper[InstanceStepResponse]),
+        )
+
 
 class AsyncInstancesResource(AsyncAPIResource):
     @cached_property
@@ -591,6 +672,80 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=cast(Type[InstanceGetResponse], ResultWrapper[InstanceGetResponse]),
         )
 
+    async def step(
+        self,
+        instance_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        name: str,
+        type: Literal["step", "waitForEvent"],
+        attempt: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InstanceStepResponse:
+        """
+        Retrieves the full, untruncated output for a specific step on a workflow
+        instance. Returns a flat status-shaped JSON body with step `status` ('running' |
+        'waiting' | 'complete' | 'errored'), `error` (nullable), and `output` (the step
+        value, or null while running/waiting/errored). When the step returned a
+        ReadableStream from step.do, the response is served as
+        'application/octet-stream' with the raw bytes as the body instead of JSON. A
+        `status='running'` response with non-null `error` indicates the step is
+        currently retrying after a prior attempt failed.
+
+        Args:
+          name: Exact step name from the instance logs response, including the generated counter
+              suffix.
+
+          type: Step type to disambiguate step.do and waitForEvent entries that share the same
+              name.
+
+          attempt: Specific attempt number to retrieve output or error for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        if not instance_id:
+            raise ValueError(f"Expected a non-empty value for `instance_id` but received {instance_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/step",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                instance_id=instance_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "type": type,
+                        "attempt": attempt,
+                    },
+                    instance_step_params.InstanceStepParams,
+                ),
+                post_parser=ResultWrapper[InstanceStepResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[InstanceStepResponse], ResultWrapper[InstanceStepResponse]),
+        )
+
 
 class InstancesResourceWithRawResponse:
     def __init__(self, instances: InstancesResource) -> None:
@@ -607,6 +762,9 @@ class InstancesResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             instances.get,
+        )
+        self.step = to_raw_response_wrapper(
+            instances.step,
         )
 
     @cached_property
@@ -634,6 +792,9 @@ class AsyncInstancesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             instances.get,
         )
+        self.step = async_to_raw_response_wrapper(
+            instances.step,
+        )
 
     @cached_property
     def status(self) -> AsyncStatusResourceWithRawResponse:
@@ -660,6 +821,9 @@ class InstancesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             instances.get,
         )
+        self.step = to_streamed_response_wrapper(
+            instances.step,
+        )
 
     @cached_property
     def status(self) -> StatusResourceWithStreamingResponse:
@@ -685,6 +849,9 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             instances.get,
+        )
+        self.step = async_to_streamed_response_wrapper(
+            instances.step,
         )
 
     @cached_property

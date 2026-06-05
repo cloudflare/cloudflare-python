@@ -22,6 +22,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.workflows import version_list_params
 from ...types.workflows.version_get_response import VersionGetResponse
 from ...types.workflows.version_list_response import VersionListResponse
+from ...types.workflows.version_graph_response import VersionGraphResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -147,6 +148,54 @@ class VersionsResource(SyncAPIResource):
             cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
+    def graph(
+        self,
+        version_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VersionGraphResponse:
+        """
+        Retrieves the graph visualization of a workflow version.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        if not version_id:
+            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}/graph",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VersionGraphResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[VersionGraphResponse], ResultWrapper[VersionGraphResponse]),
+        )
+
 
 class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
@@ -269,6 +318,54 @@ class AsyncVersionsResource(AsyncAPIResource):
             cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
+    async def graph(
+        self,
+        version_id: str,
+        *,
+        account_id: str,
+        workflow_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VersionGraphResponse:
+        """
+        Retrieves the graph visualization of a workflow version.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        if not version_id:
+            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}/graph",
+                account_id=account_id,
+                workflow_name=workflow_name,
+                version_id=version_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VersionGraphResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[VersionGraphResponse], ResultWrapper[VersionGraphResponse]),
+        )
+
 
 class VersionsResourceWithRawResponse:
     def __init__(self, versions: VersionsResource) -> None:
@@ -279,6 +376,9 @@ class VersionsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             versions.get,
+        )
+        self.graph = to_raw_response_wrapper(
+            versions.graph,
         )
 
 
@@ -292,6 +392,9 @@ class AsyncVersionsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             versions.get,
         )
+        self.graph = async_to_raw_response_wrapper(
+            versions.graph,
+        )
 
 
 class VersionsResourceWithStreamingResponse:
@@ -304,6 +407,9 @@ class VersionsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             versions.get,
         )
+        self.graph = to_streamed_response_wrapper(
+            versions.graph,
+        )
 
 
 class AsyncVersionsResourceWithStreamingResponse:
@@ -315,4 +421,7 @@ class AsyncVersionsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             versions.get,
+        )
+        self.graph = async_to_streamed_response_wrapper(
+            versions.graph,
         )

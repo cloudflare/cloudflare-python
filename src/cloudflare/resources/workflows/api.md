@@ -28,6 +28,7 @@ from cloudflare.types.workflows import (
     InstanceListResponse,
     InstanceBulkResponse,
     InstanceGetResponse,
+    InstanceStepResponse,
 )
 ```
 
@@ -37,6 +38,7 @@ Methods:
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/instance_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_list_response.py">SyncV4PagePaginationArray[InstanceListResponse]</a></code>
 - <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances/batch">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">bulk</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/instance_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_bulk_response.py">SyncSinglePage[InstanceBulkResponse]</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">get</a>(instance_id, \*, account_id, workflow_name, \*\*<a href="src/cloudflare/types/workflows/instance_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_get_response.py">InstanceGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/step">client.workflows.instances.<a href="./src/cloudflare/resources/workflows/instances/instances.py">step</a>(instance_id, \*, account_id, workflow_name, \*\*<a href="src/cloudflare/types/workflows/instance_step_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instance_step_response.py">InstanceStepResponse</a></code>
 
 ### Status
 
@@ -61,10 +63,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workflows import VersionListResponse, VersionGetResponse
+from cloudflare.types.workflows import VersionListResponse, VersionGetResponse, VersionGraphResponse
 ```
 
 Methods:
 
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/version_list_response.py">SyncV4PagePaginationArray[VersionListResponse]</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">get</a>(version_id, \*, account_id, workflow_name) -> <a href="./src/cloudflare/types/workflows/version_get_response.py">VersionGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}/graph">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">graph</a>(version_id, \*, account_id, workflow_name) -> <a href="./src/cloudflare/types/workflows/version_graph_response.py">VersionGraphResponse</a></code>

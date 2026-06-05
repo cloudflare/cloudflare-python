@@ -15,6 +15,7 @@ from cloudflare.types.workflows import (
     InstanceGetResponse,
     InstanceBulkResponse,
     InstanceListResponse,
+    InstanceStepResponse,
     InstanceCreateResponse,
 )
 
@@ -286,6 +287,90 @@ class TestInstances:
                 workflow_name="x",
             )
 
+    @parametrize
+    def test_method_step(self, client: Cloudflare) -> None:
+        instance = client.workflows.instances.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        )
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_step_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.workflows.instances.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+            attempt=1,
+        )
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_step(self, client: Cloudflare) -> None:
+        response = client.workflows.instances.with_raw_response.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_step(self, client: Cloudflare) -> None:
+        with client.workflows.instances.with_streaming_response.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_step(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workflows.instances.with_raw_response.step(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                name="x",
+                type="step",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            client.workflows.instances.with_raw_response.step(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                name="x",
+                type="step",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            client.workflows.instances.with_raw_response.step(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                name="x",
+                type="step",
+            )
+
 
 class TestAsyncInstances:
     parametrize = pytest.mark.parametrize(
@@ -552,4 +637,88 @@ class TestAsyncInstances:
                 instance_id="",
                 account_id="account_id",
                 workflow_name="x",
+            )
+
+    @parametrize
+    async def test_method_step(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.workflows.instances.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        )
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_step_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.workflows.instances.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+            attempt=1,
+        )
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_step(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workflows.instances.with_raw_response.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_step(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workflows.instances.with_streaming_response.step(
+            instance_id="x",
+            account_id="account_id",
+            workflow_name="x",
+            name="x",
+            type="step",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceStepResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_step(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workflows.instances.with_raw_response.step(
+                instance_id="x",
+                account_id="",
+                workflow_name="x",
+                name="x",
+                type="step",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
+            await async_client.workflows.instances.with_raw_response.step(
+                instance_id="x",
+                account_id="account_id",
+                workflow_name="",
+                name="x",
+                type="step",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
+            await async_client.workflows.instances.with_raw_response.step(
+                instance_id="",
+                account_id="account_id",
+                workflow_name="x",
+                name="x",
+                type="step",
             )
