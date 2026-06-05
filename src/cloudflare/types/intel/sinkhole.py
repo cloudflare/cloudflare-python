@@ -9,7 +9,7 @@ __all__ = ["Sinkhole"]
 
 
 class Sinkhole(BaseModel):
-    id: Optional[int] = None
+    id: Optional[str] = None
     """The unique identifier for the sinkhole."""
 
     account_tag: Optional[str] = None
