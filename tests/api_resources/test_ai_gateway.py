@@ -193,14 +193,20 @@ class TestAIGateway:
                 "enabled": True,
                 "rules": [
                     {
-                        "id": "x",
                         "limit": 1,
                         "limit_type": "cost",
                         "window": 1,
+                        "id": "x",
                         "enabled": True,
                         "metadata": {"foo": {"mode": "partition"}},
-                        "model": "partition",
-                        "provider": "partition",
+                        "model": {
+                            "mode": "filter",
+                            "values": ["string"],
+                        },
+                        "provider": {
+                            "mode": "filter",
+                            "values": ["string"],
+                        },
                         "technique": "fixed",
                     }
                 ],
@@ -594,14 +600,20 @@ class TestAsyncAIGateway:
                 "enabled": True,
                 "rules": [
                     {
-                        "id": "x",
                         "limit": 1,
                         "limit_type": "cost",
                         "window": 1,
+                        "id": "x",
                         "enabled": True,
                         "metadata": {"foo": {"mode": "partition"}},
-                        "model": "partition",
-                        "provider": "partition",
+                        "model": {
+                            "mode": "filter",
+                            "values": ["string"],
+                        },
+                        "provider": {
+                            "mode": "filter",
+                            "values": ["string"],
+                        },
                         "technique": "fixed",
                     }
                 ],

@@ -24,9 +24,7 @@ __all__ = [
     "SpendLimitsRuleMetadataMode",
     "SpendLimitsRuleMetadataUnionMember1",
     "SpendLimitsRuleModel",
-    "SpendLimitsRuleModelMatch",
     "SpendLimitsRuleProvider",
-    "SpendLimitsRuleProviderMatch",
     "Stripe",
     "StripeUsageEvent",
 ]
@@ -142,36 +140,34 @@ class SpendLimitsRuleMetadataMode(BaseModel):
 
 
 class SpendLimitsRuleMetadataUnionMember1(BaseModel):
-    mode: Literal["match"]
+    mode: Literal["filter"]
 
-    value: str
+    values: List[str]
 
 
 SpendLimitsRuleMetadata: TypeAlias = Union[SpendLimitsRuleMetadataMode, SpendLimitsRuleMetadataUnionMember1]
 
 
-class SpendLimitsRuleModelMatch(BaseModel):
-    match: str
+class SpendLimitsRuleModel(BaseModel):
+    mode: Literal["filter"]
+
+    values: List[str]
 
 
-SpendLimitsRuleModel: TypeAlias = Union[Literal["partition"], SpendLimitsRuleModelMatch]
+class SpendLimitsRuleProvider(BaseModel):
+    mode: Literal["filter"]
 
-
-class SpendLimitsRuleProviderMatch(BaseModel):
-    match: str
-
-
-SpendLimitsRuleProvider: TypeAlias = Union[Literal["partition"], SpendLimitsRuleProviderMatch]
+    values: List[str]
 
 
 class SpendLimitsRule(BaseModel):
-    id: str
-
     limit: float
 
     limit_type: Literal["cost"] = FieldInfo(alias="limitType")
 
     window: int
+
+    id: Optional[str] = None
 
     enabled: Optional[bool] = None
 

@@ -24,9 +24,7 @@ __all__ = [
     "SpendLimitsRuleMetadataMode",
     "SpendLimitsRuleMetadataUnionMember1",
     "SpendLimitsRuleModel",
-    "SpendLimitsRuleModelMatch",
     "SpendLimitsRuleProvider",
-    "SpendLimitsRuleProviderMatch",
     "Stripe",
     "StripeUsageEvent",
 ]
@@ -197,36 +195,34 @@ class SpendLimitsRuleMetadataMode(TypedDict, total=False):
 
 
 class SpendLimitsRuleMetadataUnionMember1(TypedDict, total=False):
-    mode: Required[Literal["match"]]
+    mode: Required[Literal["filter"]]
 
-    value: Required[str]
+    values: Required[SequenceNotStr[str]]
 
 
 SpendLimitsRuleMetadata: TypeAlias = Union[SpendLimitsRuleMetadataMode, SpendLimitsRuleMetadataUnionMember1]
 
 
-class SpendLimitsRuleModelMatch(TypedDict, total=False):
-    match: Required[str]
+class SpendLimitsRuleModel(TypedDict, total=False):
+    mode: Required[Literal["filter"]]
+
+    values: Required[SequenceNotStr[str]]
 
 
-SpendLimitsRuleModel: TypeAlias = Union[Literal["partition"], SpendLimitsRuleModelMatch]
+class SpendLimitsRuleProvider(TypedDict, total=False):
+    mode: Required[Literal["filter"]]
 
-
-class SpendLimitsRuleProviderMatch(TypedDict, total=False):
-    match: Required[str]
-
-
-SpendLimitsRuleProvider: TypeAlias = Union[Literal["partition"], SpendLimitsRuleProviderMatch]
+    values: Required[SequenceNotStr[str]]
 
 
 class SpendLimitsRule(TypedDict, total=False):
-    id: Required[str]
-
     limit: Required[float]
 
     limit_type: Required[Annotated[Literal["cost"], PropertyInfo(alias="limitType")]]
 
     window: Required[int]
+
+    id: str
 
     enabled: bool
 

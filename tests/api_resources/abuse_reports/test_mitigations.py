@@ -43,7 +43,7 @@ class TestMitigations:
             per_page=0,
             sort="type,asc",
             status="pending",
-            type="legal_block",
+            type="account_suspend",
         )
         assert_matches_type(SyncV4PagePagination[Optional[MitigationListResponse]], mitigation, path=["response"])
 
@@ -200,7 +200,7 @@ class TestAsyncMitigations:
             per_page=0,
             sort="type,asc",
             status="pending",
-            type="legal_block",
+            type="account_suspend",
         )
         assert_matches_type(AsyncV4PagePagination[Optional[MitigationListResponse]], mitigation, path=["response"])
 
