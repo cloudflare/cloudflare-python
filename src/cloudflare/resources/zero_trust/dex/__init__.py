@@ -32,6 +32,14 @@ from .tests import (
     TestsResourceWithStreamingResponse,
     AsyncTestsResourceWithStreamingResponse,
 )
+from .devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
 from .commands import (
     CommandsResource,
     AsyncCommandsResource,
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncRulesResourceWithRawResponse",
     "RulesResourceWithStreamingResponse",
     "AsyncRulesResourceWithStreamingResponse",
+    "DevicesResource",
+    "AsyncDevicesResource",
+    "DevicesResourceWithRawResponse",
+    "AsyncDevicesResourceWithRawResponse",
+    "DevicesResourceWithStreamingResponse",
+    "AsyncDevicesResourceWithStreamingResponse",
     "DEXResource",
     "AsyncDEXResource",
     "DEXResourceWithRawResponse",

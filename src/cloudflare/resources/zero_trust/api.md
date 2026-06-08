@@ -1192,6 +1192,20 @@ Methods:
 - <code title="delete /accounts/{account_id}/dex/rules/{rule_id}">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_delete_response.py">Optional[RuleDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/dex/rules/{rule_id}">client.zero_trust.dex.rules.<a href="./src/cloudflare/resources/zero_trust/dex/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/rule_get_response.py">Optional[RuleGetResponse]</a></code>
 
+### Devices
+
+#### ISPs
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex.devices import ISPs
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dex/devices/{device_id}/isps">client.zero_trust.dex.devices.isps.<a href="./src/cloudflare/resources/zero_trust/dex/devices/isps.py">list</a>(device_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/devices/isp_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/devices/isps.py">SyncV4PagePagination[Optional[ISPs]]</a></code>
+
 ## Tunnels
 
 Types:

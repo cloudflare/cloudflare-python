@@ -28,6 +28,14 @@ from .tests.tests import (
     AsyncTestsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from .devices.devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
 from .traceroute_tests import (
     TracerouteTestsResource,
     AsyncTracerouteTestsResource,
@@ -118,6 +126,10 @@ class DEXResource(SyncAPIResource):
         return RulesResource(self._client)
 
     @cached_property
+    def devices(self) -> DevicesResource:
+        return DevicesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> DEXResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -173,6 +185,10 @@ class AsyncDEXResource(AsyncAPIResource):
     @cached_property
     def rules(self) -> AsyncRulesResource:
         return AsyncRulesResource(self._client)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResource:
+        return AsyncDevicesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDEXResourceWithRawResponse:
@@ -234,6 +250,10 @@ class DEXResourceWithRawResponse:
     def rules(self) -> RulesResourceWithRawResponse:
         return RulesResourceWithRawResponse(self._dex.rules)
 
+    @cached_property
+    def devices(self) -> DevicesResourceWithRawResponse:
+        return DevicesResourceWithRawResponse(self._dex.devices)
+
 
 class AsyncDEXResourceWithRawResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
@@ -274,6 +294,10 @@ class AsyncDEXResourceWithRawResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self._dex.rules)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResourceWithRawResponse:
+        return AsyncDevicesResourceWithRawResponse(self._dex.devices)
 
 
 class DEXResourceWithStreamingResponse:
@@ -316,6 +340,10 @@ class DEXResourceWithStreamingResponse:
     def rules(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self._dex.rules)
 
+    @cached_property
+    def devices(self) -> DevicesResourceWithStreamingResponse:
+        return DevicesResourceWithStreamingResponse(self._dex.devices)
+
 
 class AsyncDEXResourceWithStreamingResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
@@ -356,3 +384,7 @@ class AsyncDEXResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self._dex.rules)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResourceWithStreamingResponse:
+        return AsyncDevicesResourceWithStreamingResponse(self._dex.devices)
