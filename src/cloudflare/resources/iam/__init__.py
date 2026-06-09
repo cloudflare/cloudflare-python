@@ -24,6 +24,14 @@ from .user_groups import (
     UserGroupsResourceWithStreamingResponse,
     AsyncUserGroupsResourceWithStreamingResponse,
 )
+from .oauth_scopes import (
+    OAuthScopesResource,
+    AsyncOAuthScopesResource,
+    OAuthScopesResourceWithRawResponse,
+    AsyncOAuthScopesResourceWithRawResponse,
+    OAuthScopesResourceWithStreamingResponse,
+    AsyncOAuthScopesResourceWithStreamingResponse,
+)
 from .oauth_clients import (
     OAuthClientsResource,
     AsyncOAuthClientsResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncOAuthClientsResourceWithRawResponse",
     "OAuthClientsResourceWithStreamingResponse",
     "AsyncOAuthClientsResourceWithStreamingResponse",
+    "OAuthScopesResource",
+    "AsyncOAuthScopesResource",
+    "OAuthScopesResourceWithRawResponse",
+    "AsyncOAuthScopesResourceWithRawResponse",
+    "OAuthScopesResourceWithStreamingResponse",
+    "AsyncOAuthScopesResourceWithStreamingResponse",
     "IAMResource",
     "AsyncIAMResource",
     "IAMResourceWithRawResponse",

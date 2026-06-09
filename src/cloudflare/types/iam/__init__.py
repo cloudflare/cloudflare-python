@@ -15,6 +15,7 @@ from .user_group_create_params import UserGroupCreateParams as UserGroupCreatePa
 from .user_group_list_response import UserGroupListResponse as UserGroupListResponse
 from .user_group_update_params import UserGroupUpdateParams as UserGroupUpdateParams
 from .oauth_client_get_response import OAuthClientGetResponse as OAuthClientGetResponse
+from .oauth_scope_list_response import OAuthScopeListResponse as OAuthScopeListResponse
 from .oauth_client_create_params import OAuthClientCreateParams as OAuthClientCreateParams
 from .oauth_client_list_response import OAuthClientListResponse as OAuthClientListResponse
 from .oauth_client_update_params import OAuthClientUpdateParams as OAuthClientUpdateParams

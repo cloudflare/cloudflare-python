@@ -12,6 +12,14 @@ from .sso import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .oauth_scopes import (
+    OAuthScopesResource,
+    AsyncOAuthScopesResource,
+    OAuthScopesResourceWithRawResponse,
+    AsyncOAuthScopesResourceWithRawResponse,
+    OAuthScopesResourceWithStreamingResponse,
+    AsyncOAuthScopesResourceWithStreamingResponse,
+)
 from .oauth_clients import (
     OAuthClientsResource,
     AsyncOAuthClientsResource,
@@ -43,14 +51,6 @@ from .user_groups.user_groups import (
     AsyncUserGroupsResourceWithRawResponse,
     UserGroupsResourceWithStreamingResponse,
     AsyncUserGroupsResourceWithStreamingResponse,
-)
-from .oauth_scopes.oauth_scopes import (
-    OAuthScopesResource,
-    AsyncOAuthScopesResource,
-    OAuthScopesResourceWithRawResponse,
-    AsyncOAuthScopesResourceWithRawResponse,
-    OAuthScopesResourceWithStreamingResponse,
-    AsyncOAuthScopesResourceWithStreamingResponse,
 )
 
 __all__ = ["IAMResource", "AsyncIAMResource"]

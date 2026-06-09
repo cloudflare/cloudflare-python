@@ -4,18 +4,18 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.iam.oauth_scopes.oauth_scope_list_response import OAuthScopeListResponse
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.iam.oauth_scope_list_response import OAuthScopeListResponse
 
 __all__ = ["OAuthScopesResource", "AsyncOAuthScopesResource"]
 

@@ -129,4 +129,14 @@ Methods:
 - <code title="get /accounts/{account_id}/oauth_clients/{oauth_client_id}">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">get</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_get_response.py">Optional[OAuthClientGetResponse]</a></code>
 - <code title="post /accounts/{account_id}/oauth_clients/{oauth_client_id}/rotate_secret">client.iam.oauth_clients.<a href="./src/cloudflare/resources/iam/oauth_clients.py">rotate_secret</a>(oauth_client_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/oauth_client_rotate_secret_response.py">Optional[OAuthClientRotateSecretResponse]</a></code>
 
-## [OAuthScopes](src/cloudflare/resources/iam/api.md)
+## OAuthScopes
+
+Types:
+
+```python
+from cloudflare.types.iam import OAuthScopeListResponse
+```
+
+Methods:
+
+- <code title="get /oauth/scopes">client.iam.oauth_scopes.<a href="./src/cloudflare/resources/iam/oauth_scopes.py">list</a>() -> <a href="./src/cloudflare/types/iam/oauth_scope_list_response.py">SyncSinglePage[OAuthScopeListResponse]</a></code>
