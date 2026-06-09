@@ -29,8 +29,6 @@ class TestProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         )
         assert_matches_type(ProviderConfigCreateResponse, provider_config, path=["response"])
 
@@ -42,10 +40,10 @@ class TestProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
             rate_limit=0,
             rate_limit_period=0,
+            secret="secret",
+            secret_id="secret_id",
         )
         assert_matches_type(ProviderConfigCreateResponse, provider_config, path=["response"])
 
@@ -57,8 +55,6 @@ class TestProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         )
 
         assert response.is_closed is True
@@ -74,8 +70,6 @@ class TestProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,8 +88,6 @@ class TestProviderConfigs:
                 alias="alias",
                 default_config=True,
                 provider_slug="provider_slug",
-                secret="secret",
-                secret_id="secret_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -105,8 +97,6 @@ class TestProviderConfigs:
                 alias="alias",
                 default_config=True,
                 provider_slug="provider_slug",
-                secret="secret",
-                secret_id="secret_id",
             )
 
     @parametrize
@@ -183,8 +173,6 @@ class TestAsyncProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         )
         assert_matches_type(ProviderConfigCreateResponse, provider_config, path=["response"])
 
@@ -196,10 +184,10 @@ class TestAsyncProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
             rate_limit=0,
             rate_limit_period=0,
+            secret="secret",
+            secret_id="secret_id",
         )
         assert_matches_type(ProviderConfigCreateResponse, provider_config, path=["response"])
 
@@ -211,8 +199,6 @@ class TestAsyncProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         )
 
         assert response.is_closed is True
@@ -228,8 +214,6 @@ class TestAsyncProviderConfigs:
             alias="alias",
             default_config=True,
             provider_slug="provider_slug",
-            secret="secret",
-            secret_id="secret_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,8 +232,6 @@ class TestAsyncProviderConfigs:
                 alias="alias",
                 default_config=True,
                 provider_slug="provider_slug",
-                secret="secret",
-                secret_id="secret_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -259,8 +241,6 @@ class TestAsyncProviderConfigs:
                 alias="alias",
                 default_config=True,
                 provider_slug="provider_slug",
-                secret="secret",
-                secret_id="secret_id",
             )
 
     @parametrize

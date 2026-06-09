@@ -16,10 +16,10 @@ class ProviderConfigCreateParams(TypedDict, total=False):
 
     provider_slug: Required[str]
 
-    secret: Required[str]
-
-    secret_id: Required[str]
-
     rate_limit: float
 
     rate_limit_period: float
+
+    secret: str
+
+    secret_id: str
