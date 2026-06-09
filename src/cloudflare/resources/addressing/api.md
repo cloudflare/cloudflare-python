@@ -1,5 +1,39 @@
 # Addressing
 
+## RegionalHostnames
+
+Types:
+
+```python
+from cloudflare.types.addressing import (
+    RegionalHostnameCreateResponse,
+    RegionalHostnameListResponse,
+    RegionalHostnameDeleteResponse,
+    RegionalHostnameEditResponse,
+    RegionalHostnameGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/addressing/regional_hostnames">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/addressing/regional_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/regional_hostname_create_response.py">Optional[RegionalHostnameCreateResponse]</a></code>
+- <code title="get /zones/{zone_id}/addressing/regional_hostnames">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_list_response.py">SyncSinglePage[RegionalHostnameListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">delete</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_delete_response.py">RegionalHostnameDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">edit</a>(hostname, \*, zone_id, \*\*<a href="src/cloudflare/types/addressing/regional_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/regional_hostname_edit_response.py">Optional[RegionalHostnameEditResponse]</a></code>
+- <code title="get /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_get_response.py">Optional[RegionalHostnameGetResponse]</a></code>
+
+### Regions
+
+Types:
+
+```python
+from cloudflare.types.addressing.regional_hostnames import RegionListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/addressing/regional_hostnames/regions">client.addressing.regional_hostnames.regions.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addressing/regional_hostnames/region_list_response.py">SyncSinglePage[RegionListResponse]</a></code>
+
 ## Services
 
 Types:

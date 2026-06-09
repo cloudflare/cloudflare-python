@@ -63,7 +63,6 @@ class EmailSendingResource(SyncAPIResource):
         account_id: str,
         from_: email_sending_send_params.From,
         subject: str,
-        to: Union[str, SequenceNotStr[str]],
         attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
         bcc: Union[str, SequenceNotStr[str]] | Omit = omit,
         cc: Union[str, SequenceNotStr[str]] | Omit = omit,
@@ -71,6 +70,7 @@ class EmailSendingResource(SyncAPIResource):
         html: str | Omit = omit,
         reply_to: email_sending_send_params.ReplyTo | Omit = omit,
         text: str | Omit = omit,
+        to: Union[str, SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,8 +88,6 @@ class EmailSendingResource(SyncAPIResource):
 
           subject: Email subject line.
 
-          to: Recipient(s). A single email string or an array of email strings.
-
           attachments: File attachments and inline images.
 
           bcc: BCC recipient(s). A single email string or an array of email strings.
@@ -105,6 +103,9 @@ class EmailSendingResource(SyncAPIResource):
 
           text: Plain text body of the email. At least one of text or html must be provided
               (non-empty).
+
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string or an
+              array of email strings.
 
           extra_headers: Send extra headers
 
@@ -122,7 +123,6 @@ class EmailSendingResource(SyncAPIResource):
                 {
                     "from_": from_,
                     "subject": subject,
-                    "to": to,
                     "attachments": attachments,
                     "bcc": bcc,
                     "cc": cc,
@@ -130,6 +130,7 @@ class EmailSendingResource(SyncAPIResource):
                     "html": html,
                     "reply_to": reply_to,
                     "text": text,
+                    "to": to,
                 },
                 email_sending_send_params.EmailSendingSendParams,
             ),
@@ -233,7 +234,6 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         account_id: str,
         from_: email_sending_send_params.From,
         subject: str,
-        to: Union[str, SequenceNotStr[str]],
         attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
         bcc: Union[str, SequenceNotStr[str]] | Omit = omit,
         cc: Union[str, SequenceNotStr[str]] | Omit = omit,
@@ -241,6 +241,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         html: str | Omit = omit,
         reply_to: email_sending_send_params.ReplyTo | Omit = omit,
         text: str | Omit = omit,
+        to: Union[str, SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -258,8 +259,6 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           subject: Email subject line.
 
-          to: Recipient(s). A single email string or an array of email strings.
-
           attachments: File attachments and inline images.
 
           bcc: BCC recipient(s). A single email string or an array of email strings.
@@ -275,6 +274,9 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           text: Plain text body of the email. At least one of text or html must be provided
               (non-empty).
+
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string or an
+              array of email strings.
 
           extra_headers: Send extra headers
 
@@ -292,7 +294,6 @@ class AsyncEmailSendingResource(AsyncAPIResource):
                 {
                     "from_": from_,
                     "subject": subject,
-                    "to": to,
                     "attachments": attachments,
                     "bcc": bcc,
                     "cc": cc,
@@ -300,6 +301,7 @@ class AsyncEmailSendingResource(AsyncAPIResource):
                     "html": html,
                     "reply_to": reply_to,
                     "text": text,
+                    "to": to,
                 },
                 email_sending_send_params.EmailSendingSendParams,
             ),

@@ -26,7 +26,6 @@ class TestEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -36,7 +35,6 @@ class TestEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
             attachments=[
                 {
                     "content": "JVBERi0xLjQK...",
@@ -51,6 +49,7 @@ class TestEmailSending:
             html="<h1>Hello</h1><p>Please find your report attached.</p>",
             reply_to="user@example.com",
             text="Hello\n\nPlease find your report attached.",
+            to=["recipient@example.com"],
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -60,7 +59,6 @@ class TestEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         )
 
         assert response.is_closed is True
@@ -74,7 +72,6 @@ class TestEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -91,7 +88,6 @@ class TestEmailSending:
                 account_id="",
                 from_="sender@example.com",
                 subject="Monthly Report",
-                to=["recipient@example.com"],
             )
 
     @parametrize
@@ -156,7 +152,6 @@ class TestAsyncEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -166,7 +161,6 @@ class TestAsyncEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
             attachments=[
                 {
                     "content": "JVBERi0xLjQK...",
@@ -181,6 +175,7 @@ class TestAsyncEmailSending:
             html="<h1>Hello</h1><p>Please find your report attached.</p>",
             reply_to="user@example.com",
             text="Hello\n\nPlease find your report attached.",
+            to=["recipient@example.com"],
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -190,7 +185,6 @@ class TestAsyncEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         )
 
         assert response.is_closed is True
@@ -204,7 +198,6 @@ class TestAsyncEmailSending:
             account_id="account_id",
             from_="sender@example.com",
             subject="Monthly Report",
-            to=["recipient@example.com"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,7 +214,6 @@ class TestAsyncEmailSending:
                 account_id="",
                 from_="sender@example.com",
                 subject="Monthly Report",
-                to=["recipient@example.com"],
             )
 
     @parametrize

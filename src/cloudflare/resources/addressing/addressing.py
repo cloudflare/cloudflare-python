@@ -36,11 +36,23 @@ from .address_maps.address_maps import (
     AddressMapsResourceWithStreamingResponse,
     AsyncAddressMapsResourceWithStreamingResponse,
 )
+from .regional_hostnames.regional_hostnames import (
+    RegionalHostnamesResource,
+    AsyncRegionalHostnamesResource,
+    RegionalHostnamesResourceWithRawResponse,
+    AsyncRegionalHostnamesResourceWithRawResponse,
+    RegionalHostnamesResourceWithStreamingResponse,
+    AsyncRegionalHostnamesResourceWithStreamingResponse,
+)
 
 __all__ = ["AddressingResource", "AsyncAddressingResource"]
 
 
 class AddressingResource(SyncAPIResource):
+    @cached_property
+    def regional_hostnames(self) -> RegionalHostnamesResource:
+        return RegionalHostnamesResource(self._client)
+
     @cached_property
     def services(self) -> ServicesResource:
         return ServicesResource(self._client)
@@ -78,6 +90,10 @@ class AddressingResource(SyncAPIResource):
 
 
 class AsyncAddressingResource(AsyncAPIResource):
+    @cached_property
+    def regional_hostnames(self) -> AsyncRegionalHostnamesResource:
+        return AsyncRegionalHostnamesResource(self._client)
+
     @cached_property
     def services(self) -> AsyncServicesResource:
         return AsyncServicesResource(self._client)
@@ -119,6 +135,10 @@ class AddressingResourceWithRawResponse:
         self._addressing = addressing
 
     @cached_property
+    def regional_hostnames(self) -> RegionalHostnamesResourceWithRawResponse:
+        return RegionalHostnamesResourceWithRawResponse(self._addressing.regional_hostnames)
+
+    @cached_property
     def services(self) -> ServicesResourceWithRawResponse:
         return ServicesResourceWithRawResponse(self._addressing.services)
 
@@ -138,6 +158,10 @@ class AddressingResourceWithRawResponse:
 class AsyncAddressingResourceWithRawResponse:
     def __init__(self, addressing: AsyncAddressingResource) -> None:
         self._addressing = addressing
+
+    @cached_property
+    def regional_hostnames(self) -> AsyncRegionalHostnamesResourceWithRawResponse:
+        return AsyncRegionalHostnamesResourceWithRawResponse(self._addressing.regional_hostnames)
 
     @cached_property
     def services(self) -> AsyncServicesResourceWithRawResponse:
@@ -161,6 +185,10 @@ class AddressingResourceWithStreamingResponse:
         self._addressing = addressing
 
     @cached_property
+    def regional_hostnames(self) -> RegionalHostnamesResourceWithStreamingResponse:
+        return RegionalHostnamesResourceWithStreamingResponse(self._addressing.regional_hostnames)
+
+    @cached_property
     def services(self) -> ServicesResourceWithStreamingResponse:
         return ServicesResourceWithStreamingResponse(self._addressing.services)
 
@@ -180,6 +208,10 @@ class AddressingResourceWithStreamingResponse:
 class AsyncAddressingResourceWithStreamingResponse:
     def __init__(self, addressing: AsyncAddressingResource) -> None:
         self._addressing = addressing
+
+    @cached_property
+    def regional_hostnames(self) -> AsyncRegionalHostnamesResourceWithStreamingResponse:
+        return AsyncRegionalHostnamesResourceWithStreamingResponse(self._addressing.regional_hostnames)
 
     @cached_property
     def services(self) -> AsyncServicesResourceWithStreamingResponse:

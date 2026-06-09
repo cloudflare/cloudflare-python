@@ -30,9 +30,6 @@ class EmailSendingSendParams(TypedDict, total=False):
     subject: Required[str]
     """Email subject line."""
 
-    to: Required[Union[str, SequenceNotStr[str]]]
-    """Recipient(s). A single email string or an array of email strings."""
-
     attachments: Iterable[Attachment]
     """File attachments and inline images."""
 
@@ -58,6 +55,13 @@ class EmailSendingSendParams(TypedDict, total=False):
     """Plain text body of the email.
 
     At least one of text or html must be provided (non-empty).
+    """
+
+    to: Union[str, SequenceNotStr[str]]
+    """Recipient(s).
+
+    Optional if cc or bcc is provided. A single email string or an array of email
+    strings.
     """
 
 

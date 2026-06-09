@@ -11,6 +11,9 @@ class EmailSendingSendResponse(BaseModel):
     delivered: List[str]
     """Email addresses to which the message was delivered immediately."""
 
+    message_id: str
+    """Message ID of the sent email."""
+
     permanent_bounces: List[str]
     """Email addresses that permanently bounced."""
 
