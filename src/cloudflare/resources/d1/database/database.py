@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -11,6 +11,7 @@ from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omi
 from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.d1 import (
+    database_get_params,
     database_raw_params,
     database_edit_params,
     database_list_params,
@@ -409,6 +410,20 @@ class DatabaseResource(SyncAPIResource):
         database_id: str,
         *,
         account_id: str,
+        fields: List[
+            Literal[
+                "uuid",
+                "name",
+                "created_at",
+                "version",
+                "jurisdiction",
+                "num_tables",
+                "file_size",
+                "running_in_region",
+                "read_replication",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,6 +438,9 @@ class DatabaseResource(SyncAPIResource):
           account_id: Account identifier tag.
 
           database_id: D1 database identifier (UUID).
+
+          fields: Comma-separated list of fields to include in the response. When omitted, all
+              fields are returned.
 
           extra_headers: Send extra headers
 
@@ -445,6 +463,7 @@ class DatabaseResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"fields": fields}, database_get_params.DatabaseGetParams),
                 post_parser=ResultWrapper[D1]._unwrapper,
             ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
@@ -1209,6 +1228,20 @@ class AsyncDatabaseResource(AsyncAPIResource):
         database_id: str,
         *,
         account_id: str,
+        fields: List[
+            Literal[
+                "uuid",
+                "name",
+                "created_at",
+                "version",
+                "jurisdiction",
+                "num_tables",
+                "file_size",
+                "running_in_region",
+                "read_replication",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1223,6 +1256,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           database_id: D1 database identifier (UUID).
+
+          fields: Comma-separated list of fields to include in the response. When omitted, all
+              fields are returned.
 
           extra_headers: Send extra headers
 
@@ -1245,6 +1281,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"fields": fields}, database_get_params.DatabaseGetParams),
                 post_parser=ResultWrapper[D1]._unwrapper,
             ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),

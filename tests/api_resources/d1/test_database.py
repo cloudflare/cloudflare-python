@@ -361,6 +361,15 @@ class TestDatabase:
         assert_matches_type(D1, database, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        database = client.d1.database.get(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields=["uuid"],
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.get(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1149,6 +1158,15 @@ class TestAsyncDatabase:
         database = await async_client.d1.database.get(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.get(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields=["uuid"],
         )
         assert_matches_type(D1, database, path=["response"])
 
