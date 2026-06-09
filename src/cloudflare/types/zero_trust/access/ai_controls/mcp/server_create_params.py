@@ -33,6 +33,9 @@ class ServerCreateParams(TypedDict, total=False):
     behavior is gated by the gateway worker's per-env rollout mode KV key.
     """
 
+    secure_web_gateway: bool
+    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+
     updated_prompts: Iterable[UpdatedPrompt]
 
     updated_tools: Iterable[UpdatedTool]

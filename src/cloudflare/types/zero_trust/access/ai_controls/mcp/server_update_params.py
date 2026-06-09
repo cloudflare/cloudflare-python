@@ -26,6 +26,9 @@ class ServerUpdateParams(TypedDict, total=False):
 
     name: str
 
+    secure_web_gateway: bool
+    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+
     updated_prompts: Iterable[UpdatedPrompt]
 
     updated_tools: Iterable[UpdatedTool]

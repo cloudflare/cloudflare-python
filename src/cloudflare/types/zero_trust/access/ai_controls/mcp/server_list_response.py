@@ -87,6 +87,9 @@ class ServerListResponse(BaseModel):
 
     modified_by: Optional[str] = None
 
+    secure_web_gateway: Optional[bool] = None
+    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+
     status: Optional[str] = None
 
     updated_prompts: Optional[List[UpdatedPrompt]] = None

@@ -6,3 +6,6 @@ from .token_get_response import TokenGetResponse as TokenGetResponse
 from .connector_get_response import ConnectorGetResponse as ConnectorGetResponse
 from .failover_update_params import FailoverUpdateParams as FailoverUpdateParams
 from .connection_get_response import ConnectionGetResponse as ConnectionGetResponse
+from .configuration_get_response import ConfigurationGetResponse as ConfigurationGetResponse
+from .configuration_update_params import ConfigurationUpdateParams as ConfigurationUpdateParams
+from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse

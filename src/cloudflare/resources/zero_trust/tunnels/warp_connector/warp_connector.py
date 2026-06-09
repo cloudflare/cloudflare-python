@@ -52,6 +52,14 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .configurations import (
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
+)
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.tunnels import (
     warp_connector_edit_params,
@@ -83,6 +91,10 @@ class WARPConnectorResource(SyncAPIResource):
     @cached_property
     def failover(self) -> FailoverResource:
         return FailoverResource(self._client)
+
+    @cached_property
+    def configurations(self) -> ConfigurationsResource:
+        return ConfigurationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
@@ -410,6 +422,10 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
     @cached_property
     def failover(self) -> AsyncFailoverResource:
         return AsyncFailoverResource(self._client)
+
+    @cached_property
+    def configurations(self) -> AsyncConfigurationsResource:
+        return AsyncConfigurationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
@@ -757,6 +773,10 @@ class WARPConnectorResourceWithRawResponse:
     def failover(self) -> FailoverResourceWithRawResponse:
         return FailoverResourceWithRawResponse(self._warp_connector.failover)
 
+    @cached_property
+    def configurations(self) -> ConfigurationsResourceWithRawResponse:
+        return ConfigurationsResourceWithRawResponse(self._warp_connector.configurations)
+
 
 class AsyncWARPConnectorResourceWithRawResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -793,6 +813,10 @@ class AsyncWARPConnectorResourceWithRawResponse:
     @cached_property
     def failover(self) -> AsyncFailoverResourceWithRawResponse:
         return AsyncFailoverResourceWithRawResponse(self._warp_connector.failover)
+
+    @cached_property
+    def configurations(self) -> AsyncConfigurationsResourceWithRawResponse:
+        return AsyncConfigurationsResourceWithRawResponse(self._warp_connector.configurations)
 
 
 class WARPConnectorResourceWithStreamingResponse:
@@ -831,6 +855,10 @@ class WARPConnectorResourceWithStreamingResponse:
     def failover(self) -> FailoverResourceWithStreamingResponse:
         return FailoverResourceWithStreamingResponse(self._warp_connector.failover)
 
+    @cached_property
+    def configurations(self) -> ConfigurationsResourceWithStreamingResponse:
+        return ConfigurationsResourceWithStreamingResponse(self._warp_connector.configurations)
+
 
 class AsyncWARPConnectorResourceWithStreamingResponse:
     def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
@@ -867,3 +895,7 @@ class AsyncWARPConnectorResourceWithStreamingResponse:
     @cached_property
     def failover(self) -> AsyncFailoverResourceWithStreamingResponse:
         return AsyncFailoverResourceWithStreamingResponse(self._warp_connector.failover)
+
+    @cached_property
+    def configurations(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+        return AsyncConfigurationsResourceWithStreamingResponse(self._warp_connector.configurations)

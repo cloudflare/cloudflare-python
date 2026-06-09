@@ -62,6 +62,7 @@ class ServersResource(SyncAPIResource):
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -82,6 +83,8 @@ class ServersResource(SyncAPIResource):
               customer portal hostname. New public server creates default to true; existing
               servers default to false from migration until explicitly updated. Effective
               behavior is gated by the gateway worker's per-env rollout mode KV key.
+
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -104,6 +107,7 @@ class ServersResource(SyncAPIResource):
                     "auth_credentials": auth_credentials,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
+                    "secure_web_gateway": secure_web_gateway,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -128,6 +132,7 @@ class ServersResource(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -149,6 +154,8 @@ class ServersResource(SyncAPIResource):
               servers default to false from migration until explicitly updated. Effective
               behavior is gated by the gateway worker's per-env rollout mode KV key.
 
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,6 +176,7 @@ class ServersResource(SyncAPIResource):
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
+                    "secure_web_gateway": secure_web_gateway,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -395,6 +403,7 @@ class AsyncServersResource(AsyncAPIResource):
         auth_credentials: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         updated_prompts: Iterable[server_create_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_create_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -415,6 +424,8 @@ class AsyncServersResource(AsyncAPIResource):
               customer portal hostname. New public server creates default to true; existing
               servers default to false from migration until explicitly updated. Effective
               behavior is gated by the gateway worker's per-env rollout mode KV key.
+
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -437,6 +448,7 @@ class AsyncServersResource(AsyncAPIResource):
                     "auth_credentials": auth_credentials,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
+                    "secure_web_gateway": secure_web_gateway,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },
@@ -461,6 +473,7 @@ class AsyncServersResource(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         updated_prompts: Iterable[server_update_params.UpdatedPrompt] | Omit = omit,
         updated_tools: Iterable[server_update_params.UpdatedTool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -482,6 +495,8 @@ class AsyncServersResource(AsyncAPIResource):
               servers default to false from migration until explicitly updated. Effective
               behavior is gated by the gateway worker's per-env rollout mode KV key.
 
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -502,6 +517,7 @@ class AsyncServersResource(AsyncAPIResource):
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
+                    "secure_web_gateway": secure_web_gateway,
                     "updated_prompts": updated_prompts,
                     "updated_tools": updated_tools,
                 },

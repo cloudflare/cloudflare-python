@@ -1351,6 +1351,22 @@ Methods:
 
 - <code title="put /accounts/{account_id}/warp_connector/{tunnel_id}/failover">client.zero_trust.tunnels.warp_connector.failover.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/failover.py">update</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector/failover_update_params.py">params</a>) -> object</code>
 
+#### Configurations
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.tunnels.warp_connector import (
+    ConfigurationUpdateResponse,
+    ConfigurationGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/warp_connector/{tunnel_id}/configurations">client.zero_trust.tunnels.warp_connector.configurations.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/configurations.py">update</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector/configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/configuration_update_response.py">Optional[ConfigurationUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/configurations">client.zero_trust.tunnels.warp_connector.configurations.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector/configurations.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector/configuration_get_response.py">Optional[ConfigurationGetResponse]</a></code>
+
 ## ConnectivitySettings
 
 Types:

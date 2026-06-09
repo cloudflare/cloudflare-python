@@ -99,6 +99,9 @@ class Server(BaseModel):
 
     on_behalf: Optional[bool] = None
 
+    secure_web_gateway: Optional[bool] = None
+    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+
     status: Optional[str] = None
 
     updated_prompts: Optional[List[ServerUpdatedPrompt]] = None
