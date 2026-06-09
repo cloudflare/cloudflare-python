@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, Dict, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -28,6 +28,15 @@ class MetaFlags(BaseModel):
 class Meta(BaseModel):
     flags: Optional[MetaFlags] = None
     """Enable features for Organizations."""
+
+    hierarchy_tags: Optional[List[str]] = None
+    """
+    Ordered chain of organization tags from the root organization down to (and
+    including) this organization itself. Root organizations return a single-element
+    array containing their own tag; sub-organizations return
+    `[rootTag, ...intermediateTags, parentTag, selfTag]`. Useful for constructing
+    authorization scopes that need to cover every ancestor in the hierarchy.
+    """
 
     managed_by: Optional[str] = None
 

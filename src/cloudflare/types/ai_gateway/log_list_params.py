@@ -98,6 +98,7 @@ class Filter(TypedDict, total=False):
             "wholesale",
             "compatibilityMode",
             "dlp_action",
+            "user_agent",
         ]
     ]
 
