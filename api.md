@@ -213,6 +213,8 @@ from cloudflare.types import (
 
 # [AIGateway](src/cloudflare/resources/ai_gateway/api.md)
 
+# [Flagship](src/cloudflare/resources/flagship/api.md)
+
 # [IAM](src/cloudflare/resources/iam/api.md)
 
 # [CloudConnector](src/cloudflare/resources/cloud_connector/api.md)
