@@ -43,7 +43,7 @@ class TestTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
@@ -120,7 +120,7 @@ class TestTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
@@ -265,7 +265,7 @@ class TestTelemetry:
                         "filters": [
                             {
                                 "filter_combination": "and",
-                                "filters": [{}],
+                                "filters": [],
                                 "kind": "group",
                             }
                         ],
@@ -382,7 +382,7 @@ class TestTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
@@ -479,7 +479,7 @@ class TestAsyncTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
@@ -556,7 +556,7 @@ class TestAsyncTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
@@ -701,7 +701,7 @@ class TestAsyncTelemetry:
                         "filters": [
                             {
                                 "filter_combination": "and",
-                                "filters": [{}],
+                                "filters": [],
                                 "kind": "group",
                             }
                         ],
@@ -818,7 +818,7 @@ class TestAsyncTelemetry:
                     "filters": [
                         {
                             "filter_combination": "and",
-                            "filters": [{}],
+                            "filters": [],
                             "kind": "group",
                         }
                     ],
