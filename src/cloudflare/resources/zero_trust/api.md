@@ -1674,6 +1674,127 @@ Methods:
 - <code title="delete /accounts/{account_id}/dlp/entries/integration/{entry_id}">client.zero_trust.dlp.entries.integration.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/integration.py">delete</a>(entry_id, \*, account_id) -> object</code>
 - <code title="get /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.integration.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/integration.py">get</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/integration_get_response.py">Optional[IntegrationGetResponse]</a></code>
 
+### SensitivityGroups
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import (
+    SensitivityGroupCreateResponse,
+    SensitivityGroupUpdateResponse,
+    SensitivityGroupListResponse,
+    SensitivityGroupGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/sensitivity_groups">client.zero_trust.dlp.sensitivity_groups.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/sensitivity_groups.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/sensitivity_group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_group_create_response.py">Optional[SensitivityGroupCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}">client.zero_trust.dlp.sensitivity_groups.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/sensitivity_groups.py">update</a>(sensitivity_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/sensitivity_group_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_group_update_response.py">Optional[SensitivityGroupUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/sensitivity_groups">client.zero_trust.dlp.sensitivity_groups.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/sensitivity_groups.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_group_list_response.py">SyncSinglePage[SensitivityGroupListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}">client.zero_trust.dlp.sensitivity_groups.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/sensitivity_groups.py">delete</a>(sensitivity_group_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}">client.zero_trust.dlp.sensitivity_groups.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/sensitivity_groups.py">get</a>(sensitivity_group_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_group_get_response.py">Optional[SensitivityGroupGetResponse]</a></code>
+
+#### Levels
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.sensitivity_groups import (
+    LevelCreateResponse,
+    LevelUpdateResponse,
+    LevelListResponse,
+    LevelGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/levels">client.zero_trust.dlp.sensitivity_groups.levels.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/levels.py">create</a>(sensitivity_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_create_response.py">Optional[LevelCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/levels/{sensitivity_level_id}">client.zero_trust.dlp.sensitivity_groups.levels.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/levels.py">update</a>(sensitivity_level_id, \*, account_id, sensitivity_group_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_update_response.py">Optional[LevelUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/levels">client.zero_trust.dlp.sensitivity_groups.levels.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/levels.py">list</a>(sensitivity_group_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_list_response.py">SyncSinglePage[LevelListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/levels/{sensitivity_level_id}">client.zero_trust.dlp.sensitivity_groups.levels.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/levels.py">delete</a>(sensitivity_level_id, \*, account_id, sensitivity_group_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/levels/{sensitivity_level_id}">client.zero_trust.dlp.sensitivity_groups.levels.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/levels.py">get</a>(sensitivity_level_id, \*, account_id, sensitivity_group_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/level_get_response.py">Optional[LevelGetResponse]</a></code>
+
+##### Order
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.sensitivity_groups.levels import (
+    OrderUpdateResponse,
+    OrderGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/level_order">client.zero_trust.dlp.sensitivity_groups.levels.order.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/order.py">update</a>(sensitivity_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/sensitivity_groups/levels/order_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/levels/order_update_response.py">Optional[OrderUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/sensitivity_groups/{sensitivity_group_id}/level_order">client.zero_trust.dlp.sensitivity_groups.levels.order.<a href="./src/cloudflare/resources/zero_trust/dlp/sensitivity_groups/levels/order.py">get</a>(sensitivity_group_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/sensitivity_groups/levels/order_get_response.py">Optional[OrderGetResponse]</a></code>
+
+### DataTagCategories
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import (
+    DataTagCategoryCreateResponse,
+    DataTagCategoryUpdateResponse,
+    DataTagCategoryListResponse,
+    DataTagCategoryGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/data_tag_categories">client.zero_trust.dlp.data_tag_categories.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tag_categories.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_tag_category_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_category_create_response.py">Optional[DataTagCategoryCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/data_tag_categories/{category_id}">client.zero_trust.dlp.data_tag_categories.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tag_categories.py">update</a>(category_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_tag_category_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_category_update_response.py">Optional[DataTagCategoryUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/data_tag_categories">client.zero_trust.dlp.data_tag_categories.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tag_categories.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_category_list_response.py">SyncSinglePage[DataTagCategoryListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/data_tag_categories/{category_id}">client.zero_trust.dlp.data_tag_categories.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tag_categories.py">delete</a>(category_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/data_tag_categories/{category_id}">client.zero_trust.dlp.data_tag_categories.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tag_categories.py">get</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_category_get_response.py">Optional[DataTagCategoryGetResponse]</a></code>
+
+#### DataTags
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.data_tag_categories import (
+    DataTagCreateResponse,
+    DataTagUpdateResponse,
+    DataTagListResponse,
+    DataTagGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/data_tag_categories/{category_id}/data_tags">client.zero_trust.dlp.data_tag_categories.data_tags.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tags.py">create</a>(category_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_create_response.py">Optional[DataTagCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/data_tag_categories/{category_id}/data_tags/{tag_id}">client.zero_trust.dlp.data_tag_categories.data_tags.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tags.py">update</a>(tag_id, \*, account_id, category_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_update_response.py">Optional[DataTagUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/data_tag_categories/{category_id}/data_tags">client.zero_trust.dlp.data_tag_categories.data_tags.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tags.py">list</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_list_response.py">SyncSinglePage[DataTagListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/data_tag_categories/{category_id}/data_tags/{tag_id}">client.zero_trust.dlp.data_tag_categories.data_tags.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tags.py">delete</a>(tag_id, \*, account_id, category_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/data_tag_categories/{category_id}/data_tags/{tag_id}">client.zero_trust.dlp.data_tag_categories.data_tags.<a href="./src/cloudflare/resources/zero_trust/dlp/data_tag_categories/data_tags.py">get</a>(tag_id, \*, account_id, category_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_tag_categories/data_tag_get_response.py">Optional[DataTagGetResponse]</a></code>
+
+### DataClasses
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import (
+    DataClassCreateResponse,
+    DataClassUpdateResponse,
+    DataClassListResponse,
+    DataClassGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/data_classes">client.zero_trust.dlp.data_classes.<a href="./src/cloudflare/resources/zero_trust/dlp/data_classes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_class_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_class_create_response.py">Optional[DataClassCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/data_classes/{data_class_id}">client.zero_trust.dlp.data_classes.<a href="./src/cloudflare/resources/zero_trust/dlp/data_classes.py">update</a>(data_class_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/data_class_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_class_update_response.py">Optional[DataClassUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/data_classes">client.zero_trust.dlp.data_classes.<a href="./src/cloudflare/resources/zero_trust/dlp/data_classes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_class_list_response.py">SyncSinglePage[DataClassListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/data_classes/{data_class_id}">client.zero_trust.dlp.data_classes.<a href="./src/cloudflare/resources/zero_trust/dlp/data_classes.py">delete</a>(data_class_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/data_classes/{data_class_id}">client.zero_trust.dlp.data_classes.<a href="./src/cloudflare/resources/zero_trust/dlp/data_classes.py">get</a>(data_class_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/data_class_get_response.py">Optional[DataClassGetResponse]</a></code>
+
 ## Gateway
 
 Types:

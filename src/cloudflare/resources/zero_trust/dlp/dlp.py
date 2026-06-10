@@ -36,6 +36,14 @@ from .email.email import (
     AsyncEmailResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from .data_classes import (
+    DataClassesResource,
+    AsyncDataClassesResource,
+    DataClassesResourceWithRawResponse,
+    AsyncDataClassesResourceWithRawResponse,
+    DataClassesResourceWithStreamingResponse,
+    AsyncDataClassesResourceWithStreamingResponse,
+)
 from .payload_logs import (
     PayloadLogsResource,
     AsyncPayloadLogsResource,
@@ -75,6 +83,22 @@ from .custom_prompt_topics import (
     AsyncCustomPromptTopicsResourceWithRawResponse,
     CustomPromptTopicsResourceWithStreamingResponse,
     AsyncCustomPromptTopicsResourceWithStreamingResponse,
+)
+from .sensitivity_groups.sensitivity_groups import (
+    SensitivityGroupsResource,
+    AsyncSensitivityGroupsResource,
+    SensitivityGroupsResourceWithRawResponse,
+    AsyncSensitivityGroupsResourceWithRawResponse,
+    SensitivityGroupsResourceWithStreamingResponse,
+    AsyncSensitivityGroupsResourceWithStreamingResponse,
+)
+from .data_tag_categories.data_tag_categories import (
+    DataTagCategoriesResource,
+    AsyncDataTagCategoriesResource,
+    DataTagCategoriesResourceWithRawResponse,
+    AsyncDataTagCategoriesResourceWithRawResponse,
+    DataTagCategoriesResourceWithStreamingResponse,
+    AsyncDataTagCategoriesResourceWithStreamingResponse,
 )
 
 __all__ = ["DLPResource", "AsyncDLPResource"]
@@ -116,6 +140,18 @@ class DLPResource(SyncAPIResource):
     @cached_property
     def entries(self) -> EntriesResource:
         return EntriesResource(self._client)
+
+    @cached_property
+    def sensitivity_groups(self) -> SensitivityGroupsResource:
+        return SensitivityGroupsResource(self._client)
+
+    @cached_property
+    def data_tag_categories(self) -> DataTagCategoriesResource:
+        return DataTagCategoriesResource(self._client)
+
+    @cached_property
+    def data_classes(self) -> DataClassesResource:
+        return DataClassesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DLPResourceWithRawResponse:
@@ -173,6 +209,18 @@ class AsyncDLPResource(AsyncAPIResource):
     @cached_property
     def entries(self) -> AsyncEntriesResource:
         return AsyncEntriesResource(self._client)
+
+    @cached_property
+    def sensitivity_groups(self) -> AsyncSensitivityGroupsResource:
+        return AsyncSensitivityGroupsResource(self._client)
+
+    @cached_property
+    def data_tag_categories(self) -> AsyncDataTagCategoriesResource:
+        return AsyncDataTagCategoriesResource(self._client)
+
+    @cached_property
+    def data_classes(self) -> AsyncDataClassesResource:
+        return AsyncDataClassesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDLPResourceWithRawResponse:
@@ -234,6 +282,18 @@ class DLPResourceWithRawResponse:
     def entries(self) -> EntriesResourceWithRawResponse:
         return EntriesResourceWithRawResponse(self._dlp.entries)
 
+    @cached_property
+    def sensitivity_groups(self) -> SensitivityGroupsResourceWithRawResponse:
+        return SensitivityGroupsResourceWithRawResponse(self._dlp.sensitivity_groups)
+
+    @cached_property
+    def data_tag_categories(self) -> DataTagCategoriesResourceWithRawResponse:
+        return DataTagCategoriesResourceWithRawResponse(self._dlp.data_tag_categories)
+
+    @cached_property
+    def data_classes(self) -> DataClassesResourceWithRawResponse:
+        return DataClassesResourceWithRawResponse(self._dlp.data_classes)
+
 
 class AsyncDLPResourceWithRawResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -274,6 +334,18 @@ class AsyncDLPResourceWithRawResponse:
     @cached_property
     def entries(self) -> AsyncEntriesResourceWithRawResponse:
         return AsyncEntriesResourceWithRawResponse(self._dlp.entries)
+
+    @cached_property
+    def sensitivity_groups(self) -> AsyncSensitivityGroupsResourceWithRawResponse:
+        return AsyncSensitivityGroupsResourceWithRawResponse(self._dlp.sensitivity_groups)
+
+    @cached_property
+    def data_tag_categories(self) -> AsyncDataTagCategoriesResourceWithRawResponse:
+        return AsyncDataTagCategoriesResourceWithRawResponse(self._dlp.data_tag_categories)
+
+    @cached_property
+    def data_classes(self) -> AsyncDataClassesResourceWithRawResponse:
+        return AsyncDataClassesResourceWithRawResponse(self._dlp.data_classes)
 
 
 class DLPResourceWithStreamingResponse:
@@ -316,6 +388,18 @@ class DLPResourceWithStreamingResponse:
     def entries(self) -> EntriesResourceWithStreamingResponse:
         return EntriesResourceWithStreamingResponse(self._dlp.entries)
 
+    @cached_property
+    def sensitivity_groups(self) -> SensitivityGroupsResourceWithStreamingResponse:
+        return SensitivityGroupsResourceWithStreamingResponse(self._dlp.sensitivity_groups)
+
+    @cached_property
+    def data_tag_categories(self) -> DataTagCategoriesResourceWithStreamingResponse:
+        return DataTagCategoriesResourceWithStreamingResponse(self._dlp.data_tag_categories)
+
+    @cached_property
+    def data_classes(self) -> DataClassesResourceWithStreamingResponse:
+        return DataClassesResourceWithStreamingResponse(self._dlp.data_classes)
+
 
 class AsyncDLPResourceWithStreamingResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -356,3 +440,15 @@ class AsyncDLPResourceWithStreamingResponse:
     @cached_property
     def entries(self) -> AsyncEntriesResourceWithStreamingResponse:
         return AsyncEntriesResourceWithStreamingResponse(self._dlp.entries)
+
+    @cached_property
+    def sensitivity_groups(self) -> AsyncSensitivityGroupsResourceWithStreamingResponse:
+        return AsyncSensitivityGroupsResourceWithStreamingResponse(self._dlp.sensitivity_groups)
+
+    @cached_property
+    def data_tag_categories(self) -> AsyncDataTagCategoriesResourceWithStreamingResponse:
+        return AsyncDataTagCategoriesResourceWithStreamingResponse(self._dlp.data_tag_categories)
+
+    @cached_property
+    def data_classes(self) -> AsyncDataClassesResourceWithStreamingResponse:
+        return AsyncDataClassesResourceWithStreamingResponse(self._dlp.data_classes)

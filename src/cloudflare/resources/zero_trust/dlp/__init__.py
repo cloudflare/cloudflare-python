@@ -64,6 +64,14 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
+from .data_classes import (
+    DataClassesResource,
+    AsyncDataClassesResource,
+    DataClassesResourceWithRawResponse,
+    AsyncDataClassesResourceWithRawResponse,
+    DataClassesResourceWithStreamingResponse,
+    AsyncDataClassesResourceWithStreamingResponse,
+)
 from .payload_logs import (
     PayloadLogsResource,
     AsyncPayloadLogsResource,
@@ -71,6 +79,22 @@ from .payload_logs import (
     AsyncPayloadLogsResourceWithRawResponse,
     PayloadLogsResourceWithStreamingResponse,
     AsyncPayloadLogsResourceWithStreamingResponse,
+)
+from .sensitivity_groups import (
+    SensitivityGroupsResource,
+    AsyncSensitivityGroupsResource,
+    SensitivityGroupsResourceWithRawResponse,
+    AsyncSensitivityGroupsResourceWithRawResponse,
+    SensitivityGroupsResourceWithStreamingResponse,
+    AsyncSensitivityGroupsResourceWithStreamingResponse,
+)
+from .data_tag_categories import (
+    DataTagCategoriesResource,
+    AsyncDataTagCategoriesResource,
+    DataTagCategoriesResourceWithRawResponse,
+    AsyncDataTagCategoriesResourceWithRawResponse,
+    DataTagCategoriesResourceWithStreamingResponse,
+    AsyncDataTagCategoriesResourceWithStreamingResponse,
 )
 from .custom_prompt_topics import (
     CustomPromptTopicsResource,
@@ -136,6 +160,24 @@ __all__ = [
     "AsyncEntriesResourceWithRawResponse",
     "EntriesResourceWithStreamingResponse",
     "AsyncEntriesResourceWithStreamingResponse",
+    "SensitivityGroupsResource",
+    "AsyncSensitivityGroupsResource",
+    "SensitivityGroupsResourceWithRawResponse",
+    "AsyncSensitivityGroupsResourceWithRawResponse",
+    "SensitivityGroupsResourceWithStreamingResponse",
+    "AsyncSensitivityGroupsResourceWithStreamingResponse",
+    "DataTagCategoriesResource",
+    "AsyncDataTagCategoriesResource",
+    "DataTagCategoriesResourceWithRawResponse",
+    "AsyncDataTagCategoriesResourceWithRawResponse",
+    "DataTagCategoriesResourceWithStreamingResponse",
+    "AsyncDataTagCategoriesResourceWithStreamingResponse",
+    "DataClassesResource",
+    "AsyncDataClassesResource",
+    "DataClassesResourceWithRawResponse",
+    "AsyncDataClassesResourceWithRawResponse",
+    "DataClassesResourceWithStreamingResponse",
+    "AsyncDataClassesResourceWithStreamingResponse",
     "DLPResource",
     "AsyncDLPResource",
     "DLPResourceWithRawResponse",
