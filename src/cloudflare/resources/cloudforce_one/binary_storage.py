@@ -57,7 +57,8 @@ class BinaryStorageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryStorageCreateResponse:
         """
-        Posts a file to Binary Storage
+        Uploads a binary file to Cloudforce One's binary database for malware analysis
+        and threat intelligence correlation.
 
         Args:
           account_id: Account ID.
@@ -103,7 +104,7 @@ class BinaryStorageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Retrieves a file from Binary Storage
+        Retrieves a binary file from the Cloudforce One binary storage for analysis.
 
         Args:
           account_id: Account ID.
@@ -165,7 +166,8 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryStorageCreateResponse:
         """
-        Posts a file to Binary Storage
+        Uploads a binary file to Cloudforce One's binary database for malware analysis
+        and threat intelligence correlation.
 
         Args:
           account_id: Account ID.
@@ -211,7 +213,7 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Retrieves a file from Binary Storage
+        Retrieves a binary file from the Cloudforce One binary storage for analysis.
 
         Args:
           account_id: Account ID.
