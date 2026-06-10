@@ -57,6 +57,7 @@ class JobCreateParams(TypedDict, total=False):
             "turnstile_events",
             "warp_config_changes",
             "warp_toggle_changes",
+            "websocket_analytics",
             "workers_trace_events",
             "zaraz_events",
             "zero_trust_network_sessions",
