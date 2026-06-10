@@ -62,6 +62,7 @@ class ModelsResource(SyncAPIResource):
         author: str | Omit = omit,
         format: Literal["openrouter"] | Omit = omit,
         hide_experimental: bool | Omit = omit,
+        include_deprecated: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -84,6 +85,13 @@ class ModelsResource(SyncAPIResource):
               response.
 
           hide_experimental: Filter to hide experimental models
+
+          include_deprecated: If true, include models whose planned_deprecation_date is in the past — but only
+              within a three-month grace window after that date. Models whose
+              planned_deprecation_date is more than three months in the past remain hidden
+              regardless of this flag. Future planned-deprecation dates are always included
+              regardless of this flag. Defaults to false, preserving the existing behavior of
+              hiding all past-dated deprecations.
 
           search: Search
 
@@ -114,6 +122,7 @@ class ModelsResource(SyncAPIResource):
                         "author": author,
                         "format": format,
                         "hide_experimental": hide_experimental,
+                        "include_deprecated": include_deprecated,
                         "page": page,
                         "per_page": per_page,
                         "search": search,
@@ -158,6 +167,7 @@ class AsyncModelsResource(AsyncAPIResource):
         author: str | Omit = omit,
         format: Literal["openrouter"] | Omit = omit,
         hide_experimental: bool | Omit = omit,
+        include_deprecated: bool | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
@@ -180,6 +190,13 @@ class AsyncModelsResource(AsyncAPIResource):
               response.
 
           hide_experimental: Filter to hide experimental models
+
+          include_deprecated: If true, include models whose planned_deprecation_date is in the past — but only
+              within a three-month grace window after that date. Models whose
+              planned_deprecation_date is more than three months in the past remain hidden
+              regardless of this flag. Future planned-deprecation dates are always included
+              regardless of this flag. Defaults to false, preserving the existing behavior of
+              hiding all past-dated deprecations.
 
           search: Search
 
@@ -210,6 +227,7 @@ class AsyncModelsResource(AsyncAPIResource):
                         "author": author,
                         "format": format,
                         "hide_experimental": hide_experimental,
+                        "include_deprecated": include_deprecated,
                         "page": page,
                         "per_page": per_page,
                         "search": search,
