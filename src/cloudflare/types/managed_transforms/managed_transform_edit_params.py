@@ -12,10 +12,10 @@ class ManagedTransformEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """The unique ID of the zone."""
 
-    managed_request_headers: Required[Iterable[ManagedRequestHeader]]
+    managed_request_headers: Iterable[ManagedRequestHeader]
     """The list of Managed Request Transforms."""
 
-    managed_response_headers: Required[Iterable[ManagedResponseHeader]]
+    managed_response_headers: Iterable[ManagedResponseHeader]
     """The list of Managed Response Transforms."""
 
 

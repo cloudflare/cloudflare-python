@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -124,8 +124,8 @@ class ManagedTransformsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader] | Omit = omit,
+        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -272,8 +272,8 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader] | Omit = omit,
+        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
