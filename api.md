@@ -33,6 +33,8 @@ from cloudflare.types import (
 
 # [Organizations](src/cloudflare/resources/organizations/api.md)
 
+# [Tenants](src/cloudflare/resources/tenants/api.md)
+
 # [OriginCACertificates](src/cloudflare/resources/origin_ca_certificates/api.md)
 
 # [IPs](src/cloudflare/resources/ips/api.md)

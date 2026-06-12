@@ -68,6 +68,7 @@ if TYPE_CHECKING:
         billing,
         filters,
         logpush,
+        tenants,
         workers,
         accounts,
         aisearch,
@@ -182,6 +183,7 @@ if TYPE_CHECKING:
     from .resources.billing.billing import BillingResource, AsyncBillingResource
     from .resources.filters.filters import FiltersResource, AsyncFiltersResource
     from .resources.logpush.logpush import LogpushResource, AsyncLogpushResource
+    from .resources.tenants.tenants import TenantsResource, AsyncTenantsResource
     from .resources.workers.workers import WorkersResource, AsyncWorkersResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
     from .resources.aisearch.aisearch import AISearchResource, AsyncAISearchResource
@@ -418,6 +420,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.organizations import OrganizationsResource
 
         return OrganizationsResource(self)
+
+    @cached_property
+    def tenants(self) -> TenantsResource:
+        from .resources.tenants import TenantsResource
+
+        return TenantsResource(self)
 
     @cached_property
     def origin_ca_certificates(self) -> OriginCACertificatesResource:
@@ -1346,6 +1354,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOrganizationsResource(self)
 
     @cached_property
+    def tenants(self) -> AsyncTenantsResource:
+        from .resources.tenants import AsyncTenantsResource
+
+        return AsyncTenantsResource(self)
+
+    @cached_property
     def origin_ca_certificates(self) -> AsyncOriginCACertificatesResource:
         from .resources.origin_ca_certificates import AsyncOriginCACertificatesResource
 
@@ -2196,6 +2210,12 @@ class CloudflareWithRawResponse:
         return OrganizationsResourceWithRawResponse(self._client.organizations)
 
     @cached_property
+    def tenants(self) -> tenants.TenantsResourceWithRawResponse:
+        from .resources.tenants import TenantsResourceWithRawResponse
+
+        return TenantsResourceWithRawResponse(self._client.tenants)
+
+    @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.OriginCACertificatesResourceWithRawResponse:
         from .resources.origin_ca_certificates import OriginCACertificatesResourceWithRawResponse
 
@@ -2881,6 +2901,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
 
         return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
+
+    @cached_property
+    def tenants(self) -> tenants.AsyncTenantsResourceWithRawResponse:
+        from .resources.tenants import AsyncTenantsResourceWithRawResponse
+
+        return AsyncTenantsResourceWithRawResponse(self._client.tenants)
 
     @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.AsyncOriginCACertificatesResourceWithRawResponse:
@@ -3572,6 +3598,12 @@ class CloudflareWithStreamedResponse:
         return OrganizationsResourceWithStreamingResponse(self._client.organizations)
 
     @cached_property
+    def tenants(self) -> tenants.TenantsResourceWithStreamingResponse:
+        from .resources.tenants import TenantsResourceWithStreamingResponse
+
+        return TenantsResourceWithStreamingResponse(self._client.tenants)
+
+    @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.OriginCACertificatesResourceWithStreamingResponse:
         from .resources.origin_ca_certificates import OriginCACertificatesResourceWithStreamingResponse
 
@@ -4259,6 +4291,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
 
         return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
+    def tenants(self) -> tenants.AsyncTenantsResourceWithStreamingResponse:
+        from .resources.tenants import AsyncTenantsResourceWithStreamingResponse
+
+        return AsyncTenantsResourceWithStreamingResponse(self._client.tenants)
 
     @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.AsyncOriginCACertificatesResourceWithStreamingResponse:

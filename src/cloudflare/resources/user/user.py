@@ -14,6 +14,14 @@ from .invites import (
     InvitesResourceWithStreamingResponse,
     AsyncInvitesResourceWithStreamingResponse,
 )
+from .tenants import (
+    TenantsResource,
+    AsyncTenantsResource,
+    TenantsResourceWithRawResponse,
+    AsyncTenantsResourceWithRawResponse,
+    TenantsResourceWithStreamingResponse,
+    AsyncTenantsResourceWithStreamingResponse,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -93,6 +101,10 @@ class UserResource(SyncAPIResource):
     @cached_property
     def subscriptions(self) -> SubscriptionsResource:
         return SubscriptionsResource(self._client)
+
+    @cached_property
+    def tenants(self) -> TenantsResource:
+        return TenantsResource(self._client)
 
     @cached_property
     def tokens(self) -> TokensResource:
@@ -220,6 +232,10 @@ class AsyncUserResource(AsyncAPIResource):
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResource:
         return AsyncSubscriptionsResource(self._client)
+
+    @cached_property
+    def tenants(self) -> AsyncTenantsResource:
+        return AsyncTenantsResource(self._client)
 
     @cached_property
     def tokens(self) -> AsyncTokensResource:
@@ -359,6 +375,10 @@ class UserResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._user.subscriptions)
 
     @cached_property
+    def tenants(self) -> TenantsResourceWithRawResponse:
+        return TenantsResourceWithRawResponse(self._user.tenants)
+
+    @cached_property
     def tokens(self) -> TokensResourceWithRawResponse:
         return TokensResourceWithRawResponse(self._user.tokens)
 
@@ -393,6 +413,10 @@ class AsyncUserResourceWithRawResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._user.subscriptions)
+
+    @cached_property
+    def tenants(self) -> AsyncTenantsResourceWithRawResponse:
+        return AsyncTenantsResourceWithRawResponse(self._user.tenants)
 
     @cached_property
     def tokens(self) -> AsyncTokensResourceWithRawResponse:
@@ -431,6 +455,10 @@ class UserResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._user.subscriptions)
 
     @cached_property
+    def tenants(self) -> TenantsResourceWithStreamingResponse:
+        return TenantsResourceWithStreamingResponse(self._user.tenants)
+
+    @cached_property
     def tokens(self) -> TokensResourceWithStreamingResponse:
         return TokensResourceWithStreamingResponse(self._user.tokens)
 
@@ -465,6 +493,10 @@ class AsyncUserResourceWithStreamingResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
         return AsyncSubscriptionsResourceWithStreamingResponse(self._user.subscriptions)
+
+    @cached_property
+    def tenants(self) -> AsyncTenantsResourceWithStreamingResponse:
+        return AsyncTenantsResourceWithStreamingResponse(self._user.tenants)
 
     @cached_property
     def tokens(self) -> AsyncTokensResourceWithStreamingResponse:

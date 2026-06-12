@@ -32,6 +32,14 @@ from .invites import (
     InvitesResourceWithStreamingResponse,
     AsyncInvitesResourceWithStreamingResponse,
 )
+from .tenants import (
+    TenantsResource,
+    AsyncTenantsResource,
+    TenantsResourceWithRawResponse,
+    AsyncTenantsResourceWithRawResponse,
+    TenantsResourceWithStreamingResponse,
+    AsyncTenantsResourceWithStreamingResponse,
+)
 from .audit_logs import (
     AuditLogsResource,
     AsyncAuditLogsResource,
@@ -88,6 +96,12 @@ __all__ = [
     "AsyncSubscriptionsResourceWithRawResponse",
     "SubscriptionsResourceWithStreamingResponse",
     "AsyncSubscriptionsResourceWithStreamingResponse",
+    "TenantsResource",
+    "AsyncTenantsResource",
+    "TenantsResourceWithRawResponse",
+    "AsyncTenantsResourceWithRawResponse",
+    "TenantsResourceWithStreamingResponse",
+    "AsyncTenantsResourceWithStreamingResponse",
     "TokensResource",
     "AsyncTokensResource",
     "TokensResourceWithRawResponse",

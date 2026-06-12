@@ -85,6 +85,12 @@ Methods:
 - <code title="delete /user/subscriptions/{identifier}">client.user.subscriptions.<a href="./src/cloudflare/resources/user/subscriptions.py">delete</a>(identifier) -> <a href="./src/cloudflare/types/user/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
 - <code title="get /user/subscriptions">client.user.subscriptions.<a href="./src/cloudflare/resources/user/subscriptions.py">get</a>() -> <a href="./src/cloudflare/types/shared/subscription.py">SyncSinglePage[Subscription]</a></code>
 
+## Tenants
+
+Methods:
+
+- <code title="get /user/tenants">client.user.tenants.<a href="./src/cloudflare/resources/user/tenants.py">list</a>() -> <a href="./src/cloudflare/types/organizations/organization.py">SyncSinglePage[Organization]</a></code>
+
 ## Tokens
 
 Types:
